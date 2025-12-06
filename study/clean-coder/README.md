@@ -1,4 +1,4 @@
-# 클린 코더 (The Clean Coder)
+# Clean Coder Study
 
 로버트 C. 마틴의 "클린 코더" 도서를 기반으로 한 학습 정리입니다.
 

@@ -5,7 +5,39 @@
 
 ## 스터디 목록
 
-- [Algorithm Study](algorithm) - 알고리즘 문제 풀이 (BOJ, Programmers, LeetCode, Codility, Kakao)
-- [Effective Java Study](effective-java) - Effective Java 서적 학습
-- [Java Live Study](java-live) - Java 라이브 스터디
-- [Kotlin Study](kotlin) - Kotlin 프로그래밍 학습
+| 분류 | 설명 | 상태 |
+|------|------|------|
+| [Algorithm](algorithm) | 알고리즘 문제 풀이 (BOJ, Programmers, LeetCode, Codility, Kakao) | 진행중 |
+| [Effective Java](effective-java) | Effective Java 서적 학습 (Chapter 2~4) | 진행중 |
+| [Java Live](java-live) | Java 라이브 스터디 (Week 4~12) | 완료 |
+| [Kotlin](kotlin) | Kotlin 프로그래밍 학습 | 진행중 |
+| [Clean Coder](clean-coder) | 클린 코더 서적 학습 (Part 1~14) | 완료 |
+
+## 폴더 구조
+
+```
+study/
+├── algorithm/                   # 알고리즘 문제 풀이
+│   ├── boj/                     # 백준 온라인 저지
+│   ├── programmers/             # 프로그래머스
+│   ├── leetcode/                # LeetCode
+│   ├── codility/                # Codility
+│   └── kakao/                   # 카카오 코딩테스트
+│
+├── effective-java/              # Effective Java
+│   ├── chapter02/               # 객체 생성과 파괴
+│   ├── chapter03/               # 모든 객체의 공통 메서드
+│   └── chapter04/               # 클래스와 인터페이스
+│
+├── java-live/                   # Java 라이브 스터디
+│   ├── week04/                  # 제어문
+│   ├── week05/                  # 클래스
+│   └── ...
+│
+├── kotlin/                      # Kotlin 학습
+│
+└── clean-coder/                 # 클린 코더
+    ├── part01-professionalism.md
+    ├── part02-saying-no.md
+    └── ...
+```
