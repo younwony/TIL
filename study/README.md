@@ -5,7 +5,7 @@
 
 ## 스터디 목록
 
-- [Algorithm Study](./algorithm-study) - 알고리즘 문제 풀이 (BOJ, Programmers, LeetCode, Codility, Kakao)
-- [Effective Java Study](./effective-java-study) - Effective Java 서적 학습
-- [Java Live Study](./java-live-study) - Java 라이브 스터디
-- [Kotlin Study](./kotlin-study) - Kotlin 프로그래밍 학습
+- [Algorithm Study](algorithm) - 알고리즘 문제 풀이 (BOJ, Programmers, LeetCode, Codility, Kakao)
+- [Effective Java Study](effective-java) - Effective Java 서적 학습
+- [Java Live Study](java-live) - Java 라이브 스터디
+- [Kotlin Study](kotlin) - Kotlin 프로그래밍 학습

@@ -36,7 +36,7 @@ TIL/
 ### Study
 프로젝트 단위로 실행 가능한 코드를 포함한 스터디 모음
 
-- [Algorithm Study](./study/algorithm-study) - 알고리즘 문제 풀이 (BOJ, Programmers, LeetCode, Codility, Kakao)
-- [Effective Java Study](./study/effective-java-study) - Effective Java 서적 학습
-- [Java Live Study](./study/java-live-study) - Java 라이브 스터디
-- [Kotlin Study](./study/kotlin-study) - Kotlin 프로그래밍 학습
+- [Algorithm Study](study/algorithm) - 알고리즘 문제 풀이 (BOJ, Programmers, LeetCode, Codility, Kakao)
+- [Effective Java Study](study/effective-java) - Effective Java 서적 학습
+- [Java Live Study](study/java-live) - Java 라이브 스터디
+- [Kotlin Study](study/kotlin) - Kotlin 프로그래밍 학습
