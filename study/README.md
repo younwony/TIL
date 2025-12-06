@@ -12,6 +12,7 @@
 | [Java Live](java-live) | Java 라이브 스터디 (Week 4~12) | 완료 |
 | [Kotlin](kotlin) | Kotlin 프로그래밍 학습 | 진행중 |
 | [Clean Coder](clean-coder) | 클린 코더 서적 학습 (Part 1~14) | 완료 |
+| [Tech Interview](tech-interview) | 개발자 기술 면접 준비 (Algorithm, Collection, Pattern, Java 8) | 진행중 |
 
 ## 폴더 구조
 
@@ -36,8 +37,14 @@ study/
 │
 ├── kotlin/                      # Kotlin 학습
 │
-└── clean-coder/                 # 클린 코더
-    ├── part01-professionalism.md
-    ├── part02-saying-no.md
-    └── ...
+├── clean-coder/                 # 클린 코더
+│   ├── part01-professionalism.md
+│   ├── part02-saying-no.md
+│   └── ...
+│
+└── tech-interview/              # 기술 면접 준비
+    ├── algorithm/               # 알고리즘 (정렬, 캐싱, 로드밸런싱)
+    ├── collection/              # 컬렉션 (List, Set, Map, 자료구조)
+    ├── pattern/                 # 디자인 패턴 (생성, 구조, 행동)
+    └── java8/                   # Java 8 (함수형, 람다, 제네릭)
 ```
