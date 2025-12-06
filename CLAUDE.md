@@ -156,7 +156,61 @@ TIL/
 - [ ] `git status`로 staging 확인
 - [ ] commit은 사용자 요청 시에만
 
+## CS 문서 작성 (Daily CS)
+
+사용자가 "오늘의 CS", "CS 정리", 또는 특정 CS 주제를 요청하면 아래 절차를 따릅니다.
+
+### 트리거 키워드
+
+- "오늘의 CS: {주제}"
+- "CS 정리: {주제}"
+- "{주제} 정리해줘" (CS 관련 주제인 경우)
+
+### 작업 절차
+
+1. **카테고리 판단**: 주제에 맞는 카테고리 선택
+   - `network/` - 네트워크, HTTP, TCP/IP, DNS 등
+   - `os/` - 프로세스, 메모리, 스케줄링 등
+   - `db/` - 인덱스, 트랜잭션, SQL, NoSQL 등
+   - `algorithm/` - 정렬, 탐색, DP, 그래프 등
+   - `system-design/` - 확장성, 캐싱, MSA 등
+
+2. **파일 생성**: `cs/{category}/{topic}.md`
+   - 파일명: kebab-case (예: `tcp-handshake.md`)
+
+3. **내용 작성**: CS-GUIDE.md 템플릿 준수
+   - 핵심 개념 (3-5개 불릿포인트)
+   - 상세 설명 (소제목으로 구분)
+   - 동작 원리 (해당 시)
+   - 예제 코드 (해당 시)
+   - 면접 예상 질문 (2-3개)
+
+4. **README 업데이트**: `cs/{category}/README.md`에 링크 추가
+
+5. **git add**: 생성/수정된 파일 staging
+
+### 문서 품질 기준
+
+| 항목 | 기준 |
+|------|------|
+| 정확성 | 공식 문서, 신뢰할 수 있는 출처 기반 |
+| 간결성 | 핵심에 집중, 불필요한 내용 배제 |
+| 실용성 | 면접 대비 + 실무 적용 가능 |
+| 일관성 | 동일한 템플릿과 스타일 유지 |
+
+### 예시
+
+요청: "오늘의 CS: TCP 3-way handshake"
+
+작업:
+```
+1. cs/network/tcp-handshake.md 생성
+2. cs/network/README.md 업데이트
+3. git add cs/network/
+```
+
 ## 참고 문서
 
 - [CONVENTION.md](./CONVENTION.md): 상세 컨벤션 가이드
+- [cs/CS-GUIDE.md](./cs/CS-GUIDE.md): CS 문서 작성 가이드
 - [study/README.md](./study/README.md): 스터디 목록
