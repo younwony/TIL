@@ -4,7 +4,7 @@
 
 ## 목차
 
-- Scalability
+- [확장성 (Scalability)](./scalability.md) - 수직/수평 확장, 스케일 아웃 전략
 - Availability
 - Consistency
 - Caching
