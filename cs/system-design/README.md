@@ -5,6 +5,7 @@
 ## 목차
 
 - [확장성 (Scalability)](./scalability.md) - 수직/수평 확장, 스케일 아웃 전략
+- [서킷브레이커 (Circuit Breaker)](./circuit-breaker.md) - 장애 전파 방지 패턴
 - Availability
 - Consistency
 - Caching
