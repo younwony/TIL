@@ -8,5 +8,7 @@
 - [서킷브레이커 (Circuit Breaker)](./circuit-breaker.md) - 장애 전파 방지 패턴
 - [캐싱 (Caching)](./caching.md) - 캐시 전략, 캐시 무효화, Redis/Memcached
 - [메시지 큐 (Message Queue)](./message-queue.md) - Kafka, RabbitMQ, 이벤트 드리븐 아키텍처
+- [Docker](./docker.md) - 컨테이너 플랫폼, 이미지, Dockerfile, Docker Compose
+- [Kubernetes](./kubernetes.md) - 컨테이너 오케스트레이션, Pod, Service, Deployment
 - Availability
 - Consistency
