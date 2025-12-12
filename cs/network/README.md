@@ -5,7 +5,7 @@
 ## 목차
 
 - TCP/IP
-- HTTP/HTTPS
+- [HTTP/HTTPS](./http-https.md) - 웹 통신 프로토콜과 보안
 - DNS
 - Load Balancing
 - CDN
