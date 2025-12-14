@@ -7,5 +7,5 @@
 - Sort
 - Search
 - Graph
-- Dynamic Programming
+- [Dynamic Programming](./dynamic-programming.md) - 메모이제이션, 타뷸레이션, 대표 문제
 - Data Structure
