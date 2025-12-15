@@ -10,5 +10,6 @@
 - [메시지 큐 (Message Queue)](./message-queue.md) - Kafka, RabbitMQ, 이벤트 드리븐 아키텍처
 - [Docker](./docker.md) - 컨테이너 플랫폼, 이미지, Dockerfile, Docker Compose
 - [Kubernetes](./kubernetes.md) - 컨테이너 오케스트레이션, Pod, Service, Deployment
+- [DTO-Entity 변환 설계](./dto-entity-conversion.md) - 의존성 방향, Clean Architecture, 도메인 순수성
 - Availability
 - Consistency
