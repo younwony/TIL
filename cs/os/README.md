@@ -4,8 +4,5 @@
 
 ## 목차
 
-- Process & Thread
-- Memory Management
-- File System
-- Scheduling
-- Synchronization
+- [프로세스와 스레드](./process-vs-thread.md) - 프로세스와 스레드의 차이점, 멀티스레딩
+- [메모리 관리](./memory-management.md) - 가상 메모리, 페이징, 세그멘테이션, 페이지 교체 알고리즘
