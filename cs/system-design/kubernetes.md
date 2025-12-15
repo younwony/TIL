@@ -691,13 +691,13 @@ rules:
 ## 면접 예상 질문
 
 - **Q: Pod와 Container의 차이점은 무엇인가요?**
-  - A: Container는 단일 애플리케이션 프로세스를 실행하는 격리된 환경이고, Pod는 하나 이상의 Container를 포함하는 K8s의 최소 배포 단위입니다. 같은 Pod 내 Container들은 네트워크 네임스페이스(localhost 통신)와 스토리지를 공유하며, 함께 스케줄링됩니다.
+  - A: Container는 단일 애플리케이션 프로세스를 실행하는 격리된 환경이고, Pod는 하나 이상의 Container를 포함하는 K8s의 최소 배포 단위입니다. 같은 Pod 내 Container들은 네트워크 네임스페이스(localhost 통신)와 스토리지를 공유하며, 함께 스케줄링됩니다. **왜 이렇게 답해야 하나요?** 웹 애플리케이션과 로그 수집기를 같은 Pod에 두면 localhost:8080으로 바로 통신하고, 로그 볼륨을 공유할 수 있습니다. 하지만 독립적인 확장이 필요하면 Pod를 분리해야 합니다.
 
 - **Q: Deployment와 StatefulSet의 차이점은 무엇인가요?**
-  - A: Deployment는 상태가 없는(Stateless) 애플리케이션용으로 Pod가 교체 가능하고 동일합니다. StatefulSet은 상태가 있는(Stateful) 애플리케이션용으로 각 Pod에 고유한 식별자와 안정적인 네트워크 ID, 영구 스토리지를 제공합니다. DB, Kafka 등에 사용됩니다.
+  - A: Deployment는 상태가 없는(Stateless) 애플리케이션용으로 Pod가 교체 가능하고 동일합니다. StatefulSet은 상태가 있는(Stateful) 애플리케이션용으로 각 Pod에 고유한 식별자와 안정적인 네트워크 ID, 영구 스토리지를 제공합니다. DB, Kafka 등에 사용됩니다. **왜 이렇게 답해야 하나요?** Deployment Pod는 web-abc, web-def처럼 랜덤 ID로 언제든 교체 가능하지만, StatefulSet은 mysql-0, mysql-1처럼 순서를 보장하고 재생성 시에도 같은 ID와 PV를 유지하여 데이터 일관성을 보장합니다.
 
 - **Q: Service의 ClusterIP, NodePort, LoadBalancer 차이점은 무엇인가요?**
-  - A: ClusterIP는 클러스터 내부에서만 접근 가능한 가상 IP를 제공합니다. NodePort는 모든 노드의 특정 포트(30000-32767)로 외부 접근을 허용합니다. LoadBalancer는 클라우드 환경에서 외부 로드밸런서를 자동으로 프로비저닝하여 외부 트래픽을 분산합니다.
+  - A: ClusterIP는 클러스터 내부에서만 접근 가능한 가상 IP를 제공합니다. NodePort는 모든 노드의 특정 포트(30000-32767)로 외부 접근을 허용합니다. LoadBalancer는 클라우드 환경에서 외부 로드밸런서를 자동으로 프로비저닝하여 외부 트래픽을 분산합니다. **왜 이렇게 답해야 하나요?** ClusterIP는 내부 서비스 간 통신용이고, NodePort는 개발 환경의 간단한 노출용이며, LoadBalancer는 프로덕션에서 고가용성 외부 노출을 위한 것입니다. 실제 프로덕션에서는 Ingress + LoadBalancer를 함께 사용합니다.
 
 ## 참고 자료
 
