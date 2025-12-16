@@ -4,6 +4,9 @@
 
 ## 목차
 
+### ORM
+- [JPA](./jpa.md) - 영속성 컨텍스트, N+1 문제, 지연 로딩, Entity 생명주기
+
 ### MySQL
 - [MySQL 인덱스](./mysql-index.md) - B+Tree 인덱스, 클러스터드/세컨더리 인덱스, 복합 인덱스
 
