@@ -6,3 +6,4 @@
 
 - [OOP (객체지향 프로그래밍)](./oop.md) - 캡슐화, 상속, 다형성, 추상화, SOLID 원칙
 - [API 설계](./api-design.md) - REST API 설계 원칙, HTTP 메서드, 상태 코드, 버전 관리, 페이지네이션
+- [디자인 패턴](./design-pattern.md) - 생성/구조/행위 패턴, Singleton, Factory, Strategy, Observer 등
