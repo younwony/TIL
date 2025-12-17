@@ -29,6 +29,10 @@
 
 - [Language](./language) - Java, Kotlin 등 언어별 심화 학습
 
+### 최신 트렌드
+
+- [Trend](./trend) - AI Agent, MCP, LLM 등 최신 기술 트렌드
+
 ## 문서 작성 가이드
 
 - [CS-GUIDE.md](./CS-GUIDE.md) - CS 문서 작성 가이드 및 카테고리별 주제 목록
