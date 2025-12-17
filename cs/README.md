@@ -29,9 +29,13 @@
 
 - [Language](./language) - Java, Kotlin 등 언어별 심화 학습
 
+### AI & 에이전트
+
+- [AI Agent](./ai-agent) - AI 에이전트, MCP, LLM 도구 확장 기술
+
 ### 최신 트렌드
 
-- [Trend](./trend) - AI Agent, MCP, LLM 등 최신 기술 트렌드
+- [Trend](./trend) - 트렌드 문서 인덱스 (실제 문서는 각 카테고리에 배치)
 
 ## 문서 작성 가이드
 

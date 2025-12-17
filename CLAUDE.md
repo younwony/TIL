@@ -39,6 +39,8 @@ TIL/
 ├── README.md              # 저장소 소개
 ├── CONVENTION.md          # 컨벤션 가이드
 ├── CLAUDE.md              # Claude 설정 (이 문서)
+├── .claude/
+│   └── skills/            # Claude Code Skills
 ├── cs/                    # CS 지식 (마크다운 중심)
 │   └── {category}/        # kebab-case
 └── study/                 # 스터디 (프로젝트 단위)
@@ -156,103 +158,9 @@ TIL/
 - [ ] `git status`로 staging 확인
 - [ ] commit은 사용자 요청 시에만
 
-## CS 문서 작성 (Daily CS)
-
-사용자가 "오늘의 CS", "CS 정리", 또는 특정 CS 주제를 요청하면 아래 절차를 따릅니다.
-
-### 트리거 키워드
-
-- "오늘의 CS: {주제}"
-- "CS 정리: {주제}"
-- "{주제} 정리해줘" (CS 관련 주제인 경우)
-- "최근 이슈 CS" - 최신 기술 트렌드 주제 정리
-
-### 작업 절차
-
-1. **카테고리 판단**: 주제에 맞는 카테고리 선택
-   - `network/` - 네트워크, HTTP, TCP/IP, DNS 등
-   - `os/` - 프로세스, 메모리, 스케줄링 등
-   - `db/` - 인덱스, 트랜잭션, SQL, NoSQL 등
-   - `algorithm/` - 정렬, 탐색, DP, 그래프 등
-   - `system-design/` - 확장성, 캐싱, MSA 등
-   - `git/` - 버전 관리, 브랜치 전략, Git 내부 동작
-   - `language/` - Java, Kotlin 등 언어별 심화 주제
-   - `programming/` - OOP, API 설계, 디자인 패턴 등
-   - `trend/` - AI Agent, MCP, LLM 등 최신 기술 트렌드
-
-2. **파일 생성**: `cs/{category}/{topic}.md`
-   - 파일명: kebab-case (예: `tcp-handshake.md`)
-
-3. **내용 작성**: CS-GUIDE.md 템플릿 준수
-   - 핵심 개념 (3-5개 불릿포인트)
-   - 상세 설명 (소제목으로 구분)
-   - 동작 원리 (해당 시)
-   - 예제 코드 (해당 시)
-   - 면접 예상 질문 (2-3개)
-        - 상세하게
-
-4. **README 업데이트**: `cs/{category}/README.md`에 링크 추가
-
-5. **git add**: 생성/수정된 파일 staging
-
-### 문서 품질 기준
-
-| 항목 | 기준 |
-|------|------|
-| 정확성 | 공식 문서, 신뢰할 수 있는 출처 기반 |
-| 간결성 | 핵심에 집중, 불필요한 내용 배제 |
-| 실용성 | 면접 대비 + 실무 적용 가능 |
-| 일관성 | 동일한 템플릿과 스타일 유지 |
-
-### 예시
-
-요청: "오늘의 CS: TCP 3-way handshake"
-
-작업:
-```
-1. cs/network/tcp-handshake.md 생성
-2. cs/network/README.md 업데이트
-3. git add cs/network/
-```
-
-### 최근 이슈 CS (Trend CS)
-
-"최근 이슈 CS" 요청 시 아래 절차를 따릅니다.
-
-#### 작업 절차
-
-1. **웹 검색**: 최신 기술 트렌드 조사
-   - 최근 3-6개월 내 주목받는 기술/개념
-   - 개발자 커뮤니티에서 화제가 되는 주제
-   - 예: AI Agent, MCP, RAG, Vector DB, LLM Fine-tuning 등
-
-2. **주제 선정**: 가장 관련성 높은 주제 1개 선택
-   - 실무 적용 가능성
-   - 개발자 면접 출제 가능성
-   - 기술 트렌드 지속성
-
-3. **문서 작성**: `cs/trend/{topic}.md`
-   - 기본 템플릿 + 추가 섹션:
-     - 등장 배경 / 왜 주목받는가
-     - 기존 기술과의 비교
-     - 실제 활용 사례
-     - 향후 전망
-
-4. **README 업데이트**: `cs/trend/README.md`에 링크 추가
-
-5. **git add**: 생성/수정된 파일 staging
-
-#### 예시 주제
-
-| 분야 | 주제 예시 |
-|------|----------|
-| AI/ML | AI Agent, MCP, RAG, Vector DB, LLM Fine-tuning |
-| 인프라 | Kubernetes Operators, eBPF, Service Mesh |
-| 개발 도구 | Copilot, Cursor, Claude Code |
-| 아키텍처 | Event Sourcing, CQRS, Serverless |
-
 ## 참고 문서
 
 - [CONVENTION.md](./CONVENTION.md): 상세 컨벤션 가이드
 - [cs/CS-GUIDE.md](./cs/CS-GUIDE.md): CS 문서 작성 가이드
 - [study/README.md](./study/README.md): 스터디 목록
+- [.claude/skills/](./.claude/skills/): Claude Code Skills (특정 워크플로우)
