@@ -6,6 +6,7 @@
 
 - TCP/IP
 - [HTTP/HTTPS](./http-https.md) - 웹 통신 프로토콜과 보안
+- [WebSocket](./websocket.md) - 실시간 양방향 통신 프로토콜
 - DNS
 - Load Balancing
 - CDN

@@ -10,3 +10,7 @@
 
 - [MCP (Model Context Protocol)](../ai-agent/mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
 - [Claude Code Skill](../ai-agent/claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
+
+### System Design
+
+- [Green Software Engineering](../system-design/green-software.md) - 탄소 효율적 소프트웨어 설계, SCI 지표, 지속 가능성
