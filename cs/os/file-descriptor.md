@@ -1,5 +1,7 @@
 # 파일 디스크립터 (File Descriptor)
 
+> `Intermediate` 중급 · 선수 지식: [프로세스와 스레드](./process-vs-thread.md)
+
 > 프로세스가 파일, 소켓, 파이프 등 I/O 자원에 접근하기 위해 운영체제로부터 할당받는 정수 식별자이다.
 
 ## 핵심 개념
@@ -584,6 +586,14 @@ close(sockfd);  // FD 반환
 ```
 
 ---
+
+## 연관 문서
+
+| 문서 | 연관성 | 난이도 |
+|------|--------|--------|
+| [프로세스와 스레드](./process-vs-thread.md) | FD 테이블은 프로세스별로 관리됨 (선수 지식) | Beginner |
+| [파일시스템](./file-system.md) | FD가 inode를 참조하는 구조 | Intermediate |
+| [메모리 관리](./memory-management.md) | 페이지 캐시와 파일 I/O의 관계 | Advanced |
 
 ## 참고 자료
 

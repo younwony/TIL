@@ -1,5 +1,7 @@
 # 파일시스템 (File System)
 
+> `Intermediate` 중급 · 선수 지식: [프로세스와 스레드](./process-vs-thread.md)
+
 > 운영체제가 저장 장치에서 파일을 조직화하고 관리하는 방법과 구조
 
 ## 핵심 개념
@@ -235,6 +237,14 @@ file -s /dev/sda1
 # 저널 상태 확인 (ext4)
 dumpe2fs /dev/sda1 | grep -i journal
 ```
+
+## 연관 문서
+
+| 문서 | 연관성 | 난이도 |
+|------|--------|--------|
+| [프로세스와 스레드](./process-vs-thread.md) | 기본 OS 개념 (선수 지식) | Beginner |
+| [파일 디스크립터](./file-descriptor.md) | FD가 inode를 참조하는 구조 | Intermediate |
+| [메모리 관리](./memory-management.md) | 페이지 캐시, 버퍼 캐시와 파일시스템 | Advanced |
 
 ## 참고 자료
 

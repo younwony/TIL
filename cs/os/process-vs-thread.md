@@ -1,5 +1,7 @@
 # 프로세스 vs 스레드
 
+> `Beginner` 입문 · 선수 지식 없음
+
 > 프로세스는 실행 중인 프로그램의 독립적인 인스턴스이고, 스레드는 프로세스 내에서 실행되는 작업의 단위이다.
 
 ## 핵심 개념
@@ -444,6 +446,16 @@ executor.shutdown();  // 작업 완료 후 종료
 - 보안 취약점: TOCTOU(Time-of-check to time-of-use) 공격
 
 ---
+
+## 연관 문서
+
+이 문서를 읽은 후 다음 주제를 학습하세요.
+
+| 문서 | 연관성 | 난이도 |
+|------|--------|--------|
+| [파일 디스크립터](./file-descriptor.md) | FD 테이블은 프로세스별로 관리됨 | Intermediate |
+| [파일시스템](./file-system.md) | 프로세스가 파일에 접근하는 방식 | Intermediate |
+| [메모리 관리](./memory-management.md) | 프로세스 메모리 구조의 심화 학습 | Advanced |
 
 ## 참고 자료
 

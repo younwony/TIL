@@ -1,5 +1,7 @@
 # 메모리 관리 (Memory Management)
 
+> `Advanced` 심화 · 선수 지식: [프로세스와 스레드](./process-vs-thread.md)
+
 > 운영체제가 메인 메모리를 효율적으로 관리하고, 프로세스에게 메모리 공간을 할당/회수하는 기법
 
 ## 핵심 개념
@@ -575,6 +577,14 @@ public class MemoryExample {
 - 최악의 경우 시스템 재시작 필요
 
 ---
+
+## 연관 문서
+
+| 문서 | 연관성 | 난이도 |
+|------|--------|--------|
+| [프로세스와 스레드](./process-vs-thread.md) | 프로세스 메모리 구조의 기초 (선수 지식) | Beginner |
+| [파일시스템](./file-system.md) | 페이지 캐시, mmap과 파일시스템 연동 | Intermediate |
+| [파일 디스크립터](./file-descriptor.md) | 메모리 매핑 파일(mmap)과 FD | Intermediate |
 
 ## 참고 자료
 
