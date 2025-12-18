@@ -13,5 +13,6 @@
 - [DTO-Entity 변환 설계](./dto-entity-conversion.md) - 의존성 방향, Clean Architecture, 도메인 순수성
 - [Green Software Engineering](./green-software.md) - 탄소 효율적 소프트웨어 설계, SCI 지표, 지속 가능성
 - [선착순 쿠폰 시스템](./flash-sale-system.md) - 대규모 동시 요청 처리, Redis, Kafka, 분산 락
+- [대규모 시스템 설계 기초](./large-scale-system.md) - 확장성, 가용성, 일관성, CAP 정리, 설계 체크리스트
 - Availability
 - Consistency
