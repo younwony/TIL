@@ -25,6 +25,10 @@
 - [Security](./security) - 인증/인가, 웹 보안, 암호화
 - [Git](./git) - 버전 관리, 브랜치 전략
 
+### 자동화
+
+- [Automation](./automation) - 업무 자동화, 스크립팅, CI/CD
+
 ### 언어별 심화
 
 - [Language](./language) - Java, Kotlin 등 언어별 심화 학습
