@@ -16,12 +16,12 @@
 │   [2] TCP/IP                                                     │
 │        - 인터넷 프로토콜 스택                                    │
 │            │                                                     │
-│            ├──────────────┬──────────────┐                      │
-│            ▼              ▼              ▼                      │
-│   [3] HTTP/HTTPS     [3] DNS       [3] WebSocket                │
+│            ├──────────────┬──────────────┬──────────────┐       │
+│            ▼              ▼              ▼              ▼       │
+│   [3] HTTP/HTTPS     [3] DNS       [3] WebSocket   [3] gRPC    │
 │        - 응용 계층 프로토콜                                      │
-│            │              │              │                      │
-│            └──────────────┴──────────────┘                      │
+│            │              │              │              │       │
+│            └──────────────┴──────────────┴──────────────┘       │
 │                           │                                      │
 │            ┌──────────────┴──────────────┐                      │
 │            ▼                             ▼                      │
@@ -59,6 +59,7 @@ TCP/IP 개념을 이해한 후 학습하세요.
 | [HTTP/HTTPS](./http-https.md) | 웹 통신 프로토콜과 보안 | TCP/IP |
 | [DNS](./dns.md) | 도메인 이름 시스템, 캐싱 | TCP/IP |
 | [WebSocket](./websocket.md) | 실시간 양방향 통신 | HTTP |
+| [gRPC](./grpc.md) | HTTP/2 기반 고성능 RPC 프레임워크 | HTTP/HTTPS, TCP/IP |
 
 ### [4] 심화
 
@@ -75,6 +76,7 @@ TCP/IP 개념을 이해한 후 학습하세요.
 - [HTTP/HTTPS](./http-https.md) - 웹 통신 프로토콜과 보안
 - [DNS](./dns.md) - 도메인 이름 시스템, 계층 구조, 캐싱
 - [WebSocket](./websocket.md) - 실시간 양방향 통신 프로토콜
+- [gRPC](./grpc.md) - HTTP/2 기반 고성능 RPC 프레임워크, Protocol Buffers
 - [Load Balancing](./load-balancing.md) - L4/L7 로드밸런싱, 알고리즘, 헬스체크
 - [CDN](./cdn.md) - CDN 개념, 엣지 서버, 캐싱 전략
 
@@ -82,5 +84,4 @@ TCP/IP 개념을 이해한 후 학습하세요.
 
 - [ ] 네트워크란 - 네트워크의 정의, 종류, 토폴로지
 - [ ] OSI 7계층 - 물리~응용 계층의 역할과 책임
-- [ ] gRPC - HTTP/2 기반 원격 프로시저 호출
 - [ ] REST API - RESTful 설계 원칙, 상태 코드
