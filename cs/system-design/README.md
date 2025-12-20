@@ -62,6 +62,7 @@
 | [메시지 큐](./message-queue.md) | Kafka, RabbitMQ, 이벤트 드리븐 | 확장성, 가용성 |
 | [Docker](./docker.md) | 컨테이너, 이미지, Dockerfile | OS 기초 |
 | [Kubernetes](./kubernetes.md) | 컨테이너 오케스트레이션, Pod, Service | Docker |
+| [Serverless](./serverless.md) | FaaS, BaaS, 서버리스 아키텍처 `Trend` | Docker, 확장성 |
 | [DTO-Entity 변환 설계](./dto-entity-conversion.md) | 의존성 방향, Clean Architecture | OOP, SOLID |
 | [Green Software Engineering](./green-software.md) | 탄소 효율적 소프트웨어 설계 | 확장성 |
 
@@ -89,6 +90,7 @@
 ### 인프라
 - [Docker](./docker.md) - 컨테이너 플랫폼, 이미지, Dockerfile, Docker Compose
 - [Kubernetes](./kubernetes.md) - 컨테이너 오케스트레이션, Pod, Service, Deployment
+- [Serverless](./serverless.md) - FaaS, BaaS, 서버리스 아키텍처 `Trend 2025`
 
 ### 설계
 - [DTO-Entity 변환 설계](./dto-entity-conversion.md) - 의존성 방향, Clean Architecture, 도메인 순수성
