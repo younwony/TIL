@@ -22,7 +22,11 @@ AI 에이전트 관련 기술을 정리하는 공간입니다.
 │        - 기능 확장 및 커스터마이징                               │
 │            │                                                     │
 │            ▼                                                     │
-│   [4] Agent SDK (TODO)                                          │
+│   [4] Sub Agent                                                 │
+│        - 독립적 작업 위임 및 병렬 실행                           │
+│            │                                                     │
+│            ▼                                                     │
+│   [5] Agent SDK (TODO)                                          │
 │        - 커스텀 에이전트 빌드                                    │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
@@ -57,13 +61,21 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
 
-### [4] 심화
+### [4] 심화 - Sub Agent
 
 확장 기능을 익힌 후 도전하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
-| Agent SDK (TODO) | 커스텀 에이전트 빌드 | Skill, Hook, MCP |
+| [Claude Code Sub Agent](./claude-code-sub-agent.md) | 독립적 작업 위임, 병렬 실행, Resume | Skill, Hook |
+
+### [5] 심화 - SDK
+
+Sub Agent를 이해한 후 도전하세요.
+
+| 문서 | 설명 | 선수 지식 |
+|------|------|----------|
+| Agent SDK (TODO) | 커스텀 에이전트 빌드 | Sub Agent, Skill, Hook, MCP |
 
 ## 전체 목차
 
@@ -74,6 +86,9 @@ MCP 개념을 이해한 후 학습하세요.
 - [Claude Code Skill](./claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
 - [Claude Code Hook](./claude-code-hook.md) - AI 에이전트의 생명주기에서 자동 실행되는 사용자 정의 셸 명령어 시스템
 - [Claude Code Slash Command](./claude-code-slash-command.md) - 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행하는 시스템
+
+### 심화 기능
+- [Claude Code Sub Agent](./claude-code-sub-agent.md) - 복잡한 작업을 독립적으로 처리하는 전문화된 AI 에이전트 시스템
 
 ## 작성 예정
 
