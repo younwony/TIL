@@ -27,6 +27,10 @@
 │            ▼              ▼              ▼                      │
 │   [4] MySQL Index   [4] JPA        [4] NoSQL                    │
 │        - 심화 및 ORM                                             │
+│            │                                                     │
+│            ▼                                                     │
+│   [3] Redis Caching                                              │
+│        - 캐싱 전략, 무효화, 일관성                               │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -58,6 +62,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [Index](./index.md) | B-Tree/B+Tree, 클러스터드/논클러스터드 | SQL, 자료구조 기초 |
 | [Transaction](./transaction.md) | ACID, 격리 수준, 락, MVCC | SQL |
 | [Normalization](./normalization.md) | 정규화(1NF~3NF), 이상현상, 반정규화 | SQL |
+| [Redis Caching](./redis-caching.md) | 캐싱 전략, 무효화, 일관성, 스탬피드 | NoSQL |
 
 ### [4] 심화
 
@@ -76,6 +81,9 @@ SQL 기본 개념을 이해한 후 학습하세요.
 
 ### MySQL
 - [MySQL 인덱스](./mysql-index.md) - B+Tree 인덱스, 클러스터드/세컨더리 인덱스, 복합 인덱스
+
+### Redis
+- [Redis Caching](./redis-caching.md) - 캐싱 전략(Cache-Aside, Write-Through, Write-Behind), 캐시 무효화, 일관성
 
 ### 일반
 - [SQL](./sql.md) - SQL 기본, SELECT/JOIN/서브쿼리, 실행 계획, 쿼리 최적화
