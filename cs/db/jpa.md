@@ -2,6 +2,12 @@
 
 > Java 애플리케이션에서 관계형 데이터베이스를 객체지향적으로 다루기 위한 ORM 표준 명세
 
+> `[4] 심화` · 선수 지식: [SQL](./sql.md), [Transaction](./transaction.md)
+
+## 왜 알아야 하는가?
+
+JPA는 Java/Spring 백엔드 개발에서 사실상 표준 ORM 기술입니다. SQL을 직접 작성하는 JDBC 방식에 비해 생산성이 10배 이상 향상되고, 객체지향적인 코드 작성이 가능합니다. 하지만 내부 동작 원리를 이해하지 못하면 N+1 문제, 영속성 컨텍스트 관련 버그, 성능 저하 등의 문제가 발생합니다. 실무에서 JPA를 제대로 활용하려면 영속성 컨텍스트, 지연 로딩, JPQL, 트랜잭션 관리 등의 핵심 개념을 반드시 이해해야 합니다.
+
 ## 핵심 개념
 
 - **ORM (Object-Relational Mapping)**: 객체와 관계형 DB 테이블을 매핑하여 SQL 없이 객체로 DB 조작
@@ -441,6 +447,13 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 - Q: 변경 감지(Dirty Checking)는 어떻게 동작하나요?
   - A: 영속성 컨텍스트에 Entity가 저장될 때 최초 상태를 스냅샷으로 저장합니다. 트랜잭션 커밋 시점에 flush()가 호출되면 현재 Entity와 스냅샷을 비교하여 변경된 부분을 찾고, UPDATE SQL을 생성하여 DB에 반영합니다. **왜 이렇게 하는가?** 개발자가 명시적으로 update()를 호출하지 않아도 되어 객체지향적 코드 작성이 가능하고, 변경된 필드만 UPDATE하므로 효율적입니다.
+
+## 연관 문서
+
+- [Transaction](./transaction.md): JPA 트랜잭션과 영속성 컨텍스트의 관계
+- [SQL](./sql.md): JPQL과 SQL의 차이
+- [Index](./index.md): JPA 성능 최적화를 위한 인덱스 설계
+- [Normalization](./normalization.md): Entity 설계와 정규화
 
 ## 참고 자료
 

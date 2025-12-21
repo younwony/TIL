@@ -2,6 +2,12 @@
 
 > 관계형 데이터베이스(RDBMS)가 아닌 다양한 형태의 데이터 저장 및 검색을 위한 데이터베이스 시스템. "Not Only SQL"의 약자
 
+> `[4] 심화` · 선수 지식: [SQL](./sql.md), [Transaction](./transaction.md), [Normalization](./normalization.md)
+
+## 왜 알아야 하는가?
+
+현대 웹 서비스는 RDBMS만으로 모든 요구사항을 충족하기 어렵습니다. 세션 저장은 Redis, 로그 수집은 Cassandra, 추천 시스템은 Neo4j처럼 각 상황에 맞는 NoSQL을 선택해야 합니다. 하지만 NoSQL을 잘못 선택하면 오히려 복잡도만 증가하고 성능도 저하됩니다. 백엔드 개발자라면 RDBMS와 NoSQL의 트레이드오프, CAP 정리, 각 NoSQL 유형의 특징을 이해하고, 언제 어떤 데이터베이스를 사용해야 하는지 판단할 수 있어야 합니다. 이는 확장 가능하고 효율적인 시스템 아키텍처를 설계하는 핵심 역량입니다.
+
 ## 핵심 개념
 
 - **Document DB**: JSON/BSON 형태로 문서 저장 (MongoDB, CouchDB)
@@ -528,6 +534,13 @@ LIMIT 10;
 
 - Q: NoSQL도 트랜잭션을 지원하나요?
   - A: 제한적으로 지원합니다. **Document DB**: 단일 문서 트랜잭션은 보장하지만, 다중 문서 트랜잭션은 제한적 (MongoDB 4.0+에서 추가). **Key-Value**: Redis는 MULTI/EXEC로 단순 트랜잭션 지원. **Column-Family**: Cassandra는 경량 트랜잭션(LWT) 지원하지만 느림. **왜 제한적인가?** NoSQL은 수평 확장을 위해 데이터를 여러 노드에 분산 저장하므로, 여러 노드에 걸친 트랜잭션은 2PC(Two-Phase Commit)가 필요하여 성능 저하가 큽니다. **대안**: (1) 단일 문서/행에 모든 정보 포함 (2) 애플리케이션 레벨에서 보상 트랜잭션 (3) 최종 일관성 허용.
+
+## 연관 문서
+
+- [SQL](./sql.md): RDBMS와 NoSQL의 비교
+- [Transaction](./transaction.md): NoSQL의 트랜잭션과 CAP 정리
+- [Normalization](./normalization.md): NoSQL의 반정규화 전략
+- [Redis Caching](./redis-caching.md): Redis를 활용한 캐싱 전략
 
 ## 참고 자료
 

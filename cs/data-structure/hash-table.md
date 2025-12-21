@@ -1,6 +1,14 @@
 # 해시 테이블 (Hash Table)
 
+> `[3] 중급` · 선수 지식: [배열 (Array)](./array.md), [연결 리스트 (Linked List)](./linked-list.md)
+
 > 키(Key)를 해시 함수로 변환하여 값(Value)을 저장하고 조회하는 자료구조
+
+## 왜 알아야 하는가?
+
+- **실무**: 빠른 검색이 필요한 대부분의 상황에서 사용됩니다. 데이터베이스 인덱싱, 캐싱, 중복 검사, 빈도 계산 등 실무에서 가장 많이 사용되는 자료구조 중 하나입니다.
+- **면접**: 해시 충돌 해결, 해시 함수 설계, 시간 복잡도 분석은 자주 출제되는 면접 주제입니다. "Two Sum" 같은 문제에서 O(1) 조회를 활용하는 능력을 평가합니다.
+- **기반 지식**: HashMap, HashSet 등 표준 라이브러리의 내부 동작 원리를 이해하는 데 필수적이며, 성능 최적화의 핵심 개념입니다.
 
 ## 핵심 개념
 
@@ -512,6 +520,13 @@ int probe(String key, int i) {
 
 - Q: Java HashMap과 Hashtable의 차이는?
   - A: HashMap은 동기화되지 않아 멀티스레드에 안전하지 않지만 빠릅니다. null 키/값 허용. Hashtable은 동기화되어 멀티스레드 안전하지만 느립니다. null 불허. 현재는 Hashtable 대신 ConcurrentHashMap을 사용합니다. HashMap은 Java 1.2부터 체이닝 + 트리(Java 8+)로 구현되어, 체인이 길어지면 Red-Black Tree로 변환하여 O(log N)을 보장합니다.
+
+## 연관 문서
+
+- [배열 (Array)](./array.md) - 해시 테이블의 내부 저장소
+- [연결 리스트 (Linked List)](./linked-list.md) - 체이닝 방식의 충돌 해결에 사용
+- [트리 (Tree)](./tree.md) - Java 8+ HashMap에서 긴 체인을 Red-Black Tree로 변환
+- [그래프 (Graph)](./graph.md) - 인접 리스트 구현에 HashMap 활용
 
 ## 참고 자료
 

@@ -2,6 +2,12 @@
 
 > 데이터베이스에서 데이터를 정의, 조작, 제어하기 위한 표준 언어
 
+> `[2] 입문` · 선수 지식: 없음
+
+## 왜 알아야 하는가?
+
+SQL은 백엔드 개발자가 반드시 알아야 할 가장 기본적인 기술입니다. 웹 서비스의 대부분의 데이터는 관계형 데이터베이스에 저장되며, 데이터를 조회하고 조작하려면 SQL이 필수입니다. 단순히 SELECT, INSERT, UPDATE, DELETE를 아는 것을 넘어 JOIN, 서브쿼리, 실행 계획 분석 등을 이해해야 효율적인 쿼리를 작성하고 성능 문제를 해결할 수 있습니다. SQL은 한 번 배우면 평생 사용하는 기술로, 프로그래밍 언어가 바뀌어도 SQL은 변하지 않습니다.
+
 ## 핵심 개념
 
 - **DML (Data Manipulation Language)**: 데이터 조작 - SELECT, INSERT, UPDATE, DELETE
@@ -285,6 +291,14 @@ SELECT * FROM products WHERE id > 10 ORDER BY id LIMIT 10;
 
 - Q: LIMIT 10000, 10이 왜 느린가요?
   - A: 10010개 행을 모두 읽어서 앞의 10000개를 버리고 10개만 반환하기 때문입니다. **왜냐하면** LIMIT은 OFFSET만큼 건너뛰는 것이 아니라 실제로 읽은 후 버리는 방식이기 때문입니다. 페이지 번호가 1000 (LIMIT 10000, 10)이면 10010개를 읽어야 하므로 매우 느립니다. **해결책**: 커서 기반 페이징(`WHERE id > last_id LIMIT 10`)을 사용하면 인덱스로 시작 위치를 직접 찾아가므로 빠릅니다. 단, 특정 페이지로 바로 이동할 수 없다는 트레이드오프가 있습니다.
+
+## 연관 문서
+
+- [Index](./index.md): SQL 성능 최적화를 위한 인덱스
+- [Transaction](./transaction.md): SQL과 트랜잭션 관리
+- [Normalization](./normalization.md): 효율적인 테이블 설계
+- [MySQL Index](./mysql-index.md): MySQL 특화 인덱스 최적화
+- [JPA](./jpa.md): SQL 대신 ORM 사용하기
 
 ## 참고 자료
 

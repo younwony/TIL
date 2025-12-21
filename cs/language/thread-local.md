@@ -1,6 +1,14 @@
 # ThreadLocal
 
+> `[3] 중급` · 선수 지식: 없음
+
 > 각 스레드가 독립적으로 자신만의 변수 복사본을 가질 수 있게 해주는 Java 클래스
+
+## 왜 알아야 하는가?
+
+- **실무**: 웹 서버의 요청별 컨텍스트 관리(사용자 인증, 트랜잭션, 로깅)에 필수적이다. Spring Security의 SecurityContextHolder, Spring의 @Transactional이 모두 ThreadLocal을 사용한다. ThreadLocal을 모르면 "왜 파라미터 전달 없이 사용자 정보를 가져올 수 있는가?"를 이해할 수 없다.
+- **면접**: "ThreadLocal의 동작 원리", "메모리 누수 원인과 해결 방법"은 중급 이상 개발자 면접의 단골 질문이다. 멀티스레드 환경에서의 데이터 격리 방법을 이해하고 있는지 검증하는 지표가 된다.
+- **기반 지식**: 스레드별 격리 전략의 핵심 개념이며, 비동기 프로그래밍, 스레드 풀 환경에서의 주의사항을 이해하는 기반이 된다. TransmittableThreadLocal 등 고급 개념으로 확장된다.
 
 ## 핵심 개념
 
@@ -358,6 +366,15 @@ public void processRequest(Request request) {
     **왜 ThreadLocal을 사용하나요?** 웹 요청은 하나의 스레드가 처리하므로,
     요청 시작 시 ThreadLocal에 저장하면 해당 요청을 처리하는 모든 코드에서
     파라미터 전달 없이 접근할 수 있기 때문입니다.
+
+## 연관 문서
+
+| 문서 | 연관성 | 난이도 |
+|------|--------|--------|
+| (작성 예정) 스레드와 동시성 | ThreadLocal의 기초가 되는 스레드 개념 | Beginner |
+| (작성 예정) InheritableThreadLocal | 자식 스레드로 값을 전파하는 확장 개념 | Intermediate |
+| (작성 예정) TransmittableThreadLocal | 스레드 풀 환경에서의 ThreadLocal 문제 해결 | Advanced |
+| (작성 예정) Spring Security Context | ThreadLocal의 실무 활용 사례 | Intermediate |
 
 ## 참고 자료
 

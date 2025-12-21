@@ -1,6 +1,16 @@
 # WebSocket
 
+**난이도: [3] 중급**
+
 > 클라이언트와 서버 간 지속적인 양방향 통신을 위한 프로토콜
+
+## 왜 알아야 하는가?
+
+- **실시간 통신**: 채팅, 알림, 게임 등 실시간 기능 구현의 핵심 기술
+- **효율성**: HTTP Polling 대비 불필요한 요청 제거로 서버 부하 감소
+- **사용자 경험**: 즉각적인 데이터 전달로 우수한 사용자 경험 제공
+- **실무 활용**: Spring WebSocket, STOMP, Socket.io 등 실제 프로젝트에서 자주 사용
+- **확장성 이해**: Stateful 연결의 한계와 확장 전략 이해 필요
 
 ## 핵심 개념
 
@@ -296,6 +306,12 @@ A: WebSocket은 **Stateful 연결**이므로 수평 확장 시 서버 간 세션
 3. **연결 상태 외부화**: Redis에 세션 정보 저장
 
 대규모 서비스에서는 보통 Redis Pub/Sub과 STOMP를 조합하여 사용합니다.
+
+## 연관 문서
+
+- [HTTP/HTTPS](./http-https.md) - WebSocket은 HTTP 핸드셰이크로 시작하여 프로토콜 업그레이드
+- [TCP/IP](./tcp-ip.md) - WebSocket은 TCP 연결 기반의 양방향 통신
+- [Load Balancing](./load-balancing.md) - Sticky Session을 통한 WebSocket 연결 유지
 
 ## 참고 자료
 

@@ -1,6 +1,14 @@
 # OAuth 2.0과 JWT
 
+> [4] 심화 · 선수 지식: [인증과 인가](./authentication-authorization.md), [암호화](./cryptography.md)
+
 > OAuth 2.0은 제3자 애플리케이션이 사용자 리소스에 안전하게 접근하도록 허용하는 인가 프레임워크이며, JWT는 정보를 안전하게 전송하기 위한 토큰 포맷
+
+## 왜 알아야 하는가?
+
+- **실무**: OAuth는 "구글 로그인", "카카오 로그인" 같은 소셜 로그인 구현의 표준이고, JWT는 MSA 환경에서 토큰 기반 인증의 사실상 표준입니다. 대부분의 현대 웹/모바일 애플리케이션은 이 두 기술을 사용합니다.
+- **면접**: "OAuth와 JWT의 차이", "Authorization Code Flow 과정", "JWT를 무효화하는 방법", "Access Token과 Refresh Token을 나누는 이유"는 백엔드 개발자 면접의 고급 질문입니다. API 설계 능력을 평가하는 지표입니다.
+- **기반 지식**: 토큰 기반 인증, MSA 환경의 인증/인가, API 보안의 기초가 됩니다. OAuth와 JWT를 이해해야 OpenID Connect, SAML, API Gateway 등 고급 주제로 확장할 수 있습니다.
 
 ## 핵심 개념
 
@@ -345,6 +353,15 @@ Refresh Token이 탈취되면 7일간 악용 가능합니다. Rotation을 적용
 
 - Q: PKCE는 무엇이며, 왜 필요한가요?
   - A: PKCE(Proof Key for Code Exchange)는 모바일 앱이나 SPA에서 Authorization Code Flow를 안전하게 사용하기 위한 확장입니다. **왜 필요한가?** 모바일 앱이나 SPA는 client_secret을 안전하게 저장할 수 없습니다. 앱을 디컴파일하거나 브라우저 개발자 도구로 추출 가능합니다. **동작**: 클라이언트가 무작위 `code_verifier`를 생성하고, `code_challenge = SHA256(code_verifier)`를 인가 요청에 포함합니다. Token 교환 시 `code_verifier`를 전송하면 서버가 해시 값을 비교하여 검증합니다. **왜 안전한가?** 공격자가 Authorization Code를 가로채도 `code_verifier`를 모르면 토큰을 발급받을 수 없고, 해시 값에서 원본을 역산할 수 없기 때문입니다.
+
+## 연관 문서
+
+| 문서 | 연관성 | 난이도 |
+|------|--------|--------|
+| [인증과 인가](./authentication-authorization.md) | OAuth는 인가 프레임워크, JWT는 토큰 기반 인증 구현 (선수 지식) | Beginner |
+| [암호화](./cryptography.md) | JWT 서명에 HMAC/RSA 사용, PKCE에 SHA256 해시 사용 (선수 지식) | Intermediate |
+| [HTTPS와 TLS](./https-tls.md) | OAuth 토큰과 JWT는 HTTPS를 통해 안전하게 전송 | Advanced |
+| [웹 보안](./web-security.md) | JWT를 localStorage에 저장 시 XSS 위험, 쿠키 사용 시 CSRF 대응 필요 | Intermediate |
 
 ## 참고 자료
 
