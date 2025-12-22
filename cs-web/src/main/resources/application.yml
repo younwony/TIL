@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cs-web
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+cs:
+  docs:
+    path: ${CS_DOCS_PATH:../cs}
+
+server:
+  port: 8080

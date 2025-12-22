@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Guide - 개발자를 위한 CS 학습 블로그</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-braces text-primary"></i>
+                <span class="text-primary">CS</span> Guide
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-folder"></i> Categories
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0">
+                            <li th:each="entry : ${documentsByCategory}">
+                                <a class="dropdown-item d-flex justify-content-between align-items-center"
+                                   th:href="@{/category/{cat}(cat=${entry.key})}">
+                                    <span th:text="${entry.key}">Category</span>
+                                    <span class="badge bg-primary rounded-pill" th:text="${entry.value.size()}">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section py-5">
+        <div class="hero-bg"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center min-vh-40">
+                <div class="col-lg-7">
+                    <div class="hero-badge mb-3">
+                        <span class="badge bg-white bg-opacity-20 text-white px-3 py-2 rounded-pill">
+                            <i class="bi bi-stars me-1"></i> 개발자 필수 CS 지식
+                        </span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4 hero-title">
+                        Computer Science<br>
+                        <span class="text-gradient">Knowledge Base</span>
+                    </h1>
+                    <p class="lead mb-4 opacity-90 hero-desc">
+                        면접 준비부터 실무까지, 핵심 CS 개념을 체계적으로 정리했습니다.
+                        <br class="d-none d-md-block">알고리즘, 자료구조, 네트워크, 데이터베이스 등 다양한 주제를 다룹니다.
+                    </p>
+                    <div class="hero-stats d-flex gap-4 mt-4">
+                        <div class="stat-item">
+                            <div class="stat-value" th:text="${documentsByCategory.size()}">0</div>
+                            <div class="stat-label">Categories</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" th:text="${totalDocuments}">0</div>
+                            <div class="stat-label">Documents</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="hero-visual">
+                        <div class="code-window">
+                            <div class="code-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <div class="code-body">
+                                <pre><code><span class="keyword">class</span> <span class="class">Developer</span> {
+    <span class="keyword">private</span> <span class="type">Knowledge</span> cs;
+
+    <span class="keyword">public void</span> <span class="method">grow</span>() {
+        cs.study(<span class="string">"everyday"</span>);
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Access Section -->
+    <section class="quick-access py-4 bg-light border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a th:each="entry : ${documentsByCategory}"
+                   th:href="@{/category/{cat}(cat=${entry.key})}"
+                   class="quick-tag">
+                    <i class="bi bi-hash"></i>
+                    <span th:text="${entry.key}">Category</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Articles Section -->
+            <div class="col-lg-8">
+                <div th:each="entry, entryStat : ${documentsByCategory}" class="category-section mb-5">
+                    <!-- Category Header -->
+                    <div class="category-header d-flex align-items-center justify-content-between mb-4">
+                        <div class="d-flex align-items-center">
+                            <span class="category-icon me-3" th:classappend="'cat-' + ${entryStat.index % 6}">
+                                <i class="bi bi-folder2-open"></i>
+                            </span>
+                            <div>
+                                <h2 class="h4 mb-0">
+                                    <a th:href="@{/category/{cat}(cat=${entry.key})}"
+                                       th:text="${entry.key}"
+                                       class="text-decoration-none text-dark category-title">
+                                        Category
+                                    </a>
+                                </h2>
+                                <small class="text-muted">
+                                    <i class="bi bi-file-text me-1"></i>
+                                    <span th:text="${entry.value.size()} + '개의 문서'">0개의 문서</span>
+                                </small>
+                            </div>
+                        </div>
+                        <a th:href="@{/category/{cat}(cat=${entry.key})}"
+                           class="btn btn-sm btn-outline-primary rounded-pill">
+                            전체보기 <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Article Cards -->
+                    <div class="row g-4">
+                        <div class="col-md-6" th:each="doc, iterStat : ${entry.value}" th:if="${iterStat.index < 4}">
+                            <article class="card article-card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <div class="card-top d-flex align-items-center justify-content-between">
+                                        <span class="badge badge-category" th:classappend="'cat-' + ${entryStat.index % 6}" th:text="${doc.category}">category</span>
+                                        <span class="doc-number" th:text="'#' + ${iterStat.count}">#1</span>
+                                    </div>
+                                    <h3 class="card-title h5">
+                                        <a th:href="${doc.path}" th:text="${doc.title}" class="text-decoration-none stretched-link">
+                                            Document Title
+                                        </a>
+                                    </h3>
+                                    <p class="card-text" th:text="${doc.description}">
+                                        핵심 개념을 이해하고 실무에 적용할 수 있는 지식을 정리합니다.
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-footer-top d-flex align-items-center justify-content-between mb-2" th:if="${doc.hasLevel() or doc.hasPrerequisites()}">
+                                        <span class="badge badge-level" th:if="${doc.hasLevel()}" th:classappend="'level-' + ${doc.level}">
+                                            <i class="bi bi-bar-chart-steps me-1"></i>
+                                            <span th:text="${doc.levelName}">정의</span>
+                                        </span>
+                                        <span class="read-more text-primary">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </span>
+                                    </div>
+                                    <div class="card-footer-top d-flex align-items-center justify-content-between" th:unless="${doc.hasLevel() or doc.hasPrerequisites()}">
+                                        <span class="text-primary small">
+                                            <i class="bi bi-book me-1"></i> 읽어보기
+                                        </span>
+                                        <span class="read-more text-primary">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </span>
+                                    </div>
+                                    <div class="prerequisites-section" th:if="${doc.hasPrerequisites()}">
+                                        <div class="prerequisites-label">
+                                            <i class="bi bi-signpost-split me-1"></i>선수 지식
+                                        </div>
+                                        <div class="prerequisites-links">
+                                            <a th:each="prereq : ${doc.prerequisites}"
+                                               th:href="${prereq.path}"
+                                               th:text="${prereq.title}"
+                                               class="prerequisite-link"
+                                               onclick="event.stopPropagation();">
+                                                선수 문서
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- View More -->
+                    <div class="text-center mt-4" th:if="${entry.value.size() > 4}">
+                        <a th:href="@{/category/{cat}(cat=${entry.key})}" class="btn btn-light btn-sm px-4 rounded-pill">
+                            <span th:text="${entry.key}">Category</span>의
+                            <span th:text="${entry.value.size() - 4}">0</span>개 문서 더보기
+                            <i class="bi bi-chevron-down ms-1"></i>
+                        </a>
+                    </div>
+
+                    <!-- Divider -->
+                    <hr class="my-5" th:if="${!entryStat.last}">
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <aside class="sidebar sticky-lg-top" style="top: 5rem;">
+                    <!-- About Card -->
+                    <div class="card border-0 shadow-sm mb-4 about-card">
+                        <div class="card-body">
+                            <div class="about-icon mb-3">
+                                <i class="bi bi-lightbulb"></i>
+                            </div>
+                            <h5 class="card-title mb-3">About CS Guide</h5>
+                            <p class="card-text text-muted small mb-3">
+                                개발자 면접 준비와 실무에 필요한 CS 핵심 개념을 정리합니다.
+                            </p>
+                            <ul class="feature-list mb-0">
+                                <li><i class="bi bi-check2-circle text-success"></i> 핵심 개념 정리</li>
+                                <li><i class="bi bi-check2-circle text-success"></i> 예제 코드 포함</li>
+                                <li><i class="bi bi-check2-circle text-success"></i> 면접 질문 대비</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Categories Card -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                <i class="bi bi-bookmark-star text-primary"></i> Categories
+                            </h5>
+                            <div class="category-list">
+                                <a th:each="entry, stat : ${documentsByCategory}"
+                                   th:href="@{/category/{cat}(cat=${entry.key})}"
+                                   class="category-list-item d-flex justify-content-between align-items-center">
+                                    <span class="d-flex align-items-center">
+                                        <span class="category-dot" th:classappend="'cat-' + ${stat.index % 6}"></span>
+                                        <span th:text="${entry.key}">Category</span>
+                                    </span>
+                                    <span class="badge bg-light text-dark" th:text="${entry.value.size()}">0</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Card -->
+                    <div class="card border-0 shadow-sm stats-card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">
+                                <i class="bi bi-bar-chart-line text-primary"></i> Statistics
+                            </h5>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <div class="stat-icon cat-0">
+                                        <i class="bi bi-folder"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <div class="stat-number" th:text="${documentsByCategory.size()}">0</div>
+                                        <div class="stat-text">카테고리</div>
+                                    </div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-icon cat-1">
+                                        <i class="bi bi-file-earmark-text"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <div class="stat-number" th:text="${totalDocuments}">0</div>
+                                        <div class="stat-text">문서</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="footer-brand mb-2">
+                        <i class="bi bi-braces"></i>
+                        <span class="fw-bold">CS Guide</span>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Today I Learned - 매일 성장하는 개발자를 위한 CS 지식 저장소
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-tech mb-2">
+                        <span class="badge bg-dark me-1">Spring Boot</span>
+                        <span class="badge bg-dark me-1">Thymeleaf</span>
+                        <span class="badge bg-dark">Bootstrap 5</span>
+                    </div>
+                    <small class="text-muted">Built with passion for learning</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scroll Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.category-section, .article-card').forEach(el => {
+                el.classList.add('fade-in-up');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

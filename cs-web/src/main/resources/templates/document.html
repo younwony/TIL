@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${document.title} + ' - CS Guide'">Document - CS Guide</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <!-- Highlight.js - GitHub Dark Theme -->
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-braces text-primary"></i>
+                <span class="text-primary">CS</span> Guide
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-folder"></i> Categories
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0">
+                            <li th:each="cat : ${categories}">
+                                <a class="dropdown-item" th:href="@{/category/{c}(c=${cat})}"
+                                   th:classappend="${cat == document.category} ? 'active' : ''">
+                                    <span th:text="${cat}">Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="document-header py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/" class="text-decoration-none">
+                                    <i class="bi bi-house-door"></i> Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a th:href="@{/category/{cat}(cat=${document.category})}"
+                                   th:text="${document.category}"
+                                   class="text-decoration-none">
+                                    Category
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" th:text="${document.title}">Document</li>
+                        </ol>
+                    </nav>
+
+                    <!-- Title Section -->
+                    <div class="document-title-section">
+                        <span class="badge badge-category-lg mb-3" th:text="${document.category}">
+                            category
+                        </span>
+                        <h1 class="document-title display-5 fw-bold mb-3" th:text="${document.title}">
+                            Document Title
+                        </h1>
+                        <p class="document-description text-muted lead" th:if="${document.description}" th:text="${document.description}">
+                            Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <!-- TOC Sidebar (Desktop) -->
+            <div class="col-lg-2 d-none d-xl-block">
+                <aside class="toc-sidebar sticky-lg-top" style="top: 6rem;">
+                    <div class="toc-card">
+                        <h6 class="toc-title">
+                            <i class="bi bi-list-nested"></i> 목차
+                        </h6>
+                        <nav class="toc-nav" id="tocNav">
+                            <!-- TOC will be generated by JavaScript -->
+                        </nav>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Article Content -->
+            <div class="col-lg-10 col-xl-8">
+                <!-- Mobile TOC Toggle -->
+                <div class="mobile-toc d-xl-none mb-4">
+                    <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#mobileToc">
+                        <span><i class="bi bi-list-nested me-2"></i> 목차 보기</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="collapse mt-2" id="mobileToc">
+                        <div class="card card-body border-0 shadow-sm">
+                            <nav class="toc-nav" id="mobileTocNav">
+                                <!-- TOC will be generated by JavaScript -->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <article class="article-content card border-0 shadow-sm">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="markdown-body" id="markdownBody" th:utext="${document.htmlContent}">
+                            Document content will be rendered here.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Navigation -->
+                <div class="article-nav mt-4">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <a href="/" class="nav-card nav-prev">
+                                <span class="nav-direction">
+                                    <i class="bi bi-arrow-left"></i> 이전
+                                </span>
+                                <span class="nav-title">목록으로</span>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a th:href="@{/category/{cat}(cat=${document.category})}" class="nav-card nav-next">
+                                <span class="nav-direction">
+                                    다음 <i class="bi bi-arrow-right"></i>
+                                </span>
+                                <span class="nav-title" th:text="${document.category} + ' 더보기'">Category 더보기</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="맨 위로">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="footer-brand mb-2">
+                        <i class="bi bi-braces"></i>
+                        <span class="fw-bold">CS Guide</span>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Today I Learned - 매일 성장하는 개발자를 위한 CS 지식 저장소
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">Built with passion for learning</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Highlight.js -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Code highlighting
+            document.querySelectorAll('pre code').forEach(function(block) {
+                hljs.highlightElement(block);
+            });
+
+            // Add copy button to code blocks
+            document.querySelectorAll('pre').forEach(function(pre) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.innerHTML = '<i class="bi bi-clipboard"></i>';
+                copyBtn.title = '복사';
+                wrapper.appendChild(copyBtn);
+
+                copyBtn.addEventListener('click', function() {
+                    const code = pre.querySelector('code');
+                    navigator.clipboard.writeText(code.textContent);
+                    copyBtn.innerHTML = '<i class="bi bi-check"></i>';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="bi bi-clipboard"></i>';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+
+            // Generate TOC
+            const markdownBody = document.getElementById('markdownBody');
+            const headings = markdownBody.querySelectorAll('h2, h3');
+            const tocNav = document.getElementById('tocNav');
+            const mobileTocNav = document.getElementById('mobileTocNav');
+
+            if (headings.length > 0) {
+                const tocHtml = generateToc(headings);
+                if (tocNav) tocNav.innerHTML = tocHtml;
+                if (mobileTocNav) mobileTocNav.innerHTML = tocHtml;
+            }
+
+            function generateToc(headings) {
+                let html = '<ul class="toc-list">';
+                headings.forEach((heading, index) => {
+                    const id = heading.id || 'heading-' + index;
+                    if (!heading.id) heading.id = id;
+
+                    const level = heading.tagName === 'H2' ? 'toc-h2' : 'toc-h3';
+                    const text = heading.textContent.replace(/^#+\s*/, '');
+                    html += `<li class="${level}"><a href="#${id}" class="toc-link">${text}</a></li>`;
+                });
+                html += '</ul>';
+                return html;
+            }
+
+            // TOC active state on scroll
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const observerOptions = {
+                rootMargin: '-80px 0px -80% 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(link => link.classList.remove('active'));
+                        const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                        if (activeLink) activeLink.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            headings.forEach(heading => observer.observe(heading));
+
+            // Smooth scroll for TOC links
+            document.querySelectorAll('.toc-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        const offset = 100;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Reading progress bar
+            const progressBar = document.getElementById('readingProgress');
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                progressBar.style.width = progress + '%';
+            });
+
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
