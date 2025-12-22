@@ -43,6 +43,7 @@ TIL/
 │   └── skills/            # Claude Code Skills
 ├── cs/                    # CS 지식 (마크다운 중심)
 │   └── {category}/        # kebab-case
+├── cs-web/                # CS 문서 웹 뷰어 (Spring Boot)
 └── study/                 # 스터디 (프로젝트 단위)
     └── {study-name}/      # kebab-case
 ```
@@ -157,6 +158,15 @@ TIL/
 - [ ] `git add .` 실행
 - [ ] `git status`로 staging 확인
 - [ ] commit은 사용자 요청 시에만
+
+## Claude Code Skills
+
+사용 가능한 스킬 목록입니다. 키워드로 호출할 수 있습니다.
+
+| 스킬 | 트리거 키워드 | 설명 |
+|------|--------------|------|
+| `cs-guide-writer` | "오늘의 CS", "CS 정리", "{주제} 정리해줘" | CS 학습 문서 작성 |
+| `cs-sync` | "CS 동기화", "가이드 반영" | CS 문서 템플릿 동기화 |
 
 ## 참고 문서
 
