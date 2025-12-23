@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키워드 목록 - CS Guide</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-braces text-primary"></i>
+                <span class="text-primary">CS</span> Guide
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">
+                            <i class="bi bi-search"></i> Search
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/keywords">
+                            <i class="bi bi-tags"></i> Keywords
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Keywords Header -->
+    <header class="category-hero py-5">
+        <div class="hero-bg"></div>
+        <div class="container position-relative">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb breadcrumb-light mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="/" class="text-white-50">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active text-white">Keywords</li>
+                </ol>
+            </nav>
+
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="category-icon-lg me-4">
+                            <i class="bi bi-tags"></i>
+                        </span>
+                        <div>
+                            <h1 class="display-5 fw-bold mb-2 text-white">키워드 목록</h1>
+                            <p class="lead mb-0 text-white-50">
+                                <i class="bi bi-hash me-1"></i>
+                                <span th:text="${#lists.size(keywords)} + '개의 키워드'">0개의 키워드</span>
+                                <span class="mx-2">·</span>
+                                <i class="bi bi-file-earmark-text me-1"></i>
+                                <span th:text="${totalDocuments} + '개의 문서'">0개의 문서</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <a href="/search" class="btn btn-outline-light rounded-pill">
+                        <i class="bi bi-search"></i> 검색하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="bg-white border-bottom py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Search Keywords -->
+                    <div class="input-group" style="max-width: 300px;">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text"
+                               id="keywordFilter"
+                               class="form-control border-start-0"
+                               placeholder="키워드 필터...">
+                    </div>
+                </div>
+                <div class="text-muted small">
+                    <i class="bi bi-info-circle me-1"></i>
+                    클릭하면 해당 키워드가 포함된 문서를 검색합니다
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <!-- Keywords Cloud -->
+        <div class="keywords-cloud" id="keywordsCloud">
+            <a th:each="kw, stat : ${keywords}"
+               th:href="@{/search(keyword=${kw.keyword})}"
+               th:data-keyword="${kw.keyword}"
+               th:classappend="${kw.count ge 3 ? 'keyword-large' : (kw.count ge 2 ? 'keyword-medium' : '')}"
+               class="keyword-cloud-tag fade-in-up"
+               th:style="'animation-delay: ' + ${stat.index * 0.01} + 's'">
+                <span class="keyword-hash">#</span>
+                <span th:text="${kw.keyword}">keyword</span>
+                <span class="keyword-badge" th:text="${kw.count}">1</span>
+            </a>
+        </div>
+
+        <!-- Empty State (filtered) -->
+        <div id="emptyState" class="empty-state text-center py-5 d-none">
+            <div class="empty-icon mb-4">
+                <i class="bi bi-hash"></i>
+            </div>
+            <h3 class="text-muted mb-3">일치하는 키워드가 없습니다</h3>
+            <p class="text-muted mb-4">다른 키워드로 검색해 보세요.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="footer-brand mb-2">
+                        <i class="bi bi-braces"></i>
+                        <span class="fw-bold">CS Guide</span>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Today I Learned - 매일 성장하는 개발자를 위한 CS 지식 저장소
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">Built with passion for learning</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterInput = document.getElementById('keywordFilter');
+            const keywordsCloud = document.getElementById('keywordsCloud');
+            const emptyState = document.getElementById('emptyState');
+            const keywords = keywordsCloud.querySelectorAll('.keyword-cloud-tag');
+
+            // Filter keywords
+            filterInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                keywords.forEach(tag => {
+                    const keyword = tag.dataset.keyword.toLowerCase();
+                    if (keyword.includes(query)) {
+                        tag.style.display = 'inline-flex';
+                        visibleCount++;
+                    } else {
+                        tag.style.display = 'none';
+                    }
+                });
+
+                // Show/hide empty state
+                if (visibleCount === 0 && query !== '') {
+                    emptyState.classList.remove('d-none');
+                    keywordsCloud.classList.add('d-none');
+                } else {
+                    emptyState.classList.add('d-none');
+                    keywordsCloud.classList.remove('d-none');
+                }
+            });
+
+            // Fade-in animation
+            document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.classList.add('visible');
+                }, Math.min(index * 10, 500));
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1823,3 +1823,249 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
+/* ===========================================
+   Keywords Section
+   =========================================== */
+.keywords-section {
+    margin-top: 12px;
+    padding-top: 8px;
+}
+
+.keywords-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.keyword-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: #1d4ed8;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.keyword-link:hover {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.keyword-more {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 2px 6px;
+    background: #f1f5f9;
+    border-radius: 8px;
+}
+
+/* List view keywords */
+.list-keyword-links {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    margin-left: 12px;
+}
+
+.list-keyword-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+    z-index: 10;
+}
+
+.list-keyword-link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* ===========================================
+   Search Page Styles
+   =========================================== */
+.search-form .form-control {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px 0 0 12px;
+}
+
+.search-form .form-control:focus {
+    box-shadow: none;
+}
+
+.search-form .btn {
+    border-radius: 0 12px 12px 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Popular Keywords */
+.popular-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.popular-keyword-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.popular-keyword-tag:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.popular-keyword-tag.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.popular-keyword-tag .keyword-count {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.popular-keyword-tag:hover .keyword-count,
+.popular-keyword-tag.active .keyword-count {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Search Tips Card */
+.search-tips-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tips-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.tips-list li i {
+    margin-top: 2px;
+}
+
+/* ===========================================
+   Keywords Page Styles
+   =========================================== */
+.keywords-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.keyword-cloud-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.keyword-cloud-tag:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.keyword-cloud-tag.keyword-large {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+.keyword-cloud-tag.keyword-medium {
+    font-size: 1rem;
+    padding: 9px 18px;
+    font-weight: 500;
+}
+
+.keyword-cloud-tag .keyword-hash {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.keyword-cloud-tag:hover .keyword-hash {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.keyword-cloud-tag .keyword-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    color: var(--text-muted);
+}
+
+.keyword-cloud-tag:hover .keyword-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Empty State */
+.empty-state .empty-icon {
+    font-size: 4rem;
+    color: #e2e8f0;
+}
+
+/* Fade in animation */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

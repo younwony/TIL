@@ -171,4 +171,83 @@ class MarkdownServiceTest {
             assertTrue(description.endsWith("..."));
         }
     }
+
+    @Nested
+    @DisplayName("extractKeywords 메서드")
+    class ExtractKeywordsTest {
+
+        @Test
+        @DisplayName("백틱으로 감싼 해시태그 키워드를 추출한다")
+        void extractHashtagKeywords() {
+            // given
+            String markdown = "# Title\n\n`#Docker` `#컨테이너` `#DevOps`\n\n본문";
+
+            // when
+            var keywords = markdownService.extractKeywords(markdown);
+
+            // then
+            assertEquals(3, keywords.size());
+            assertTrue(keywords.contains("Docker"));
+            assertTrue(keywords.contains("컨테이너"));
+            assertTrue(keywords.contains("DevOps"));
+        }
+
+        @Test
+        @DisplayName("중복 키워드는 제거한다")
+        void removeDuplicateKeywords() {
+            // given
+            String markdown = "`#Docker` `#Docker` `#컨테이너`";
+
+            // when
+            var keywords = markdownService.extractKeywords(markdown);
+
+            // then
+            assertEquals(2, keywords.size());
+        }
+
+        @Test
+        @DisplayName("키워드가 없으면 빈 리스트를 반환한다")
+        void returnEmptyListWhenNoKeywords() {
+            // given
+            String markdown = "# Title\n\n본문만 있는 마크다운";
+
+            // when
+            var keywords = markdownService.extractKeywords(markdown);
+
+            // then
+            assertTrue(keywords.isEmpty());
+        }
+
+        @Test
+        @DisplayName("한글과 영문 키워드를 모두 추출한다")
+        void extractKoreanAndEnglishKeywords() {
+            // given
+            String markdown = "`#캐싱` `#Caching` `#Redis` `#인메모리`";
+
+            // when
+            var keywords = markdownService.extractKeywords(markdown);
+
+            // then
+            assertEquals(4, keywords.size());
+            assertTrue(keywords.contains("캐싱"));
+            assertTrue(keywords.contains("Caching"));
+            assertTrue(keywords.contains("Redis"));
+            assertTrue(keywords.contains("인메모리"));
+        }
+
+        @Test
+        @DisplayName("공백이 있는 키워드도 추출한다")
+        void extractKeywordsWithSpaces() {
+            // given
+            String markdown = "`#Cold Start` `#Warm Start`";
+
+            // when
+            var keywords = markdownService.extractKeywords(markdown);
+
+            // then
+            assertEquals(2, keywords.size());
+            assertTrue(keywords.contains("Cold Start"));
+            assertTrue(keywords.contains("Warm Start"));
+        }
+    }
 }

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${searchValue != null ? '검색: ' + searchValue + ' - CS Guide' : '검색 - CS Guide'}">검색 - CS Guide</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-braces text-primary"></i>
+                <span class="text-primary">CS</span> Guide
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/search">
+                            <i class="bi bi-search"></i> Search
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/keywords">
+                            <i class="bi bi-tags"></i> Keywords
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Header -->
+    <header class="category-hero py-5">
+        <div class="hero-bg"></div>
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-5 fw-bold mb-4 text-white">
+                        <i class="bi bi-search me-2"></i>문서 검색
+                    </h1>
+                    <!-- Search Form -->
+                    <form action="/search" method="get" class="search-form">
+                        <div class="input-group input-group-lg shadow-lg">
+                            <input type="text"
+                                   name="q"
+                                   class="form-control border-0"
+                                   placeholder="제목, 설명, 키워드로 검색..."
+                                   th:value="${searchType == 'query' ? searchValue : ''}"
+                                   autofocus>
+                            <button class="btn btn-primary px-4" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+        <div class="row">
+            <!-- Results Section -->
+            <div class="col-lg-8">
+                <!-- Search Results Header -->
+                <div th:if="${searchValue != null}" class="mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span th:if="${searchType == 'keyword'}" class="badge bg-primary me-2">
+                                <i class="bi bi-hash"></i> <span th:text="${searchValue}">keyword</span>
+                            </span>
+                            <span th:if="${searchType == 'query'}" class="text-muted">
+                                "<span th:text="${searchValue}" class="fw-bold text-dark">query</span>" 검색 결과
+                            </span>
+                        </div>
+                        <span class="text-muted">
+                            <i class="bi bi-file-earmark-text me-1"></i>
+                            <span th:text="${resultCount}">0</span>개 문서
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Results Grid -->
+                <div th:if="${!#lists.isEmpty(results)}" class="row g-4">
+                    <div class="col-md-6" th:each="doc, stat : ${results}">
+                        <article class="card article-card h-100 shadow-sm fade-in-up"
+                                 th:style="'animation-delay: ' + ${stat.index * 0.05} + 's'">
+                            <div class="card-body">
+                                <div class="card-top d-flex align-items-center justify-content-between">
+                                    <span class="badge badge-category" th:text="${doc.category}">category</span>
+                                    <span class="doc-number" th:text="'#' + ${stat.count}">#1</span>
+                                </div>
+                                <h3 class="card-title h5">
+                                    <a th:href="${doc.path}" th:text="${doc.title}" class="text-decoration-none stretched-link">
+                                        Document Title
+                                    </a>
+                                </h3>
+                                <p class="card-text" th:text="${doc.description}">
+                                    핵심 개념을 이해하고 실무에 적용할 수 있는 지식을 정리합니다.
+                                </p>
+                                <!-- Keywords Preview -->
+                                <div class="keywords-section" th:if="${doc.keywords != null and !doc.keywords.empty}">
+                                    <div class="keywords-links">
+                                        <a th:each="kw : ${doc.displayKeywords}"
+                                           th:href="@{/search(keyword=${kw})}"
+                                           th:text="'#' + ${kw}"
+                                           class="keyword-link"
+                                           onclick="event.stopPropagation();">
+                                            #keyword
+                                        </a>
+                                        <span th:if="${doc.moreKeywordsCount gt 0}"
+                                              class="keyword-more"
+                                              th:text="'+' + ${doc.moreKeywordsCount}">
+                                            +5
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-footer-top d-flex align-items-center justify-content-between">
+                                    <span class="badge badge-level" th:if="${doc.hasLevel()}" th:classappend="'level-' + ${doc.level}">
+                                        <i class="bi bi-bar-chart-steps me-1"></i>
+                                        <span th:text="${doc.levelName}">정의</span>
+                                    </span>
+                                    <span th:unless="${doc.hasLevel()}" class="text-primary small">
+                                        <i class="bi bi-book me-1"></i> 읽어보기
+                                    </span>
+                                    <span class="read-more text-primary">
+                                        <i class="bi bi-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div th:if="${searchValue != null && #lists.isEmpty(results)}" class="empty-state text-center py-5">
+                    <div class="empty-icon mb-4">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <h3 class="text-muted mb-3">검색 결과가 없습니다</h3>
+                    <p class="text-muted mb-4">다른 키워드로 검색해 보세요.</p>
+                </div>
+
+                <!-- Initial State -->
+                <div th:if="${searchValue == null}" class="text-center py-5">
+                    <div class="empty-icon mb-4" style="color: var(--primary-color);">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h3 class="mb-3">검색어를 입력하세요</h3>
+                    <p class="text-muted mb-4">제목, 설명, 키워드로 문서를 검색할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <aside class="sidebar sticky-lg-top" style="top: 5rem;">
+                    <!-- Popular Keywords Card -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                <i class="bi bi-hash text-primary"></i> 인기 키워드
+                            </h5>
+                            <div class="popular-keywords">
+                                <a th:each="kw, stat : ${popularKeywords}"
+                                   th:if="${stat.index < 20}"
+                                   th:href="@{/search(keyword=${kw.keyword})}"
+                                   th:classappend="${searchType == 'keyword' && searchValue == kw.keyword} ? 'active' : ''"
+                                   class="popular-keyword-tag">
+                                    <span th:text="'#' + ${kw.keyword}">#keyword</span>
+                                    <span class="keyword-count" th:text="${kw.count}">1</span>
+                                </a>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="/keywords" class="btn btn-sm btn-outline-primary rounded-pill">
+                                    전체 키워드 보기 <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Tips Card -->
+                    <div class="card border-0 shadow-sm search-tips-card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                <i class="bi bi-info-circle text-primary"></i> 검색 팁
+                            </h5>
+                            <ul class="tips-list mb-0">
+                                <li><i class="bi bi-check2 text-success"></i> 키워드를 클릭하면 관련 문서를 볼 수 있어요</li>
+                                <li><i class="bi bi-check2 text-success"></i> 한글, 영어 모두 검색 가능해요</li>
+                                <li><i class="bi bi-check2 text-success"></i> 제목, 설명, 키워드에서 검색해요</li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="footer-brand mb-2">
+                        <i class="bi bi-braces"></i>
+                        <span class="fw-bold">CS Guide</span>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Today I Learned - 매일 성장하는 개발자를 위한 CS 지식 저장소
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">Built with passion for learning</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fade-in animation
+            document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.classList.add('visible');
+                }, index * 50);
+            });
+        });
+    </script>
+</body>
+</html>

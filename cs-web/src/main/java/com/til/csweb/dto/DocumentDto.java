@@ -16,6 +16,7 @@ public class DocumentDto {
     private final Integer level;
     private final String levelName;
     private final List<Prerequisite> prerequisites;
+    private final List<String> keywords;
 
     private DocumentDto(Builder builder) {
         this.category = builder.category;
@@ -26,6 +27,7 @@ public class DocumentDto {
         this.level = builder.level;
         this.levelName = builder.levelName;
         this.prerequisites = builder.prerequisites != null ? builder.prerequisites : Collections.emptyList();
+        this.keywords = builder.keywords != null ? builder.keywords : Collections.emptyList();
     }
 
     public String getCategory() {
@@ -60,6 +62,10 @@ public class DocumentDto {
         return prerequisites;
     }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
     /**
      * 레벨 정보가 있는지 확인
      */
@@ -72,6 +78,33 @@ public class DocumentDto {
      */
     public boolean hasPrerequisites() {
         return prerequisites != null && !prerequisites.isEmpty();
+    }
+
+    /**
+     * 키워드가 있는지 확인
+     */
+    public boolean hasKeywords() {
+        return keywords != null && !keywords.isEmpty();
+    }
+
+    /**
+     * 표시용 키워드 (최대 5개)
+     */
+    public List<String> getDisplayKeywords() {
+        if (keywords == null || keywords.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return keywords.size() > 5 ? keywords.subList(0, 5) : keywords;
+    }
+
+    /**
+     * 추가 키워드 개수 (5개 초과 시)
+     */
+    public int getMoreKeywordsCount() {
+        if (keywords == null || keywords.size() <= 5) {
+            return 0;
+        }
+        return keywords.size() - 5;
     }
 
     /**
@@ -94,6 +127,7 @@ public class DocumentDto {
         private Integer level;
         private String levelName;
         private List<Prerequisite> prerequisites;
+        private List<String> keywords;
 
         public Builder category(String category) {
             this.category = category;
@@ -132,6 +166,11 @@ public class DocumentDto {
 
         public Builder prerequisites(List<Prerequisite> prerequisites) {
             this.prerequisites = prerequisites;
+            return this;
+        }
+
+        public Builder keywords(List<String> keywords) {
+            this.keywords = keywords;
             return this;
         }
 

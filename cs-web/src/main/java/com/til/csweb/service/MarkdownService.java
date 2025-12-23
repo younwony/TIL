@@ -37,6 +37,7 @@ public class MarkdownService {
     private static final String README_FILENAME = "README.md";
     private static final Pattern LEVEL_PATTERN = Pattern.compile("\\[([1-5])\\]\\s*(.+)");
     private static final Pattern PREREQUISITE_LINK_PATTERN = Pattern.compile("\\[([^\\]]+)\\]\\(([^)]+)\\)");
+    private static final Pattern KEYWORD_PATTERN = Pattern.compile("`#([^`]+)`");
 
     private final Parser parser;
     private final HtmlRenderer renderer;
@@ -92,6 +93,95 @@ public class MarkdownService {
     }
 
     /**
+     * 모든 문서 조회
+     */
+    public List<DocumentDto> getAllDocuments() {
+        return getCategories().stream()
+                .flatMap(category -> getDocumentsInCategory(category).stream())
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 키워드로 문서 검색
+     */
+    public List<DocumentDto> searchByKeyword(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        String searchKeyword = keyword.trim().toLowerCase();
+
+        return getAllDocuments().stream()
+                .filter(doc -> doc.getKeywords().stream()
+                        .anyMatch(k -> k.toLowerCase().contains(searchKeyword)))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 전체 텍스트 검색 (제목, 설명, 키워드)
+     */
+    public List<DocumentDto> search(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        String searchQuery = query.trim().toLowerCase();
+
+        return getAllDocuments().stream()
+                .filter(doc -> matchesSearch(doc, searchQuery))
+                .collect(Collectors.toList());
+    }
+
+    private boolean matchesSearch(DocumentDto doc, String query) {
+        // 제목 검색
+        if (doc.getTitle() != null && doc.getTitle().toLowerCase().contains(query)) {
+            return true;
+        }
+        // 설명 검색
+        if (doc.getDescription() != null && doc.getDescription().toLowerCase().contains(query)) {
+            return true;
+        }
+        // 키워드 검색
+        return doc.getKeywords().stream()
+                .anyMatch(k -> k.toLowerCase().contains(query));
+    }
+
+    /**
+     * 모든 키워드 목록 조회 (중복 제거, 사용 빈도순 정렬)
+     */
+    public List<KeywordInfo> getAllKeywords() {
+        Map<String, Long> keywordCounts = getAllDocuments().stream()
+                .flatMap(doc -> doc.getKeywords().stream())
+                .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
+
+        return keywordCounts.entrySet().stream()
+                .map(e -> new KeywordInfo(e.getKey(), e.getValue().intValue()))
+                .sorted((a, b) -> Integer.compare(b.count, a.count))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 키워드 정보를 담는 클래스
+     */
+    public static class KeywordInfo {
+        private final String keyword;
+        private final int count;
+
+        public KeywordInfo(String keyword, int count) {
+            this.keyword = keyword;
+            this.count = count;
+        }
+
+        public String getKeyword() {
+            return keyword;
+        }
+
+        public int getCount() {
+            return count;
+        }
+    }
+
+    /**
      * 특정 카테고리의 문서 목록 조회
      */
     public List<DocumentDto> getDocumentsInCategory(String category) {
@@ -130,6 +220,7 @@ public class MarkdownService {
             String description = extractDescription(markdown);
             LevelInfo levelInfo = extractLevel(markdown);
             List<PrerequisiteInfo> prereqs = extractPrerequisites(markdown, category);
+            List<String> keywords = extractKeywords(markdown);
 
             return DocumentDto.builder()
                     .category(category)
@@ -140,6 +231,7 @@ public class MarkdownService {
                     .level(levelInfo.level)
                     .levelName(levelInfo.name)
                     .prerequisites(convertPrerequisites(prereqs))
+                    .keywords(keywords)
                     .build();
         } catch (IOException e) {
             return null;
@@ -298,6 +390,7 @@ public class MarkdownService {
             String description = extractDescription(markdown);
             LevelInfo levelInfo = extractLevel(markdown);
             List<PrerequisiteInfo> prereqs = extractPrerequisites(markdown, category);
+            List<String> keywords = extractKeywords(markdown);
 
             return DocumentDto.builder()
                     .category(category)
@@ -307,6 +400,7 @@ public class MarkdownService {
                     .level(levelInfo.level)
                     .levelName(levelInfo.name)
                     .prerequisites(convertPrerequisites(prereqs))
+                    .keywords(keywords)
                     .build();
         } catch (IOException e) {
             return DocumentDto.builder()
@@ -380,6 +474,24 @@ public class MarkdownService {
         }
 
         return prerequisites;
+    }
+
+    /**
+     * 마크다운에서 키워드 추출
+     * 형식: `#키워드1` `#키워드2` ...
+     */
+    List<String> extractKeywords(String markdown) {
+        List<String> keywords = new ArrayList<>();
+        Matcher matcher = KEYWORD_PATTERN.matcher(markdown);
+
+        while (matcher.find()) {
+            String keyword = matcher.group(1).trim();
+            if (!keyword.isEmpty() && !keywords.contains(keyword)) {
+                keywords.add(keyword);
+            }
+        }
+
+        return keywords;
     }
 
     /**

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -66,5 +67,51 @@ public class DocumentController {
         model.addAttribute("document", document);
         model.addAttribute("categories", markdownService.getCategories());
         return "document";
+    }
+
+    /**
+     * 검색 페이지
+     */
+    @GetMapping("/search")
+    public String search(
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String keyword,
+            Model model) {
+
+        List<DocumentDto> results;
+        String searchType;
+        String searchValue;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            results = markdownService.searchByKeyword(keyword);
+            searchType = "keyword";
+            searchValue = keyword;
+        } else if (q != null && !q.trim().isEmpty()) {
+            results = markdownService.search(q);
+            searchType = "query";
+            searchValue = q;
+        } else {
+            results = List.of();
+            searchType = null;
+            searchValue = null;
+        }
+
+        model.addAttribute("results", results);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("searchValue", searchValue);
+        model.addAttribute("resultCount", results.size());
+        model.addAttribute("popularKeywords", markdownService.getAllKeywords().stream().limit(20).toList());
+
+        return "search";
+    }
+
+    /**
+     * 키워드 목록 페이지
+     */
+    @GetMapping("/keywords")
+    public String keywords(Model model) {
+        model.addAttribute("keywords", markdownService.getAllKeywords());
+        model.addAttribute("totalDocuments", markdownService.getAllDocuments().size());
+        return "keywords";
     }
 }
