@@ -8,7 +8,9 @@ spring:
 
 cs:
   docs:
-    path: ${CS_DOCS_PATH:../cs}
+    # 환경변수 CS_DOCS_PATH가 설정되면 해당 경로 사용
+    # 미설정 시 프로젝트 구조에서 자동 탐지 (../cs, ./cs 등)
+    path: ${CS_DOCS_PATH:}
 
 server:
   port: 8080

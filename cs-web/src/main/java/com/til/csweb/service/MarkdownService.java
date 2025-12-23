@@ -43,7 +43,7 @@ public class MarkdownService {
     private final HtmlRenderer renderer;
     private final Path docsPath;
 
-    public MarkdownService(@Value("${cs.docs.path}") String docsPathString) {
+    public MarkdownService(@Value("${cs.docs.path:}") String docsPathString) {
         MutableDataSet options = new MutableDataSet();
         options.set(Parser.EXTENSIONS, Arrays.asList(
                 TablesExtension.create(),
@@ -60,7 +60,48 @@ public class MarkdownService {
 
         this.parser = Parser.builder(options).build();
         this.renderer = HtmlRenderer.builder(options).build();
-        this.docsPath = Paths.get(docsPathString).toAbsolutePath().normalize();
+        this.docsPath = resolveCsDocsPath(docsPathString);
+    }
+
+    /**
+     * CS 문서 경로를 해결합니다.
+     * 1. 환경변수/설정값이 있으면 해당 경로 사용
+     * 2. 없으면 프로젝트 구조에서 자동 탐지
+     */
+    private Path resolveCsDocsPath(String configuredPath) {
+        // 설정된 경로가 있고 존재하면 사용
+        if (configuredPath != null && !configuredPath.isEmpty()) {
+            Path configPath = Paths.get(configuredPath).toAbsolutePath().normalize();
+            if (Files.isDirectory(configPath)) {
+                return configPath;
+            }
+        }
+
+        // 프로젝트 구조에서 cs 폴더 탐지 시도
+        Path userDir = Paths.get(System.getProperty("user.dir")).toAbsolutePath().normalize();
+
+        // 가능한 경로들 (우선순위 순)
+        List<Path> candidates = Arrays.asList(
+                userDir.resolve("../cs"),           // cs-web 프로젝트 내에서 실행 시
+                userDir.resolve("cs"),              // TIL 루트에서 실행 시
+                userDir.resolve("../../cs"),        // 서브 디렉토리에서 실행 시
+                userDir.getParent().resolve("cs")   // 부모 디렉토리의 cs
+        );
+
+        for (Path candidate : candidates) {
+            Path normalized = candidate.toAbsolutePath().normalize();
+            if (Files.isDirectory(normalized)) {
+                // cs 폴더인지 확인 (하위에 README.md가 있는지로 검증)
+                if (Files.exists(normalized.resolve("README.md"))) {
+                    return normalized;
+                }
+            }
+        }
+
+        // 찾지 못하면 기본값 사용 (경고 로그와 함께)
+        Path defaultPath = userDir.resolve("../cs").toAbsolutePath().normalize();
+        System.err.println("[WARN] CS docs path not found. Using default: " + defaultPath);
+        return defaultPath;
     }
 
     /**
