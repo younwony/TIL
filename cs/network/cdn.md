@@ -4,6 +4,8 @@
 
 > 전 세계에 분산된 엣지 서버를 통해 콘텐츠를 사용자와 가까운 위치에서 전달하여 속도와 안정성을 향상시키는 네트워크
 
+`#CDN` `#ContentDeliveryNetwork` `#콘텐츠전송네트워크` `#엣지서버` `#EdgeServer` `#캐싱` `#Caching` `#CloudFront` `#Cloudflare` `#Akamai` `#레이턴시` `#Latency` `#DDoS방어` `#PoP` `#PointOfPresence` `#TTL` `#CacheControl` `#CacheBusting` `#OriginShield` `#Pull방식` `#Push방식` `#Gzip` `#Brotli` `#이미지최적화` `#정적콘텐츠` `#동적콘텐츠` `#GeoDNS` `#Anycast` `#SPOF`
+
 ## 왜 알아야 하는가?
 
 - **글로벌 서비스 필수**: 전 세계 사용자에게 빠른 콘텐츠 전달을 위해 CDN은 선택이 아닌 필수

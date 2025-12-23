@@ -4,6 +4,8 @@
 
 > 셀프 호스팅이 가능한 오픈소스 워크플로우 자동화 플랫폼
 
+`#n8n` `#워크플로우` `#Workflow` `#자동화` `#Automation` `#노코드` `#NoCode` `#로우코드` `#LowCode` `#오픈소스` `#OpenSource` `#Zapier대안` `#셀프호스팅` `#SelfHosted` `#Docker` `#API통합` `#Integration` `#트리거` `#Trigger` `#웹훅` `#Webhook` `#크론` `#Cron` `#노드기반` `#시각적워크플로우` `#업무자동화` `#iPaaS`
+
 ## 왜 알아야 하는가?
 
 - **실무**: Zapier 비용 절감, 민감한 데이터의 사내 처리, 복잡한 워크플로우 구현

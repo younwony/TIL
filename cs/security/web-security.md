@@ -4,6 +4,8 @@
 
 > 웹 애플리케이션에서 발생할 수 있는 보안 취약점을 이해하고 방어하는 기술
 
+`#웹보안` `#WebSecurity` `#XSS` `#CrossSiteScripting` `#CSRF` `#CrossSiteRequestForgery` `#SQLInjection` `#SQL삽입` `#OWASP` `#OWASPTop10` `#보안취약점` `#입력검증` `#InputValidation` `#출력인코딩` `#OutputEncoding` `#StoredXSS` `#ReflectedXSS` `#DOMbasedXSS` `#CSRFToken` `#PreparedStatement` `#CSP` `#ContentSecurityPolicy` `#SameSite` `#HttpOnly` `#SSRF` `#BrokenAccessControl` `#방어계층화` `#DefenseInDepth` `#Escaping` `#WAF`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 웹 애플리케이션 개발 시 XSS, CSRF, SQL Injection 등의 공격을 방어하지 못하면 개인정보 유출, 데이터 손실, 서비스 마비 등 심각한 보안 사고가 발생합니다. OWASP Top 10은 실제 기업에서 자주 발생하는 취약점 목록입니다.

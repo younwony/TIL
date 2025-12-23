@@ -4,6 +4,8 @@
 
 > 인메모리 데이터 저장소 Redis를 활용하여 데이터베이스 부하를 줄이고 응답 속도를 개선하는 캐싱 기법
 
+`#Redis` `#레디스` `#캐싱` `#Caching` `#Cache` `#인메모리` `#InMemory` `#CacheAside` `#LookAside` `#WriteThrough` `#WriteBehind` `#WriteBack` `#ReadThrough` `#TTL` `#TimeToLive` `#캐시무효화` `#CacheInvalidation` `#분산캐시` `#DistributedCache` `#캐시스탬피드` `#CacheStampede` `#핫키` `#HotKey` `#Pub/Sub` `#세션저장소` `#SessionStore` `#Lettuce` `#Jedis`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 대부분의 서비스에서 Redis 캐싱을 사용하며, 적절한 전략 선택이 성능과 비용에 직접적 영향을 미침

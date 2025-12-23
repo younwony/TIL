@@ -4,6 +4,8 @@
 
 > 운영체제가 메인 메모리를 효율적으로 관리하고, 프로세스에게 메모리 공간을 할당/회수하는 기법
 
+`#메모리관리` `#MemoryManagement` `#가상메모리` `#VirtualMemory` `#페이징` `#Paging` `#세그멘테이션` `#Segmentation` `#스와핑` `#Swapping` `#페이지폴트` `#PageFault` `#JVM튜닝` `#힙` `#Heap` `#스택` `#Stack` `#TLB` `#MMU` `#LRU` `#FIFO` `#LFU` `#스레싱` `#Thrashing` `#WorkingSet` `#페이지테이블` `#PageTable` `#프레임` `#Frame` `#내부단편화` `#외부단편화` `#HugePages`
+
 ## 왜 알아야 하는가?
 
 메모리 관리는 시스템 성능의 핵심입니다. OutOfMemoryError 해결, JVM 튜닝, 메모리 누수 디버깅, 캐시 최적화 등 실무에서 마주치는 대부분의 성능 문제는 메모리 관리와 직결됩니다. 특히 대용량 데이터 처리, 고성능 서버 개발, 임베디드 시스템에서는 메모리 동작 원리를 정확히 이해해야 최적의 성능을 낼 수 있습니다.

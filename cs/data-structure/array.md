@@ -4,6 +4,8 @@
 
 > 동일한 타입의 데이터를 연속된 메모리 공간에 저장하는 선형 자료구조
 
+`#배열` `#Array` `#ArrayList` `#동적배열` `#DynamicArray` `#정적배열` `#StaticArray` `#인덱스` `#Index` `#연속메모리` `#ContiguousMemory` `#자료구조` `#DataStructure` `#선형자료구조` `#Linear` `#O(1)접근` `#RandomAccess` `#캐시효율` `#CacheLocality` `#Vector` `#슬라이싱` `#Slicing` `#메모리할당` `#Amortized` `#투포인터` `#TwoPointer` `#슬라이딩윈도우`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 모든 프로그래밍의 기본 자료구조로, 데이터 저장 및 처리의 가장 기초적인 방법입니다. ArrayList, Vector 등 동적 배열은 실무에서 가장 많이 사용되는 컬렉션입니다.

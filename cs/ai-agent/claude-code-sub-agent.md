@@ -6,6 +6,8 @@
 
 > AI 에이전트를 효과적으로 활용하기 위한 핵심 개념과 실전 사용법
 
+`#ClaudeCode` `#SubAgent` `#서브에이전트` `#SubAgents` `#멀티에이전트` `#MultiAgent` `#병렬처리` `#ParallelProcessing` `#Task도구` `#TaskTool` `#Anthropic` `#AI자동화` `#에이전트오케스트레이션` `#Orchestration` `#위임` `#Delegation` `#컨텍스트분리` `#독립실행` `#비동기` `#Async` `#Explore` `#Plan` `#Swarm` `#효율성` `#복잡한작업` `#아키텍처`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 복잡한 작업을 독립적인 에이전트에 위임하여 병렬 처리 및 효율성 극대화

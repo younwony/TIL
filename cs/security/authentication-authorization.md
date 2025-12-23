@@ -4,6 +4,8 @@
 
 > 인증(Authentication)은 "당신이 누구인가?"를 확인하고, 인가(Authorization)는 "당신이 무엇을 할 수 있는가?"를 결정하는 보안 메커니즘
 
+`#인증` `#인가` `#Authentication` `#Authorization` `#로그인` `#Login` `#세션` `#Session` `#토큰` `#Token` `#RBAC` `#ABAC` `#권한관리` `#AccessControl` `#Stateful` `#Stateless` `#MFA` `#2FA` `#RefreshToken` `#AccessToken` `#SessionID` `#Cookie` `#역할기반` `#속성기반` `#로그아웃` `#세션하이재킹` `#비밀번호` `#Password` `#신원확인` `#권한위임`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 모든 웹 애플리케이션은 사용자 로그인과 권한 관리를 구현해야 합니다. 인증/인가를 제대로 이해하지 못하면 보안 취약점이 발생하거나, 일반 사용자가 관리자 기능에 접근하는 등의 심각한 문제가 생깁니다.

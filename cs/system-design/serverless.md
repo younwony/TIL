@@ -6,6 +6,8 @@
 
 > 서버 관리 없이 코드 실행에만 집중할 수 있는 클라우드 실행 모델
 
+`#Serverless` `#서버리스` `#FaaS` `#FunctionAsAService` `#BaaS` `#BackendAsAService` `#Lambda` `#AWSLambda` `#CloudFunctions` `#AzureFunctions` `#이벤트드리븐` `#EventDriven` `#AutoScaling` `#자동확장` `#PayPerUse` `#종량제` `#ColdStart` `#콜드스타트` `#WarmStart` `#ProvisionedConcurrency` `#APIGateway` `#Trigger` `#트리거` `#Firebase` `#Supabase` `#CloudflareWorkers` `#Knative` `#OpenFaaS` `#VendorLockin` `#NoOps`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 2025년 백엔드 전략의 핵심. 인프라 관리 부담 없이 빠른 개발과 배포 가능

@@ -4,6 +4,8 @@
 
 > 자주 사용되는 데이터를 빠른 저장소에 임시 저장하여 응답 시간을 단축하고 원본 데이터 소스의 부하를 줄이는 기술
 
+`#캐싱` `#Caching` `#Cache` `#Redis` `#Memcached` `#TTL` `#TimeToLive` `#캐시무효화` `#CacheInvalidation` `#CacheHit` `#CacheMiss` `#LRU` `#LFU` `#FIFO` `#CacheAside` `#WriteThrough` `#WriteBehind` `#WriteBack` `#WriteAround` `#CDN` `#캐시스탬피드` `#CacheStampede` `#분산락` `#DistributedLock` `#캐시적중률` `#HitRatio` `#Eviction` `#레이어캐싱` `#인메모리` `#InMemory`
+
 ## 왜 알아야 하는가?
 
 - **실무**: DB 부하의 80%를 캐시로 줄일 수 있음. 성능 최적화의 가장 효과적인 수단

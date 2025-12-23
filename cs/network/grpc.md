@@ -4,6 +4,8 @@
 
 > Google이 개발한 HTTP/2 기반의 고성능 원격 프로시저 호출(RPC) 프레임워크
 
+`#gRPC` `#RPC` `#RemoteProcedureCall` `#HTTP2` `#Protobuf` `#ProtocolBuffers` `#마이크로서비스` `#Microservices` `#양방향스트리밍` `#BidirectionalStreaming` `#Google` `#Unary` `#ServerStreaming` `#ClientStreaming` `#멀티플렉싱` `#Multiplexing` `#IDL` `#Stub` `#Channel` `#직렬화` `#Serialization` `#바이너리` `#Binary` `#HPACK` `#StatusCode` `#Deadline` `#Interceptor` `#LoadBalancing` `#ServiceMesh`
+
 ## 왜 알아야 하는가?
 
 - **실무**: MSA 환경에서 서비스 간 통신의 표준으로 자리잡음. Kubernetes, Envoy 등 클라우드 네이티브 도구들이 gRPC를 기본 지원

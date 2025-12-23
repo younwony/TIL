@@ -4,6 +4,8 @@
 
 > `[4] 심화` · 선수 지식: [Index](./index.md), [SQL](./sql.md)
 
+`#MySQL` `#InnoDB` `#B+Tree` `#클러스터드인덱스` `#ClusteredIndex` `#세컨더리인덱스` `#SecondaryIndex` `#NonClusteredIndex` `#커버링인덱스` `#CoveringIndex` `#PK설계` `#PrimaryKey` `#AUTO_INCREMENT` `#UUID` `#복합인덱스` `#CompositeIndex` `#인덱스최적화` `#EXPLAIN` `#실행계획` `#인덱스힌트` `#IndexHint` `#카디널리티` `#페이지분할` `#PageSplit` `#인덱스레인지스캔`
+
 ## 왜 알아야 하는가?
 
 MySQL은 전 세계에서 가장 많이 사용되는 오픈소스 데이터베이스이며, InnoDB 스토리지 엔진의 인덱스 구조는 실무에서 필수적으로 알아야 할 지식입니다. 특히 클러스터드 인덱스와 세컨더리 인덱스의 차이, PK 선택 전략, 커버링 인덱스 활용법은 성능에 직접적인 영향을 미칩니다. AUTO_INCREMENT vs UUID 선택, 복합 인덱스 컬럼 순서 결정 등 실무에서 자주 마주치는 의사결정에서 올바른 판단을 내리려면 MySQL 인덱스의 내부 동작을 정확히 이해해야 합니다.

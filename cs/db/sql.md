@@ -4,6 +4,8 @@
 
 > `[2] 입문` · 선수 지식: 없음
 
+`#SQL` `#StructuredQueryLanguage` `#쿼리` `#Query` `#SELECT` `#INSERT` `#UPDATE` `#DELETE` `#JOIN` `#INNER JOIN` `#LEFT JOIN` `#RIGHT JOIN` `#OUTER JOIN` `#서브쿼리` `#Subquery` `#DDL` `#DML` `#DCL` `#TCL` `#RDBMS` `#데이터베이스` `#Database` `#MySQL` `#PostgreSQL` `#Oracle` `#WHERE` `#GROUP BY` `#ORDER BY` `#HAVING` `#집계함수`
+
 ## 왜 알아야 하는가?
 
 SQL은 백엔드 개발자가 반드시 알아야 할 가장 기본적인 기술입니다. 웹 서비스의 대부분의 데이터는 관계형 데이터베이스에 저장되며, 데이터를 조회하고 조작하려면 SQL이 필수입니다. 단순히 SELECT, INSERT, UPDATE, DELETE를 아는 것을 넘어 JOIN, 서브쿼리, 실행 계획 분석 등을 이해해야 효율적인 쿼리를 작성하고 성능 문제를 해결할 수 있습니다. SQL은 한 번 배우면 평생 사용하는 기술로, 프로그래밍 언어가 바뀌어도 SQL은 변하지 않습니다.

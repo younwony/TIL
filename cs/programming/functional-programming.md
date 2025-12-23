@@ -2,6 +2,10 @@
 
 **난이도**: [4] 심화
 
+> 순수 함수와 불변 데이터를 기반으로 부수 효과를 최소화하는 프로그래밍 패러다임
+
+`#함수형프로그래밍` `#FP` `#FunctionalProgramming` `#순수함수` `#PureFunction` `#불변성` `#Immutability` `#람다` `#Lambda` `#Stream` `#StreamAPI` `#고차함수` `#HigherOrderFunction` `#함수합성` `#Composition` `#커링` `#Currying` `#Optional` `#모나드` `#Monad` `#map` `#flatMap` `#filter` `#reduce` `#Collector` `#참조투명성` `#ReferentialTransparency` `#꼬리재귀` `#TailRecursion` `#선언적프로그래밍`
+
 ## 왜 알아야 하는가?
 
 함수형 프로그래밍은 복잡한 상태 관리를 단순화하고, 예측 가능하며 테스트하기 쉬운 코드를 작성하는 패러다임입니다. 현대 Java, Kotlin, JavaScript 등 주요 언어에서 적극 지원합니다.

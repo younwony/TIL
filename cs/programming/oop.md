@@ -4,6 +4,8 @@
 
 > 현실 세계의 사물을 객체로 모델링하여, 객체 간의 상호작용으로 프로그램을 구성하는 프로그래밍 패러다임
 
+`#OOP` `#객체지향` `#ObjectOriented` `#캡슐화` `#Encapsulation` `#상속` `#Inheritance` `#다형성` `#Polymorphism` `#추상화` `#Abstraction` `#SOLID` `#SRP` `#OCP` `#LSP` `#ISP` `#DIP` `#클래스` `#Class` `#인터페이스` `#Interface` `#추상클래스` `#AbstractClass` `#상속vs조합` `#Composition` `#오버라이딩` `#Override` `#오버로딩` `#Overload` `#접근제어자`
+
 ## 왜 알아야 하는가?
 
 객체지향 프로그래밍은 Java, C++, Python 등 주요 언어의 기반 패러다임입니다. 현대 소프트웨어 개발의 필수 개념으로, 이를 이해해야 실무 코드를 읽고 작성할 수 있습니다.

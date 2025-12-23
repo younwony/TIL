@@ -4,6 +4,8 @@
 
 > 운영체제가 저장 장치에서 파일을 조직화하고 관리하는 방법과 구조
 
+`#파일시스템` `#FileSystem` `#ext4` `#XFS` `#Btrfs` `#NTFS` `#APFS` `#inode` `#저널링` `#Journaling` `#블록` `#Block` `#디스크` `#Disk` `#마운트` `#Mount` `#SuperBlock` `#Extent` `#하드링크` `#HardLink` `#심볼릭링크` `#SymbolicLink` `#권한` `#Permission` `#CoW` `#CopyOnWrite` `#스냅샷` `#Snapshot` `#단편화` `#Fragmentation` `#fsck`
+
 ## 왜 알아야 하는가?
 
 파일시스템은 모든 데이터 저장의 기반입니다. 데이터베이스 성능 최적화, 백업/복구 전략 수립, 디스크 공간 관리, 그리고 "공간이 남았는데 파일을 못 만들어요" 같은 문제를 해결하려면 파일시스템의 동작 원리를 이해해야 합니다. 클라우드 환경에서도 EBS, S3 같은 스토리지 서비스의 특성을 이해하는 데 필수적입니다.

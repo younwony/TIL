@@ -4,6 +4,8 @@
 
 > DTO와 Entity 간 변환은 DTO가 Entity를 알고, Entity는 DTO를 모르는 단방향 의존성을 유지해야 한다.
 
+`#DTO` `#Entity` `#CleanArchitecture` `#DIP` `#의존성역전` `#DependencyInversion` `#도메인` `#Domain` `#레이어드아키텍처` `#LayeredArchitecture` `#헥사고날` `#HexagonalArchitecture` `#PortsAndAdapters` `#SOLID` `#SRP` `#Mapper` `#MapStruct` `#변환` `#Conversion` `#toEntity` `#fromEntity` `#응용계층` `#도메인계층` `#의존성방향` `#테스트용이성` `#컴파일의존성` `#순환의존성` `#DDD` `#도메인모델` `#단방향의존성`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 대부분의 프로젝트가 잘못된 의존성 방향으로 설계됨. 리팩토링 시 큰 비용 발생

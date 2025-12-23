@@ -6,6 +6,8 @@
 
 > 복잡한 목표를 달성하기 위해 자율적으로 계획하고, 실행하고, 적응하는 인공지능 시스템
 
+`#AI에이전트` `#AIAgent` `#Agentic` `#AgenticAI` `#자율AI` `#LLM` `#대규모언어모델` `#Claude` `#GPT` `#Gemini` `#ChatGPT` `#Anthropic` `#OpenAI` `#Google` `#ToolUse` `#FunctionCalling` `#ReAct` `#CoT` `#ChainOfThought` `#프롬프트엔지니어링` `#RAG` `#벡터DB` `#임베딩` `#AutoGPT` `#LangChain` `#CrewAI` `#멀티에이전트` `#목표지향` `#자율성` `#계획수립`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 2025년 Gartner 예측에 따르면, 2026년까지 40%의 엔터프라이즈 애플리케이션에 AI Agent가 통합될 예정

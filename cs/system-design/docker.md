@@ -4,6 +4,8 @@
 
 > 애플리케이션을 컨테이너라는 격리된 환경에서 실행할 수 있게 해주는 오픈소스 컨테이너 플랫폼
 
+`#Docker` `#도커` `#컨테이너` `#Container` `#Dockerfile` `#이미지` `#Image` `#DockerHub` `#레지스트리` `#Registry` `#DevOps` `#DockerCompose` `#멀티스테이지빌드` `#MultistageBuild` `#레이어` `#Layer` `#볼륨` `#Volume` `#네트워크` `#Bridge` `#Overlay` `#컨테이너오케스트레이션` `#가상화` `#Virtualization` `#VM` `#커널공유` `#격리` `#Isolation` `#ECR` `#GCR`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 거의 모든 회사가 컨테이너 기반 배포 사용. DevOps의 필수 기술

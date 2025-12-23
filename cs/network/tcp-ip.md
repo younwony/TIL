@@ -4,6 +4,8 @@
 
 > 인터넷 통신의 핵심 프로토콜 스택으로, 4계층 구조와 신뢰성 있는 데이터 전송을 제공
 
+`#TCP` `#IP` `#TCPIP` `#3way핸드셰이크` `#4way핸드셰이크` `#4계층` `#OSI` `#패킷` `#Packet` `#소켓` `#Socket` `#포트` `#Port` `#네트워크` `#UDP` `#SYN` `#ACK` `#FIN` `#RST` `#TIMEWAIT` `#SlowStart` `#CongestionControl` `#혼잡제어` `#FlowControl` `#흐름제어` `#SlidingWindow` `#MSS` `#RTT` `#재전송` `#Retransmission`
+
 ## 왜 알아야 하는가?
 
 - **네트워크의 근간**: 모든 인터넷 통신의 기반이 되는 핵심 프로토콜

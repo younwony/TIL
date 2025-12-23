@@ -4,6 +4,8 @@
 
 > 데이터 집합에서 특정 값을 찾는 알고리즘
 
+`#탐색` `#Search` `#탐색알고리즘` `#SearchAlgorithm` `#이진탐색` `#BinarySearch` `#선형탐색` `#LinearSearch` `#순차탐색` `#SequentialSearch` `#해시탐색` `#HashSearch` `#BST` `#이진탐색트리` `#BinarySearchTree` `#LowerBound` `#UpperBound` `#Parametric` `#파라메트릭` `#O(logn)` `#O(n)` `#O(1)` `#정렬된데이터` `#중간값` `#분할정복` `#인덱스` `#검색`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 데이터베이스 인덱싱(B-Tree), 검색 엔진, 캐시 시스템(해시 테이블) 등 모든 데이터 접근의 기반입니다. 정렬된 데이터의 빠른 조회가 필요한 모든 시스템에 필수적입니다.

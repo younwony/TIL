@@ -6,6 +6,8 @@
 
 > 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행할 수 있는 재사용 가능한 프롬프트 시스템
 
+`#ClaudeCode` `#SlashCommand` `#슬래시명령어` `#SlashCommands` `#커스텀명령어` `#CustomCommand` `#프롬프트` `#Prompt` `#자동화` `#Automation` `#Anthropic` `#CLI` `#명령어` `#Command` `#마크다운` `#Markdown` `#재사용프롬프트` `#UserInvoked` `#명시적호출` `#commands폴더` `#프로젝트명령어` `#사용자명령어` `#단축키` `#워크플로우`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 반복적인 프롬프트 입력을 한 줄 명령어로 자동화하여 작업 효율 향상

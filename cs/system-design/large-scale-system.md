@@ -4,6 +4,8 @@
 
 > 수백만 사용자와 대용량 데이터를 처리하는 시스템을 설계할 때 반드시 고려해야 하는 핵심 요소들
 
+`#대규모시스템` `#SystemDesign` `#시스템설계` `#Scalability` `#확장성` `#Latency` `#지연시간` `#Throughput` `#처리량` `#내결함성` `#FaultTolerance` `#분산시스템` `#DistributedSystem` `#HighAvailability` `#가용성` `#일관성` `#Consistency` `#CAP` `#SPOF` `#단일장애점` `#로드밸런서` `#LoadBalancer` `#캐싱` `#레플리케이션` `#샤딩` `#Sharding` `#MSA` `#마이크로서비스` `#모니터링` `#QPS`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 시스템 설계 역량은 시니어 엔지니어의 핵심 스킬. 실제 비즈니스 문제 해결 능력

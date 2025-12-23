@@ -6,6 +6,8 @@
 
 > AI 에이전트의 생명주기(lifecycle)에서 특정 시점에 자동 실행되는 사용자 정의 셸 명령어 시스템
 
+`#ClaudeCode` `#Hook` `#훅` `#Hooks` `#이벤트훅` `#EventHook` `#라이프사이클` `#Lifecycle` `#자동화` `#Automation` `#Anthropic` `#AI도구` `#CLI` `#셸스크립트` `#ShellScript` `#PreToolUse` `#PostToolUse` `#Notification` `#Stop` `#파일보호` `#자동포맷팅` `#코드검증` `#settings.json` `#결정적제어` `#트리거` `#Trigger` `#개발환경`
+
 ## 왜 알아야 하는가?
 
 - **실무**: AI 에이전트의 동작을 코드로 제어하여 민감한 파일 보호, 자동 포맷팅 등 일관된 개발 환경 구축

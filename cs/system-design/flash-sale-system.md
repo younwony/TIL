@@ -4,6 +4,8 @@
 
 > 대규모 동시 요청(만 명 이상)이 발생하는 선착순 이벤트에서 데이터 정합성과 시스템 안정성을 보장하는 설계 전략
 
+`#선착순시스템` `#FlashSale` `#동시성제어` `#Concurrency` `#분산락` `#DistributedLock` `#Redis` `#Redisson` `#쿠폰시스템` `#티켓팅` `#RateLimiting` `#DECR` `#원자적연산` `#AtomicOperation` `#Kafka` `#비동기처리` `#AsyncProcessing` `#대기열` `#Queue` `#RaceCondition` `#초과발급방지` `#트래픽스파이크` `#Spike` `#LuaScript` `#SortedSet` `#DLQ` `#DeadLetterQueue` `#재고관리` `#Inventory` `#중복발급방지`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 쿠폰, 티켓팅, 한정판 판매 등 실제 비즈니스 문제. 실패 시 직접적인 손실

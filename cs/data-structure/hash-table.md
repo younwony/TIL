@@ -4,6 +4,8 @@
 
 > 키(Key)를 해시 함수로 변환하여 값(Value)을 저장하고 조회하는 자료구조
 
+`#해시테이블` `#HashTable` `#HashMap` `#HashSet` `#해시함수` `#HashFunction` `#충돌` `#Collision` `#체이닝` `#Chaining` `#오픈어드레싱` `#OpenAddressing` `#선형탐사` `#LinearProbing` `#이차탐사` `#QuadraticProbing` `#이중해싱` `#DoubleHashing` `#O(1)` `#상수시간` `#버킷` `#Bucket` `#로드팩터` `#LoadFactor` `#리해싱` `#Rehashing` `#키밸류` `#KeyValue`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 빠른 검색이 필요한 대부분의 상황에서 사용됩니다. 데이터베이스 인덱싱, 캐싱, 중복 검사, 빈도 계산 등 실무에서 가장 많이 사용되는 자료구조 중 하나입니다.

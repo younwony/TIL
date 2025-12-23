@@ -4,6 +4,8 @@
 
 > 노드들이 포인터로 연결되어 데이터를 저장하는 선형 자료구조
 
+`#연결리스트` `#LinkedList` `#단일연결리스트` `#SinglyLinkedList` `#이중연결리스트` `#DoublyLinkedList` `#원형연결리스트` `#CircularLinkedList` `#포인터` `#Pointer` `#노드` `#Node` `#자료구조` `#DataStructure` `#동적할당` `#DynamicAllocation` `#Head` `#Tail` `#Next` `#Prev` `#삽입O(1)` `#삭제O(1)` `#탐색O(n)` `#사이클탐지` `#역순` `#LRU캐시`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 동적 크기 조정이 필요한 상황에서 사용되며, 특히 중간 삽입/삭제가 빈번한 경우에 효율적입니다. LRU 캐시, 브라우저 히스토리 등에서 실제로 활용됩니다.

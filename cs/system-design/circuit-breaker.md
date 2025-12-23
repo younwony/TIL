@@ -4,6 +4,8 @@
 
 > 외부 시스템 장애 시 연쇄적인 실패를 방지하고, 시스템의 안정성을 유지하기 위한 장애 격리 패턴
 
+`#서킷브레이커` `#CircuitBreaker` `#장애격리` `#FaultIsolation` `#Resilience4j` `#Hystrix` `#MSA` `#FailFast` `#빠른실패` `#장애허용` `#FaultTolerance` `#폴백` `#Fallback` `#Closed` `#Open` `#HalfOpen` `#상태전환` `#슬라이딩윈도우` `#SlidingWindow` `#임계값` `#Threshold` `#Bulkhead` `#격벽` `#Retry` `#재시도` `#Timeout` `#CascadingFailure` `#연쇄장애` `#Sentinel`
+
 ## 왜 알아야 하는가?
 
 - **실무**: MSA 환경에서 필수 패턴. 한 서비스 장애가 전체 시스템으로 번지는 것을 방지

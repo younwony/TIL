@@ -4,6 +4,8 @@
 
 > 완전 이진 트리 기반으로 최댓값 또는 최솟값을 빠르게 찾기 위한 자료구조
 
+`#힙` `#Heap` `#최대힙` `#MaxHeap` `#최소힙` `#MinHeap` `#우선순위큐` `#PriorityQueue` `#완전이진트리` `#CompleteBinaryTree` `#힙정렬` `#HeapSort` `#자료구조` `#DataStructure` `#Heapify` `#힙속성` `#HeapProperty` `#삽입O(logn)` `#삭제O(logn)` `#최솟값O(1)` `#최댓값O(1)` `#배열구현` `#다익스트라` `#Dijkstra` `#TopK` `#스케줄링`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 우선순위 큐 구현의 핵심 자료구조로, 작업 스케줄링, 이벤트 시뮬레이션, 데이터 스트림에서 상위 K개 찾기 등에 필수적입니다.

@@ -4,6 +4,8 @@
 
 > 시스템이 증가하는 작업 부하를 처리할 수 있도록 용량을 늘리는 능력
 
+`#확장성` `#Scalability` `#ScaleUp` `#ScaleOut` `#수평확장` `#HorizontalScaling` `#수직확장` `#VerticalScaling` `#탄력성` `#Elasticity` `#로드밸런싱` `#LoadBalancing` `#샤딩` `#Sharding` `#Stateless` `#무상태` `#레플리케이션` `#Replication` `#RoundRobin` `#LeastConnections` `#IPHash` `#ConnectionPool` `#커넥션풀` `#캐싱` `#CDN` `#AutoScaling` `#오토스케일링` `#AmdahlsLaw` `#병목` `#Bottleneck`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 트래픽 증가에 대응하는 가장 기본적인 전략. 모든 시스템 설계의 출발점

@@ -4,6 +4,8 @@
 
 > HTTPS는 HTTP 통신을 TLS/SSL로 암호화하여 기밀성, 무결성, 인증을 보장하는 프로토콜
 
+`#HTTPS` `#TLS` `#SSL` `#TLS1.2` `#TLS1.3` `#인증서` `#Certificate` `#CA` `#인증기관` `#PKI` `#핸드셰이크` `#Handshake` `#443포트` `#암호화통신` `#CipherSuite` `#ForwardSecrecy` `#ECDHE` `#인증서체인` `#RootCA` `#IntermediateCA` `#OCSP` `#CRL` `#PreMasterSecret` `#SessionResumption` `#0RTT` `#자체서명인증서` `#LetsEncrypt` `#DV` `#OV` `#EV`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 모든 웹 서비스는 HTTPS를 사용해야 합니다. HTTP로 통신하면 비밀번호, 개인정보, 결제 정보가 평문으로 전송되어 중간에서 탈취될 수 있습니다. 또한 Google은 HTTPS 사이트에 SEO 가산점을 주므로, HTTPS는 선택이 아닌 필수입니다.

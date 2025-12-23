@@ -4,6 +4,8 @@
 
 > 사람이 읽을 수 있는 도메인 이름을 컴퓨터가 이해하는 IP 주소로 변환하는 분산 데이터베이스 시스템
 
+`#DNS` `#DomainNameSystem` `#도메인` `#Domain` `#IP주소` `#IPAddress` `#네임서버` `#NameServer` `#TTL` `#TimeToLive` `#A레코드` `#ARecord` `#CNAME` `#AAAA` `#MX` `#NS` `#TXT` `#PTR` `#Route53` `#Recursive` `#Iterative` `#Root` `#TLD` `#Authoritative` `#DNSSEC` `#DoH` `#DoT` `#DNSSpoofing` `#GeoDNS` `#Failover`
+
 ## 왜 알아야 하는가?
 
 - **인터넷의 기초**: 모든 웹 통신의 시작점으로 DNS 없이는 도메인 사용 불가능

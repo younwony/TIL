@@ -4,6 +4,8 @@
 
 > 데이터를 특정 순서(오름차순/내림차순)로 배열하는 알고리즘
 
+`#정렬` `#Sort` `#Sorting` `#정렬알고리즘` `#SortingAlgorithm` `#퀵정렬` `#QuickSort` `#병합정렬` `#MergeSort` `#힙정렬` `#HeapSort` `#버블정렬` `#BubbleSort` `#삽입정렬` `#InsertionSort` `#선택정렬` `#SelectionSort` `#팀정렬` `#TimSort` `#계수정렬` `#CountingSort` `#기수정렬` `#RadixSort` `#안정정렬` `#StableSort` `#불안정정렬` `#InPlace` `#분할정복` `#DivideAndConquer` `#피벗` `#Pivot`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 데이터베이스 ORDER BY, 검색 결과 정렬, 로그 분석 등 거의 모든 애플리케이션에서 사용됩니다. 효율적인 정렬은 후속 작업(이진 탐색, 중복 제거 등)의 성능을 크게 향상시킵니다.

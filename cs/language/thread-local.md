@@ -4,6 +4,8 @@
 
 > 각 스레드가 독립적으로 자신만의 변수 복사본을 가질 수 있게 해주는 Java 클래스
 
+`#ThreadLocal` `#스레드로컬` `#Java` `#자바` `#멀티스레드` `#Multithreading` `#동시성` `#Concurrency` `#SecurityContext` `#SecurityContextHolder` `#메모리누수` `#MemoryLeak` `#스레드격리` `#ThreadIsolation` `#스레드풀` `#ThreadPool` `#InheritableThreadLocal` `#TransmittableThreadLocal` `#Spring` `#트랜잭션` `#Transaction` `#요청컨텍스트` `#RequestContext` `#MDC` `#로깅` `#remove` `#WeakReference` `#스레드안전` `#ThreadSafe`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 웹 서버의 요청별 컨텍스트 관리(사용자 인증, 트랜잭션, 로깅)에 필수적이다. Spring Security의 SecurityContextHolder, Spring의 @Transactional이 모두 ThreadLocal을 사용한다. ThreadLocal을 모르면 "왜 파라미터 전달 없이 사용자 정보를 가져올 수 있는가?"를 이해할 수 없다.

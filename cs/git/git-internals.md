@@ -4,6 +4,8 @@
 
 > Git은 내부적으로 키-값 저장소 형태로 동작하며, 모든 데이터를 객체로 저장하고 SHA-1 해시로 식별한다.
 
+`#Git내부` `#GitInternals` `#SHA1` `#해시` `#Hash` `#blob` `#tree` `#commit객체` `#CommitObject` `#reflog` `#packfile` `#GitObjects` `#index` `#StagingArea` `#HEAD` `#refs` `#브랜치포인터` `#태그` `#Tag` `#ContentAddressable` `#객체저장소` `#ObjectDatabase` `#gc` `#GarbageCollection` `#fsck` `#무결성` `#분산저장소` `#압축` `#Delta`
+
 ## 왜 알아야 하는가?
 
 - **실무**: Git 문제 해결(손상된 커밋, reflog 복구, 객체 정리 등)을 위해서는 내부 동작을 알아야 합니다. "왜 이 브랜치가 이렇게 크지?", "삭제한 커밋 복구 가능한가?"같은 문제는 내부 구조를 모르면 해결할 수 없습니다.

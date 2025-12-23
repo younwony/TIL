@@ -4,6 +4,8 @@
 
 > 시스템이 정상적으로 동작하여 서비스를 제공할 수 있는 시간의 비율
 
+`#가용성` `#Availability` `#HA` `#HighAvailability` `#이중화` `#Redundancy` `#페일오버` `#Failover` `#SLA` `#SLO` `#SLI` `#FiveNines` `#9의법칙` `#다운타임` `#Downtime` `#헬스체크` `#HealthCheck` `#ActiveStandby` `#ActiveActive` `#SPOF` `#단일장애점` `#에러예산` `#ErrorBudget` `#무중단배포` `#ZeroDowntime` `#Heartbeat` `#분산시스템` `#로드밸런서` `#LoadBalancer` `#자동복구`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 서비스 중단은 곧 매출 손실. 1시간 다운타임 = 수억 원 손실 (아마존 기준)

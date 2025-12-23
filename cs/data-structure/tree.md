@@ -4,6 +4,8 @@
 
 > 계층적 관계를 표현하는 비선형 자료구조로, 노드들이 간선으로 연결되어 사이클이 없는 구조
 
+`#트리` `#Tree` `#이진트리` `#BinaryTree` `#BST` `#이진탐색트리` `#BinarySearchTree` `#순회` `#Traversal` `#전위순회` `#Preorder` `#중위순회` `#Inorder` `#후위순회` `#Postorder` `#레벨순회` `#LevelOrder` `#B-Tree` `#B+Tree` `#AVL` `#RedBlackTree` `#자료구조` `#DataStructure` `#루트` `#Root` `#리프` `#Leaf` `#높이` `#Height` `#균형트리` `#BalancedTree`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 파일 시스템, DOM 구조, 조직도, 데이터베이스 인덱스(B-Tree) 등 계층적 데이터를 표현하는 필수 자료구조입니다. 이진 탐색 트리는 효율적인 검색과 정렬을 제공합니다.

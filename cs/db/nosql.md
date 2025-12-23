@@ -4,6 +4,8 @@
 
 > `[4] 심화` · 선수 지식: [SQL](./sql.md), [Transaction](./transaction.md), [Normalization](./normalization.md)
 
+`#NoSQL` `#NotOnlySQL` `#MongoDB` `#몽고DB` `#Redis` `#레디스` `#Cassandra` `#카산드라` `#Neo4j` `#그래프DB` `#GraphDB` `#DocumentDB` `#문서DB` `#KeyValue` `#키밸류` `#ColumnFamily` `#CAP` `#CAP정리` `#분산DB` `#DistributedDB` `#BASE` `#EventualConsistency` `#수평확장` `#Sharding` `#Replication` `#RDBMS` `#스키마리스` `#Schemaless`
+
 ## 왜 알아야 하는가?
 
 현대 웹 서비스는 RDBMS만으로 모든 요구사항을 충족하기 어렵습니다. 세션 저장은 Redis, 로그 수집은 Cassandra, 추천 시스템은 Neo4j처럼 각 상황에 맞는 NoSQL을 선택해야 합니다. 하지만 NoSQL을 잘못 선택하면 오히려 복잡도만 증가하고 성능도 저하됩니다. 백엔드 개발자라면 RDBMS와 NoSQL의 트레이드오프, CAP 정리, 각 NoSQL 유형의 특징을 이해하고, 언제 어떤 데이터베이스를 사용해야 하는지 판단할 수 있어야 합니다. 이는 확장 가능하고 효율적인 시스템 아키텍처를 설계하는 핵심 역량입니다.

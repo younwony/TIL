@@ -4,6 +4,8 @@
 
 > 클라이언트와 서버 간 지속적인 양방향 통신을 위한 프로토콜
 
+`#WebSocket` `#웹소켓` `#실시간통신` `#Realtime` `#양방향` `#FullDuplex` `#STOMP` `#Socketio` `#SockJS` `#채팅` `#Chat` `#푸시알림` `#PushNotification` `#Polling` `#LongPolling` `#SSE` `#ServerSentEvents` `#HandShake` `#Upgrade` `#PersistentConnection` `#MessageBroker` `#RedisPubSub` `#Kafka` `#StickySession` `#Stateful` `#ws` `#wss` `#RFC6455`
+
 ## 왜 알아야 하는가?
 
 - **실시간 통신**: 채팅, 알림, 게임 등 실시간 기능 구현의 핵심 기술

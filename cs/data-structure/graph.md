@@ -4,6 +4,8 @@
 
 > 정점(Vertex)과 간선(Edge)으로 이루어진 비선형 자료구조로, 객체 간의 관계를 표현
 
+`#그래프` `#Graph` `#정점` `#Vertex` `#간선` `#Edge` `#인접리스트` `#AdjacencyList` `#인접행렬` `#AdjacencyMatrix` `#방향그래프` `#DirectedGraph` `#무방향그래프` `#UndirectedGraph` `#가중치그래프` `#WeightedGraph` `#차수` `#Degree` `#경로` `#Path` `#사이클` `#Cycle` `#연결그래프` `#ConnectedGraph` `#DAG` `#비순환그래프` `#희소그래프` `#SparseGraph` `#자료구조`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 소셜 네트워크, 추천 시스템, 경로 찾기, 의존성 관리, 네트워크 라우팅 등 복잡한 관계를 표현하는 모든 시스템에서 사용됩니다.

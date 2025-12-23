@@ -4,6 +4,8 @@
 
 > 브랜치 전략은 팀이 Git 브랜치를 어떻게 생성, 관리, 병합할지 정의하는 규칙으로, 효율적인 협업과 안정적인 배포를 위해 필수적이다.
 
+`#브랜치전략` `#BranchStrategy` `#GitFlow` `#GitHubFlow` `#TrunkBased` `#TrunkBasedDevelopment` `#GitLabFlow` `#feature브랜치` `#FeatureBranch` `#릴리스` `#Release` `#hotfix` `#핫픽스` `#develop` `#main` `#master` `#머지전략` `#MergeStrategy` `#CICD` `#지속적배포` `#PullRequest` `#PR` `#코드리뷰` `#CodeReview` `#버전관리` `#협업워크플로우` `#릴리스브랜치` `#배포` `#Deployment`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 팀 협업에서 브랜치 전략이 없으면 코드 충돌, 배포 실패, 롤백 어려움 등 혼란이 발생합니다. "어느 브랜치에서 작업하지?", "언제 merge하지?"에 대한 명확한 규칙이 없으면 팀 생산성이 급격히 떨어집니다.

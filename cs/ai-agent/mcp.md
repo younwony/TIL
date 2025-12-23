@@ -6,6 +6,8 @@
 
 > MCP는 **AI 모델(LLM)과 외부 시스템을 연결하는 표준 프로토콜**이다.
 
+`#MCP` `#ModelContextProtocol` `#모델컨텍스트프로토콜` `#Anthropic` `#Claude` `#ClaudeCode` `#도구확장` `#ToolUse` `#FunctionCalling` `#AI프로토콜` `#표준프로토콜` `#MCPServer` `#MCPClient` `#Resources` `#Tools` `#Prompts` `#JSONRPC` `#stdio` `#SSE` `#AI통합` `#외부시스템연동` `#플러그인` `#확장성` `#오픈소스` `#MxN문제` `#SDK`
+
 ## 왜 알아야 하는가?
 
 - **실무**: AI 에이전트가 GitHub, Slack, DB 등 외부 시스템과 상호작용해야 할 때 MCP로 구현한다. 2025년 현재 16,000+ MCP 서버가 존재하며, 직접 서버를 개발하거나 활용할 수 있다.

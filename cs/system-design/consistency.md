@@ -4,6 +4,8 @@
 
 > 분산 시스템에서 모든 노드가 동일한 데이터를 보는 상태
 
+`#일관성` `#Consistency` `#CAP` `#CAP정리` `#PACELC` `#분산시스템` `#DistributedSystem` `#EventualConsistency` `#최종일관성` `#StrongConsistency` `#강한일관성` `#데이터정합성` `#레플리케이션` `#Replication` `#동기복제` `#비동기복제` `#CRDT` `#충돌해결` `#ConflictResolution` `#LWW` `#VectorClock` `#Raft` `#Paxos` `#분할내성` `#PartitionTolerance` `#CP` `#AP` `#쿼럼` `#Quorum` `#인과적일관성`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 분산 시스템에서 CAP 정리는 설계의 핵심. CP vs AP 선택이 시스템 특성 결정

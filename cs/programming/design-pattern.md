@@ -4,6 +4,8 @@
 
 > 소프트웨어 설계에서 자주 발생하는 문제에 대한 재사용 가능한 해결책
 
+`#디자인패턴` `#DesignPattern` `#GoF` `#싱글톤` `#Singleton` `#팩토리` `#Factory` `#빌더` `#Builder` `#프로토타입` `#Prototype` `#전략패턴` `#Strategy` `#옵저버` `#Observer` `#템플릿메서드` `#TemplateMethod` `#상태패턴` `#State` `#어댑터` `#Adapter` `#데코레이터` `#Decorator` `#프록시` `#Proxy` `#퍼사드` `#Facade` `#생성패턴` `#구조패턴` `#행위패턴`
+
 ## 왜 알아야 하는가?
 
 디자인 패턴은 수십 년간 검증된 설계 솔루션입니다. 바퀴를 재발명하지 않고 효율적으로 문제를 해결할 수 있습니다.

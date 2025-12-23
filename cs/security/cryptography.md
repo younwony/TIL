@@ -4,6 +4,8 @@
 
 > 데이터를 제3자가 읽을 수 없도록 변환하여 기밀성, 무결성, 인증을 보장하는 기술
 
+`#암호화` `#Cryptography` `#Encryption` `#대칭키` `#SymmetricKey` `#비대칭키` `#AsymmetricKey` `#AES` `#AES-GCM` `#RSA` `#ECC` `#해시` `#Hash` `#SHA256` `#bcrypt` `#Argon2` `#Salt` `#HMAC` `#키교환` `#DiffieHellman` `#PublicKey` `#PrivateKey` `#전자서명` `#DigitalSignature` `#블록암호화` `#ChaCha20` `#OAEP` `#AEAD` `#레인보우테이블` `#SecureRandom`
+
 ## 왜 알아야 하는가?
 
 - **실무**: HTTPS 통신, 비밀번호 저장, 데이터베이스 암호화, 파일 보호 등 모든 보안 구현의 기초입니다. 잘못된 암호화 방식을 선택하면(예: MD5로 비밀번호 저장) 보안 사고로 이어집니다.

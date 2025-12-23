@@ -4,6 +4,8 @@
 
 > 클라이언트와 서버 간 데이터 통신을 위한 인터페이스를 정의하는 원칙과 방법
 
+`#API설계` `#APIDesign` `#REST` `#RESTful` `#RESTAPI` `#OpenAPI` `#Swagger` `#버전관리` `#Versioning` `#HTTP메서드` `#GET` `#POST` `#PUT` `#PATCH` `#DELETE` `#상태코드` `#StatusCode` `#2xx` `#4xx` `#5xx` `#엔드포인트` `#Endpoint` `#URI설계` `#페이지네이션` `#Pagination` `#Cursor` `#RateLimit` `#HATEOAS` `#멱등성` `#Idempotency`
+
 ## 왜 알아야 하는가?
 
 API 설계는 프론트엔드-백엔드 협업, 서비스 간 통신의 핵심입니다. 잘 설계된 API는 개발 생산성을 높이고, 잘못 설계된 API는 기술 부채가 됩니다.

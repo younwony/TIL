@@ -4,6 +4,8 @@
 
 > 컨테이너화된 애플리케이션의 배포, 확장, 관리를 자동화하는 오픈소스 컨테이너 오케스트레이션 플랫폼
 
+`#Kubernetes` `#K8s` `#쿠버네티스` `#컨테이너오케스트레이션` `#ContainerOrchestration` `#Pod` `#Service` `#Deployment` `#클라우드네이티브` `#CloudNative` `#DevOps` `#Ingress` `#ConfigMap` `#Secret` `#HPA` `#HorizontalPodAutoscaler` `#StatefulSet` `#ReplicaSet` `#Helm` `#kubectl` `#etcd` `#APIServer` `#Scheduler` `#kubelet` `#RollingUpdate` `#BlueGreen` `#Canary` `#RBAC` `#PersistentVolume` `#Namespace`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 컨테이너 기반 운영의 사실상 표준. 대부분의 클라우드 환경에서 사용

@@ -4,6 +4,8 @@
 
 > 서비스 간 비동기 통신을 위해 메시지를 임시 저장하고 전달하는 미들웨어
 
+`#메시지큐` `#MessageQueue` `#MQ` `#Kafka` `#RabbitMQ` `#AWSSQS` `#비동기` `#Asynchronous` `#이벤트드리븐` `#EventDriven` `#PubSub` `#Producer` `#Consumer` `#ConsumerGroup` `#Topic` `#Partition` `#Offset` `#AMQP` `#Exchange` `#Queue` `#AtLeastOnce` `#AtMostOnce` `#ExactlyOnce` `#DLQ` `#DeadLetterQueue` `#멱등성` `#Idempotency` `#이벤트소싱` `#EventSourcing` `#느슨한결합`
+
 ## 왜 알아야 하는가?
 
 - **실무**: MSA 환경의 필수 요소. 서비스 간 느슨한 결합과 확장성 확보

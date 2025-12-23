@@ -4,6 +4,8 @@
 
 > 여러 서버로 트래픽을 분산하여 가용성과 성능을 향상시키는 기술
 
+`#로드밸런싱` `#LoadBalancing` `#L4` `#L7` `#Nginx` `#HAProxy` `#AWSELB` `#ALB` `#NLB` `#라운드로빈` `#RoundRobin` `#고가용성` `#HighAvailability` `#LeastConnection` `#IPHash` `#ConsistentHashing` `#헬스체크` `#HealthCheck` `#StickySession` `#SessionPersistence` `#DSR` `#DirectServerReturn` `#TLS종료` `#Failover` `#VRRP` `#Keepalived` `#WeightedRoundRobin` `#SPOF` `#수평확장` `#ScaleOut`
+
 ## 왜 알아야 하는가?
 
 - **확장성**: 수평 확장(Scale-out)을 통한 시스템 성능 향상의 핵심 기술

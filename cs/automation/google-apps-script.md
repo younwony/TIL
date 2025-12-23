@@ -4,6 +4,8 @@
 
 > Google Workspace 서비스를 자동화하고 확장하는 JavaScript 기반 클라우드 스크립팅 플랫폼
 
+`#GAS` `#GoogleAppsScript` `#구글앱스스크립트` `#자동화` `#Automation` `#서버리스` `#Serverless` `#JavaScript` `#GoogleWorkspace` `#구글워크스페이스` `#Sheets` `#스프레드시트` `#Gmail` `#Drive` `#Calendar` `#트리거` `#Trigger` `#WebApp` `#API연동` `#스크립트` `#매크로` `#업무자동화` `#RPA` `#무료` `#클라우드함수`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 반복적인 업무(메일 발송, 스프레드시트 데이터 처리, 문서 생성)를 자동화하여 생산성 향상

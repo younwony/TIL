@@ -4,6 +4,8 @@
 
 > 데이터의 삽입과 삭제 순서가 정해진 선형 자료구조
 
+`#스택` `#Stack` `#큐` `#Queue` `#LIFO` `#LastInFirstOut` `#FIFO` `#FirstInFirstOut` `#덱` `#Deque` `#DoubleEndedQueue` `#자료구조` `#DataStructure` `#DFS` `#BFS` `#Push` `#Pop` `#Enqueue` `#Dequeue` `#Peek` `#Top` `#재귀` `#Recursion` `#콜스택` `#CallStack` `#괄호검사` `#실행취소` `#Undo` `#원형큐` `#CircularQueue`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 스택은 함수 호출, 실행 취소, 괄호 검사 등에 사용되며, 큐는 작업 스케줄링, 메시지 처리, 이벤트 시스템에 필수적입니다. 실무에서 매우 자주 사용되는 자료구조입니다.

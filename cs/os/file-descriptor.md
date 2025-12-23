@@ -4,6 +4,8 @@
 
 > 프로세스가 파일, 소켓, 파이프 등 I/O 자원에 접근하기 위해 운영체제로부터 할당받는 정수 식별자이다.
 
+`#파일디스크립터` `#FileDescriptor` `#FD` `#소켓` `#Socket` `#파이프` `#Pipe` `#ulimit` `#TooManyOpenFiles` `#IO` `#Linux` `#Unix` `#stdin` `#stdout` `#stderr` `#open` `#close` `#read` `#write` `#dup2` `#리다이렉션` `#Redirection` `#fork` `#inode` `#OpenFileTable` `#lsof` `#procfs` `#FDLeak` `#trywithresources` `#AutoCloseable`
+
 ## 왜 알아야 하는가?
 
 파일 디스크립터는 Unix/Linux 시스템에서 모든 I/O 작업의 기본입니다. 서버 개발 시 "Too many open files" 에러를 해결하거나, 네트워크 프로그래밍에서 소켓을 다루거나, 프로세스 간 통신(파이프)을 구현할 때 반드시 이해해야 하는 개념입니다. 특히 고성능 서버에서는 FD 관리가 성능과 안정성에 직접적인 영향을 미칩니다.

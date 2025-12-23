@@ -4,6 +4,8 @@
 
 > 웹에서 클라이언트와 서버 간 데이터를 주고받기 위한 프로토콜
 
+`#HTTP` `#HTTPS` `#프로토콜` `#Protocol` `#REST` `#RESTful` `#상태코드` `#StatusCode` `#헤더` `#Header` `#TLS` `#SSL` `#HTTP2` `#HTTP3` `#QUIC` `#웹통신` `#GET` `#POST` `#PUT` `#DELETE` `#멱등성` `#Idempotent` `#무상태` `#Stateless` `#KeepAlive` `#HOLBlocking` `#HSTS` `#CSP` `#CacheControl` `#ETag`
+
 ## 왜 알아야 하는가?
 
 - **웹의 기초**: 모든 웹 애플리케이션의 핵심 통신 프로토콜

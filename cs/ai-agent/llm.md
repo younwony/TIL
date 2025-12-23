@@ -4,6 +4,8 @@
 
 > 대규모 텍스트 데이터로 학습하여 자연어를 이해하고 생성하는 딥러닝 모델
 
+`#LLM` `#대규모언어모델` `#LargeLanguageModel` `#Transformer` `#GPT` `#Claude` `#Gemini` `#ChatGPT` `#Llama` `#Mistral` `#토큰` `#Token` `#토크나이저` `#Tokenizer` `#딥러닝` `#DeepLearning` `#NLP` `#자연어처리` `#Attention` `#SelfAttention` `#Temperature` `#TopP` `#TopK` `#컨텍스트윈도우` `#ContextWindow` `#파인튜닝` `#FineTuning` `#프롬프트` `#Prompt` `#NextTokenPrediction` `#인퍼런스` `#Inference`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 모든 AI Agent의 두뇌 역할, ChatGPT/Claude/Gemini 등 핵심 기술

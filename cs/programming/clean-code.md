@@ -2,6 +2,10 @@
 
 **난이도**: [3] 중급
 
+> 읽기 쉽고, 이해하기 쉬우며, 수정하기 쉬운 코드를 작성하는 원칙과 방법
+
+`#클린코드` `#CleanCode` `#리팩토링` `#Refactoring` `#코드리뷰` `#CodeReview` `#가독성` `#Readability` `#유지보수` `#Maintainability` `#RobertMartin` `#네이밍` `#Naming` `#함수` `#주석` `#Comments` `#형식맞추기` `#Formatting` `#오류처리` `#ErrorHandling` `#SRP` `#DRY` `#KISS` `#YAGNI` `#GuardClause` `#EarlyReturn` `#ExtractMethod` `#CQS` `#SideEffect` `#부수효과`
+
 ## 왜 알아야 하는가?
 
 소프트웨어 개발에서 **코드를 읽는 시간이 작성하는 시간보다 10배 이상** 많습니다. 클린 코드는 단순히 "예쁜 코드"가 아니라, 유지보수 비용을 절감하고 기술 부채를 줄이는 핵심 역량입니다.

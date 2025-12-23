@@ -4,6 +4,8 @@
 
 > `[3] 중급` · 선수 지식: [SQL](./sql.md)
 
+`#트랜잭션` `#Transaction` `#ACID` `#원자성` `#Atomicity` `#일관성` `#Consistency` `#격리성` `#Isolation` `#지속성` `#Durability` `#격리수준` `#IsolationLevel` `#ReadUncommitted` `#ReadCommitted` `#RepeatableRead` `#Serializable` `#락` `#Lock` `#SharedLock` `#ExclusiveLock` `#MVCC` `#커밋` `#Commit` `#롤백` `#Rollback` `#동시성제어` `#ConcurrencyControl` `#데드락` `#Deadlock`
+
 ## 왜 알아야 하는가?
 
 트랜잭션은 데이터 무결성을 보장하는 핵심 메커니즘입니다. 은행 송금, 재고 차감, 결제 처리 등 실무의 거의 모든 비즈니스 로직에서 트랜잭션이 필요합니다. ACID 원칙, 격리 수준, 락, MVCC를 이해하지 못하면 데이터 불일치, 동시성 문제, 데드락 등 심각한 버그가 발생합니다. 특히 격리 수준에 따라 발생하는 이상 현상(Dirty Read, Non-Repeatable Read, Phantom Read)과 이를 방지하는 방법을 알아야 안정적인 시스템을 개발할 수 있습니다. 백엔드 개발자라면 트랜잭션의 동작 원리를 정확히 이해해야 합니다.

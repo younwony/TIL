@@ -4,6 +4,8 @@
 
 > 프로세스는 실행 중인 프로그램의 독립적인 인스턴스이고, 스레드는 프로세스 내에서 실행되는 작업의 단위이다.
 
+`#프로세스` `#Process` `#스레드` `#Thread` `#멀티스레드` `#Multithreading` `#컨텍스트스위칭` `#ContextSwitching` `#동시성` `#Concurrency` `#병렬처리` `#Parallelism` `#PCB` `#ProcessControlBlock` `#TCB` `#ThreadControlBlock` `#IPC` `#InterProcessCommunication` `#RaceCondition` `#Deadlock` `#synchronized` `#Lock` `#Atomic` `#ExecutorService` `#ThreadPool` `#Runnable` `#fork` `#TLB플러시` `#멀티프로세스` `#Multiprocess`
+
 ## 왜 알아야 하는가?
 
 멀티스레딩은 현대 애플리케이션의 기본입니다. 웹 서버가 동시에 수천 개의 요청을 처리하고, 모바일 앱이 UI를 멈추지 않고 백그라운드 작업을 수행하는 것은 모두 프로세스와 스레드 개념을 기반으로 합니다. Race Condition, Deadlock 같은 동시성 버그는 이 개념을 정확히 이해하지 못하면 디버깅이 거의 불가능합니다.

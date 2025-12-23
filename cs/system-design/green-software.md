@@ -4,6 +4,8 @@
 
 > 탄소 효율적이고 탄소 인지적인 지속 가능한 소프트웨어를 설계하고 구축하는 원칙과 방법론
 
+`#GreenSoftware` `#그린소프트웨어` `#지속가능성` `#Sustainability` `#ESG` `#탄소효율성` `#CarbonEfficiency` `#SCI` `#SoftwareCarbonIntensity` `#에너지효율` `#EnergyEfficiency` `#CarbonAware` `#탄소인지` `#ISO21031` `#탄소강도` `#CarbonIntensity` `#내재탄소` `#EmbodiedCarbon` `#하드웨어효율` `#HardwareEfficiency` `#DemandShifting` `#재생에너지` `#RenewableEnergy` `#탄소발자국` `#CarbonFootprint` `#클라우드탄소` `#AI에너지` `#그린코딩` `#GreenCoding`
+
 ## 왜 알아야 하는가?
 
 - **실무**: EU AI Act (2025년 8월 시행) 등 규제 강화. ESG 경영의 핵심 지표

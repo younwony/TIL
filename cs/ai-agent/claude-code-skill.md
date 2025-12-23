@@ -6,6 +6,8 @@
 
 > AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
 
+`#ClaudeCode` `#Skill` `#스킬` `#Skills` `#SKILL.md` `#모듈화` `#Modular` `#워크플로우` `#Workflow` `#자동화` `#Automation` `#Anthropic` `#AI도구` `#ModelInvoked` `#자동발견` `#재사용` `#패키징` `#템플릿` `#프롬프트` `#ProjectSkill` `#UserSkill` `#ManagedSkill` `#트리거키워드` `#슬래시명령어` `#커스터마이징`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 반복되는 작업 패턴을 재사용 가능한 모듈로 만들어 생산성 향상

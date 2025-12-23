@@ -4,6 +4,8 @@
 
 > OAuth 2.0은 제3자 애플리케이션이 사용자 리소스에 안전하게 접근하도록 허용하는 인가 프레임워크이며, JWT는 정보를 안전하게 전송하기 위한 토큰 포맷
 
+`#OAuth` `#OAuth2` `#OAuth2.0` `#JWT` `#JSONWebToken` `#AccessToken` `#RefreshToken` `#토큰` `#Token` `#소셜로그인` `#OIDC` `#OpenIDConnect` `#AuthorizationCode` `#AuthorizationCodeFlow` `#PKCE` `#ClientCredentials` `#ImplicitFlow` `#Claims` `#Payload` `#Signature` `#Bearer` `#HS256` `#RS256` `#토큰갱신` `#TokenRotation` `#Scope` `#ResourceServer` `#AuthorizationServer` `#ClientID` `#ClientSecret`
+
 ## 왜 알아야 하는가?
 
 - **실무**: OAuth는 "구글 로그인", "카카오 로그인" 같은 소셜 로그인 구현의 표준이고, JWT는 MSA 환경에서 토큰 기반 인증의 사실상 표준입니다. 대부분의 현대 웹/모바일 애플리케이션은 이 두 기술을 사용합니다.

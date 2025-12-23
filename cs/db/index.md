@@ -4,6 +4,8 @@
 
 > `[3] 중급` · 선수 지식: [SQL](./sql.md)
 
+`#인덱스` `#Index` `#B-Tree` `#B+Tree` `#복합인덱스` `#CompositeIndex` `#커버링인덱스` `#CoveringIndex` `#실행계획` `#ExecutionPlan` `#DB성능` `#쿼리최적화` `#QueryOptimization` `#EXPLAIN` `#유니크인덱스` `#UniqueIndex` `#FullTextIndex` `#해시인덱스` `#HashIndex` `#인덱스스캔` `#IndexScan` `#테이블스캔` `#FullTableScan` `#카디널리티` `#Cardinality` `#선택도` `#Selectivity`
+
 ## 왜 알아야 하는가?
 
 인덱스는 데이터베이스 성능 최적화의 핵심입니다. 100만 건의 데이터에서 특정 레코드를 찾을 때, 인덱스가 없으면 10초가 걸리지만 인덱스를 사용하면 0.01초로 단축됩니다. 하지만 인덱스를 잘못 설계하면 오히려 성능이 저하되고, 너무 많이 만들면 INSERT/UPDATE/DELETE 성능이 떨어집니다. 백엔드 개발자라면 반드시 인덱스의 작동 원리와 설계 방법을 알아야 쿼리 성능 문제를 해결하고 효율적인 데이터베이스를 설계할 수 있습니다.

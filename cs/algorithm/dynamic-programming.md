@@ -4,6 +4,8 @@
 
 > 복잡한 문제를 작은 하위 문제로 나누어 해결하고, 그 결과를 저장하여 중복 계산을 피하는 알고리즘 설계 기법
 
+`#DP` `#DynamicProgramming` `#동적프로그래밍` `#동적계획법` `#메모이제이션` `#Memoization` `#타뷸레이션` `#Tabulation` `#TopDown` `#BottomUp` `#최적화` `#Optimization` `#코딩테스트` `#알고리즘` `#점화식` `#RecurrenceRelation` `#최적부분구조` `#OptimalSubstructure` `#중복부분문제` `#OverlappingSubproblems` `#피보나치` `#Fibonacci` `#배낭문제` `#Knapsack` `#LCS` `#LIS` `#분할정복` `#재귀`
+
 ## 왜 알아야 하는가?
 
 - **실무**: 추천 시스템, 자원 최적화, 경로 탐색 등 복잡한 최적화 문제 해결에 핵심적입니다. 캐싱 전략의 이론적 기반이 되며, 데이터베이스 쿼리 최적화에도 활용됩니다.

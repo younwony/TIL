@@ -4,6 +4,8 @@
 
 > `[4] 심화` · 선수 지식: [SQL](./sql.md), [Transaction](./transaction.md)
 
+`#JPA` `#JPA표준` `#JavaPersistenceAPI` `#ORM` `#ObjectRelationalMapping` `#Hibernate` `#하이버네이트` `#영속성컨텍스트` `#PersistenceContext` `#지연로딩` `#LazyLoading` `#즉시로딩` `#EagerLoading` `#N+1` `#N+1문제` `#JPQL` `#QueryDSL` `#SpringDataJPA` `#Entity` `#엔티티` `#1차캐시` `#더티체킹` `#DirtyChecking` `#Flush` `#Cascade` `#FetchJoin`
+
 ## 왜 알아야 하는가?
 
 JPA는 Java/Spring 백엔드 개발에서 사실상 표준 ORM 기술입니다. SQL을 직접 작성하는 JDBC 방식에 비해 생산성이 10배 이상 향상되고, 객체지향적인 코드 작성이 가능합니다. 하지만 내부 동작 원리를 이해하지 못하면 N+1 문제, 영속성 컨텍스트 관련 버그, 성능 저하 등의 문제가 발생합니다. 실무에서 JPA를 제대로 활용하려면 영속성 컨텍스트, 지연 로딩, JPQL, 트랜잭션 관리 등의 핵심 개념을 반드시 이해해야 합니다.
