@@ -26,10 +26,10 @@
 │            ┌──────────────┼──────────────┐                      │
 │            ▼              ▼              ▼                      │
 │   [4] MySQL Index   [4] JPA        [4] NoSQL                    │
-│        - 심화 및 ORM                                             │
-│            │                                                     │
-│            ▼                                                     │
-│   [3] Redis Caching                                              │
+│        - 심화 및 ORM                   │                        │
+│            │                           ▼                        │
+│            ▼               [4] ES 풀 색인 전략                   │
+│   [3] Redis Caching             - Lucene 세그먼트, Alias 스왑   │
 │        - 캐싱 전략, 무효화, 일관성                               │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
@@ -73,6 +73,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [MySQL 인덱스](./mysql-index.md) | B+Tree, 클러스터드/세컨더리 인덱스 | Index |
 | [JPA](./jpa.md) | 영속성 컨텍스트, N+1 문제, 지연 로딩 | SQL, Transaction, OOP |
 | [NoSQL](./nosql.md) | Document/Key-Value/Column/Graph, CAP | SQL, 시스템 설계 기초 |
+| [ES 풀 색인 전략](./elasticsearch-reindexing.md) | 덮어쓰기 vs Alias 스왑, Lucene 세그먼트 | NoSQL, Index |
 
 ## 전체 목차
 
@@ -84,6 +85,9 @@ SQL 기본 개념을 이해한 후 학습하세요.
 
 ### Redis
 - [Redis Caching](./redis-caching.md) - 캐싱 전략(Cache-Aside, Write-Through, Write-Behind), 캐시 무효화, 일관성
+
+### Elasticsearch
+- [ES 풀 색인 전략](./elasticsearch-reindexing.md) - 덮어쓰기 vs Alias 스왑, Lucene 세그먼트, 디스크 용량 피크
 
 ### 일반
 - [SQL](./sql.md) - SQL 기본, SELECT/JOIN/서브쿼리, 실행 계획, 쿼리 최적화
