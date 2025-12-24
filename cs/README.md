@@ -25,9 +25,10 @@
 - [Security](./security) - 인증/인가, 웹 보안, 암호화
 - [Git](./git) - 버전 관리, 브랜치 전략
 
-### 자동화
+### 자동화 & DevOps
 
-- [Automation](./automation) - 업무 자동화, 스크립팅, CI/CD
+- [Automation](./automation) - 업무 자동화, 스크립팅
+- [DevOps](./devops) - CI/CD, 모니터링, IaC (Infrastructure as Code)
 
 ### 언어별 심화
 
