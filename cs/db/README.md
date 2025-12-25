@@ -28,9 +28,12 @@
 │   [4] MySQL Index   [4] JPA        [4] NoSQL                    │
 │        - 심화 및 ORM                   │                        │
 │            │                           ▼                        │
-│            ▼               [4] ES 풀 색인 전략                   │
-│   [3] Redis Caching             - Lucene 세그먼트, Alias 스왑   │
-│        - 캐싱 전략, 무효화, 일관성                               │
+│            ▼               [3] Elasticsearch                    │
+│   [3] Redis Caching             - 역인덱스, 분산 검색            │
+│        - 캐싱 전략, 무효화, 일관성          │                    │
+│                                         ▼                       │
+│                             [4] ES 풀 색인 전략                  │
+│                                  - Lucene 세그먼트, Alias 스왑   │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -63,6 +66,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [Transaction](./transaction.md) | ACID, 격리 수준, 락, MVCC | SQL |
 | [Normalization](./normalization.md) | 정규화(1NF~3NF), 이상현상, 반정규화 | SQL |
 | [Redis Caching](./redis-caching.md) | 캐싱 전략, 무효화, 일관성, 스탬피드 | NoSQL |
+| [Elasticsearch](./elasticsearch.md) | 역인덱스, 전문검색, 분산 검색엔진 | NoSQL, Index |
 
 ### [4] 심화
 
@@ -87,6 +91,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 - [Redis Caching](./redis-caching.md) - 캐싱 전략(Cache-Aside, Write-Through, Write-Behind), 캐시 무효화, 일관성
 
 ### Elasticsearch
+- [Elasticsearch](./elasticsearch.md) - 역인덱스, 전문검색, Analyzer, 분산 검색엔진
 - [ES 풀 색인 전략](./elasticsearch-reindexing.md) - 덮어쓰기 vs Alias 스왑, Lucene 세그먼트, 디스크 용량 피크
 
 ### 일반
