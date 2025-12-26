@@ -1,6 +1,6 @@
 # Java 직렬화 (Serialization)
 
-> `[3] 중급` · 선수 지식: [프로그래밍 언어란](./what-is-language.md)
+> `[3] 중급` · 선수 지식: [프로그래밍 언어란](../what-is-language.md)
 
 > 객체를 바이트 스트림으로 변환하여 저장하거나 전송할 수 있게 하는 기능
 
@@ -254,8 +254,8 @@ A: 명시하지 않으면 컴파일러가 클래스 구조 기반으로 자동 �
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [프로그래밍 언어란](./what-is-language.md) | 선수 지식 | [1] 기초 |
-| [Redis Caching](../db/redis-caching.md) | 캐시 직렬화 | [3] 중급 |
+| [프로그래밍 언어란](../what-is-language.md) | 선수 지식 | [1] 기초 |
+| [Redis Caching](../../db/redis-caching.md) | 캐시 직렬화 | [3] 중급 |
 
 ## 참고 자료
 

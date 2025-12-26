@@ -1,6 +1,6 @@
 # Java 제네릭 (Generics)
 
-> `[3] 중급` · 선수 지식: [프로그래밍 언어란](./what-is-language.md), [컬렉션 프레임워크](./collection-framework.md)
+> `[3] 중급` · 선수 지식: [프로그래밍 언어란](../what-is-language.md), [컬렉션 프레임워크](./collection-framework.md)
 
 > 타입을 파라미터화하여 컴파일 시점에 타입 안전성을 보장하는 기능
 

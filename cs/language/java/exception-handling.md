@@ -1,6 +1,6 @@
 # Java 예외 처리 (Exception Handling)
 
-> `[2] 입문` · 선수 지식: [프로그래밍 언어란](./what-is-language.md)
+> `[2] 입문` · 선수 지식: [프로그래밍 언어란](../what-is-language.md)
 
 > 프로그램 실행 중 발생하는 예외 상황을 처리하는 메커니즘
 
@@ -336,8 +336,8 @@ A: (1) **빈 catch 금지**: 최소한 로깅 필요. (2) **원인 체이닝**: 
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [프로그래밍 언어란](./what-is-language.md) | 선수 지식 | [1] 기초 |
-| [Spring MVC](../spring/spring-mvc.md) | 예외 처리 활용 | [3] 중급 |
+| [프로그래밍 언어란](../what-is-language.md) | 선수 지식 | [1] 기초 |
+| [Spring MVC](../../spring/spring-mvc.md) | 예외 처리 활용 | [3] 중급 |
 
 ## 참고 자료
 

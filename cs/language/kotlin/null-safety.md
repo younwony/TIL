@@ -1,6 +1,6 @@
 # Null Safety (널 안정성)
 
-> `[3] 중급` · 선수 지식: [프로그래밍 언어란](./what-is-language.md), [OOP](../programming/oop.md)
+> `[3] 중급` · 선수 지식: [프로그래밍 언어란](../what-is-language.md), [OOP](../../programming/oop.md)
 
 > 널 참조로 인한 오류를 컴파일 타임에 방지하는 타입 시스템 기능
 
@@ -214,7 +214,7 @@ A: **!!** (Non-null 단언): null이면 NPE 발생, null이 아님을 확신할 
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [프로그래밍 언어란](./what-is-language.md) | 선수 지식 | [1] 정의 |
+| [프로그래밍 언어란](../what-is-language.md) | 선수 지식 | [1] 정의 |
 | [Coroutine](./coroutine.md) | Kotlin 고급 | [4] 심화 |
 
 ## 참고 자료

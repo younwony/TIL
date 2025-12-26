@@ -9,7 +9,7 @@
 │                        학습 순서                                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   [1] 보안이란 (TODO)                                           │
+│   [1] 보안이란                                                   │
 │        - 보안의 정의와 CIA Triad                                 │
 │            │                                                     │
 │            ▼                                                     │
@@ -70,6 +70,9 @@
 | [웹 보안](./web-security.md) | OWASP Top 10, XSS, CSRF, SQL Injection | 인증과 인가, HTTP |
 
 ## 전체 목차
+
+### 기초 개념
+- [보안이란](./what-is-security.md) - 보안의 정의, CIA Triad, 보안 위협 유형
 
 ### 인증 & 인가
 - [인증과 인가](./authentication-authorization.md) - 인증 vs 인가, 세션 기반 vs 토큰 기반, 권한 관리(RBAC/ABAC)

@@ -9,7 +9,7 @@
 │                        학습 순서                                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   [1] 버전 관리란 (TODO)                                        │
+│   [1] 버전 관리란                                                │
 │        - 버전 관리의 정의와 필요성                               │
 │            │                                                     │
 │            ▼                                                     │
@@ -56,9 +56,13 @@
 
 ## 전체 목차
 
+- [버전 관리란](./what-is-version-control.md) - 버전 관리의 정의, 필요성, VCS 종류
 - [Git 기본 개념](./git-basics.md) - Git의 핵심 개념과 동작 원리
 - [Git 브랜치 전략](./git-branch-strategy.md) - Git Flow, GitHub Flow 등 브랜치 전략
 - [Git 내부 동작 원리](./git-internals.md) - Git 객체, 참조, 저장 방식
+- [Rebase vs Merge](./rebase-vs-merge.md) - 히스토리 정리 vs 보존
+- [Git Hooks](./git-hooks.md) - 커밋/푸시 시 자동화
+- [Git 고급 명령어](./git-advanced-commands.md) - cherry-pick, revert, reset
 
 ## 작성 예정
 

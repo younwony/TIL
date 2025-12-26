@@ -1,6 +1,6 @@
 # JVM 구조 (JVM Architecture)
 
-> `[3] 중급` · 선수 지식: [프로그래밍 언어란](./what-is-language.md), [메모리 관리](../os/memory-management.md)
+> `[3] 중급` · 선수 지식: [프로그래밍 언어란](../what-is-language.md), [메모리 관리](../../os/memory-management.md)
 
 > Java 바이트코드를 실행하는 가상 머신의 내부 구조
 
@@ -204,7 +204,7 @@ A: **위임 모델**: 클래스 로딩 요청 시 부모에게 먼저 위임하�
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
 | [GC](./gc.md) | 힙 메모리 관리 | [3] 중급 |
-| [프로그래밍 언어란](./what-is-language.md) | 선수 지식 | [1] 정의 |
+| [프로그래밍 언어란](../what-is-language.md) | 선수 지식 | [1] 정의 |
 
 ## 참고 자료
 

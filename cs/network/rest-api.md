@@ -1,6 +1,6 @@
 # REST API
 
-> `[3] 중급` · 선수 지식: [HTTP](./http.md)
+> `[3] 중급` · 선수 지식: [HTTP/HTTPS](./http-https.md)
 
 > HTTP를 기반으로 자원을 표현하고 조작하는 아키텍처 스타일
 
@@ -294,7 +294,7 @@ A: **2xx**는 성공(200 OK, 201 Created, 204 No Content), **4xx**는 클라이�
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [HTTP](./http.md) | 선수 지식 | [3] 중급 |
+| [HTTP/HTTPS](./http-https.md) | 선수 지식 | [3] 중급 |
 | [API 설계](../programming/api-design.md) | 설계 원칙 | [3] 중급 |
 
 ## 참고 자료

@@ -1,6 +1,6 @@
 # Java 버전별 주요 기능 (8/11/17/21)
 
-> `[3] 중급` · 선수 지식: [프로그래밍 언어란](./what-is-language.md)
+> `[3] 중급` · 선수 지식: [프로그래밍 언어란](../what-is-language.md)
 
 > LTS 버전을 중심으로 Java의 주요 기능 변화와 발전 과정
 
@@ -380,10 +380,10 @@ A: **정의**: JVM이 관리하는 경량 스레드. OS 스레드와 M:N 매핑.
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [프로그래밍 언어란](./what-is-language.md) | 선수 지식 | [1] 기초 |
+| [프로그래밍 언어란](../what-is-language.md) | 선수 지식 | [1] 기초 |
 | [JVM 구조](./jvm.md) | GC, 메모리 | [3] 중급 |
 | [Stream API](./stream-api.md) | Java 8 핵심 | [3] 중급 |
-| [프로세스와 스레드](../os/process-thread.md) | Virtual Thread | [2] 입문 |
+| [프로세스와 스레드](../../os/process-vs-thread.md) | Virtual Thread | [2] 입문 |
 
 ## 참고 자료
 
