@@ -16,6 +16,7 @@
 
 - [모니터링](./monitoring.md) - 로깅, 메트릭, 트레이싱 (선수: CI/CD)
 - [IaC](./iac.md) - Infrastructure as Code (선수: CI/CD)
+- [배포 전략](./deployment-strategy.md) - Blue-Green, Canary, Rolling Update (선수: CI/CD, Docker)
 
 ### [4] 심화
 

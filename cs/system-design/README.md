@@ -47,6 +47,7 @@
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [Layered Architecture](./layered-architecture.md) | 계층형 아키텍처, Controller-Service-Repository | 시스템 설계란 |
 | [확장성](./scalability.md) | 수직/수평 확장, 스케일 아웃 전략 | 시스템 설계란 |
 | [가용성](./availability.md) | 고가용성(HA), 이중화, 페일오버, SLA/SLO | 시스템 설계란 |
 | [일관성](./consistency.md) | 강한/최종 일관성, CAP 정리 | 시스템 설계란 |
@@ -65,6 +66,10 @@
 | [Serverless](./serverless.md) | FaaS, BaaS, 서버리스 아키텍처 `Trend` | Docker, 확장성 |
 | [DTO-Entity 변환 설계](./dto-entity-conversion.md) | 의존성 방향, Clean Architecture | OOP, SOLID |
 | [Green Software Engineering](./green-software.md) | 탄소 효율적 소프트웨어 설계 | 확장성 |
+| [Hexagonal Architecture](./hexagonal-architecture.md) | 포트와 어댑터, 도메인 분리 | Layered Architecture, OOP |
+| [Event-Driven Architecture](./event-driven-architecture.md) | 이벤트 기반 통신 | 메시지 큐, MSA |
+| [SOA](./soa.md) | 서비스 지향 아키텍처, ESB | Layered Architecture |
+| [12-Factor App](./12-factor-app.md) | 클라우드 네이티브 방법론 | Docker |
 
 ### [4] 심화
 
@@ -99,6 +104,11 @@
 - [Green Software Engineering](./green-software.md) - 탄소 효율적 소프트웨어 설계, SCI 지표
 
 ### 아키텍처
+- [Layered Architecture](./layered-architecture.md) - 계층형 아키텍처, Controller-Service-Repository
+- [Hexagonal Architecture](./hexagonal-architecture.md) - 포트와 어댑터, 도메인 분리
+- [Event-Driven Architecture](./event-driven-architecture.md) - 이벤트 기반 통신, 비동기 처리
+- [SOA](./soa.md) - 서비스 지향 아키텍처, ESB
+- [12-Factor App](./12-factor-app.md) - 클라우드 네이티브 방법론
 - [MSA vs 모놀리식](./msa-vs-monolithic.md) - 마이크로서비스 vs 모놀리식, 장단점, 전환 전략
 - [분산 트랜잭션](./distributed-transaction.md) - 2PC, Saga 패턴, 보상 트랜잭션
 - [CQRS & 이벤트 소싱](./cqrs-event-sourcing.md) - 명령/조회 분리, 이벤트 스토어

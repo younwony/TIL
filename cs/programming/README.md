@@ -47,6 +47,7 @@
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
 | [OOP](./oop.md) | 캡슐화, 상속, 다형성, 추상화, SOLID | 프로그래밍이란 |
+| [응집도와 결합도](./cohesion-coupling.md) | 모듈화 설계 지표 | OOP |
 
 ### [3] 중급
 
@@ -58,6 +59,7 @@ OOP 개념을 이해한 후 학습하세요.
 | [디자인 패턴](./design-pattern.md) | 생성/구조/행위 패턴, GoF 패턴 | OOP |
 | [API 설계](./api-design.md) | REST API 설계, HTTP 메서드, 버전 관리 | OOP, HTTP |
 | [TDD](./tdd.md) | 테스트 주도 개발, Red-Green-Refactor | OOP, 클린 코드 |
+| [Test Double](./test-double.md) | Mock, Stub, Spy, Fake | TDD |
 | [리팩토링](./refactoring.md) | 코드 스멜, 리팩토링 기법 | 클린 코드 |
 
 ### [4] 심화
@@ -80,6 +82,8 @@ OOP 개념을 이해한 후 학습하세요.
 - [TDD](./tdd.md) - 테스트 주도 개발, Red-Green-Refactor
 - [리팩토링](./refactoring.md) - 코드 스멜, 리팩토링 기법
 - [DDD](./ddd.md) - 도메인 주도 설계, 애그리거트, 바운디드 컨텍스트
+- [응집도와 결합도](./cohesion-coupling.md) - 모듈화 설계 지표, High Cohesion, Low Coupling
+- [Test Double](./test-double.md) - Mock, Stub, Spy, Fake, 테스트 대역
 
 ## 작성 예정
 
