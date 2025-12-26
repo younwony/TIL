@@ -1128,8 +1128,18 @@ body {
     color: white;
 }
 
+.footer .text-muted {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.footer .footer-tech .badge {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
 .footer-brand {
     font-size: 1.25rem;
+    color: white;
 }
 
 .footer-brand i {
