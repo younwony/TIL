@@ -78,6 +78,9 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [JPA](./jpa.md) | 영속성 컨텍스트, N+1 문제, 지연 로딩 | SQL, Transaction, OOP |
 | [NoSQL](./nosql.md) | Document/Key-Value/Column/Graph, CAP | SQL, 시스템 설계 기초 |
 | [ES 풀 색인 전략](./elasticsearch-reindexing.md) | 덮어쓰기 vs Alias 스왑, Lucene 세그먼트 | NoSQL, Index |
+| [샤딩](./sharding.md) | 수평 분할, 샤드 키 선택, 리샤딩 | 데이터베이스란, Index, Transaction |
+| [레플리케이션](./replication.md) | Master-Slave, 동기/비동기 복제, Failover | 데이터베이스란, Transaction |
+| [실행 계획](./execution-plan.md) | EXPLAIN, 쿼리 분석, 최적화 | SQL, Index |
 
 ## 전체 목차
 
@@ -104,8 +107,13 @@ SQL 기본 개념을 이해한 후 학습하세요.
 - [Normalization](./normalization.md) - 정규화(1NF~3NF), 이상현상, 반정규화
 - [NoSQL](./nosql.md) - NoSQL 유형(Document/Key-Value/Column/Graph), CAP 정리
 
+### 분산 데이터베이스
+- [샤딩](./sharding.md) - 수평 분할, 샤드 키, 해시/범위 샤딩, 리샤딩
+- [레플리케이션](./replication.md) - Master-Slave, 동기/비동기 복제, Failover
+
+### 성능 분석
+- [실행 계획](./execution-plan.md) - EXPLAIN, 쿼리 최적화, 조인 알고리즘
+
 ## 작성 예정
 
-- [ ] 샤딩 (Sharding) - 수평 분할, 샤드 키 선택
-- [ ] 레플리케이션 (Replication) - Master-Slave, Master-Master
-- [ ] 실행 계획 (Execution Plan) - EXPLAIN, 쿼리 분석
+*(모든 예정 문서가 작성 완료되었습니다)*

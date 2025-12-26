@@ -32,7 +32,7 @@
 
 | 문서 | 설명 | 예상 시간 |
 |------|------|----------|
-| 버전 관리란 (TODO) | 버전 관리의 정의, 필요성, VCS 종류 | 20분 |
+| [버전 관리란](./what-is-version-control.md) | 버전 관리의 정의, 필요성, VCS 종류 | 20분 |
 
 ### [2] 입문
 
@@ -50,6 +50,9 @@
 |------|------|----------|
 | [Git 브랜치 전략](./git-branch-strategy.md) | Git Flow, GitHub Flow 등 | Git 기본 개념 |
 | [Git 내부 동작 원리](./git-internals.md) | Git 객체, 참조, 저장 방식 | Git 기본 개념 |
+| [Rebase vs Merge](./rebase-vs-merge.md) | 히스토리 정리 vs 보존 | Git 기본 개념 |
+| [Git Hooks](./git-hooks.md) | 커밋/푸시 시 자동화 | Git 기본 개념 |
+| [Git 고급 명령어](./git-advanced-commands.md) | cherry-pick, revert, reset | Git 기본 개념 |
 
 ## 전체 목차
 
@@ -59,7 +62,4 @@
 
 ## 작성 예정
 
-- [ ] 버전 관리란 - 버전 관리의 정의, 필요성, VCS 종류
-- [ ] Rebase vs Merge - 히스토리 정리 vs 보존
-- [ ] Git Hooks - 커밋/푸시 시 자동화
-- [ ] Git 고급 명령어 - cherry-pick, revert, reset
+*(모든 예정 문서가 작성 완료되었습니다)*

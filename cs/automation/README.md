@@ -9,19 +9,19 @@
 │                        학습 순서                                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   [1] 자동화란 (TODO)                                           │
+│   [1] 자동화란                                                  │
 │        - 자동화의 정의, 종류, 적용 사례                          │
 │            │                                                     │
 │            ├──────────────────────┬──────────────────┐          │
 │            ▼                      ▼                  ▼          │
 │   [2] Google Apps Script     [2] n8n          [2] 쉘 스크립트   │
-│        - Google Workspace         - 워크플로우      (TODO)      │
-│          자동화                    자동화                        │
+│        - Google Workspace         - 워크플로우        - Bash    │
+│          자동화                    자동화              PowerShell│
 │            │                      │                  │          │
 │            └──────────────────────┴──────────────────┘          │
 │                           │                                      │
 │                           ▼                                      │
-│   [3] CI/CD 자동화 (TODO)                                       │
+│   [3] CI/CD 자동화                                              │
 │        - GitHub Actions, Jenkins                                │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
@@ -35,7 +35,7 @@
 
 | 문서 | 설명 | 예상 시간 |
 |------|------|----------|
-| 자동화란 (TODO) | 자동화의 정의, RPA vs 스크립트 자동화 | 15분 |
+| [자동화란](./what-is-automation.md) | 자동화의 정의, RPA vs 스크립트 자동화 | 15분 |
 
 ### [2] 입문
 
@@ -43,6 +43,7 @@
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [쉘 스크립트](./shell-script.md) | Bash/PowerShell 기초, 자동화 스크립트 작성 | 자동화란 |
 | [Google Apps Script](./google-apps-script.md) | Google Workspace 자동화, JavaScript 기반 | JavaScript 기초 |
 | [n8n](./n8n.md) | 오픈소스 워크플로우 자동화 플랫폼 | 없음 (노코드) |
 
@@ -50,15 +51,23 @@
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
-| CI/CD 자동화 (TODO) | GitHub Actions, Jenkins, 배포 자동화 | Git, 쉘 스크립트 |
+| [CI/CD 자동화](./cicd.md) | GitHub Actions, Jenkins, 배포 자동화 | Git, 쉘 스크립트 |
 
 ## 전체 목차
 
+### 기초 개념
+- [자동화란](./what-is-automation.md) - 자동화의 정의, 종류, 적용 사례, RPA vs 스크립트 자동화
+
+### 스크립팅
+- [쉘 스크립트](./shell-script.md) - Bash/PowerShell 기초, 변수, 조건문, 반복문, Cron 스케줄링
+
+### 워크플로우 자동화
 - [Google Apps Script](./google-apps-script.md) - Google Workspace 자동화, 트리거, 웹앱
 - [n8n](./n8n.md) - 오픈소스 워크플로우 자동화, 셀프호스팅, 노코드
 
+### 개발 자동화
+- [CI/CD 자동화](./cicd.md) - GitHub Actions, Jenkins, 파이프라인, 배포 전략
+
 ## 작성 예정
 
-- [ ] 자동화란 - 자동화의 정의, RPA vs 스크립트 자동화
-- [ ] 쉘 스크립트 - Bash/PowerShell 기초, 자동화 스크립트 작성
-- [ ] CI/CD 자동화 - GitHub Actions, Jenkins 파이프라인
+*(모든 예정 문서가 작성 완료되었습니다)*
