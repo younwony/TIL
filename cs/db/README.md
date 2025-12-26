@@ -9,7 +9,7 @@
 │                        학습 순서                                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   [1] 데이터베이스란 (TODO)                                      │
+│   [1] 데이터베이스란                                             │
 │        - 데이터베이스의 정의와 종류                              │
 │            │                                                     │
 │            ▼                                                     │
@@ -46,7 +46,7 @@
 
 | 문서 | 설명 | 예상 시간 |
 |------|------|----------|
-| 데이터베이스란 (TODO) | DB의 정의, RDBMS vs NoSQL, 기본 용어 | 25분 |
+| [데이터베이스란](./what-is-database.md) | DB의 정의, RDBMS vs NoSQL, 기본 용어 | 25분 |
 
 ### [2] 입문
 
@@ -94,6 +94,9 @@ SQL 기본 개념을 이해한 후 학습하세요.
 - [Elasticsearch](./elasticsearch.md) - 역인덱스, 전문검색, Analyzer, 분산 검색엔진
 - [ES 풀 색인 전략](./elasticsearch-reindexing.md) - 덮어쓰기 vs Alias 스왑, Lucene 세그먼트, 디스크 용량 피크
 
+### 기초
+- [데이터베이스란](./what-is-database.md) - DB의 정의, RDBMS vs NoSQL, DBMS, 기본 용어
+
 ### 일반
 - [SQL](./sql.md) - SQL 기본, SELECT/JOIN/서브쿼리, 실행 계획, 쿼리 최적화
 - [Index](./index.md) - 인덱스 개념, B-Tree/B+Tree, 클러스터드/논클러스터드, 커버링 인덱스
@@ -103,7 +106,6 @@ SQL 기본 개념을 이해한 후 학습하세요.
 
 ## 작성 예정
 
-- [ ] 데이터베이스란 - DB의 정의, RDBMS vs NoSQL, 기본 용어
 - [ ] 샤딩 (Sharding) - 수평 분할, 샤드 키 선택
 - [ ] 레플리케이션 (Replication) - Master-Slave, Master-Master
 - [ ] 실행 계획 (Execution Plan) - EXPLAIN, 쿼리 분석
