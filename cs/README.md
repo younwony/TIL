@@ -34,6 +34,10 @@
 
 - [Language](./language) - Java, Kotlin 등 언어별 심화 학습
 
+### 프레임워크
+
+- [Spring](./spring) - Spring Framework (DI/IoC, AOP, MVC, Security)
+
 ### AI & 에이전트
 
 - [AI Agent](./ai-agent) - AI 에이전트, MCP, LLM 도구 확장 기술
