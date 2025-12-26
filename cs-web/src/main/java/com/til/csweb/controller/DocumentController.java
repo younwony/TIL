@@ -2,7 +2,10 @@ package com.til.csweb.controller;
 
 import com.til.csweb.dto.CategoryDto;
 import com.til.csweb.dto.DocumentDto;
-import com.til.csweb.service.MarkdownService;
+import com.til.csweb.service.CategoryService;
+import com.til.csweb.service.DocumentService;
+import com.til.csweb.service.SearchService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,26 +14,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static com.til.csweb.constant.DocumentConstants.SEARCH_RESULT_LIMIT;
 
 /**
  * CS 문서 관련 컨트롤러
  */
 @Controller
+@RequiredArgsConstructor
 public class DocumentController {
 
-    private final MarkdownService markdownService;
-
-    public DocumentController(MarkdownService markdownService) {
-        this.markdownService = markdownService;
-    }
+    private final DocumentService documentService;
+    private final CategoryService categoryService;
+    private final SearchService searchService;
 
     /**
      * 메인 페이지 - 카테고리별 문서 목록
      */
     @GetMapping("/")
     public String index(Model model) {
-        List<CategoryDto> categories = markdownService.getAllCategoryInfos();
-        Map<String, List<DocumentDto>> documentsByCategory = markdownService.getDocumentsByCategory();
+        List<CategoryDto> categories = categoryService.getAllCategoryInfos();
+        Map<String, List<DocumentDto>> documentsByCategory = documentService.getDocumentsByCategory();
         int totalDocuments = documentsByCategory.values().stream()
                 .mapToInt(List::size)
                 .sum();
@@ -46,16 +51,16 @@ public class DocumentController {
      */
     @GetMapping("/category/{category}")
     public String category(@PathVariable String category, Model model) {
-        CategoryDto categoryInfo = markdownService.getCategoryInfo(category);
-        if (categoryInfo == null) {
+        Optional<CategoryDto> categoryInfo = categoryService.getCategoryInfo(category);
+        if (categoryInfo.isEmpty()) {
             return "error/404";
         }
 
-        List<DocumentDto> allDocuments = markdownService.getDocumentsInCategoryRecursive(category);
+        List<DocumentDto> allDocuments = documentService.getDocumentsInCategoryRecursive(category);
         model.addAttribute("category", category);
-        model.addAttribute("categoryInfo", categoryInfo);
+        model.addAttribute("categoryInfo", categoryInfo.get());
         model.addAttribute("documents", allDocuments);
-        model.addAttribute("subcategories", categoryInfo.getSubcategories());
+        model.addAttribute("subcategories", categoryInfo.get().getSubcategories());
         return "category";
     }
 
@@ -68,17 +73,17 @@ public class DocumentController {
             @PathVariable String subcategory,
             Model model) {
         String fullPath = category + "/" + subcategory;
-        CategoryDto categoryInfo = markdownService.getCategoryInfo(fullPath);
-        if (categoryInfo == null) {
+        Optional<CategoryDto> categoryInfo = categoryService.getCategoryInfo(fullPath);
+        if (categoryInfo.isEmpty()) {
             return "error/404";
         }
 
-        List<DocumentDto> documents = markdownService.getDocumentsInCategoryRecursive(fullPath);
+        List<DocumentDto> documents = documentService.getDocumentsInCategoryRecursive(fullPath);
         model.addAttribute("category", fullPath);
         model.addAttribute("parentCategory", category);
-        model.addAttribute("categoryInfo", categoryInfo);
+        model.addAttribute("categoryInfo", categoryInfo.get());
         model.addAttribute("documents", documents);
-        model.addAttribute("subcategories", categoryInfo.getSubcategories());
+        model.addAttribute("subcategories", categoryInfo.get().getSubcategories());
         return "category";
     }
 
@@ -110,11 +115,10 @@ public class DocumentController {
      */
     private String handleDocumentRequest(String category, String subcategory, String filename, Model model) {
         String fullCategory = subcategory != null ? category + "/" + subcategory : category;
-        DocumentDto document = markdownService.getDocument(fullCategory, filename);
+        Optional<DocumentDto> document = documentService.getDocument(fullCategory, filename);
 
-        if (document == null) {
-            // 문서가 없을 경우 coming-soon 페이지 표시
-            if (markdownService.categoryExists(category)) {
+        if (document.isEmpty()) {
+            if (categoryService.categoryExists(category)) {
                 model.addAttribute("category", fullCategory);
                 model.addAttribute("documentTitle", formatTitle(filename));
                 return "coming-soon";
@@ -122,8 +126,8 @@ public class DocumentController {
             return "error/404";
         }
 
-        model.addAttribute("document", document);
-        model.addAttribute("categories", markdownService.getCategories());
+        model.addAttribute("document", document.get());
+        model.addAttribute("categories", categoryService.getCategories());
         return "document";
     }
 
@@ -150,11 +154,11 @@ public class DocumentController {
         String searchValue;
 
         if (keyword != null && !keyword.trim().isEmpty()) {
-            results = markdownService.searchByKeyword(keyword);
+            results = searchService.searchByKeyword(keyword);
             searchType = "keyword";
             searchValue = keyword;
         } else if (q != null && !q.trim().isEmpty()) {
-            results = markdownService.search(q);
+            results = searchService.search(q);
             searchType = "query";
             searchValue = q;
         } else {
@@ -167,7 +171,9 @@ public class DocumentController {
         model.addAttribute("searchType", searchType);
         model.addAttribute("searchValue", searchValue);
         model.addAttribute("resultCount", results.size());
-        model.addAttribute("popularKeywords", markdownService.getAllKeywords().stream().limit(20).toList());
+        model.addAttribute("popularKeywords", searchService.getAllKeywords().stream()
+                .limit(SEARCH_RESULT_LIMIT)
+                .toList());
 
         return "search";
     }
@@ -177,8 +183,8 @@ public class DocumentController {
      */
     @GetMapping("/keywords")
     public String keywords(Model model) {
-        model.addAttribute("keywords", markdownService.getAllKeywords());
-        model.addAttribute("totalDocuments", markdownService.getAllDocuments().size());
+        model.addAttribute("keywords", searchService.getAllKeywords());
+        model.addAttribute("totalDocuments", documentService.getAllDocuments().size());
         return "keywords";
     }
 }

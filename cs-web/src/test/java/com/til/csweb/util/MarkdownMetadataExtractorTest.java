@@ -1,84 +1,23 @@
-package com.til.csweb.service;
+package com.til.csweb.util;
 
+import com.til.csweb.domain.LevelInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("MarkdownService 테스트")
-class MarkdownServiceTest {
+@DisplayName("MarkdownMetadataExtractor 테스트")
+class MarkdownMetadataExtractorTest {
 
-    private MarkdownService markdownService;
+    private MarkdownMetadataExtractor extractor;
 
     @BeforeEach
     void setUp() {
-        markdownService = new MarkdownService("../cs");
-    }
-
-    @Nested
-    @DisplayName("convertToHtml 메서드")
-    class ConvertToHtmlTest {
-
-        @Test
-        @DisplayName("기본 마크다운을 HTML로 변환한다")
-        void convertBasicMarkdown() {
-            // given
-            String markdown = "# Hello World\n\nThis is a paragraph.";
-
-            // when
-            String html = markdownService.convertToHtml(markdown);
-
-            // then
-            assertTrue(html.contains("<h1"));
-            assertTrue(html.contains("Hello World"));
-            assertTrue(html.contains("</h1>"));
-            assertTrue(html.contains("<p>This is a paragraph.</p>"));
-        }
-
-        @Test
-        @DisplayName("테이블을 HTML로 변환한다")
-        void convertTableMarkdown() {
-            // given
-            String markdown = "| Name | Age |\n|------|-----|\n| Kim | 25 |";
-
-            // when
-            String html = markdownService.convertToHtml(markdown);
-
-            // then
-            assertTrue(html.contains("<table>"));
-            assertTrue(html.contains("<th>Name</th>"));
-            assertTrue(html.contains("<td>Kim</td>"));
-        }
-
-        @Test
-        @DisplayName("코드 블록을 HTML로 변환한다")
-        void convertCodeBlockMarkdown() {
-            // given
-            String markdown = "```java\npublic class Test {}\n```";
-
-            // when
-            String html = markdownService.convertToHtml(markdown);
-
-            // then
-            assertTrue(html.contains("<code"));
-            assertTrue(html.contains("public class Test {}"));
-        }
-
-        @Test
-        @DisplayName("인용구를 HTML로 변환한다")
-        void convertBlockquoteMarkdown() {
-            // given
-            String markdown = "> This is a quote";
-
-            // when
-            String html = markdownService.convertToHtml(markdown);
-
-            // then
-            assertTrue(html.contains("<blockquote>"));
-            assertTrue(html.contains("This is a quote"));
-        }
+        extractor = new MarkdownMetadataExtractor();
     }
 
     @Nested
@@ -92,7 +31,7 @@ class MarkdownServiceTest {
             String markdown = "# AI Agent란\n\n> 정의...";
 
             // when
-            String title = markdownService.extractTitle(markdown);
+            String title = extractor.extractTitle(markdown);
 
             // then
             assertEquals("AI Agent란", title);
@@ -105,7 +44,7 @@ class MarkdownServiceTest {
             String markdown = "Just some text without title";
 
             // when
-            String title = markdownService.extractTitle(markdown);
+            String title = extractor.extractTitle(markdown);
 
             // then
             assertEquals("Untitled", title);
@@ -118,10 +57,44 @@ class MarkdownServiceTest {
             String markdown = "## This is H2\n\nSome content";
 
             // when
-            String title = markdownService.extractTitle(markdown);
+            String title = extractor.extractTitle(markdown);
 
             // then
             assertEquals("Untitled", title);
+        }
+    }
+
+    @Nested
+    @DisplayName("extractLevel 메서드")
+    class ExtractLevelTest {
+
+        @Test
+        @DisplayName("인용구에서 레벨 정보를 추출한다")
+        void extractLevelFromBlockquote() {
+            // given
+            String markdown = "# Title\n\n> `[3] 중급` · 선수 지식: Docker";
+
+            // when
+            LevelInfo levelInfo = extractor.extractLevel(markdown);
+
+            // then
+            assertEquals(3, levelInfo.getLevel());
+            assertEquals("중급", levelInfo.getName());
+        }
+
+        @Test
+        @DisplayName("레벨 정보가 없으면 빈 LevelInfo를 반환한다")
+        void returnEmptyLevelInfoWhenNoLevel() {
+            // given
+            String markdown = "# Title\n\n본문만 있는 마크다운";
+
+            // when
+            LevelInfo levelInfo = extractor.extractLevel(markdown);
+
+            // then
+            assertFalse(levelInfo.hasLevel());
+            assertNull(levelInfo.getLevel());
+            assertNull(levelInfo.getName());
         }
     }
 
@@ -136,7 +109,7 @@ class MarkdownServiceTest {
             String markdown = "# Title\n\n> 이것은 설명입니다.\n\n본문 내용";
 
             // when
-            String description = markdownService.extractDescription(markdown);
+            String description = extractor.extractDescription(markdown);
 
             // then
             assertEquals("이것은 설명입니다.", description);
@@ -149,7 +122,7 @@ class MarkdownServiceTest {
             String markdown = "# Title\n\n> `[1] 정의` · 선수 지식: 없음\n\n본문";
 
             // when
-            String description = markdownService.extractDescription(markdown);
+            String description = extractor.extractDescription(markdown);
 
             // then
             assertFalse(description.contains("`"));
@@ -164,7 +137,7 @@ class MarkdownServiceTest {
             String markdown = "# Title\n\n" + longText;
 
             // when
-            String description = markdownService.extractDescription(markdown);
+            String description = extractor.extractDescription(markdown);
 
             // then
             assertTrue(description.length() <= 153); // 150 + "..."
@@ -183,7 +156,7 @@ class MarkdownServiceTest {
             String markdown = "# Title\n\n`#Docker` `#컨테이너` `#DevOps`\n\n본문";
 
             // when
-            var keywords = markdownService.extractKeywords(markdown);
+            List<String> keywords = extractor.extractKeywords(markdown);
 
             // then
             assertEquals(3, keywords.size());
@@ -199,7 +172,7 @@ class MarkdownServiceTest {
             String markdown = "`#Docker` `#Docker` `#컨테이너`";
 
             // when
-            var keywords = markdownService.extractKeywords(markdown);
+            List<String> keywords = extractor.extractKeywords(markdown);
 
             // then
             assertEquals(2, keywords.size());
@@ -212,7 +185,7 @@ class MarkdownServiceTest {
             String markdown = "# Title\n\n본문만 있는 마크다운";
 
             // when
-            var keywords = markdownService.extractKeywords(markdown);
+            List<String> keywords = extractor.extractKeywords(markdown);
 
             // then
             assertTrue(keywords.isEmpty());
@@ -225,7 +198,7 @@ class MarkdownServiceTest {
             String markdown = "`#캐싱` `#Caching` `#Redis` `#인메모리`";
 
             // when
-            var keywords = markdownService.extractKeywords(markdown);
+            List<String> keywords = extractor.extractKeywords(markdown);
 
             // then
             assertEquals(4, keywords.size());
@@ -242,12 +215,45 @@ class MarkdownServiceTest {
             String markdown = "`#Cold Start` `#Warm Start`";
 
             // when
-            var keywords = markdownService.extractKeywords(markdown);
+            List<String> keywords = extractor.extractKeywords(markdown);
 
             // then
             assertEquals(2, keywords.size());
             assertTrue(keywords.contains("Cold Start"));
             assertTrue(keywords.contains("Warm Start"));
+        }
+    }
+
+    @Nested
+    @DisplayName("extractPrerequisites 메서드")
+    class ExtractPrerequisitesTest {
+
+        @Test
+        @DisplayName("선수 지식 링크를 추출한다")
+        void extractPrerequisiteLinks() {
+            // given
+            String markdown = "# Title\n\n> `[3] 중급` · 선수 지식: [Docker](./docker.md)\n\n본문";
+
+            // when
+            var prerequisites = extractor.extractPrerequisites(markdown, "system-design");
+
+            // then
+            assertEquals(1, prerequisites.size());
+            assertEquals("Docker", prerequisites.get(0).getTitle());
+            assertEquals("/docs/system-design/docker", prerequisites.get(0).getPath());
+        }
+
+        @Test
+        @DisplayName("선수 지식이 없으면 빈 리스트를 반환한다")
+        void returnEmptyListWhenNoPrerequisites() {
+            // given
+            String markdown = "# Title\n\n> `[1] 정의` · 선수 지식: 없음\n\n본문";
+
+            // when
+            var prerequisites = extractor.extractPrerequisites(markdown, "system-design");
+
+            // then
+            assertTrue(prerequisites.isEmpty());
         }
     }
 }

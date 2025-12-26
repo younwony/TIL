@@ -1,52 +1,29 @@
 package com.til.csweb.dto;
 
+import lombok.Builder;
+import lombok.Getter;
+
 import java.util.Collections;
 import java.util.List;
 
 /**
  * 카테고리 정보를 담는 DTO (하위 카테고리 지원)
  */
+@Getter
+@Builder
 public class CategoryDto {
 
     private final String name;
     private final String path;
     private final String parentCategory;
-    private final List<CategoryDto> subcategories;
-    private final List<DocumentDto> documents;
+
+    @Builder.Default
+    private final List<CategoryDto> subcategories = Collections.emptyList();
+
+    @Builder.Default
+    private final List<DocumentDto> documents = Collections.emptyList();
+
     private final int totalDocumentCount;
-
-    private CategoryDto(Builder builder) {
-        this.name = builder.name;
-        this.path = builder.path;
-        this.parentCategory = builder.parentCategory;
-        this.subcategories = builder.subcategories != null ? builder.subcategories : Collections.emptyList();
-        this.documents = builder.documents != null ? builder.documents : Collections.emptyList();
-        this.totalDocumentCount = builder.totalDocumentCount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public String getParentCategory() {
-        return parentCategory;
-    }
-
-    public List<CategoryDto> getSubcategories() {
-        return subcategories;
-    }
-
-    public List<DocumentDto> getDocuments() {
-        return documents;
-    }
-
-    public int getTotalDocumentCount() {
-        return totalDocumentCount;
-    }
 
     /**
      * 하위 카테고리가 있는지 확인
@@ -91,52 +68,5 @@ public class CategoryDto {
             count += sub.getDisplayDocumentCount();
         }
         return count;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    public static class Builder {
-        private String name;
-        private String path;
-        private String parentCategory;
-        private List<CategoryDto> subcategories;
-        private List<DocumentDto> documents;
-        private int totalDocumentCount;
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder path(String path) {
-            this.path = path;
-            return this;
-        }
-
-        public Builder parentCategory(String parentCategory) {
-            this.parentCategory = parentCategory;
-            return this;
-        }
-
-        public Builder subcategories(List<CategoryDto> subcategories) {
-            this.subcategories = subcategories;
-            return this;
-        }
-
-        public Builder documents(List<DocumentDto> documents) {
-            this.documents = documents;
-            return this;
-        }
-
-        public Builder totalDocumentCount(int totalDocumentCount) {
-            this.totalDocumentCount = totalDocumentCount;
-            return this;
-        }
-
-        public CategoryDto build() {
-            return new CategoryDto(this);
-        }
     }
 }
