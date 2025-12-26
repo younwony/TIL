@@ -1,5 +1,6 @@
 package com.til.csweb.service;
 
+import com.til.csweb.dto.CategoryDto;
 import com.til.csweb.dto.DocumentDto;
 import com.vladsch.flexmark.ext.anchorlink.AnchorLinkExtension;
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension;
@@ -105,7 +106,7 @@ public class MarkdownService {
     }
 
     /**
-     * 모든 카테고리 목록 조회
+     * 모든 카테고리 목록 조회 (하위 카테고리 포함)
      */
     public List<String> getCategories() {
         try (Stream<Path> paths = Files.list(docsPath)) {
@@ -121,9 +122,99 @@ public class MarkdownService {
     }
 
     /**
-     * 카테고리별 문서 목록 조회
+     * 카테고리 존재 여부 확인
+     */
+    public boolean categoryExists(String category) {
+        Path categoryPath = docsPath.resolve(category);
+        return Files.isDirectory(categoryPath);
+    }
+
+    /**
+     * 하위 카테고리 목록 조회
+     */
+    public List<String> getSubcategories(String category) {
+        Path categoryPath = docsPath.resolve(category);
+        if (!Files.isDirectory(categoryPath)) {
+            return Collections.emptyList();
+        }
+
+        try (Stream<Path> paths = Files.list(categoryPath)) {
+            return paths
+                    .filter(Files::isDirectory)
+                    .map(path -> path.getFileName().toString())
+                    .filter(name -> !name.startsWith("."))
+                    .sorted()
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            return Collections.emptyList();
+        }
+    }
+
+    /**
+     * 카테고리 상세 정보 조회 (하위 카테고리 및 문서 포함)
+     */
+    public CategoryDto getCategoryInfo(String categoryPath) {
+        return getCategoryInfo(categoryPath, null);
+    }
+
+    /**
+     * 카테고리 상세 정보 조회 (부모 카테고리 지정)
+     */
+    private CategoryDto getCategoryInfo(String categoryPath, String parentCategory) {
+        Path path = docsPath.resolve(categoryPath);
+        if (!Files.isDirectory(path)) {
+            return null;
+        }
+
+        String name = path.getFileName().toString();
+        List<String> subcategoryNames = getSubcategories(categoryPath);
+        List<DocumentDto> documents = getDocumentsInCategory(categoryPath);
+
+        List<CategoryDto> subcategories = subcategoryNames.stream()
+                .map(subName -> getCategoryInfo(categoryPath + "/" + subName, categoryPath))
+                .collect(Collectors.toList());
+
+        int totalDocs = documents.size();
+        for (CategoryDto sub : subcategories) {
+            totalDocs += sub.getTotalDocumentCount();
+        }
+
+        return CategoryDto.builder()
+                .name(name)
+                .path(categoryPath)
+                .parentCategory(parentCategory)
+                .subcategories(subcategories)
+                .documents(documents)
+                .totalDocumentCount(totalDocs)
+                .build();
+    }
+
+    /**
+     * 모든 카테고리 상세 정보 조회 (하위 카테고리 포함)
+     */
+    public List<CategoryDto> getAllCategoryInfos() {
+        return getCategories().stream()
+                .map(this::getCategoryInfo)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 카테고리별 문서 목록 조회 (하위 카테고리 문서 포함)
      */
     public Map<String, List<DocumentDto>> getDocumentsByCategory() {
+        return getCategories().stream()
+                .collect(Collectors.toMap(
+                        category -> category,
+                        this::getDocumentsInCategoryRecursive,
+                        (a, b) -> a,
+                        java.util.LinkedHashMap::new
+                ));
+    }
+
+    /**
+     * 카테고리별 문서 목록 조회 (직접 포함된 문서만)
+     */
+    public Map<String, List<DocumentDto>> getDocumentsByCategoryDirect() {
         return getCategories().stream()
                 .collect(Collectors.toMap(
                         category -> category,
@@ -223,7 +314,7 @@ public class MarkdownService {
     }
 
     /**
-     * 특정 카테고리의 문서 목록 조회
+     * 특정 카테고리의 문서 목록 조회 (난이도 순 정렬)
      */
     public List<DocumentDto> getDocumentsInCategory(String category) {
         Path categoryPath = docsPath.resolve(category);
@@ -237,11 +328,68 @@ public class MarkdownService {
                     .filter(path -> path.toString().endsWith(MARKDOWN_EXTENSION))
                     .filter(path -> !path.getFileName().toString().equals(README_FILENAME))
                     .map(path -> createDocumentSummary(category, path))
-                    .sorted((a, b) -> a.getTitle().compareToIgnoreCase(b.getTitle()))
+                    .sorted(this::compareByLevelThenTitle)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             return Collections.emptyList();
         }
+    }
+
+    /**
+     * 특정 카테고리의 문서 목록 조회 (하위 카테고리 포함, 재귀적)
+     */
+    public List<DocumentDto> getDocumentsInCategoryRecursive(String category) {
+        Path categoryPath = docsPath.resolve(category);
+        if (!Files.isDirectory(categoryPath)) {
+            return Collections.emptyList();
+        }
+
+        List<DocumentDto> documents = new ArrayList<>();
+
+        try (Stream<Path> paths = Files.walk(categoryPath)) {
+            paths.filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(MARKDOWN_EXTENSION))
+                    .filter(path -> !path.getFileName().toString().equals(README_FILENAME))
+                    .forEach(path -> {
+                        // 상대 경로에서 카테고리 추출
+                        Path relativePath = categoryPath.relativize(path.getParent());
+                        String subCategory = relativePath.toString().isEmpty()
+                                ? category
+                                : category + "/" + relativePath.toString().replace("\\", "/");
+                        documents.add(createDocumentSummary(subCategory, path));
+                    });
+        } catch (IOException e) {
+            return Collections.emptyList();
+        }
+
+        return documents.stream()
+                .sorted(this::compareByLevelThenTitle)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 난이도 순 정렬 (난이도 → 제목 순)
+     * null 레벨은 가장 마지막으로 정렬
+     */
+    private int compareByLevelThenTitle(DocumentDto a, DocumentDto b) {
+        Integer levelA = a.getLevel();
+        Integer levelB = b.getLevel();
+
+        // null 처리: null은 가장 마지막으로
+        if (levelA == null && levelB == null) {
+            return a.getTitle().compareToIgnoreCase(b.getTitle());
+        }
+        if (levelA == null) return 1;
+        if (levelB == null) return -1;
+
+        // 난이도 비교
+        int levelCompare = levelA.compareTo(levelB);
+        if (levelCompare != 0) {
+            return levelCompare;
+        }
+
+        // 같은 난이도면 제목순
+        return a.getTitle().compareToIgnoreCase(b.getTitle());
     }
 
     /**

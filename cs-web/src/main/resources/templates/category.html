@@ -58,7 +58,13 @@
                             <i class="bi bi-house-door"></i> Home
                         </a>
                     </li>
-                    <li class="breadcrumb-item active text-white" th:text="${category}">Category</li>
+                    <!-- Parent category if exists -->
+                    <li class="breadcrumb-item" th:if="${parentCategory != null}">
+                        <a th:href="@{/category/{cat}(cat=${parentCategory})}" class="text-white-50" th:text="${parentCategory}">
+                            Parent
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active text-white" th:text="${categoryInfo != null ? categoryInfo.name : category}">Category</li>
                 </ol>
             </nav>
 
@@ -69,7 +75,7 @@
                             <i class="bi bi-folder2-open"></i>
                         </span>
                         <div>
-                            <h1 class="display-5 fw-bold mb-2 text-white" th:text="${category}">Category</h1>
+                            <h1 class="display-5 fw-bold mb-2 text-white" th:text="${categoryInfo != null ? categoryInfo.name : category}">Category</h1>
                             <p class="lead mb-0 text-white-50">
                                 <i class="bi bi-file-earmark-text me-1"></i>
                                 <span th:text="${documents.size()} + '개의 문서가 있습니다'">0개의 문서가 있습니다</span>
@@ -78,13 +84,34 @@
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                    <a href="/" class="btn btn-outline-light rounded-pill">
+                    <a th:if="${parentCategory != null}" th:href="@{/category/{cat}(cat=${parentCategory})}" class="btn btn-outline-light rounded-pill me-2">
+                        <i class="bi bi-arrow-left"></i> <span th:text="${parentCategory}">상위</span>
+                    </a>
+                    <a th:unless="${parentCategory != null}" href="/" class="btn btn-outline-light rounded-pill">
                         <i class="bi bi-arrow-left"></i> 홈으로
                     </a>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Subcategories Section (if any) -->
+    <div th:if="${subcategories != null and !subcategories.empty}" class="bg-light border-bottom py-4">
+        <div class="container">
+            <h6 class="text-muted mb-3">
+                <i class="bi bi-folder me-1"></i> 하위 카테고리
+            </h6>
+            <div class="d-flex flex-wrap gap-2">
+                <a th:each="sub : ${subcategories}"
+                   th:href="@{/category/{path}(path=${category + '/' + sub.name})}"
+                   class="btn btn-outline-primary rounded-pill">
+                    <i class="bi bi-folder2 me-1"></i>
+                    <span th:text="${sub.name}">Subcategory</span>
+                    <span class="badge bg-primary ms-2" th:text="${sub.totalDocumentCount}">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Document Count Bar -->
     <div class="bg-white border-bottom py-3">

@@ -160,6 +160,21 @@
                         </a>
                     </div>
 
+                    <!-- Subcategories (if any) -->
+                    <th:block th:each="cat : ${categories}" th:if="${cat.name == entry.key and cat.hasSubcategories()}">
+                        <div class="subcategories-section mb-4">
+                            <div class="d-flex flex-wrap gap-2">
+                                <a th:each="sub : ${cat.subcategories}"
+                                   th:href="@{/category/{parent}/{child}(parent=${cat.name}, child=${sub.name})}"
+                                   class="btn btn-sm btn-light border rounded-pill">
+                                    <i class="bi bi-folder me-1"></i>
+                                    <span th:text="${sub.name}">Subcategory</span>
+                                    <span class="badge bg-secondary ms-1" th:text="${sub.totalDocumentCount}">0</span>
+                                </a>
+                            </div>
+                        </div>
+                    </th:block>
+
                     <!-- Article Cards -->
                     <div class="row g-4">
                         <div class="col-md-6" th:each="doc, iterStat : ${entry.value}" th:if="${iterStat.index < 4}">
