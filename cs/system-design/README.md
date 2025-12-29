@@ -58,9 +58,11 @@
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [로드밸런싱](./load-balancing.md) | L4/L7, Round Robin, Health Check | 확장성, 가용성 |
 | [캐싱](./caching.md) | 캐시 전략, 캐시 무효화, Redis | 확장성 |
 | [서킷브레이커](./circuit-breaker.md) | 장애 전파 방지 패턴 | 가용성 |
 | [메시지 큐](./message-queue.md) | Kafka, RabbitMQ, 이벤트 드리븐 | 확장성, 가용성 |
+| [API Gateway](./api-gateway.md) | 인증, 라우팅, Rate Limiting | 로드밸런싱, MSA |
 | [Docker](./docker.md) | 컨테이너, 이미지, Dockerfile | OS 기초 |
 | [Kubernetes](./kubernetes.md) | 컨테이너 오케스트레이션, Pod, Service | Docker |
 | [Serverless](./serverless.md) | FaaS, BaaS, 서버리스 아키텍처 `Trend` | Docker, 확장성 |
@@ -78,6 +80,8 @@
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [Service Mesh](./service-mesh.md) | Istio, Envoy, 사이드카, mTLS | API Gateway, MSA, 로드밸런싱 |
+| [DDD](./ddd.md) | Bounded Context, Aggregate, 도메인 모델 | OOP, MSA, Hexagonal Architecture |
 | [대규모 시스템 설계 기초](./large-scale-system.md) | 확장성, 가용성, 일관성 종합 | 캐싱, 메시지 큐, CAP |
 | [선착순 쿠폰 시스템](./flash-sale-system.md) | 대규모 동시 요청 처리, 분산 락 | 캐싱, 메시지 큐, 트랜잭션 |
 
@@ -90,14 +94,17 @@
 - [일관성 (Consistency)](./consistency.md) - 강한 일관성 vs 최종 일관성, CAP 정리
 
 ### 패턴 & 전략
+- [로드밸런싱 (Load Balancing)](./load-balancing.md) - L4/L7, Round Robin, Health Check, 세션 유지
 - [캐싱 (Caching)](./caching.md) - 캐시 전략, 캐시 무효화, Redis/Memcached
 - [서킷브레이커 (Circuit Breaker)](./circuit-breaker.md) - 장애 전파 방지 패턴
 - [메시지 큐 (Message Queue)](./message-queue.md) - Kafka, RabbitMQ, 이벤트 드리븐 아키텍처
 - [Rate Limiting](./rate-limiting.md) - 토큰 버킷, 슬라이딩 윈도우, API 제한
+- [API Gateway](./api-gateway.md) - 인증, 라우팅, Rate Limiting, BFF 패턴
 
 ### 인프라
 - [Docker](./docker.md) - 컨테이너 플랫폼, 이미지, Dockerfile, Docker Compose
 - [Kubernetes](./kubernetes.md) - 컨테이너 오케스트레이션, Pod, Service, Deployment
+- [Service Mesh](./service-mesh.md) - Istio, Envoy, 사이드카, mTLS, 분산 추적
 - [Serverless](./serverless.md) - FaaS, BaaS, 서버리스 아키텍처 `Trend 2025`
 - [Edge Computing](./edge-computing.md) - 엣지 컴퓨팅, CDN, 분산 처리 `Trend 2025`
 
@@ -112,6 +119,7 @@
 - [SOA](./soa.md) - 서비스 지향 아키텍처, ESB
 - [12-Factor App](./12-factor-app.md) - 클라우드 네이티브 방법론
 - [MSA vs 모놀리식](./msa-vs-monolithic.md) - 마이크로서비스 vs 모놀리식, 장단점, 전환 전략
+- [DDD](./ddd.md) - Bounded Context, Aggregate, 도메인 모델, Ubiquitous Language
 - [분산 트랜잭션](./distributed-transaction.md) - 2PC, Saga 패턴, 보상 트랜잭션
 - [CQRS & 이벤트 소싱](./cqrs-event-sourcing.md) - 명령/조회 분리, 이벤트 스토어
 
