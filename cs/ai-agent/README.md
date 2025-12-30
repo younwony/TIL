@@ -58,6 +58,7 @@ MCP 개념을 이해한 후 학습하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
 | [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징 | MCP |
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
@@ -88,6 +89,9 @@ Sub Agent를 이해한 후 도전하세요.
 ### 도구 & 프로토콜
 - [Tool Use](./tool-use.md) - LLM이 외부 도구를 호출하여 실제 작업을 수행하는 능력
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
+
+### AI 협업 & 코딩 패러다임
+- [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
 
 ### 확장 & 커스터마이징
 - [Claude Code Skill](./claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
