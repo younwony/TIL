@@ -16,3 +16,7 @@
 
 - [Green Software Engineering](../system-design/green-software.md) - 탄소 효율적 소프트웨어 설계, SCI 지표, 지속 가능성
 - [Serverless Computing](../system-design/serverless.md) - FaaS, BaaS, 서버리스 아키텍처 (2025)
+
+### DevOps
+
+- [Platform Engineering](../devops/platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라, 55% 글로벌 조직 채택

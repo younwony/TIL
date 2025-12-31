@@ -20,6 +20,7 @@
 
 ### [4] 심화
 
+- [Platform Engineering](./platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라 `Trend` (선수: CI/CD, IaC)
 - TODO: GitOps (선수: CI/CD, IaC)
 - TODO: SRE (선수: 모니터링)
 
