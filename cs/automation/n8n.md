@@ -198,9 +198,151 @@ return items.map(item => {
                     └──────────────┘    └──────────────┘
 ```
 
+### 5. AI 연동: 고객 문의 자동 분류 및 응답
+
+```
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│   Webhook    │    │   OpenAI     │    │    Switch    │    │   Actions    │
+│   Trigger    │───►│   (분류)     │───►│   (분기)     │───►│              │
+│              │    │              │    │              │    │              │
+│ POST /inquiry│    │ 카테고리 +   │    │ 카테고리별   │    │ Slack/Email/ │
+│              │    │ 긴급도 판단  │    │ 라우팅       │    │ Notion 등    │
+└──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │   OpenAI     │
+                    │   (답변)     │
+                    │              │
+                    │ 초안 생성    │
+                    └──────────────┘
+```
+
+**워크플로우 상세 흐름:**
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                    AI 고객 문의 자동화 워크플로우                        │
+├────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  1. Webhook 수신                                                        │
+│     └─► { "name": "홍길동", "email": "...", "message": "결제 오류..." } │
+│                                                                         │
+│  2. OpenAI: 문의 분류                                                   │
+│     └─► { "category": "payment", "urgency": "high", "sentiment": -0.8 }│
+│                                                                         │
+│  3. OpenAI: 답변 초안 생성                                              │
+│     └─► "안녕하세요, 결제 오류에 대해 불편을 드려 죄송합니다..."        │
+│                                                                         │
+│  4. Switch: 카테고리별 분기                                             │
+│     ├─► payment (결제)  → #payment-support 채널 + 담당자 멘션          │
+│     ├─► technical (기술) → #tech-support 채널 + Jira 티켓 생성         │
+│     ├─► general (일반)  → 이메일 자동 응답                              │
+│     └─► urgent (긴급)   → PagerDuty 알림 + 전화 연락                   │
+│                                                                         │
+│  5. 결과 저장                                                           │
+│     └─► Notion DB / Google Sheets에 기록                               │
+│                                                                         │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+**OpenAI 노드 설정 (분류):**
+
+```json
+{
+  "model": "gpt-4o-mini",
+  "messages": [
+    {
+      "role": "system",
+      "content": "고객 문의를 분석하여 JSON으로 응답하세요.\n\n카테고리: payment, technical, general, account\n긴급도: high, medium, low\n감정점수: -1(매우 부정) ~ 1(매우 긍정)\n\n응답 형식:\n{\"category\": \"...\", \"urgency\": \"...\", \"sentiment\": 0.0, \"summary\": \"한 줄 요약\"}"
+    },
+    {
+      "role": "user",
+      "content": "{{ $json.message }}"
+    }
+  ],
+  "response_format": { "type": "json_object" }
+}
+```
+
+**OpenAI 노드 설정 (답변 생성):**
+
+```json
+{
+  "model": "gpt-4o-mini",
+  "messages": [
+    {
+      "role": "system",
+      "content": "당신은 친절한 고객 지원 담당자입니다. 고객 문의에 대해 공감하며 전문적인 답변을 작성하세요. 150자 이내로 작성하세요."
+    },
+    {
+      "role": "user",
+      "content": "고객명: {{ $json.name }}\n문의 내용: {{ $json.message }}\n카테고리: {{ $('OpenAI_분류').item.json.category }}"
+    }
+  ]
+}
+```
+
+**Code 노드 (결과 조합):**
+
+```javascript
+const webhook = $('Webhook').item.json;
+const classification = JSON.parse($('OpenAI_분류').item.json.message.content);
+const reply = $('OpenAI_답변').item.json.message.content;
+
+return {
+  json: {
+    // 원본 데이터
+    customer_name: webhook.name,
+    customer_email: webhook.email,
+    original_message: webhook.message,
+
+    // AI 분석 결과
+    category: classification.category,
+    urgency: classification.urgency,
+    sentiment: classification.sentiment,
+    summary: classification.summary,
+
+    // 생성된 답변
+    draft_reply: reply,
+
+    // 메타데이터
+    processed_at: new Date().toISOString(),
+    workflow_id: $workflow.id
+  }
+};
+```
+
+**Switch 노드 조건:**
+
+| 출력 | 조건 |
+|------|------|
+| Payment | `{{ $json.category }}` equals `payment` |
+| Technical | `{{ $json.category }}` equals `technical` |
+| Urgent | `{{ $json.urgency }}` equals `high` |
+| Default | 그 외 모든 경우 |
+
+**Slack 알림 메시지 템플릿:**
+
+```
+🆕 *새 고객 문의* ({{ $json.urgency === 'high' ? '🔴 긴급' : '🟢 일반' }})
+
+*고객*: {{ $json.customer_name }}
+*카테고리*: {{ $json.category }}
+*요약*: {{ $json.summary }}
+
+> {{ $json.original_message }}
+
+---
+*AI 답변 초안:*
+{{ $json.draft_reply }}
+
+<{{ $json.customer_email }}|이메일 보내기>
+```
+
 ## Docker로 시작하기
 
-### 빠른 시작
+### 빠른 시작 (Linux/macOS)
 
 ```bash
 # 단일 컨테이너 실행
@@ -210,6 +352,327 @@ docker run -it --rm \
   -v n8n_data:/home/node/.n8n \
   n8nio/n8n
 ```
+
+### Windows에서 Docker로 실행하기
+
+Windows 환경에서 Docker Desktop을 사용해 n8n을 셀프호스팅하는 방법입니다.
+
+#### 1. 사전 준비
+
+**Docker Desktop 설치**
+
+1. [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) 다운로드
+2. 설치 후 WSL 2 백엔드 활성화 (권장)
+3. Docker Desktop 실행 확인
+
+```powershell
+# PowerShell에서 Docker 설치 확인
+docker --version
+# Docker version 24.x.x, build xxxxx
+```
+
+#### 2. 빠른 시작 (PowerShell)
+
+```powershell
+# PowerShell에서 n8n 실행
+docker run -it --rm `
+  --name n8n `
+  -p 5678:5678 `
+  -v n8n_data:/home/node/.n8n `
+  n8nio/n8n
+```
+
+> **참고**: PowerShell에서는 줄 연속 문자가 백틱(`)입니다.
+
+브라우저에서 `http://localhost:5678` 접속
+
+#### 3. 데이터 영구 저장 (Windows 경로)
+
+```powershell
+# Windows 로컬 폴더에 데이터 저장
+docker run -d `
+  --name n8n `
+  --restart always `
+  -p 5678:5678 `
+  -v C:\Users\사용자명\.n8n:/home/node/.n8n `
+  -e GENERIC_TIMEZONE=Asia/Seoul `
+  -e TZ=Asia/Seoul `
+  n8nio/n8n
+```
+
+#### 4. Docker Compose로 실행 (권장)
+
+프로젝트 폴더에 `docker-compose.yml` 파일 생성:
+
+```yaml
+# docker-compose.yml (Windows용)
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      # 기본 인증 설정
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=your_secure_password
+      # 타임존 설정
+      - GENERIC_TIMEZONE=Asia/Seoul
+      - TZ=Asia/Seoul
+      # 웹훅 URL (외부 접속 시)
+      - WEBHOOK_URL=http://localhost:5678/
+    volumes:
+      # Windows 경로 예시
+      - ./n8n-data:/home/node/.n8n
+      # 또는 명명된 볼륨 사용
+      # - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:
+```
+
+실행 명령:
+
+```powershell
+# docker-compose.yml 파일이 있는 폴더에서
+docker-compose up -d
+
+# 로그 확인
+docker-compose logs -f n8n
+
+# 중지
+docker-compose down
+```
+
+#### 5. Windows 전용 트러블슈팅
+
+| 문제 | 원인 | 해결 방법 |
+|------|------|----------|
+| `port already in use` | 5678 포트 사용 중 | `docker ps`로 확인 후 중지, 또는 포트 변경 `-p 5679:5678` |
+| 볼륨 마운트 실패 | Docker Desktop 파일 공유 설정 | Settings → Resources → File Sharing에서 드라이브 추가 |
+| 권한 오류 | WSL 권한 문제 | PowerShell 관리자 권한으로 실행 |
+| 한글 깨짐 | 타임존/인코딩 | `GENERIC_TIMEZONE=Asia/Seoul` 환경변수 추가 |
+| 컨테이너 재시작 반복 | 메모리 부족 | Docker Desktop → Settings → Resources에서 메모리 증가 |
+
+#### 6. 외부 접속 설정 (ngrok / cloudflared)
+
+로컬 n8n을 외부에서 접속 가능하게 하려면 터널링 도구를 사용합니다.
+
+##### 방법 1: ngrok (빠른 테스트용)
+
+```powershell
+# ngrok 설치 (Chocolatey)
+choco install ngrok
+
+# 또는 직접 다운로드: https://ngrok.com/download
+
+# n8n 포트 터널링
+ngrok http 5678
+```
+
+ngrok에서 제공하는 URL을 `WEBHOOK_URL`에 설정:
+
+```yaml
+environment:
+  - WEBHOOK_URL=https://xxxx-xxx-xxx.ngrok-free.app/
+```
+
+##### 방법 2: cloudflared (권장 - 무료, 고정 URL)
+
+ngrok 무료 플랜의 제한(URL 변경, 대역폭 제한)을 피하려면 Cloudflare Tunnel 사용을 권장합니다.
+
+> 상세 내용: [Cloudflared 문서](../devops/cloudflared.md)
+
+**Quick Tunnel (임시 URL)**
+
+```powershell
+# cloudflared 설치 (winget)
+winget install Cloudflare.cloudflared
+
+# 또는 Chocolatey
+choco install cloudflared
+
+# n8n 포트 터널링
+cloudflared tunnel --url http://localhost:5678
+```
+
+출력되는 `https://xxx-xxx.trycloudflare.com` URL을 `WEBHOOK_URL`에 설정
+
+**Named Tunnel (고정 URL) - 프로덕션 권장**
+
+```powershell
+# 1. Cloudflare 로그인 (최초 1회)
+cloudflared tunnel login
+
+# 2. 터널 생성
+cloudflared tunnel create n8n-tunnel
+
+# 3. DNS 라우팅 설정 (Cloudflare에 등록된 도메인 필요)
+cloudflared tunnel route dns n8n-tunnel n8n.yourdomain.com
+
+# 4. 설정 파일 생성
+```
+
+`~/.cloudflared/config.yml` (또는 `C:\Users\사용자명\.cloudflared\config.yml`):
+
+```yaml
+tunnel: n8n-tunnel
+credentials-file: C:\Users\사용자명\.cloudflared\<TUNNEL_ID>.json
+
+ingress:
+  - hostname: n8n.yourdomain.com
+    service: http://localhost:5678
+  - service: http_status:404
+```
+
+```powershell
+# 5. 터널 실행
+cloudflared tunnel run n8n-tunnel
+
+# 6. 서비스로 등록 (Windows 시작 시 자동 실행)
+cloudflared service install
+```
+
+**Docker Compose와 함께 사용**
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=your_password
+      - WEBHOOK_URL=https://n8n.yourdomain.com/
+      - GENERIC_TIMEZONE=Asia/Seoul
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: always
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    depends_on:
+      - n8n
+
+volumes:
+  n8n_data:
+```
+
+`.env` 파일:
+```env
+TUNNEL_TOKEN=your_tunnel_token_from_cloudflare_dashboard
+```
+
+> **토큰 얻기**: [Cloudflare Zero Trust](https://one.dash.cloudflare.com/) → Networks → Tunnels → Create → n8n 선택 → Docker 탭에서 토큰 복사
+
+**ngrok vs cloudflared 비교**
+
+| 항목 | ngrok (무료) | cloudflared |
+|------|-------------|-------------|
+| URL 고정 | ❌ 재시작 시 변경 | ✅ 고정 가능 |
+| 커스텀 도메인 | 유료 | ✅ 무료 |
+| 대역폭 | 제한 | 무제한 |
+| 동시 터널 | 1개 | 무제한 |
+| 설정 난이도 | 쉬움 | 중간 |
+| 웹훅 안정성 | 낮음 (URL 변경) | ✅ 높음 |
+
+#### 7. 프로덕션 설정 (PostgreSQL + Windows)
+
+```yaml
+# docker-compose.prod.yml
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      # 데이터베이스 설정
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=${DB_PASSWORD:-n8n_secure_password}
+      # 인증 설정
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD:-change_this_password}
+      # 실행 데이터 정리
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+      # 타임존
+      - GENERIC_TIMEZONE=Asia/Seoul
+      - TZ=Asia/Seoul
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - postgres
+    networks:
+      - n8n-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: n8n-postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=n8n
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-n8n_secure_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - n8n-network
+    # 헬스체크
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  n8n_data:
+  postgres_data:
+
+networks:
+  n8n-network:
+    driver: bridge
+```
+
+환경변수 파일 `.env` 생성:
+
+```env
+# .env
+DB_PASSWORD=your_secure_db_password
+N8N_USER=admin
+N8N_PASSWORD=your_secure_n8n_password
+```
+
+실행:
+
+```powershell
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+#### 8. Windows 시작 시 자동 실행
+
+Docker Desktop 설정에서 "Start Docker Desktop when you log in" 활성화하면, `restart: always` 설정된 컨테이너가 자동으로 시작됩니다.
 
 ### docker-compose.yml
 

@@ -11,6 +11,7 @@
 ### [2] 입문
 
 - [CI/CD](./ci-cd.md) - 지속적 통합과 지속적 배포
+- [Cloudflared](./cloudflared.md) - Cloudflare Tunnel, 보안 터널링
 
 ### [3] 중급
 
