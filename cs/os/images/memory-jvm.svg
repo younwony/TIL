@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300">
+  <defs>
+    <linearGradient id="methodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="heapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="youngGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="oldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="stackGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="22" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">JVM 메모리 구조</text>
+
+  <!-- Container -->
+  <rect x="20" y="35" width="460" height="255" fill="#ECF0F1" stroke="#BDC3C7" rx="8"/>
+  <text x="250" y="52" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="12" font-weight="bold">JVM Memory</text>
+
+  <!-- Method Area -->
+  <rect x="30" y="60" width="440" height="35" fill="url(#methodGrad)" rx="4"/>
+  <text x="250" y="78" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Method Area (메서드 영역)</text>
+  <text x="250" y="90" text-anchor="middle" fill="#D7BDE2" font-family="Arial, sans-serif" font-size="9">클래스 메타데이터, static 변수, 상수 풀</text>
+
+  <!-- Heap -->
+  <rect x="30" y="100" width="440" height="100" fill="url(#heapGrad)" rx="4"/>
+  <text x="60" y="115" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Heap (힙)</text>
+
+  <!-- Young Generation -->
+  <rect x="40" y="125" width="160" height="65" fill="url(#youngGrad)" rx="3"/>
+  <text x="120" y="142" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Young Generation</text>
+
+  <!-- Eden + Survivor -->
+  <rect x="48" y="150" width="65" height="32" fill="#A9DFBF" stroke="#27AE60" rx="2"/>
+  <text x="80" y="170" text-anchor="middle" fill="#1E8449" font-family="Arial, sans-serif" font-size="9">Eden</text>
+
+  <rect x="118" y="150" width="74" height="32" fill="#A9DFBF" stroke="#27AE60" rx="2"/>
+  <text x="155" y="170" text-anchor="middle" fill="#1E8449" font-family="Arial, sans-serif" font-size="9">Survivor</text>
+
+  <!-- Old Generation -->
+  <rect x="210" y="125" width="250" height="65" fill="url(#oldGrad)" rx="3"/>
+  <text x="335" y="162" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Old Generation (Tenured)</text>
+
+  <!-- Stack -->
+  <rect x="30" y="205" width="440" height="35" fill="url(#stackGrad)" rx="4"/>
+  <text x="250" y="223" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Stack (스택) - 스레드별 생성</text>
+  <text x="250" y="235" text-anchor="middle" fill="#D1F2EB" font-family="Arial, sans-serif" font-size="9">지역 변수, 매개변수, 리턴 주소</text>
+
+  <!-- PC Register + Native Stack -->
+  <rect x="30" y="245" width="215" height="35" fill="#F1C40F" rx="4"/>
+  <text x="137" y="267" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">PC Register - 스레드별</text>
+
+  <rect x="255" y="245" width="215" height="35" fill="#E74C3C" rx="4"/>
+  <text x="362" y="267" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Native Method Stack</text>
+</svg>

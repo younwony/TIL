@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 80">
+  <defs>
+    <linearGradient id="segmentHeader" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="segmentData" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F1C40F"/>
+      <stop offset="100%" style="stop-color:#F39C12"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="18" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">전송 계층 - 세그먼트 구조</text>
+
+  <!-- Segment container -->
+  <rect x="20" y="30" width="410" height="40" fill="#ECF0F1" stroke="#7F8C8D" rx="5"/>
+
+  <!-- Source Port -->
+  <rect x="25" y="35" width="80" height="30" fill="url(#segmentHeader)" rx="3"/>
+  <text x="65" y="53" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">출발 포트</text>
+
+  <!-- Destination Port -->
+  <rect x="110" y="35" width="80" height="30" fill="url(#segmentHeader)" rx="3"/>
+  <text x="150" y="53" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">목적 포트</text>
+
+  <!-- Sequence/ACK -->
+  <rect x="195" y="35" width="90" height="30" fill="url(#segmentHeader)" rx="3"/>
+  <text x="240" y="48" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">순서번호</text>
+  <text x="240" y="58" text-anchor="middle" fill="#A9DFBF" font-family="Arial, sans-serif" font-size="8">확인응답</text>
+
+  <!-- Data -->
+  <rect x="290" y="35" width="135" height="30" fill="url(#segmentData)" rx="3"/>
+  <text x="357" y="53" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">데이터</text>
+</svg>

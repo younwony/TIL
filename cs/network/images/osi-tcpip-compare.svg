@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 260">
+  <defs>
+    <linearGradient id="osi7" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="osi4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="osi3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="osi1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="25" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="16" font-weight="bold">OSI 7계층 vs TCP/IP 4계층</text>
+
+  <!-- OSI Title -->
+  <text x="100" y="50" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12" font-weight="bold">OSI 7계층</text>
+
+  <!-- TCP/IP Title -->
+  <text x="350" y="50" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12" font-weight="bold">TCP/IP 4계층</text>
+
+  <!-- OSI Layers -->
+  <rect x="20" y="65" width="160" height="28" fill="url(#osi7)" rx="4"/>
+  <text x="100" y="83" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">7. 응용 (Application)</text>
+
+  <rect x="20" y="95" width="160" height="28" fill="#E67E22" rx="4"/>
+  <text x="100" y="113" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">6. 표현 (Presentation)</text>
+
+  <rect x="20" y="125" width="160" height="28" fill="#F1C40F" rx="4"/>
+  <text x="100" y="143" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">5. 세션 (Session)</text>
+
+  <rect x="20" y="160" width="160" height="28" fill="url(#osi4)" rx="4"/>
+  <text x="100" y="178" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">4. 전송 (Transport)</text>
+
+  <rect x="20" y="195" width="160" height="28" fill="url(#osi3)" rx="4"/>
+  <text x="100" y="213" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">3. 네트워크 (Network)</text>
+
+  <rect x="20" y="225" width="160" height="28" fill="url(#osi1)" rx="4"/>
+  <text x="100" y="238" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">2. 데이터링크</text>
+  <text x="100" y="248" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">1. 물리</text>
+
+  <!-- TCP/IP Layers -->
+  <rect x="270" y="65" width="160" height="88" fill="url(#osi7)" rx="4"/>
+  <text x="350" y="113" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">4. 응용</text>
+  <text x="350" y="128" text-anchor="middle" fill="#FADBD8" font-family="Arial, sans-serif" font-size="10">(Application)</text>
+
+  <rect x="270" y="160" width="160" height="28" fill="url(#osi4)" rx="4"/>
+  <text x="350" y="178" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">3. 전송 (Transport)</text>
+
+  <rect x="270" y="195" width="160" height="28" fill="url(#osi3)" rx="4"/>
+  <text x="350" y="213" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">2. 인터넷 (Internet)</text>
+
+  <rect x="270" y="225" width="160" height="28" fill="url(#osi1)" rx="4"/>
+  <text x="350" y="243" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">1. 네트워크 액세스</text>
+
+  <!-- Connection lines -->
+  <line x1="180" y1="109" x2="270" y2="109" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="180" y1="174" x2="270" y2="174" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="180" y1="209" x2="270" y2="209" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="180" y1="239" x2="270" y2="239" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="5,5"/>
+</svg>

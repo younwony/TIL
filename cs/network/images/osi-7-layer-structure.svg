@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280">
+  <defs>
+    <linearGradient id="layer7" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="layer6" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="layer5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F1C40F"/>
+      <stop offset="100%" style="stop-color:#F39C12"/>
+    </linearGradient>
+    <linearGradient id="layer4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="layer3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="layer2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="layer1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="16" font-weight="bold">OSI 7계층 모델</text>
+
+  <!-- Layer 7 -->
+  <rect x="20" y="45" width="50" height="30" fill="url(#layer7)" rx="3"/>
+  <text x="45" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">7</text>
+  <rect x="70" y="45" width="120" height="30" fill="#FADBD8" stroke="#E74C3C" rx="3"/>
+  <text x="130" y="65" text-anchor="middle" fill="#922B21" font-family="Arial, sans-serif" font-size="11">응용 (Application)</text>
+  <rect x="190" y="45" width="180" height="30" fill="#FDF2E9" stroke="#E67E22" rx="3"/>
+  <text x="280" y="65" text-anchor="middle" fill="#784212" font-family="Arial, sans-serif" font-size="11">사용자 서비스</text>
+  <rect x="370" y="45" width="200" height="30" fill="#FDEBD0" stroke="#F39C12" rx="3"/>
+  <text x="470" y="65" text-anchor="middle" fill="#7E5109" font-family="Arial, sans-serif" font-size="11">HTTP, FTP, SMTP, DNS</text>
+
+  <!-- Layer 6 -->
+  <rect x="20" y="80" width="50" height="30" fill="url(#layer6)" rx="3"/>
+  <text x="45" y="100" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">6</text>
+  <rect x="70" y="80" width="120" height="30" fill="#FCE4D6" stroke="#E67E22" rx="3"/>
+  <text x="130" y="100" text-anchor="middle" fill="#784212" font-family="Arial, sans-serif" font-size="11">표현 (Presentation)</text>
+  <rect x="190" y="80" width="180" height="30" fill="#FDF2E9" stroke="#E67E22" rx="3"/>
+  <text x="280" y="100" text-anchor="middle" fill="#784212" font-family="Arial, sans-serif" font-size="11">데이터 변환, 암호화</text>
+  <rect x="370" y="80" width="200" height="30" fill="#FDEBD0" stroke="#F39C12" rx="3"/>
+  <text x="470" y="100" text-anchor="middle" fill="#7E5109" font-family="Arial, sans-serif" font-size="11">SSL/TLS, JPEG, MPEG</text>
+
+  <!-- Layer 5 -->
+  <rect x="20" y="115" width="50" height="30" fill="url(#layer5)" rx="3"/>
+  <text x="45" y="135" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">5</text>
+  <rect x="70" y="115" width="120" height="30" fill="#FEF9E7" stroke="#F1C40F" rx="3"/>
+  <text x="130" y="135" text-anchor="middle" fill="#7D6608" font-family="Arial, sans-serif" font-size="11">세션 (Session)</text>
+  <rect x="190" y="115" width="180" height="30" fill="#FDF2E9" stroke="#E67E22" rx="3"/>
+  <text x="280" y="135" text-anchor="middle" fill="#784212" font-family="Arial, sans-serif" font-size="11">연결 관리</text>
+  <rect x="370" y="115" width="200" height="30" fill="#FDEBD0" stroke="#F39C12" rx="3"/>
+  <text x="470" y="135" text-anchor="middle" fill="#7E5109" font-family="Arial, sans-serif" font-size="11">NetBIOS, RPC</text>
+
+  <!-- Layer 4 -->
+  <rect x="20" y="155" width="50" height="30" fill="url(#layer4)" rx="3"/>
+  <text x="45" y="175" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">4</text>
+  <rect x="70" y="155" width="120" height="30" fill="#D5F5E3" stroke="#2ECC71" rx="3"/>
+  <text x="130" y="175" text-anchor="middle" fill="#1E8449" font-family="Arial, sans-serif" font-size="11">전송 (Transport)</text>
+  <rect x="190" y="155" width="180" height="30" fill="#D4EFDF" stroke="#27AE60" rx="3"/>
+  <text x="280" y="175" text-anchor="middle" fill="#196F3D" font-family="Arial, sans-serif" font-size="11">신뢰성, 흐름 제어</text>
+  <rect x="370" y="155" width="200" height="30" fill="#D5F5E3" stroke="#2ECC71" rx="3"/>
+  <text x="470" y="175" text-anchor="middle" fill="#1E8449" font-family="Arial, sans-serif" font-size="11">TCP, UDP (포트)</text>
+
+  <!-- Layer 3 -->
+  <rect x="20" y="195" width="50" height="30" fill="url(#layer3)" rx="3"/>
+  <text x="45" y="215" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">3</text>
+  <rect x="70" y="195" width="120" height="30" fill="#D6EAF8" stroke="#3498DB" rx="3"/>
+  <text x="130" y="215" text-anchor="middle" fill="#1B4F72" font-family="Arial, sans-serif" font-size="11">네트워크 (Network)</text>
+  <rect x="190" y="195" width="180" height="30" fill="#D4E6F1" stroke="#2980B9" rx="3"/>
+  <text x="280" y="215" text-anchor="middle" fill="#1A5276" font-family="Arial, sans-serif" font-size="11">경로 결정 (라우팅)</text>
+  <rect x="370" y="195" width="200" height="30" fill="#D6EAF8" stroke="#3498DB" rx="3"/>
+  <text x="470" y="215" text-anchor="middle" fill="#1B4F72" font-family="Arial, sans-serif" font-size="11">IP, ICMP, 라우터</text>
+
+  <!-- Layer 2 -->
+  <rect x="20" y="230" width="50" height="30" fill="url(#layer2)" rx="3"/>
+  <text x="45" y="250" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">2</text>
+  <rect x="70" y="230" width="120" height="30" fill="#E8DAEF" stroke="#9B59B6" rx="3"/>
+  <text x="130" y="250" text-anchor="middle" fill="#6C3483" font-family="Arial, sans-serif" font-size="11">데이터링크 (Data Link)</text>
+  <rect x="190" y="230" width="180" height="30" fill="#D7BDE2" stroke="#8E44AD" rx="3"/>
+  <text x="280" y="250" text-anchor="middle" fill="#5B2C6F" font-family="Arial, sans-serif" font-size="11">물리주소, 오류 감지</text>
+  <rect x="370" y="230" width="200" height="30" fill="#E8DAEF" stroke="#9B59B6" rx="3"/>
+  <text x="470" y="250" text-anchor="middle" fill="#6C3483" font-family="Arial, sans-serif" font-size="11">이더넷, MAC, 스위치</text>
+
+  <!-- Layer 1 -->
+  <rect x="20" y="265" width="50" height="30" fill="url(#layer1)" rx="3"/>
+  <text x="45" y="285" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+  <rect x="70" y="265" width="120" height="30" fill="#D1F2EB" stroke="#1ABC9C" rx="3"/>
+  <text x="130" y="285" text-anchor="middle" fill="#0E6655" font-family="Arial, sans-serif" font-size="11">물리 (Physical)</text>
+  <rect x="190" y="265" width="180" height="30" fill="#D0ECE7" stroke="#16A085" rx="3"/>
+  <text x="280" y="285" text-anchor="middle" fill="#0B5345" font-family="Arial, sans-serif" font-size="11">전기신호 전송</text>
+  <rect x="370" y="265" width="200" height="30" fill="#D1F2EB" stroke="#1ABC9C" rx="3"/>
+  <text x="470" y="285" text-anchor="middle" fill="#0E6655" font-family="Arial, sans-serif" font-size="11">케이블, 허브, 리피터</text>
+
+  <!-- Column Headers -->
+  <text x="45" y="40" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">계층</text>
+  <text x="130" y="40" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">이름</text>
+  <text x="280" y="40" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">기능</text>
+  <text x="470" y="40" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">프로토콜/장비</text>
+</svg>

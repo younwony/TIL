@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980B9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <text x="140" y="20" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">인접 행렬 (Adjacency Matrix)</text>
+
+  <!-- Header Row -->
+  <rect x="60" y="35" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="80" y="52" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">A</text>
+
+  <rect x="100" y="35" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="120" y="52" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">B</text>
+
+  <rect x="140" y="35" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="160" y="52" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">C</text>
+
+  <rect x="180" y="35" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="200" y="52" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">D</text>
+
+  <!-- Header Column -->
+  <rect x="20" y="60" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="40" y="77" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">A</text>
+
+  <rect x="20" y="85" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="40" y="102" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">B</text>
+
+  <rect x="20" y="110" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="40" y="127" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">C</text>
+
+  <rect x="20" y="135" width="40" height="25" fill="url(#headerGrad)" stroke="#2980B9"/>
+  <text x="40" y="152" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">D</text>
+
+  <!-- Matrix cells Row A -->
+  <rect x="60" y="60" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="80" y="77" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <rect x="100" y="60" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="120" y="77" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <rect x="140" y="60" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="160" y="77" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <rect x="180" y="60" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="200" y="77" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <!-- Matrix cells Row B -->
+  <rect x="60" y="85" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="80" y="102" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <rect x="100" y="85" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="120" y="102" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <rect x="140" y="85" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="160" y="102" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <rect x="180" y="85" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="200" y="102" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <!-- Matrix cells Row C -->
+  <rect x="60" y="110" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="80" y="127" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <rect x="100" y="110" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="120" y="127" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <rect x="140" y="110" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="160" y="127" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <rect x="180" y="110" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="200" y="127" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <!-- Matrix cells Row D -->
+  <rect x="60" y="135" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="80" y="152" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <rect x="100" y="135" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="120" y="152" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+
+  <rect x="140" y="135" width="40" height="25" fill="#E8F8F5" stroke="#1ABC9C"/>
+  <text x="160" y="152" text-anchor="middle" fill="#1ABC9C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1</text>
+
+  <rect x="180" y="135" width="40" height="25" fill="#ECF0F1" stroke="#BDC3C7"/>
+  <text x="200" y="152" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="12">0</text>
+</svg>

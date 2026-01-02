@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 200">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="replicaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <marker id="arrowRep" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="22" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">레플리케이션 구조</text>
+
+  <!-- Primary -->
+  <rect x="170" y="40" width="110" height="45" fill="url(#primaryGrad)" rx="5"/>
+  <text x="225" y="60" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Primary</text>
+  <text x="225" y="75" text-anchor="middle" fill="#FADBD8" font-family="Arial, sans-serif" font-size="9">(Master)</text>
+
+  <!-- Write label -->
+  <text x="290" y="60" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">← 모든 쓰기</text>
+
+  <!-- Replication arrow -->
+  <line x1="225" y1="85" x2="225" y2="110" stroke="#7F8C8D" stroke-width="2"/>
+  <text x="250" y="102" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">복제</text>
+
+  <!-- Distribution lines -->
+  <line x1="225" y1="110" x2="90" y2="140" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRep)"/>
+  <line x1="225" y1="110" x2="225" y2="140" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRep)"/>
+  <line x1="225" y1="110" x2="360" y2="140" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRep)"/>
+
+  <!-- Replicas -->
+  <rect x="40" y="145" width="100" height="40" fill="url(#replicaGrad)" rx="5"/>
+  <text x="90" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Replica 1</text>
+
+  <rect x="175" y="145" width="100" height="40" fill="url(#replicaGrad)" rx="5"/>
+  <text x="225" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Replica 2</text>
+
+  <rect x="310" y="145" width="100" height="40" fill="url(#replicaGrad)" rx="5"/>
+  <text x="360" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Replica 3</text>
+
+  <!-- Read label -->
+  <text x="225" y="195" text-anchor="middle" fill="#3498DB" font-family="Arial, sans-serif" font-size="9" font-weight="bold">← 읽기 분산 →</text>
+</svg>

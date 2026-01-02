@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 220">
+  <defs>
+    <linearGradient id="scaleUpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="scaleOutGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <marker id="arrowScale" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="275" y="22" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">수직 확장 vs 수평 확장</text>
+
+  <!-- Scale Up Section -->
+  <text x="137" y="50" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">수직 확장 (Scale Up)</text>
+
+  <!-- Before -->
+  <rect x="40" y="70" width="70" height="80" fill="url(#scaleUpGrad)" rx="5"/>
+  <text x="75" y="95" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">4 CPU</text>
+  <text x="75" y="110" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">16GB RAM</text>
+  <text x="75" y="125" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">500GB</text>
+
+  <!-- Arrow -->
+  <line x1="120" y1="110" x2="150" y2="110" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowScale)"/>
+
+  <!-- After -->
+  <rect x="160" y="60" width="90" height="100" fill="url(#scaleUpGrad)" rx="5"/>
+  <text x="205" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">16 CPU</text>
+  <text x="205" y="110" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">64GB RAM</text>
+  <text x="205" y="130" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">2TB SSD</text>
+
+  <!-- Scale Up Notes -->
+  <text x="137" y="180" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="9">장점: 단순함</text>
+  <text x="137" y="195" text-anchor="middle" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9">단점: 물리적 한계</text>
+
+  <!-- Divider -->
+  <line x1="275" y1="45" x2="275" y2="210" stroke="#BDC3C7" stroke-width="1" stroke-dasharray="5,5"/>
+
+  <!-- Scale Out Section -->
+  <text x="412" y="50" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">수평 확장 (Scale Out)</text>
+
+  <!-- Before -->
+  <rect x="300" y="85" width="50" height="50" fill="url(#scaleOutGrad)" rx="5"/>
+  <text x="325" y="115" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">Server</text>
+
+  <!-- Arrow -->
+  <line x1="360" y1="110" x2="390" y2="110" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowScale)"/>
+
+  <!-- After - Multiple Servers -->
+  <rect x="400" y="60" width="45" height="40" fill="url(#scaleOutGrad)" rx="4"/>
+  <text x="422" y="85" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">Server1</text>
+
+  <rect x="455" y="60" width="45" height="40" fill="url(#scaleOutGrad)" rx="4"/>
+  <text x="477" y="85" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">Server2</text>
+
+  <rect x="400" y="110" width="45" height="40" fill="url(#scaleOutGrad)" rx="4"/>
+  <text x="422" y="135" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">Server3</text>
+
+  <rect x="455" y="110" width="45" height="40" fill="url(#scaleOutGrad)" rx="4"/>
+  <text x="477" y="135" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">Server N</text>
+
+  <!-- Scale Out Notes -->
+  <text x="412" y="180" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="9">장점: 무한 확장 가능</text>
+  <text x="412" y="195" text-anchor="middle" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9">단점: 복잡성 증가</text>
+</svg>

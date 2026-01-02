@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 100">
+  <defs>
+    <linearGradient id="frameHeader" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="frameData" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="frameFooter" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="20" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">데이터 링크 계층 - 프레임 구조</text>
+
+  <!-- Frame container -->
+  <rect x="20" y="35" width="410" height="45" fill="#ECF0F1" stroke="#7F8C8D" rx="5"/>
+
+  <!-- Destination MAC -->
+  <rect x="25" y="40" width="90" height="35" fill="url(#frameHeader)" rx="3"/>
+  <text x="70" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">목적지 MAC</text>
+  <text x="70" y="68" text-anchor="middle" fill="#D7BDE2" font-family="Arial, sans-serif" font-size="9">(6바이트)</text>
+
+  <!-- Source MAC -->
+  <rect x="120" y="40" width="90" height="35" fill="url(#frameHeader)" rx="3"/>
+  <text x="165" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">출발지 MAC</text>
+  <text x="165" y="68" text-anchor="middle" fill="#D7BDE2" font-family="Arial, sans-serif" font-size="9">(6바이트)</text>
+
+  <!-- Data -->
+  <rect x="215" y="40" width="130" height="35" fill="url(#frameData)" rx="3"/>
+  <text x="280" y="60" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">데이터</text>
+
+  <!-- FCS -->
+  <rect x="350" y="40" width="75" height="35" fill="url(#frameFooter)" rx="3"/>
+  <text x="387" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">FCS</text>
+  <text x="387" y="68" text-anchor="middle" fill="#FADBD8" font-family="Arial, sans-serif" font-size="9">(오류검출)</text>
+
+  <!-- MAC address example -->
+  <text x="225" y="95" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">예: 00:1A:2B:3C:4D:5E (제조사 + 일련번호)</text>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280">
+  <defs>
+    <linearGradient id="primaryFO" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="failedFO" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="replicaFO" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="standbyFO" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#95A5A6"/>
+      <stop offset="100%" style="stop-color:#7F8C8D"/>
+    </linearGradient>
+    <marker id="arrowFO" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="22" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Failover 과정</text>
+
+  <!-- Step 1: Normal -->
+  <text x="85" y="50" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">1. 정상 상태</text>
+  <rect x="40" y="60" width="90" height="35" fill="url(#primaryFO)" rx="5"/>
+  <text x="85" y="82" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Primary</text>
+  <line x1="85" y1="95" x2="85" y2="115" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowFO)"/>
+  <rect x="40" y="120" width="90" height="35" fill="url(#replicaFO)" rx="5"/>
+  <text x="85" y="142" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Replica</text>
+
+  <!-- Step 2: Failure -->
+  <text x="250" y="50" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">2. Primary 장애</text>
+  <rect x="205" y="60" width="90" height="35" fill="url(#failedFO)" rx="5"/>
+  <text x="250" y="75" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Primary</text>
+  <text x="250" y="88" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16">✗</text>
+  <line x1="250" y1="95" x2="250" y2="115" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="270" y="108" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9">✗</text>
+  <rect x="205" y="120" width="90" height="35" fill="url(#replicaFO)" rx="5"/>
+  <text x="250" y="142" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Replica</text>
+
+  <!-- Step 3: Failover -->
+  <text x="415" y="50" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">3. Failover 실행</text>
+  <rect x="370" y="60" width="90" height="35" fill="url(#standbyFO)" rx="5"/>
+  <text x="415" y="75" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">(구 Primary)</text>
+  <text x="415" y="88" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">Standby</text>
+  <rect x="370" y="120" width="90" height="35" fill="url(#primaryFO)" rx="5"/>
+  <text x="415" y="137" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">Replica</text>
+  <text x="415" y="150" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">→ Primary</text>
+  <text x="475" y="140" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">승격!</text>
+
+  <!-- Arrow between steps -->
+  <line x1="145" y1="95" x2="185" y2="95" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowFO)"/>
+  <line x1="310" y1="95" x2="350" y2="95" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowFO)"/>
+
+  <!-- Recovery note -->
+  <rect x="100" y="180" width="300" height="85" fill="#E8F6F3" rx="5" stroke="#1ABC9C"/>
+  <text x="250" y="200" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Failover 유형</text>
+
+  <text x="120" y="225" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9" font-weight="bold">수동 Failover:</text>
+  <text x="200" y="225" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">관리자가 직접 승격</text>
+
+  <text x="120" y="245" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9" font-weight="bold">자동 Failover:</text>
+  <text x="200" y="245" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">감시 시스템이 자동 승격</text>
+  <text x="200" y="258" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">(Sentinel, Orchestrator)</text>
+</svg>

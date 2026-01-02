@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 280">
+  <defs>
+    <linearGradient id="closedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="openGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="halfOpenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F1C40F"/>
+      <stop offset="100%" style="stop-color:#F39C12"/>
+    </linearGradient>
+    <marker id="arrowCB" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="225" y="22" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">서킷브레이커 상태 전이</text>
+
+  <!-- Closed State -->
+  <circle cx="100" cy="100" r="45" fill="url(#closedGrad)"/>
+  <text x="100" y="95" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Closed</text>
+  <text x="100" y="110" text-anchor="middle" fill="#A9DFBF" font-family="Arial, sans-serif" font-size="9">(정상)</text>
+
+  <!-- Open State -->
+  <circle cx="350" cy="100" r="45" fill="url(#openGrad)"/>
+  <text x="350" y="95" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Open</text>
+  <text x="350" y="110" text-anchor="middle" fill="#FADBD8" font-family="Arial, sans-serif" font-size="9">(차단)</text>
+
+  <!-- Half-Open State -->
+  <circle cx="225" cy="210" r="45" fill="url(#halfOpenGrad)"/>
+  <text x="225" y="205" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Half-Open</text>
+  <text x="225" y="220" text-anchor="middle" fill="#7D6608" font-family="Arial, sans-serif" font-size="9">(테스트)</text>
+
+  <!-- Closed to Open -->
+  <path d="M 145 85 Q 225 40 305 85" fill="none" stroke="#E74C3C" stroke-width="2" marker-end="url(#arrowCB)"/>
+  <text x="225" y="55" text-anchor="middle" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9">실패 임계치 초과</text>
+
+  <!-- Open to Half-Open -->
+  <path d="M 350 145 Q 350 210 275 210" fill="none" stroke="#F39C12" stroke-width="2" marker-end="url(#arrowCB)"/>
+  <text x="340" y="185" text-anchor="end" fill="#F39C12" font-family="Arial, sans-serif" font-size="9">타임아웃 후</text>
+
+  <!-- Half-Open to Closed (success) -->
+  <path d="M 180 195 Q 100 195 100 150" fill="none" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowCB)"/>
+  <text x="120" y="185" text-anchor="start" fill="#27AE60" font-family="Arial, sans-serif" font-size="9">성공</text>
+
+  <!-- Half-Open to Open (failure) -->
+  <path d="M 260 180 Q 330 140 340 145" fill="none" stroke="#E74C3C" stroke-width="2" marker-end="url(#arrowCB)"/>
+  <text x="310" y="150" text-anchor="start" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9">실패</text>
+
+  <!-- Legend -->
+  <rect x="50" y="260" width="350" height="18" fill="#F8F9FA" rx="3"/>
+  <text x="225" y="273" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">장애 전파 차단: 외부 서비스 장애 시 시스템 전체 영향 최소화</text>
+</svg>

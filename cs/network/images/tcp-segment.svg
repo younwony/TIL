@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200">
+  <defs>
+    <linearGradient id="portGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="seqGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="flagGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="dataGradTcp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="22" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">TCP 세그먼트 구조</text>
+
+  <!-- Row 1: Ports -->
+  <rect x="30" y="35" width="220" height="28" fill="url(#portGrad)" rx="3"/>
+  <text x="140" y="53" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Source Port</text>
+
+  <rect x="250" y="35" width="220" height="28" fill="url(#portGrad)" rx="3"/>
+  <text x="360" y="53" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Destination Port</text>
+
+  <!-- Row 2: Sequence Number -->
+  <rect x="30" y="65" width="440" height="28" fill="url(#seqGrad)" rx="3"/>
+  <text x="250" y="83" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Sequence Number (순서 번호)</text>
+
+  <!-- Row 3: Acknowledgment Number -->
+  <rect x="30" y="95" width="440" height="28" fill="url(#seqGrad)" rx="3"/>
+  <text x="250" y="113" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Acknowledgment Number (확인 응답 번호)</text>
+
+  <!-- Row 4: Offset, Flags, Window -->
+  <rect x="30" y="125" width="80" height="28" fill="url(#flagGrad)" rx="3"/>
+  <text x="70" y="143" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Offset</text>
+
+  <rect x="110" y="125" width="80" height="28" fill="url(#flagGrad)" rx="3"/>
+  <text x="150" y="143" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Flags</text>
+
+  <rect x="190" y="125" width="280" height="28" fill="url(#flagGrad)" rx="3"/>
+  <text x="330" y="143" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Window Size</text>
+
+  <!-- Row 5: Checksum, Urgent -->
+  <rect x="30" y="155" width="220" height="28" fill="#E74C3C" rx="3"/>
+  <text x="140" y="173" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Checksum</text>
+
+  <rect x="250" y="155" width="220" height="28" fill="#E74C3C" rx="3"/>
+  <text x="360" y="173" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Urgent Pointer</text>
+
+  <!-- Labels -->
+  <text x="485" y="53" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">포트</text>
+  <text x="485" y="83" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">순서</text>
+  <text x="485" y="113" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">ACK</text>
+  <text x="485" y="143" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">제어</text>
+  <text x="485" y="173" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">검증</text>
+</svg>
