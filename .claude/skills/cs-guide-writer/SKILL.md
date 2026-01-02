@@ -195,7 +195,9 @@ CS-GUIDE.md 템플릿에 맞춰 학습 문서를 작성하는 Skill입니다.
 
 ## 동작 원리 (해당 시)
 
-{다이어그램 또는 단계별 설명}
+{Mermaid 다이어그램으로 시각화 - mermaid-diagram 스킬 참조}
+
+![{다이어그램 설명}](./images/{diagram-name}.svg)
 
 ## 예제 코드 (해당 시)
 
@@ -350,3 +352,52 @@ A: {답변 - "왜?"에 대한 설명 포함}
 3. 적절한 카테고리에 문서 생성 (주로 `ai-agent/` 또는 주제에 맞는 카테고리)
 4. 문서 상단에 `Trend` 마크 추가
 5. `cs/trend/README.md`에도 링크 추가 (트렌드 인덱스)
+
+## 다이어그램 가이드 (mermaid-diagram 스킬 연동)
+
+**ASCII 대신 Mermaid SVG 다이어그램 사용**
+
+시각적 설명이 필요한 경우 ASCII 다이어그램 대신 Mermaid CLI로 SVG를 생성합니다.
+
+### 다이어그램 적용 섹션
+
+| 섹션 | 다이어그램 유형 | 사용 사례 |
+|------|----------------|----------|
+| 핵심 개념 | Mindmap | 전체 개념 구조 한눈에 파악 |
+| 상세 설명 | Flowchart / Architecture | 구조, 흐름, 관계 시각화 |
+| 동작 원리 | Sequence / Flowchart | API 흐름, 상태 전환 |
+
+### 다이어그램 생성 절차
+
+```bash
+# 1. images 디렉토리 생성
+mkdir -p cs/{category}/images
+
+# 2. .mmd 파일 작성
+
+# 3. SVG 생성
+npx -p @mermaid-js/mermaid-cli mmdc \
+  -i cs/{category}/images/{name}.mmd \
+  -o cs/{category}/images/{name}.svg \
+  -b transparent
+
+# 4. git add
+git -C "C:/workspace/intellij/TIL" add cs/{category}/images/
+```
+
+### 마크다운 삽입
+
+```markdown
+![{설명}](./images/{name}.svg)
+```
+
+### 다이어그램 유형 선택
+
+| 목적 | 유형 |
+|------|------|
+| 로직/흐름/상태 전환 | Flowchart |
+| API/통신 흐름 | Sequence |
+| 시스템 구조 | Architecture (Flowchart LR + subgraph) |
+| 개념 정리 | Mindmap |
+
+상세한 템플릿과 스타일 가이드는 `mermaid-diagram` 스킬 참조.

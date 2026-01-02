@@ -13,4 +13,4 @@ cs:
     path: ${CS_DOCS_PATH:}
 
 server:
-  port: 8080
+  port: 8081

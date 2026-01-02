@@ -1,0 +1,40 @@
+%%{init: {'look': 'handDrawn', 'theme': 'base'}}%%
+mindmap
+    root((서킷브레이커))
+        핵심 개념
+            장애 전파 방지
+            빠른 실패 Fail Fast
+            자동 복구
+        세 가지 상태
+            🟢 Closed
+                정상 운영
+                요청 통과
+                실패 카운트
+            🔴 Open
+                차단 상태
+                즉시 실패
+                Fallback 실행
+            🟠 Half-Open
+                복구 테스트
+                제한된 요청
+                성공시 Closed
+        주요 설정
+            failureRateThreshold
+            waitDurationInOpenState
+            slidingWindowSize
+        구현체
+            Resilience4j
+                경량
+                함수형
+                Spring Boot
+            Hystrix
+                Netflix OSS
+                Deprecated
+            Sentinel
+                Alibaba
+                대규모 트래픽
+        관련 패턴
+            Retry
+            Timeout
+            Bulkhead
+            Rate Limiter

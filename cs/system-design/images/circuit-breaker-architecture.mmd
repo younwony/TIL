@@ -1,0 +1,26 @@
+%%{init: {'look': 'handDrawn', 'theme': 'base'}}%%
+architecture-beta
+    group client(cloud)[Client Layer]
+    group gateway(server)[API Gateway]
+    group services(server)[Microservices]
+    group external(cloud)[External Services]
+
+    service browser(internet)[Browser] in client
+    service mobile(internet)[Mobile App] in client
+
+    service gw(server)[API Gateway] in gateway
+    service cb(disk)[Circuit Breaker] in gateway
+
+    service order(server)[Order Service] in services
+    service user(server)[User Service] in services
+
+    service payment(server)[Payment API] in external
+    service shipping(server)[Shipping API] in external
+
+    browser:R --> L:gw
+    mobile:R --> L:gw
+    gw:R --> L:cb
+    cb:R --> L:order
+    cb:R --> L:user
+    order:R --> L:payment
+    user:R --> L:shipping

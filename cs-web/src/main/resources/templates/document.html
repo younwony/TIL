@@ -313,6 +313,37 @@
                     behavior: 'smooth'
                 });
             });
+
+            // 이미지 라이트박스 (확대 기능)
+            const lightbox = document.createElement('div');
+            lightbox.className = 'image-lightbox';
+            lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img src="" alt="">';
+            document.body.appendChild(lightbox);
+
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxClose = lightbox.querySelector('.image-lightbox-close');
+
+            // SVG 이미지 클릭 시 확대
+            document.querySelectorAll('.markdown-body img[src$=".svg"]').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightboxImg.src = this.src;
+                    lightboxImg.alt = this.alt;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // 라이트박스 닫기
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            lightbox.addEventListener('click', closeLightbox);
+            lightboxClose.addEventListener('click', closeLightbox);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
         });
     </script>
 </body>

@@ -1,0 +1,41 @@
+%%{init: {'look': 'handDrawn', 'theme': 'base'}}%%
+sequenceDiagram
+    autonumber
+    participant Client as 🖥️ Client
+    participant CB as 🔌 Circuit Breaker
+    participant Service as 🛒 Payment Service
+
+    rect rgb(200, 230, 200)
+        Note over Client, Service: CLOSED 상태 (정상)
+        Client->>CB: 결제 요청
+        CB->>Service: 요청 전달
+        Service-->>CB: 성공 응답
+        CB-->>Client: 결제 완료
+    end
+
+    rect rgb(255, 200, 200)
+        Note over Client, Service: 장애 발생 → OPEN 전환
+        Client->>CB: 결제 요청
+        CB->>Service: 요청 전달
+        Service--xCB: 타임아웃 / 에러
+        CB-->>Client: 실패 (실패 카운트 증가)
+
+        Note right of CB: 실패율 50% 초과!
+        CB->>CB: 상태 → OPEN
+
+        Client->>CB: 결제 요청
+        CB--xClient: 즉시 실패 (Fallback)
+        Note right of CB: 서비스 호출 없이<br/>바로 실패 반환
+    end
+
+    rect rgb(255, 230, 180)
+        Note over Client, Service: HALF-OPEN 상태 (복구 테스트)
+        Note right of CB: 60초 경과...
+        CB->>CB: 상태 → HALF-OPEN
+
+        Client->>CB: 결제 요청
+        CB->>Service: 테스트 요청 (1건만)
+        Service-->>CB: 성공 응답
+        CB->>CB: 상태 → CLOSED
+        CB-->>Client: 결제 완료
+    end
