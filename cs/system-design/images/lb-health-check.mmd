@@ -1,0 +1,21 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    LB[Load Balancer<br/>주기적으로 GET /health]
+
+    LB --> A & B & C
+
+    A["서버 A<br/>✅ 200 OK"]
+    B["서버 B<br/>✅ 200 OK"]
+    C["서버 C<br/>❌ timeout"]
+
+    A --> TA["트래픽 ✅"]
+    B --> TB["트래픽 ✅"]
+    C --> TC["트래픽 ❌ 차단"]
+
+    style LB fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style A fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style B fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style C fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style TA fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style TB fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style TC fill:#ffcdd2,stroke:#c62828,stroke-width:2px

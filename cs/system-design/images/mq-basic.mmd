@@ -1,0 +1,8 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    P[Producer<br/>생산자] --> Q[(Message Queue<br/>메시지 큐)]
+    Q --> C[Consumer<br/>소비자]
+
+    style P fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Q fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style C fill:#ffe0b2,stroke:#e65100,stroke-width:2px

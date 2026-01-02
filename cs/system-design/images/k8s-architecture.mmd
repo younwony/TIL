@@ -1,0 +1,39 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph ControlPlane["Control Plane (Master)"]
+        API[API Server]
+        Sched[Scheduler]
+        CM[Controller Manager]
+        ETCD[etcd<br/>Key-Value]
+    end
+
+    subgraph Workers["Worker Nodes"]
+        subgraph Node1["Node 1"]
+            Kubelet1[kubelet]
+            Proxy1[kube-proxy]
+            subgraph Pods1["Pods"]
+                Pod1[Pod]
+                Pod2[Pod]
+            end
+        end
+
+        subgraph Node2["Node 2"]
+            Kubelet2[kubelet]
+            Proxy2[kube-proxy]
+            subgraph Pods2["Pods"]
+                Pod3[Pod]
+                Pod4[Pod]
+            end
+        end
+    end
+
+    API --> Kubelet1
+    API --> Kubelet2
+    Sched --> API
+    CM --> API
+    ETCD --> API
+
+    style API fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style ETCD fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Kubelet1 fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Kubelet2 fill:#bbdefb,stroke:#1976d2,stroke-width:2px

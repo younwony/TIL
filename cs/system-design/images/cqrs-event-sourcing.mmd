@@ -1,0 +1,20 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph CommandSide["Command Side"]
+        Cmd[Command] --> Handler[Command Handler]
+        Handler --> Agg[Aggregate]
+        Agg --> ES[Event Store]
+        Agg --> Pub[이벤트 발행]
+    end
+
+    Pub --> Sub[이벤트 구독]
+
+    subgraph QuerySide["Query Side"]
+        Sub --> Proj[Projection]
+        Proj --> RDB[Read DB]
+        RDB --> QH[Query Handler]
+    end
+
+    style CommandSide fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style QuerySide fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style ES fill:#ffe0b2,stroke:#e65100,stroke-width:2px

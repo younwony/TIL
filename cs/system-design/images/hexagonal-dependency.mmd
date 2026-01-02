@@ -1,0 +1,17 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Controller[Controller<br/>Adapter] --> UseCase[UseCase<br/>Port]
+    Service[Service<br/>구현] --> UseCase
+    Service --> RepoPort[Repository<br/>Port]
+    JpaRepo[JpaRepo<br/>Adapter] --> RepoPort
+
+    subgraph DomainLayer["Domain Layer"]
+        UseCase
+        RepoPort
+    end
+
+    Note["핵심: 화살표가 도메인(중심)을 향함<br/>= 외부가 내부에 의존"]
+
+    style DomainLayer fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Controller fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style JpaRepo fill:#ffe0b2,stroke:#e65100,stroke-width:2px

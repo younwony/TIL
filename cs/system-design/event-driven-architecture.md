@@ -45,23 +45,11 @@ A는 글만 올리면 됨. B가 온라인인지 신경 안 씀.
 
 ### 동기 vs 비동기 통신
 
-```
-동기 (Synchronous) - REST API
-┌─────────┐        ┌─────────┐        ┌─────────┐
-│ Order   │──────→ │ Payment │──────→ │  Stock  │
-│ Service │←────── │ Service │←────── │ Service │
-└─────────┘ 대기   └─────────┘ 대기   └─────────┘
-문제: Payment 장애 시 Order도 실패
+![동기 vs 비동기 통신](./images/eda-comparison.svg)
 
-비동기 (Asynchronous) - Event
-┌─────────┐  OrderCreated   ┌─────────────┐   ┌─────────┐
-│ Order   │ ───────────────→│   Broker    │──→│ Payment │
-│ Service │                 │  (Kafka)    │   └─────────┘
-└─────────┘ (바로 응답)     │             │   ┌─────────┐
-                            │             │──→│  Stock  │
-                            └─────────────┘   └─────────┘
-장점: Payment 장애와 무관하게 Order 처리
-```
+**동기 통신 문제점:** Payment 장애 시 Order도 실패
+
+**비동기 통신 장점:** Payment 장애와 무관하게 Order 처리
 
 ### Event vs Message vs Command
 

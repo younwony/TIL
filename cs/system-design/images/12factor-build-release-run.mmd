@@ -1,0 +1,22 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    subgraph Build["1. Build (빌드)"]
+        B1[코드 컴파일]
+        B2[의존성 포함]
+    end
+
+    subgraph Release["2. Release (릴리스)"]
+        R1[빌드 + 설정]
+        R2[고유 ID 부여]
+    end
+
+    subgraph Run["3. Run (실행)"]
+        RN1[릴리스 실행]
+        RN2[프로세스 시작]
+    end
+
+    Build --> Release --> Run
+
+    style Build fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Release fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Run fill:#ffe0b2,stroke:#e65100,stroke-width:2px

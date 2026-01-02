@@ -1,0 +1,25 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Presentation["Presentation Layer"]
+        C[Controller, View, DTO]
+        P1["HTTP 요청/응답 처리"]
+        P2["입력 검증, 응답 포맷팅"]
+    end
+
+    subgraph Business["Business Layer"]
+        S[Service, Domain Model]
+        B1["비즈니스 로직 실행"]
+        B2["트랜잭션 관리"]
+    end
+
+    subgraph Data["Data Layer"]
+        R[Repository, DAO, Entity]
+        D1["DB 접근, 쿼리 실행"]
+        D2["데이터 영속화"]
+    end
+
+    Presentation --> Business --> Data
+
+    style Presentation fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Business fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Data fill:#ffe0b2,stroke:#e65100,stroke-width:2px

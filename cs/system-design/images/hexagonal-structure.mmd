@@ -1,0 +1,34 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    subgraph Driving["Driving (Primary)"]
+        WebUI[Web UI]
+        CLI[CLI]
+    end
+
+    subgraph Hexagon["Hexagon"]
+        DP1[Driving<br/>Port]
+        subgraph Domain["Domain (Core)"]
+            Service[Service]
+            BL[Business<br/>Logic]
+        end
+        DP2[Driven<br/>Port]
+    end
+
+    subgraph Driven["Driven (Secondary)"]
+        DB[Database]
+        ExtAPI[External<br/>API]
+    end
+
+    WebUI --> DP1
+    CLI --> DP1
+    DP1 --> Service
+    Service --> BL
+    BL --> DP2
+    DP2 --> DB
+    DP2 --> ExtAPI
+
+    style Domain fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style DP1 fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style DP2 fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style WebUI fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style DB fill:#e1bee7,stroke:#8e24aa,stroke-width:2px

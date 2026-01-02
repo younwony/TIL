@@ -1,0 +1,10 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    O[주문<br/>서비스] -->|주문생성<br/>이벤트| P[결제<br/>서비스]
+    P -->|결제완료<br/>이벤트| S[재고<br/>서비스]
+    S -.->|재고부족<br/>이벤트| P
+    P -.->|결제취소<br/>이벤트| O
+
+    style O fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style P fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style S fill:#ffe0b2,stroke:#e65100,stroke-width:2px

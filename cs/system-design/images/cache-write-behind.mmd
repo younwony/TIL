@@ -1,0 +1,17 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache
+    participant DB as Database
+
+    rect rgb(200, 230, 200)
+        Note over App, DB: Write-Behind (비동기 쓰기)
+        App->>Cache: 1. WRITE data
+        Cache-->>App: 2. Immediate Response
+    end
+
+    rect rgb(200, 200, 230)
+        Note over Cache, DB: 나중에 배치 처리
+        Cache-)DB: 3. Async batch write
+    end

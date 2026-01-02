@@ -1,0 +1,14 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph L7["Layer 7 (Application) - L7 로드밸런서"]
+        L7D["HTTP 헤더, URL, 쿠키 기반 라우팅<br/>/api/* → API 서버<br/>/static/* → 정적 서버"]
+    end
+
+    subgraph L4["Layer 4 (Transport) - L4 로드밸런서"]
+        L4D["IP, Port 기반 라우팅<br/>패킷 내용을 보지 않음 (더 빠름)"]
+    end
+
+    L7 --> L4
+
+    style L7 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style L4 fill:#bbdefb,stroke:#1976d2,stroke-width:2px

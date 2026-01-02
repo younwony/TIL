@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph ServiceTypes["Kubernetes Service Types"]
+        direction LR
+        CIP["ClusterIP (기본)<br/>클러스터 내부 IP"]
+        NP["NodePort<br/>각 노드 포트 노출"]
+        LB["LoadBalancer<br/>클라우드 LB 연결"]
+    end
+
+    CIP --> Pods
+    NP --> Pods
+    LB --> Pods
+
+    subgraph Pods["Pods"]
+        Pod1[Pod 1]
+        Pod2[Pod 2]
+        Pod3[Pod 3]
+    end
+
+    External[외부 트래픽] --> LB
+    External --> NP
+    Internal[클러스터 내부] --> CIP
+
+    style CIP fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style NP fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style LB fill:#ffe0b2,stroke:#e65100,stroke-width:2px

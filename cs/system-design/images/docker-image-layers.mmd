@@ -1,0 +1,19 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Layers["Docker 이미지 레이어 구조"]
+        direction TB
+        L4["Application Layer<br/>애플리케이션 코드"]
+        L3["Dependencies Layer<br/>npm, pip 패키지 등"]
+        L2["Runtime Layer<br/>Node.js, Python 등"]
+        L1["Base Image Layer<br/>Ubuntu, Alpine 등"]
+
+        L4 --> L3 --> L2 --> L1
+    end
+
+    Note1["각 레이어는 읽기 전용이며 캐시됨"]
+    Note2["컨테이너 실행 시 최상단에<br/>쓰기 가능한 레이어 추가"]
+
+    style L4 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style L3 fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style L2 fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style L1 fill:#e1bee7,stroke:#8e24aa,stroke-width:2px

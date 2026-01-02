@@ -1,0 +1,10 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    P[Producer] --> E[Exchange]
+    E -->|Binding<br/>Routing Key| Q[(Queue)]
+    Q --> C[Consumer]
+
+    style P fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style E fill:#e1bee7,stroke:#8e24aa,stroke-width:2px
+    style Q fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style C fill:#ffe0b2,stroke:#e65100,stroke-width:2px

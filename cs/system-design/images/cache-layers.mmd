@@ -1,0 +1,17 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Client[Client]
+    Browser["Browser Cache<br/>(로컬 저장소, Service Worker)"]
+    CDN["CDN Cache<br/>(CloudFront, Cloudflare)"]
+    App["Application Cache<br/>(Redis, Memcached)"]
+    DBCache["Database Cache<br/>(Query Cache, Buffer Pool)"]
+    DB[(Database)]
+
+    Client --> Browser --> CDN --> App --> DBCache --> DB
+
+    style Client fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Browser fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style CDN fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style App fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style DBCache fill:#e1bee7,stroke:#8e24aa,stroke-width:2px
+    style DB fill:#cfd8dc,stroke:#546e7a,stroke-width:2px

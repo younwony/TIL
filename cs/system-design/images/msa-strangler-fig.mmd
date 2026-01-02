@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Phase1["1단계: 새 기능은 MSA로"]
+        Mono1[모놀리식<br/>기존 기능] --> New1[새 서비스<br/>새 기능]
+    end
+
+    subgraph Phase2["2단계: 점진적 분리"]
+        Mono2[모놀리식<br/>축소됨]
+        SvcA[서비스 A]
+        SvcB[서비스 B]
+        SvcC[서비스 C]
+    end
+
+    subgraph Phase3["3단계: 완전 MSA"]
+        SA[서비스 A]
+        SB[서비스 B]
+        SC[서비스 C]
+    end
+
+    Phase1 --> Phase2 --> Phase3
+
+    style Mono1 fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Mono2 fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style SA fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style SB fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style SC fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

@@ -1,0 +1,22 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Strategic["전략적 설계 - Strategic Design"]
+        direction TB
+        S1["Bounded Context: 도메인 모델의 경계"]
+        S2["Context Map: 컨텍스트 간 관계"]
+        S3["Ubiquitous Language: 공통 언어 정의"]
+    end
+
+    subgraph Tactical["전술적 설계 - Tactical Design"]
+        direction TB
+        T1["Aggregate: 일관성 경계"]
+        T2["Entity: 식별 가능한 객체"]
+        T3["Value Object: 값으로 비교되는 객체"]
+        T4["Domain Service: 도메인 로직"]
+        T5["Repository: 영속성 추상화"]
+    end
+
+    Strategic --> Tactical
+
+    style Strategic fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Tactical fill:#bbdefb,stroke:#1976d2,stroke-width:2px

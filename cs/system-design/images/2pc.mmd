@@ -1,0 +1,27 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    autonumber
+    participant C as Coordinator
+    participant A as DB A
+    participant B as DB B
+    participant D as DB C
+
+    rect rgb(255, 230, 180)
+        Note over C, D: Phase 1: Prepare
+        C->>A: 준비됐나요?
+        C->>B: 준비됐나요?
+        C->>D: 준비됐나요?
+        A-->>C: 준비 OK
+        B-->>C: 준비 OK
+        D-->>C: 준비 OK
+    end
+
+    rect rgb(200, 230, 200)
+        Note over C, D: Phase 2: Commit
+        C->>A: 커밋하세요!
+        C->>B: 커밋하세요!
+        C->>D: 커밋하세요!
+        A-->>C: 완료
+        B-->>C: 완료
+        D-->>C: 완료
+    end

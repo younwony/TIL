@@ -1,0 +1,17 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Client[Client Request]
+    Client --> IC[Ingress Controller<br/>nginx]
+
+    IC -->|api.example.com| API[api-service]
+    IC -->|web.example.com| Web[web-service]
+    IC -->|example.com/admin| Admin[admin-service]
+
+    API --> APods[API Pods]
+    Web --> WPods[Web Pods]
+    Admin --> AdminPods[Admin Pods]
+
+    style IC fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style API fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Web fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Admin fill:#bbdefb,stroke:#1976d2,stroke-width:2px

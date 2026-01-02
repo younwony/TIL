@@ -1,0 +1,16 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TD
+    subgraph Codebase["본사 매뉴얼 (코드베이스)"]
+        CODE[조리법, 서비스 절차는 동일<br/>지역별 재료, 가격만 다름]
+    end
+
+    Codebase --> DEV & STG & PROD
+
+    DEV[["🏠 서울점<br/>(개발환경)"]]
+    STG[["🏢 부산점<br/>(스테이징)"]]
+    PROD[["🏛️ 제주점<br/>(운영환경)"]]
+
+    style CODE fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style DEV fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style STG fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style PROD fill:#ffcdd2,stroke:#c62828,stroke-width:2px

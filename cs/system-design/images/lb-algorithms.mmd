@@ -1,0 +1,22 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph RR["1. Round Robin"]
+        RRD["요청 1 → A → 요청 2 → B → 요청 3 → C<br/>순서대로 돌아가며 분배"]
+    end
+
+    subgraph LC["2. Least Connections"]
+        LCD["서버A: 10개 / 서버B: 3개 ← 선택 / 서버C: 8개<br/>연결이 가장 적은 서버로 분배"]
+    end
+
+    subgraph WRR["3. Weighted Round Robin"]
+        WRRD["서버A (weight=3): ●●●<br/>서버B (weight=1): ●<br/>서버 성능에 따라 가중치 부여"]
+    end
+
+    subgraph IPH["4. IP Hash"]
+        IPHD["hash(192.168.1.1) % 3 = 1 → 항상 서버B<br/>같은 클라이언트는 항상 같은 서버로"]
+    end
+
+    style RR fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style LC fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style WRR fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style IPH fill:#e1bee7,stroke:#8e24aa,stroke-width:2px

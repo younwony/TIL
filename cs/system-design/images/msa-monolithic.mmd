@@ -1,0 +1,12 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Monolithic["모놀리식 애플리케이션"]
+        M1[사용자 모듈]
+        M2[주문 모듈]
+        M3[결제 모듈]
+        M4[배송 모듈]
+        M1 & M2 & M3 & M4 --> SharedDB[공유 데이터베이스]
+        SharedDB --> DB[(DB)]
+    end
+
+    style Monolithic fill:#ffe0b2,stroke:#e65100,stroke-width:2px

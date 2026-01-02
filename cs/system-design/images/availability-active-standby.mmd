@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph ActiveStandby["Active-Standby (비용 효율적)"]
+        direction TB
+        P1[Primary<br/>활성]
+        S1[Standby<br/>대기]
+        P1 -->|평소| Process1[정상 처리]
+        S1 -->|대기만 함| Idle[유휴]
+        P1 -.->|장애 시<br/>Failover| S1
+    end
+
+    subgraph ActiveActive["Active-Active (고성능)"]
+        direction TB
+        Serv1[Server 1<br/>활성]
+        Serv2[Server 2<br/>활성]
+        LB[로드밸런싱]
+        LB --> Serv1
+        LB --> Serv2
+        Serv1 -->|50%| Traffic1[트래픽]
+        Serv2 -->|50%| Traffic2[트래픽]
+    end
+
+    style P1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style S1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Serv1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Serv2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

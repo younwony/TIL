@@ -1,0 +1,23 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    subgraph Without["API Gateway 없는 경우 ❌"]
+        direction TB
+        C1[Client]
+        C1 --> U1[User Service :8081]
+        C1 --> O1[Order Service :8082]
+        C1 --> P1[Product Service :8083]
+    end
+
+    subgraph With["API Gateway 있는 경우 ✅"]
+        direction TB
+        C2[Client]
+        GW[API Gateway<br/>:80/443]
+        C2 --> GW
+        GW --> U2[User Service]
+        GW --> O2[Order Service]
+        GW --> P2[Product Service]
+    end
+
+    style C1 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style C2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style GW fill:#bbdefb,stroke:#1976d2,stroke-width:2px

@@ -1,0 +1,30 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Container["컨테이너 (Container)"]
+        direction TB
+        CA[App A] --> CL1[Bins/Libs]
+        CB[App B] --> CL2[Bins/Libs]
+        CC[App C] --> CL3[Bins/Libs]
+        CL1 & CL2 & CL3 --> DE[Docker Engine]
+        DE --> HOS1[Host OS]
+        HOS1 --> INF1[Infrastructure]
+    end
+
+    subgraph VM["가상머신 (Virtual Machine)"]
+        direction TB
+        VA[App A] --> VL1[Bins/Libs]
+        VB[App B] --> VL2[Bins/Libs]
+        VC[App C] --> VL3[Bins/Libs]
+        VL1 --> GOS1[Guest OS]
+        VL2 --> GOS2[Guest OS]
+        VL3 --> GOS3[Guest OS]
+        GOS1 & GOS2 & GOS3 --> HV[Hypervisor]
+        HV --> INF2[Infrastructure]
+    end
+
+    style DE fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style HV fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style HOS1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style GOS1 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style GOS2 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style GOS3 fill:#ffcdd2,stroke:#c62828,stroke-width:2px

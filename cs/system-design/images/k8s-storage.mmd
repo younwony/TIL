@@ -1,0 +1,10 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    Pod[Pod] -->|마운트| PVC[PVC<br/>요청]
+    PVC -->|바인딩| PV[PV<br/>실제]
+    PV --> Storage[Storage<br/>EBS, NFS]
+
+    style Pod fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style PVC fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style PV fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Storage fill:#e1bee7,stroke:#8e24aa,stroke-width:2px

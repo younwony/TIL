@@ -1,0 +1,24 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Cluster["Kafka Cluster"]
+        subgraph Topic["Topic"]
+            P0["Partition 0<br/>[0,1,2]"]
+            P1["Partition 1<br/>[0,1,2]"]
+            P2["Partition 2<br/>[0,1,2]"]
+        end
+        B1[Broker 1]
+        B2[Broker 2]
+        B3[Broker 3]
+    end
+
+    Producer[Producer] --> Cluster
+
+    subgraph CG["Consumer Group"]
+        C1[Consumer]
+        C2[Consumer]
+    end
+
+    Cluster --> CG
+
+    style Producer fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style CG fill:#ffe0b2,stroke:#e65100,stroke-width:2px

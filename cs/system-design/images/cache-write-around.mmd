@@ -1,0 +1,13 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache
+    participant DB as Database
+
+    rect rgb(255, 230, 180)
+        Note over App, DB: Write-Around (캐시 무시)
+        App->>DB: 1. WRITE directly to DB
+        DB-->>App: 2. Confirm
+        Note over Cache: 캐시 갱신 없음<br/>(읽기 시 Cache-Aside로 갱신)
+    end

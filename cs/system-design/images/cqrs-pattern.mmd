@@ -1,0 +1,16 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Client[클라이언트]
+
+    Client --> Command[Command<br/>쓰기]
+    Client --> Query[Query<br/>읽기]
+
+    Command --> WriteDB[Write DB<br/>정규화]
+    Query --> ReadDB[Read DB<br/>비정규화]
+
+    WriteDB -->|동기화| ReadDB
+
+    style Command fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style Query fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style WriteDB fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style ReadDB fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

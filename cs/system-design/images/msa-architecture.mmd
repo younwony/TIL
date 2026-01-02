@@ -1,0 +1,16 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Gateway[API Gateway]
+
+    Gateway --> UserSvc[사용자<br/>서비스]
+    Gateway --> OrderSvc[주문<br/>서비스]
+    Gateway --> PaySvc[결제<br/>서비스]
+
+    UserSvc --> UserDB[(사용자DB)]
+    OrderSvc --> OrderDB[(주문DB)]
+    PaySvc --> PayDB[(결제DB)]
+
+    style Gateway fill:#e1bee7,stroke:#8e24aa,stroke-width:2px
+    style UserSvc fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style OrderSvc fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style PaySvc fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

@@ -1,0 +1,30 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph SLI["SLI (Service Level Indicator) - 실제 측정값"]
+        M1["가용성: 99.95%"]
+        M2["에러율: 0.01%"]
+        M3["p99 지연: 150ms"]
+        M4["처리량: 10,000 RPS"]
+    end
+
+    subgraph SLO["SLO (Service Level Objective) - 내부 목표"]
+        O1["가용성 ≥ 99.9%"]
+        O2["에러율 < 0.1%"]
+        O3["p99 지연 < 200ms"]
+        O4["처리량 ≥ 5,000 RPS"]
+    end
+
+    subgraph SLA["SLA (Service Level Agreement) - 고객 약속"]
+        A1["가용성 ≥ 99.5% 보장"]
+        A2["위반 시 환불 20%"]
+        A3["월 최대 다운타임 3.6시간"]
+    end
+
+    SLI -->|달성 여부 판단| SLO
+    SLO -->|법적 약속| SLA
+
+    Note["관계: SLI ≥ SLO > SLA<br/>(실제 성능 ≥ 내부 목표 > 고객 약속)"]
+
+    style SLI fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style SLO fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style SLA fill:#ffe0b2,stroke:#e65100,stroke-width:2px

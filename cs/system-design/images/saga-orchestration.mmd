@@ -1,0 +1,16 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Orch[Orchestrator<br/>Saga 관리]
+
+    Orch -->|1. 주문생성| O[주문 서비스]
+    Orch -->|2. 결제| P[결제 서비스]
+    Orch -->|3. 재고차감| S[재고 서비스]
+
+    O -.->|보상: 취소| Orch
+    P -.->|보상: 환불| Orch
+    S -.->|보상: 복원| Orch
+
+    style Orch fill:#e1bee7,stroke:#8e24aa,stroke-width:2px
+    style O fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style P fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style S fill:#ffe0b2,stroke:#e65100,stroke-width:2px

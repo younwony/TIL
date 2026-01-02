@@ -45,24 +45,7 @@ Layered Architecture는 **가장 널리 사용되는 아키텍처 패턴**입니
 
 ### 표준 3-Tier 구조
 
-```
-┌─────────────────────────────────────────┐
-│         Presentation Layer               │
-│   (Controller, View, DTO)                │
-│   - HTTP 요청/응답 처리                   │
-│   - 입력 검증, 응답 포맷팅                │
-├─────────────────────────────────────────┤
-│          Business Layer                   │
-│   (Service, Domain Model)                 │
-│   - 비즈니스 로직 실행                    │
-│   - 트랜잭션 관리                         │
-├─────────────────────────────────────────┤
-│            Data Layer                     │
-│   (Repository, DAO, Entity)               │
-│   - DB 접근, 쿼리 실행                    │
-│   - 데이터 영속화                         │
-└─────────────────────────────────────────┘
-```
+![3-Tier Layered Architecture](./images/layered-architecture.svg)
 
 ### Spring 예시 코드
 
@@ -142,25 +125,7 @@ Controller → Service → Repository → Database
 
 ### Strict vs Relaxed Layering
 
-```
-Strict Layering (엄격한 계층화)
-┌────────────────┐
-│  Presentation  │ ─→ 바로 아래 계층만 호출 가능
-├────────────────┤
-│   Business     │ ─→ 바로 아래 계층만 호출 가능
-├────────────────┤
-│     Data       │
-└────────────────┘
-
-Relaxed Layering (느슨한 계층화)
-┌────────────────┐
-│  Presentation  │ ─→ 모든 하위 계층 호출 가능
-├────────────────┤
-│   Business     │
-├────────────────┤
-│     Data       │
-└────────────────┘
-```
+![Strict vs Relaxed Layering](./images/layered-strict-relaxed.svg)
 
 **Strict 장점**: 계층 간 결합도 최소화, 명확한 구조
 **Relaxed 장점**: 성능 최적화 가능, 유연성

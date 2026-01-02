@@ -1,0 +1,22 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Client[Client] --> GW
+
+    subgraph GW["API Gateway"]
+        direction TB
+        F1["1. SSL 종료<br/>(HTTPS → HTTP)"]
+        F2["2. 인증/인가<br/>(JWT, OAuth)"]
+        F3["3. Rate Limiting<br/>(요청 제한)"]
+        F4["4. 요청 변환<br/>(헤더, 파라미터)"]
+        F5["5. 라우팅<br/>(/api/users → User Service)"]
+        F6["6. 로깅 & 모니터링"]
+        F7["7. 응답 캐싱"]
+
+        F1 --> F2 --> F3 --> F4 --> F5 --> F6 --> F7
+    end
+
+    GW --> Backend[Backend Services]
+
+    style Client fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style GW fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Backend fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

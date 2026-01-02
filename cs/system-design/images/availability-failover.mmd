@@ -1,0 +1,30 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    participant P as Primary
+    participant S as Standby
+    participant LB as 로드밸런서
+
+    rect rgb(200, 230, 201)
+        Note over P,S: 정상 상태
+        P->>S: Heartbeat "살아있어"
+        S->>P: ACK
+        LB->>P: 트래픽
+    end
+
+    rect rgb(255, 205, 210)
+        Note over P,S: 장애 발생
+        P--xS: Heartbeat (타임아웃)
+        S->>S: 헬스체크 실패 감지<br/>(3회 연속)
+    end
+
+    rect rgb(187, 222, 251)
+        Note over P,S: 페일오버 실행
+        S->>S: Primary 역할 승계<br/>VIP 인계
+        LB->>S: 트래픽 전환
+    end
+
+    rect rgb(225, 245, 254)
+        Note over P,S: 복구 후
+        P->>S: 데이터 동기화
+        P->>P: Standby로 강등
+    end

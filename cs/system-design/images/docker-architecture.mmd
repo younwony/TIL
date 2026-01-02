@@ -1,0 +1,19 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Client["Docker Client<br/>(docker build, run, pull)"]
+
+    Client -->|REST API| Daemon
+
+    subgraph Daemon["Docker Daemon (dockerd)"]
+        Images[Images]
+        Containers[Containers]
+        Networks[Networks]
+        Volumes[Volumes]
+        Plugins[Plugins]
+    end
+
+    Daemon --> Registry["Registry<br/>(Docker Hub, ECR, GCR)"]
+
+    style Client fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Daemon fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Registry fill:#ffe0b2,stroke:#e65100,stroke-width:2px

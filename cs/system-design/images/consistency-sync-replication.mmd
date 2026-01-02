@@ -1,0 +1,23 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    participant C as Client
+    participant M as Master
+    participant R1 as Replica1
+    participant R2 as Replica2
+
+    C->>M: Write(x=10)
+    M->>M: 로그에 기록
+
+    par 동시 복제
+        M->>R1: 복제 요청
+        M->>R2: 복제 요청
+    end
+
+    R1->>M: ACK
+    R2->>M: ACK
+
+    Note over M: 모든 Replica<br/>쓰기 완료 확인
+
+    M->>C: Success
+
+    Note over C,R2: 쓰기 지연 = Master + 네트워크 + Replica<br/>예: 10ms + 5ms + 10ms = 25ms

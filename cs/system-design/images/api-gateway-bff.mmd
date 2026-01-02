@@ -1,0 +1,31 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    subgraph Clients["클라이언트"]
+        Web[Web Client]
+        Mobile[Mobile Client]
+        IoT[IoT Device]
+    end
+
+    subgraph BFFs["BFF Layer"]
+        WebBFF["Web BFF<br/>(상세 데이터)"]
+        MobileBFF["Mobile BFF<br/>(간략 데이터)"]
+        IoTBFF["IoT BFF<br/>(최소 데이터)"]
+    end
+
+    subgraph Services["Backend Services"]
+        User[User Service]
+        Order[Order Service]
+        Product[Product Service]
+    end
+
+    Web --> WebBFF
+    Mobile --> MobileBFF
+    IoT --> IoTBFF
+
+    WebBFF --> User & Order & Product
+    MobileBFF --> User & Order & Product
+    IoTBFF --> User & Order & Product
+
+    style WebBFF fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style MobileBFF fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style IoTBFF fill:#ffe0b2,stroke:#e65100,stroke-width:2px

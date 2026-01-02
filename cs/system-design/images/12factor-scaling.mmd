@@ -1,0 +1,20 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Vertical["❌ 수직 확장"]
+        V1[["Big Server<br/>CPU: 64 cores<br/>RAM: 256GB"]]
+    end
+
+    subgraph Horizontal["✅ 수평 확장"]
+        direction TB
+        LB[Load Balancer]
+        P1[Process 1]
+        P2[Process 2]
+        P3[Process 3]
+        LB --> P1 & P2 & P3
+    end
+
+    style V1 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style LB fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style P1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style P2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style P3 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

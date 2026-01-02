@@ -1,0 +1,21 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache
+    participant DB as Database
+
+    rect rgb(200, 230, 200)
+        Note over App, DB: Cache Hit
+        App->>Cache: 1. GET data
+        Cache-->>App: 2. Return data
+    end
+
+    rect rgb(255, 230, 180)
+        Note over App, DB: Cache Miss
+        App->>Cache: 1. GET data
+        Cache-->>App: 2. Miss
+        App->>DB: 3. Query DB
+        DB-->>App: 4. Return data
+        App->>Cache: 5. SET data
+    end

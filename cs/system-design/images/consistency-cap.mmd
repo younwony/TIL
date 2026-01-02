@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph CAP["CAP 정리"]
+        C[Consistency<br/>일관성]
+        A[Availability<br/>가용성]
+        P[Partition Tolerance<br/>분할 내성]
+    end
+
+    C --- CP["CP 시스템"]
+    C --- CA["CA 시스템"]
+    A --- AP["AP 시스템"]
+    A --- CA
+    P --- CP
+    P --- AP
+
+    Note1["분산 시스템에서<br/>네트워크 분할(P)은<br/>피할 수 없다"]
+    Note2["→ 실질적으로<br/>CP vs AP 선택"]
+
+    CP --> CP_Ex["HBase, MongoDB<br/>Redis Sentinel"]
+    AP --> AP_Ex["Cassandra, DynamoDB<br/>Riak"]
+
+    style C fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style A fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style P fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style CP fill:#e1bee7,stroke:#8e24aa,stroke-width:2px
+    style AP fill:#fff9c4,stroke:#f9a825,stroke-width:2px

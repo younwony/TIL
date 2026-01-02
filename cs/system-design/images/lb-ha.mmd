@@ -1,0 +1,17 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    DNS["DNS / VIP"]
+
+    DNS --> LB1 & LB2
+
+    LB1["LB 1<br/>(Active)"]
+    LB2["LB 2<br/>(Standby)"]
+
+    LB1 <-.->|Heartbeat| LB2
+
+    LB1 & LB2 --> Servers["서버 그룹"]
+
+    style DNS fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style LB1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style LB2 fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Servers fill:#e1bee7,stroke:#8e24aa,stroke-width:2px

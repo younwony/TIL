@@ -1,0 +1,19 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Sync["동기 (Synchronous) - REST API"]
+        direction LR
+        O1[Order] --> P1[Payment] --> S1[Stock]
+        P1 -->|대기| O1
+        S1 -->|대기| P1
+    end
+
+    subgraph Async["비동기 (Asynchronous) - Event"]
+        direction LR
+        O2[Order] -->|OrderCreated| Broker[(Kafka)]
+        Broker --> P2[Payment]
+        Broker --> S2[Stock]
+    end
+
+    style O1 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style O2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Broker fill:#bbdefb,stroke:#1976d2,stroke-width:2px

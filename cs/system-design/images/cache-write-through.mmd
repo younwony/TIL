@@ -1,0 +1,14 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    autonumber
+    participant App as Application
+    participant Cache as Cache
+    participant DB as Database
+
+    rect rgb(200, 230, 200)
+        Note over App, DB: Write-Through (동기 쓰기)
+        App->>Cache: 1. WRITE data
+        Cache->>DB: 2. WRITE to DB
+        DB-->>Cache: 3. Confirm
+        Cache-->>App: 4. Response
+    end

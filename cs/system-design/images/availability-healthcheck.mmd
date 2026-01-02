@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Layer1["로드밸런서 → 애플리케이션"]
+        LB[LB] -->|GET /health| App[Application]
+        App -->|200 OK / 503| LB
+        Check1["✓ HTTP 응답 200 OK<br/>✓ 응답 시간 < 500ms"]
+        Fail1["✗ 3회 연속 타임아웃<br/>→ 트래픽 차단"]
+    end
+
+    subgraph Layer2["애플리케이션 → 데이터베이스"]
+        App2[Application] -->|SELECT 1| DB[Database]
+        DB -->|성공/실패| App2
+        Check2["✓ DB 커넥션 풀 가용<br/>✓ 쿼리 실행 성공<br/>✓ 응답 시간 < 1초"]
+        Fail2["실패 시:<br/>→ 503 반환<br/>→ LB가 트래픽 차단"]
+    end
+
+    subgraph Layer3["모니터링 → 전체 시스템"]
+        Prom[Prometheus] -->|메트릭 수집| Sys[시스템]
+        Check3["✓ CPU < 80%<br/>✓ 메모리 < 85%<br/>✓ 디스크 < 90%<br/>✓ 에러율 < 1%"]
+        Fail3["실패 시:<br/>→ 알림 발송<br/>→ 자동 스케일링"]
+    end
+
+    style LB fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style App fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style DB fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Prom fill:#e1bee7,stroke:#8e24aa,stroke-width:2px

@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart LR
+    subgraph Strong["강한 일관성"]
+        L1["선형화 가능<br/>Linearizability"]
+        L2["순차적 일관성<br/>Sequential"]
+    end
+
+    subgraph Medium["중간"]
+        L3["인과적 일관성<br/>Causal"]
+        L4["세션 일관성<br/>Session"]
+    end
+
+    subgraph Weak["약한 일관성"]
+        L5["최종 일관성<br/>Eventual"]
+    end
+
+    L1 --> L2 --> L3 --> L4 --> L5
+
+    Strong --> Strict["가장 엄격<br/>성능 낮음<br/>가용성 낮음"]
+    Weak --> Loose["가장 느슨<br/>성능 높음<br/>가용성 높음"]
+
+    style L1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style L2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style L3 fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style L4 fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style L5 fill:#ffcdd2,stroke:#c62828,stroke-width:2px

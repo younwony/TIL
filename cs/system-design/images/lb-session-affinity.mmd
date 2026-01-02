@@ -1,0 +1,26 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Problem["❌ 문제 상황: 세션 유실"]
+        P1["요청 1: 로그인 → 서버A (세션 저장)"]
+        P2["요청 2: 장바구니 → 서버B (세션 없음!)"]
+    end
+
+    subgraph Solution1["해결 1: Sticky Session"]
+        S1D["쿠키에 서버 ID 저장 → 같은 서버로 라우팅<br/>단점: 서버 장애 시 세션 유실"]
+    end
+
+    subgraph Solution2["✅ 해결 2: 세션 외부화 (권장)"]
+        direction TB
+        SA[서버 A]
+        SB[서버 B]
+        SC[서버 C]
+        Redis[("Redis<br/>(세션 저장)")]
+        SA & SB & SC --> Redis
+    end
+
+    Problem --> Solution1
+    Problem --> Solution2
+
+    style Problem fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style Solution1 fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Solution2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

@@ -1,0 +1,17 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Aggregate["Order Aggregate"]
+        Root["Order<br/>(Aggregate Root)"]
+        Root --> I1["OrderItem<br/>(Entity)"]
+        Root --> I2["OrderItem<br/>(Entity)"]
+        Root --> Addr["ShippingAddr<br/>(Value Object)"]
+        Root --> Money["Money<br/>(Value Object)"]
+    end
+
+    External[External Access] -.->|통해서만| Root
+
+    style Root fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style I1 fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style I2 fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style Addr fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Money fill:#ffe0b2,stroke:#e65100,stroke-width:2px

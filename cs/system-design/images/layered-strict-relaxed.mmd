@@ -1,0 +1,18 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    subgraph Strict["Strict Layering (엄격한 계층화)"]
+        SP[Presentation] -->|바로 아래만| SB[Business]
+        SB -->|바로 아래만| SD[Data]
+    end
+
+    subgraph Relaxed["Relaxed Layering (느슨한 계층화)"]
+        RP[Presentation] -->|모든 하위| RB[Business]
+        RP -->|모든 하위| RD[Data]
+        RB --> RD
+    end
+
+    Strict --> S_Note["장점: 계층 간 결합도 최소화<br/>명확한 구조"]
+    Relaxed --> R_Note["장점: 성능 최적화 가능<br/>유연성"]
+
+    style SP fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style RP fill:#bbdefb,stroke:#1976d2,stroke-width:2px

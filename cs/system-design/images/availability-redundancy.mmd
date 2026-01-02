@@ -1,0 +1,50 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    Client[클라이언트]
+    Client --> DNS[DNS 라운드 로빈<br/>다중 IP]
+
+    DNS --> LB1[LB1]
+    DNS --> LB2[LB2]
+    DNS --> LB3[LB3]
+
+    subgraph LBLayer["로드밸런서 이중화"]
+        LB1
+        LB2
+        LB3
+    end
+
+    LB1 & LB2 & LB3 --> App1[App1]
+    LB1 & LB2 & LB3 --> App2[App2]
+    LB1 & LB2 & LB3 --> App3[App3]
+
+    subgraph AppLayer["애플리케이션 이중화"]
+        App1
+        App2
+        App3
+    end
+
+    App1 & App2 & App3 --> Cache1[Cache1]
+    App1 & App2 & App3 --> Cache2[Cache2]
+    App1 & App2 & App3 --> Cache3[Cache3]
+
+    subgraph CacheLayer["캐시 이중화 (센티넬)"]
+        Cache1
+        Cache2
+        Cache3
+    end
+
+    Cache1 & Cache2 & Cache3 --> Master[DB Master]
+
+    Master --> R1[Replica1]
+    Master --> R2[Replica2]
+    Master --> R3[Replica3]
+
+    subgraph DBLayer["DB 이중화 (레플리카)"]
+        R1
+        R2
+        R3
+    end
+
+    style Client fill:#e1bee7,stroke:#8e24aa,stroke-width:2px
+    style DNS fill:#ffe0b2,stroke:#e65100,stroke-width:2px
+    style Master fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px

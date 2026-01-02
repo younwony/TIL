@@ -1,0 +1,21 @@
+%%{init: {'theme': 'neutral'}}%%
+flowchart TB
+    LB[Load Balancer]
+
+    LB --> GW1 & GW2 & GW3
+
+    subgraph Gateways["Gateway Layer (Stateless)"]
+        GW1[Gateway 1]
+        GW2[Gateway 2]
+        GW3[Gateway 3]
+    end
+
+    GW1 & GW2 & GW3 --> Redis
+
+    Redis[("Redis<br/>(세션, 캐시, Rate Limit)")]
+
+    style LB fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style GW1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style GW2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style GW3 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Redis fill:#ffcdd2,stroke:#c62828,stroke-width:2px

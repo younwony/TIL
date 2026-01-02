@@ -1,0 +1,21 @@
+%%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    participant C as Client
+    participant M as Master
+    participant R1 as Replica1
+    participant R2 as Replica2
+
+    C->>M: Write(x=10)
+    M->>M: 로그에 기록
+    M->>C: Success (즉시 응답)
+
+    Note over C: 빠른 응답!
+
+    rect rgb(230, 230, 250)
+        Note over M,R2: 백그라운드 복제
+        M-->>R1: 비동기 복제
+        M-->>R2: 비동기 복제
+        Note over R1,R2: 수 ms ~ 수 초 후 반영
+    end
+
+    Note over M,R2: 쓰기 지연 = Master만 (10ms)<br/>복제 지연 = 수 ms ~ 수 초
