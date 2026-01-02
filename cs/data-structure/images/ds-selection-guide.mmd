@@ -1,0 +1,32 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    Start["자료구조 선택"] --> Q1{"빠른 접근\n(인덱스) 필요?"}
+    Q1 -->|Yes| Array["배열"]
+    Q1 -->|No| Q2{"삽입/삭제가\n빈번?"}
+
+    Q2 -->|Yes| LinkedList["연결 리스트"]
+    Q2 -->|No| Q3{"키로 빠른\n검색 필요?"}
+
+    Q3 -->|Yes| Hash["해시 테이블"]
+    Q3 -->|No| Q4{"계층 구조\n정렬 필요?"}
+
+    Q4 -->|Yes| Tree["트리 (BST, AVL)"]
+    Q4 -->|No| Q5{"최대/최소값\n빠르게 필요?"}
+
+    Q5 -->|Yes| Heap["힙"]
+    Q5 -->|No| Q6{"관계 표현\n필요?"}
+
+    Q6 -->|Yes| Graph["그래프"]
+    Q6 -->|No| Q7{"LIFO/FIFO\n필요?"}
+
+    Q7 -->|LIFO| Stack["스택"]
+    Q7 -->|FIFO| Queue["큐"]
+
+    style Array fill:#e8f5e9,stroke:#388e3c
+    style LinkedList fill:#e8f5e9,stroke:#388e3c
+    style Hash fill:#e8f5e9,stroke:#388e3c
+    style Tree fill:#e8f5e9,stroke:#388e3c
+    style Heap fill:#e8f5e9,stroke:#388e3c
+    style Graph fill:#e8f5e9,stroke:#388e3c
+    style Stack fill:#e8f5e9,stroke:#388e3c
+    style Queue fill:#e8f5e9,stroke:#388e3c

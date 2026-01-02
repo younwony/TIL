@@ -154,27 +154,7 @@ Exit code 0에서 stdout으로 JSON을 출력하면 세밀한 제어가 가능�
 
 ### Hook 실행 흐름
 
-```
-1. Claude가 Tool 호출 결정
-   └─> "Edit 도구로 config.js 수정"
-
-2. PreToolUse Hook 트리거
-   └─> matcher: "Edit" 일치
-   └─> command 실행
-
-3. Hook 스크립트에 JSON 입력 전달 (stdin)
-   └─> { "tool_name": "Edit", "tool_input": { "file_path": "..." } }
-
-4. Hook 결과 평가
-   ├─> exit 0: Tool 실행 진행
-   ├─> exit 2: Tool 실행 차단, stderr를 Claude에 전달
-   └─> exit 1,3+: 경고 후 진행
-
-5. Tool 실행 (차단되지 않은 경우)
-
-6. PostToolUse Hook 트리거
-   └─> 자동 포맷팅, 로깅 등
-```
+![Hook 실행 흐름](./images/hook-execution-flow.svg)
 
 ### Hook에 전달되는 입력 데이터
 

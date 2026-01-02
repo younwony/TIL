@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph SubAgent["Sub Agent = WHO 누가"]
+        SA1["- 독립적으로 작업하는 전문가"]
+        SA2["- 별도 컨텍스트에서 집중 작업"]
+        SA3["- 결과만 메인에게 반환"]
+    end
+
+    subgraph Skill["Skill = HOW 어떻게"]
+        SK1["- 작업 시 참고하는 지침/규칙"]
+        SK2["- 상황에 맞게 자동 발견"]
+        SK3["- 일관된 품질 보장"]
+    end
+
+    Together["함께 사용하면<br/>전문가가 + 규칙대로 = 최적의 결과"]
+    SubAgent --> Together
+    Skill --> Together

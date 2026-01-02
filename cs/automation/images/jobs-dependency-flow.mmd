@@ -1,0 +1,18 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    test["test"]
+    test --> security["security"]
+    test --> build["build"]
+
+    security --> staging["deploy-staging"]
+    build --> staging
+
+    staging --> approval["승인 대기 ⏸️"]
+    approval --> prod["deploy-prod"]
+
+    style test fill:#e3f2fd,stroke:#1976d2
+    style security fill:#fff3e0,stroke:#f57c00
+    style build fill:#fff3e0,stroke:#f57c00
+    style staging fill:#e8f5e9,stroke:#388e3c
+    style approval fill:#ffcdd2,stroke:#c62828
+    style prod fill:#c8e6c9,stroke:#2e7d32

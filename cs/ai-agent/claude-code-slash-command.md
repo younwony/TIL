@@ -126,38 +126,11 @@ $ARGUMENTS 변수로 사용자 입력을 받을 수 있습니다.
 
 ### 명령어 실행 흐름
 
-```
-1. 사용자가 명령어 입력
-   └─> /review src/app.js
-
-2. Claude Code가 명령어 파일 검색
-   ├─> .claude/commands/review.md (프로젝트)
-   └─> ~/.claude/commands/review.md (사용자)
-
-3. 변수 치환
-   └─> $ARGUMENTS → "src/app.js"
-   └─> $1 → "src/app.js"
-
-4. Bash 명령어 실행 (있는 경우)
-   └─> !`git status`! → 실제 출력으로 대체
-
-5. 최종 프롬프트를 Claude에게 전달
-
-6. Claude가 응답 생성
-```
+![명령어 실행 흐름](./images/command-execution-flow.svg)
 
 ### 파일 검색 순서
 
-```
-1. 프로젝트 명령어 (.claude/commands/)
-   └─> 매칭되면 사용, 아니면 다음 단계
-
-2. 사용자 명령어 (~/.claude/commands/)
-   └─> 매칭되면 사용, 아니면 에러
-
-3. 내장 명령어
-   └─> /help, /clear 등
-```
+![파일 검색 순서](./images/command-search-order.svg)
 
 ## 예제 코드
 

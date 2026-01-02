@@ -1,0 +1,18 @@
+flowchart TB
+    subgraph AI["AI 모델"]
+        Claude[Claude]
+        ChatGPT[ChatGPT]
+        Gemini[Gemini]
+    end
+    subgraph Tools["도구/서비스"]
+        GitHub1[GitHub<br/>Claude 전용]
+        GitHub2[GitHub<br/>ChatGPT 전용]
+        Slack1[Slack<br/>Claude 전용]
+        Slack2[Slack<br/>ChatGPT 전용]
+    end
+    Claude -->|"별도 구현"| GitHub1
+    ChatGPT -->|"별도 구현"| GitHub2
+    Claude -->|"별도 구현"| Slack1
+    ChatGPT -->|"별도 구현"| Slack2
+    Gemini -->|"... 계속 증가"| Tools
+    Note["3개 AI × 5개 도구 = 15개 통합 코드 필요"]

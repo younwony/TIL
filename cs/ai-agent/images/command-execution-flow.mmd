@@ -1,0 +1,39 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    subgraph Step1["1. 사용자가 명령어 입력"]
+        Input["/review src/app.js"]
+    end
+
+    subgraph Step2["2. 명령어 파일 검색"]
+        Search1[".claude/commands/review.md<br/>(프로젝트)"]
+        Search2["~/.claude/commands/review.md<br/>(사용자)"]
+    end
+
+    subgraph Step3["3. 변수 치환"]
+        Var1["$ARGUMENTS → src/app.js"]
+        Var2["$1 → src/app.js"]
+    end
+
+    subgraph Step4["4. Bash 명령어 실행"]
+        Bash["!git status! → 실제 출력으로 대체"]
+    end
+
+    subgraph Step5["5. 최종 프롬프트 전달"]
+        Prompt["Claude에게 전달"]
+    end
+
+    subgraph Step6["6. 응답 생성"]
+        Response["Claude가 응답 생성"]
+    end
+
+    Step1 --> Step2
+    Step2 --> Step3
+    Step3 --> Step4
+    Step4 --> Step5
+    Step5 --> Step6
+
+    Search1 -.-> Search2
+    Var1 -.-> Var2
+
+    style Input fill:#e3f2fd
+    style Response fill:#c8e6c9

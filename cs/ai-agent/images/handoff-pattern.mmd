@@ -1,0 +1,9 @@
+flowchart TB
+    Manager["Manager Agent<br/>조율자"]
+    Worker["Worker Agent<br/>실행자"]
+    Specialist["Specialist Agent<br/>전문가"]
+
+    Manager -->|"handoff - 작업 위임"| Worker
+    Worker -->|"결과 반환"| Manager
+    Manager -->|"handoff"| Specialist
+    Specialist -->|"협업"| Worker

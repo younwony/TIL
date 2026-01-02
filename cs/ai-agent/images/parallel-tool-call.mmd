@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant User as User
+    participant LLM as LLM
+    participant Tool1 as get_weather(서울)
+    participant Tool2 as get_weather(도쿄)
+
+    User->>LLM: 서울과 도쿄 날씨 비교해줘
+    Note over LLM: 병렬 호출 결정
+    par 병렬 실행
+        LLM->>Tool1: get_weather(서울)
+        Tool1-->>LLM: 25도 맑음
+    and
+        LLM->>Tool2: get_weather(도쿄)
+        Tool2-->>LLM: 28도 흐림
+    end
+    Note over LLM: 결과 취합
+    LLM-->>User: 서울은 25도로 맑고,<br/>도쿄는 28도로 흐립니다

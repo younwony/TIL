@@ -1,0 +1,19 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    subgraph Skewed["편향 트리 (삽입 순서: 1, 2, 3, 4, 5)"]
+        N1((1)) --> N2((2))
+        N2 --> N3((3))
+        N3 --> N4((4))
+        N4 --> N5((5))
+    end
+
+    subgraph Balanced["균형 트리 (이상적)"]
+        B3((3))
+        B3 --> B1((1))
+        B3 --> B4((4))
+        B1 --> B2((2))
+        B4 --> B5((5))
+    end
+
+    style Skewed fill:#ffcdd2,stroke:#f44336
+    style Balanced fill:#c8e6c9,stroke:#4caf50

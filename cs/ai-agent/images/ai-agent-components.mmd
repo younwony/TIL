@@ -1,0 +1,10 @@
+flowchart TB
+    subgraph Agent["AI Agent"]
+        direction TB
+        P["Perception<br/>(인식)"] --> PL["Planning<br/>(계획)"]
+        PL --> A["Action<br/>(실행)"]
+        P --> M["Memory<br/>(기억)"]
+        PL --> M
+        A --> M
+        M --> T["Tools<br/>(도구)"]
+    end

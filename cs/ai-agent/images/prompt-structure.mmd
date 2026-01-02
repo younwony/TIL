@@ -1,0 +1,10 @@
+flowchart TB
+    subgraph Prompt["프롬프트 구성 요소"]
+        Role["🎭 역할 Role<br/>당신은 경험 많은 요리사입니다"]
+        Context["📋 맥락 Context<br/>손님은 채식주의자입니다"]
+        Instruction["📝 지시 Instruction<br/>건강한 저녁 메뉴를 추천해주세요"]
+        Format["📊 출력 형식 Format<br/>재료, 조리법, 영양정보 포함"]
+        Examples["💡 예시 Examples<br/>예: 두부스테이크 - 두부, 양파..."]
+
+        Role --> Context --> Instruction --> Format --> Examples
+    end

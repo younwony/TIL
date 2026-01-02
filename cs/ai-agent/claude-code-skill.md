@@ -113,25 +113,7 @@ allowed-tools: Read, Grep, Glob
 
 ### Skill 자동 발견 프로세스
 
-```
-1. 사용자 요청 입력
-   └─> "이 PDF에서 텍스트 추출해줘"
-
-2. Claude가 사용 가능한 Skill 목록 확인
-   └─> Personal Skills (~/.claude/skills/)
-   └─> Project Skills (.claude/skills/)
-
-3. 각 Skill의 description과 요청 매칭
-   └─> "pdf-processing" Skill의 description:
-       "PDF 파일에서 텍스트를 추출..."
-   └─> 매칭됨!
-
-4. Skill 내용 로드 및 적용
-   └─> SKILL.md의 지침 따름
-   └─> 관련 파일 (scripts/, templates/) 활용
-
-5. 작업 수행 및 결과 반환
-```
+![Skill 자동 발견 프로세스](./images/skill-discovery.svg)
 
 ### 디렉토리 구조
 

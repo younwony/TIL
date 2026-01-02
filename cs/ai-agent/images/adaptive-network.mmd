@@ -1,0 +1,10 @@
+flowchart TB
+    AgentA["Agent A"]
+    AgentB["Agent B"]
+    AgentC["Agent C"]
+    AgentD["Agent D"]
+
+    AgentA <--> AgentB
+    AgentA --> AgentC
+    AgentB --> AgentC
+    AgentC --> AgentD

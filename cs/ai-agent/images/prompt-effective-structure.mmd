@@ -1,0 +1,10 @@
+flowchart TB
+    subgraph Structure["효과적인 프롬프트 구조"]
+        S1["1. System Prompt<br/>- LLM의 정체성, 역할, 규칙 정의<br/>- 세션 전체에 적용"]
+        S2["2. Context 맥락<br/>- 배경 정보, 참고 자료<br/>- 사용자 상황 설명"]
+        S3["3. Instruction 지시<br/>- 구체적인 작업 요청<br/>- 제약 조건 명시"]
+        S4["4. Examples 예시 - Optional<br/>- 원하는 출력 형태 시연<br/>- Few-shot 학습"]
+        S5["5. Output Format 출력 형식<br/>- 응답 형태 지정: JSON, 목록 등<br/>- 길이, 톤 지정"]
+
+        S1 --> S2 --> S3 --> S4 --> S5
+    end

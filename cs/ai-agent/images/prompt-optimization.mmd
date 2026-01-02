@@ -1,0 +1,28 @@
+flowchart TB
+    subgraph Checklist["프롬프트 최적화 체크리스트"]
+        subgraph Clarity["✅ 명확성 Clarity"]
+            CL1["모호한 표현 제거"]
+            CL2["구체적인 요구사항 명시"]
+            CL3["예: 좋은 → 3문장 이내의 간결한"]
+        end
+        subgraph StructureC["✅ 구조화 Structure"]
+            ST1["마크다운 헤더, 리스트 활용"]
+            ST2["논리적 순서 배치"]
+            ST3["긴 프롬프트는 섹션 구분"]
+        end
+        subgraph Constraints["✅ 제약 조건 Constraints"]
+            CO1["하지 말아야 할 것 명시"]
+            CO2["길이, 형식 제한"]
+            CO3["예: 모르면 모름이라고 답해"]
+        end
+        subgraph ExamplesC["✅ 예시 Examples"]
+            EX1["좋은 예시와 나쁜 예시 모두 제공"]
+            EX2["경계 사례 포함"]
+            EX3["다양한 케이스 커버"]
+        end
+        subgraph Verification["✅ 검증 Verification"]
+            VE1["여러 입력으로 테스트"]
+            VE2["엣지 케이스 확인"]
+            VE3["A/B 테스트로 비교"]
+        end
+    end

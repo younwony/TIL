@@ -1,0 +1,21 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart LR
+    subgraph Workflow["n8n 워크플로우"]
+        Trigger["📥 트리거\n(웹훅)"]
+        Process["🔄 처리\n(변환)"]
+        Condition["❓ 조건\n(분기)"]
+        Action["📤 액션\n(전송)"]
+        Action2["📤 다른 액션"]
+
+        Trigger --> Process --> Condition
+        Condition --> Action
+        Condition --> Action2
+    end
+
+    Note["각 블록(노드)을 드래그 & 연결하면 자동화 완성!"]
+
+    style Trigger fill:#fff3e0,stroke:#f57c00
+    style Process fill:#e3f2fd,stroke:#1976d2
+    style Condition fill:#f3e5f5,stroke:#7b1fa2
+    style Action fill:#e8f5e9,stroke:#388e3c
+    style Action2 fill:#e8f5e9,stroke:#388e3c

@@ -1,0 +1,25 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    Dev["개발자"] --> Push["git push"]
+    Push --> CI
+
+    subgraph CI["CI (품질 검사 라인)"]
+        direction LR
+        Lint["Lint 검사"] --> Build["Build 빌드"]
+        Build --> Unit["Unit Test"]
+        Unit --> E2E["E2E Test"]
+    end
+
+    CI -->|통과| CD
+
+    subgraph CD["CD (배포 라인)"]
+        direction LR
+        Staging["Staging 배포"] --> Approve["승인 (선택적)"]
+        Approve --> Prod["Prod 배포"]
+    end
+
+    CD --> Production["🎉 프로덕션"]
+
+    style CI fill:#e3f2fd,stroke:#1976d2
+    style CD fill:#e8f5e9,stroke:#388e3c
+    style Production fill:#c8e6c9,stroke:#2e7d32

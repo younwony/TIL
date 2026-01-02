@@ -1,0 +1,40 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    Problem["큰 문제"] --> Divide1["문제1"]
+    Problem --> Divide2["문제2"]
+
+    Divide1 --> A["a"]
+    Divide1 --> B["b"]
+    Divide2 --> C["c"]
+    Divide2 --> D["d"]
+
+    A --> Sol1["해1"]
+    B --> Sol1
+    C --> Sol2["해2"]
+    D --> Sol2
+
+    Sol1 --> Final["최종 해"]
+    Sol2 --> Final
+
+    subgraph DividePhase["Divide (분할)"]
+        Divide1
+        Divide2
+    end
+
+    subgraph ConquerPhase["Conquer (정복)"]
+        A
+        B
+        C
+        D
+    end
+
+    subgraph CombinePhase["Combine (결합)"]
+        Sol1
+        Sol2
+    end
+
+    style Problem fill:#e3f2fd
+    style Final fill:#c8e6c9
+    style DividePhase fill:#fff3e0,stroke:#ff9800
+    style ConquerPhase fill:#e1f5fe,stroke:#03a9f4
+    style CombinePhase fill:#f3e5f5,stroke:#9c27b0

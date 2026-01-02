@@ -1,0 +1,25 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    subgraph GCP["Google Cloud Platform"]
+        subgraph Runtime["Apps Script Runtime"]
+            V8["V8 엔진"]
+            Trigger["트리거"]
+            Logger["로깅"]
+        end
+    end
+
+    Runtime --> Sheets["Sheets"]
+    Runtime --> Gmail["Gmail"]
+    Runtime --> Drive["Drive"]
+    Runtime --> Docs["Docs"]
+    Runtime --> Calendar["Calendar"]
+    Runtime --> Forms["Forms"]
+
+    style GCP fill:#f5f5f5,stroke:#333
+    style Runtime fill:#e3f2fd,stroke:#1976d2
+    style Sheets fill:#e8f5e9,stroke:#388e3c
+    style Gmail fill:#ffcdd2,stroke:#c62828
+    style Drive fill:#fff3e0,stroke:#f57c00
+    style Docs fill:#e3f2fd,stroke:#1976d2
+    style Calendar fill:#f3e5f5,stroke:#7b1fa2
+    style Forms fill:#c8e6c9,stroke:#2e7d32

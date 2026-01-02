@@ -1,0 +1,6 @@
+flowchart TB
+    User["사용자 명령<br/>주문 API 만들어줘"]
+    Main["메인 에이전트 - CEO<br/>- 전체 계획 수립<br/>- 적절한 전문가 Sub Agent 호출"]
+    Sub["서브 에이전트 - 전문가<br/>- 독립 컨텍스트에서 작업<br/>- 필요한 Skill 지침서 참조<br/>- 결과만 메인에게 반환"]
+
+    User --> Main --> Sub

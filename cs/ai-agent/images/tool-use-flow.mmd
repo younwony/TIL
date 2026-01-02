@@ -1,0 +1,17 @@
+flowchart TB
+    subgraph Flow["Tool Use 흐름"]
+        User1["사용자: 오늘 날씨 어때?"]
+        LLM1["LLM - 뇌<br/>생각/추론"]
+        Note1["날씨를 알려면<br/>weather_api를<br/>호출해야겠다"]
+        Tool["Tool: weather_api - 손<br/>실제 API 호출"]
+        LLM2["LLM - 뇌<br/>결과 해석"]
+        Note2["맑음, 25도입니다<br/>자연어로 변환"]
+        User2["사용자: 오늘은 맑고 25도예요!"]
+
+        User1 --> LLM1
+        LLM1 -.-> Note1
+        LLM1 -->|"Tool Call"| Tool
+        Tool -->|"Tool Result"| LLM2
+        LLM2 -.-> Note2
+        LLM2 --> User2
+    end

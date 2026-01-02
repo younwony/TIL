@@ -1,0 +1,8 @@
+flowchart LR
+    Input["User<br/>Input"]
+    LLM["LLM<br/>추론"]
+    Tool["Tool<br/>실행"]
+    Result["Result<br/>결과"]
+
+    Input --> LLM --> Tool --> Result --> LLM
+    Note["반복: 목표 달성 또는 종료 조건까지"]

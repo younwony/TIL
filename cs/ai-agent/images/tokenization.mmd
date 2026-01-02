@@ -1,0 +1,10 @@
+flowchart TB
+    subgraph Input["입력: Hello, world!"]
+        direction LR
+        T1["Hello"] --- T2[","] --- T3[" world"] --- T4["!"]
+    end
+    subgraph TokenID["토큰 ID"]
+        direction LR
+        ID1["15496"] --- ID2["11"] --- ID3["995"] --- ID4["0"]
+    end
+    Input --> TokenID

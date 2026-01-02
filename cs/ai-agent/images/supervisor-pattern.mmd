@@ -1,0 +1,9 @@
+flowchart TB
+    Supervisor["Supervisor Agent<br/>중앙 제어, 작업 분배, 결과 통합"]
+    AgentA["Agent A<br/>코딩"]
+    AgentB["Agent B<br/>검색"]
+    AgentC["Agent C<br/>검증"]
+
+    Supervisor --> AgentA
+    Supervisor --> AgentB
+    Supervisor --> AgentC

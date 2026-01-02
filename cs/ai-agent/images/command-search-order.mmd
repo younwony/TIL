@@ -1,0 +1,31 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    Start(["/명령어 입력"]) --> ProjectCmd
+
+    subgraph Priority1["1순위: 프로젝트 명령어"]
+        ProjectCmd{".claude/commands/<br/>매칭 여부"}
+    end
+
+    subgraph Priority2["2순위: 사용자 명령어"]
+        UserCmd{"~/.claude/commands/<br/>매칭 여부"}
+    end
+
+    subgraph Priority3["3순위: 내장 명령어"]
+        BuiltIn["/help, /clear 등"]
+    end
+
+    ProjectCmd -->|매칭됨| UseProject["프로젝트 명령어 사용"]
+    ProjectCmd -->|없음| UserCmd
+
+    UserCmd -->|매칭됨| UseUser["사용자 명령어 사용"]
+    UserCmd -->|없음| BuiltIn
+
+    BuiltIn --> CheckBuiltIn{매칭 여부}
+    CheckBuiltIn -->|매칭됨| UseBuiltIn["내장 명령어 실행"]
+    CheckBuiltIn -->|없음| Error["명령어 없음 에러"]
+
+    style Start fill:#fff3e0
+    style UseProject fill:#c8e6c9
+    style UseUser fill:#c8e6c9
+    style UseBuiltIn fill:#c8e6c9
+    style Error fill:#ffcdd2

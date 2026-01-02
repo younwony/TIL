@@ -1,0 +1,7 @@
+flowchart TB
+    Input["사용자 입력:<br/>한국의 수도는?"] --> Tok["토큰화"]
+    Tok --> Emb["임베딩 변환"]
+    Emb --> Trans["Transformer<br/>Self-Attention"]
+    Trans --> Pred["다음 토큰 예측<br/>서울 95%"]
+    Pred --> Out["서울 출력"]
+    Out -->|"Auto-regressive"| Tok

@@ -1,0 +1,8 @@
+flowchart TB
+    subgraph Loop["Agentic Loop"]
+        direction TB
+        O["Observe<br/>환경/사용자 입력"] --> T["Think<br/>LLM 추론"]
+        T --> A["Act<br/>도구 실행/응답"]
+        A -->|"목표 미달성"| O
+    end
+    A -->|"목표 달성"| R["완료/결과"]

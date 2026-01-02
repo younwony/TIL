@@ -1,0 +1,27 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    subgraph CIBox["CI (Continuous Integration)"]
+        CI1["• 코드 변경사항 자주 통합"]
+        CI2["• 자동 빌드 & 테스트"]
+        CI3["• main 브랜치가 항상 빌드 가능한 상태"]
+    end
+
+    CIBox --> CDel
+
+    subgraph CDel["CD (Continuous Delivery)"]
+        CD1["• 언제든 배포 가능한 상태 유지"]
+        CD2["• 배포 자체는 수동 승인"]
+        CD3["• 배포 버튼만 누르면 바로 나감"]
+    end
+
+    CDel --> CDep
+
+    subgraph CDep["CD (Continuous Deployment)"]
+        CDP1["• 테스트 통과 시 자동 프로덕션 배포"]
+        CDP2["• 완전 자동화"]
+        CDP3["• 커밋하면 바로 프로덕션"]
+    end
+
+    style CIBox fill:#e3f2fd,stroke:#1976d2
+    style CDel fill:#fff3e0,stroke:#f57c00
+    style CDep fill:#e8f5e9,stroke:#388e3c

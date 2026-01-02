@@ -1,0 +1,17 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    Start([시작]) --> Init["max = arr[0]"]
+    Init --> HasNext{다음 원소?}
+
+    HasNext -->|예| Compare{원소 > max?}
+    HasNext -->|아니오| Return[max 반환]
+
+    Compare -->|예| Update["max = 원소"]
+    Compare -->|아니오| HasNext
+
+    Update --> HasNext
+
+    style Start fill:#fff3e0
+    style Return fill:#c8e6c9
+    style Compare fill:#e3f2fd
+    style HasNext fill:#e3f2fd

@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant User as User
+    participant LLM as LLM (Claude)
+    participant Client as MCP Client
+    participant Server as MCP Server (GitHub)
+    User->>LLM: "내 GitHub 레포지토리 목록 보여줘"
+    Note over LLM: 사용 가능한 도구 분석
+    LLM->>Client: tools/call: list_repositories
+    Client->>Server: JSON-RPC 요청
+    Note over Server: GitHub API 호출
+    Server-->>Client: 결과 반환
+    Client-->>LLM: 레포지토리 목록
+    Note over LLM: 결과를 자연어로 변환
+    LLM-->>User: "다음은 귀하의 GitHub 레포지토리 목록입니다: ..."

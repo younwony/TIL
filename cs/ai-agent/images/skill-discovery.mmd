@@ -1,0 +1,36 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    subgraph Step1["1. 사용자 요청 입력"]
+        Request["이 PDF에서 텍스트 추출해줘"]
+    end
+
+    subgraph Step2["2. 사용 가능한 Skill 목록 확인"]
+        Personal["Personal Skills<br/>~/.claude/skills/"]
+        Project["Project Skills<br/>.claude/skills/"]
+    end
+
+    subgraph Step3["3. description 매칭"]
+        Match["pdf-processing Skill의 description:<br/>PDF 파일에서 텍스트를 추출..."]
+        MatchResult["매칭됨!"]
+    end
+
+    subgraph Step4["4. Skill 내용 로드 및 적용"]
+        Load["SKILL.md의 지침 따름"]
+        Files["관련 파일 활용<br/>scripts/, templates/"]
+    end
+
+    subgraph Step5["5. 결과 반환"]
+        Result["작업 수행 완료"]
+    end
+
+    Step1 --> Step2
+    Personal --> Step3
+    Project --> Step3
+    Step3 --> Step4
+    Match --> MatchResult
+    Load --> Files
+    Step4 --> Step5
+
+    style Request fill:#e3f2fd
+    style MatchResult fill:#c8e6c9
+    style Result fill:#c8e6c9

@@ -1,0 +1,18 @@
+flowchart LR
+    subgraph AI["AI 모델"]
+        Claude[Claude]
+        ChatGPT[ChatGPT]
+        Gemini[Gemini]
+    end
+    MCP[MCP<br/>프로토콜]
+    subgraph Tools["도구/서비스"]
+        GitHub[GitHub]
+        Slack[Slack]
+        DB[DB ...]
+    end
+    Claude --> MCP
+    ChatGPT --> MCP
+    Gemini --> MCP
+    MCP --> GitHub
+    MCP --> Slack
+    MCP --> DB

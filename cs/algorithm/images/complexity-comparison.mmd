@@ -1,0 +1,27 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart LR
+    subgraph Legend["연산 횟수 (N = 1000 기준)"]
+        direction TB
+        NFactorial["O(N!) : 계산 불가"]
+        ExpN["O(2^N) : 계산 불가"]
+        NSquare["O(N²) : 1,000,000"]
+        NLogN["O(N log N) : 10,000"]
+        Linear["O(N) : 1,000"]
+        LogN["O(log N) : 10"]
+        Const["O(1) : 1"]
+    end
+
+    NFactorial --> ExpN
+    ExpN --> NSquare
+    NSquare --> NLogN
+    NLogN --> Linear
+    Linear --> LogN
+    LogN --> Const
+
+    style NFactorial fill:#ffcdd2
+    style ExpN fill:#ffcdd2
+    style NSquare fill:#fff9c4
+    style NLogN fill:#c8e6c9
+    style Linear fill:#c8e6c9
+    style LogN fill:#c8e6c9
+    style Const fill:#c8e6c9

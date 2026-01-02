@@ -1,0 +1,9 @@
+flowchart TB
+    AgentA["Agent A"]
+    AgentB["Agent B"]
+    Tool1["Tool 1"]
+    Tool2["Tool 2"]
+
+    AgentA <-->|"A2A Protocol"| AgentB
+    AgentA -->|"MCP"| Tool1
+    AgentB -->|"MCP"| Tool2

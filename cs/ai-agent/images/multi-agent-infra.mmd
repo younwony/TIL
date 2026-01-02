@@ -1,0 +1,13 @@
+flowchart TB
+    subgraph K8s["Kubernetes Cluster"]
+        Pod1["Agent Pod<br/>Coder"]
+        Pod2["Agent Pod<br/>Reviewer"]
+        Pod3["Agent Pod<br/>Deployer"]
+        Bus["Message Bus<br/>Kafka/RabbitMQ"]
+
+        Pod1 --> Bus
+        Pod2 --> Bus
+        Pod3 --> Bus
+    end
+    Obs["Observability: Logging | Metrics | Tracing"]
+    K8s --> Obs

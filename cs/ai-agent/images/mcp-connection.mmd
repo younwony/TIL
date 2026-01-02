@@ -1,0 +1,7 @@
+sequenceDiagram
+    participant Host as Host (Claude Desktop)
+    participant Server as MCP Server (GitHub)
+    Host->>Server: initialize<br/>{protocolVersion, ...}
+    Server-->>Host: initialize result<br/>{capabilities, ...}
+    Host->>Server: initialized
+    Server-->>Host: tools/list<br/>(사용 가능한 도구 목록)

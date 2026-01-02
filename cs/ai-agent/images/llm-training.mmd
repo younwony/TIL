@@ -1,0 +1,9 @@
+flowchart TB
+    subgraph PT["Pre-training"]
+        Data["인터넷 텍스트<br/>(TB 단위)"] --> NTP["Next Token Prediction<br/>입력: The cat sat on the<br/>정답: mat"]
+        NTP --> Repeat["수천억 번 반복"]
+    end
+    subgraph FT["Fine-tuning (RLHF)"]
+        RLHF["인간 피드백으로<br/>선호도 학습"]
+    end
+    PT --> FT

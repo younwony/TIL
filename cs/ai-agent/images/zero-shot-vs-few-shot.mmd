@@ -1,0 +1,12 @@
+flowchart LR
+    subgraph Zero["Zero-shot 예시 없음"]
+        Z1["다음 문장의 감정을 분류해주세요:<br/>오늘 정말 행복해!"]
+        Z2["응답: 긍정"]
+        Z1 --> Z2
+    end
+
+    subgraph Few["Few-shot 예시 포함"]
+        F1["예시:<br/>- 최악의 하루였어 → 부정<br/>- 그냥 그래 → 중립<br/>- 너무 좋아! → 긍정<br/><br/>분류할 문장: 오늘 정말 행복해!"]
+        F2["응답: 긍정"]
+        F1 --> F2
+    end

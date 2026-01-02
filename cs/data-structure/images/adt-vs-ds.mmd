@@ -1,0 +1,29 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart LR
+    subgraph ADT["ADT (무엇을 할 것인가?)"]
+        direction TB
+        List["리스트"]
+        Op1["• 삽입"]
+        Op2["• 삭제"]
+        Op3["• 검색"]
+    end
+
+    subgraph DS["자료구조 (어떻게 구현할 것인가?)"]
+        direction TB
+        Impl1["배열로 구현"]
+        Impl2["연결 리스트로 구현"]
+    end
+
+    ADT --> DS
+
+    subgraph Example["예: 스택 ADT"]
+        direction TB
+        E1["push(item): 항목 추가"]
+        E2["pop(): 항목 제거"]
+        E3["peek(): 맨 위 확인"]
+        E4["isEmpty(): 비었는지 확인"]
+    end
+
+    style ADT fill:#e3f2fd,stroke:#1976d2
+    style DS fill:#e8f5e9,stroke:#388e3c
+    style Example fill:#fff3e0,stroke:#f57c00

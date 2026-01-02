@@ -1,0 +1,8 @@
+flowchart TB
+    Input["입력"]
+    V1["1. Input Validation - 입력 검증<br/>- 금지어 필터링<br/>- 길이 제한"]
+    V2["2. Tool Permission - 도구 권한<br/>- 허용된 도구만 실행<br/>- 경로 제한"]
+    V3["3. Output Filtering - 출력 필터링<br/>- 민감 정보 마스킹<br/>- 응답 형식 검증"]
+    Output["출력"]
+
+    Input --> V1 --> V2 --> V3 --> Output

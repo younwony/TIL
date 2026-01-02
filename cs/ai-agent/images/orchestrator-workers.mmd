@@ -1,0 +1,9 @@
+flowchart TB
+    Lead["Lead Agent - Orchestrator<br/>- 전체 프로세스 조율<br/>- 작업 분해 및 할당<br/>- 결과 통합"]
+    Worker1["Worker 1<br/>독립 실행"]
+    Worker2["Worker 2<br/>독립 실행"]
+    Worker3["Worker 3<br/>독립 실행"]
+
+    Lead -->|"병렬 위임"| Worker1
+    Lead -->|"병렬 위임"| Worker2
+    Lead -->|"병렬 위임"| Worker3

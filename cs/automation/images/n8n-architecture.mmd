@@ -1,0 +1,19 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#333', 'primaryBorderColor': '#0288d1', 'lineColor': '#333', 'secondaryColor': '#f3e5f5', 'tertiaryColor': '#fff3e0'}}}%%
+flowchart TB
+    subgraph GCP["Google Cloud Platform"]
+        subgraph Server["n8n Server"]
+            Editor["Editor (UI)"]
+            Worker["Worker (실행기)"]
+            Webhook["Webhook (수신기)"]
+        end
+    end
+
+    Server --> DB["Database\n(SQLite/Postgres)"]
+    Server --> Cred["Credential Store\n(암호화)"]
+    Server --> API["외부 API\n(Slack, GitHub...)"]
+
+    style GCP fill:#f5f5f5,stroke:#333
+    style Server fill:#e3f2fd,stroke:#1976d2
+    style DB fill:#fff3e0,stroke:#f57c00
+    style Cred fill:#fce4ec,stroke:#c2185b
+    style API fill:#e8f5e9,stroke:#388e3c

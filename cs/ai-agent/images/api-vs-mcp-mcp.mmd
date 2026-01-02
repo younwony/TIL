@@ -1,0 +1,8 @@
+flowchart TB
+    subgraph MCP["MCP: LLM이 도구를 선택"]
+        User2["사용자: 이슈 만들어"]
+        LLM2["LLM"]
+        Server2["MCP 서버 - GitHub"]
+        User2 --> LLM2 --> Server2
+    end
+    Note2["1. tools/list로 뭐가 있나 확인<br/>2. create_issue 선택<br/>3. 호출"]

@@ -1,0 +1,8 @@
+flowchart TB
+    subgraph API["단순 API: 개발자가 도구를 결정"]
+        User1["사용자: 이슈 만들어"]
+        LLM1["LLM - 파라미터 생성만"]
+        Dev1["개발자가 미리 연결한<br/>GitHub API"]
+        User1 --> LLM1 --> Dev1
+    end
+    Note1["개발자가 프롬프트에<br/>GitHub API 있어 라고<br/>미리 알려줘야 함"]
