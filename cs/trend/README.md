@@ -20,3 +20,7 @@
 ### DevOps
 
 - [Platform Engineering](../devops/platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라, 55% 글로벌 조직 채택
+
+### Language
+
+- [WebAssembly](../language/webassembly.md) - 브라우저 넘어 서버/엣지로 확장, 네이티브 성능, 샌드박싱 보안
