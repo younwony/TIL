@@ -46,6 +46,7 @@
 | [쉘 스크립트](./shell-script.md) | Bash/PowerShell 기초, 자동화 스크립트 작성 | 자동화란 |
 | [Google Apps Script](./google-apps-script.md) | Google Workspace 자동화, JavaScript 기반 | JavaScript 기초 |
 | [n8n](./n8n.md) | 오픈소스 워크플로우 자동화 플랫폼 | 없음 (노코드) |
+| [Mermaid](./mermaid.md) | 텍스트 기반 다이어그램 생성 도구, Diagram as Code | 없음 |
 
 ### [3] 중급
 
