@@ -58,6 +58,7 @@ MCP 개념을 이해한 후 학습하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [RAG](./rag.md) | 검색 증강 생성, 외부 지식 기반 LLM 응답 `Trend` | LLM 기초, AI Agent란 |
 | [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
 | [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징 | MCP |
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
@@ -92,6 +93,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
 
 ### AI 협업 & 코딩 패러다임
+- [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
 - [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
 
 ### 확장 & 커스터마이징

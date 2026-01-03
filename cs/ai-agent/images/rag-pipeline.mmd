@@ -1,0 +1,36 @@
+flowchart TB
+    subgraph Indexing["1. Indexing (오프라인)"]
+        direction TB
+        D[("📄 Documents")]
+        C["✂️ Chunking"]
+        E["🔢 Embedding"]
+        V[("🗃️ Vector DB")]
+
+        D --> C
+        C --> E
+        E --> V
+    end
+
+    subgraph Query["2. Query (온라인)"]
+        direction TB
+        Q["❓ User Query"]
+        QE["🔢 Query Embedding"]
+        S["🔍 Similarity Search"]
+        R["📑 Top-K Chunks"]
+        L["🤖 LLM"]
+        A["💬 Answer"]
+
+        Q --> QE
+        QE --> S
+        S --> R
+        R --> L
+        Q --> L
+        L --> A
+    end
+
+    V -.->|retrieve| S
+
+    style D fill:#E8F5E9,stroke:#2E7D32
+    style V fill:#E3F2FD,stroke:#1976D2
+    style L fill:#FFF3E0,stroke:#F57C00
+    style A fill:#F3E5F5,stroke:#7B1FA2
