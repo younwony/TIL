@@ -18,6 +18,7 @@
 - [모니터링](./monitoring.md) - 로깅, 메트릭, 트레이싱 (선수: CI/CD)
 - [IaC](./iac.md) - Infrastructure as Code (선수: CI/CD)
 - [배포 전략](./deployment-strategy.md) - Blue-Green, Canary, Rolling Update (선수: CI/CD, Docker)
+- [FinOps](./finops.md) - 클라우드 비용 최적화, 단위 비용 관리 `Trend` (선수: CI/CD, 클라우드 기초)
 
 ### [4] 심화
 
