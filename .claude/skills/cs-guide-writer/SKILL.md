@@ -353,21 +353,38 @@ A: {답변 - "왜?"에 대한 설명 포함}
 4. 문서 상단에 `Trend` 마크 추가
 5. `cs/trend/README.md`에도 링크 추가 (트렌드 인덱스)
 
-## 다이어그램 가이드 (mermaid-diagram 스킬 연동)
+## 다이어그램 가이드
 
-**ASCII 대신 Mermaid SVG 다이어그램 사용**
+**ASCII 대신 SVG 다이어그램 사용**
 
-시각적 설명이 필요한 경우 ASCII 다이어그램 대신 Mermaid CLI로 SVG를 생성합니다.
+시각적 설명이 필요한 경우 ASCII 다이어그램 대신 SVG를 생성합니다. 두 가지 방식을 상황에 맞게 선택합니다.
+
+### 방식 선택 가이드
+
+| 상황 | 권장 방식 | 이유 |
+|------|----------|------|
+| **플로우차트, 시퀀스** | Mermaid | 자동 레이아웃, 빠른 작성 |
+| **ER/클래스 다이어그램** | Mermaid | UML 문법 지원 |
+| **상태 다이어그램** | Mermaid | 상태 전이 표현 용이 |
+| **마인드맵, Git 그래프** | Mermaid | 전용 문법 지원 |
+| **계층 구조 (OSI 등)** | SVG 직접 | 정교한 테이블 레이아웃 |
+| **네트워크 토폴로지** | SVG 직접 | 정확한 배치 제어 |
+| **패킷/프레임 구조** | SVG 직접 | 데이터 구조 시각화 |
+| **비교 다이어그램** | SVG 직접 | 좌우/전후 비교 레이아웃 |
+| **정교한 레이아웃 필요** | SVG 직접 | 픽셀 단위 제어 가능 |
 
 ### 다이어그램 적용 섹션
 
-| 섹션 | 다이어그램 유형 | 사용 사례 |
+| 섹션 | 다이어그램 유형 | 권장 방식 |
 |------|----------------|----------|
-| 핵심 개념 | Mindmap | 전체 개념 구조 한눈에 파악 |
-| 상세 설명 | Flowchart / Architecture | 구조, 흐름, 관계 시각화 |
-| 동작 원리 | Sequence / Flowchart | API 흐름, 상태 전환 |
+| 핵심 개념 | Mindmap | Mermaid |
+| 상세 설명 | Flowchart / 구조도 | Mermaid 또는 SVG |
+| 동작 원리 | Sequence / 상태 전환 | Mermaid |
+| 계층/구조 | 테이블 / 토폴로지 | SVG 직접 |
 
-### 다이어그램 생성 절차
+### 방식 1: Mermaid CLI (mermaid-diagram 스킬)
+
+**적합한 경우:** 플로우차트, 시퀀스, 상태 다이어그램, 마인드맵 등
 
 ```bash
 # 1. images 디렉토리 생성
@@ -382,8 +399,39 @@ npx -p @mermaid-js/mermaid-cli mmdc \
   -b transparent
 
 # 4. git add
-git -C "C:/workspace/intellij/TIL" add cs/{category}/images/
+git add cs/{category}/images/
 ```
+
+**지원 다이어그램:** Flowchart, Sequence, Class, State, ER, Gantt, Mindmap, GitGraph, Timeline, C4 등
+
+자세한 문법과 템플릿은 `mermaid-diagram` 스킬 참조.
+
+### 방식 2: SVG 직접 생성 (svg-diagram 스킬)
+
+**적합한 경우:** 계층 구조, 비교표, 정교한 레이아웃, 데이터 구조
+
+```bash
+# 1. images 디렉토리 생성
+mkdir -p cs/{category}/images
+
+# 2. SVG 파일 직접 작성
+# cs/{category}/images/{name}.svg
+
+# 3. git add
+git add cs/{category}/images/
+```
+
+**색상 팔레트 (필수 준수):**
+
+| 용도 | 시작색 | 끝색 |
+|------|--------|------|
+| 파랑 (기본) | #3498DB | #2980B9 |
+| 초록 (성공) | #2ECC71 | #27AE60 |
+| 빨강 (경고) | #E74C3C | #C0392B |
+| 주황 | #E67E22 | #D35400 |
+| 보라 | #9B59B6 | #8E44AD |
+
+자세한 템플릿과 스타일 가이드는 `svg-diagram` 스킬 참조.
 
 ### 마크다운 삽입
 
@@ -391,13 +439,12 @@ git -C "C:/workspace/intellij/TIL" add cs/{category}/images/
 ![{설명}](./images/{name}.svg)
 ```
 
-### 다이어그램 유형 선택
+### 결정 플로우
 
-| 목적 | 유형 |
-|------|------|
-| 로직/흐름/상태 전환 | Flowchart |
-| API/통신 흐름 | Sequence |
-| 시스템 구조 | Architecture (Flowchart LR + subgraph) |
-| 개념 정리 | Mindmap |
-
-상세한 템플릿과 스타일 가이드는 `mermaid-diagram` 스킬 참조.
+1. **복잡한 논리 흐름, 분기가 많음** → Mermaid Flowchart
+2. **API/시스템 간 통신** → Mermaid Sequence
+3. **DB 스키마, 클래스 관계** → Mermaid ER/Class
+4. **개념 정리, 브레인스토밍** → Mermaid Mindmap
+5. **OSI 7계층 같은 테이블 형태** → SVG 직접
+6. **네트워크 토폴로지, 아키텍처** → SVG 직접 (정교) 또는 Mermaid (빠름)
+7. **정확한 위치/크기 제어 필요** → SVG 직접
