@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450">
+  <defs>
+    <linearGradient id="vpcGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="publicGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="privateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="gwGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- VPC Container -->
+  <rect x="20" y="20" width="660" height="350" rx="10" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2"/>
+  <text x="350" y="45" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="16" font-weight="bold">VPC (10.0.0.0/16)</text>
+
+  <!-- AZ A -->
+  <rect x="40" y="60" width="300" height="180" rx="8" fill="white" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="190" y="80" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="11">Availability Zone A</text>
+
+  <!-- Public Subnet A -->
+  <rect x="55" y="95" width="125" height="130" rx="5" fill="#E8F5E9" stroke="#27AE60" stroke-width="1"/>
+  <rect x="60" y="100" width="115" height="20" rx="3" fill="url(#publicGrad)"/>
+  <text x="117" y="114" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Public Subnet</text>
+  <text x="117" y="135" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">10.0.1.0/24</text>
+
+  <rect x="70" y="150" width="95" height="25" rx="4" fill="url(#vpcGrad)"/>
+  <text x="117" y="167" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">ALB</text>
+
+  <rect x="70" y="185" width="95" height="25" rx="4" fill="url(#vpcGrad)"/>
+  <text x="117" y="202" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">Bastion Host</text>
+
+  <!-- Private Subnet A -->
+  <rect x="200" y="95" width="125" height="130" rx="5" fill="#FFF3E0" stroke="#D35400" stroke-width="1"/>
+  <rect x="205" y="100" width="115" height="20" rx="3" fill="url(#privateGrad)"/>
+  <text x="262" y="114" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Private Subnet</text>
+  <text x="262" y="135" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">10.0.10.0/24</text>
+
+  <rect x="215" y="150" width="95" height="25" rx="4" fill="url(#privateGrad)"/>
+  <text x="262" y="167" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">App Server</text>
+
+  <rect x="215" y="185" width="95" height="25" rx="4" fill="url(#privateGrad)"/>
+  <text x="262" y="202" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">RDS</text>
+
+  <!-- AZ B -->
+  <rect x="360" y="60" width="300" height="180" rx="8" fill="white" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="510" y="80" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="11">Availability Zone B</text>
+
+  <!-- Public Subnet B -->
+  <rect x="375" y="95" width="125" height="130" rx="5" fill="#E8F5E9" stroke="#27AE60" stroke-width="1"/>
+  <rect x="380" y="100" width="115" height="20" rx="3" fill="url(#publicGrad)"/>
+  <text x="437" y="114" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Public Subnet</text>
+  <text x="437" y="135" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">10.0.2.0/24</text>
+
+  <rect x="390" y="150" width="95" height="25" rx="4" fill="url(#vpcGrad)"/>
+  <text x="437" y="167" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">NAT Gateway</text>
+
+  <!-- Private Subnet B -->
+  <rect x="520" y="95" width="125" height="130" rx="5" fill="#FFF3E0" stroke="#D35400" stroke-width="1"/>
+  <rect x="525" y="100" width="115" height="20" rx="3" fill="url(#privateGrad)"/>
+  <text x="582" y="114" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Private Subnet</text>
+  <text x="582" y="135" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">10.0.11.0/24</text>
+
+  <rect x="535" y="150" width="95" height="25" rx="4" fill="url(#privateGrad)"/>
+  <text x="582" y="167" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">App Server</text>
+
+  <rect x="535" y="185" width="95" height="25" rx="4" fill="url(#privateGrad)"/>
+  <text x="582" y="202" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">RDS Replica</text>
+
+  <!-- Gateways -->
+  <rect x="100" y="280" width="140" height="35" rx="5" fill="url(#gwGrad)"/>
+  <text x="170" y="302" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Internet Gateway</text>
+
+  <rect x="460" y="280" width="140" height="35" rx="5" fill="url(#gwGrad)"/>
+  <text x="530" y="302" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">NAT Gateway</text>
+
+  <!-- Internet -->
+  <ellipse cx="350" cy="410" rx="80" ry="25" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
+  <text x="350" y="415" text-anchor="middle" fill="#1976D2" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Internet</text>
+
+  <!-- Arrows -->
+  <line x1="170" y1="315" x2="170" y2="380" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="170" y1="380" x2="280" y2="400" stroke="#7F8C8D" stroke-width="2"/>
+
+  <line x1="530" y1="315" x2="530" y2="380" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="530" y1="380" x2="420" y2="400" stroke="#7F8C8D" stroke-width="2"/>
+
+  <!-- Connection lines -->
+  <line x1="175" y1="162" x2="200" y2="162" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <line x1="495" y1="162" x2="520" y2="162" stroke="#D35400" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <rect x="40" y="340" width="10" height="10" fill="url(#publicGrad)"/>
+  <text x="55" y="349" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">Public</text>
+
+  <rect x="100" y="340" width="10" height="10" fill="url(#privateGrad)"/>
+  <text x="115" y="349" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">Private</text>
+</svg>

@@ -1,0 +1,55 @@
+flowchart TB
+    subgraph Dev["Development"]
+        D1[("Source Code")]
+        D2["Docker Build"]
+        D3["Container Registry"]
+    end
+
+    subgraph CI["CI/CD Pipeline"]
+        C1["Build"]
+        C2["Test"]
+        C3["Deploy"]
+    end
+
+    subgraph K8s["Kubernetes Cluster"]
+        subgraph Ingress["Ingress Layer"]
+            I1["API Gateway"]
+            I2["Load Balancer"]
+        end
+
+        subgraph Services["Microservices"]
+            S1["User Service"]
+            S2["Order Service"]
+            S3["Payment Service"]
+        end
+
+        subgraph Mesh["Service Mesh"]
+            M1["Sidecar Proxy"]
+        end
+
+        subgraph Obs["Observability"]
+            O1["Metrics"]
+            O2["Logs"]
+            O3["Traces"]
+        end
+    end
+
+    subgraph Cloud["Cloud Infrastructure"]
+        CL1[("Database")]
+        CL2[("Object Storage")]
+        CL3["Message Queue"]
+    end
+
+    D1 --> D2 --> D3
+    D3 --> C1 --> C2 --> C3
+    C3 --> K8s
+
+    I1 --> S1 & S2 & S3
+    S1 & S2 & S3 --> M1
+    M1 --> CL1 & CL2 & CL3
+
+    S1 & S2 & S3 --> Obs
+
+    style D1 fill:#E8F5E9,stroke:#2E7D32
+    style K8s fill:#E3F2FD,stroke:#1976D2
+    style Cloud fill:#FFF3E0,stroke:#F57C00

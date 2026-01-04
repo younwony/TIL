@@ -61,6 +61,7 @@ TCP/IP 개념을 이해한 후 학습하세요.
 | [WebSocket](./websocket.md) | 실시간 양방향 통신 | HTTP |
 | [gRPC](./grpc.md) | HTTP/2 기반 고성능 RPC 프레임워크 | HTTP/HTTPS, TCP/IP |
 | [GraphQL](./graphql.md) | 클라이언트 중심 쿼리 언어 | HTTP/HTTPS, REST API |
+| [VPC](./vpc.md) | 클라우드 가상 네트워크, Subnet, Peering | 네트워크란, TCP/IP |
 
 ### [4] 심화
 
@@ -84,6 +85,7 @@ TCP/IP 개념을 이해한 후 학습하세요.
 - [Load Balancing](./load-balancing.md) - L4/L7 로드밸런싱, 알고리즘, 헬스체크
 - [CDN](./cdn.md) - CDN 개념, 엣지 서버, 캐싱 전략
 - [GraphQL](./graphql.md) - 클라이언트 중심 쿼리 언어, Over-fetching/Under-fetching 해결
+- [VPC](./vpc.md) - 클라우드 가상 네트워크, Subnet, Peering, Security Group
 
 ## 작성 예정
 
