@@ -40,6 +40,7 @@
 | 문서 | 설명 | 예상 시간 |
 |------|------|----------|
 | [시스템 설계란](./what-is-system-design.md) | 시스템 설계의 정의, 목표, 접근 방법 | 25분 |
+| [Cloud Computing](./cloud-computing.md) | IaaS/PaaS/SaaS, 클라우드 서비스 모델 | 30분 |
 
 ### [2] 입문
 
@@ -90,6 +91,7 @@
 
 ### 기초 개념
 - [시스템 설계란](./what-is-system-design.md) - 시스템 설계의 정의, 목표, 접근 방법
+- [Cloud Computing](./cloud-computing.md) - IaaS/PaaS/SaaS, 클라우드 서비스 모델, 배포 모델
 - [Cloud Native](./cloud-native.md) - 컨테이너, 마이크로서비스, 서비스 메시 `Trend 2025`
 - [확장성 (Scalability)](./scalability.md) - 수직/수평 확장, 스케일 아웃 전략
 - [가용성 (Availability)](./availability.md) - 고가용성(HA), 이중화, 페일오버, 헬스체크, SLA/SLO
