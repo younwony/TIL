@@ -20,6 +20,7 @@
 ### DevOps
 
 - [Platform Engineering](../devops/platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라, 55% 글로벌 조직 채택
+- [DevSecOps](../devops/devsecops.md) - 개발-보안-운영 통합, Shift-Everywhere 패러다임, 75% 기업 보안 투자 증가
 
 ### Language
 
