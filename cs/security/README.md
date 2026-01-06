@@ -30,6 +30,9 @@
 │                    [4] 웹 보안                                   │
 │                        - 취약점 방어                             │
 │                                                                  │
+│   [3] Cloud Security ←───── Cloud Computing 기초 필요           │
+│        - 공유 책임 모델, IAM, Zero Trust                        │
+│                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -59,6 +62,7 @@
 |------|------|----------|
 | [HTTPS와 TLS](./https-tls.md) | HTTPS 동작 원리, TLS 핸드셰이크, 인증서 | 암호화, TCP/IP |
 | [인증과 인가](./authentication-authorization.md) | 인증 vs 인가, 세션/토큰 기반, RBAC | 암호화 |
+| [Cloud Security](./cloud-security.md) | 공유 책임 모델, IAM, 네트워크 보안, Zero Trust | 보안이란, 인증과 인가, Cloud Computing |
 
 ### [4] 심화
 
@@ -88,6 +92,9 @@
 
 ### HTTPS & TLS
 - [HTTPS와 TLS](./https-tls.md) - HTTPS 동작 원리, TLS 핸드셰이크, 인증서, 공개키 기반 구조(PKI)
+
+### Cloud Security
+- [Cloud Security](./cloud-security.md) - 공유 책임 모델, IAM, 네트워크 보안(Security Group, NACL), Zero Trust
 
 ## 핵심 개념 요약
 
