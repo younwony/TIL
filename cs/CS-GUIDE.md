@@ -30,6 +30,355 @@
 
 ---
 
+## 다이어그램 및 아키텍처 표현 가이드
+
+CS 문서에서 다이어그램은 복잡한 개념을 시각화하여 이해도를 높이는 핵심 요소입니다. 표준화된 가이드를 따라 일관성 있고 전문적인 다이어그램을 생성합니다.
+
+### 다이어그램 표준 레벨
+
+| 레벨 | 용도 | 도구 | 특징 |
+|------|------|------|------|
+| **Lv1: 개요** | 빠른 개념 이해 | 직접 SVG | 단순하고 명확한 구조 |
+| **Lv2: 상세** | 기술적 이해 | Mermaid CLI | 계층별 분리, 전문가용 |
+| **Lv3: 아키텍처** | 시스템 설계 | Mermaid C4 | 컨테이너, 통신 프로토콜 |
+
+### 다이어그램 유형별 가이드
+
+#### 1. 시스템 아키텍처 다이어그램
+
+**사용 상황**: 시스템 구성 요소, 계층 구조, 데이터 흐름
+
+**Lv1: 기본 구조도 (직접 SVG)**
+```markdown
+![기본 아키텍처](./images/basic-architecture.svg)
+```
+
+**Lv2: 상세 컴포넌트 (Mermaid)**
+```mermaid
+graph TB
+    subgraph "애플리케이션 계층"
+        A[클라이언트]
+        B[API 서버]
+    end
+    subgraph "데이터 계층"
+        C[(데이터베이스)]
+        D[(캐시)]
+    end
+    A --> B --> C
+    B --> D
+```
+
+**Lv3: C4 컨테이너 뷰 (Mermaid)**
+```mermaid
+C4Container
+    title 시스템 아키텍처
+    
+    Person(user, "사용자", "시스템 사용")
+    Container(app, "애플리케이션", "Spring Boot", "비즈니스 로직")
+    ContainerDb(db, "데이터베이스", "MySQL", "데이터 저장")
+    
+    Rel(user, app, "HTTPS로 사용")
+    Rel(app, db, "JDBC로 연결")
+```
+
+#### 2. 프로세스 흐름 다이어그램
+
+**사용 상황**: 알고리즘, 비즈니스 프로세스, 데이터 처리 순서
+
+**Lv1: 단순 플로우 (직접 SVG)**
+```markdown
+![처리 흐름](./images/process-flow.svg)
+```
+
+**Lv2: 조건 분기 (Mermaid)**
+```mermaid
+flowchart TD
+    A[시작] --> B{조건}
+    B -->|참| C[처리 A]
+    B -->|거짓| D[처리 B]
+    C --> E[종료]
+    D --> E
+```
+
+**Lv3: 복잡한 비즈니스 (Mermaid)**
+```mermaid
+flowchart TD
+    subgraph "인증 처리"
+        A[요청 수신] --> B[토큰 검증]
+        B --> C{유효?}
+        C -->|유효| D[사용자 조회]
+        C -->|무효| E[401 에러]
+    end
+    D --> F[권한 확인]
+```
+
+#### 3. 데이터 구조 다이어그램
+
+**사용 상황**: 데이터베이스 스키마, API 명세, 클래스 구조
+
+**Lv1: 간단한 구조 (직접 SVG)**
+```markdown
+![데이터 구조](./images/data-structure.svg)
+```
+
+**Lv2: ER 다이어그램 (Mermaid)**
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    ORDER ||--|{ ORDER_ITEM : contains
+    PRODUCT ||--o{ ORDER_ITEM : ordered
+    
+    USER {
+        int id PK
+        string name
+        string email
+    }
+    
+    ORDER {
+        int id PK
+        int user_id FK
+        string status
+    }
+```
+
+**Lv3: 클래스 다이어그램 (Mermaid)**
+```mermaid
+classDiagram
+    class UserService {
+        -UserRepository repo
+        +findByEmail(email) User
+        +save(user) User
+    }
+    
+    class UserRepository {
+        +findById(id) User
+        +save(user) User
+    }
+    
+    class User {
+        -Long id
+        -String name
+        -String email
+    }
+    
+    UserService --> UserRepository
+    UserRepository --> User
+```
+
+#### 4. 네트워크/통신 다이어그램
+
+**사용 상황**: API 호출, 프로토콜 흐름, 시스템 간 통신
+
+**Lv1: 기본 통신 (직접 SVG)**
+```markdown
+![네트워크 통신](./images/network-flow.svg)
+```
+
+**Lv2: 시퀀스 다이어그램 (Mermaid)**
+```mermaid
+sequenceDiagram
+    participant C as 클라이언트
+    participant S as 서버
+    participant D as 데이터베이스
+    
+    C->>S: API 요청
+    activate S
+    S->>D: 쿼리 실행
+    activate D
+    D-->>S: 결과 반환
+    deactivate D
+    S-->>C: 응답
+    deactivate S
+```
+
+**Lv3: 마이크로서비스 통신 (Mermaid)**
+```mermaid
+sequenceDiagram
+    participant Gateway as API Gateway
+    participant Auth as 인증 서비스
+    participant User as 사용자 서비스
+    participant Cache as Redis 캐시
+    
+    Gateway->>Auth: 토큰 검증
+    Auth-->>Gateway: 사용자 정보
+    
+    alt 캐시 히트
+        Gateway->>Cache: 사용자 정보 조회
+        Cache-->>Gateway: 캐시 데이터
+    else 캐시 미스
+        Gateway->>User: 데이터베이스 조회
+        User-->>Gateway: 사용자 데이터
+        Gateway->>Cache: 캐시 저장
+    end
+```
+
+### 다이어그램 생성 절차
+
+#### 1단계: 도구 선택
+
+| 상황 | 추천 도구 | 이유 |
+|------|----------|------|
+| 빠른 프로토타이핑 | 직접 SVG | 즉시 생성, 간단한 편집 |
+| 개발자 문서 | Mermaid CLI | Git 버전 관리, 텍스트 기반 |
+| 클라이언트 보고 | C4 모델 | 표준화된 아키텍처 뷰 |
+| 복잡한 관계 | PlantUML | UML 표준, 풍부한 표현 |
+
+#### 2단계: 파일 생성
+
+```bash
+# 이미지 폴더 구조
+cs/{category}/
+├── {document}.md
+└── images/
+    ├── {diagram-name}.svg      # 최종 이미지
+    └── {diagram-name}.mmd      # Mermaid 소스 (선택)
+```
+
+#### 3단계: Mermaid CLI 사용 (설치됨)
+
+```bash
+# 기본 변환
+mmdc -i diagram.mmd -o diagram.svg
+
+# 테마 적용
+mmdc -i diagram.mmd -o diagram.svg -t neutral
+
+# 커스텀 설정
+mmdc -i diagram.mmd -o diagram.svg -c config.json
+```
+
+#### 4단계: 문서에 삽입
+
+```markdown
+## 섹션 제목
+
+{설명}
+
+### 개요 다이어그램
+![개요](./images/overview-diagram.svg)
+
+### 상세 아키텍처
+![상세](./images/detailed-architecture.svg)
+
+### 통신 흐름
+![통신](./images/communication-flow.svg)
+```
+
+### 스타일 가이드
+
+#### 한국어 텍스트 처리
+
+**모든 다이어그램은 한국어 텍스트를 기본으로 합니다:**
+
+```mermaid
+graph TB
+    A[애플리케이션] --> B[데이터베이스]
+    A --> C[캐시 서버]
+    
+    style A fill:#3498DB,stroke:#2980B9,color:white
+    style B fill:#E74C3C,stroke:#C0392B,color:white
+    style C fill:#2ECC71,stroke:#27AE60,color:white
+```
+
+#### 색상 표준화
+
+| 구분 | 색상 | 용도 |
+|------|--------|------|
+| 파랑 | #3498DB → #2980B9 | 애플리케이션, 클라이언트 |
+| 초록 | #2ECC71 → #27AE60 | 데이터베이스, 성공 |
+| 빨강 | #E74C3C → #C0392B | 서비스, 경고/오류 |
+| 주황 | #E67E22 → #D35400 | 저장소, 파일 |
+| 보라 | #9B59B6 → #8E44AD | 인증, 보안 |
+| 청록 | #1ABC9C → #16A085 | 캐시, 임시 데이터 |
+| 회색 | #7F8C8D | 연결선, 보조 요소 |
+
+#### 아이콘 및 기호
+
+| 요소 | Mermaid 표현 | 설명 |
+|------|---------------|------|
+| 데이터베이스 | `[(이름)]` | 원통 모양 |
+| 서버/애플리케이션 | `[이름]` | 사각형 |
+| 사용자/사람 | `Person(user, "이름")` | C4 모델 |
+| 외부 시스템 | `System_Ext(이름)` | 점선 박스 |
+| 클라우드 서비스 | `cloud[(이름)]` | 구름 모양 |
+
+### 품질 기준
+
+| 기준 | 설명 | 체크 방법 |
+|------|------|----------|
+| **가독성** | 한글 텍스트, 적절한 크기 | 눈으로 확인 |
+| **일관성** | 동일한 색상, 스타일 | 기존 다이어그램과 비교 |
+| **정확성** | 개념을 올바르게 표현 | 기술 문서와 대조 |
+| **완성도** | 필요한 요소 모두 포함 | 요구사항 체크리스트 |
+| **유지보수성** | 소스 파일 관리 | `.mmd` 파일 존재 여부 |
+
+### 다이어그램 체크리스트
+
+#### 생성 전 체크
+- [ ] **목표 명확**: 이 다이어그램으로 무엇을 설명할 것인가?
+- [ ] **대상 독자**: 누가 볼 것인가? (개발자, 기획자, 클라이언트)
+- [ ] **적합한 레벨**: Lv1/2/3 중 어떤 레벨이 적합한가?
+- [ ] **필요 요소**: 모든 구성 요소를 포함했는가?
+
+#### 생성 후 체크
+- [ ] **한글 텍스트**: 모든 레이블이 한국어인가?
+- [ ] **색상 일관**: 표준 색상을 따르는가?
+- [ ] **연결 명확**: 관계와 흐름이 명확한가?
+- [ ] **크기 적절**: 레이블이 잘 보이는가?
+- [ ] **소스 관리**: `.mmd` 파일이 존재하는가?
+
+#### 문서 삽입 후 체크
+- [ ] **이미지 로딩**: 마크다운에서 이미지가 제대로 보이는가?
+- [ ] **대체 텍스트**: 이미지 설명이 적절한가?
+- [ ] **링크 유효**: 상대 경로가 정확한가?
+- [ ] **git add**: 변경된 파일들이 스테이징되었는가?
+
+### 사례별 추천 템플릿
+
+#### 데이터베이스 관리 시스템 (DBMS)
+```markdown
+## DBMS 구성요소
+
+### 기본 아키텍처
+![DBMS 기본](./images/dbms-basic.svg)
+
+### 상세 컴포넌트
+![DBMS 상세](./images/dbms-detailed.svg)
+
+### C4 컨테이너 뷰
+![DBMS C4](./images/dbms-c4.svg)
+```
+
+#### 마이크로서비스 아키텍처
+```markdown
+## 시스템 아키텍처
+
+### 서비스 구성도
+![서비스 구성](./images/services-overview.svg)
+
+### 통신 흐름
+![API 통신](./images/api-sequence.svg)
+
+### 데이터 흐름
+![데이터 처리](./images/data-flow.svg)
+```
+
+#### 알고리즘 설명
+```markdown
+## 알고리즘 동작 원리
+
+### 처리 순서
+![처리 순서](./images/algorithm-steps.svg)
+
+### 시간 복잡도 비교
+![복잡도](./images/complexity-comparison.svg)
+
+### 실행 예시
+![실행 예제](./images/execution-example.svg)
+```
+
+---
+
 ## 개요
 
 ### 카테고리 구조

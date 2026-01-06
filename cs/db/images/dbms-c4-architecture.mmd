@@ -1,0 +1,21 @@
+C4Container
+    title DBMS 시스템 아키텍처 - 컨테이너 뷰
+
+    Person(user, "애플리케이션 사용자", "데이터베이스 애플리케이션 사용")
+    
+    Container(app, "애플리케이션", "Java/Python", "비즈니스 로직 및 사용자 인터페이스")
+    
+    ContainerDb(dbms, "DBMS", "PostgreSQL/MySQL", "핵심 컴포넌트를 포함한 데이터베이스 관리 시스템")
+    
+    Container_Ext(backup, "백업 시스템", "외부 백업 서비스", "자동화된 백업 및 복구")
+    
+    Container_Ext(monitor, "모니터링", "Prometheus/Grafana", "성능 모니터링 및 알림")
+
+    Rel(user, app, "사용")
+    Rel(app, dbms, "SQL 쿼리", "JDBC/ODBC")
+    Rel(dbms, backup, "백업 데이터", "증분 백업")
+    Rel(monitor, dbms, "메트릭 수집", "JMX/Exporter")
+    
+    Rel_D(user, app, "HTTPS")
+    Rel_D(app, dbms, "TCP 5432")
+    Rel_D(dbms, backup, "SFTP/HTTPS")

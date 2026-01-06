@@ -1,0 +1,72 @@
+graph TB
+    subgraph "애플리케이션 계층"
+        A[자바 애플리케이션] 
+        B[파이썬 애플리케이션]
+        C[웹 애플리케이션]
+    end
+
+    subgraph "DBMS 코어"
+        direction LR
+        subgraph "질의 처리"
+            Q1[파서]
+            Q2[옵티마이저] 
+            Q3[실행기]
+        end
+        
+        subgraph "트랜잭션 관리"
+            T1[잠금 관리자]
+            T2[복구 관리자]
+            T3[동시성 제어]
+        end
+        
+        subgraph "저장소 관리"
+            S1[버퍼 관리자]
+            S2[인덱스 관리자]
+            S3[파일 관리자]
+        end
+    end
+
+    subgraph "저장소 계층"
+        DB[(데이터베이스 파일)]
+        LOG[(트랜잭션 로그)]
+        IDX[(인덱스 파일)]
+    end
+
+    A --> Q1
+    B --> Q1
+    C --> Q1
+    
+    Q1 --> Q2
+    Q2 --> Q3
+    Q3 --> T1
+    
+    T1 --> T2
+    T2 --> T3
+    T3 --> S1
+    
+    S1 --> S2
+    S2 --> S3
+    
+    S3 --> DB
+    S3 --> LOG
+    S2 --> IDX
+
+    style A fill:#3498DB,stroke:#2980B9,stroke-width:2px
+    style B fill:#3498DB,stroke:#2980B9,stroke-width:2px
+    style C fill:#3498DB,stroke:#2980B9,stroke-width:2px
+    
+    style Q1 fill:#9B59B6,stroke:#8E44AD,stroke-width:2px
+    style Q2 fill:#9B59B6,stroke:#8E44AD,stroke-width:2px
+    style Q3 fill:#9B59B6,stroke:#8E44AD,stroke-width:2px
+    
+    style T1 fill:#2ECC71,stroke:#27AE60,stroke-width:2px
+    style T2 fill:#2ECC71,stroke:#27AE60,stroke-width:2px
+    style T3 fill:#2ECC71,stroke:#27AE60,stroke-width:2px
+    
+    style S1 fill:#E67E22,stroke:#D35400,stroke-width:2px
+    style S2 fill:#E67E22,stroke:#D35400,stroke-width:2px
+    style S3 fill:#E67E22,stroke:#D35400,stroke-width:2px
+    
+    style DB fill:#1ABC9C,stroke:#16A085,stroke-width:2px
+    style LOG fill:#1ABC9C,stroke:#16A085,stroke-width:2px
+    style IDX fill:#1ABC9C,stroke:#16A085,stroke-width:2px
