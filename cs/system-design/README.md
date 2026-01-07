@@ -64,6 +64,7 @@
 | [캐싱](./caching.md) | 캐시 전략, 캐시 무효화, Redis | 확장성 |
 | [서킷브레이커](./circuit-breaker.md) | 장애 전파 방지 패턴 | 가용성 |
 | [메시지 큐](./message-queue.md) | Kafka, RabbitMQ, 이벤트 드리븐 | 확장성, 가용성 |
+| [외부 API 통합](./external-api-integration.md) | Retry, Backoff, Timeout, Idempotency | 서킷브레이커, Rate Limiting |
 | [API Gateway](./api-gateway.md) | 인증, 라우팅, Rate Limiting | 로드밸런싱, MSA |
 | [Docker](./docker.md) | 컨테이너, 이미지, Dockerfile | OS 기초 |
 | [Kubernetes](./kubernetes.md) | 컨테이너 오케스트레이션, Pod, Service | Docker |
@@ -103,6 +104,7 @@
 - [서킷브레이커 (Circuit Breaker)](./circuit-breaker.md) - 장애 전파 방지 패턴
 - [메시지 큐 (Message Queue)](./message-queue.md) - Kafka, RabbitMQ, 이벤트 드리븐 아키텍처
 - [Rate Limiting](./rate-limiting.md) - 토큰 버킷, 슬라이딩 윈도우, API 제한
+- [외부 API 통합](./external-api-integration.md) - Retry, Backoff, Timeout, Idempotency, Fallback
 - [API Gateway](./api-gateway.md) - 인증, 라우팅, Rate Limiting, BFF 패턴
 
 ### 인프라
