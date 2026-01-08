@@ -1,0 +1,31 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#3498DB', 'primaryTextColor': '#fff', 'lineColor': '#2C3E50'}}}%%
+sequenceDiagram
+    participant C as Client
+    participant R as Root<br/>[30, 60]
+    participant I as Internal<br/>[40, 50]
+    participant L as Leaf<br/>[40, 45]
+    participant D as Disk
+
+    Note over C,D: 키 45 검색 과정
+
+    C->>R: 1. 루트에서 시작
+    Note right of R: 45 >= 30, 45 < 60<br/>중간 자식으로 이동
+
+    R->>D: 디스크 I/O #1
+    D-->>I: 내부 노드 로드
+
+    R->>I: 2. 내부 노드로 이동
+    Note right of I: 45 >= 40, 45 < 50<br/>중간 자식으로 이동
+
+    I->>D: 디스크 I/O #2
+    D-->>L: 리프 노드 로드
+
+    I->>L: 3. 리프 노드로 이동
+    Note right of L: 키 45 발견!<br/>데이터 반환
+
+    L->>D: 디스크 I/O #3
+    D-->>L: 데이터 로드
+
+    L-->>C: 4. 결과 반환
+
+    Note over C,D: 총 3번의 디스크 I/O로 검색 완료

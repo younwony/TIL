@@ -1,0 +1,58 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#3498DB', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2980B9', 'lineColor': '#2C3E50', 'secondaryColor': '#2ECC71', 'tertiaryColor': '#E74C3C'}}}%%
+graph TD
+    subgraph "B+Tree 구조 (차수 M=4)"
+        Root["<b>루트 노드</b><br/>30 | 60"]
+
+        Internal1["<b>내부 노드</b><br/>10 | 20"]
+        Internal2["<b>내부 노드</b><br/>40 | 50"]
+        Internal3["<b>내부 노드</b><br/>70 | 80"]
+
+        Leaf1["<b>리프</b><br/>5, 8<br/>data"]
+        Leaf2["<b>리프</b><br/>10, 15<br/>data"]
+        Leaf3["<b>리프</b><br/>20, 25<br/>data"]
+        Leaf4["<b>리프</b><br/>30, 35<br/>data"]
+        Leaf5["<b>리프</b><br/>40, 45<br/>data"]
+        Leaf6["<b>리프</b><br/>50, 55<br/>data"]
+        Leaf7["<b>리프</b><br/>60, 65<br/>data"]
+        Leaf8["<b>리프</b><br/>70, 75<br/>data"]
+        Leaf9["<b>리프</b><br/>80, 90<br/>data"]
+    end
+
+    Root --> Internal1
+    Root --> Internal2
+    Root --> Internal3
+
+    Internal1 --> Leaf1
+    Internal1 --> Leaf2
+    Internal1 --> Leaf3
+
+    Internal2 --> Leaf4
+    Internal2 --> Leaf5
+    Internal2 --> Leaf6
+
+    Internal3 --> Leaf7
+    Internal3 --> Leaf8
+    Internal3 --> Leaf9
+
+    Leaf1 -.->|next| Leaf2
+    Leaf2 -.->|next| Leaf3
+    Leaf3 -.->|next| Leaf4
+    Leaf4 -.->|next| Leaf5
+    Leaf5 -.->|next| Leaf6
+    Leaf6 -.->|next| Leaf7
+    Leaf7 -.->|next| Leaf8
+    Leaf8 -.->|next| Leaf9
+
+    style Root fill:#3498DB,stroke:#2980B9,color:#fff
+    style Internal1 fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style Internal2 fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style Internal3 fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style Leaf1 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf2 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf3 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf4 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf5 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf6 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf7 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf8 fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Leaf9 fill:#2ECC71,stroke:#27AE60,color:#fff

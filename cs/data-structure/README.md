@@ -70,6 +70,7 @@
 | [트라이](./trie.md) | 문자열 저장, 접두사 검색 | 트리 |
 | [세그먼트 트리](./segment-tree.md) | 구간 쿼리, 업데이트 | 트리, 재귀 |
 | [유니온 파인드](./union-find.md) | 서로소 집합, 경로 압축 | 트리, 그래프 |
+| [B-Tree / B+Tree](./b-tree.md) | DB 인덱스, 디스크 최적화 | 트리 |
 
 ## 전체 목차
 
@@ -95,6 +96,7 @@
 - [트라이 (Trie)](./trie.md) - 문자열 저장, 접두사 검색
 - [세그먼트 트리 (Segment Tree)](./segment-tree.md) - 구간 쿼리, 업데이트
 - [유니온 파인드 (Union-Find)](./union-find.md) - 서로소 집합, 경로 압축
+- [B-Tree / B+Tree](./b-tree.md) - 데이터베이스 인덱스, 디스크 I/O 최적화
 
 ## 작성 예정
 
