@@ -71,6 +71,7 @@
 | [세그먼트 트리](./segment-tree.md) | 구간 쿼리, 업데이트 | 트리, 재귀 |
 | [유니온 파인드](./union-find.md) | 서로소 집합, 경로 압축 | 트리, 그래프 |
 | [B-Tree / B+Tree](./b-tree.md) | DB 인덱스, 디스크 최적화 | 트리 |
+| [블룸 필터](./bloom-filter.md) | 확률적 멤버십 테스트, 오탐 허용 | 해시 테이블 |
 
 ## 전체 목차
 
@@ -97,6 +98,7 @@
 - [세그먼트 트리 (Segment Tree)](./segment-tree.md) - 구간 쿼리, 업데이트
 - [유니온 파인드 (Union-Find)](./union-find.md) - 서로소 집합, 경로 압축
 - [B-Tree / B+Tree](./b-tree.md) - 데이터베이스 인덱스, 디스크 I/O 최적화
+- [블룸 필터 (Bloom Filter)](./bloom-filter.md) - 확률적 멤버십 테스트, 오탐 허용
 
 ## 작성 예정
 
