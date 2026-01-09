@@ -72,6 +72,7 @@
 |------|------|----------|
 | [OAuth 2.0과 JWT](./oauth-jwt.md) | OAuth 플로우, JWT 구조, Token | 인증과 인가, HTTPS |
 | [웹 보안](./web-security.md) | OWASP Top 10, XSS, CSRF, SQL Injection | 인증과 인가, HTTP |
+| [OWASP Top 10 for LLM](./owasp-llm-top10.md) | LLM 보안 취약점, Prompt Injection `Trend` | 웹 보안, LLM |
 
 ## 전체 목차
 
@@ -83,6 +84,9 @@
 
 ### 웹 보안
 - [웹 보안](./web-security.md) - OWASP Top 10, XSS, CSRF, SQL Injection, 보안 취약점 및 방어 방법
+
+### LLM 보안
+- [OWASP Top 10 for LLM](./owasp-llm-top10.md) - LLM 보안 취약점, Prompt Injection, Excessive Agency, 방어 전략 `Trend 2025`
 
 ### 암호화
 - [암호화](./cryptography.md) - 대칭키/비대칭키 암호화, AES/RSA, 해시(SHA, bcrypt), Salt
@@ -135,5 +139,6 @@
 ## 참고 자료
 
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/)
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
 - [Mozilla Web Security Guidelines](https://infosec.mozilla.org/guidelines/web_security)

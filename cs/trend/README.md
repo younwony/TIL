@@ -26,3 +26,7 @@
 ### Language
 
 - [WebAssembly](../language/webassembly.md) - 브라우저 넘어 서버/엣지로 확장, 네이티브 성능, 샌드박싱 보안
+
+### Security
+
+- [OWASP Top 10 for LLM](../security/owasp-llm-top10.md) - LLM 보안 취약점 10대 위협, Prompt Injection, AI 에이전트 보안
