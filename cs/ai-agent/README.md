@@ -64,6 +64,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징 | MCP |
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
+| [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
 | [Prompt Engineering](./prompt-engineering.md) | 효과적인 프롬프트 작성 | LLM 기초, AI Agent란 |
 
 ### [4] 심화 - Multi-Agent & Sub Agent
@@ -102,6 +103,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code Skill](./claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
 - [Claude Code Hook](./claude-code-hook.md) - AI 에이전트의 생명주기에서 자동 실행되는 사용자 정의 셸 명령어 시스템
 - [Claude Code Slash Command](./claude-code-slash-command.md) - 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행하는 시스템
+- [Claude Code Workflow](./claude-code-workflow.md) - Claude Code의 효율적인 사용법과 실무 최적화 전략
 - [Prompt Engineering](./prompt-engineering.md) - LLM에서 원하는 결과를 얻기 위한 프롬프트 설계 및 최적화 기술
 
 ### 심화 기능
