@@ -64,6 +64,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 |------|------|----------|
 | [Index](./index.md) | B-Tree/B+Tree, 클러스터드/논클러스터드 | SQL, 자료구조 기초 |
 | [Transaction](./transaction.md) | ACID, 격리 수준, 락, MVCC | SQL |
+| [낙관적/비관적 락](./optimistic-pessimistic-lock.md) | @Version, SELECT FOR UPDATE, 동시성 제어 | Transaction |
 | [Normalization](./normalization.md) | 정규화(1NF~3NF), 이상현상, 반정규화 | SQL |
 | [LATERAL JOIN](./lateral-join.md) | 상관 조인, Top-N per Group, CROSS/OUTER APPLY | SQL |
 | [Redis Caching](./redis-caching.md) | 캐싱 전략, 무효화, 일관성, 스탬피드 | NoSQL |
@@ -105,6 +106,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 - [SQL](./sql.md) - SQL 기본, SELECT/JOIN/서브쿼리, 실행 계획, 쿼리 최적화
 - [Index](./index.md) - 인덱스 개념, B-Tree/B+Tree, 클러스터드/논클러스터드, 커버링 인덱스
 - [Transaction](./transaction.md) - 트랜잭션, ACID, 격리 수준, 락(공유락/배타락), MVCC
+- [낙관적/비관적 락](./optimistic-pessimistic-lock.md) - @Version, SELECT FOR UPDATE, 동시성 제어, 데드락
 - [Normalization](./normalization.md) - 정규화(1NF~3NF), 이상현상, 반정규화
 - [LATERAL JOIN](./lateral-join.md) - 상관 조인, Top-N per Group, CROSS/OUTER APPLY
 - [NoSQL](./nosql.md) - NoSQL 유형(Document/Key-Value/Column/Graph), CAP 정리

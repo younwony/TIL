@@ -74,6 +74,8 @@
 | [Green Software Engineering](./green-software.md) | 탄소 효율적 소프트웨어 설계 | 확장성 |
 | [Hexagonal Architecture](./hexagonal-architecture.md) | 포트와 어댑터, 도메인 분리 | Layered Architecture, OOP |
 | [Event-Driven Architecture](./event-driven-architecture.md) | 이벤트 기반 통신 | 메시지 큐, MSA |
+| [분산 락](./distributed-lock.md) | Redis/ZooKeeper 분산 락, 동시성 제어 | Redis 캐싱, 트랜잭션 |
+| [멱등성](./idempotency.md) | Idempotency Key, 중복 결제/주문 방지 | REST API, 트랜잭션 |
 | [SOA](./soa.md) | 서비스 지향 아키텍처, ESB | Layered Architecture |
 | [12-Factor App](./12-factor-app.md) | 클라우드 네이티브 방법론 | Docker |
 
@@ -85,8 +87,11 @@
 |------|------|----------|
 | [Service Mesh](./service-mesh.md) | Istio, Envoy, 사이드카, mTLS | API Gateway, MSA, 로드밸런싱 |
 | [DDD](./ddd.md) | Bounded Context, Aggregate, 도메인 모델 | OOP, MSA, Hexagonal Architecture |
+| [SAGA 패턴](./saga-pattern.md) | Choreography/Orchestration, 보상 트랜잭션 | 분산 트랜잭션, 메시지 큐 |
 | [대규모 시스템 설계 기초](./large-scale-system.md) | 확장성, 가용성, 일관성 종합 | 캐싱, 메시지 큐, CAP |
 | [선착순 쿠폰 시스템](./flash-sale-system.md) | 대규모 동시 요청 처리, 분산 락 | 캐싱, 메시지 큐, 트랜잭션 |
+| [재고 관리 시스템](./inventory-system.md) | 동시성 제어, 예약 재고, Redis 선차감 | 분산 락, 낙관적/비관적 락 |
+| [결제 시스템 설계](./payment-system.md) | PG 연동, 결제 상태 머신, 중복 결제 방지 | 멱등성, SAGA 패턴 |
 
 ## 전체 목차
 
@@ -104,6 +109,8 @@
 - [서킷브레이커 (Circuit Breaker)](./circuit-breaker.md) - 장애 전파 방지 패턴
 - [메시지 큐 (Message Queue)](./message-queue.md) - Kafka, RabbitMQ, 이벤트 드리븐 아키텍처
 - [Rate Limiting](./rate-limiting.md) - 토큰 버킷, 슬라이딩 윈도우, API 제한
+- [분산 락 (Distributed Lock)](./distributed-lock.md) - Redis/ZooKeeper 분산 락, 동시성 제어, Redisson
+- [멱등성 (Idempotency)](./idempotency.md) - Idempotency Key, 중복 결제/주문 방지, Exactly-Once
 - [외부 API 통합](./external-api-integration.md) - Retry, Backoff, Timeout, Idempotency, Fallback
 - [API Gateway](./api-gateway.md) - 인증, 라우팅, Rate Limiting, BFF 패턴
 
@@ -127,11 +134,14 @@
 - [MSA vs 모놀리식](./msa-vs-monolithic.md) - 마이크로서비스 vs 모놀리식, 장단점, 전환 전략
 - [DDD](./ddd.md) - Bounded Context, Aggregate, 도메인 모델, Ubiquitous Language
 - [분산 트랜잭션](./distributed-transaction.md) - 2PC, Saga 패턴, 보상 트랜잭션
+- [SAGA 패턴](./saga-pattern.md) - Choreography/Orchestration, 보상 트랜잭션, Outbox 패턴
 - [CQRS & 이벤트 소싱](./cqrs-event-sourcing.md) - 명령/조회 분리, 이벤트 스토어
 
 ### 사례 연구
 - [대규모 시스템 설계 기초](./large-scale-system.md) - 확장성, 가용성, 일관성, 설계 체크리스트
 - [선착순 쿠폰 시스템](./flash-sale-system.md) - 대규모 동시 요청 처리, Redis, Kafka, 분산 락
+- [재고 관리 시스템](./inventory-system.md) - 동시성 제어, 예약 재고, Redis 선차감, 초과판매 방지
+- [결제 시스템 설계](./payment-system.md) - PG 연동, 결제 상태 머신, Webhook, 중복 결제 방지
 
 ## 작성 예정
 
