@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3498DB"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2ECC71"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#E67E22"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="400" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50" text-anchor="middle">순열의 사이클 분해 예시</text>
+
+  <!-- Permutation Array -->
+  <text x="100" y="80" font-family="Arial, sans-serif" font-size="14" fill="#7f8c8d">순열 P:</text>
+  <g transform="translate(160, 55)">
+    <rect x="0" y="0" width="50" height="40" fill="url(#blueGrad)" rx="5"/>
+    <text x="25" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">2</text>
+    <text x="25" y="-5" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle">P[0]</text>
+
+    <rect x="55" y="0" width="50" height="40" fill="url(#blueGrad)" rx="5"/>
+    <text x="80" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">0</text>
+    <text x="80" y="-5" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle">P[1]</text>
+
+    <rect x="110" y="0" width="50" height="40" fill="url(#blueGrad)" rx="5"/>
+    <text x="135" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">1</text>
+    <text x="135" y="-5" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle">P[2]</text>
+
+    <rect x="165" y="0" width="50" height="40" fill="url(#greenGrad)" rx="5"/>
+    <text x="190" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">4</text>
+    <text x="190" y="-5" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle">P[3]</text>
+
+    <rect x="220" y="0" width="50" height="40" fill="url(#greenGrad)" rx="5"/>
+    <text x="245" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">3</text>
+    <text x="245" y="-5" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d" text-anchor="middle">P[4]</text>
+  </g>
+
+  <!-- Meaning -->
+  <text x="500" y="80" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">의미: P[i] = j → i번이 j번으로 이동</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="115" x2="750" y2="115" stroke="#bdc3c7" stroke-width="1" stroke-dasharray="5,5"/>
+
+  <!-- Cycle 1: (0 → 2 → 1 → 0) -->
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3498DB" text-anchor="middle">사이클 1: 길이 3</text>
+
+  <!-- Nodes for Cycle 1 -->
+  <circle cx="120" cy="230" r="30" fill="url(#blueGrad)"/>
+  <text x="120" y="235" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">0</text>
+
+  <circle cx="280" cy="230" r="30" fill="url(#blueGrad)"/>
+  <text x="280" y="235" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">2</text>
+
+  <circle cx="200" cy="330" r="30" fill="url(#blueGrad)"/>
+  <text x="200" y="335" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">1</text>
+
+  <!-- Arrows for Cycle 1 -->
+  <path d="M150 220 Q200 180 250 220" stroke="#3498DB" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="200" y="195" font-family="Arial, sans-serif" font-size="11" fill="#3498DB" text-anchor="middle">P[0]=2</text>
+
+  <path d="M270 260 Q240 300 220 320" stroke="#3498DB" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="260" y="295" font-family="Arial, sans-serif" font-size="11" fill="#3498DB" text-anchor="middle">P[2]=1</text>
+
+  <path d="M180 320 Q140 300 130 260" stroke="#3498DB" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <text x="135" y="295" font-family="Arial, sans-serif" font-size="11" fill="#3498DB" text-anchor="middle">P[1]=0</text>
+
+  <!-- Cycle 2: (3 → 4 → 3) -->
+  <text x="580" y="150" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2ECC71" text-anchor="middle">사이클 2: 길이 2</text>
+
+  <!-- Nodes for Cycle 2 -->
+  <circle cx="500" cy="260" r="30" fill="url(#greenGrad)"/>
+  <text x="500" y="265" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">3</text>
+
+  <circle cx="660" cy="260" r="30" fill="url(#greenGrad)"/>
+  <text x="660" y="265" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">4</text>
+
+  <!-- Arrows for Cycle 2 -->
+  <path d="M530 245 Q580 200 630 245" stroke="#2ECC71" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+  <text x="580" y="215" font-family="Arial, sans-serif" font-size="11" fill="#2ECC71" text-anchor="middle">P[3]=4</text>
+
+  <path d="M630 275 Q580 320 530 275" stroke="#2ECC71" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+  <text x="580" y="310" font-family="Arial, sans-serif" font-size="11" fill="#2ECC71" text-anchor="middle">P[4]=3</text>
+
+  <!-- Summary Box -->
+  <rect x="450" y="340" width="300" height="50" fill="#ecf0f1" rx="8" stroke="#bdc3c7"/>
+  <text x="600" y="362" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50" text-anchor="middle">최소 스왑 = (3-1) + (2-1) = 3번</text>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d" text-anchor="middle">공식: Σ(사이클 길이 - 1)</text>
+</svg>

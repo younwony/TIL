@@ -63,6 +63,7 @@
 | [분할 정복](./divide-and-conquer.md) | 문제를 나누어 해결 후 병합 | Sort, 재귀 |
 | [그리디](./greedy.md) | 매 순간 최적 선택 | Sort, Search |
 | [백트래킹](./backtracking.md) | 가지치기를 통한 탐색 | Graph (DFS) |
+| [사이클 분해](./cycle-decomposition.md) | 순열/그래프를 서로소 사이클로 분해 | Graph |
 
 ### [4] 심화
 
@@ -82,6 +83,7 @@
 - [분할 정복](./divide-and-conquer.md) - 문제를 나누어 해결 후 병합 (병합 정렬, 퀵 정렬, 이진 탐색)
 - [그리디](./greedy.md) - 매 순간 최적 선택 (활동 선택, 거스름돈, 허프만 코딩)
 - [백트래킹](./backtracking.md) - 가지치기를 통한 탐색 (N-Queen, 순열/조합)
+- [사이클 분해](./cycle-decomposition.md) - 순열/그래프를 서로소 사이클로 분해 (최소 스왑, 배열 회전)
 - [Dynamic Programming](./dynamic-programming.md) - 메모이제이션, 타뷸레이션, 대표 문제
 
 ## 작성 예정
