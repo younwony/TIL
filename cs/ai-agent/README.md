@@ -22,8 +22,8 @@ AI 에이전트 관련 기술을 정리하는 공간입니다.
 │        - 기능 확장 및 커스터마이징                               │
 │            │                                                     │
 │            ▼                                                     │
-│   [4] Multi-Agent & Sub Agent                                   │
-│        - 다중 에이전트 협력 및 병렬 실행                         │
+│   [4] Context Engineering + Multi-Agent                         │
+│        - 컨텍스트 설계 및 다중 에이전트 협력                     │
 │            │                                                     │
 │            ▼                                                     │
 │   [5] Agent SDK                                                 │
@@ -67,12 +67,13 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
 | [Prompt Engineering](./prompt-engineering.md) | 효과적인 프롬프트 작성 | LLM 기초, AI Agent란 |
 
-### [4] 심화 - Multi-Agent & Sub Agent
+### [4] 심화 - Multi-Agent & Context Engineering
 
 확장 기능을 익힌 후 도전하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [Context Engineering](./context-engineering.md) | 컨텍스트 설계 및 관리 `Trend` | Prompt Engineering, AI Agent란 |
 | [Multi-Agent Systems](./multi-agent-systems.md) | 다중 에이전트 협력 아키텍처 `Trend` | AI Agent란, MCP, Tool Use |
 | [Claude Code Sub Agent](./claude-code-sub-agent.md) | 독립적 작업 위임, 병렬 실행, Resume | Skill, Hook |
 
@@ -107,6 +108,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Prompt Engineering](./prompt-engineering.md) - LLM에서 원하는 결과를 얻기 위한 프롬프트 설계 및 최적화 기술
 
 ### 심화 기능
+- [Context Engineering](./context-engineering.md) - LLM이 작업을 성공적으로 수행하는 데 필요한 모든 컨텍스트를 동적으로 설계하고 관리하는 학문 `Trend 2026`
 - [Multi-Agent Systems](./multi-agent-systems.md) - 여러 전문화된 AI 에이전트가 협력하여 복잡한 작업을 수행하는 분산 시스템 아키텍처 `Trend 2025`
 - [Claude Code Sub Agent](./claude-code-sub-agent.md) - 복잡한 작업을 독립적으로 처리하는 전문화된 AI 에이전트 시스템
 - [Agent SDK](./agent-sdk.md) - 커스텀 AI 에이전트를 프로그래밍 방식으로 구축하기 위한 개발 도구
