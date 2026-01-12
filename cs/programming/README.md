@@ -48,6 +48,7 @@
 |------|------|----------|
 | [OOP](./oop.md) | 캡슐화, 상속, 다형성, 추상화, SOLID | 프로그래밍이란 |
 | [응집도와 결합도](./cohesion-coupling.md) | 모듈화 설계 지표 | OOP |
+| [코드 리뷰 도구](./code-review-tools.md) | 린터, 포매터, 정적 분석, Git Hooks | 클린 코드 |
 
 ### [3] 중급
 
@@ -84,6 +85,7 @@ OOP 개념을 이해한 후 학습하세요.
 - [DDD](./ddd.md) - 도메인 주도 설계, 애그리거트, 바운디드 컨텍스트
 - [응집도와 결합도](./cohesion-coupling.md) - 모듈화 설계 지표, High Cohesion, Low Coupling
 - [Test Double](./test-double.md) - Mock, Stub, Spy, Fake, 테스트 대역
+- [코드 리뷰 도구](./code-review-tools.md) - 린터, 포매터, 정적 분석, Git Hooks, SonarQube
 
 ## 작성 예정
 
