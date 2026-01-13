@@ -79,6 +79,15 @@
 | [SOA](./soa.md) | 서비스 지향 아키텍처, ESB | Layered Architecture |
 | [12-Factor App](./12-factor-app.md) | 클라우드 네이티브 방법론 | Docker |
 
+### [3] 중급 - 커머스
+
+커머스 시스템의 핵심 컴포넌트입니다.
+
+| 문서 | 설명 | 선수 지식 |
+|------|------|----------|
+| [장바구니 시스템](./shopping-cart-system.md) | 회원/비회원 장바구니, Redis, 병합 처리 | Redis 캐싱, 세션 관리 |
+| [쿠폰/프로모션 시스템](./coupon-promotion-system.md) | 쿠폰 발급/사용, 할인 계산, 규칙 엔진 | 트랜잭션, Redis 캐싱 |
+
 ### [4] 심화
 
 기본 개념을 모두 익힌 후 도전하세요.
@@ -92,6 +101,7 @@
 | [선착순 쿠폰 시스템](./flash-sale-system.md) | 대규모 동시 요청 처리, 분산 락 | 캐싱, 메시지 큐, 트랜잭션 |
 | [재고 관리 시스템](./inventory-system.md) | 동시성 제어, 예약 재고, Redis 선차감 | 분산 락, 낙관적/비관적 락 |
 | [결제 시스템 설계](./payment-system.md) | PG 연동, 결제 상태 머신, 중복 결제 방지 | 멱등성, SAGA 패턴 |
+| [주문 처리 시스템](./order-processing-system.md) | 주문 상태 머신, 결제/재고 연동, SAGA | 결제 시스템, 재고 관리, SAGA |
 
 ## 전체 목차
 
@@ -137,11 +147,16 @@
 - [SAGA 패턴](./saga-pattern.md) - Choreography/Orchestration, 보상 트랜잭션, Outbox 패턴
 - [CQRS & 이벤트 소싱](./cqrs-event-sourcing.md) - 명령/조회 분리, 이벤트 스토어
 
+### 커머스 시스템
+- [장바구니 시스템](./shopping-cart-system.md) - 회원/비회원 장바구니, Redis 캐시, 장바구니 병합
+- [쿠폰/프로모션 시스템](./coupon-promotion-system.md) - 쿠폰 발급/사용, 할인 계산, 프로모션 규칙 엔진
+- [주문 처리 시스템](./order-processing-system.md) - 주문 상태 머신, 결제/재고 연동, SAGA 패턴, 보상 트랜잭션
+- [재고 관리 시스템](./inventory-system.md) - 동시성 제어, 예약 재고, Redis 선차감, 초과판매 방지
+- [결제 시스템 설계](./payment-system.md) - PG 연동, 결제 상태 머신, Webhook, 중복 결제 방지
+
 ### 사례 연구
 - [대규모 시스템 설계 기초](./large-scale-system.md) - 확장성, 가용성, 일관성, 설계 체크리스트
 - [선착순 쿠폰 시스템](./flash-sale-system.md) - 대규모 동시 요청 처리, Redis, Kafka, 분산 락
-- [재고 관리 시스템](./inventory-system.md) - 동시성 제어, 예약 재고, Redis 선차감, 초과판매 방지
-- [결제 시스템 설계](./payment-system.md) - PG 연동, 결제 상태 머신, Webhook, 중복 결제 방지
 
 ## 작성 예정
 
