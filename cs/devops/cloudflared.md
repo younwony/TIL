@@ -122,13 +122,13 @@
 
 **Windows (winget)**
 
-```powershell
+```shell
 winget install Cloudflare.cloudflared
 ```
 
 **Windows (Chocolatey)**
 
-```powershell
+```shell
 choco install cloudflared
 ```
 
@@ -239,7 +239,7 @@ cloudflared tunnel --config ~/.cloudflared/config.yml run
 
 **Windows**
 
-```powershell
+```shell
 # 관리자 권한으로 실행
 cloudflared service install
 ```

@@ -327,7 +327,7 @@ Windows 환경에서 Docker Desktop을 사용해 n8n을 셀프호스팅하는 �
 2. 설치 후 WSL 2 백엔드 활성화 (권장)
 3. Docker Desktop 실행 확인
 
-```powershell
+```shell
 # PowerShell에서 Docker 설치 확인
 docker --version
 # Docker version 24.x.x, build xxxxx
@@ -335,7 +335,7 @@ docker --version
 
 #### 2. 빠른 시작 (PowerShell)
 
-```powershell
+```shell
 # PowerShell에서 n8n 실행
 docker run -it --rm `
   --name n8n `
@@ -350,7 +350,7 @@ docker run -it --rm `
 
 #### 3. 데이터 영구 저장 (Windows 경로)
 
-```powershell
+```shell
 # Windows 로컬 폴더에 데이터 저장
 docker run -d `
   --name n8n `
@@ -399,7 +399,7 @@ volumes:
 
 실행 명령:
 
-```powershell
+```shell
 # docker-compose.yml 파일이 있는 폴더에서
 docker-compose up -d
 
@@ -426,7 +426,7 @@ docker-compose down
 
 ##### 방법 1: ngrok (빠른 테스트용)
 
-```powershell
+```shell
 # ngrok 설치 (Chocolatey)
 choco install ngrok
 
@@ -451,7 +451,7 @@ ngrok 무료 플랜의 제한(URL 변경, 대역폭 제한)을 피하려면 Clou
 
 **Quick Tunnel (임시 URL)**
 
-```powershell
+```shell
 # cloudflared 설치 (winget)
 winget install Cloudflare.cloudflared
 
@@ -466,7 +466,7 @@ cloudflared tunnel --url http://localhost:5678
 
 **Named Tunnel (고정 URL) - 프로덕션 권장**
 
-```powershell
+```shell
 # 1. Cloudflare 로그인 (최초 1회)
 cloudflared tunnel login
 
@@ -491,7 +491,7 @@ ingress:
   - service: http_status:404
 ```
 
-```powershell
+```shell
 # 5. 터널 실행
 cloudflared tunnel run n8n-tunnel
 
@@ -628,7 +628,7 @@ N8N_PASSWORD=your_secure_n8n_password
 
 실행:
 
-```powershell
+```shell
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
