@@ -83,6 +83,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [샤딩](./sharding.md) | 수평 분할, 샤드 키 선택, 리샤딩 | 데이터베이스란, Index, Transaction |
 | [레플리케이션](./replication.md) | Master-Slave, 동기/비동기 복제, Failover | 데이터베이스란, Transaction |
 | [실행 계획](./execution-plan.md) | EXPLAIN, 쿼리 분석, 최적화 | SQL, Index |
+| [CDC](./cdc.md) | 변경 데이터 캡처, Debezium, Outbox 패턴 | Transaction, 레플리케이션 |
 
 ## 전체 목차
 
@@ -117,6 +118,9 @@ SQL 기본 개념을 이해한 후 학습하세요.
 
 ### 성능 분석
 - [실행 계획](./execution-plan.md) - EXPLAIN, 쿼리 최적화, 조인 알고리즘
+
+### 데이터 동기화
+- [CDC](./cdc.md) - 변경 데이터 캡처, Debezium, binlog/WAL, Outbox 패턴
 
 ## 작성 예정
 

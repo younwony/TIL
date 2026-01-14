@@ -372,6 +372,140 @@ Resources:
               (WebSocket/Poll) └─────────────┘
 ```
 
+### 4. CDC (Change Data Capture) 연동
+
+DB 변경 사항을 감지하여 특정 조건의 INSERT/UPDATE만 SQS로 전송하는 패턴.
+
+#### 방식 1: DynamoDB Streams (가장 간단)
+
+```
+┌──────────┐    변경 감지     ┌──────────┐    필터링     ┌──────────┐
+│ DynamoDB │ ──────────────→ │ DynamoDB │ ───────────→ │  Lambda  │
+│  Table   │                 │ Streams  │              │ (Filter) │
+└──────────┘                 └──────────┘              └────┬─────┘
+                                                            │
+                                                            ▼
+                                                      ┌──────────┐
+                                                      │   SQS    │
+                                                      └──────────┘
+```
+
+#### 방식 2: EventBridge Pipes (권장, 코드 없이 필터링)
+
+```
+┌──────────┐              ┌─────────────────────────────────┐
+│ DynamoDB │              │       EventBridge Pipes         │
+│ Streams  │ ───────────→ │  ┌────────┐    ┌─────────────┐ │ ──→ SQS
+└──────────┘              │  │ Filter │ →  │ Transformer │ │
+                          │  └────────┘    └─────────────┘ │
+                          └─────────────────────────────────┘
+```
+
+**EventBridge Pipes 필터 예시** (JSON, 코드 없이):
+
+```json
+{
+  "dynamodb": {
+    "NewImage": {
+      "status": {
+        "S": ["PAID", "SHIPPED"]
+      }
+    }
+  },
+  "eventName": ["INSERT", "MODIFY"]
+}
+```
+
+#### 방식 3: RDS/Aurora + DMS + Kinesis
+
+```
+┌──────────┐    CDC Log     ┌──────────┐              ┌──────────┐
+│   RDS    │ ─────────────→ │   DMS    │ ───────────→ │ Kinesis  │
+│ (MySQL/  │   (binlog)     │  (CDC)   │              │ Streams  │
+│ Postgres)│                └──────────┘              └────┬─────┘
+└──────────┘                                               │
+                                                           ▼
+                                                     ┌──────────┐
+                                                     │  Lambda  │
+                                                     │ (Filter) │
+                                                     └────┬─────┘
+                                                          │
+                                                          ▼
+                                                     ┌──────────┐
+                                                     │   SQS    │
+                                                     └──────────┘
+```
+
+#### 방식 4: Debezium + MSK (Kafka)
+
+```
+┌──────────┐    binlog     ┌──────────┐              ┌──────────┐
+│   RDS    │ ─────────────→│ Debezium │ ───────────→ │   MSK    │
+│ (MySQL)  │               │ Connector│              │ (Kafka)  │
+└──────────┘               └──────────┘              └────┬─────┘
+                                                          │
+                                              ┌───────────┴───────────┐
+                                              ▼                       ▼
+                                        ┌──────────┐           ┌──────────┐
+                                        │  Lambda  │           │  다른    │
+                                        │  → SQS   │           │ Consumer │
+                                        └──────────┘           └──────────┘
+```
+
+#### Lambda 필터링 코드 예시
+
+```java
+@Service
+@RequiredArgsConstructor
+public class CdcEventProcessor {
+
+    private final SqsTemplate sqsTemplate;
+    private static final Set<String> TARGET_STATUS = Set.of("PAID", "SHIPPED");
+    private static final Set<String> TARGET_EVENTS = Set.of("INSERT", "MODIFY");
+
+    public void handleDynamoDBStream(DynamodbEvent event) {
+        event.getRecords().stream()
+            // INSERT, MODIFY만 처리
+            .filter(record -> TARGET_EVENTS.contains(record.getEventName()))
+            // 특정 상태만 필터링
+            .filter(this::shouldProcess)
+            .forEach(this::sendToSqs);
+    }
+
+    private boolean shouldProcess(DynamodbStreamRecord record) {
+        Map<String, AttributeValue> newImage =
+            record.getDynamodb().getNewImage();
+
+        // status가 PAID 또는 SHIPPED인 경우만
+        String status = newImage.get("status").getS();
+        return TARGET_STATUS.contains(status);
+    }
+
+    private void sendToSqs(DynamodbStreamRecord record) {
+        OrderEvent event = convertToEvent(record);
+        sqsTemplate.send("order-events-queue", event);
+    }
+}
+```
+
+#### CDC 방식 비교
+
+| 방식 | 지원 DB | 복잡도 | 지연 시간 | 비용 |
+|------|---------|--------|----------|------|
+| **DynamoDB Streams** | DynamoDB | 낮음 | ~수백ms | 낮음 |
+| **EventBridge Pipes** | DynamoDB, Kinesis | 낮음 | ~수백ms | 중간 |
+| **DMS + Kinesis** | RDS, Aurora | 중간 | ~1-3초 | 중간 |
+| **Debezium + MSK** | MySQL, PostgreSQL | 높음 | ~수백ms | 높음 |
+
+#### CDC 방식 선택 가이드
+
+| 상황 | 권장 방식 |
+|------|----------|
+| DynamoDB 사용 중 | **EventBridge Pipes** (가장 간단) |
+| RDS/Aurora + 간단한 요구 | **DMS + Kinesis + Lambda** |
+| RDS + 복잡한 필터링/다중 Consumer | **Debezium + MSK** |
+| 서버리스 우선 | **EventBridge Pipes** |
+
 ## Spring Boot 연동
 
 ### 의존성 추가
@@ -508,6 +642,87 @@ public void handleOrderBatch(List<Message<OrderEvent>> messages) {
 | 복잡한 라우팅 | RabbitMQ |
 | 순서 보장 + 높은 처리량 | Kafka |
 | 온프레미스 | RabbitMQ / Kafka |
+
+### SQS vs DB 기반 작업 큐
+
+"DB 테이블에 작업을 쌓아두고 Worker가 가져가면 되지 않나?"라는 질문을 자주 받는다. 겉보기엔 비슷해 보이지만 **규모가 커질수록 차이가 명확**해진다.
+
+#### DB 기반 작업 큐 방식
+
+```
+┌──────────┐    INSERT     ┌──────────┐    SELECT FOR UPDATE    ┌──────────┐
+│ Producer │ ────────────→ │   DB     │ ←───────────────────── │ Worker   │
+│          │               │ (Queue)  │                         │ (Poll)   │
+└──────────┘               └──────────┘                         └──────────┘
+                                │
+                          UPDATE status
+                          또는 DELETE
+```
+
+```sql
+-- Worker가 작업 가져가기
+SELECT * FROM task_queue
+WHERE status = 'PENDING'
+ORDER BY created_at
+LIMIT 10
+FOR UPDATE SKIP LOCKED;  -- 동시성 제어
+
+UPDATE task_queue SET status = 'PROCESSING' WHERE id IN (...);
+```
+
+#### 비교
+
+| 항목 | DB 기반 큐 | SQS |
+|------|-----------|-----|
+| **Polling** | 지속적 SELECT 쿼리 (DB 부하) | Long Polling (효율적) |
+| **동시성 제어** | `FOR UPDATE` 락 직접 구현 | Visibility Timeout 자동 |
+| **확장 한계** | DB 커넥션 풀이 병목 | 무제한 (Standard) |
+| **장애 분리** | 큐 장애 = DB 장애 | 독립적 |
+| **운영** | 락 경쟁, 데드락 모니터링 | 관리형 |
+
+#### DB 방식의 실제 문제
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Worker 10개가 동시에 Polling                           │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│   Worker1 → SELECT FOR UPDATE ─┐                       │
+│   Worker2 → SELECT FOR UPDATE ──┼→ 락 경쟁!            │
+│   Worker3 → SELECT FOR UPDATE ─┘   (대기 발생)         │
+│   ...                                                   │
+│                                                         │
+│   초당 10번 × 10 Worker = 100 쿼리/초 (빈 결과 포함)   │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+**SQS는 이 문제를 해결:**
+- Visibility Timeout으로 자동 락
+- Long Polling으로 빈 요청 없음
+- Worker가 100개여도 DB 부하 없음
+
+#### 언제 DB 큐가 괜찮은가?
+
+| 상황 | 권장 |
+|------|------|
+| 소규모 (초당 ~100건) | DB 큐도 OK |
+| 트랜잭션 일관성 필수 (Outbox 패턴) | DB 큐 |
+| 대규모 (초당 1000건+) | **SQS/Kafka** |
+| DB 부하 분리 필요 | **SQS/Kafka** |
+| 서버리스 연동 (Lambda) | **SQS** |
+
+#### 핵심 차이
+
+```
+DB 기반: "범용 도구로 큐 흉내"
+         └→ 락, 인덱스, 커넥션 풀 직접 관리
+
+SQS:     "큐 전용 시스템"
+         └→ 메시지 전달에 최적화된 인프라
+```
+
+**결론**: 작은 규모에선 DB 큐도 충분하지만, 트래픽이 늘면 **DB가 병목**이 된다. SQS는 "큐 전용"으로 설계되어 그 한계가 훨씬 높다.
 
 ## 트러블슈팅
 
@@ -654,6 +869,24 @@ A: **DLQ**는 여러 번 처리 실패한 메시지를 별도 큐로 이동시�
 - 비즈니스 로직 예외 (데이터 불일치 등)
 
 maxReceiveCount를 설정하여 N번 실패 시 DLQ로 이동하고, DLQ 모니터링 알림을 통해 빠르게 대응합니다.
+
+### Q: DB 테이블로 작업 큐를 구현하면 안 되나? SQS와 차이점은?
+
+A: 소규모에선 DB 기반 큐도 가능하지만, 규모가 커지면 차이가 명확해집니다.
+
+**DB 기반 문제점**:
+- 지속적인 Polling으로 DB 부하 증가
+- `FOR UPDATE` 락 경쟁으로 동시성 이슈
+- DB 커넥션 풀이 병목
+- 큐 장애가 곧 DB 장애
+
+**SQS 장점**:
+- Long Polling으로 빈 요청 없음
+- Visibility Timeout으로 자동 동시성 제어
+- DB와 독립적으로 무제한 확장
+- 큐 전용 시스템으로 최적화
+
+**결론**: 초당 100건 이하의 소규모는 DB 큐도 괜찮지만, 대규모나 DB 부하 분리가 필요하면 SQS가 적합합니다. Outbox 패턴처럼 트랜잭션 일관성이 필수인 경우에만 DB 큐를 고려합니다.
 
 ## 연관 문서
 
