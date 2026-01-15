@@ -400,7 +400,7 @@ A: **@Autowired**: Spring 전용, required 속성으로 필수 여부 지정. **
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
 | [OOP](../programming/oop.md) | 설계 원칙 | [2] 입문 |
-| [리플렉션](../language/reflection.md) | 동작 원리 | [4] 심화 |
+| [리플렉션](../language/java/reflection.md) | 동작 원리 | [4] 심화 |
 | [Spring AOP](./spring-aop.md) | 함께 사용 | [3] 중급 |
 | [Spring MVC](./spring-mvc.md) | 활용 | [3] 중급 |
 

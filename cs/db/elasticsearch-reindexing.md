@@ -591,7 +591,7 @@ POST /products/_forcemerge?max_num_segments=5
 |------|--------|--------|
 | [NoSQL](./nosql.md) | Elasticsearch의 NoSQL 특성 | [4] 심화 |
 | [Index](./index.md) | 인덱스의 기본 개념 | [3] 중급 |
-| [분산 시스템](../system-design/distributed-system.md) | ES 클러스터 구조 | [4] 심화 |
+| [분산 트랜잭션](../system-design/distributed-transaction.md) | ES 클러스터 분산 처리 | [4] 심화 |
 
 ## 참고 자료
 

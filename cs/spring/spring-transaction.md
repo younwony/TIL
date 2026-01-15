@@ -410,7 +410,7 @@ A: **REQUIRES_NEW**: 완전히 독립된 새 트랜잭션. 부모 롤백해도 �
 |------|--------|--------|
 | [트랜잭션](../db/transaction.md) | 선수 지식 | [3] 중급 |
 | [Spring AOP](./spring-aop.md) | 동작 원리 | [3] 중급 |
-| [격리 수준](../db/isolation-level.md) | Isolation | [4] 심화 |
+| [트랜잭션 격리 수준](../db/transaction.md) | Isolation | [4] 심화 |
 
 ## 참고 자료
 

@@ -1,6 +1,6 @@
 # 동시성 (Concurrency)
 
-> `[3] 중급` · 선수 지식: [프로세스와 스레드](../os/process-thread.md), [동기화](../os/synchronization.md)
+> `[3] 중급` · 선수 지식: [프로세스와 스레드](../../os/process-vs-thread.md), [동기화](../../os/synchronization.md)
 
 > 여러 작업이 동시에 진행되는 것처럼 보이도록 관리하는 프로그래밍 기법
 
@@ -218,8 +218,8 @@ A: **volatile**: 가시성 보장, 원자성 미보장 (`count++` 불가). **Ato
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [동기화](../os/synchronization.md) | OS 기초 | [3] 중급 |
-| [프로세스와 스레드](../os/process-thread.md) | 선수 지식 | [2] 입문 |
+| [동기화](../../os/synchronization.md) | OS 기초 | [3] 중급 |
+| [프로세스와 스레드](../../os/process-vs-thread.md) | 선수 지식 | [2] 입문 |
 
 ## 참고 자료
 

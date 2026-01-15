@@ -1,6 +1,6 @@
 # Spring MVC
 
-> `[3] 중급` · 선수 지식: [Spring DI/IoC](./images/spring-di-ioc.md), [HTTP](../network/http.md)
+> `[3] 중급` · 선수 지식: [Spring DI/IoC](./spring-di-ioc.md), [HTTP](../network/http-https.md)
 
 > Model-View-Controller 패턴을 기반으로 웹 애플리케이션을 구축하는 Spring 웹 프레임워크
 
@@ -381,10 +381,10 @@ A: **@Controller**: 뷰 이름 반환, @ResponseBody 없으면 ViewResolver 사�
 
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
-| [Spring DI/IoC](./images/spring-di-ioc.md) | 선수 지식 | [3] 중급 |
-| [HTTP](../network/http.md) | 프로토콜 | [2] 입문 |
+| [Spring DI/IoC](./spring-di-ioc.md) | 선수 지식 | [3] 중급 |
+| [HTTP](../network/http-https.md) | 프로토콜 | [2] 입문 |
 | [REST API](../programming/api-design.md) | API 설계 | [3] 중급 |
-| [예외 처리](../language/exception-handling.md) | 에러 처리 | [2] 입문 |
+| [예외 처리](../language/java/exception-handling.md) | 에러 처리 | [2] 입문 |
 
 ## 참고 자료
 

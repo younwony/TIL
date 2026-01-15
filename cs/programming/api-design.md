@@ -623,7 +623,7 @@ public class GlobalExceptionHandler {
 ## 연관 문서
 
 ### 필수 선행 학습
-- [네트워크](../network/http.md) - HTTP 프로토콜 이해 필수
+- [네트워크](../network/http-https.md) - HTTP 프로토콜 이해 필수
 - [클린 코드](./clean-code.md) - 명확한 네이밍, 일관성 원칙
 
 ### 관련 심화 주제
@@ -631,8 +631,8 @@ public class GlobalExceptionHandler {
 - [함수형 프로그래밍](./functional-programming.md) - 불변 객체 기반 API 설계
 
 ### 실무 적용
-- [데이터베이스](../database/index.md) - 페이지네이션, 쿼리 최적화
-- [보안](../security/authentication.md) - 인증/인가, Rate Limiting
+- [데이터베이스](../db/index.md) - 페이지네이션, 쿼리 최적화
+- [보안](../security/authentication-authorization.md) - 인증/인가, Rate Limiting
 
 ## 참고 자료
 

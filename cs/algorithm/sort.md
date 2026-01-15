@@ -1,6 +1,6 @@
 # 정렬 알고리즘 (Sorting Algorithms)
 
-> `[3] 중급` · 선수 지식: [시간 복잡도](./time-complexity.md), [재귀](../data-structure/recursion.md)
+> `[3] 중급` · 선수 지식: [시간 복잡도](./time-complexity.md), 재귀 개념
 
 > 데이터를 특정 순서(오름차순/내림차순)로 배열하는 알고리즘
 
@@ -482,7 +482,7 @@ private void countingSortByDigit(int[] arr, int exp) {
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
 | [시간 복잡도](./time-complexity.md) | 선수 지식: 정렬 알고리즘 성능 비교 기반 | [2] 입문 |
-| [재귀](../data-structure/recursion.md) | 선수 지식: 퀵 정렬, 병합 정렬 구현 기반 | [2] 입문 |
+| 재귀 개념 | 선수 지식: 퀵 정렬, 병합 정렬 구현 기반 | [2] 입문 |
 | [탐색](./search.md) | 관련 개념: 정렬 후 이진 탐색 | [3] 중급 |
 | [그래프](./graph.md) | 관련 개념: 크루스칼 MST의 간선 정렬 | [4] 심화 |
 | [자료구조](../data-structure/README.md) | 선수 지식: 힙 정렬의 힙 자료구조 | [2] 입문 |

@@ -1,6 +1,6 @@
 # Spring Security
 
-> `[3] 중급` · 선수 지식: [Spring MVC](./spring-mvc.md), [인증과 인가](../security/authentication.md)
+> `[3] 중급` · 선수 지식: [Spring MVC](./spring-mvc.md), [인증과 인가](../security/authentication-authorization.md)
 
 > 인증(Authentication)과 인가(Authorization)를 처리하는 Spring 보안 프레임워크
 
@@ -498,9 +498,8 @@ A: (1) **ALWAYS**: 항상 세션 생성 (2) **IF_REQUIRED**: 필요 시 생성 (
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
 | [Spring MVC](./spring-mvc.md) | 선수 지식 | [3] 중급 |
-| [인증과 인가](../security/authentication.md) | 개념 | [3] 중급 |
-| [JWT](../security/jwt.md) | 토큰 인증 | [3] 중급 |
-| [OAuth 2.0](../security/oauth.md) | 소셜 로그인 | [4] 심화 |
+| [인증과 인가](../security/authentication-authorization.md) | 개념 | [3] 중급 |
+| [OAuth 2.0과 JWT](../security/oauth-jwt.md) | 토큰 인증/소셜 로그인 | [4] 심화 |
 
 ## 참고 자료
 

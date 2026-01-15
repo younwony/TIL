@@ -420,7 +420,7 @@ A: Spring AOP는 **프록시 기반**이므로 외부에서 호출해야 프록�
 | [Spring DI/IoC](./spring-di-ioc.md) | 선수 지식 | [3] 중급 |
 | [프록시 패턴](../programming/design-pattern.md) | 동작 원리 | [3] 중급 |
 | [트랜잭션 관리](./spring-transaction.md) | AOP 활용 | [3] 중급 |
-| [어노테이션](../language/annotation.md) | 커스텀 AOP | [3] 중급 |
+| [어노테이션](../language/java/annotation.md) | 커스텀 AOP | [3] 중급 |
 
 ## 참고 자료
 
