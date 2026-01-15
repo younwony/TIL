@@ -1,6 +1,6 @@
 # API 설계
 
-**난이도**: [4] 심화
+> `[4] 심화` · 선수 지식: [HTTP/HTTPS](../network/http-https.md), [REST API](../network/rest-api.md)
 
 > 클라이언트와 서버 간 데이터 통신을 위한 인터페이스를 정의하는 원칙과 방법
 
