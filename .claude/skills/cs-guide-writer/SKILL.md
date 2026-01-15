@@ -205,6 +205,35 @@ CS-GUIDE.md 템플릿에 맞춰 학습 문서를 작성하는 Skill입니다.
 // 예제 코드
 ```
 
+## 코드 블록 언어 가이드
+
+웹 뷰어(cs-web)의 Highlight.js 호환성을 위해 아래 언어를 사용합니다.
+
+### 권장 언어 태그
+
+| 언어 | 태그 | 비고 |
+|------|------|------|
+| Java | `java` | |
+| Kotlin | `kotlin` | |
+| JavaScript | `javascript` 또는 `js` | |
+| TypeScript | `typescript` 또는 `ts` | |
+| Python | `python` | |
+| SQL | `sql` | |
+| JSON | `json` | |
+| YAML | `yaml` | |
+| Markdown | `markdown` | |
+| **쉘/터미널** | `shell` 또는 `bash` | ⚠️ `powershell` 사용 금지 |
+| HTML | `html` | |
+| CSS | `css` | |
+| Go | `go` | |
+| Rust | `rust` | |
+
+### 주의사항
+
+- **`powershell` 사용 금지**: Highlight.js 기본 빌드에 포함되지 않아 웹에서 하이라이팅 안됨
+- Windows 명령어도 `shell` 또는 `bash`로 표기
+- 언어 미지정 시 하이라이팅 없이 표시됨
+
 ## 트레이드오프 (해당 시)
 
 | 장점 | 단점 |
