@@ -6,7 +6,7 @@
 
 ### [1] 정의/기초
 
-- TODO: DevOps란? (what-is-devops.md)
+- [DevOps란](./what-is-devops.md) - DevOps의 정의, CALMS 원칙, DORA 메트릭
 
 ### [2] 입문
 
@@ -25,7 +25,7 @@
 
 - [Platform Engineering](./platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라 `Trend` (선수: CI/CD, IaC)
 - [GitOps](./gitops.md) - Git 기반 선언적 배포, ArgoCD, FluxCD `Trend` (선수: CI/CD, IaC)
-- TODO: SRE (선수: 모니터링)
+- [SRE](./sre.md) - Site Reliability Engineering, SLI/SLO/SLA, Error Budget (선수: 모니터링)
 
 ## 관련 문서
 
