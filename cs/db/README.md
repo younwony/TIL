@@ -69,6 +69,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [LATERAL JOIN](./lateral-join.md) | 상관 조인, Top-N per Group, CROSS/OUTER APPLY | SQL |
 | [Redis Caching](./redis-caching.md) | 캐싱 전략, 무효화, 일관성, 스탬피드 | NoSQL |
 | [Elasticsearch](./elasticsearch.md) | 역인덱스, 전문검색, 분산 검색엔진 | NoSQL, Index |
+| [open_table_cache](./open-table-cache.md) | MySQL 테이블 캐시, 파일 디스크립터, 성능 튜닝 | 파일 디스크립터, MySQL 인덱스 |
 
 ### [4] 심화
 
@@ -92,6 +93,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 
 ### MySQL
 - [MySQL 인덱스](./mysql-index.md) - B+Tree 인덱스, 클러스터드/세컨더리 인덱스, 복합 인덱스
+- [open_table_cache](./open-table-cache.md) - 테이블 캐시, 파일 디스크립터 관리, 성능 튜닝
 
 ### Redis
 - [Redis Caching](./redis-caching.md) - 캐싱 전략(Cache-Aside, Write-Through, Write-Behind), 캐시 무효화, 일관성
