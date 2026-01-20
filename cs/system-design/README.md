@@ -60,6 +60,7 @@
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [MSA vs CNA vs BFF 비교](./msa-cna-bff-comparison.md) | 현대 아키텍처 핵심 개념 비교 | MSA, Cloud Native, API Gateway |
 | [로드밸런싱](./load-balancing.md) | L4/L7, Round Robin, Health Check | 확장성, 가용성 |
 | [캐싱](./caching.md) | 캐시 전략, 캐시 무효화, Redis | 확장성 |
 | [서킷브레이커](./circuit-breaker.md) | 장애 전파 방지 패턴 | 가용성 |
@@ -144,6 +145,7 @@
 - [SOA](./soa.md) - 서비스 지향 아키텍처, ESB
 - [12-Factor App](./12-factor-app.md) - 클라우드 네이티브 방법론
 - [MSA vs 모놀리식](./msa-vs-monolithic.md) - 마이크로서비스 vs 모놀리식, 장단점, 전환 전략
+- [MSA vs CNA vs BFF 비교](./msa-cna-bff-comparison.md) - 현대 아키텍처 핵심 개념 비교, Cell-based Architecture
 - [DDD](./ddd.md) - Bounded Context, Aggregate, 도메인 모델, Ubiquitous Language
 - [분산 트랜잭션](./distributed-transaction.md) - 2PC, Saga 패턴, 보상 트랜잭션
 - [SAGA 패턴](./saga-pattern.md) - Choreography/Orchestration, 보상 트랜잭션, Outbox 패턴
