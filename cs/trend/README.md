@@ -8,6 +8,7 @@
 
 ### AI/ML
 
+- [A2A (Agent-to-Agent) Protocol](../ai-agent/a2a-protocol.md) - AI 에이전트 간 통신 표준, Gartner 2025 Top Tech Trend, Linux Foundation 거버넌스 (2025)
 - [Context Engineering](../ai-agent/context-engineering.md) - 프롬프트 엔지니어링의 진화, LLM 컨텍스트 동적 설계 및 관리 (2026)
 - [Vibe Coding](../ai-agent/vibe-coding.md) - AI 협업 코딩 패러다임, 2025년 개발자 82% 사용
 - [MCP (Model Context Protocol)](../ai-agent/mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜

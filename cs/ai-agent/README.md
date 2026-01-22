@@ -16,9 +16,9 @@ AI 에이전트 관련 기술을 정리하는 공간입니다.
 │   [2] Tool Use + MCP                                            │
 │        - 도구 사용 및 외부 시스템 연결                           │
 │            │                                                     │
-│            ├──────────────┬──────────────┐                      │
-│            ▼              ▼              ▼                      │
-│   [3] Skill       [3] Hook         [3] Prompt Engineering       │
+│            ├──────────────┬──────────────┬──────────────┐       │
+│            ▼              ▼              ▼              ▼       │
+│   [3] Skill       [3] Hook    [3] Prompt Eng.    [3] A2A       │
 │        - 기능 확장 및 커스터마이징                               │
 │            │                                                     │
 │            ▼                                                     │
@@ -58,6 +58,7 @@ MCP 개념을 이해한 후 학습하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [A2A Protocol](./a2a-protocol.md) | AI 에이전트 간 통신 표준 프로토콜 `Trend 2025` | MCP, AI Agent란 |
 | [RAG](./rag.md) | 검색 증강 생성, 외부 지식 기반 LLM 응답 `Trend` | LLM 기초, AI Agent란 |
 | [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
 | [Codex MCP 연결](./codex-mcp.md) | Claude Code와 OpenAI Codex CLI 통합 | MCP |
@@ -94,6 +95,7 @@ Sub Agent를 이해한 후 도전하세요.
 ### 도구 & 프로토콜
 - [Tool Use](./tool-use.md) - LLM이 외부 도구를 호출하여 실제 작업을 수행하는 능력
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
+- [A2A (Agent-to-Agent) Protocol](./a2a-protocol.md) - AI 에이전트 간 통신과 협업을 위한 표준 프로토콜 `Trend 2025`
 
 ### AI 협업 & 코딩 패러다임
 - [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
