@@ -62,6 +62,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [A2A Protocol](./a2a-protocol.md) | AI 에이전트 간 통신 표준 프로토콜 `Trend 2025` | MCP, AI Agent란 |
 | [RAG](./rag.md) | 검색 증강 생성, 외부 지식 기반 LLM 응답 `Trend` | LLM 기초, AI Agent란 |
 | [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
+| [Repository Intelligence](./repository-intelligence.md) | AI 전체 코드베이스 이해 `Trend 2026` | Vibe Coding, LLM 기초 |
 | [Codex MCP 연결](./codex-mcp.md) | Claude Code와 OpenAI Codex CLI 통합 | MCP |
 | [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징 | MCP |
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
@@ -102,6 +103,7 @@ Sub Agent를 이해한 후 도전하세요.
 ### AI 협업 & 코딩 패러다임
 - [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
 - [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
+- [Repository Intelligence](./repository-intelligence.md) - AI가 전체 코드베이스의 구조, 관계, 히스토리를 이해하여 맥락에 맞는 코드 제안 `Trend 2026`
 
 ### 확장 & 커스터마이징
 - [Codex MCP 연결](./codex-mcp.md) - Claude Code에서 OpenAI Codex CLI를 MCP로 연결하여 두 AI 에이전트를 통합하는 방법

@@ -8,6 +8,7 @@
 
 ### AI/ML
 
+- [Repository Intelligence](../ai-agent/repository-intelligence.md) - AI가 전체 코드베이스를 이해하여 맥락에 맞는 코드 제안, GitHub 2026 핵심 트렌드 (2026)
 - [SLM (Small Language Model)](../ai-agent/slm.md) - 특정 작업에 최적화된 소형 언어 모델, LLM 대비 10~30배 효율적, 2026 핵심 트렌드 (2026)
 - [A2A (Agent-to-Agent) Protocol](../ai-agent/a2a-protocol.md) - AI 에이전트 간 통신 표준, Gartner 2025 Top Tech Trend, Linux Foundation 거버넌스 (2025)
 - [Context Engineering](../ai-agent/context-engineering.md) - 프롬프트 엔지니어링의 진화, LLM 컨텍스트 동적 설계 및 관리 (2026)
