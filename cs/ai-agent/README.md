@@ -59,6 +59,7 @@ MCP 개념을 이해한 후 학습하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [AI Guardrails](./ai-guardrails.md) | LLM/AI 에이전트의 안전한 운영을 위한 가드레일 `Trend 2026` | AI Agent란, OWASP LLM |
 | [A2A Protocol](./a2a-protocol.md) | AI 에이전트 간 통신 표준 프로토콜 `Trend 2025` | MCP, AI Agent란 |
 | [RAG](./rag.md) | 검색 증강 생성, 외부 지식 기반 LLM 응답 `Trend` | LLM 기초, AI Agent란 |
 | [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
@@ -112,6 +113,9 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code Slash Command](./claude-code-slash-command.md) - 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행하는 시스템
 - [Claude Code Workflow](./claude-code-workflow.md) - Claude Code의 효율적인 사용법과 실무 최적화 전략
 - [Prompt Engineering](./prompt-engineering.md) - LLM에서 원하는 결과를 얻기 위한 프롬프트 설계 및 최적화 기술
+
+### 보안 & 거버넌스
+- [AI Guardrails](./ai-guardrails.md) - LLM과 AI 에이전트의 안전한 운영을 위한 입력/출력/행동 제어 메커니즘 `Trend 2026`
 
 ### 심화 기능
 - [Context Engineering](./context-engineering.md) - LLM이 작업을 성공적으로 수행하는 데 필요한 모든 컨텍스트를 동적으로 설계하고 관리하는 학문 `Trend 2026`
