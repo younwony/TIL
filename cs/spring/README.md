@@ -17,6 +17,7 @@ Spring은 Java 엔터프라이즈 애플리케이션 개발을 위한 포괄적�
 | [트랜잭션 관리](./spring-transaction.md) | 선언적 트랜잭션 관리 | 트랜잭션, AOP |
 | [Spring MVC](./spring-mvc.md) | 웹 애플리케이션 프레임워크 | DI/IoC, HTTP |
 | [Spring Security](./spring-security.md) | 인증과 인가 프레임워크 | Spring MVC, 보안 |
+| [@Scheduled 스케줄링](./spring-scheduled.md) | 태스크 스케줄링 (fixedRate, cron 등) | DI/IoC, AOP |
 
 ## 학습 순서
 
@@ -27,9 +28,11 @@ Spring DI/IoC (핵심)
       │       │
       │       └── 트랜잭션 관리
       │
-      └── Spring MVC
-              │
-              └── Spring Security
+      ├── Spring MVC
+      │       │
+      │       └── Spring Security
+      │
+      └── @Scheduled (스케줄링)
 ```
 
 ## 핵심 개념

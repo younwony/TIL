@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant T as TaskScheduler
+
+    Note over T: === fixedRate(5000) ===
+    rect rgb(52, 152, 219, 0.1)
+        T->>T: 작업 실행 (3초 소요)
+        Note right of T: 0s ~ 3s
+        T->>T: 대기 (2초)
+        Note right of T: 3s ~ 5s
+        T->>T: 작업 실행 (3초 소요)
+        Note right of T: 5s ~ 8s
+        T->>T: 대기 (2초)
+        Note right of T: 8s ~ 10s
+        T->>T: 작업 실행
+        Note right of T: 10s ~
+    end
+
+    Note over T: === fixedDelay(5000) ===
+    rect rgb(46, 204, 113, 0.1)
+        T->>T: 작업 실행 (3초 소요)
+        Note right of T: 0s ~ 3s
+        T->>T: 대기 (5초)
+        Note right of T: 3s ~ 8s
+        T->>T: 작업 실행 (3초 소요)
+        Note right of T: 8s ~ 11s
+        T->>T: 대기 (5초)
+        Note right of T: 11s ~ 16s
+        T->>T: 작업 실행
+        Note right of T: 16s ~
+    end

@@ -1,0 +1,17 @@
+flowchart TD
+    A["@EnableScheduling<br/>스케줄링 활성화"] --> B["TaskScheduler<br/>스레드 풀 생성"]
+    B --> C{"@Scheduled<br/>메서드 감지"}
+    C --> D["fixedRate<br/>고정 주기 실행"]
+    C --> E["fixedDelay<br/>완료 후 대기"]
+    C --> F["cron<br/>Cron 표현식"]
+    C --> G["initialDelay<br/>초기 지연"]
+
+    D --> H["이전 작업 완료 여부<br/>상관없이 실행"]
+    E --> I["이전 작업 완료 후<br/>대기 시간 적용"]
+    F --> J["특정 시간/요일<br/>정밀 스케줄링"]
+    G --> K["애플리케이션 시작 후<br/>지연 후 첫 실행"]
+
+    H --> L["TaskScheduler<br/>실행"]
+    I --> L
+    J --> L
+    K --> L
