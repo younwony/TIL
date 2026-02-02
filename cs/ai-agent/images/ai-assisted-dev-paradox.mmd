@@ -1,0 +1,36 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#3498DB', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2980B9', 'lineColor': '#7f8c8d', 'secondaryColor': '#2ECC71', 'tertiaryColor': '#E67E22', 'fontFamily': 'Pretendard, sans-serif'}}}%%
+flowchart LR
+    subgraph Input["AI 코딩 도구 도입"]
+        I1["코드 생성 속도 ↑"]
+        I2["보일러플레이트 자동화"]
+        I3["테스트 자동 생성"]
+    end
+
+    subgraph Positive["긍정적 효과"]
+        P1["개발 속도 20~30% ↑"]
+        P2["반복 작업 60% 절감"]
+        P3["코드 작성 비용 ↓"]
+    end
+
+    subgraph Negative["역설적 효과"]
+        N1["코드 클론 4배 증가"]
+        N2["보안 취약점 48%"]
+        N3["코드 리뷰 비용 ↑"]
+        N4["기술 부채 누적"]
+        N5["시니어 검증 부담 ↑"]
+    end
+
+    subgraph Result["AI 생산성 역설"]
+        R1["코드 작성은 저렴해짐"]
+        R2["코드 소유는 비싸짐"]
+    end
+
+    Input --> Positive
+    Input --> Negative
+    Positive --> Result
+    Negative --> Result
+
+    style Input fill:#3498DB,stroke:#2980B9,color:#fff
+    style Positive fill:#2ECC71,stroke:#27AE60,color:#fff
+    style Negative fill:#E74C3C,stroke:#C0392B,color:#fff
+    style Result fill:#9B59B6,stroke:#8E44AD,color:#fff

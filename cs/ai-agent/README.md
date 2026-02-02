@@ -52,6 +52,7 @@ AI 에이전트 기초를 이해한 후 학습하세요.
 | [Tool Use](./tool-use.md) | LLM의 도구 사용 패턴 | AI Agent란 |
 | [MCP](./mcp.md) | AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜 | AI Agent란 |
 | [SLM](./slm.md) | 특정 작업에 최적화된 소형 언어 모델 `Trend 2026` | LLM 기초 |
+| [AI 보조 개발](./ai-assisted-development.md) | AI 코딩 도구 활용과 생산성 역설 `Trend 2026` | LLM 기초 |
 
 ### [3] 중급
 
@@ -102,6 +103,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [A2A (Agent-to-Agent) Protocol](./a2a-protocol.md) - AI 에이전트 간 통신과 협업을 위한 표준 프로토콜 `Trend 2025`
 
 ### AI 협업 & 코딩 패러다임
+- [AI 보조 개발 (AI-Assisted Development)](./ai-assisted-development.md) - AI 코딩 도구를 활용한 개발 방법론, 생산성 역설과 품질 관리 전략 `Trend 2026`
 - [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
 - [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
 - [Repository Intelligence](./repository-intelligence.md) - AI가 전체 코드베이스의 구조, 관계, 히스토리를 이해하여 맥락에 맞는 코드 제안 `Trend 2026`

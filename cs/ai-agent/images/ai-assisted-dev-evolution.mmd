@@ -1,0 +1,34 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#3498DB', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2980B9', 'lineColor': '#7f8c8d', 'secondaryColor': '#2ECC71', 'tertiaryColor': '#E67E22', 'fontFamily': 'Pretendard, sans-serif'}}}%%
+flowchart LR
+    subgraph Gen1["1세대: 자동 완성 (2021)"]
+        G1A["GitHub Copilot 출시"]
+        G1B["코드 라인 단위 자동 완성"]
+        G1C["수용률 30~40%"]
+    end
+
+    subgraph Gen2["2세대: 대화형 코딩 (2023)"]
+        G2A["ChatGPT 코딩 활용"]
+        G2B["Cursor, Windsurf 등장"]
+        G2C["IDE 통합 AI 어시스턴트"]
+    end
+
+    subgraph Gen3["3세대: AI 에이전트 (2025)"]
+        G3A["Claude Code, Gemini CLI"]
+        G3B["자율적 코드 생성/수정"]
+        G3C["85% 개발자 AI 도구 사용"]
+    end
+
+    subgraph Gen4["4세대: Spec-Driven (2026)"]
+        G4A["명세 기반 자율 개발"]
+        G4B["멀티 에이전트 협업"]
+        G4C["코드 41% AI 생성/보조"]
+    end
+
+    Gen1 -->|진화| Gen2
+    Gen2 -->|진화| Gen3
+    Gen3 -->|진화| Gen4
+
+    style Gen1 fill:#95a5a6,stroke:#7f8c8d,color:#fff
+    style Gen2 fill:#E67E22,stroke:#D35400,color:#fff
+    style Gen3 fill:#3498DB,stroke:#2980B9,color:#fff
+    style Gen4 fill:#2ECC71,stroke:#27AE60,color:#fff
