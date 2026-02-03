@@ -1,0 +1,51 @@
+flowchart TD
+    subgraph COLLECT["📥 데이터 수집"]
+        M["메트릭\n(Prometheus, CloudWatch)"]
+        L["로그\n(ELK, Loki)"]
+        T["트레이스\n(Jaeger, Zipkin)"]
+        E["이벤트\n(Kubernetes Events)"]
+    end
+
+    subgraph PIPELINE["⚙️ AIOps 파이프라인"]
+        INGEST["데이터 수집/정규화\n(OpenTelemetry)"]
+        AD["이상 탐지\n(Anomaly Detection)\nML 기반 동적 임계값"]
+        EC["이벤트 상관관계\n(Event Correlation)\n노이즈 70~90% 감소"]
+        RCA["근본 원인 분석\n(Root Cause Analysis)\n토폴로지 + 시계열 분석"]
+    end
+
+    subgraph ACTION["🔧 자동 대응"]
+        SH["자가 복구\n(Self-Healing)\nRunbook 자동 실행"]
+        ESC["에스컬레이션\n(Escalation)\n온콜 엔지니어 알림"]
+        DASH["대시보드\n(Dashboard)\n실시간 상태 시각화"]
+    end
+
+    subgraph FEEDBACK["🔄 피드백 루프"]
+        FB["모델 재학습\n결과 피드백 반영"]
+    end
+
+    M --> INGEST
+    L --> INGEST
+    T --> INGEST
+    E --> INGEST
+
+    INGEST --> AD
+    AD -->|이상 감지| EC
+    AD -->|정상| DASH
+    EC --> RCA
+
+    RCA -->|신뢰도 95%+| SH
+    RCA -->|신뢰도 부족| ESC
+    RCA --> DASH
+
+    SH -->|성공| DASH
+    SH -->|실패| ESC
+    ESC --> DASH
+
+    SH --> FB
+    ESC --> FB
+    FB -->|모델 개선| AD
+
+    style COLLECT fill:#3498DB,stroke:#2980B9,color:#fff
+    style PIPELINE fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style ACTION fill:#2ECC71,stroke:#27AE60,color:#fff
+    style FEEDBACK fill:#E67E22,stroke:#D35400,color:#fff

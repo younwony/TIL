@@ -1,0 +1,49 @@
+graph TB
+    subgraph Application["Spring Boot Application"]
+        CC["ChatClient<br/>(Fluent API)"]
+        ADV["Advisor Chain<br/>(Memory, RAG, Safety)"]
+        CM["ChatModel<br/>(추상화 인터페이스)"]
+    end
+
+    subgraph Providers["AI Providers"]
+        OAI["OpenAI"]
+        OLL["Ollama"]
+        ANT["Anthropic"]
+        GEM["Google Gemini"]
+    end
+
+    subgraph MCP_Layer["MCP Layer"]
+        MC["MCP Client"]
+        MS1["MCP Server<br/>(DB)"]
+        MS2["MCP Server<br/>(API)"]
+        MS3["MCP Server<br/>(File)"]
+    end
+
+    subgraph Storage["Vector Store"]
+        PGV["PGVector"]
+        CHR["Chroma"]
+        RED["Redis"]
+    end
+
+    User["👤 사용자"] --> CC
+    CC --> ADV
+    ADV --> CM
+    CM --> OAI
+    CM --> OLL
+    CM --> ANT
+    CM --> GEM
+    ADV --> |RAG| Storage
+    CM --> |Tool Use| MC
+    MC --> MS1
+    MC --> MS2
+    MC --> MS3
+
+    classDef appStyle fill:#3498DB,stroke:#2980B9,color:white
+    classDef providerStyle fill:#2ECC71,stroke:#27AE60,color:white
+    classDef mcpStyle fill:#E67E22,stroke:#D35400,color:white
+    classDef storeStyle fill:#9B59B6,stroke:#8E44AD,color:white
+
+    class CC,ADV,CM appStyle
+    class OAI,OLL,ANT,GEM providerStyle
+    class MC,MS1,MS2,MS3 mcpStyle
+    class PGV,CHR,RED storeStyle

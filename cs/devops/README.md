@@ -26,6 +26,7 @@
 - [Platform Engineering](./platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라 `Trend` (선수: CI/CD, IaC)
 - [GitOps](./gitops.md) - Git 기반 선언적 배포, ArgoCD, FluxCD `Trend` (선수: CI/CD, IaC)
 - [SRE](./sre.md) - Site Reliability Engineering, SLI/SLO/SLA, Error Budget (선수: 모니터링)
+- [AIOps](./aiops.md) - AI 기반 IT 운영 자동화, 이상 탐지, 자가 복구 `Trend` (선수: 모니터링, SRE)
 
 ## 관련 문서
 

@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant U as 사용자
+    participant CC as ChatClient
+    participant QA as QuestionAnswerAdvisor
+    participant VS as VectorStore
+    participant LLM as AI Model
+
+    U->>CC: 질문 전달
+    CC->>QA: 요청 전달
+
+    rect rgb(52, 152, 219, 0.1)
+        Note over QA,VS: Retrieve (검색)
+        QA->>VS: 유사 문서 검색<br/>(similarity search)
+        VS-->>QA: 관련 문서 반환
+    end
+
+    rect rgb(46, 204, 113, 0.1)
+        Note over QA: Augment (보강)
+        QA->>QA: 컨텍스트 + 질문<br/>프롬프트 조합
+    end
+
+    rect rgb(155, 89, 182, 0.1)
+        Note over QA,LLM: Generate (생성)
+        QA->>LLM: 보강된 프롬프트 전달
+        LLM-->>QA: 응답 생성
+    end
+
+    QA-->>CC: 응답 반환
+    CC-->>U: 최종 답변

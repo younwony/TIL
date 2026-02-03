@@ -28,6 +28,11 @@
 - [Platform Engineering](../devops/platform-engineering.md) - 내부 개발자 플랫폼(IDP), 셀프서비스 인프라, 55% 글로벌 조직 채택
 - [DevSecOps](../devops/devsecops.md) - 개발-보안-운영 통합, Shift-Everywhere 패러다임, 75% 기업 보안 투자 증가
 - [GitOps](../devops/gitops.md) - Git 기반 선언적 배포, ArgoCD/FluxCD, Pull 기반 배포 패러다임
+- [AIOps](../devops/aiops.md) - AI 기반 IT 운영 자동화, 이상 탐지·자가 복구, Alert Fatigue 해소 (2026)
+
+### Spring
+
+- [Spring AI](../spring/spring-ai.md) - AI 통합 프레임워크, ChatClient·Advisor·MCP·RAG, 2026 핵심 트렌드
 
 ### Language
 

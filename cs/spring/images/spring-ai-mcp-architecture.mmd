@@ -1,0 +1,30 @@
+graph LR
+    subgraph Host["Host (AI Application)"]
+        APP["Spring Boot App"]
+        C1["MCP Client 1"]
+        C2["MCP Client 2"]
+    end
+
+    subgraph Server1["MCP Server (DB)"]
+        T1["@Tool: getOrder"]
+        T2["@Tool: searchProducts"]
+        R1["Resource: schema"]
+    end
+
+    subgraph Server2["MCP Server (Search)"]
+        T3["@Tool: webSearch"]
+        T4["@Tool: imageSearch"]
+    end
+
+    APP --> C1
+    APP --> C2
+    C1 -->|JSON-RPC<br/>stdio/SSE| Server1
+    C2 -->|JSON-RPC<br/>stdio/SSE| Server2
+
+    classDef hostStyle fill:#3498DB,stroke:#2980B9,color:white
+    classDef clientStyle fill:#E67E22,stroke:#D35400,color:white
+    classDef serverStyle fill:#2ECC71,stroke:#27AE60,color:white
+
+    class APP hostStyle
+    class C1,C2 clientStyle
+    class T1,T2,T3,T4,R1 serverStyle
