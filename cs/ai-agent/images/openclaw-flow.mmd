@@ -1,0 +1,40 @@
+sequenceDiagram
+    autonumber
+    participant U as 👤 사용자
+    participant M as 💬 메시징 앱<br/>(WhatsApp/Slack)
+    participant G as 🦞 Gateway 코어<br/>(로컬 실행)
+    participant Mem as 📝 Memory<br/>(로컬 Markdown)
+    participant MCP as 🔌 MCP<br/>인터페이스
+    participant LLM as 🤖 LLM API<br/>(Claude/GPT)
+    participant Svc as 🌐 외부 서비스<br/>(100+)
+
+    Note over G: Heartbeat: 백그라운드 상시 실행
+
+    U->>M: "내일 미팅 자료 준비해줘"
+    M->>G: 메시지 전달
+
+    G->>Mem: 사용자 선호도/과거 컨텍스트 조회
+    Mem-->>G: 사용자 프로필 + 이전 대화 기록
+
+    G->>LLM: 프롬프트 + 컨텍스트 전송
+    LLM-->>G: 작업 계획 (Tool Call 목록)
+
+    rect rgb(230, 245, 255)
+        Note over G,Svc: Computer Access - 자율 작업 수행
+        G->>MCP: 캘린더 조회 요청
+        MCP->>Svc: Google Calendar API
+        Svc-->>MCP: 미팅 정보 반환
+        MCP-->>G: 미팅 상세 정보
+
+        G->>MCP: 파일 검색 + 요약
+        MCP-->>G: 관련 문서 목록
+
+        G->>MCP: 이메일 전송
+        MCP->>Svc: Gmail API
+        Svc-->>MCP: 전송 완료
+        MCP-->>G: 완료 확인
+    end
+
+    G->>Mem: 작업 결과 + 컨텍스트 저장
+    G->>M: "미팅 자료를 참석자에게 전송했습니다"
+    M->>U: 결과 알림
