@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 480">
+  <defs>
+    <linearGradient id="step1Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="step2Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="step3Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F1C40F"/>
+      <stop offset="100%" style="stop-color:#F39C12"/>
+    </linearGradient>
+    <linearGradient id="step4Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="step5Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="catAGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <marker id="arrowDown" markerWidth="10" markerHeight="7" refX="3.5" refY="7" orient="auto">
+      <polygon points="0 0, 7 0, 3.5 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowLoop" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498DB"/>
+    </marker>
+  </defs>
+
+  <!-- 타이틀 -->
+  <text x="375" y="30" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Skill 빌딩 워크플로우</text>
+  <text x="375" y="48" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="11">설계 → 작성 → Progressive Disclosure → 테스트 → 배포</text>
+
+  <!-- ====== Step 1: 설계 ====== -->
+  <rect x="30" y="70" width="130" height="130" rx="8" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.5"/>
+  <rect x="30" y="70" width="130" height="28" rx="8" fill="url(#step1Grad)"/>
+  <rect x="30" y="90" width="130" height="8" fill="url(#step1Grad)"/>
+  <text x="95" y="89" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">1. 설계</text>
+  <text x="95" y="118" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">사용 사례 2~3개 정의</text>
+  <text x="95" y="135" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">카테고리 선택</text>
+  <text x="95" y="152" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">문서생성 | 워크플로 | MCP</text>
+  <text x="95" y="169" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">트리거 표현 수집</text>
+  <text x="95" y="186" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">도구 요구사항 파악</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="160" y1="135" x2="185" y2="135" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- ====== Step 2: 작성 ====== -->
+  <rect x="187" y="70" width="130" height="130" rx="8" fill="#FDF2E9" stroke="#D35400" stroke-width="1.5"/>
+  <rect x="187" y="70" width="130" height="28" rx="8" fill="url(#step2Grad)"/>
+  <rect x="187" y="90" width="130" height="8" fill="url(#step2Grad)"/>
+  <text x="252" y="89" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">2. SKILL.md 작성</text>
+  <text x="252" y="118" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">YAML frontmatter</text>
+  <text x="252" y="135" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">name, description 등</text>
+  <text x="252" y="152" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">워크플로우 지침</text>
+  <text x="252" y="169" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">참조 파일 분리</text>
+  <text x="252" y="186" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">스크립트 작성</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="317" y1="135" x2="342" y2="135" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- ====== Step 3: Progressive Disclosure ====== -->
+  <rect x="344" y="70" width="130" height="130" rx="8" fill="#FEF9E7" stroke="#F39C12" stroke-width="1.5"/>
+  <rect x="344" y="70" width="130" height="28" rx="8" fill="url(#step3Grad)"/>
+  <rect x="344" y="90" width="130" height="8" fill="url(#step3Grad)"/>
+  <text x="409" y="89" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">3. 점진적 공개</text>
+  <text x="409" y="118" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">L1: 메타데이터</text>
+  <text x="409" y="135" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">~100 토큰/스킬</text>
+  <text x="409" y="152" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">L2: 본문 (5k 미만)</text>
+  <text x="409" y="169" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">L3: 리소스 (무제한)</text>
+  <text x="409" y="186" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">500줄 이하 유지</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="474" y1="135" x2="499" y2="135" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- ====== Step 4: 테스트 ====== -->
+  <rect x="501" y="70" width="130" height="130" rx="8" fill="#EBF5FB" stroke="#2980B9" stroke-width="1.5"/>
+  <rect x="501" y="70" width="130" height="28" rx="8" fill="url(#step4Grad)"/>
+  <rect x="501" y="90" width="130" height="8" fill="url(#step4Grad)"/>
+  <text x="566" y="89" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">4. 테스트</text>
+  <text x="566" y="118" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">트리거 정확도</text>
+  <text x="566" y="135" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">격리 동작 검증</text>
+  <text x="566" y="152" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">공존성 테스트</text>
+  <text x="566" y="169" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">출력 품질 검증</text>
+  <text x="566" y="186" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">Claude A/B 방법</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="631" y1="135" x2="654" y2="135" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- ====== Step 5: 배포 ====== -->
+  <rect x="656" y="70" width="75" height="130" rx="8" fill="#E8F8F5" stroke="#27AE60" stroke-width="1.5"/>
+  <rect x="656" y="70" width="75" height="28" rx="8" fill="url(#step5Grad)"/>
+  <rect x="656" y="90" width="75" height="8" fill="url(#step5Grad)"/>
+  <text x="693" y="89" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">5. 배포</text>
+  <text x="693" y="118" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">Claude.ai</text>
+  <text x="693" y="135" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">Code</text>
+  <text x="693" y="152" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">API</text>
+  <text x="693" y="169" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">SDK</text>
+
+  <!-- 피드백 루프 (테스트 → 작성) -->
+  <path d="M 566 200 L 566 218 Q 566 228 556 228 L 262 228 Q 252 228 252 218 L 252 200" fill="none" stroke="#2980B9" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowLoop)"/>
+  <rect x="360" y="220" width="100" height="18" rx="4" fill="#EBF5FB"/>
+  <text x="410" y="233" text-anchor="middle" fill="#2980B9" font-family="Arial, sans-serif" font-size="9" font-weight="bold">반복 개선</text>
+
+  <!-- ====== 하단: Evaluation-Driven Development ====== -->
+  <line x1="30" y1="255" x2="720" y2="255" stroke="#BDC3C7" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="375" y="278" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Evaluation-Driven Development (평가 주도 개발)</text>
+
+  <!-- 5단계 EDD 프로세스 -->
+  <!-- Step A: 갭 식별 -->
+  <circle cx="95" cy="330" r="30" fill="url(#step1Grad)"/>
+  <text x="95" y="325" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">갭</text>
+  <text x="95" y="338" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">식별</text>
+  <text x="95" y="375" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">Skill 없이 작업</text>
+  <text x="95" y="387" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">실패 지점 문서화</text>
+
+  <!-- Arrow A→B -->
+  <line x1="125" y1="330" x2="195" y2="330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- Step B: 평가 생성 -->
+  <circle cx="225" cy="330" r="30" fill="url(#step2Grad)"/>
+  <text x="225" y="325" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">평가</text>
+  <text x="225" y="338" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">생성</text>
+  <text x="225" y="375" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">3~5개 시나리오</text>
+  <text x="225" y="387" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">테스트 케이스 작성</text>
+
+  <!-- Arrow B→C -->
+  <line x1="255" y1="330" x2="325" y2="330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- Step C: 기준선 측정 -->
+  <circle cx="355" cy="330" r="30" fill="url(#step3Grad)"/>
+  <text x="355" y="325" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">기준선</text>
+  <text x="355" y="338" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">측정</text>
+  <text x="355" y="375" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">Skill 없이 성능</text>
+  <text x="355" y="387" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">Before 데이터 수집</text>
+
+  <!-- Arrow C→D -->
+  <line x1="385" y1="330" x2="455" y2="330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- Step D: 최소 작성 -->
+  <circle cx="485" cy="330" r="30" fill="url(#step4Grad)"/>
+  <text x="485" y="325" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">최소</text>
+  <text x="485" y="338" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">작성</text>
+  <text x="485" y="375" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">갭 해결 최소 지침</text>
+  <text x="485" y="387" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">불필요한 내용 배제</text>
+
+  <!-- Arrow D→E -->
+  <line x1="515" y1="330" x2="585" y2="330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowRight)"/>
+
+  <!-- Step E: 반복 -->
+  <circle cx="615" cy="330" r="30" fill="url(#step5Grad)"/>
+  <text x="615" y="325" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">반복</text>
+  <text x="615" y="338" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">개선</text>
+  <text x="615" y="375" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">평가 실행</text>
+  <text x="615" y="387" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="8">기준선과 비교</text>
+
+  <!-- 반복 루프 화살표 (E→D) -->
+  <path d="M 615 360 L 615 415 Q 615 425 605 425 L 495 425 Q 485 425 485 415 L 485 360" fill="none" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowLoop)"/>
+  <rect x="510" y="417" width="80" height="18" rx="4" fill="#E8F8F5"/>
+  <text x="550" y="430" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">개선 반복</text>
+
+  <!-- 하단 요약 -->
+  <rect x="30" y="450" width="690" height="24" rx="5" fill="#F8F9F9" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="375" y="466" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">초기 구축 15~30분 | 설계 품질이 성공 좌우 | Skill은 고정 산출물이 아닌 운영 대상</text>
+</svg>

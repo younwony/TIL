@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 520">
+  <defs>
+    <linearGradient id="level1Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="level2Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="level3Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D35400"/>
+    </marker>
+  </defs>
+
+  <!-- 타이틀 -->
+  <text x="375" y="30" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Skill Progressive Disclosure (점진적 공개)</text>
+  <text x="375" y="50" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="11">3단계 로딩으로 컨텍스트 비용 최적화</text>
+
+  <!-- ====== 상단: 3단계 구조 ====== -->
+
+  <!-- Level 1 박스 -->
+  <rect x="30" y="75" width="210" height="130" rx="8" fill="#E8F8F5" stroke="#27AE60" stroke-width="2"/>
+  <rect x="30" y="75" width="210" height="32" rx="8" fill="url(#level1Grad)"/>
+  <rect x="30" y="99" width="210" height="8" fill="url(#level1Grad)"/>
+  <text x="135" y="96" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Level 1: 메타데이터</text>
+  <text x="135" y="125" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">항상 로드</text>
+  <text x="135" y="145" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="10">~100 토큰/스킬</text>
+  <rect x="55" y="158" width="160" height="22" rx="4" fill="#27AE60" opacity="0.15"/>
+  <text x="135" y="173" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">name + description</text>
+  <text x="135" y="197" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">YAML frontmatter</text>
+
+  <!-- Level 2 박스 -->
+  <rect x="270" y="75" width="210" height="130" rx="8" fill="#EBF5FB" stroke="#2980B9" stroke-width="2"/>
+  <rect x="270" y="75" width="210" height="32" rx="8" fill="url(#level2Grad)"/>
+  <rect x="270" y="99" width="210" height="8" fill="url(#level2Grad)"/>
+  <text x="375" y="96" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Level 2: 지시사항</text>
+  <text x="375" y="125" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">스킬 트리거 시 로드</text>
+  <text x="375" y="145" text-anchor="middle" fill="#2980B9" font-family="Arial, sans-serif" font-size="10">5k 토큰 미만</text>
+  <rect x="295" y="158" width="160" height="22" rx="4" fill="#2980B9" opacity="0.15"/>
+  <text x="375" y="173" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">SKILL.md 본문</text>
+  <text x="375" y="197" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">워크플로우, 가이드라인</text>
+
+  <!-- Level 3 박스 -->
+  <rect x="510" y="75" width="210" height="130" rx="8" fill="#F4ECF7" stroke="#8E44AD" stroke-width="2"/>
+  <rect x="510" y="75" width="210" height="32" rx="8" fill="url(#level3Grad)"/>
+  <rect x="510" y="99" width="210" height="8" fill="url(#level3Grad)"/>
+  <text x="615" y="96" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Level 3+: 리소스</text>
+  <text x="615" y="125" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">필요 시 로드</text>
+  <text x="615" y="145" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="10">사실상 무제한</text>
+  <rect x="535" y="158" width="160" height="22" rx="4" fill="#8E44AD" opacity="0.15"/>
+  <text x="615" y="173" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">scripts/ references/ assets/</text>
+  <text x="615" y="197" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">스크립트 실행, 참조 문서</text>
+
+  <!-- 레벨 간 화살표 -->
+  <line x1="240" y1="140" x2="270" y2="140" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <line x1="480" y1="140" x2="510" y2="140" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- 구분선 -->
+  <line x1="30" y1="230" x2="720" y2="230" stroke="#BDC3C7" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="375" y="252" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">로딩 과정 흐름</text>
+
+  <!-- ====== 하단: 로딩 흐름 ====== -->
+
+  <!-- Step 1: 시작 -->
+  <rect x="30" y="275" width="130" height="40" rx="6" fill="url(#level1Grad)"/>
+  <text x="95" y="292" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">시작</text>
+  <text x="95" y="305" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">name+desc 전체 로드</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="160" y1="295" x2="185" y2="295" stroke="#D35400" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Step 2: 사용자 요청 -->
+  <rect x="187" y="275" width="130" height="40" rx="6" fill="url(#flowGrad)"/>
+  <text x="252" y="292" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">사용자 요청</text>
+  <text x="252" y="305" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">"PDF 텍스트 추출해줘"</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="317" y1="295" x2="342" y2="295" stroke="#D35400" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Step 3: Claude 판단 -->
+  <polygon points="407,275 460,295 407,315 354,295" fill="url(#claudeGrad)"/>
+  <text x="407" y="293" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Claude</text>
+  <text x="407" y="305" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">판단</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="460" y1="295" x2="485" y2="295" stroke="#D35400" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Step 4: Skill 활성화 -->
+  <rect x="487" y="275" width="130" height="40" rx="6" fill="url(#level2Grad)"/>
+  <text x="552" y="292" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Skill 활성화</text>
+  <text x="552" y="305" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">SKILL.md 본문 로드</text>
+
+  <!-- Arrow 4→5 (아래로) -->
+  <line x1="552" y1="315" x2="552" y2="345" stroke="#D35400" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Step 5: 선택적 로드 -->
+  <rect x="462" y="347" width="180" height="40" rx="6" fill="url(#level3Grad)"/>
+  <text x="552" y="364" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">선택적 리소스 로드</text>
+  <text x="552" y="377" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">references/, scripts/ 등</text>
+
+  <!-- Arrow 5→6 (아래로) -->
+  <line x1="552" y1="387" x2="552" y2="417" stroke="#D35400" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Step 6: 작업 완료 -->
+  <rect x="477" y="419" width="150" height="36" rx="18" fill="#2C3E50"/>
+  <text x="552" y="441" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">작업 수행 완료</text>
+
+  <!-- 좌측 설명 주석 -->
+  <rect x="30" y="340" width="400" height="115" rx="8" fill="#FAFAFA" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="45" y="362" fill="#2C3E50" font-family="Arial, sans-serif" font-size="11" font-weight="bold">핵심 규칙</text>
+  <circle cx="52" cy="383" r="4" fill="#27AE60"/>
+  <text x="62" y="387" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">SKILL.md 본문 500줄 이하 유지</text>
+  <circle cx="52" cy="403" r="4" fill="#2980B9"/>
+  <text x="62" y="407" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">참조는 1단계 깊이까지만 (중첩 참조 지양)</text>
+  <circle cx="52" cy="423" r="4" fill="#8E44AD"/>
+  <text x="62" y="427" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">100줄 이상 참조 파일에 목차(TOC) 포함</text>
+  <circle cx="52" cy="443" r="4" fill="#E67E22"/>
+  <text x="62" y="447" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">스크립트 코드는 컨텍스트에 미포함 → 출력만 소비</text>
+
+  <!-- 범례 -->
+  <rect x="30" y="475" width="690" height="30" rx="5" fill="#F8F9F9"/>
+  <rect x="45" y="483" width="14" height="14" rx="3" fill="url(#level1Grad)"/>
+  <text x="64" y="494" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">Level 1 (항상)</text>
+  <rect x="170" y="483" width="14" height="14" rx="3" fill="url(#level2Grad)"/>
+  <text x="189" y="494" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">Level 2 (트리거 시)</text>
+  <rect x="315" y="483" width="14" height="14" rx="3" fill="url(#level3Grad)"/>
+  <text x="334" y="494" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">Level 3+ (필요 시)</text>
+  <rect x="460" y="483" width="14" height="14" rx="3" fill="url(#flowGrad)"/>
+  <text x="479" y="494" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">사용자 요청</text>
+  <rect x="575" y="483" width="14" height="14" rx="3" fill="url(#claudeGrad)"/>
+  <text x="594" y="494" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">Claude 판단</text>
+</svg>

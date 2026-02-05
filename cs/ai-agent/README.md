@@ -66,7 +66,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
 | [Repository Intelligence](./repository-intelligence.md) | AI 전체 코드베이스 이해 `Trend 2026` | Vibe Coding, LLM 기초 |
 | [Codex MCP 연결](./codex-mcp.md) | Claude Code와 OpenAI Codex CLI 통합 | MCP |
-| [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징 | MCP |
+| [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징, 스킬 생성 가이드 | MCP |
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
@@ -111,7 +111,7 @@ Sub Agent를 이해한 후 도전하세요.
 
 ### 확장 & 커스터마이징
 - [Codex MCP 연결](./codex-mcp.md) - Claude Code에서 OpenAI Codex CLI를 MCP로 연결하여 두 AI 에이전트를 통합하는 방법
-- [Claude Code Skill](./claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
+- [Claude Code Skill](./claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템 (스킬 생성 가이드 포함)
 - [Claude Code Hook](./claude-code-hook.md) - AI 에이전트의 생명주기에서 자동 실행되는 사용자 정의 셸 명령어 시스템
 - [Claude Code Slash Command](./claude-code-slash-command.md) - 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행하는 시스템
 - [Claude Code Workflow](./claude-code-workflow.md) - Claude Code의 효율적인 사용법과 실무 최적화 전략
