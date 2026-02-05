@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="docker" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2471A3"/>
+    </linearGradient>
+    <linearGradient id="wasm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#7D3C98"/>
+    </linearGradient>
+    <linearGradient id="barDocker" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2471A3"/>
+    </linearGradient>
+    <linearGradient id="barWasm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#7D3C98"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">Docker vs Server-Side Wasm 성능 비교</text>
+
+  <!-- Legend -->
+  <rect x="310" y="48" width="16" height="16" rx="3" fill="url(#docker)"/>
+  <text x="332" y="61" font-size="12" fill="#2C3E50">Docker</text>
+  <rect x="400" y="48" width="16" height="16" rx="3" fill="url(#wasm)"/>
+  <text x="422" y="61" font-size="12" fill="#2C3E50">Server-Side Wasm</text>
+
+  <!-- Cold Start Comparison -->
+  <text x="50" y="105" font-size="14" font-weight="bold" fill="#2C3E50">콜드스타트 시간</text>
+  
+  <text x="50" y="130" font-size="11" fill="#5D6D7E">Docker</text>
+  <rect x="140" y="118" width="350" height="18" rx="4" fill="url(#barDocker)" filter="url(#shadow)"/>
+  <text x="500" y="131" font-size="11" font-weight="bold" fill="#2471A3">100~1000ms</text>
+
+  <text x="50" y="158" font-size="11" fill="#5D6D7E">Wasm</text>
+  <rect x="140" y="146" width="4" height="18" rx="2" fill="url(#barWasm)" filter="url(#shadow)"/>
+  <text x="155" y="159" font-size="11" font-weight="bold" fill="#7D3C98">~0.5ms</text>
+  <text x="220" y="159" font-size="11" fill="#27AE60" font-weight="bold">100~1000x 빠름 ⚡</text>
+
+  <!-- Image Size Comparison -->
+  <text x="50" y="205" font-size="14" font-weight="bold" fill="#2C3E50">이미지/바이너리 크기</text>
+  
+  <text x="50" y="230" font-size="11" fill="#5D6D7E">Docker</text>
+  <rect x="140" y="218" width="300" height="18" rx="4" fill="url(#barDocker)" filter="url(#shadow)"/>
+  <text x="450" y="231" font-size="11" font-weight="bold" fill="#2471A3">100~200MB</text>
+
+  <text x="50" y="258" font-size="11" fill="#5D6D7E">Wasm</text>
+  <rect x="140" y="246" width="8" height="18" rx="2" fill="url(#barWasm)" filter="url(#shadow)"/>
+  <text x="158" y="259" font-size="11" font-weight="bold" fill="#7D3C98">2~5MB</text>
+  <text x="220" y="259" font-size="11" fill="#27AE60" font-weight="bold">50~75x 작음 📦</text>
+
+  <!-- Memory Usage Comparison -->
+  <text x="50" y="305" font-size="14" font-weight="bold" fill="#2C3E50">유휴 메모리 사용량</text>
+  
+  <text x="50" y="330" font-size="11" fill="#5D6D7E">Docker</text>
+  <rect x="140" y="318" width="200" height="18" rx="4" fill="url(#barDocker)" filter="url(#shadow)"/>
+  <text x="350" y="331" font-size="11" font-weight="bold" fill="#2471A3">20MB+</text>
+
+  <text x="50" y="358" font-size="11" fill="#5D6D7E">Wasm</text>
+  <rect x="140" y="346" width="10" height="18" rx="2" fill="url(#barWasm)" filter="url(#shadow)"/>
+  <text x="160" y="359" font-size="11" font-weight="bold" fill="#7D3C98">&lt;1MB</text>
+  <text x="210" y="359" font-size="11" fill="#27AE60" font-weight="bold">20x+ 절약 💾</text>
+
+  <!-- Use Case Summary -->
+  <rect x="50" y="390" width="380" height="95" rx="8" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="240" y="415" text-anchor="middle" font-size="13" font-weight="bold" fill="#2471A3">🐳 Docker가 적합한 경우</text>
+  <text x="70" y="438" font-size="11" fill="#2C3E50">• 데이터베이스, 메시지 큐 (상태 저장)</text>
+  <text x="70" y="456" font-size="11" fill="#2C3E50">• I/O 집약적 워크로드</text>
+  <text x="70" y="474" font-size="11" fill="#2C3E50">• 복잡한 OS 종속성이 있는 앱</text>
+
+  <rect x="470" y="390" width="380" height="95" rx="8" fill="#F4ECF7" stroke="#9B59B6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="660" y="415" text-anchor="middle" font-size="13" font-weight="bold" fill="#7D3C98">⚡ Wasm이 적합한 경우</text>
+  <text x="490" y="438" font-size="11" fill="#2C3E50">• 엣지 컴퓨팅, 서버리스 함수</text>
+  <text x="490" y="456" font-size="11" fill="#2C3E50">• 빠른 스케일링이 필요한 API</text>
+  <text x="490" y="474" font-size="11" fill="#2C3E50">• 플러그인/확장 시스템 (보안 격리)</text>
+</svg>

@@ -15,8 +15,8 @@
 │          ┌────────┼────────┬────────────────┐                    │
 │          ▼        ▼        ▼                ▼                    │
 │   [Java]      [Kotlin]  [WebAssembly]   [기타]                   │
-│   ├─ ThreadLocal  ├─ Null Safety  └─ Wasm, WASI                 │
-│   ├─ 예외 처리     └─ Coroutine       브라우저/엣지              │
+│   ├─ ThreadLocal  ├─ Null Safety  ├─ Wasm, WASI                 │
+│   ├─ 예외 처리     └─ Coroutine   └─ Server-Side Wasm           │
 │   ├─ JVM, GC, 동시성                                             │
 │   ├─ 컬렉션, Stream                                              │
 │   └─ 리플렉션                                                    │
@@ -65,6 +65,7 @@ Kotlin 언어 심화 학습 문서입니다.
 | 문서 | 설명 | 난이도 |
 |------|------|--------|
 | [WebAssembly](./webassembly.md) | Wasm, WASI, 샌드박싱, 엣지 컴퓨팅 | [2] 입문 |
+| [Server-Side WebAssembly](./server-side-wasm.md) | WASI 0.3, Component Model, Docker 비교, 엣지 `Trend` | [3] 중급 |
 
 ## 난이도별 목차
 
@@ -81,6 +82,7 @@ Kotlin 언어 심화 학습 문서입니다.
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
 | [WebAssembly](./webassembly.md) | Wasm, WASI, 샌드박싱, 크로스플랫폼 | 프로그래밍 언어란 |
+| [Server-Side WebAssembly](./server-side-wasm.md) | WASI 0.3, Component Model, Docker 비교 `Trend` | WebAssembly |
 | [ThreadLocal](./java/thread-local.md) | 스레드별 독립 변수, 메모리 누수 방지 | 프로세스/스레드, OOP |
 | [예외 처리](./java/exception-handling.md) | try-catch-finally, Checked/Unchecked | 프로그래밍 언어란 |
 
@@ -88,6 +90,7 @@ Kotlin 언어 심화 학습 문서입니다.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [Server-Side WebAssembly](./server-side-wasm.md) | WASI 0.3, Component Model, Docker 비교 `Trend` | WebAssembly |
 | [JVM 구조](./java/jvm.md) | 클래스로더, 런타임 영역, 실행 엔진 | 메모리 관리, OOP |
 | [GC](./java/gc.md) | Serial, Parallel, G1, ZGC | JVM 구조 |
 | [동시성](./java/concurrency.md) | synchronized, volatile, Atomic, Lock | 스레드 |

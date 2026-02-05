@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 450" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="go" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="python" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F39C12"/>
+      <stop offset="100%" style="stop-color:#E67E22"/>
+    </linearGradient>
+    <linearGradient id="wit" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="result" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="425" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#2C3E50">Component Model - 다언어 Wasm 모듈 조합</text>
+
+  <!-- Source Code Layer -->
+  <text x="425" y="70" text-anchor="middle" font-size="13" fill="#7F8C8D">소스 코드 (각 언어의 강점 활용)</text>
+
+  <!-- Rust Component -->
+  <rect x="50" y="85" width="210" height="70" rx="8" fill="url(#rust)" filter="url(#shadow)"/>
+  <text x="155" y="112" text-anchor="middle" font-size="14" font-weight="bold" fill="white">🦀 인증 모듈</text>
+  <text x="155" y="132" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">Rust → 메모리 안전, 고성능</text>
+  <text x="155" y="147" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">auth.wasm (150KB)</text>
+
+  <!-- Go Component -->
+  <rect x="320" y="85" width="210" height="70" rx="8" fill="url(#go)" filter="url(#shadow)"/>
+  <text x="425" y="112" text-anchor="middle" font-size="14" font-weight="bold" fill="white">🔵 비즈니스 로직</text>
+  <text x="425" y="132" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">Go → 간결한 동시성</text>
+  <text x="425" y="147" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">logic.wasm (200KB)</text>
+
+  <!-- Python Component -->
+  <rect x="590" y="85" width="210" height="70" rx="8" fill="url(#python)" filter="url(#shadow)"/>
+  <text x="695" y="112" text-anchor="middle" font-size="14" font-weight="bold" fill="white">🐍 데이터 처리</text>
+  <text x="695" y="132" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)">Python → ML/데이터 생태계</text>
+  <text x="695" y="147" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">data.wasm (300KB)</text>
+
+  <!-- Arrows down -->
+  <line x1="155" y1="155" x2="155" y2="190" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="155,195 150,185 160,185" fill="#7F8C8D"/>
+  <line x1="425" y1="155" x2="425" y2="190" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="425,195 420,185 430,185" fill="#7F8C8D"/>
+  <line x1="695" y1="155" x2="695" y2="190" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="695,195 690,185 700,185" fill="#7F8C8D"/>
+
+  <!-- WIT Interface Layer -->
+  <rect x="50" y="200" width="750" height="60" rx="8" fill="url(#wit)" filter="url(#shadow)"/>
+  <text x="425" y="225" text-anchor="middle" font-size="15" font-weight="bold" fill="white">WIT (WebAssembly Interface Types)</text>
+  <text x="425" y="248" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)">타입 안전한 인터페이스 정의 · 언어 간 데이터 교환 · IDL 역할</text>
+
+  <!-- Arrow down from WIT -->
+  <line x1="425" y1="260" x2="425" y2="290" stroke="#7F8C8D" stroke-width="2"/>
+  <polygon points="425,295 420,285 430,285" fill="#7F8C8D"/>
+
+  <!-- Component Linker -->
+  <rect x="200" y="300" width="450" height="50" rx="8" fill="url(#result)" filter="url(#shadow)"/>
+  <text x="425" y="325" text-anchor="middle" font-size="15" font-weight="bold" fill="white">통합 Wasm Component</text>
+  <text x="425" y="342" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">단일 배포 단위 · 네트워크 호출 없음 · 함수 호출 수준 통합</text>
+
+  <!-- Comparison callouts -->
+  <rect x="50" y="375" width="365" height="60" rx="6" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1"/>
+  <text x="232" y="398" text-anchor="middle" font-size="12" font-weight="bold" fill="#C0392B">❌ 기존 마이크로서비스</text>
+  <text x="232" y="418" text-anchor="middle" font-size="11" fill="#5D6D7E">서비스 A → HTTP/gRPC → 서비스 B (네트워크 오버헤드)</text>
+
+  <rect x="435" y="375" width="365" height="60" rx="6" fill="#E8F8F5" stroke="#2ECC71" stroke-width="1"/>
+  <text x="617" y="398" text-anchor="middle" font-size="12" font-weight="bold" fill="#27AE60">✅ Component Model</text>
+  <text x="617" y="418" text-anchor="middle" font-size="11" fill="#5D6D7E">모듈 A → 함수 호출 → 모듈 B (제로 오버헤드)</text>
+</svg>

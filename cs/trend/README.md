@@ -37,6 +37,7 @@
 ### Language
 
 - [WebAssembly](../language/webassembly.md) - 브라우저 넘어 서버/엣지로 확장, 네이티브 성능, 샌드박싱 보안
+- [Server-Side WebAssembly](../language/server-side-wasm.md) - WASI 0.3, Component Model, Docker 대안, 엣지 컴퓨팅 실용화 (2026)
 
 ### Security
 

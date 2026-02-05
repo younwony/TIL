@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant Client as 클라이언트
+    participant Edge as 엣지 노드<br/>(Cloudflare/Akamai)
+    participant Runtime as Wasm 런타임<br/>(Wasmtime/Spin)
+    participant Module as Wasm 모듈<br/>(.wasm)
+    participant WASI as WASI 레이어
+    participant OS as 호스트 OS
+
+    Client->>Edge: HTTP 요청
+    Edge->>Runtime: 라우팅
+    
+    Note over Runtime: 콜드스타트 ~0.5ms
+    Runtime->>Module: 인스턴스화
+    Module->>Module: 비즈니스 로직 실행
+    
+    alt 파일/네트워크 접근 필요
+        Module->>WASI: WASI API 호출
+        WASI->>WASI: Capability 검증
+        WASI->>OS: 시스템 콜
+        OS-->>WASI: 결과
+        WASI-->>Module: 결과 반환
+    end
+    
+    Module-->>Runtime: 응답 생성
+    Runtime-->>Edge: HTTP 응답
+    Edge-->>Client: 응답 전달
+    
+    Note over Runtime: 인스턴스 해제<br/>(메모리 즉시 회수)
