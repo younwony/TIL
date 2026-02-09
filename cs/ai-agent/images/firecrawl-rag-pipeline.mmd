@@ -1,0 +1,32 @@
+sequenceDiagram
+    autonumber
+    participant User as 사용자
+    participant Agent as AI Agent
+    participant FC as Firecrawl
+    participant Web as 웹사이트
+    participant VDB as 벡터 DB
+    participant LLM as LLM
+
+    User->>Agent: 질문 입력
+    Agent->>FC: scrape/crawl 요청
+
+    rect rgb(200, 230, 200)
+        Note over FC, Web: 웹 데이터 수집
+        FC->>Web: 페이지 요청 (JS 렌더링)
+        Web-->>FC: HTML 응답
+        FC->>FC: 노이즈 제거 + 마크다운 변환
+    end
+
+    FC-->>Agent: LLM-ready 마크다운
+
+    rect rgb(200, 210, 240)
+        Note over Agent, VDB: RAG 파이프라인
+        Agent->>VDB: 청크 분할 + 임베딩 저장
+        User->>Agent: 질문
+        Agent->>VDB: 유사도 검색
+        VDB-->>Agent: 관련 문서 반환
+    end
+
+    Agent->>LLM: 컨텍스트 + 질문
+    LLM-->>Agent: 답변 생성
+    Agent-->>User: 최종 응답

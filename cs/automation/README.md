@@ -47,6 +47,7 @@
 | [Google Apps Script](./google-apps-script.md) | Google Workspace 자동화, JavaScript 기반 | JavaScript 기초 |
 | [n8n](./n8n.md) | 오픈소스 워크플로우 자동화 플랫폼 | 없음 (노코드) |
 | [Mermaid](./mermaid.md) | 텍스트 기반 다이어그램 생성 도구, Diagram as Code | 없음 |
+| [Playwright](./playwright.md) | 크로스 브라우저 E2E 테스트 자동화 프레임워크 | 자동화란 |
 
 ### [3] 중급
 
@@ -65,6 +66,9 @@
 ### 워크플로우 자동화
 - [Google Apps Script](./google-apps-script.md) - Google Workspace 자동화, 트리거, 웹앱
 - [n8n](./n8n.md) - 오픈소스 워크플로우 자동화, 셀프호스팅, 노코드
+
+### 테스트 자동화
+- [Playwright](./playwright.md) - 크로스 브라우저 E2E 테스트 자동화, Auto-Wait, Trace Viewer
 
 ### 개발 자동화
 - [CI/CD 자동화](./cicd.md) - GitHub Actions, Jenkins, 파이프라인, 배포 전략

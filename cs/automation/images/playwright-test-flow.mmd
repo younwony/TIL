@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant Dev as 개발자
+    participant PW as Playwright
+    participant Browser as 브라우저
+    participant App as 웹 앱
+
+    Dev->>PW: 테스트 실행 (npx playwright test)
+    PW->>Browser: 브라우저 인스턴스 생성
+    PW->>Browser: Browser Context 생성 (격리)
+    Browser->>App: page.goto(URL)
+    App-->>Browser: 페이지 렌더링
+
+    rect rgb(200, 230, 200)
+        Note over PW, Browser: Auto-Wait 동작
+        PW->>Browser: locator.click()
+        Browser->>Browser: 요소 actionable 대기
+        Browser->>App: 클릭 이벤트 전달
+    end
+
+    App-->>Browser: 화면 변경
+    PW->>Browser: expect().toBeVisible()
+    Browser-->>PW: 검증 결과
+
+    alt 성공
+        PW-->>Dev: PASSED ✓
+    else 실패
+        PW-->>Dev: FAILED ✗ + Trace
+    end
