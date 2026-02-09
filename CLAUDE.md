@@ -16,6 +16,10 @@
 - 새로 생성/수정/삭제된 파일 모두 `git add`만 수행
 - 커밋 메시지는 사용자가 명시적으로 요청할 때만 작성
 
+### PR 설정
+
+PR_BASE_BRANCH: main-review
+
 ### 커밋 메시지 형식
 
 ```
@@ -168,9 +172,6 @@ TIL/
 | `cs-guide-writer` | "오늘의 CS", "CS 정리", "{주제} 정리해줘" | CS 학습 문서 작성 |
 | `cs-sync` | "CS 동기화", "가이드 반영" | CS 문서 템플릿 동기화 |
 | `cs-link-sync` | "링크 동기화", "깨진 링크 수정", "링크 체크" | CS 문서 링크 검증 및 수정 |
-| `pr` | `/pr` | 현재 브랜치 분석 후 PR 자동 생성 |
-| `review-pr` | `/review-pr {PR번호}` | PR 코드 리뷰 및 개선 제안 |
-| `self-review` | `/self-review` | PR 생성 전 자체 리뷰 및 SELF-REVIEW.md 생성 |
 
 ## 언어 설정
 
