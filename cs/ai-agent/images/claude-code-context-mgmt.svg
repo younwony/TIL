@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 480" width="850" height="480">
+  <defs>
+    <filter id="cardShadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000020"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="850" height="480" fill="#ffffff" rx="12"/>
+
+  <!-- 상단 타이틀 영역 -->
+  <rect x="0" y="0" width="850" height="52" rx="12" fill="url(#headerGrad)"/>
+  <rect x="0" y="24" width="850" height="28" fill="url(#headerGrad)"/>
+  <text x="425" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">컨텍스트 관리 전략</text>
+
+  <!-- 토큰 바 차트 영역 -->
+  <rect x="30" y="68" width="790" height="150" rx="10" fill="#f8f9fc" stroke="#e2e6ef" stroke-width="1"/>
+
+  <!-- 토큰 바 차트 제목 -->
+  <text x="50" y="95" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1a1a2e">토큰 사용량 분포</text>
+  <text x="780" y="95" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#888">총 200,000 토큰</text>
+
+  <!-- 바 차트 배경 -->
+  <rect x="50" y="110" width="720" height="40" rx="6" fill="#e9ecf2"/>
+
+  <!-- System Prompt ~12% -->
+  <rect x="50" y="110" width="86" height="40" rx="6" fill="#e74c3c"/>
+  <!-- MCP 서버 ~18% -->
+  <rect x="136" y="110" width="130" height="40" fill="#f39c12"/>
+  <!-- CLAUDE.md ~3% -->
+  <rect x="266" y="110" width="22" height="40" fill="#9b59b6"/>
+  <!-- Skills ~1% -->
+  <rect x="288" y="110" width="7" height="40" fill="#f1c40f"/>
+  <!-- 대화 히스토리 ~66% -->
+  <rect x="295" y="110" width="475" height="40" fill="#3498db"/>
+  <rect x="766" y="110" width="4" height="40" rx="3" fill="#3498db"/>
+
+  <!-- 퍼센트 텍스트 (바 위) -->
+  <text x="93" y="135" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">12%</text>
+  <text x="201" y="135" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">18%</text>
+  <text x="532" y="135" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">66%</text>
+
+  <!-- 범례 -->
+  <g transform="translate(50, 165)">
+    <rect x="0" y="0" width="12" height="12" rx="2" fill="#e74c3c"/>
+    <text x="17" y="11" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#444">System Prompt (12%)</text>
+
+    <rect x="170" y="0" width="12" height="12" rx="2" fill="#f39c12"/>
+    <text x="187" y="11" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#444">MCP 서버 (18%)</text>
+
+    <rect x="320" y="0" width="12" height="12" rx="2" fill="#9b59b6"/>
+    <text x="337" y="11" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#444">CLAUDE.md (3%)</text>
+
+    <rect x="460" y="0" width="12" height="12" rx="2" fill="#f1c40f"/>
+    <text x="477" y="11" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#444">Skills (1%)</text>
+
+    <rect x="565" y="0" width="12" height="12" rx="2" fill="#3498db"/>
+    <text x="582" y="11" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#444">대화 히스토리 (66%)</text>
+  </g>
+
+  <!-- 구분선 + 하단 전략 영역 라벨 -->
+  <text x="425" y="245" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1a1a2e">컨텍스트 최적화 전략</text>
+  <line x1="50" y1="253" x2="800" y2="253" stroke="#e2e6ef" stroke-width="1"/>
+
+  <!-- 카드 1: 분할 정복 -->
+  <g filter="url(#cardShadow)">
+    <rect x="40" y="268" width="240" height="190" rx="12" fill="#e8f4fd" stroke="#b8ddf0" stroke-width="1.2"/>
+    <circle cx="72" cy="300" r="18" fill="#3498db" opacity="0.15"/>
+    <text x="72" y="307" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20">&#x2702;</text>
+    <text x="98" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1a6fa8">분할 정복</text>
+    <line x1="56" y1="320" x2="264" y2="320" stroke="#b8ddf0" stroke-width="0.8"/>
+    <circle cx="66" cy="345" r="3" fill="#3498db"/>
+    <text x="78" y="349" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">큰 작업을 작은 단위로 분리</text>
+    <circle cx="66" cy="372" r="3" fill="#3498db"/>
+    <text x="78" y="376" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">한 번에 하나의 작업만 지시</text>
+    <circle cx="66" cy="399" r="3" fill="#3498db"/>
+    <text x="78" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">명확한 완료 기준 제시</text>
+    <circle cx="66" cy="426" r="3" fill="#3498db"/>
+    <text x="78" y="430" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">컨텍스트 소비 최소화</text>
+  </g>
+
+  <!-- 카드 2: HANDOFF.md -->
+  <g filter="url(#cardShadow)">
+    <rect x="305" y="268" width="240" height="190" rx="12" fill="#e8f8e8" stroke="#b0ddb0" stroke-width="1.2"/>
+    <circle cx="337" cy="300" r="18" fill="#27ae60" opacity="0.15"/>
+    <text x="337" y="307" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20">&#x1F4CB;</text>
+    <text x="363" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1e8449">HANDOFF.md</text>
+    <line x1="321" y1="320" x2="529" y2="320" stroke="#b0ddb0" stroke-width="0.8"/>
+    <circle cx="331" cy="345" r="3" fill="#27ae60"/>
+    <text x="343" y="349" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">진행 상황을 파일에 기록</text>
+    <circle cx="331" cy="372" r="3" fill="#27ae60"/>
+    <text x="343" y="376" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">/clear로 컨텍스트 초기화</text>
+    <circle cx="331" cy="399" r="3" fill="#27ae60"/>
+    <text x="343" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">새 세션에서 파일 로드</text>
+    <circle cx="331" cy="426" r="3" fill="#27ae60"/>
+    <text x="343" y="430" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">끊김 없이 작업 이어가기</text>
+  </g>
+
+  <!-- 카드 3: /context X-Ray -->
+  <g filter="url(#cardShadow)">
+    <rect x="570" y="268" width="240" height="190" rx="12" fill="#f0e8f8" stroke="#ccb0e8" stroke-width="1.2"/>
+    <circle cx="602" cy="300" r="18" fill="#8e44ad" opacity="0.15"/>
+    <text x="602" y="307" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20">&#x1F50D;</text>
+    <text x="628" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#7d3c98">/context X-Ray</text>
+    <line x1="586" y1="320" x2="794" y2="320" stroke="#ccb0e8" stroke-width="0.8"/>
+    <circle cx="596" cy="345" r="3" fill="#8e44ad"/>
+    <text x="608" y="349" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">토큰 사용량 실시간 확인</text>
+    <circle cx="596" cy="372" r="3" fill="#8e44ad"/>
+    <text x="608" y="376" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">불필요한 MCP 서버 제거</text>
+    <circle cx="596" cy="399" r="3" fill="#8e44ad"/>
+    <text x="608" y="403" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">CLAUDE.md 간결하게 유지</text>
+    <circle cx="596" cy="426" r="3" fill="#8e44ad"/>
+    <text x="608" y="430" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">대화 히스토리 공간 확보</text>
+  </g>
+</svg>

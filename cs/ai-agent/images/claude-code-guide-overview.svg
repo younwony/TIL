@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
+  <defs>
+    <filter id="cardShadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000020"/>
+    </filter>
+    <!-- 카테고리 1: 마인드셋 & 기초 -->
+    <linearGradient id="cat1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9B59B6"/>
+      <stop offset="100%" stop-color="#8E44AD"/>
+    </linearGradient>
+    <!-- 카테고리 2: 필수 명령어 -->
+    <linearGradient id="cat2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3498DB"/>
+      <stop offset="100%" stop-color="#2980B9"/>
+    </linearGradient>
+    <!-- 카테고리 3: 생산성 도구 -->
+    <linearGradient id="cat3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2ECC71"/>
+      <stop offset="100%" stop-color="#27AE60"/>
+    </linearGradient>
+    <!-- 카테고리 4: 실전 활용 -->
+    <linearGradient id="cat4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E67E22"/>
+      <stop offset="100%" stop-color="#D35400"/>
+    </linearGradient>
+    <!-- 화살표 마커 -->
+    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="900" height="520" fill="#ffffff" rx="12"/>
+
+  <!-- 상단 타이틀 -->
+  <text x="450" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50">Claude Code 실전 가이드 - 전체 구조</text>
+  <text x="450" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7F8C8D">70가지 팁으로 배우는 AI 코딩 에이전트</text>
+
+  <!-- ==================== 카테고리 1: 마인드셋 & 기초 ==================== -->
+  <g transform="translate(20, 85)">
+    <!-- 카드 배경 -->
+    <rect width="200" height="200" rx="8" fill="#F3E8FF" filter="url(#cardShadow)"/>
+    <!-- 헤더바 -->
+    <rect width="200" height="36" rx="8" fill="url(#cat1Grad)"/>
+    <rect x="0" y="18" width="200" height="18" fill="url(#cat1Grad)"/>
+    <text x="100" y="24" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">마인드셋 &amp; 기초</text>
+    <!-- 항목들 -->
+    <text x="18" y="68" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  AI = 신입 개발자</text>
+    <text x="18" y="96" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  명확한 지시가 핵심</text>
+    <text x="18" y="124" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Plan Mode 활용</text>
+    <text x="18" y="152" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  CLAUDE.md 설정</text>
+  </g>
+
+  <!-- ==================== 카테고리 2: 필수 명령어 ==================== -->
+  <g transform="translate(235, 85)">
+    <!-- 카드 배경 -->
+    <rect width="200" height="200" rx="8" fill="#E0F2FE" filter="url(#cardShadow)"/>
+    <!-- 헤더바 -->
+    <rect width="200" height="36" rx="8" fill="url(#cat2Grad)"/>
+    <rect x="0" y="18" width="200" height="18" fill="url(#cat2Grad)"/>
+    <text x="100" y="24" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">필수 명령어</text>
+    <!-- 항목들 -->
+    <text x="18" y="68" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  /init 초기 설정</text>
+    <text x="18" y="96" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Shift+Tab 모드전환</text>
+    <text x="18" y="124" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Esc 중단/수정</text>
+    <text x="18" y="152" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  /clear 컨텍스트 정리</text>
+  </g>
+
+  <!-- ==================== 카테고리 3: 생산성 도구 ==================== -->
+  <g transform="translate(450, 85)">
+    <!-- 카드 배경 -->
+    <rect width="200" height="200" rx="8" fill="#ECFDF5" filter="url(#cardShadow)"/>
+    <!-- 헤더바 -->
+    <rect width="200" height="36" rx="8" fill="url(#cat3Grad)"/>
+    <rect x="0" y="18" width="200" height="18" fill="url(#cat3Grad)"/>
+    <text x="100" y="24" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">생산성 도구</text>
+    <!-- 항목들 -->
+    <text x="18" y="68" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  MCP 외부 연동</text>
+    <text x="18" y="96" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Hook 자동화</text>
+    <text x="18" y="124" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Skill 재사용</text>
+    <text x="18" y="152" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Git Worktree 병렬</text>
+  </g>
+
+  <!-- ==================== 카테고리 4: 실전 활용 ==================== -->
+  <g transform="translate(665, 85)">
+    <!-- 카드 배경 -->
+    <rect width="200" height="200" rx="8" fill="#FFF7ED" filter="url(#cardShadow)"/>
+    <!-- 헤더바 -->
+    <rect width="200" height="36" rx="8" fill="url(#cat4Grad)"/>
+    <rect x="0" y="18" width="200" height="18" fill="url(#cat4Grad)"/>
+    <text x="100" y="24" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">실전 활용</text>
+    <!-- 항목들 -->
+    <text x="18" y="68" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  TDD 워크플로우</text>
+    <text x="18" y="96" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  Docker 샌드박스</text>
+    <text x="18" y="124" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  CI/CD Headless</text>
+    <text x="18" y="152" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">&#8226;  cc-safe 보안</text>
+  </g>
+
+  <!-- ==================== 하단 플로우 영역 ==================== -->
+  <!-- 구분선 -->
+  <line x1="40" y1="320" x2="860" y2="320" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- 플로우 라벨 -->
+  <text x="450" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2C3E50">학습 로드맵</text>
+
+  <!-- 플로우 단계 박스들 -->
+  <!-- 단계 1: 기초 -->
+  <g transform="translate(55, 375)">
+    <rect width="150" height="40" rx="20" fill="#F3E8FF" stroke="#9B59B6" stroke-width="1.5"/>
+    <text x="75" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8E44AD">기초</text>
+  </g>
+
+  <!-- 화살표 1→2 -->
+  <line x1="215" y1="395" x2="260" y2="395" stroke="#7F8C8D" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- 단계 2: 명령어 숙달 -->
+  <g transform="translate(270, 375)">
+    <rect width="150" height="40" rx="20" fill="#E0F2FE" stroke="#3498DB" stroke-width="1.5"/>
+    <text x="75" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2980B9">명령어 숙달</text>
+  </g>
+
+  <!-- 화살표 2→3 -->
+  <line x1="430" y1="395" x2="475" y2="395" stroke="#7F8C8D" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- 단계 3: 도구 확장 -->
+  <g transform="translate(485, 375)">
+    <rect width="150" height="40" rx="20" fill="#ECFDF5" stroke="#2ECC71" stroke-width="1.5"/>
+    <text x="75" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#27AE60">도구 확장</text>
+  </g>
+
+  <!-- 화살표 3→4 -->
+  <line x1="645" y1="395" x2="690" y2="395" stroke="#7F8C8D" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- 단계 4: 실전 적용 -->
+  <g transform="translate(700, 375)">
+    <rect width="150" height="40" rx="20" fill="#FFF7ED" stroke="#E67E22" stroke-width="1.5"/>
+    <text x="75" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#D35400">실전 적용</text>
+  </g>
+
+  <!-- 하단 설명 텍스트 -->
+  <text x="450" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#7F8C8D">기초 마인드셋 확립 후, 핵심 명령어를 숙달하고, 확장 도구를 익힌 뒤, 실전 프로젝트에 적용합니다</text>
+
+  <!-- 카테고리 연결 점선 (카드 → 플로우 단계) -->
+  <line x1="120" y1="290" x2="130" y2="375" stroke="#9B59B6" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="335" y1="290" x2="345" y2="375" stroke="#3498DB" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="550" y1="290" x2="560" y2="375" stroke="#2ECC71" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="765" y1="290" x2="775" y2="375" stroke="#E67E22" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- 하단 푸터 -->
+  <text x="450" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#BDC3C7">Claude Code 실전 가이드 | 70 Tips for AI Coding Agent</text>
+</svg>

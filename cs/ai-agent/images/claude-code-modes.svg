@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400" width="850" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap');
+      text { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+    </style>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000015"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 프레임 -->
+  <rect x="0" y="0" width="850" height="400" rx="16" ry="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+
+  <!-- 상단 타이틀 -->
+  <text x="425" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#1F2937">Plan Mode vs YOLO Mode</text>
+  <text x="425" y="58" text-anchor="middle" font-size="12" fill="#6B7280">Claude Code 동작 모드 비교</text>
+
+  <!-- 구분선 -->
+  <line x1="50" y1="68" x2="800" y2="68" stroke="#E5E7EB" stroke-width="1"/>
+
+  <!-- ==================== 왼쪽: Plan Mode ==================== -->
+  <rect x="30" y="80" width="370" height="300" rx="12" ry="12" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- Plan Mode 헤더 -->
+  <rect x="30" y="80" width="370" height="50" rx="12" ry="12" fill="#3B82F6"/>
+  <rect x="30" y="105" width="370" height="25" fill="#3B82F6"/>
+
+  <!-- 방패 아이콘 -->
+  <g transform="translate(60, 93)">
+    <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2zm-1 15h2v2h-2v-2zm0-8h2v6h-2V9z" fill="#FFFFFF" transform="scale(1.1)"/>
+  </g>
+  <text x="92" y="112" font-size="18" font-weight="700" fill="#FFFFFF">Plan Mode</text>
+  <text x="210" y="112" font-size="11" fill="#BFDBFE">(안전 모드)</text>
+
+  <!-- 활성화 방법 -->
+  <rect x="50" y="145" width="330" height="28" rx="6" ry="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1"/>
+  <text x="65" y="163" font-size="11" fill="#1E40AF">활성화:</text>
+  <rect x="115" y="149" width="95" height="20" rx="4" ry="4" fill="#3B82F6"/>
+  <text x="162" y="163" text-anchor="middle" font-size="11" font-weight="600" fill="#FFFFFF">Shift + Tab</text>
+
+  <!-- 특징 리스트 -->
+  <g transform="translate(55, 188)">
+    <circle cx="6" cy="6" r="4" fill="#3B82F6"/>
+    <text x="6" y="10" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x2713;</text>
+    <text x="18" y="10" font-size="13" fill="#1E3A5F">설계 먼저, 실행 나중</text>
+
+    <circle cx="6" cy="30" r="4" fill="#3B82F6"/>
+    <text x="6" y="34" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x2713;</text>
+    <text x="18" y="34" font-size="13" fill="#1E3A5F">코드 변경 전 승인 필요</text>
+
+    <circle cx="6" cy="54" r="4" fill="#3B82F6"/>
+    <text x="6" y="58" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x2713;</text>
+    <text x="18" y="58" font-size="13" fill="#1E3A5F">실수 최소화</text>
+
+    <circle cx="6" cy="78" r="4" fill="#3B82F6"/>
+    <text x="6" y="82" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x2713;</text>
+    <text x="18" y="82" font-size="13" fill="#1E3A5F" font-weight="600">"90% 성공률"</text>
+  </g>
+
+  <!-- 추천 상황 -->
+  <rect x="50" y="300" width="330" height="32" rx="6" ry="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="65" y="320" font-size="11" font-weight="600" fill="#1E40AF">추천:</text>
+  <text x="100" y="320" font-size="11" fill="#3B82F6">프로덕션 환경, 복잡한 리팩토링</text>
+
+  <!-- 하단 뱃지 -->
+  <rect x="50" y="342" width="60" height="22" rx="11" ry="11" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="80" y="357" text-anchor="middle" font-size="10" font-weight="600" fill="#1E40AF">안전</text>
+  <rect x="118" y="342" width="60" height="22" rx="11" ry="11" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="148" y="357" text-anchor="middle" font-size="10" font-weight="600" fill="#1E40AF">신중</text>
+  <rect x="186" y="342" width="60" height="22" rx="11" ry="11" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="216" y="357" text-anchor="middle" font-size="10" font-weight="600" fill="#1E40AF">검증</text>
+
+  <!-- ==================== 가운데: VS ==================== -->
+  <circle cx="425" cy="210" r="28" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+  <text x="425" y="216" text-anchor="middle" font-size="16" font-weight="700" fill="#6B7280">VS</text>
+
+  <!-- ==================== 오른쪽: YOLO Mode ==================== -->
+  <rect x="450" y="80" width="370" height="300" rx="12" ry="12" fill="#FEE2E2" stroke="#EF4444" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- YOLO Mode 헤더 -->
+  <rect x="450" y="80" width="370" height="50" rx="12" ry="12" fill="#EF4444"/>
+  <rect x="450" y="105" width="370" height="25" fill="#EF4444"/>
+
+  <!-- 번개 아이콘 -->
+  <g transform="translate(480, 92)">
+    <path d="M7 2v11h3v9l7-12h-4l4-8H7z" fill="#FDE047" stroke="#FFFFFF" stroke-width="0.5" transform="scale(1.2)"/>
+  </g>
+  <text x="510" y="112" font-size="18" font-weight="700" fill="#FFFFFF">YOLO Mode</text>
+  <text x="636" y="112" font-size="11" fill="#FECACA">(자동 모드)</text>
+
+  <!-- 활성화 방법 -->
+  <rect x="470" y="145" width="330" height="28" rx="6" ry="6" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1"/>
+  <text x="485" y="163" font-size="11" fill="#991B1B">활성화:</text>
+  <rect x="535" y="147" width="245" height="24" rx="4" ry="4" fill="#EF4444"/>
+  <text x="657" y="163" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">--dangerously-skip-permissions</text>
+
+  <!-- 특징 리스트 -->
+  <g transform="translate(475, 188)">
+    <circle cx="6" cy="6" r="4" fill="#EF4444"/>
+    <text x="6" y="10" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x26A1;</text>
+    <text x="18" y="10" font-size="13" fill="#7F1D1D">모든 권한 자동 승인</text>
+
+    <circle cx="6" cy="30" r="4" fill="#EF4444"/>
+    <text x="6" y="34" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x26A1;</text>
+    <text x="18" y="34" font-size="13" fill="#7F1D1D">빠른 프로토타이핑</text>
+
+    <circle cx="6" cy="54" r="4" fill="#EF4444"/>
+    <text x="6" y="58" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x26A1;</text>
+    <text x="18" y="58" font-size="13" fill="#7F1D1D">위험할 수 있음</text>
+
+    <circle cx="6" cy="78" r="4" fill="#EF4444"/>
+    <text x="6" y="82" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">&#x26A1;</text>
+    <text x="18" y="82" font-size="13" fill="#7F1D1D" font-weight="600">Docker 내 사용 권장</text>
+  </g>
+
+  <!-- 추천 상황 -->
+  <rect x="470" y="300" width="330" height="32" rx="6" ry="6" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="485" y="320" font-size="11" font-weight="600" fill="#991B1B">추천:</text>
+  <text x="520" y="320" font-size="11" fill="#EF4444">실험, 학습, 샌드박스 환경</text>
+
+  <!-- 하단 뱃지 -->
+  <rect x="470" y="342" width="60" height="22" rx="11" ry="11" fill="#FEE2E2" stroke="#EF4444" stroke-width="1"/>
+  <text x="500" y="357" text-anchor="middle" font-size="10" font-weight="600" fill="#991B1B">빠름</text>
+  <rect x="538" y="342" width="60" height="22" rx="11" ry="11" fill="#FEE2E2" stroke="#EF4444" stroke-width="1"/>
+  <text x="568" y="357" text-anchor="middle" font-size="10" font-weight="600" fill="#991B1B">자동</text>
+  <rect x="606" y="342" width="60" height="22" rx="11" ry="11" fill="#FEE2E2" stroke="#EF4444" stroke-width="1"/>
+  <text x="636" y="357" text-anchor="middle" font-size="10" font-weight="600" fill="#991B1B">주의</text>
+</svg>

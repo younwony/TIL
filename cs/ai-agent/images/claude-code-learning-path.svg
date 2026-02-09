@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 단계별 그라디언트 -->
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="880" height="400" fill="#FAFBFC" rx="8"/>
+
+  <!-- 타이틀 -->
+  <text x="440" y="35" text-anchor="middle" fill="#2C3E50" font-size="16" font-weight="bold">Claude Code 학습 로드맵</text>
+  <text x="440" y="52" text-anchor="middle" fill="#7F8C8D" font-size="11">단계별 학습 경로</text>
+
+  <!-- 수평 타임라인 점선 -->
+  <line x1="60" y1="200" x2="860" y2="200" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="8,4"/>
+
+  <!-- ===== 단계 1: Day 1 - 시작 (x=100) ===== -->
+  <!-- 연결선 -->
+  <line x1="100" y1="172" x2="100" y2="200" stroke="#3498DB" stroke-width="2"/>
+  <!-- 원형 노드 -->
+  <circle cx="100" cy="145" r="28" fill="url(#grad1)"/>
+  <text x="100" y="151" text-anchor="middle" fill="white" font-size="16" font-weight="bold">1</text>
+  <!-- 카드 -->
+  <rect x="30" y="210" width="140" height="90" rx="6" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5"/>
+  <text x="100" y="232" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="bold">Day 1 - 시작</text>
+  <text x="45" y="252" fill="#2C3E50" font-size="10">&#8226; 설치 &amp; /init</text>
+  <text x="45" y="268" fill="#2C3E50" font-size="10">&#8226; CLAUDE.md 작성</text>
+  <text x="45" y="284" fill="#2C3E50" font-size="10">&#8226; 기본 명령어</text>
+  <!-- 기간 라벨 -->
+  <text x="100" y="320" text-anchor="middle" fill="#7F8C8D" font-size="10" font-weight="bold">Day 1</text>
+
+  <!-- ===== 단계 2: Week 1 - 기초 (x=280) ===== -->
+  <!-- 연결선 -->
+  <line x1="280" y1="172" x2="280" y2="200" stroke="#2ECC71" stroke-width="2"/>
+  <!-- 원형 노드 -->
+  <circle cx="280" cy="145" r="28" fill="url(#grad2)"/>
+  <text x="280" y="151" text-anchor="middle" fill="white" font-size="16" font-weight="bold">2</text>
+  <!-- 카드 -->
+  <rect x="210" y="210" width="140" height="90" rx="6" fill="#EAFAF1" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="280" y="232" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="bold">Week 1 - 기초</text>
+  <text x="225" y="252" fill="#2C3E50" font-size="10">&#8226; Plan Mode 활용</text>
+  <text x="225" y="268" fill="#2C3E50" font-size="10">&#8226; 컨텍스트 관리</text>
+  <text x="225" y="284" fill="#2C3E50" font-size="10">&#8226; Git 통합</text>
+  <!-- 기간 라벨 -->
+  <text x="280" y="320" text-anchor="middle" fill="#7F8C8D" font-size="10" font-weight="bold">Week 1</text>
+
+  <!-- ===== 단계 3: Week 2-3 - 확장 (x=460) ===== -->
+  <!-- 연결선 -->
+  <line x1="460" y1="172" x2="460" y2="200" stroke="#E67E22" stroke-width="2"/>
+  <!-- 원형 노드 -->
+  <circle cx="460" cy="145" r="28" fill="url(#grad3)"/>
+  <text x="460" y="151" text-anchor="middle" fill="white" font-size="16" font-weight="bold">3</text>
+  <!-- 카드 -->
+  <rect x="390" y="210" width="140" height="90" rx="6" fill="#FDF2E9" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="460" y="232" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="bold">Week 2-3 - 확장</text>
+  <text x="405" y="252" fill="#2C3E50" font-size="10">&#8226; MCP 서버 연결</text>
+  <text x="405" y="268" fill="#2C3E50" font-size="10">&#8226; Hook 설정</text>
+  <text x="405" y="284" fill="#2C3E50" font-size="10">&#8226; Skill 생성</text>
+  <!-- 기간 라벨 -->
+  <text x="460" y="320" text-anchor="middle" fill="#7F8C8D" font-size="10" font-weight="bold">Week 2-3</text>
+
+  <!-- ===== 단계 4: Month 1 - 심화 (x=640) ===== -->
+  <!-- 연결선 -->
+  <line x1="640" y1="172" x2="640" y2="200" stroke="#9B59B6" stroke-width="2"/>
+  <!-- 원형 노드 -->
+  <circle cx="640" cy="145" r="28" fill="url(#grad4)"/>
+  <text x="640" y="151" text-anchor="middle" fill="white" font-size="16" font-weight="bold">4</text>
+  <!-- 카드 -->
+  <rect x="570" y="210" width="140" height="90" rx="6" fill="#F4ECF7" stroke="#9B59B6" stroke-width="1.5"/>
+  <text x="640" y="232" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="bold">Month 1 - 심화</text>
+  <text x="585" y="252" fill="#2C3E50" font-size="10">&#8226; TDD 워크플로우</text>
+  <text x="585" y="268" fill="#2C3E50" font-size="10">&#8226; Docker 샌드박스</text>
+  <text x="585" y="284" fill="#2C3E50" font-size="10">&#8226; Headless 모드</text>
+  <!-- 기간 라벨 -->
+  <text x="640" y="320" text-anchor="middle" fill="#7F8C8D" font-size="10" font-weight="bold">Month 1</text>
+
+  <!-- ===== 단계 5: 지속 - 마스터 (x=820) ===== -->
+  <!-- 연결선 -->
+  <line x1="820" y1="172" x2="820" y2="200" stroke="#E74C3C" stroke-width="2"/>
+  <!-- 원형 노드 -->
+  <circle cx="820" cy="145" r="28" fill="url(#grad5)"/>
+  <text x="820" y="151" text-anchor="middle" fill="white" font-size="16" font-weight="bold">5</text>
+  <!-- 카드 -->
+  <rect x="750" y="210" width="140" height="90" rx="6" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="820" y="232" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="bold">지속 - 마스터</text>
+  <text x="765" y="252" fill="#2C3E50" font-size="10">&#8226; 멀티 세션 병렬</text>
+  <text x="765" y="268" fill="#2C3E50" font-size="10">&#8226; Agent SDK</text>
+  <text x="765" y="284" fill="#2C3E50" font-size="10">&#8226; 팀 워크플로우</text>
+  <!-- 기간 라벨 -->
+  <text x="820" y="320" text-anchor="middle" fill="#7F8C8D" font-size="10" font-weight="bold">지속</text>
+
+  <!-- 하단 화살표 (진행 방향) -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#BDC3C7"/>
+    </marker>
+  </defs>
+  <line x1="60" y1="360" x2="850" y2="360" stroke="#BDC3C7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="440" y="380" text-anchor="middle" fill="#95A5A6" font-size="10">학습 진행 방향</text>
+</svg>
