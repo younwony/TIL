@@ -7,19 +7,33 @@ allowed-tools: Bash(git:*), Bash(gh:*), Read, Glob, Grep
 
 현재 브랜치의 변경사항을 분석하여 GitHub Pull Request를 생성해줘.
 
+## Base Branch 결정
+
+다음 순서로 base branch를 결정한다:
+
+1. 프로젝트 CLAUDE.md에서 `PR_BASE_BRANCH` 설정을 찾는다
+   - 예: `PR_BASE_BRANCH: main-review`
+   - 설정이 있으면 해당 브랜치를 사용
+2. 설정이 없으면 다음 순서로 로컬 브랜치 존재 여부를 확인:
+   - `git rev-parse --verify main-review 2>/dev/null` → 존재하면 `main-review` 사용
+   - `git rev-parse --verify master-review 2>/dev/null` → 존재하면 `master-review` 사용
+3. 위 브랜치가 모두 존재하지 않으면 AskUserQuestion으로 base branch를 직접 입력받는다
+   - "PR base branch를 찾을 수 없습니다 (main-review, master-review 모두 없음). base branch를 입력해주세요."
+4. 결정된 base branch를 이후 모든 단계에서 `{BASE_BRANCH}`로 사용
+
 ## 사전 확인
 
-1. 현재 브랜치가 main, main-review가 아닌지 확인
-2. main 또는 main-review면 "PR은 작업 브랜치에서 생성해야 합니다."라고 안내하고 중단
+1. 현재 브랜치가 main 또는 base branch가 아닌지 확인
+2. main 또는 base branch면 "PR은 작업 브랜치에서 생성해야 합니다."라고 안내하고 중단
 
 ## 분석 단계
 
 다음 명령어들을 **병렬로** 실행하여 정보를 수집:
 
 1. `git branch --show-current` - 현재 브랜치명
-2. `git log main-review..HEAD --oneline` - main-review 이후 커밋 목록
-3. `git diff main-review...HEAD --stat` - 변경된 파일 통계
-4. `git diff main-review...HEAD` - 전체 diff 내용
+2. `git log {BASE_BRANCH}..HEAD --oneline` - base branch 이후 커밋 목록
+3. `git diff {BASE_BRANCH}...HEAD --stat` - 변경된 파일 통계
+4. `git diff {BASE_BRANCH}...HEAD` - 전체 diff 내용
 5. `git status` - 현재 작업 상태 (커밋되지 않은 변경 확인)
 
 ## 커밋되지 않은 변경 처리
@@ -99,8 +113,8 @@ AskUserQuestion으로 확인:
 # 리모트에 푸시 (아직 안 되어 있다면)
 git push -u origin $(git branch --show-current)
 
-# PR 생성 (base: main-review, 리뷰어 포함)
-gh pr create --base main-review --title "{제목}" --body "{본문}" --reviewer "{리뷰어1},{리뷰어2}"
+# PR 생성 (base: {BASE_BRANCH}, 리뷰어 포함)
+gh pr create --base {BASE_BRANCH} --title "{제목}" --body "{본문}" --reviewer "{리뷰어1},{리뷰어2}"
 ```
 
 ## 완료 후 안내
