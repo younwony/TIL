@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 520" width="850" height="520">
+  <defs>
+    <filter id="cardShadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000020"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="tokenGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2ecc71"/>
+      <stop offset="60%" stop-color="#f39c12"/>
+      <stop offset="100%" stop-color="#e74c3c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="850" height="520" fill="#ffffff" rx="12"/>
+
+  <!-- 상단 타이틀 영역 -->
+  <rect x="0" y="0" width="850" height="52" rx="12" fill="url(#headerGrad)"/>
+  <rect x="0" y="24" width="850" height="28" fill="url(#headerGrad)"/>
+  <text x="425" y="34" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">HANDOFF.md 컨텍스트 리셋 플로우</text>
+
+  <!-- 세션 A 영역 -->
+  <rect x="30" y="68" width="370" height="200" rx="10" fill="#fef3f3" stroke="#e74c3c" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <text x="215" y="92" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#e74c3c">세션 A (컨텍스트 포화)</text>
+
+  <!-- 토큰 바 - 세션 A -->
+  <rect x="50" y="108" width="330" height="24" rx="4" fill="#e9ecf2"/>
+  <rect x="50" y="108" width="290" height="24" rx="4" fill="url(#tokenGrad)" opacity="0.85"/>
+  <text x="215" y="125" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">토큰 사용량: 85% ▲</text>
+
+  <!-- 세션 A 문제점 -->
+  <g transform="translate(50, 145)">
+    <text font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#666">
+      <tspan x="0" dy="0">⚠ 컨텍스트 드리프트 발생</tspan>
+      <tspan x="0" dy="20">⚠ 초기 지시 망각</tspan>
+      <tspan x="0" dy="20">⚠ 동일 실패 반복</tspan>
+    </text>
+  </g>
+
+  <!-- 정확도 표시 -->
+  <rect x="280" y="145" width="100" height="55" rx="6" fill="#fff5f5" stroke="#e74c3c" stroke-width="1"/>
+  <text x="330" y="165" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#888">정확도</text>
+  <text x="330" y="190" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#e74c3c">39%</text>
+
+  <!-- 1단계: HANDOFF.md 작성 -->
+  <rect x="30" y="285" width="250" height="70" rx="10" fill="#f0f4ff" stroke="#3498db" stroke-width="2" filter="url(#cardShadow)"/>
+  <text x="42" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#3498db">STEP 1</text>
+  <text x="42" y="324" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#1a1a2e">HANDOFF.md 작성</text>
+  <text x="42" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#666">목표, 완료, 실패, 다음 단계 기록</text>
+
+  <!-- 화살표: 세션A → STEP1 -->
+  <path d="M155 268 L155 285" stroke="#3498db" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3498db"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2ecc71"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#9b59b6"/>
+    </marker>
+  </defs>
+
+  <!-- 2단계: /clear -->
+  <rect x="300" y="285" width="250" height="70" rx="10" fill="#fdf4ff" stroke="#9b59b6" stroke-width="2" filter="url(#cardShadow)"/>
+  <text x="312" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#9b59b6">STEP 2</text>
+  <text x="312" y="324" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#1a1a2e">/clear 실행</text>
+  <text x="312" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#666">컨텍스트 윈도우 완전 초기화</text>
+
+  <!-- 화살표: STEP1 → STEP2 -->
+  <path d="M280 320 L300 320" stroke="#9b59b6" stroke-width="2" fill="none" marker-end="url(#arrowPurple)"/>
+
+  <!-- 3단계: 재시작 -->
+  <rect x="570" y="285" width="250" height="70" rx="10" fill="#f0faf0" stroke="#2ecc71" stroke-width="2" filter="url(#cardShadow)"/>
+  <text x="582" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#2ecc71">STEP 3</text>
+  <text x="582" y="324" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#1a1a2e">@HANDOFF.md 읽고 재시작</text>
+  <text x="582" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#666">신선한 컨텍스트에서 이어서 작업</text>
+
+  <!-- 화살표: STEP2 → STEP3 -->
+  <path d="M550 320 L570 320" stroke="#2ecc71" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+
+  <!-- 세션 B 영역 -->
+  <rect x="450" y="68" width="370" height="200" rx="10" fill="#f0faf0" stroke="#2ecc71" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <text x="635" y="92" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#2ecc71">세션 B (신선한 컨텍스트)</text>
+
+  <!-- 토큰 바 - 세션 B -->
+  <rect x="470" y="108" width="330" height="24" rx="4" fill="#e9ecf2"/>
+  <rect x="470" y="108" width="60" height="24" rx="4" fill="#2ecc71" opacity="0.85"/>
+  <text x="540" y="125" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#2ecc71">토큰 사용량: 15% ✓</text>
+
+  <!-- 세션 B 장점 -->
+  <g transform="translate(470, 145)">
+    <text font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#666">
+      <tspan x="0" dy="0">✓ 맥락 정확히 인지</tspan>
+      <tspan x="0" dy="20">✓ 실패 패턴 회피</tspan>
+      <tspan x="0" dy="20">✓ 즉시 다음 단계 착수</tspan>
+    </text>
+  </g>
+
+  <!-- 정확도 표시 -->
+  <rect x="700" y="145" width="100" height="55" rx="6" fill="#f0faf0" stroke="#2ecc71" stroke-width="1"/>
+  <text x="750" y="165" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#888">정확도</text>
+  <text x="750" y="190" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#2ecc71">95%</text>
+
+  <!-- 화살표: STEP3 → 세션B -->
+  <path d="M695 285 L695 268" stroke="#2ecc71" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+
+  <!-- HANDOFF.md 문서 아이콘 (중앙 하단) -->
+  <rect x="325" y="385" width="200" height="120" rx="8" fill="#ffffff" stroke="#3498db" stroke-width="2" filter="url(#cardShadow)"/>
+  <!-- 문서 접힌 모서리 -->
+  <path d="M495 385 L525 385 L525 415 L495 415 Z" fill="#f0f4ff" stroke="#3498db" stroke-width="1"/>
+  <path d="M495 385 L495 415 L525 385 Z" fill="#dbeafe" stroke="#3498db" stroke-width="1"/>
+
+  <text x="425" y="415" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1a1a2e">HANDOFF.md</text>
+  <g transform="translate(340, 425)">
+    <text font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#888">
+      <tspan x="0" dy="14">📋 작업 목표</tspan>
+      <tspan x="0" dy="14">✅ 완료된 작업</tspan>
+      <tspan x="0" dy="14">❌ 실패한 시도</tspan>
+      <tspan x="0" dy="14">📌 다음 단계</tspan>
+      <tspan x="0" dy="14">📁 관련 파일</tspan>
+    </text>
+  </g>
+
+  <!-- 화살표: STEP1 → HANDOFF.md -->
+  <path d="M155 355 L155 395 L325 425" stroke="#3498db" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <!-- 화살표: HANDOFF.md → STEP3 -->
+  <path d="M525 425 L695 395 L695 355" stroke="#2ecc71" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+</svg>
