@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant App as 사용자 프로그램
+    participant Lib as C 라이브러리<br/>(glibc)
+    participant CPU as CPU
+    participant KD as 커널<br/>디스패처
+    participant KH as 시스템 콜<br/>핸들러
+    participant HW as 하드웨어
+
+    Note over App,HW: 유저 모드 (Mode Bit = 1)
+
+    App->>Lib: write(fd, buf, len)
+    Lib->>Lib: 시스템 콜 번호(1)와<br/>인자를 레지스터에 저장
+    Lib->>CPU: syscall 트랩 명령 실행
+
+    Note over App,HW: ⚡ 모드 전환: 유저 → 커널 (Mode Bit = 0)
+
+    CPU->>CPU: 레지스터 저장<br/>커널 스택 전환
+    CPU->>KD: 시스템 콜 테이블 조회<br/>(번호 1 → sys_write)
+    KD->>KH: sys_write() 호출
+    KH->>HW: 디스크/네트워크<br/>I/O 수행
+    HW-->>KH: I/O 완료
+    KH-->>KD: 결과 반환
+
+    Note over App,HW: ⚡ 모드 전환: 커널 → 유저 (Mode Bit = 1)
+
+    KD-->>CPU: 레지스터 복원<br/>유저 스택 복귀
+    CPU-->>Lib: 결과값 (레지스터)
+    Lib-->>App: 반환값 (쓴 바이트 수)
