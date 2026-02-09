@@ -1,0 +1,40 @@
+graph TB
+    subgraph TestCode["테스트 코드"]
+        TC["@playwright/test<br/>테스트 작성"]
+    end
+
+    subgraph PlaywrightCore["Playwright Core"]
+        API["Playwright API"]
+        AW["Auto-Wait"]
+        NI["Network Interception"]
+        TV["Trace Viewer"]
+    end
+
+    subgraph BrowserEngines["브라우저 엔진"]
+        CR["Chromium<br/>(Chrome, Edge)"]
+        FF["Firefox"]
+        WK["WebKit<br/>(Safari)"]
+    end
+
+    subgraph Targets["테스트 대상"]
+        WEB["웹 애플리케이션"]
+    end
+
+    TC --> API
+    API --> AW
+    API --> NI
+    API --> TV
+    AW --> CR
+    AW --> FF
+    AW --> WK
+    NI --> CR
+    NI --> FF
+    NI --> WK
+    CR --> WEB
+    FF --> WEB
+    WK --> WEB
+
+    style TestCode fill:#3498DB,stroke:#2980B9,color:#fff
+    style PlaywrightCore fill:#2ECC71,stroke:#27AE60,color:#fff
+    style BrowserEngines fill:#E67E22,stroke:#D35400,color:#fff
+    style Targets fill:#9B59B6,stroke:#8E44AD,color:#fff
