@@ -74,6 +74,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) | 세션 인수인계 패턴으로 컨텍스트 윈도우 한계 극복 | Workflow, Context Engineering |
 | [Prompt Engineering](./prompt-engineering.md) | 효과적인 프롬프트 작성 | LLM 기초, AI Agent란 |
 | [OpenClaw](./openclaw.md) | 오픈소스 로컬 AI 개인 비서 `Trend 2026` | AI Agent란, MCP, Tool Use |
+| [Firecrawl](./firecrawl.md) | 웹 데이터를 LLM-ready 마크다운으로 변환하는 API | AI Agent란, RAG, MCP |
 
 ### [4] 심화 - Multi-Agent & Context Engineering
 
@@ -120,6 +121,9 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code 실전 가이드](./claude-code-guide.md) - 70가지 팁으로 배우는 Claude Code 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁
 - [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) - 장시간 AI 에이전트 작업에서 컨텍스트 윈도우 한계를 극복하는 세션 인수인계 패턴
 - [Prompt Engineering](./prompt-engineering.md) - LLM에서 원하는 결과를 얻기 위한 프롬프트 설계 및 최적화 기술
+
+### 데이터 수집 & 웹 크롤링
+- [Firecrawl](./firecrawl.md) - 웹사이트를 LLM-ready 마크다운 또는 구조화된 데이터로 변환하는 웹 데이터 API
 
 ### 오픈소스 AI 에이전트
 - [OpenClaw](./openclaw.md) - 로컬에서 실행되는 오픈소스 AI 개인 비서, MCP 기반 100+ 서비스 연동 `Trend 2026`

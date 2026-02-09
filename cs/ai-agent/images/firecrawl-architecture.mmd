@@ -1,0 +1,50 @@
+graph TB
+    subgraph Input["입력"]
+        URL["URL / 프롬프트"]
+    end
+
+    subgraph Firecrawl["Firecrawl API"]
+        SCRAPE["Scrape<br/>단일 URL 추출"]
+        CRAWL["Crawl<br/>재귀적 크롤링"]
+        MAP["Map<br/>URL 맵 생성"]
+        EXTRACT["Extract<br/>구조화 데이터 추출"]
+        SEARCH["Search<br/>웹 검색"]
+        AGENT["Agent<br/>자율 수집"]
+    end
+
+    subgraph Engine["처리 엔진"]
+        JS["JS 렌더링"]
+        PROXY["프록시 관리"]
+        NOISE["노이즈 제거"]
+        LLM["LLM 추출"]
+    end
+
+    subgraph Output["출력"]
+        MD["Markdown"]
+        HTML["HTML"]
+        JSON["JSON"]
+        SS["Screenshot"]
+    end
+
+    URL --> SCRAPE
+    URL --> CRAWL
+    URL --> MAP
+    URL --> EXTRACT
+    URL --> SEARCH
+    URL --> AGENT
+
+    SCRAPE --> JS
+    CRAWL --> JS
+    EXTRACT --> LLM
+    JS --> PROXY
+    PROXY --> NOISE
+
+    NOISE --> MD
+    NOISE --> HTML
+    LLM --> JSON
+    NOISE --> SS
+
+    style Input fill:#3498DB,stroke:#2980B9,color:#fff
+    style Firecrawl fill:#E67E22,stroke:#D35400,color:#fff
+    style Engine fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style Output fill:#2ECC71,stroke:#27AE60,color:#fff
