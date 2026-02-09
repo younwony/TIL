@@ -7,9 +7,21 @@ allowed-tools: Bash(git:*), Bash(gh:*), Read, Glob, Grep
 
 현재 브랜치의 변경사항을 분석하여 GitHub Pull Request를 생성해줘.
 
-## Base Branch 결정
+## Branch 결정
 
-다음 순서로 base branch를 결정한다:
+### Compare Branch (비교 기준)
+
+diff 및 로그 비교에 사용할 브랜치를 결정한다:
+
+1. `git rev-parse --verify main 2>/dev/null` → 존재하면 `main` 사용
+2. `git rev-parse --verify master 2>/dev/null` → 존재하면 `master` 사용
+3. 위 브랜치가 모두 존재하지 않으면 AskUserQuestion으로 직접 입력받는다
+   - "비교 기준 브랜치를 찾을 수 없습니다 (main, master 모두 없음). 비교할 브랜치를 입력해주세요."
+4. 결정된 브랜치를 `{COMPARE_BRANCH}`로 사용
+
+### PR Base Branch (PR 대상)
+
+PR을 생성할 대상 브랜치를 결정한다:
 
 1. 프로젝트 CLAUDE.md에서 `PR_BASE_BRANCH` 설정을 찾는다
    - 예: `PR_BASE_BRANCH: main-review`
@@ -17,9 +29,9 @@ allowed-tools: Bash(git:*), Bash(gh:*), Read, Glob, Grep
 2. 설정이 없으면 다음 순서로 로컬 브랜치 존재 여부를 확인:
    - `git rev-parse --verify main-review 2>/dev/null` → 존재하면 `main-review` 사용
    - `git rev-parse --verify master-review 2>/dev/null` → 존재하면 `master-review` 사용
-3. 위 브랜치가 모두 존재하지 않으면 AskUserQuestion으로 base branch를 직접 입력받는다
-   - "PR base branch를 찾을 수 없습니다 (main-review, master-review 모두 없음). base branch를 입력해주세요."
-4. 결정된 base branch를 이후 모든 단계에서 `{BASE_BRANCH}`로 사용
+3. 위 브랜치가 모두 존재하지 않으면 AskUserQuestion으로 PR base branch를 직접 입력받는다
+   - "PR base branch를 찾을 수 없습니다 (main-review, master-review 모두 없음). PR base branch를 입력해주세요."
+4. 결정된 브랜치를 `{PR_BASE_BRANCH}`로 사용
 
 ## 사전 확인
 
@@ -31,9 +43,9 @@ allowed-tools: Bash(git:*), Bash(gh:*), Read, Glob, Grep
 다음 명령어들을 **병렬로** 실행하여 정보를 수집:
 
 1. `git branch --show-current` - 현재 브랜치명
-2. `git log {BASE_BRANCH}..HEAD --oneline` - base branch 이후 커밋 목록
-3. `git diff {BASE_BRANCH}...HEAD --stat` - 변경된 파일 통계
-4. `git diff {BASE_BRANCH}...HEAD` - 전체 diff 내용
+2. `git log {COMPARE_BRANCH}..HEAD --oneline` - base branch 이후 커밋 목록
+3. `git diff {COMPARE_BRANCH}...HEAD --stat` - 변경된 파일 통계
+4. `git diff {COMPARE_BRANCH}...HEAD` - 전체 diff 내용
 5. `git status` - 현재 작업 상태 (커밋되지 않은 변경 확인)
 
 ## 커밋되지 않은 변경 처리
@@ -113,8 +125,8 @@ AskUserQuestion으로 확인:
 # 리모트에 푸시 (아직 안 되어 있다면)
 git push -u origin $(git branch --show-current)
 
-# PR 생성 (base: {BASE_BRANCH}, 리뷰어 포함)
-gh pr create --base {BASE_BRANCH} --title "{제목}" --body "{본문}" --reviewer "{리뷰어1},{리뷰어2}"
+# PR 생성 (base: {PR_BASE_BRANCH}, 리뷰어 포함)
+gh pr create --base {PR_BASE_BRANCH} --title "{제목}" --body "{본문}" --reviewer "{리뷰어1},{리뷰어2}"
 ```
 
 ## 완료 후 안내
