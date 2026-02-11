@@ -1,0 +1,29 @@
+flowchart TB
+    subgraph Traditional["기존 MCP (서버 사이드)"]
+        direction TB
+        AI1["AI Client\n(Claude, Cursor)"]
+        MCP_CLIENT["MCP Client"]
+        MCP_SERVER["MCP Server\n(별도 프로세스)"]
+        BACKEND["Backend API\n(GitHub, Slack 등)"]
+        AI1 --> MCP_CLIENT
+        MCP_CLIENT -->|"JSON-RPC\n(stdio/SSE)"| MCP_SERVER
+        MCP_SERVER -->|"API 호출"| BACKEND
+    end
+
+    subgraph WebMCP["WebMCP (브라우저 네이티브)"]
+        direction TB
+        AI2["AI Agent\n(브라우저 내)"]
+        BROWSER["브라우저 API\nnavigator.modelContext"]
+        WEBPAGE["웹 페이지\n(Tool 등록)"]
+        EXISTING["기존 앱 로직\n(인증/세션 포함)"]
+        AI2 -->|"Tool 호출"| BROWSER
+        BROWSER -->|"execute()"| WEBPAGE
+        WEBPAGE -->|"기존 코드 재사용"| EXISTING
+    end
+
+    style Traditional fill:#f0f4ff,stroke:#3498DB,stroke-width:2px
+    style WebMCP fill:#f0fff4,stroke:#2ECC71,stroke-width:2px
+    style AI1 fill:#3498DB,color:#fff
+    style AI2 fill:#2ECC71,color:#fff
+    style MCP_SERVER fill:#E67E22,color:#fff
+    style BROWSER fill:#2ECC71,color:#fff

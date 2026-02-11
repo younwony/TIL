@@ -61,6 +61,7 @@ MCP 개념을 이해한 후 학습하세요.
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
 | [AI Guardrails](./ai-guardrails.md) | LLM/AI 에이전트의 안전한 운영을 위한 가드레일 `Trend 2026` | AI Agent란, OWASP LLM |
+| [WebMCP](./webmcp.md) | 웹 페이지가 브라우저 내 AI 에이전트에게 도구를 노출하는 웹 표준 `Trend 2025-2026` | MCP, Tool Use |
 | [A2A Protocol](./a2a-protocol.md) | AI 에이전트 간 통신 표준 프로토콜 `Trend 2025` | MCP, AI Agent란 |
 | [RAG](./rag.md) | 검색 증강 생성, 외부 지식 기반 LLM 응답 `Trend` | LLM 기초, AI Agent란 |
 | [Vibe Coding](./vibe-coding.md) | AI 협업 코딩 패러다임 `Trend` | AI Agent란, LLM 기초 |
@@ -105,6 +106,7 @@ Sub Agent를 이해한 후 도전하세요.
 ### 도구 & 프로토콜
 - [Tool Use](./tool-use.md) - LLM이 외부 도구를 호출하여 실제 작업을 수행하는 능력
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
+- [WebMCP (Web Model Context Protocol)](./webmcp.md) - 웹 페이지가 브라우저 내 AI 에이전트에게 구조화된 도구를 직접 노출하는 웹 표준 `Trend 2025-2026`
 - [A2A (Agent-to-Agent) Protocol](./a2a-protocol.md) - AI 에이전트 간 통신과 협업을 위한 표준 프로토콜 `Trend 2025`
 
 ### AI 협업 & 코딩 패러다임

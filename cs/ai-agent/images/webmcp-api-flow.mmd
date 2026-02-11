@@ -1,0 +1,32 @@
+sequenceDiagram
+    participant User as 사용자
+    participant Agent as AI Agent
+    participant Browser as 브라우저<br/>(navigator.modelContext)
+    participant Page as 웹 페이지<br/>(Tool 등록)
+    participant App as 기존 앱 API
+
+    Note over Page: 페이지 로드 시 Tool 등록
+    Page->>Browser: registerTool({name, schema, execute})
+    Page->>Browser: provideContext({tools: [...]})
+
+    User->>Agent: "항공편 예약해줘"
+    Agent->>Browser: 사용 가능한 Tool 조회
+    Browser-->>Agent: [search_flights, book_flight]
+
+    Agent->>Browser: search_flights({from: "ICN", to: "NRT"})
+    Browser->>Page: execute(args, agent)
+    Page->>App: fetch('/api/flights', {...})
+    App-->>Page: 검색 결과
+    Page-->>Browser: {content: [{type: 'text', text: '...'}]}
+    Browser-->>Agent: 검색 결과 반환
+
+    Agent->>Browser: book_flight({flightId: "KE001"})
+    Browser->>Page: execute(args, agent)
+    Page->>Agent: agent.requestUserInteraction()
+    Agent->>User: "KE001편 예약할까요?"
+    User-->>Agent: "확인"
+    Page->>App: fetch('/api/book', {...})
+    App-->>Page: 예약 완료
+    Page-->>Browser: 예약 확인 반환
+    Browser-->>Agent: 결과 반환
+    Agent->>User: "예약 완료되었습니다!"
