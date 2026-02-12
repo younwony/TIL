@@ -74,6 +74,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code 실전 가이드](./claude-code-guide.md) | 70가지 팁 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁 | Workflow, MCP, Skill |
 | [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) | 세션 인수인계 패턴으로 컨텍스트 윈도우 한계 극복 | Workflow, Context Engineering |
 | [Claude Code 설정 체계](./claude-code-settings.md) | 다계층 설정, 보안 Hook, 셸 별칭 실전 구성 | Hook, Skill |
+| [Claude Cowork](./claude-cowork.md) | Claude Code의 에이전트를 비개발자용으로 확장한 범용 AI 코워커 `Trend 2026` | AI Agent란, Skill, MCP |
 | [Prompt Engineering](./prompt-engineering.md) | 효과적인 프롬프트 작성 | LLM 기초, AI Agent란 |
 | [OpenClaw](./openclaw.md) | 오픈소스 로컬 AI 개인 비서 `Trend 2026` | AI Agent란, MCP, Tool Use |
 | [Firecrawl](./firecrawl.md) | 웹 데이터를 LLM-ready 마크다운으로 변환하는 API | AI Agent란, RAG, MCP |
@@ -114,6 +115,9 @@ Sub Agent를 이해한 후 도전하세요.
 - [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
 - [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
 - [Repository Intelligence](./repository-intelligence.md) - AI가 전체 코드베이스의 구조, 관계, 히스토리를 이해하여 맥락에 맞는 코드 제안 `Trend 2026`
+
+### 범용 AI 코워커
+- [Claude Cowork](./claude-cowork.md) - Claude Code의 에이전트 기능을 비개발자도 사용할 수 있도록 확장한 범용 AI 코워커, 플러그인 생태계 `Trend 2026`
 
 ### 확장 & 커스터마이징
 - [Codex MCP 연결](./codex-mcp.md) - Claude Code에서 OpenAI Codex CLI를 MCP로 연결하여 두 AI 에이전트를 통합하는 방법

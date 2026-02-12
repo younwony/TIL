@@ -1,0 +1,47 @@
+sequenceDiagram
+    actor User as 사용자
+    participant UI as Cowork UI
+    participant Agent as Agent Core
+    participant VM as VM Sandbox
+    participant Sub as Sub-agents
+    participant FS as Mounted Folders
+
+    User->>UI: 작업 요청<br/>"영수증으로 경비 보고서 만들어줘"
+    UI->>Agent: 작업 전달
+
+    rect rgb(52, 152, 219)
+        Note over Agent: 1단계: 계획 수립
+        Agent->>Agent: 작업 분해<br/>① 영수증 읽기<br/>② 항목 분류<br/>③ 보고서 생성
+    end
+
+    Agent->>UI: 계획 제시
+    UI->>User: "이렇게 진행할까요?"
+    User->>UI: 승인
+
+    rect rgb(155, 89, 182)
+        Note over Agent,Sub: 2단계: 병렬 실행
+        Agent->>Sub: 하위 작업 분배
+        Sub->>VM: 실행 환경 접근
+        VM->>FS: 영수증 파일 읽기
+        FS-->>VM: 파일 데이터
+        VM-->>Sub: 처리 결과
+    end
+
+    rect rgb(231, 76, 60)
+        Note over Agent,User: 3단계: 확인 요청 (Human-in-the-Loop)
+        Agent->>UI: "카테고리 분류가 맞나요?"
+        UI->>User: 확인 요청
+        User->>UI: 수정 피드백
+        UI->>Agent: 피드백 반영
+    end
+
+    rect rgb(46, 204, 113)
+        Note over Agent,FS: 4단계: 결과 생성
+        Agent->>VM: 보고서 작성
+        VM->>FS: expense-report.xlsx 저장
+        FS-->>VM: 저장 완료
+        VM-->>Agent: 작업 완료
+    end
+
+    Agent->>UI: 완료 보고
+    UI->>User: "경비 보고서가 생성되었습니다"

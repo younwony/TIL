@@ -1,0 +1,56 @@
+flowchart TB
+    subgraph Desktop["Claude Desktop App"]
+        direction TB
+        ChatTab["Chat Tab<br/>일반 대화"]
+        CodeTab["Code Tab<br/>개발자용 CLI"]
+        CoworkTab["Cowork Tab<br/>범용 에이전트"]
+    end
+
+    subgraph AgentCore["Agent SDK (공유 코어)"]
+        direction LR
+        Planner["Planning<br/>작업 계획"]
+        Executor["Execution<br/>실행 엔진"]
+        Adapter["Adaptation<br/>적응 루프"]
+    end
+
+    subgraph VMSandbox["VM Sandbox (Apple Virtualization Framework)"]
+        direction TB
+        LinuxFS["Linux Root<br/>Filesystem"]
+        MountedFolder["Mounted Folders<br/>/sessions/ID/mnt/"]
+        SubAgents["Sub-agents<br/>병렬 실행"]
+    end
+
+    subgraph Plugins["Plugin System"]
+        direction LR
+        Skills["Skills<br/>역할별 지식"]
+        Connectors["Connectors<br/>외부 연결"]
+        SlashCmd["Slash Commands<br/>빠른 실행"]
+        SubAgentDef["Sub-agent<br/>정의"]
+    end
+
+    subgraph External["External Services"]
+        direction LR
+        CRM["CRM"]
+        DB["Database"]
+        API["External API"]
+        Chrome["Chrome"]
+    end
+
+    subgraph UserFiles["사용자 파일 시스템"]
+        Folder1["Project A/"]
+        Folder2["Reports/"]
+        Folder3["Data/"]
+    end
+
+    CoworkTab --> AgentCore
+    AgentCore --> VMSandbox
+    VMSandbox --> Plugins
+    Connectors --> External
+    UserFiles -.->|"명시적 허용"| MountedFolder
+
+    style Desktop fill:#3498DB,stroke:#2980B9,color:#fff
+    style AgentCore fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style VMSandbox fill:#E67E22,stroke:#D35400,color:#fff
+    style Plugins fill:#2ECC71,stroke:#27AE60,color:#fff
+    style External fill:#95A5A6,stroke:#7F8C8D,color:#fff
+    style UserFiles fill:#3498DB,stroke:#2980B9,color:#fff

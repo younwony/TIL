@@ -1,0 +1,65 @@
+flowchart TB
+    subgraph Plugin["Plugin Bundle (파일 기반)"]
+        direction TB
+        Meta["plugin.yaml<br/>메타데이터"]
+
+        subgraph SkillsLayer["Skills (스킬)"]
+            direction LR
+            S1["역할별 지식<br/>YAML + Markdown"]
+            S2["문서 생성 능력<br/>XLSX, PPTX, DOCX"]
+            S3["프로세스 정의<br/>업무 절차"]
+        end
+
+        subgraph ConnectorLayer["Connectors (커넥터)"]
+            direction LR
+            C1["CRM 연결"]
+            C2["지식 기반 연결"]
+            C3["데이터 소스 연결"]
+        end
+
+        subgraph SlashLayer["Slash Commands (명령어)"]
+            direction LR
+            SC1["/report<br/>보고서 생성"]
+            SC2["/analyze<br/>데이터 분석"]
+            SC3["/review<br/>문서 검토"]
+        end
+
+        subgraph SubAgentLayer["Sub-agents (하위 에이전트)"]
+            direction LR
+            SA1["데이터 수집<br/>에이전트"]
+            SA2["분석 처리<br/>에이전트"]
+            SA3["보고서 작성<br/>에이전트"]
+        end
+    end
+
+    subgraph Official["공식 플러그인 11종"]
+        direction LR
+        P1["Productivity"]
+        P2["Sales"]
+        P3["Legal"]
+        P4["Finance"]
+        P5["Data"]
+        P6["Marketing"]
+    end
+
+    subgraph CrossPlatform["크로스 플랫폼 호환"]
+        direction LR
+        CP1["Claude Cowork"]
+        CP2["VS Code / Copilot"]
+        CP3["OpenAI Codex CLI"]
+        CP4["Cursor / Goose / Amp"]
+    end
+
+    Meta --> SkillsLayer
+    Meta --> ConnectorLayer
+    Meta --> SlashLayer
+    Meta --> SubAgentLayer
+    SkillsLayer --> CrossPlatform
+
+    style Plugin fill:#2ECC71,stroke:#27AE60,color:#fff
+    style SkillsLayer fill:#3498DB,stroke:#2980B9,color:#fff
+    style ConnectorLayer fill:#E67E22,stroke:#D35400,color:#fff
+    style SlashLayer fill:#9B59B6,stroke:#8E44AD,color:#fff
+    style SubAgentLayer fill:#E74C3C,stroke:#C0392B,color:#fff
+    style Official fill:#1ABC9C,stroke:#16A085,color:#fff
+    style CrossPlatform fill:#F39C12,stroke:#E67E22,color:#fff
