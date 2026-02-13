@@ -4,6 +4,7 @@ import com.til.csweb.domain.KeywordInfo;
 import com.til.csweb.dto.DocumentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<DocumentDto> search(String query) {
-        if (query == null || query.trim().isEmpty()) {
+        if (!StringUtils.hasText(query)) {
             return Collections.emptyList();
         }
 
@@ -34,7 +35,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<DocumentDto> searchByKeyword(String keyword) {
-        if (keyword == null || keyword.trim().isEmpty()) {
+        if (!StringUtils.hasText(keyword)) {
             return Collections.emptyList();
         }
 
@@ -59,10 +60,10 @@ public class SearchServiceImpl implements SearchService {
     }
 
     private boolean matchesSearch(DocumentDto doc, String query) {
-        if (doc.getTitle() != null && doc.getTitle().toLowerCase().contains(query)) {
+        if (StringUtils.hasText(doc.getTitle()) && doc.getTitle().toLowerCase().contains(query)) {
             return true;
         }
-        if (doc.getDescription() != null && doc.getDescription().toLowerCase().contains(query)) {
+        if (StringUtils.hasText(doc.getDescription()) && doc.getDescription().toLowerCase().contains(query)) {
             return true;
         }
         return doc.getKeywords().stream()

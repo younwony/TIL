@@ -8,13 +8,13 @@ import com.til.csweb.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static com.til.csweb.constant.DocumentConstants.SEARCH_RESULT_LIMIT;
 
@@ -51,16 +51,18 @@ public class DocumentController {
      */
     @GetMapping("/category/{category}")
     public String category(@PathVariable String category, Model model) {
-        Optional<CategoryDto> categoryInfo = categoryService.getCategoryInfo(category);
-        if (categoryInfo.isEmpty()) {
+        CategoryDto categoryInfo = categoryService.getCategoryInfo(category)
+                .orElse(null);
+
+        if (categoryInfo == null) {
             return "error/404";
         }
 
         List<DocumentDto> allDocuments = documentService.getDocumentsInCategoryRecursive(category);
         model.addAttribute("category", category);
-        model.addAttribute("categoryInfo", categoryInfo.get());
+        model.addAttribute("categoryInfo", categoryInfo);
         model.addAttribute("documents", allDocuments);
-        model.addAttribute("subcategories", categoryInfo.get().getSubcategories());
+        model.addAttribute("subcategories", categoryInfo.getSubcategories());
         return "category";
     }
 
@@ -73,17 +75,19 @@ public class DocumentController {
             @PathVariable String subcategory,
             Model model) {
         String fullPath = category + "/" + subcategory;
-        Optional<CategoryDto> categoryInfo = categoryService.getCategoryInfo(fullPath);
-        if (categoryInfo.isEmpty()) {
+        CategoryDto categoryInfo = categoryService.getCategoryInfo(fullPath)
+                .orElse(null);
+
+        if (categoryInfo == null) {
             return "error/404";
         }
 
         List<DocumentDto> documents = documentService.getDocumentsInCategoryRecursive(fullPath);
         model.addAttribute("category", fullPath);
         model.addAttribute("parentCategory", category);
-        model.addAttribute("categoryInfo", categoryInfo.get());
+        model.addAttribute("categoryInfo", categoryInfo);
         model.addAttribute("documents", documents);
-        model.addAttribute("subcategories", categoryInfo.get().getSubcategories());
+        model.addAttribute("subcategories", categoryInfo.getSubcategories());
         return "category";
     }
 
@@ -115,9 +119,10 @@ public class DocumentController {
      */
     private String handleDocumentRequest(String category, String subcategory, String filename, Model model) {
         String fullCategory = subcategory != null ? category + "/" + subcategory : category;
-        Optional<DocumentDto> document = documentService.getDocument(fullCategory, filename);
+        DocumentDto document = documentService.getDocument(fullCategory, filename)
+                .orElse(null);
 
-        if (document.isEmpty()) {
+        if (document == null) {
             if (categoryService.categoryExists(category)) {
                 model.addAttribute("category", fullCategory);
                 model.addAttribute("documentTitle", formatTitle(filename));
@@ -126,7 +131,7 @@ public class DocumentController {
             return "error/404";
         }
 
-        model.addAttribute("document", document.get());
+        model.addAttribute("document", document);
         model.addAttribute("categories", categoryService.getCategories());
         return "document";
     }
@@ -135,9 +140,11 @@ public class DocumentController {
      * 파일명을 제목 형식으로 변환
      */
     private String formatTitle(String filename) {
-        return filename.replace("-", " ")
-                .replace("_", " ")
-                .substring(0, 1).toUpperCase() + filename.substring(1).replace("-", " ");
+        String replaced = filename.replace("-", " ").replace("_", " ");
+        if (replaced.isEmpty()) {
+            return filename;
+        }
+        return replaced.substring(0, 1).toUpperCase() + replaced.substring(1);
     }
 
     /**
@@ -153,11 +160,11 @@ public class DocumentController {
         String searchType;
         String searchValue;
 
-        if (keyword != null && !keyword.trim().isEmpty()) {
+        if (StringUtils.hasText(keyword)) {
             results = searchService.searchByKeyword(keyword);
             searchType = "keyword";
             searchValue = keyword;
-        } else if (q != null && !q.trim().isEmpty()) {
+        } else if (StringUtils.hasText(q)) {
             results = searchService.search(q);
             searchType = "query";
             searchValue = q;

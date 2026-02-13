@@ -60,13 +60,6 @@ public class CategoryDto {
      * 표시할 문서 수 (직접 문서 + 하위 카테고리 문서)
      */
     public int getDisplayDocumentCount() {
-        if (totalDocumentCount > 0) {
-            return totalDocumentCount;
-        }
-        int count = documents.size();
-        for (CategoryDto sub : subcategories) {
-            count += sub.getDisplayDocumentCount();
-        }
-        return count;
+        return totalDocumentCount;
     }
 }

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,20 +131,8 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     private int compareByLevelThenTitle(DocumentDto a, DocumentDto b) {
-        Integer levelA = a.getLevel();
-        Integer levelB = b.getLevel();
-
-        if (levelA == null && levelB == null) {
-            return a.getTitle().compareToIgnoreCase(b.getTitle());
-        }
-        if (levelA == null) return 1;
-        if (levelB == null) return -1;
-
-        int levelCompare = levelA.compareTo(levelB);
-        if (levelCompare != 0) {
-            return levelCompare;
-        }
-
-        return a.getTitle().compareToIgnoreCase(b.getTitle());
+        return Comparator.comparing(DocumentDto::getLevel, Comparator.nullsLast(Integer::compareTo))
+                .thenComparing(doc -> doc.getTitle().toLowerCase())
+                .compare(a, b);
     }
 }

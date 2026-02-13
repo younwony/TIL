@@ -191,6 +191,20 @@ TIL/
 | `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 생성 |
 | `work-plan-start` | `/work-plan-start [path]` | WORK-SPEC.md 기반 실제 작업 수행 |
 
+### Agents (Sub-agents)
+
+독립 컨텍스트에서 자율적으로 작업을 수행하는 전문 에이전트입니다.
+Claude가 작업 유형에 따라 자동으로 위임하거나, 명시적으로 요청할 수 있습니다.
+
+| 에이전트 | 트리거 키워드 | 모델 | 설명 |
+|----------|--------------|------|------|
+| `test-generator` | "테스트 생성", "테스트 작성" | Sonnet | 단위/통합 테스트 자동 생성 + 실행 + 수정 |
+| `code-refactor` | "리팩토링", "코드 스멜" | Sonnet | CLAUDE.md 규칙 기반 코드 분석 + 개선 |
+| `debugger` | "디버깅", "에러 분석" | Sonnet | 스택 트레이스 추적 + 원인 분석 + 수정 |
+| `jira-updater` | "Jira 업데이트", "이슈 상태" | Haiku | 브랜치 기반 이슈 감지 + 상태 전환 + 코멘트 |
+
+> 가이드: [AGENT-GUIDE.md](./AGENT-GUIDE.md)
+
 ## 언어 설정
 
 - **응답 언어:** 모든 대답과 설명은 한국어로 진행합니다.

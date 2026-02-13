@@ -60,10 +60,9 @@ public class CategoryServiceImpl implements CategoryService {
                 .map(Optional::get)
                 .collect(Collectors.toList());
 
-        int totalDocs = documents.size();
-        for (CategoryDto sub : subcategories) {
-            totalDocs += sub.getTotalDocumentCount();
-        }
+        int totalDocs = documents.size() + subcategories.stream()
+                .mapToInt(CategoryDto::getTotalDocumentCount)
+                .sum();
 
         return Optional.of(CategoryDto.builder()
                 .name(name)

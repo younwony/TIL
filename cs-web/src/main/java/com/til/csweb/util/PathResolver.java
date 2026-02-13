@@ -1,5 +1,8 @@
 package com.til.csweb.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,6 +16,8 @@ import static com.til.csweb.constant.DocumentConstants.MARKDOWN_EXTENSION;
  * 경로 해결 유틸리티
  */
 public final class PathResolver {
+
+    private static final Logger log = LoggerFactory.getLogger(PathResolver.class);
 
     private PathResolver() {
     }
@@ -47,7 +52,7 @@ public final class PathResolver {
         }
 
         Path defaultPath = userDir.resolve("../cs").toAbsolutePath().normalize();
-        System.err.println("[WARN] CS docs path not found. Using default: " + defaultPath);
+        log.warn("CS docs path not found. Using default: {}", defaultPath);
         return defaultPath;
     }
 
