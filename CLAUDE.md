@@ -163,15 +163,33 @@ TIL/
 - [ ] `git status`로 staging 확인
 - [ ] commit은 사용자 요청 시에만
 
-## Claude Code Skills
+## Claude Code Skills & Commands
 
-사용 가능한 스킬 목록입니다. 키워드로 호출할 수 있습니다.
+사용 가능한 스킬 및 커맨드 목록입니다.
+
+### Skills (자동 트리거)
 
 | 스킬 | 트리거 키워드 | 설명 |
 |------|--------------|------|
 | `cs-guide-writer` | "오늘의 CS", "CS 정리", "{주제} 정리해줘" | CS 학습 문서 작성 |
 | `cs-sync` | "CS 동기화", "가이드 반영" | CS 문서 템플릿 동기화 |
 | `cs-link-sync` | "링크 동기화", "깨진 링크 수정", "링크 체크" | CS 문서 링크 검증 및 수정 |
+| `mermaid-diagram` | - | Mermaid CLI 다이어그램 생성 |
+| `svg-diagram` | - | SVG 코드 다이어그램 생성 |
+
+### Commands (슬래시 명령)
+
+| 커맨드 | 호출 | 설명 |
+|--------|------|------|
+| `today` | `/today` | 오늘 작성/수정한 문서 목록 확인 |
+| `handoff` | `/handoff` | 작업 상태를 HANDOFF.md로 저장 |
+| `pr` | `/pr` | 현재 브랜치 분석 후 PR 자동 생성 |
+| `review-pr` | `/review-pr {PR번호}` | PR 코드 리뷰 및 개선 제안 |
+| `self-review` | `/self-review` | PR 생성 전 자체 리뷰 및 SELF-REVIEW.md 생성 |
+| `api-doc` | `/api-doc {대상}` | API 문서 생성 |
+| `work-log` | `/work-log` | 현재 브랜치 작업 내용 Confluence 문서화 |
+| `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 생성 |
+| `work-plan-start` | `/work-plan-start [path]` | WORK-SPEC.md 기반 실제 작업 수행 |
 
 ## 언어 설정
 

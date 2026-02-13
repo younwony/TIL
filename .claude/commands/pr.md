@@ -56,9 +56,8 @@ PR을 생성할 대상 브랜치를 결정한다:
 ## PR 작성 규칙
 
 ### PR 제목
-- 70자 이내
-- 커밋 메시지 컨벤션 따름: `<type>: <subject>`
-- 여러 커밋이면 가장 핵심적인 변경을 요약
+- 현재 브랜치명을 그대로 PR 제목으로 사용한다
+- 예: 브랜치가 `TECH-21964-be-kglowing-tiktok-logging-개선`이면 제목도 `TECH-21964-be-kglowing-tiktok-logging-개선`
 
 ### PR 본문 (pull_request_template.md 형식 준수)
 
@@ -95,6 +94,9 @@ gh api repos/{owner}/{repo}/collaborators --jq ".[].login" | grep -v "$(git conf
 ```
 
 - PR 작성자 본인은 후보에서 **제외**
+- 글로벌 CLAUDE.md의 `PR_REVIEWER_EXCLUDE` 설정에 포함된 계정은 후보에서 **제외**
+  - 현재 제외 목록: `temcolabs`, `happyfridaycode`
+  - `/pr` 실행 시 인자로 추가 제외 대상을 전달할 수 있음 (예: `/pr reviewer 제외: userA`)
 - 후보가 2명 미만이면 가능한 인원 전체를 리뷰어로 지정
 
 ### 2. 랜덤 선정 및 결과 출력
@@ -104,20 +106,23 @@ gh api repos/{owner}/{repo}/collaborators --jq ".[].login" | grep -v "$(git conf
 ```
 ## 리뷰어 랜덤 선정 결과
 
-- **후보 목록**: user1, user2, user3, user4, ...
+- **전체 목록**: user1, user2, user3, ...
+- **제외 목록**: excludedUser1, excludedUser2 (사유: PR_REVIEWER_EXCLUDE 설정)
+- **후보 목록**: user1, user2, user3, ...
 - **총 후보 수**: N명
 - **선정 수**: 2명
 - **선정된 리뷰어**: ✅ userA, ✅ userB
 - **선정 방식**: 후보 목록에서 무작위 추출 (중복 없음)
-- **선정 시각**: YYYY-MM-DD HH:MM:SS
 ```
 
-### 3. 사용자 확인
+### 3. 사용자 확인 (PR 생성 전 필수)
 
-AskUserQuestion으로 확인:
-- "위 리뷰어로 진행할까요?"
+PR 생성 전에 반드시 AskUserQuestion으로 리뷰어를 확인받는다:
+- "선정된 리뷰어: userA, userB. 이 리뷰어로 PR을 생성할까요?"
 - 옵션: "확인", "다시 뽑기", "직접 지정"
+- "다시 뽑기" 선택 시 2단계로 돌아가 재선정
 - "직접 지정" 선택 시 사용자가 리뷰어 핸들을 직접 입력
+- **리뷰어 확인 없이 PR을 생성하지 않는다**
 
 ## PR 생성
 
