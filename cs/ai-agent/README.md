@@ -60,6 +60,7 @@ MCP 개념을 이해한 후 학습하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [Agentic Coding](./agentic-coding.md) | AI 에이전트가 자율적으로 코드 작성, 개발자는 조율자로 역할 전환 `Trend 2026` | Vibe Coding, Multi-Agent |
 | [AI Guardrails](./ai-guardrails.md) | LLM/AI 에이전트의 안전한 운영을 위한 가드레일 `Trend 2026` | AI Agent란, OWASP LLM |
 | [WebMCP](./webmcp.md) | 웹 페이지가 브라우저 내 AI 에이전트에게 도구를 노출하는 웹 표준 `Trend 2025-2026` | MCP, Tool Use |
 | [A2A Protocol](./a2a-protocol.md) | AI 에이전트 간 통신 표준 프로토콜 `Trend 2025` | MCP, AI Agent란 |
@@ -115,6 +116,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [AI 보조 개발 (AI-Assisted Development)](./ai-assisted-development.md) - AI 코딩 도구를 활용한 개발 방법론, 생산성 역설과 품질 관리 전략 `Trend 2026`
 - [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
 - [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
+- [Agentic Coding](./agentic-coding.md) - AI 에이전트가 장시간 자율적으로 코드 작성, 개발자는 조율자로 역할 전환 `Trend 2026`
 - [Repository Intelligence](./repository-intelligence.md) - AI가 전체 코드베이스의 구조, 관계, 히스토리를 이해하여 맥락에 맞는 코드 제안 `Trend 2026`
 
 ### 범용 AI 코워커

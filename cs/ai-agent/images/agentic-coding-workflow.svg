@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="blue2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="green2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="purple2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="orange2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="red2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="550" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <text x="450" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">Agentic Coding Workflow</text>
+
+  <!-- Phase 1: Task Definition -->
+  <rect x="30" y="60" width="180" height="120" rx="10" fill="#16213e" stroke="#3498DB" stroke-width="2"/>
+  <text x="120" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#3498DB" text-anchor="middle">1. Task Definition</text>
+  <rect x="50" y="100" width="140" height="30" rx="5" fill="url(#blue2)"/>
+  <text x="120" y="120" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">개발자</text>
+  <text x="120" y="150" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">• 목표 정의</text>
+  <text x="120" y="165" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">• 제약 조건 설정</text>
+
+  <!-- Arrow 1 -->
+  <line x1="220" y1="120" x2="270" y2="120" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="265,115 275,120 265,125" fill="#ffffff"/>
+
+  <!-- Phase 2: Task Decomposition -->
+  <rect x="280" y="60" width="180" height="120" rx="10" fill="#16213e" stroke="#9B59B6" stroke-width="2"/>
+  <text x="370" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#9B59B6" text-anchor="middle">2. Decomposition</text>
+  <rect x="300" y="100" width="140" height="30" rx="5" fill="url(#purple2)"/>
+  <text x="370" y="120" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Orchestrator Agent</text>
+  <text x="370" y="150" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">• 작업 분해</text>
+  <text x="370" y="165" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">• 에이전트 할당</text>
+
+  <!-- Arrow 2 -->
+  <line x1="470" y1="120" x2="520" y2="120" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="515,115 525,120 515,125" fill="#ffffff"/>
+
+  <!-- Phase 3: Parallel Execution -->
+  <rect x="530" y="60" width="180" height="120" rx="10" fill="#16213e" stroke="#E67E22" stroke-width="2"/>
+  <text x="620" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#E67E22" text-anchor="middle">3. Parallel Execution</text>
+  <rect x="545" y="100" width="70" height="25" rx="4" fill="url(#orange2)"/>
+  <text x="580" y="117" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Coder</text>
+  <rect x="625" y="100" width="70" height="25" rx="4" fill="url(#orange2)"/>
+  <text x="660" y="117" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Tester</text>
+  <rect x="545" y="135" width="70" height="25" rx="4" fill="url(#orange2)"/>
+  <text x="580" y="152" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Reviewer</text>
+  <rect x="625" y="135" width="70" height="25" rx="4" fill="url(#orange2)"/>
+  <text x="660" y="152" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Docs</text>
+
+  <!-- Arrow 3 -->
+  <line x1="720" y1="120" x2="770" y2="120" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="765,115 775,120 765,125" fill="#ffffff"/>
+
+  <!-- Phase 4: Validation -->
+  <rect x="780" y="60" width="100" height="120" rx="10" fill="#16213e" stroke="#2ECC71" stroke-width="2"/>
+  <text x="830" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2ECC71" text-anchor="middle">4. Validate</text>
+  <rect x="795" y="100" width="70" height="30" rx="5" fill="url(#green2)"/>
+  <text x="830" y="120" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Quality</text>
+  <text x="830" y="150" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">• 테스트</text>
+  <text x="830" y="165" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">• 검증</text>
+
+  <!-- Intelligent Oversight Section -->
+  <rect x="30" y="210" width="850" height="140" rx="10" fill="#16213e" stroke="#E74C3C" stroke-width="2"/>
+  <text x="455" y="235" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#E74C3C" text-anchor="middle">Intelligent Human Oversight</text>
+
+  <!-- Decision Points -->
+  <rect x="60" y="255" width="180" height="80" rx="8" fill="#0f3460" stroke="#E74C3C" stroke-width="1"/>
+  <text x="150" y="280" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">불확실성 감지</text>
+  <text x="150" y="300" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">confidence &lt; 85%?</text>
+  <text x="150" y="320" font-family="Arial, sans-serif" font-size="9" fill="#E74C3C" text-anchor="middle">→ 개발자 의견 요청</text>
+
+  <rect x="270" y="255" width="180" height="80" rx="8" fill="#0f3460" stroke="#E74C3C" stroke-width="1"/>
+  <text x="360" y="280" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">리스크 플래깅</text>
+  <text x="360" y="300" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">DB 스키마 변경?</text>
+  <text x="360" y="320" font-family="Arial, sans-serif" font-size="9" fill="#E74C3C" text-anchor="middle">→ 승인 필수</text>
+
+  <rect x="480" y="255" width="180" height="80" rx="8" fill="#0f3460" stroke="#E74C3C" stroke-width="1"/>
+  <text x="570" y="280" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">재시도 한계</text>
+  <text x="570" y="300" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">3회 실패?</text>
+  <text x="570" y="320" font-family="Arial, sans-serif" font-size="9" fill="#E74C3C" text-anchor="middle">→ 에스컬레이션</text>
+
+  <rect x="690" y="255" width="160" height="80" rx="8" fill="#0f3460" stroke="#2ECC71" stroke-width="1"/>
+  <text x="770" y="280" font-family="Arial, sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">자율 진행</text>
+  <text x="770" y="300" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">문제 없음</text>
+  <text x="770" y="320" font-family="Arial, sans-serif" font-size="9" fill="#2ECC71" text-anchor="middle">→ 계속 실행</text>
+
+  <!-- Self-Correction Loop -->
+  <rect x="30" y="370" width="540" height="160" rx="10" fill="#16213e" stroke="#9B59B6" stroke-width="2"/>
+  <text x="300" y="395" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9B59B6" text-anchor="middle">Self-Correction Loop</text>
+
+  <!-- Loop Steps -->
+  <rect x="60" y="415" width="90" height="40" rx="6" fill="url(#purple2)"/>
+  <text x="105" y="440" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">에러 발생</text>
+
+  <line x1="160" y1="435" x2="190" y2="435" stroke="#9B59B6" stroke-width="2"/>
+  <polygon points="185,430 195,435 185,440" fill="#9B59B6"/>
+
+  <rect x="200" y="415" width="90" height="40" rx="6" fill="url(#purple2)"/>
+  <text x="245" y="440" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">로그 분석</text>
+
+  <line x1="300" y1="435" x2="330" y2="435" stroke="#9B59B6" stroke-width="2"/>
+  <polygon points="325,430 335,435 325,440" fill="#9B59B6"/>
+
+  <rect x="340" y="415" width="90" height="40" rx="6" fill="url(#purple2)"/>
+  <text x="385" y="440" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">원인 추론</text>
+
+  <line x1="440" y1="435" x2="470" y2="435" stroke="#9B59B6" stroke-width="2"/>
+  <polygon points="465,430 475,435 465,440" fill="#9B59B6"/>
+
+  <rect x="480" y="415" width="60" height="40" rx="6" fill="url(#green2)"/>
+  <text x="510" y="440" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">수정</text>
+
+  <!-- Loop back arrow -->
+  <path d="M 510 465 L 510 495 L 105 495 L 105 465" stroke="#9B59B6" stroke-width="2" fill="none"/>
+  <polygon points="100,470 105,460 110,470" fill="#9B59B6"/>
+  <text x="307" y="510" font-family="Arial, sans-serif" font-size="9" fill="#888888" text-anchor="middle">최대 N회 반복</text>
+
+  <!-- Output Section -->
+  <rect x="600" y="370" width="280" height="160" rx="10" fill="#16213e" stroke="#2ECC71" stroke-width="2"/>
+  <text x="740" y="395" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2ECC71" text-anchor="middle">Output</text>
+
+  <rect x="620" y="415" width="240" height="30" rx="5" fill="#0f3460"/>
+  <text x="740" y="435" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">✓ 완성된 코드 + 테스트</text>
+
+  <rect x="620" y="455" width="240" height="30" rx="5" fill="#0f3460"/>
+  <text x="740" y="475" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">✓ 자동 생성된 문서</text>
+
+  <rect x="620" y="495" width="240" height="30" rx="5" fill="#0f3460"/>
+  <text x="740" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">✓ 실행 리포트 & 메트릭</text>
+</svg>
