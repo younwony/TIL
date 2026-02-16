@@ -176,6 +176,7 @@ TIL/
 | `cs-link-sync` | "링크 동기화", "깨진 링크 수정", "링크 체크" | CS 문서 링크 검증 및 수정 |
 | `mermaid-diagram` | - | Mermaid CLI 다이어그램 생성 |
 | `svg-diagram` | - | SVG 코드 다이어그램 생성 |
+| `3ai-plan` | "3AI 플랜", "3AI 협업" | 3-AI(Claude+Gemini+Codex) 협업 플랜 생성 |
 
 ### Commands (슬래시 명령)
 
