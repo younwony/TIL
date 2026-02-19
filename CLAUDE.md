@@ -191,6 +191,7 @@ TIL/
 | `work-log` | `/work-log` | 현재 브랜치 작업 내용 Confluence 문서화 |
 | `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 생성 |
 | `work-plan-start` | `/work-plan-start [path]` | WORK-SPEC.md 기반 실제 작업 수행 |
+| `release-notes-kr` | `/release-notes-kr [버전/범위]` | Claude Code 릴리스 노트 한글 요약 정리 |
 
 ### Agents (Sub-agents)
 
