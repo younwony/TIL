@@ -119,14 +119,14 @@ class MarkdownMetadataExtractorTest {
         @DisplayName("백틱이 포함된 인용구에서 백틱을 제거한다")
         void removeBackticksFromDescription() {
             // given
-            String markdown = "# Title\n\n> `[1] 정의` · 선수 지식: 없음\n\n본문";
+            String markdown = "# Title\n\n> `핵심 개념` · 주요 내용\n\n본문";
 
             // when
             String description = extractor.extractDescription(markdown);
 
             // then
             assertFalse(description.contains("`"));
-            assertTrue(description.contains("[1] 정의"));
+            assertTrue(description.contains("핵심 개념"));
         }
 
         @Test

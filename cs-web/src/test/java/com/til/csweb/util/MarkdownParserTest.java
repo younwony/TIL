@@ -20,7 +20,7 @@ class MarkdownParserTest {
     void setUp() {
         MarkdownParserConfig config = new MarkdownParserConfig();
         MutableDataSet options = config.markdownOptions();
-        Parser parser = config.markdownParser(options);
+        Parser parser = config.flexmarkParser(options);
         HtmlRenderer renderer = config.htmlRenderer(options);
         markdownParser = new MarkdownParser(parser, renderer);
     }
