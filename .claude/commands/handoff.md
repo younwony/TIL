@@ -5,7 +5,7 @@ allowed-tools: Bash(git:*), Read, Write, Glob, Grep
 
 # HANDOFF.md 작성
 
-지금까지의 작업 내용을 HANDOFF.md 파일로 정리해줘.
+지금까지의 작업 내용을 `.claude/docs/HANDOFF.md` 파일로 정리해줘.
 다음 에이전트가 이 파일만 읽고 작업을 이어갈 수 있도록
 시도한 것, 성공한 것, 실패한 것, 다음 단계를 명확히 작성해줘.
 
@@ -49,6 +49,6 @@ allowed-tools: Bash(git:*), Read, Write, Glob, Grep
 
 HANDOFF.md 작성이 완료되면 다음을 안내해줘:
 
-1. ✅ HANDOFF.md 작성 완료
+1. ✅ `.claude/docs/HANDOFF.md` 작성 완료
 2. 다음 명령어로 컨텍스트를 리셋하세요: `/clear`
-3. 새 세션에서 이렇게 시작하세요: `@HANDOFF.md 이 문서를 읽고 다음 단계부터 이어서 진행해줘`
+3. 새 세션에서 이렇게 시작하세요: `@.claude/docs/HANDOFF.md 이 문서를 읽고 다음 단계부터 이어서 진행해줘`

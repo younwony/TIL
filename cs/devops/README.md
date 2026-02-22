@@ -12,6 +12,7 @@
 
 - [CI/CD](./ci-cd.md) - 지속적 통합과 지속적 배포
 - [Cloudflared](./cloudflared.md) - Cloudflare Tunnel, 보안 터널링
+- [GitHub Pages](./github-pages.md) - 정적 사이트 호스팅, 멀티 레포 배포
 
 ### [3] 중급
 

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380">
+  <defs>
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#24292E"/>
+      <stop offset="100%" style="stop-color:#1B1F23"/>
+    </linearGradient>
+    <linearGradient id="repoAGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2EA44F"/>
+      <stop offset="100%" style="stop-color:#238636"/>
+    </linearGradient>
+    <linearGradient id="repoBGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F6FEB"/>
+      <stop offset="100%" style="stop-color:#1A5FC9"/>
+    </linearGradient>
+    <linearGradient id="repoCGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#A371F7"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="urlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F6F8FA"/>
+      <stop offset="100%" style="stop-color:#EEF1F5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" fill="#24292E" font-family="Arial, sans-serif" font-size="18" font-weight="bold">GitHub Pages 멀티 레포 URL 구조</text>
+
+  <!-- GitHub Account Box -->
+  <rect x="220" y="50" width="280" height="55" rx="10" fill="url(#mainGrad)"/>
+  <text x="360" y="72" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="bold">GitHub Account</text>
+  <text x="360" y="92" text-anchor="middle" fill="#8B949E" font-family="monospace" font-size="11">username</text>
+
+  <!-- Lines from account to repos -->
+  <line x1="280" y1="105" x2="120" y2="150" stroke="#D0D7DE" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="360" y1="105" x2="360" y2="150" stroke="#D0D7DE" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="440" y1="105" x2="600" y2="150" stroke="#D0D7DE" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- Main Site (username.github.io) -->
+  <rect x="20" y="150" width="200" height="65" rx="8" fill="url(#repoAGrad)"/>
+  <text x="120" y="173" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">username.github.io</text>
+  <text x="120" y="193" text-anchor="middle" fill="#D1FAE5" font-family="Arial, sans-serif" font-size="10">User/Org 사이트</text>
+  <text x="120" y="207" text-anchor="middle" fill="#A7F3D0" font-family="Arial, sans-serif" font-size="9">(메인 레포)</text>
+
+  <!-- Project A -->
+  <rect x="260" y="150" width="200" height="65" rx="8" fill="url(#repoBGrad)"/>
+  <text x="360" y="173" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">repo-a</text>
+  <text x="360" y="193" text-anchor="middle" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="10">Project 사이트 A</text>
+  <text x="360" y="207" text-anchor="middle" fill="#93C5FD" font-family="Arial, sans-serif" font-size="9">(프로젝트 레포)</text>
+
+  <!-- Project B -->
+  <rect x="500" y="150" width="200" height="65" rx="8" fill="url(#repoCGrad)"/>
+  <text x="600" y="173" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">repo-b</text>
+  <text x="600" y="193" text-anchor="middle" fill="#E9D5FF" font-family="Arial, sans-serif" font-size="10">Project 사이트 B</text>
+  <text x="600" y="207" text-anchor="middle" fill="#D8B4FE" font-family="Arial, sans-serif" font-size="9">(프로젝트 레포)</text>
+
+  <!-- Arrows to URLs -->
+  <line x1="120" y1="215" x2="120" y2="260" stroke="#2EA44F" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="360" y1="215" x2="360" y2="260" stroke="#1F6FEB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="600" y1="215" x2="600" y2="260" stroke="#A371F7" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2EA44F"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F6FEB"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#A371F7"/>
+    </marker>
+  </defs>
+
+  <!-- URL Boxes -->
+  <rect x="10" y="265" width="220" height="40" rx="6" fill="url(#urlGrad)" stroke="#2EA44F" stroke-width="2"/>
+  <text x="120" y="290" text-anchor="middle" fill="#24292E" font-family="monospace" font-size="10" font-weight="bold">username.github.io/</text>
+
+  <rect x="250" y="265" width="220" height="40" rx="6" fill="url(#urlGrad)" stroke="#1F6FEB" stroke-width="2"/>
+  <text x="360" y="290" text-anchor="middle" fill="#24292E" font-family="monospace" font-size="10" font-weight="bold">username.github.io/repo-a/</text>
+
+  <rect x="490" y="265" width="220" height="40" rx="6" fill="url(#urlGrad)" stroke="#A371F7" stroke-width="2"/>
+  <text x="600" y="290" text-anchor="middle" fill="#24292E" font-family="monospace" font-size="10" font-weight="bold">username.github.io/repo-b/</text>
+
+  <!-- Legend -->
+  <rect x="140" y="330" width="440" height="40" rx="6" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+  <circle cx="185" cy="350" r="6" fill="#2EA44F"/>
+  <text x="198" y="354" fill="#57606A" font-family="Arial, sans-serif" font-size="10">메인 사이트 (루트)</text>
+  <circle cx="335" cy="350" r="6" fill="#1F6FEB"/>
+  <text x="348" y="354" fill="#57606A" font-family="Arial, sans-serif" font-size="10">프로젝트 A (서브 경로)</text>
+  <circle cx="495" cy="350" r="6" fill="#A371F7"/>
+  <text x="508" y="354" fill="#57606A" font-family="Arial, sans-serif" font-size="10">프로젝트 B (서브 경로)</text>
+</svg>

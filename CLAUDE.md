@@ -177,6 +177,9 @@ TIL/
 | `mermaid-diagram` | - | Mermaid CLI 다이어그램 생성 |
 | `svg-diagram` | - | SVG 코드 다이어그램 생성 |
 | `3ai-plan` | "3AI 플랜", "3AI 협업" | 3-AI(Claude+Gemini+Codex) 협업 플랜 생성 |
+| `pencil-screen` | "새 화면 디자인", "스크린 추가", "화면 만들어줘" | Pencil MCP로 새 화면(Desktop+Mobile) 디자인 |
+| `pencil-update` | "디자인 수정", "화면 변경", "레이아웃 조정" | Pencil MCP 기존 화면 수정 |
+| `pencil-to-code` | "코드 생성", "디자인 적용", "코드로 변환" | Pencil 디자인을 HTML/CSS/JS 코드로 변환 |
 
 ### Commands (슬래시 명령)
 

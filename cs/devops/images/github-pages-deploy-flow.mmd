@@ -1,0 +1,31 @@
+flowchart LR
+    subgraph "개발자"
+        A["git push\n(main 브랜치)"]
+    end
+
+    subgraph "GitHub Actions"
+        B["워크플로우\n트리거"]
+        C["Build\n(아티팩트 생성)"]
+        D["Deploy\n(Pages 배포)"]
+    end
+
+    subgraph "GitHub Pages"
+        E["정적 사이트\n호스팅"]
+    end
+
+    subgraph "사용자"
+        F["username.github.io\n/repo-name/"]
+    end
+
+    A -->|"push 이벤트"| B
+    B --> C
+    C -->|"upload-artifact"| D
+    D -->|"deploy-pages"| E
+    E -->|"HTTPS"| F
+
+    style A fill:#24292E,stroke:#1B1F23,color:#fff
+    style B fill:#F0883E,stroke:#D47834,color:#fff
+    style C fill:#F0883E,stroke:#D47834,color:#fff
+    style D fill:#F0883E,stroke:#D47834,color:#fff
+    style E fill:#2EA44F,stroke:#238636,color:#fff
+    style F fill:#1F6FEB,stroke:#1A5FC9,color:#fff

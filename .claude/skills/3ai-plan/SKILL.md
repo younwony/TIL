@@ -25,7 +25,7 @@ Claude, Gemini CLI, Codex CLI 3개 AI가 각자의 강점으로 플랜을 검토
 프로젝트 현황을 파악한다:
 - 현재 디렉토리/파일 구조 (`ls -R`)
 - 핵심 파일 내용 읽기
-- 기존 플랜이 있으면 읽기 (req.md, WORK-SPEC.md 등)
+- 기존 플랜이 있으면 읽기 (.claude/docs/req.md, .claude/docs/WORK-SPEC.md 등)
 - 확인된 문제점 정리
 
 ### Step 2: Gemini + Codex 병렬 실행
@@ -104,7 +104,7 @@ cat /tmp/codex_prompt.txt | codex exec - --full-auto
 
 | 입력 | 출력 |
 |------|------|
-| 기존 플랜 또는 요구사항 | 3-AI 종합 플랜 (req.md 또는 WORK-SPEC.md) |
+| 기존 플랜 또는 요구사항 | 3-AI 종합 플랜 (.claude/docs/req.md 또는 .claude/docs/WORK-SPEC.md) |
 | 프로젝트 현황 | AI별 비교표 (종합 근거) |
 
 ## 체크리스트
