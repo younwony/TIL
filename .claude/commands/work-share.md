@@ -1,19 +1,17 @@
 ---
-description: Work Log - Confluence 작업 문서화
+description: Work Share - 공유용 Confluence 작업 문서화
 allowed-tools: Bash(git:*), Read, Glob, Grep
 ---
 
-# Work Log - Confluence 작업 문서화
+# Work Share - 공유용 Confluence 작업 문서화
 
-현재 브랜치에서 작업한 내용을 Confluence에 문서화해줘.
-**비개발자도 이해할 수 있도록** 표(Table)와 ASCII 다이어그램을 포함한다.
+현재 브랜치에서 작업한 내용을 Confluence 공유 페이지 하위에 문서화해줘.
+작업 내용과 문서 형식은 `/work-log`와 동일하며, **팀에 공유할 만한 내용**을 빠르게 올리기 위한 커맨드이다.
 
 ## 사용법
 
 ```
-/work-log                              # 기본: 개인 스페이스 > WORK-LOG 페이지 하위에 작성
-/work-log --parent <pageId>            # 지정한 페이지 ID 하위에 작성
-/work-log --parent "<페이지 제목>"       # 지정한 제목의 페이지 하위에 작성 (개인 스페이스 내 검색)
+/work-share                            # 공유 페이지(3255664674) 하위에 작성
 ```
 
 ## 설정
@@ -24,14 +22,13 @@ allowed-tools: Bash(git:*), Read, Glob, Grep
 | **개인 스페이스 ID** | 1983741954 |
 | **개인 스페이스 키** | ~645023757 |
 | **홈페이지 ID** | 1983742135 |
-| **WORK-LOG 페이지 ID** | 3255435270 |
-| **기본 부모 페이지** | "WORK-LOG" (ID: 3255435270, 홈페이지 하위) |
+| **공유 부모 페이지 ID** | 3255664674 |
 
 ### 페이지 계층 구조
 ```
 개인 스페이스 홈 (1983742135)
-└── WORK-LOG (3255435270)        ← 기본 부모 페이지
-    ├── TECH-21436               ← 작업 로그 페이지
+└── 공유 페이지 (3255664674)     ← 고정 부모 페이지
+    ├── TECH-21436               ← 공유 작업 문서
     ├── TECH-21437
     └── ...
 ```
@@ -74,7 +71,7 @@ git diff master..HEAD --stat --summary
 
 ## 3단계: Confluence 페이지 생성
 
-수집한 정보를 바탕으로 Confluence 개인 스페이스에 작업 로그 페이지를 생성한다.
+수집한 정보를 바탕으로 공유 페이지 하위에 작업 문서를 생성한다.
 
 ### 문서 구조 (템플릿)
 
@@ -174,49 +171,19 @@ git diff master..HEAD --stat --summary
 
 ---
 
-> 이 문서는 Claude Code `/work-log` skill로 자동 생성되었습니다.
+> 이 문서는 Claude Code `/work-share` skill로 자동 생성되었습니다.
 ```
 
 > 관련 없는 섹션은 생략 가능 (예: DB 변경이 없으면 데이터베이스 섹션 생략, 테스트가 없으면 테스트 섹션 생략)
 
-## 4단계: 부모 페이지 결정
-
-### Argument 파싱
-
-`$ARGUMENTS`에서 `--parent` 옵션을 확인한다:
-
-| 케이스 | 입력 | 부모 페이지 결정 |
-|--------|------|-----------------|
-| **기본** (argument 없음) | `/work-log` | "WORK-LOG" 페이지 (홈페이지 하위, 없으면 자동 생성) |
-| **pageId 지정** | `/work-log --parent 1234567890` | 해당 ID의 페이지 |
-| **제목 지정** | `/work-log --parent "프로젝트 문서"` | 개인 스페이스에서 해당 제목의 페이지 검색 |
-
-### 기본 동작: WORK-LOG 부모 페이지 사용
-
-1. **기본 parentId**: `3255435270` (WORK-LOG 페이지)
-2. `mcp__atlassian__get-page-by-id` (pageId: 3255435270)로 페이지 존재 확인
-3. **있으면** → 해당 pageId(3255435270)를 부모로 사용
-4. **없으면** (삭제된 경우) → 자동 재생성:
-   - `mcp__atlassian__create-page` 사용
-   - spaceId: 1983741954, parentId: 1983742135 (홈페이지)
-   - title: "WORK-LOG"
-   - bodyValue: `<p>Claude Code <code>/work-log</code> 스킬로 생성된 작업 로그 모음입니다.</p>`
-5. 생성된/조회된 pageId를 **parentId**로 사용
-
-### --parent 지정 시 동작
-
-1. **숫자만 입력** (pageId): `mcp__atlassian__get-page-by-id`로 페이지 존재 확인
-2. **문자열 입력** (제목): `mcp__atlassian__get-pages` (title, spaceId)로 검색
-3. 페이지를 찾지 못하면 **오류 메시지 출력 후 중단** (자동 생성하지 않음)
-
-## 5단계: MCP Tool 사용 (1차 시도)
+## 4단계: MCP Tool 사용 (1차 시도)
 
 ### 페이지 생성/수정 프로세스
 
 **Step 1: Jira 이슈 정보 조회**
 - `mcp__atlassian__get-issue` (issueKey로 조회)
 
-**Step 2: 기존 작업 로그 페이지 확인**
+**Step 2: 기존 작업 문서 확인**
 - `mcp__atlassian__get-pages` (title, spaceId로 검색)
 - 또는 `mcp__atlassian__get-page-by-id` (pageId로 직접 조회)
 
@@ -228,12 +195,12 @@ git diff master..HEAD --stat --summary
 **Step 3b: 기존 페이지가 없는 경우 → 신규 생성**
 - `mcp__atlassian__create-page` 사용
 - spaceId: 1983741954
-- **parentId: 4단계에서 결정된 부모 페이지 ID** (기본: WORK-LOG 페이지)
+- **parentId: 3255664674** (공유 페이지)
 - bodyValue는 반드시 **Confluence Storage Format (XML)** 사용
 
 **중요**: 타이틀은 반드시 Jira 이슈 번호만 사용 (예: `TECH-21436`)
 
-## 6단계: MCP 실패 시 curl 폴백 (2차 시도)
+## 5단계: MCP 실패 시 curl 폴백 (2차 시도)
 
 MCP 도구가 `Network error occurred` 등의 오류를 반환하는 경우, **curl을 사용하여 Atlassian REST API를 직접 호출**한다.
 
@@ -255,16 +222,7 @@ curl -s -u "{EMAIL}:{API_TOKEN}" \
   "https://temcolabs.atlassian.net/rest/api/3/issue/{TECH-XXXXX}"
 ```
 
-**Step 2: 부모 페이지 확인 (기본: WORK-LOG)**
-```bash
-# WORK-LOG 페이지 존재 확인
-curl -s -u "{EMAIL}:{API_TOKEN}" \
-  "https://temcolabs.atlassian.net/wiki/api/v2/pages/3255435270"
-```
-- 성공하면 → parentId: 3255435270
-- 404 응답이면 → WORK-LOG 페이지를 홈페이지(1983742135) 하위에 재생성
-
-**Step 3: 기존 작업 로그 페이지 확인**
+**Step 2: 기존 작업 문서 확인**
 ```bash
 curl -s -u "{EMAIL}:{API_TOKEN}" \
   "https://temcolabs.atlassian.net/wiki/api/v2/pages?spaceId=1983741954&title={TECH-XXXXX}&limit=1"
@@ -272,7 +230,7 @@ curl -s -u "{EMAIL}:{API_TOKEN}" \
 - `results` 배열이 비어있으면 → 신규 생성
 - `results` 배열에 데이터가 있으면 → 업데이트 (pageId, version 추출)
 
-**Step 4a: 신규 페이지 생성**
+**Step 3a: 신규 페이지 생성**
 ```bash
 curl -s -X POST -H "Content-Type: application/json" \
   -u "{EMAIL}:{API_TOKEN}" \
@@ -284,7 +242,7 @@ JSON 구조:
 ```json
 {
   "spaceId": "1983741954",
-  "parentId": "{4단계에서 결정된 부모 페이지 ID, 기본: 3255435270}",
+  "parentId": "3255664674",
   "status": "current",
   "title": "{TECH-XXXXX}",
   "body": {
@@ -294,7 +252,7 @@ JSON 구조:
 }
 ```
 
-**Step 4b: 기존 페이지 업데이트**
+**Step 3b: 기존 페이지 업데이트**
 ```bash
 curl -s -X PUT -H "Content-Type: application/json" \
   -u "{EMAIL}:{API_TOKEN}" \
@@ -374,7 +332,7 @@ JSON 구조:
 - 브랜치명에서 이슈 키(예: TECH-12345)를 자동으로 추출한다
 - **페이지 타이틀은 이슈 번호만 사용** (예: `TECH-21436`) - 브랜치명이 변경되어도 동일 페이지 유지
 - **기존 페이지가 있으면 업데이트, 없으면 신규 생성** - 중복 페이지 방지
-- **기본 스페이스는 개인 스페이스** - 특별한 조건이 없으면 개인 스페이스에 작성
+- **부모 페이지는 공유 페이지(3255664674) 고정**
 - **Jira 상태(Status)는 포함하지 않음** - QA Ready, In Progress 등 상태는 자주 변경되므로 문서에 포함하지 않음
 - **ASCII 다이어그램은 반드시 코드 블록(\`\`\`) 안에 작성하여 Confluence에서 깨지지 않도록 한다**
 - 관련 없는 섹션은 생략 가능 (예: DB 변경이 없으면 데이터베이스 섹션 생략)

@@ -191,7 +191,8 @@ TIL/
 | `review-pr` | `/review-pr {PR번호}` | PR 코드 리뷰 및 개선 제안 |
 | `self-review` | `/self-review` | PR 생성 전 자체 리뷰 및 SELF-REVIEW.md 생성 |
 | `api-doc` | `/api-doc {대상}` | API 문서 생성 |
-| `work-log` | `/work-log` | 현재 브랜치 작업 내용 Confluence 문서화 |
+| `work-log` | `/work-log`, `/work-log --parent <pageId\|제목>` | 현재 브랜치 작업 내용 Confluence 문서화 (기본: WORK-LOG 하위) |
+| `work-share` | `/work-share` | 현재 브랜치 작업 내용 공유 페이지 하위에 Confluence 문서화 |
 | `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 생성 |
 | `work-plan-start` | `/work-plan-start [path]` | WORK-SPEC.md 기반 실제 작업 수행 |
 | `release-notes-kr` | `/release-notes-kr [버전/범위]` | Claude Code 릴리스 노트 한글 요약 정리 |
@@ -204,6 +205,7 @@ TIL/
 | `slack-remind` | `/slack-remind [대상] [시간] [메시지]` | 특정 시간에 Slack 메시지 예약 발송 |
 | `sprint-start-notify` | `/sprint-start-notify [#채널]` | 스프린트 시작 시 팀 채널에 할당 이슈 공유 |
 | `jira-notify` | `/jira-notify {이슈키} [#채널]` | Jira 이슈 상태를 Slack 채널에 알림 |
+| `debug-chrome` | `/debug-chrome` | 현재 브랜치 변경사항 분석 후 Claude in Chrome 디버깅 시작 |
 
 ### Agents (Sub-agents)
 
