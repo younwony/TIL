@@ -228,6 +228,52 @@ Claude가 작업 유형에 따라 자동으로 위임하거나, 명시적으로 
 
 > 가이드: [AGENT-GUIDE.md](./AGENT-GUIDE.md)
 
+### 팀 에이전트 워크플로우
+
+`/work-plan-start` 실행 시 아래 Phase별로 에이전트를 병렬 디스패치하여 작업한다.
+
+#### Phase 구성
+
+```
+Phase 1: 탐색 + 설계 (병렬, 결과 대기)
+├─ [Explore]  코드베이스 구조 파악, 영향 범위 분석
+└─ [Plan]     구현 전략 설계, 파일별 변경 계획
+
+Phase 2: 구현 + 테스트 (병렬)
+├─ [Main]            핵심 코드 수정 (Phase 1 결과 기반)
+└─ [test-generator]  테스트 자동 생성 (background, Phase 1 결과 기반)
+
+Phase 3: 검증 + 문서화 (병렬)
+├─ [code-refactor]   코드 품질 리뷰 (background)
+└─ [Main]            ARCHITECTURE.md, SPEC.md 작성
+```
+
+#### 디스패치 규칙
+
+- **Phase 1**은 foreground 실행 (결과가 Phase 2의 입력)
+- **Phase 2**의 test-generator는 background 실행 (Main과 병렬)
+- **Phase 3**의 code-refactor는 background 실행
+- Phase 간 의존성이 있으므로 Phase 순서는 반드시 순차 실행
+- 각 Phase 내 에이전트는 최대한 병렬 실행
+- 에이전트 실패 시 Main이 해당 작업을 직접 수행
+
+#### 에이전트별 입력
+
+| Phase | 에이전트 | 입력 |
+|-------|----------|------|
+| 1 | Explore | WORK-SPEC.md의 변경 대상 파일 목록 + 키워드 |
+| 1 | Plan | WORK-SPEC.md 전체 내용 |
+| 2 | Main | Phase 1 Explore/Plan 결과 |
+| 2 | test-generator | Phase 1 Plan 결과 + 변경된 소스 파일 경로 |
+| 3 | code-refactor | Phase 2에서 변경된 파일 목록 |
+| 3 | Main | Phase 2 완료된 코드 기반 |
+
+#### 적용 조건
+
+- WORK-SPEC.md가 존재할 때만 팀 워크플로우 적용
+- 단순 작업 (파일 1~2개 수정)은 Main 단독 처리
+- 에이전트 디스패치 여부는 작업 복잡도에 따라 자체 판단
+
 ## 언어 설정
 
 - **응답 언어:** 모든 대답과 설명은 한국어로 진행합니다.
