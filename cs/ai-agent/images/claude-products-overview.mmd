@@ -1,0 +1,56 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#E8F4FD', 'primaryTextColor': '#1a1a2e', 'primaryBorderColor': '#4A90D9', 'lineColor': '#6C757D', 'secondaryColor': '#F0F7E8', 'tertiaryColor': '#FFF3E0'}}}%%
+
+flowchart TB
+    subgraph Foundation["🧠 공통 기반"]
+        LLM["Claude LLM<br/><small>Opus · Sonnet · Haiku</small>"]
+        SDK["Agent SDK<br/><small>계획 → 실행 → 적응 루프</small>"]
+        LLM --> SDK
+    end
+
+    subgraph Products["📦 제품군"]
+        direction LR
+
+        subgraph ClaudeAI["Claude AI"]
+            AI_DESC["대화형 AI 어시스턴트<br/><small>claude.ai · 앱</small>"]
+            AI_FEAT["• 질의응답 · 분석 · 작문<br/>• Artifacts · Projects<br/>• 웹/모바일/API"]
+        end
+
+        subgraph ClaudeCowork["Claude Cowork"]
+            CW_DESC["범용 AI 코워커<br/><small>Claude Desktop</small>"]
+            CW_FEAT["• 파일 기반 자동화<br/>• VM 샌드박스 격리<br/>• 플러그인 생태계"]
+        end
+
+        subgraph ClaudeCode["Claude Code"]
+            CC_DESC["개발자용 CLI 에이전트<br/><small>터미널 · IDE</small>"]
+            CC_FEAT["• 코딩 · 디버깅 · Git<br/>• MCP · Skill · Hook<br/>• 멀티 에이전트"]
+        end
+    end
+
+    SDK --> AI_DESC
+    SDK --> CW_DESC
+    SDK --> CC_DESC
+
+    subgraph Users["👥 대상 사용자"]
+        direction LR
+        U1["모든 사용자"]
+        U2["비개발자<br/>지식 노동자"]
+        U3["개발자"]
+    end
+
+    AI_DESC --> U1
+    CW_DESC --> U2
+    CC_DESC --> U3
+
+    classDef foundation fill:#E8F4FD,stroke:#4A90D9,stroke-width:2px,color:#1a1a2e
+    classDef product fill:#FFFFFF,stroke:#4A90D9,stroke-width:2px,color:#1a1a2e
+    classDef cowork fill:#F0F7E8,stroke:#66BB6A,stroke-width:2px,color:#1a1a2e
+    classDef code fill:#FFF3E0,stroke:#FFA726,stroke-width:2px,color:#1a1a2e
+    classDef user fill:#F3E5F5,stroke:#AB47BC,stroke-width:2px,color:#1a1a2e
+    classDef feat fill:#FAFAFA,stroke:#BDBDBD,stroke-width:1px,color:#555,font-size:12px
+
+    class LLM,SDK foundation
+    class AI_DESC product
+    class CW_DESC cowork
+    class CC_DESC code
+    class U1,U2,U3 user
+    class AI_FEAT,CW_FEAT,CC_FEAT feat

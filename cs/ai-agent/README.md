@@ -53,6 +53,7 @@ AI 에이전트 기초를 이해한 후 학습하세요.
 | [MCP](./mcp.md) | AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜 | AI Agent란 |
 | [SLM](./slm.md) | 특정 작업에 최적화된 소형 언어 모델 `Trend 2026` | LLM 기초 |
 | [AI 보조 개발](./ai-assisted-development.md) | AI 코딩 도구 활용과 생산성 역설 `Trend 2026` | LLM 기초 |
+| [Claude 제품 비교 가이드](./claude-product-comparison.md) | Claude AI, Cowork, Code 3대 제품 종합 비교 `Trend 2026` | AI Agent란 |
 
 ### [3] 중급
 
@@ -122,7 +123,8 @@ Sub Agent를 이해한 후 도전하세요.
 - [Agentic Coding](./agentic-coding.md) - AI 에이전트가 장시간 자율적으로 코드 작성, 개발자는 조율자로 역할 전환 `Trend 2026`
 - [Repository Intelligence](./repository-intelligence.md) - AI가 전체 코드베이스의 구조, 관계, 히스토리를 이해하여 맥락에 맞는 코드 제안 `Trend 2026`
 
-### 범용 AI 코워커
+### Anthropic 제품군
+- [Claude 제품 비교 가이드](./claude-product-comparison.md) - Claude AI, Cowork, Code 3대 제품의 핵심 차이와 사용 시나리오 종합 비교 `Trend 2026`
 - [Claude Cowork](./claude-cowork.md) - Claude Code의 에이전트 기능을 비개발자도 사용할 수 있도록 확장한 범용 AI 코워커, 플러그인 생태계 `Trend 2026`
 
 ### 시장 동향 & 분석
