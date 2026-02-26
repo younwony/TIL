@@ -22,8 +22,8 @@ AI 에이전트 관련 기술을 정리하는 공간입니다.
 │        - 기능 확장 및 커스터마이징                               │
 │            │                                                     │
 │            ▼                                                     │
-│   [4] Context Engineering + Multi-Agent                         │
-│        - 컨텍스트 설계 및 다중 에이전트 협력                     │
+│   [4] Context Engineering + Multi-Agent + Agent Team            │
+│        - 컨텍스트 설계, 다중 에이전트 협력, 팀 오케스트레이션   │
 │            │                                                     │
 │            ▼                                                     │
 │   [5] Agent SDK                                                 │
@@ -71,6 +71,8 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Skill](./claude-code-skill.md) | AI 에이전트 기능 모듈화, 능력 패키징, 스킬 생성 가이드 | MCP |
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
+| [Claude Code Plugin](./claude-code-plugin.md) | Skill/Hook/MCP를 패키징, 마켓플레이스 배포 `Trend 2025` | Skill, Hook |
+| [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) | 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 패턴 분석 `Trend 2026` | AI Agent란, Hook, MCP |
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
 | [Claude Code 실전 가이드](./claude-code-guide.md) | 70가지 팁 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁 | Workflow, MCP, Skill |
 | [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) | 세션 인수인계 패턴으로 컨텍스트 윈도우 한계 극복 | Workflow, Context Engineering |
@@ -90,6 +92,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Context Engineering](./context-engineering.md) | 컨텍스트 설계 및 관리 `Trend` | Prompt Engineering, AI Agent란 |
 | [Multi-Agent Systems](./multi-agent-systems.md) | 다중 에이전트 협력 아키텍처 `Trend` | AI Agent란, MCP, Tool Use |
 | [Claude Code Sub Agent](./claude-code-sub-agent.md) | 독립적 작업 위임, 병렬 실행, Resume | Skill, Hook |
+| [Claude Code Agent Team](./claude-code-agent-team.md) | 독립 AI 에이전트 팀 구성, 병렬 협업 오케스트레이션 `Trend 2026` | Sub Agent, Multi-Agent |
 
 ### [5] 심화 - SDK
 
@@ -122,11 +125,15 @@ Sub Agent를 이해한 후 도전하세요.
 ### 범용 AI 코워커
 - [Claude Cowork](./claude-cowork.md) - Claude Code의 에이전트 기능을 비개발자도 사용할 수 있도록 확장한 범용 AI 코워커, 플러그인 생태계 `Trend 2026`
 
+### 시장 동향 & 분석
+- [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) - 커뮤니티 워크플로우를 벤더가 공식 기능으로 흡수하는 현상, 2026년 Anthropic·OpenAI·Google 동시 업데이트 분석 `Trend 2026`
+
 ### 확장 & 커스터마이징
 - [Codex MCP 연결](./codex-mcp.md) - Claude Code에서 OpenAI Codex CLI를 MCP로 연결하여 두 AI 에이전트를 통합하는 방법
 - [Claude Code Skill](./claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템 (스킬 생성 가이드 포함)
 - [Claude Code Hook](./claude-code-hook.md) - AI 에이전트의 생명주기에서 자동 실행되는 사용자 정의 셸 명령어 시스템
 - [Claude Code Slash Command](./claude-code-slash-command.md) - 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행하는 시스템
+- [Claude Code Plugin](./claude-code-plugin.md) - Skill, Agent, Hook, MCP를 패키징하여 마켓플레이스로 배포하는 확장 시스템 `Trend 2025`
 - [Claude Code Workflow](./claude-code-workflow.md) - Claude Code의 효율적인 사용법과 실무 최적화 전략
 - [Claude Code 실전 가이드](./claude-code-guide.md) - 70가지 팁으로 배우는 Claude Code 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁
 - [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) - 장시간 AI 에이전트 작업에서 컨텍스트 윈도우 한계를 극복하는 세션 인수인계 패턴
@@ -147,6 +154,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Context Engineering](./context-engineering.md) - LLM이 작업을 성공적으로 수행하는 데 필요한 모든 컨텍스트를 동적으로 설계하고 관리하는 학문 `Trend 2026`
 - [Multi-Agent Systems](./multi-agent-systems.md) - 여러 전문화된 AI 에이전트가 협력하여 복잡한 작업을 수행하는 분산 시스템 아키텍처 `Trend 2025`
 - [Claude Code Sub Agent](./claude-code-sub-agent.md) - 복잡한 작업을 독립적으로 처리하는 전문화된 AI 에이전트 시스템
+- [Claude Code Agent Team](./claude-code-agent-team.md) - 여러 독립 AI 에이전트를 팀으로 구성하여 병렬 협업하는 오케스트레이션 시스템 `Trend 2026`
 - [Agent SDK](./agent-sdk.md) - 커스텀 AI 에이전트를 프로그래밍 방식으로 구축하기 위한 개발 도구
 
 ## 작성 예정

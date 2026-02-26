@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="380" viewBox="0 0 750 380" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 그라디언트 (Partition) -->
+    <linearGradient id="blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3498DB"/>
+      <stop offset="100%" stop-color="#2980B9"/>
+    </linearGradient>
+    <!-- 초록 그라디언트 (Consumer Group A) -->
+    <linearGradient id="green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2ECC71"/>
+      <stop offset="100%" stop-color="#27AE60"/>
+    </linearGradient>
+    <!-- 주황 그라디언트 (Consumer Group B) -->
+    <linearGradient id="orange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E67E22"/>
+      <stop offset="100%" stop-color="#D35400"/>
+    </linearGradient>
+    <!-- 보라 그라디언트 -->
+    <linearGradient id="purple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9B59B6"/>
+      <stop offset="100%" stop-color="#8E44AD"/>
+    </linearGradient>
+    <!-- 빨강 그라디언트 -->
+    <linearGradient id="red" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </linearGradient>
+    <!-- 화살표 마커 -->
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D35400"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="750" height="380" fill="#ECF0F1" rx="8"/>
+
+  <!-- 타이틀 -->
+  <text x="375" y="28" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C3E50">Consumer Group &amp; Partition Assignment</text>
+
+  <!-- ===== 간선 (노드보다 먼저 그리기) ===== -->
+
+  <!-- Consumer Group A 연결선 -->
+  <!-- P0 → C0 -->
+  <line x1="195" y1="80" x2="440" y2="68" stroke="#27AE60" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+  <!-- P1 → C1 -->
+  <line x1="195" y1="130" x2="440" y2="118" stroke="#27AE60" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+  <!-- P2 → C2 -->
+  <line x1="195" y1="180" x2="440" y2="168" stroke="#27AE60" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+  <!-- P3 → C0 (C0이 2개 담당) -->
+  <line x1="195" y1="230" x2="440" y2="82" stroke="#27AE60" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+
+  <!-- Consumer Group B 연결선 -->
+  <!-- P0 → C3 -->
+  <line x1="195" y1="90" x2="440" y2="310" stroke="#D35400" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <!-- P1 → C3 -->
+  <line x1="195" y1="135" x2="440" y2="315" stroke="#D35400" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <!-- P2 → C3 -->
+  <line x1="195" y1="185" x2="440" y2="320" stroke="#D35400" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <!-- P3 → C3 -->
+  <line x1="195" y1="235" x2="440" y2="325" stroke="#D35400" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- ===== Topic 영역 (왼쪽) ===== -->
+  <rect x="20" y="45" width="185" height="215" rx="8" fill="none" stroke="#2980B9" stroke-width="2"/>
+  <text x="112" y="64" text-anchor="middle" font-size="11" font-weight="bold" fill="#2980B9">Topic: orders (4 Partitions)</text>
+
+  <!-- P0 -->
+  <rect x="40" y="72" width="150" height="28" rx="5" fill="url(#blue)"/>
+  <text x="115" y="91" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">P0</text>
+
+  <!-- P1 -->
+  <rect x="40" y="112" width="150" height="28" rx="5" fill="url(#blue)"/>
+  <text x="115" y="131" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">P1</text>
+
+  <!-- P2 -->
+  <rect x="40" y="162" width="150" height="28" rx="5" fill="url(#blue)"/>
+  <text x="115" y="181" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">P2</text>
+
+  <!-- P3 -->
+  <rect x="40" y="212" width="150" height="28" rx="5" fill="url(#blue)"/>
+  <text x="115" y="231" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">P3</text>
+
+  <!-- ===== Consumer Group A (오른쪽 상단) ===== -->
+  <rect x="430" y="40" width="300" height="210" rx="8" fill="none" stroke="#27AE60" stroke-width="2"/>
+  <text x="580" y="60" text-anchor="middle" font-size="11" font-weight="bold" fill="#27AE60">Consumer Group A</text>
+
+  <!-- C0 -->
+  <rect x="450" y="68" width="110" height="30" rx="6" fill="url(#green)"/>
+  <text x="505" y="88" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">C0</text>
+  <!-- C0 할당 표시 -->
+  <rect x="570" y="68" width="145" height="30" rx="6" fill="#2C3E50" opacity="0.7"/>
+  <text x="642" y="88" text-anchor="middle" font-size="9" fill="#fff">P0, P3 (2개 담당)</text>
+
+  <!-- C1 -->
+  <rect x="450" y="112" width="110" height="30" rx="6" fill="url(#green)"/>
+  <text x="505" y="132" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">C1</text>
+  <!-- C1 할당 표시 -->
+  <rect x="570" y="112" width="145" height="30" rx="6" fill="#2C3E50" opacity="0.7"/>
+  <text x="642" y="132" text-anchor="middle" font-size="9" fill="#fff">P1 (1개 담당)</text>
+
+  <!-- C2 -->
+  <rect x="450" y="158" width="110" height="30" rx="6" fill="url(#green)"/>
+  <text x="505" y="178" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">C2</text>
+  <!-- C2 할당 표시 -->
+  <rect x="570" y="158" width="145" height="30" rx="6" fill="#2C3E50" opacity="0.7"/>
+  <text x="642" y="178" text-anchor="middle" font-size="9" fill="#fff">P2 (1개 담당)</text>
+
+  <!-- Group A 규칙 레이블 -->
+  <text x="580" y="215" text-anchor="middle" font-size="9" fill="#7F8C8D">Partition 수 > Consumer 수 → 일부 Consumer가 여러 Partition 담당</text>
+  <text x="580" y="240" text-anchor="middle" font-size="9" fill="#27AE60" font-weight="bold">같은 Group 내 Partition은 1:1 할당</text>
+
+  <!-- ===== Consumer Group B (오른쪽 하단) ===== -->
+  <rect x="430" y="275" width="300" height="70" rx="8" fill="none" stroke="#D35400" stroke-width="2"/>
+  <text x="580" y="295" text-anchor="middle" font-size="11" font-weight="bold" fill="#D35400">Consumer Group B</text>
+
+  <!-- C3 -->
+  <rect x="450" y="305" width="110" height="30" rx="6" fill="url(#orange)"/>
+  <text x="505" y="325" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">C3</text>
+  <!-- C3 할당 표시 -->
+  <rect x="570" y="305" width="145" height="30" rx="6" fill="#2C3E50" opacity="0.7"/>
+  <text x="642" y="325" text-anchor="middle" font-size="9" fill="#fff">P0~P3 (전부 담당)</text>
+
+  <!-- ===== 하단 레이블 ===== -->
+  <rect x="130" y="355" width="490" height="22" rx="5" fill="#2C3E50" opacity="0.85"/>
+  <text x="375" y="370" text-anchor="middle" font-size="10" fill="#fff">서로 다른 Consumer Group은 동일한 Topic을 독립적으로 소비 (Pub/Sub 모델)</text>
+</svg>

@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 380" width="750" height="380" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <filter id="cardShadow" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="grayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#BDC3C7"/>
+      <stop offset="100%" stop-color="#95A5A6"/>
+    </linearGradient>
+    <linearGradient id="greenGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2ECC71"/>
+      <stop offset="100%" stop-color="#27AE60"/>
+    </linearGradient>
+    <linearGradient id="blueGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3498DB"/>
+      <stop offset="100%" stop-color="#2980B9"/>
+    </linearGradient>
+    <marker id="stageArrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#2C3E50"/>
+    </marker>
+    <marker id="histArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#95A5A6"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="750" height="380" rx="12" fill="#ECF0F1"/>
+
+  <!-- 타이틀 -->
+  <text x="375" y="32" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="bold">플랫폼 흡수 패턴 (Platform Absorption Pattern)</text>
+  <text x="375" y="50" text-anchor="middle" fill="#7F8C8D" font-size="12">커뮤니티 혁신이 공식 기능이 되기까지의 3단계</text>
+
+  <!-- ===== 1단계: 불편함 발견 ===== -->
+  <g transform="translate(30, 70)" filter="url(#cardShadow)">
+    <rect width="200" height="195" rx="10" fill="#fff" stroke="#BDC3C7" stroke-width="1.5"/>
+    <!-- 상단 배지 -->
+    <rect width="200" height="40" rx="10" fill="url(#grayGrad)"/>
+    <rect y="30" width="200" height="10" fill="url(#grayGrad)"/>
+    <text x="100" y="26" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">1단계: 불편함 발견</text>
+
+    <!-- 아이콘: 사용자 + 도구 -->
+    <g transform="translate(72, 55)">
+      <!-- 사용자 -->
+      <circle cx="16" cy="10" r="9" fill="none" stroke="#7F8C8D" stroke-width="2"/>
+      <path d="M0,32 Q0,22 16,20 Q32,22 32,32" fill="none" stroke="#7F8C8D" stroke-width="2"/>
+      <!-- 도구 (렌치) -->
+      <g transform="translate(36, 2)">
+        <path d="M4,20 L16,8 M12,4 Q20,0 22,6 L14,14 Z" fill="none" stroke="#7F8C8D" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <!-- 설명 -->
+    <text x="100" y="105" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="600">개발자가 외부 도구로 해결</text>
+    <line x1="20" y1="115" x2="180" y2="115" stroke="#ECF0F1" stroke-width="1"/>
+
+    <!-- 예시 -->
+    <text x="100" y="135" text-anchor="middle" fill="#95A5A6" font-size="10">tmux + Tailscale 조합</text>
+    <text x="100" y="150" text-anchor="middle" fill="#95A5A6" font-size="10">커뮤니티 Hooks 스크립트</text>
+    <text x="100" y="165" text-anchor="middle" fill="#95A5A6" font-size="10">수동 HTTP 폴링 구현</text>
+
+    <!-- 단계 번호 -->
+    <circle cx="180" cy="60" r="14" fill="#95A5A6"/>
+    <text x="180" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">1</text>
+  </g>
+
+  <!-- 화살표 1→2 -->
+  <g transform="translate(235, 155)">
+    <line x1="0" y1="0" x2="40" y2="0" stroke="#2C3E50" stroke-width="2" marker-end="url(#stageArrow)"/>
+    <text x="20" y="-8" text-anchor="middle" fill="#7F8C8D" font-size="9">패턴 확산</text>
+  </g>
+
+  <!-- ===== 2단계: 오픈소스 등장 ===== -->
+  <g transform="translate(280, 70)" filter="url(#cardShadow)">
+    <rect width="200" height="195" rx="10" fill="#fff" stroke="#27AE60" stroke-width="1.5"/>
+    <!-- 상단 배지 -->
+    <rect width="200" height="40" rx="10" fill="url(#greenGrad2)"/>
+    <rect y="30" width="200" height="10" fill="url(#greenGrad2)"/>
+    <text x="100" y="26" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">2단계: 오픈소스 등장</text>
+
+    <!-- 아이콘: GitHub 로고 스타일 -->
+    <g transform="translate(75, 54)">
+      <circle cx="25" cy="16" r="15" fill="none" stroke="#27AE60" stroke-width="2"/>
+      <!-- 옥토캣 간소화 -->
+      <circle cx="20" cy="13" r="2.5" fill="#27AE60"/>
+      <circle cx="30" cy="13" r="2.5" fill="#27AE60"/>
+      <path d="M18,20 Q25,25 32,20" fill="none" stroke="#27AE60" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- 포크 가지 -->
+      <line x1="15" y1="28" x2="10" y2="36" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="25" y1="31" x2="25" y2="36" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="35" y1="28" x2="40" y2="36" stroke="#27AE60" stroke-width="1.5"/>
+    </g>
+
+    <!-- 설명 -->
+    <text x="100" y="105" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="600">커뮤니티 프로젝트 우후죽순</text>
+    <line x1="20" y1="115" x2="180" y2="115" stroke="#ECF0F1" stroke-width="1"/>
+
+    <!-- 예시 -->
+    <text x="100" y="135" text-anchor="middle" fill="#95A5A6" font-size="10">Happy, VibeTunnel 프로젝트</text>
+    <text x="100" y="150" text-anchor="middle" fill="#95A5A6" font-size="10">커스텀 Hook 스크립트 공유</text>
+    <text x="100" y="165" text-anchor="middle" fill="#95A5A6" font-size="10">비공식 WebSocket 래퍼</text>
+
+    <!-- 단계 번호 -->
+    <circle cx="180" cy="60" r="14" fill="#27AE60"/>
+    <text x="180" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">2</text>
+  </g>
+
+  <!-- 화살표 2→3 -->
+  <g transform="translate(485, 155)">
+    <line x1="0" y1="0" x2="40" y2="0" stroke="#2C3E50" stroke-width="2" marker-end="url(#stageArrow)"/>
+    <text x="20" y="-8" text-anchor="middle" fill="#7F8C8D" font-size="9">벤더 주목</text>
+  </g>
+
+  <!-- ===== 3단계: 벤더 흡수 ===== -->
+  <g transform="translate(530, 70)" filter="url(#cardShadow)">
+    <rect width="200" height="195" rx="10" fill="#fff" stroke="#2980B9" stroke-width="1.5"/>
+    <!-- 상단 배지 -->
+    <rect width="200" height="40" rx="10" fill="url(#blueGrad2)"/>
+    <rect y="30" width="200" height="10" fill="url(#blueGrad2)"/>
+    <text x="100" y="26" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">3단계: 벤더 흡수</text>
+
+    <!-- 아이콘: 제품 박스 -->
+    <g transform="translate(74, 52)">
+      <!-- 박스 정면 -->
+      <rect x="5" y="10" width="40" height="30" rx="2" fill="none" stroke="#2980B9" stroke-width="2"/>
+      <!-- 박스 상단 (3D) -->
+      <polygon points="5,10 15,2 55,2 45,10" fill="none" stroke="#2980B9" stroke-width="2" stroke-linejoin="round"/>
+      <!-- 박스 우측 (3D) -->
+      <polygon points="45,10 55,2 55,32 45,40" fill="rgba(41,128,185,0.15)" stroke="#2980B9" stroke-width="2" stroke-linejoin="round"/>
+      <!-- 체크마크 -->
+      <path d="M16,26 L23,33 L38,18" fill="none" stroke="#2980B9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- 설명 -->
+    <text x="100" y="105" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="600">공식 기능으로 내장</text>
+    <line x1="20" y1="115" x2="180" y2="115" stroke="#ECF0F1" stroke-width="1"/>
+
+    <!-- 예시 -->
+    <text x="100" y="135" text-anchor="middle" fill="#95A5A6" font-size="10">/remote-control 명령어</text>
+    <text x="100" y="150" text-anchor="middle" fill="#95A5A6" font-size="10">Gemini CLI Hooks v0.26.0</text>
+    <text x="100" y="165" text-anchor="middle" fill="#95A5A6" font-size="10">Codex WebSocket 통신</text>
+
+    <!-- 단계 번호 -->
+    <circle cx="180" cy="60" r="14" fill="#2980B9"/>
+    <text x="180" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">3</text>
+  </g>
+
+  <!-- ===== 하단: 역사적 사례 타임라인 바 ===== -->
+  <g transform="translate(30, 290)">
+    <!-- 배경 바 -->
+    <rect width="690" height="75" rx="10" fill="#fff" stroke="#BDC3C7" stroke-width="1"/>
+
+    <!-- 제목 -->
+    <text x="345" y="18" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="bold">역사적 선례 (Historical Precedents)</text>
+
+    <!-- 타임라인 바 -->
+    <line x1="30" y1="42" x2="660" y2="42" stroke="#BDC3C7" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- 사례 1: jQuery -->
+    <g transform="translate(90, 32)">
+      <circle cx="0" cy="10" r="6" fill="#95A5A6"/>
+      <text x="0" y="0" text-anchor="middle" fill="#7F8C8D" font-size="9" font-weight="600">jQuery</text>
+      <text x="0" y="30" text-anchor="middle" fill="#3498DB" font-size="9">네이티브 API</text>
+      <line x1="0" y1="16" x2="0" y2="22" stroke="#95A5A6" stroke-width="1"/>
+    </g>
+
+    <!-- 화살표 -->
+    <line x1="120" y1="42" x2="160" y2="42" stroke="#95A5A6" stroke-width="1.5" marker-end="url(#histArrow)"/>
+
+    <!-- 사례 2: 컨테이너 도구 -->
+    <g transform="translate(310, 32)">
+      <circle cx="0" cy="10" r="6" fill="#95A5A6"/>
+      <text x="0" y="0" text-anchor="middle" fill="#7F8C8D" font-size="9" font-weight="600">컨테이너 도구들</text>
+      <text x="0" y="30" text-anchor="middle" fill="#3498DB" font-size="9">Kubernetes</text>
+      <line x1="0" y1="16" x2="0" y2="22" stroke="#95A5A6" stroke-width="1"/>
+    </g>
+
+    <!-- 화살표 -->
+    <line x1="350" y1="42" x2="390" y2="42" stroke="#95A5A6" stroke-width="1.5" marker-end="url(#histArrow)"/>
+
+    <!-- 사례 3: VS Code 확장 -->
+    <g transform="translate(540, 32)">
+      <circle cx="0" cy="10" r="6" fill="#95A5A6"/>
+      <text x="0" y="0" text-anchor="middle" fill="#7F8C8D" font-size="9" font-weight="600">VS Code 확장</text>
+      <text x="0" y="30" text-anchor="middle" fill="#3498DB" font-size="9">Copilot 내장</text>
+      <line x1="0" y1="16" x2="0" y2="22" stroke="#95A5A6" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -6,7 +6,7 @@
 
 > AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
 
-`#ClaudeCode` `#Skill` `#스킬` `#Skills` `#SKILL.md` `#모듈화` `#Modular` `#워크플로우` `#Workflow` `#자동화` `#Automation` `#Anthropic` `#AI도구` `#ModelInvoked` `#자동발견` `#재사용` `#패키징` `#템플릿` `#프롬프트` `#ProjectSkill` `#UserSkill` `#ManagedSkill` `#트리거키워드` `#슬래시명령어` `#커스터마이징` `#ProgressiveDisclosure` `#EvaluationDriven` `#FrontMatter` `#SkillBuilding`
+`#ClaudeCode` `#Skill` `#스킬` `#Skills` `#SKILL.md` `#모듈화` `#Modular` `#워크플로우` `#Workflow` `#자동화` `#Automation` `#Anthropic` `#AI도구` `#ModelInvoked` `#자동발견` `#재사용` `#패키징` `#템플릿` `#프롬프트` `#ProjectSkill` `#UserSkill` `#ManagedSkill` `#트리거키워드` `#슬래시명령어` `#커스터마이징` `#ProgressiveDisclosure` `#EvaluationDriven` `#FrontMatter` `#SkillBuilding` `#AgentSkills` `#OpenStandard` `#Plugin`
 
 ## 왜 알아야 하는가?
 
@@ -16,12 +16,15 @@
 
 ## 핵심 개념
 
+- **Agent Skills 오픈 표준**: [agentskills.io](https://agentskills.io) 오픈 표준을 따르며, Claude Code 외 다른 AI 도구에서도 호환
+- **Slash Command 통합**: `.claude/commands/` 파일과 `.claude/skills/` 스킬이 동일하게 동작. 기존 commands 파일은 그대로 유지되며, 동일 이름 시 스킬이 우선
 - **자동 발견 (Model-invoked)**: 사용자가 명시적으로 호출하지 않아도 Claude가 상황에 맞게 자동으로 선택하여 사용
 - **모듈화된 전문성**: 특정 도메인의 지식과 워크플로우를 재사용 가능한 단위로 패키징
 - **SKILL.md 기반**: 마크다운 파일로 정의하며 YAML frontmatter로 메타데이터 지정
 - **Progressive Disclosure (점진적 공개)**: 3단계 로딩으로 컨텍스트 비용을 최적화
 - **도구 접근 제어**: `allowed-tools` 옵션으로 특정 도구만 사용하도록 제한 가능
 - **팀 공유 가능**: Git 저장소에 커밋하면 팀원 모두 동일한 Skill 사용 가능
+- **플러그인 배포**: 스킬을 플러그인으로 패키징하여 마켓플레이스를 통해 배포 가능 → [Plugin 가이드](./claude-code-plugin.md)
 
 ## 쉽게 이해하기
 
@@ -41,18 +44,22 @@ Skill도 마찬가지입니다. "PDF 파일 처리해줘"라고 요청하면, Cl
 
 ### Skill vs Slash Command
 
-두 기능 모두 Claude의 동작을 확장하지만, 호출 방식이 다릅니다.
+> **2025 업데이트**: Slash Command가 Skill로 통합되었습니다. `.claude/commands/review.md`와 `.claude/skills/review/SKILL.md`는 모두 `/review`를 생성하며 동일하게 동작합니다. 기존 `.claude/commands/` 파일은 계속 작동하며, Skill은 추가 기능(지원 파일, frontmatter 호출 제어, 자동 로딩)을 제공합니다.
 
-| 구분 | Slash Command | Skill |
+| 구분 | Slash Command (레거시) | Skill (권장) |
 |------|---------------|-------|
-| 호출 방식 | 사용자가 `/review`처럼 직접 호출 | Claude가 자동으로 발견 및 사용 |
+| 호출 방식 | 사용자가 `/review`처럼 직접 호출 | 직접 호출 + Claude 자동 발견 |
 | 파일 구조 | 단일 `.md` 파일 | 디렉토리 + `SKILL.md` |
 | 지원 파일 | 불가 | 스크립트, 템플릿 등 지원 |
+| 호출 제어 | 없음 | `disable-model-invocation`, `user-invocable` |
+| 서브에이전트 | 불가 | `context: fork`로 격리 실행 |
 | 적합한 상황 | 같은 프롬프트를 반복 실행 | 상황에 따라 자동 적용 |
 
 **왜 이렇게 구분되어 있는가?**
 
 Slash Command는 "명확한 의도"가 있을 때 사용합니다. 사용자가 정확히 무엇을 원하는지 알고 있으므로 직접 호출합니다. 반면 Skill은 "맥락 기반 자동화"에 적합합니다. Claude가 대화 맥락을 분석하여 적절한 Skill을 선택하므로, 사용자가 매번 명령어를 기억할 필요가 없습니다.
+
+> **마이그레이션 권장**: 새로운 기능은 `.claude/skills/` 디렉토리에 SKILL.md로 작성하세요. 기존 commands 파일은 그대로 사용 가능하지만, 동일 이름 시 skills가 우선합니다.
 
 ### Skill vs MCP
 
@@ -78,7 +85,9 @@ MCP는 "무엇에 접근할 수 있는가"를, Skill은 "그 데이터를 어떻
 | Project Skill | `.claude/skills/` | 팀 워크플로우, 프로젝트 특화 기능 | 해당 프로젝트만 |
 | Plugin | `<plugin>/skills/` | 플러그인 활성화 범위 | 플러그인 범위 |
 
-> 동일 이름 시 우선순위: Enterprise > Personal > Project
+> 동일 이름 시 우선순위: Enterprise > Personal > Project. Plugin 스킬은 `plugin-name:skill-name` 네임스페이스를 사용하므로 다른 레벨과 충돌하지 않음
+
+> **모노레포 지원**: 서브디렉토리에서 작업 시 해당 경로의 `.claude/skills/`도 자동 발견됩니다. 예: `packages/frontend/.claude/skills/`
 
 **왜 여러 레벨로 나뉘는가?**
 
@@ -116,6 +125,42 @@ Skill 구축 전 **2~3개의 구체적 사용 사례**를 먼저 정의합니다
 | **MCP 강화** | 외부 도구 조합 활용 | 도구 조합, 오류 처리 | 매출 분석, CRM 통합 |
 
 ### 2단계: SKILL.md 작성
+
+#### Skill 내용 유형
+
+Skill 파일은 두 가지 유형의 내용을 담을 수 있으며, 호출 방식에 맞춰 작성합니다.
+
+| 유형 | 목적 | 실행 방식 | 예시 |
+|------|------|----------|------|
+| **Reference (참조)** | 지식을 추가하여 현재 작업에 적용 | 인라인 실행 (대화 컨텍스트와 함께) | 컨벤션, 스타일 가이드, 도메인 지식 |
+| **Task (작업)** | 특정 행동의 단계별 지시사항 | `/skill-name`으로 직접 호출 권장 | 배포, 커밋, 코드 생성 |
+
+```yaml
+# Reference 유형 예시
+---
+name: api-conventions
+description: API design patterns for this codebase
+---
+
+When writing API endpoints:
+- Use RESTful naming conventions
+- Return consistent error formats
+```
+
+```yaml
+# Task 유형 예시
+---
+name: deploy
+description: Deploy the application to production
+context: fork
+disable-model-invocation: true
+---
+
+Deploy the application:
+1. Run the test suite
+2. Build the application
+3. Push to the deployment target
+```
 
 #### 디렉토리 구조
 
@@ -176,7 +221,7 @@ hooks: { ... }
 | `model` | 아니오 | 스킬 실행 시 사용할 모델 | 현재 모델 |
 | `context` | 아니오 | `fork` 설정 시 격리된 서브에이전트에서 실행 | 메인 컨텍스트 |
 | `agent` | 아니오 | `context: fork` 시 서브에이전트 타입 | general-purpose |
-| `hooks` | 아니오 | 스킬 라이프사이클에 스코핑된 훅 | - |
+| `hooks` | 아니오 | 스킬 라이프사이클에 스코핑된 훅. [Hooks 가이드](./claude-code-hook.md) 참고 | - |
 
 #### name 유효성 규칙
 
@@ -673,6 +718,81 @@ Summarize this pull request focusing on:
 3. Testing recommendations
 ```
 
+### 예제 8: 시각적 출력 생성 Skill (코드베이스 시각화)
+
+Skill에 스크립트를 번들링하면 프롬프트만으로는 불가능한 시각적 출력을 생성할 수 있습니다.
+
+```
+# 폴더 구조
+~/.claude/skills/codebase-visualizer/
+├── SKILL.md
+└── scripts/
+    └── visualize.py
+```
+
+**SKILL.md:**
+
+```yaml
+---
+name: codebase-visualizer
+description: Generate an interactive collapsible tree visualization of your codebase. Use when exploring a new repo, understanding project structure, or identifying large files.
+allowed-tools: Bash(python *)
+---
+
+# Codebase Visualizer
+
+프로젝트 루트에서 시각화 스크립트를 실행합니다:
+
+```bash
+python ~/.claude/skills/codebase-visualizer/scripts/visualize.py .
+```
+
+codebase-map.html 파일이 생성되어 브라우저에서 열립니다.
+```
+
+**활용 패턴**: 의존성 그래프, 테스트 커버리지 리포트, API 문서, DB 스키마 시각화 등에 동일한 패턴 적용 가능
+
+### Skill 접근 제한
+
+Claude가 Skill에 접근하는 것을 세밀하게 제어할 수 있습니다.
+
+**모든 Skill 비활성화** (`/permissions`에서 Skill 도구 거부):
+
+```
+# 거부 규칙에 추가:
+Skill
+```
+
+**특정 Skill만 허용/거부**:
+
+```
+# 특정 스킬만 허용
+Skill(commit)
+Skill(review-pr *)
+
+# 특정 스킬 거부
+Skill(deploy *)
+```
+
+> 권한 문법: `Skill(name)` 정확한 매칭, `Skill(name *)` 접두사 매칭 + 임의 인자
+
+### 커뮤니티 Skill 생태계
+
+[claude-plugins.dev/skills](https://claude-plugins.dev/skills)에서 커뮤니티가 기여한 Agent Skills를 검색하고 설치할 수 있습니다.
+
+**주요 커뮤니티 Skill:**
+
+| Skill | 출처 | 설명 |
+|-------|------|------|
+| `frontend-design` | @anthropics/claude-code | 프로덕션급 프론트엔드 인터페이스 생성 |
+| `brainstorming` | @obra/superpowers | 창의적 작업 전 사용자 의도 탐색 |
+| `systematic-debugging` | @obra/superpowers | 체계적 버그 조사 |
+| `prompt-engineering-patterns` | @wshobson/agents | 고급 LLM 최적화 기법 |
+| `skill-writer` | @pytorch/pytorch | 새 Agent Skill 생성 가이드 |
+| `Document/Spreadsheet tools` | @anthropics/skills | DOCX, XLSX, PPTX, PDF 처리 |
+
+> Agent Skills 오픈 표준([agentskills.io](https://agentskills.io))을 따르므로 Claude Code 외에 Cursor, OpenCode, Codex 등 다른 AI 코딩 도구에서도 호환됩니다.
+
 ---
 
 ## 베스트 프랙티스
@@ -885,17 +1005,20 @@ A: **안전성과 예측 가능성**이 중요한 상황에서 사용합니다.
 | 문서 | 연관성 | 난이도 |
 |------|--------|--------|
 | [MCP](./mcp.md) | 선수 지식 - AI 에이전트와 외부 시스템 연결 | [2] 입문 |
-| [Slash Command](./claude-code-slash-command.md) | 관련 개념 - 명시적 호출 방식 | [3] 중급 |
+| [Slash Command](./claude-code-slash-command.md) | 관련 개념 - 명시적 호출 방식 (Skill로 통합됨) | [3] 중급 |
 | [Hook](./claude-code-hook.md) | 관련 개념 - 이벤트 기반 제어 | [3] 중급 |
+| [Plugin](./claude-code-plugin.md) | 관련 개념 - Skill을 패키징하여 배포 | [3] 중급 |
 | [Sub Agent](./claude-code-sub-agent.md) | 후속 학습 - `context: fork` 활용 | [4] 심화 |
 | [Agent SDK](./agent-sdk.md) | 후속 학습 - 프로그래밍 방식 에이전트 구축 | [5] 심화 |
 | [Context Engineering](./context-engineering.md) | 관련 개념 - Progressive Disclosure 설계 | [4] 심화 |
 
 ## 참고 자료
 
-- [Claude Code Skills Documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
+- [Claude Code Skills Documentation (공식)](https://code.claude.com/docs/en/skills)
 - [The Complete Guide to Building Skills for Claude (PDF)](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)
 - [A complete guide to building skills for Claude (Blog)](https://claude.com/blog/complete-guide-to-building-skills-for-claude)
+- [Agent Skills 오픈 표준](https://agentskills.io)
+- [claude-plugins.dev/skills - 커뮤니티 Skill 레지스트리](https://claude-plugins.dev/skills)
 - [Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
 - [Skills for enterprise](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise)
 - [anthropics/skills - GitHub 공식 Skills 저장소](https://github.com/anthropics/skills)

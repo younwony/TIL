@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" width="700" height="400">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', Arial, sans-serif; }
+    </style>
+    <linearGradient id="blueGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3498DB"/>
+      <stop offset="100%" stop-color="#2980B9"/>
+    </linearGradient>
+    <linearGradient id="greenGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2ECC71"/>
+      <stop offset="100%" stop-color="#27AE60"/>
+    </linearGradient>
+    <linearGradient id="redGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9B59B6"/>
+      <stop offset="100%" stop-color="#8E44AD"/>
+    </linearGradient>
+    <filter id="shadow3" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000015"/>
+    </filter>
+    <marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 5 10 L 10 0 z" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect x="0" y="0" width="700" height="400" rx="12" ry="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+
+  <!-- 타이틀 -->
+  <text x="350" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#2C3E50">Foreground vs Background 실행 비교</text>
+
+  <!-- 구분선 (중앙) -->
+  <line x1="350" y1="48" x2="350" y2="380" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="8,4"/>
+  <circle cx="350" cy="210" r="18" fill="#F8F9FA" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="350" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#7F8C8D">VS</text>
+
+  <!-- ==================== 좌측: Foreground ==================== -->
+  <text x="175" y="63" text-anchor="middle" font-size="16" font-weight="700" fill="#2980B9">Foreground</text>
+  <text x="175" y="80" text-anchor="middle" font-size="11" fill="#7F8C8D">순차 실행 (차단됨)</text>
+
+  <!-- 시간축 -->
+  <line x1="50" y1="95" x2="50" y2="365" stroke="#BDC3C7" stroke-width="1.5"/>
+  <text x="42" y="92" text-anchor="middle" font-size="9" fill="#95A5A6">시간</text>
+  <!-- 시간축 화살표 -->
+  <polygon points="45,365 50,375 55,365" fill="#BDC3C7"/>
+
+  <!-- 단계 1: 메인 대화 -->
+  <rect x="70" y="95" width="230" height="45" rx="8" ry="8" fill="url(#blueGrad3)" filter="url(#shadow3)"/>
+  <text x="185" y="115" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">메인 대화</text>
+  <text x="185" y="131" text-anchor="middle" font-size="10" fill="#D6EAF8">사용자와 상호작용</text>
+
+  <!-- 화살표 1→2 -->
+  <line x1="185" y1="140" x2="185" y2="155" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="180,155 185,163 190,155" fill="#BDC3C7"/>
+
+  <!-- 단계 2: Sub Agent 실행 (차단) -->
+  <rect x="70" y="165" width="230" height="55" rx="8" ry="8" fill="url(#redGrad3)" filter="url(#shadow3)"/>
+  <text x="185" y="187" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">Sub Agent 실행</text>
+  <text x="185" y="204" text-anchor="middle" font-size="10" fill="#FADBD8">메인 대화 차단됨 (blocked)</text>
+
+  <!-- 차단 아이콘 -->
+  <rect x="75" y="170" width="20" height="20" rx="4" ry="4" fill="#C0392B"/>
+  <text x="85" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">&#x23F8;</text>
+
+  <!-- 화살표 2→3 -->
+  <line x1="185" y1="220" x2="185" y2="235" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="180,235 185,243 190,235" fill="#BDC3C7"/>
+
+  <!-- 단계 3: 결과 반환 -->
+  <rect x="70" y="245" width="230" height="35" rx="8" ry="8" fill="url(#purpleGrad3)" filter="url(#shadow3)"/>
+  <text x="185" y="267" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">결과 반환</text>
+
+  <!-- 화살표 3→4 -->
+  <line x1="185" y1="280" x2="185" y2="295" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="180,295 185,303 190,295" fill="#BDC3C7"/>
+
+  <!-- 단계 4: 메인 대화 재개 -->
+  <rect x="70" y="305" width="230" height="45" rx="8" ry="8" fill="url(#blueGrad3)" filter="url(#shadow3)"/>
+  <text x="185" y="325" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">메인 대화 재개</text>
+  <text x="185" y="341" text-anchor="middle" font-size="10" fill="#D6EAF8">결과 기반 후속 작업</text>
+
+  <!-- 좌측 대기 시간 표시 -->
+  <line x1="310" y1="140" x2="310" y2="245" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4,2"/>
+  <rect x="300" y="180" width="40" height="20" rx="4" ry="4" fill="#FEE2E2" stroke="#E74C3C" stroke-width="1"/>
+  <text x="320" y="194" text-anchor="middle" font-size="9" font-weight="600" fill="#C0392B">대기</text>
+
+  <!-- ==================== 우측: Background ==================== -->
+  <text x="525" y="63" text-anchor="middle" font-size="16" font-weight="700" fill="#27AE60">Background</text>
+  <text x="525" y="80" text-anchor="middle" font-size="11" fill="#7F8C8D">병렬 실행 (비차단)</text>
+
+  <!-- 시간축 -->
+  <line x1="400" y1="95" x2="400" y2="365" stroke="#BDC3C7" stroke-width="1.5"/>
+  <text x="392" y="92" text-anchor="middle" font-size="9" fill="#95A5A6">시간</text>
+  <polygon points="395,365 400,375 405,365" fill="#BDC3C7"/>
+
+  <!-- 메인 대화 (계속 진행) - 길게 -->
+  <rect x="420" y="95" width="120" height="200" rx="8" ry="8" fill="url(#blueGrad3)" filter="url(#shadow3)"/>
+  <text x="480" y="120" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">메인 대화</text>
+  <text x="480" y="140" text-anchor="middle" font-size="10" fill="#D6EAF8">계속 진행</text>
+
+  <!-- 계속 진행 아이콘들 -->
+  <text x="480" y="165" text-anchor="middle" font-size="10" fill="#D6EAF8">작업 A 처리</text>
+  <line x1="440" y1="175" x2="520" y2="175" stroke="#D6EAF8" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="480" y="190" text-anchor="middle" font-size="10" fill="#D6EAF8">작업 B 처리</text>
+  <line x1="440" y1="200" x2="520" y2="200" stroke="#D6EAF8" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="480" y="215" text-anchor="middle" font-size="10" fill="#D6EAF8">작업 C 처리</text>
+  <line x1="440" y1="225" x2="520" y2="225" stroke="#D6EAF8" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="480" y="245" text-anchor="middle" font-size="10" fill="#D6EAF8">...</text>
+
+  <!-- 재생 아이콘 -->
+  <rect x="425" y="100" width="20" height="20" rx="4" ry="4" fill="#2980B9"/>
+  <text x="435" y="115" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">&#x25B6;</text>
+
+  <!-- Background Agent (동시 실행) -->
+  <rect x="555" y="95" width="120" height="150" rx="8" ry="8" fill="url(#greenGrad3)" filter="url(#shadow3)"/>
+  <text x="615" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">Background</text>
+  <text x="615" y="137" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">Agent</text>
+  <text x="615" y="157" text-anchor="middle" font-size="10" fill="#D5F5E3">독립 실행 중</text>
+
+  <!-- Background 진행 표시 -->
+  <rect x="570" y="170" width="90" height="6" rx="3" ry="3" fill="#1A5C33"/>
+  <rect x="570" y="170" width="60" height="6" rx="3" ry="3" fill="#D5F5E3"/>
+  <text x="615" y="192" text-anchor="middle" font-size="9" fill="#D5F5E3">67% 완료</text>
+
+  <!-- 동시 실행 화살표 (양쪽 연결) -->
+  <line x1="540" y1="130" x2="555" y2="130" stroke="#95A5A6" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="540" y1="170" x2="555" y2="170" stroke="#95A5A6" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- "동시" 표시 -->
+  <rect x="539" y="140" width="18" height="22" rx="3" ry="3" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="548" y="148" text-anchor="middle" font-size="7" fill="#7F8C8D">동</text>
+  <text x="548" y="158" text-anchor="middle" font-size="7" fill="#7F8C8D">시</text>
+
+  <!-- 결과 확인 단계 -->
+  <rect x="420" y="310" width="255" height="45" rx="8" ry="8" fill="url(#purpleGrad3)" filter="url(#shadow3)"/>
+  <text x="547" y="330" text-anchor="middle" font-size="13" font-weight="600" fill="#FFFFFF">나중에 결과 확인</text>
+  <text x="547" y="346" text-anchor="middle" font-size="10" fill="#E8DAEF">필요할 때 결과를 가져옴</text>
+
+  <!-- 결과 확인 화살표 -->
+  <line x1="480" y1="295" x2="480" y2="310" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="475,308 480,316 485,308" fill="#BDC3C7"/>
+  <line x1="615" y1="245" x2="615" y2="310" stroke="#27AE60" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="610,308 615,316 620,308" fill="#27AE60"/>
+
+  <!-- ==================== 하단 비교 요약 ==================== -->
+  <rect x="30" y="370" width="300" height="22" rx="6" ry="6" fill="#DBEAFE" stroke="#3498DB" stroke-width="1"/>
+  <text x="180" y="385" text-anchor="middle" font-size="10" font-weight="600" fill="#2980B9">순차 처리 - 결과 즉시 사용 가능</text>
+
+  <rect x="370" y="370" width="300" height="22" rx="6" ry="6" fill="#D5F5E3" stroke="#2ECC71" stroke-width="1"/>
+  <text x="520" y="385" text-anchor="middle" font-size="10" font-weight="600" fill="#27AE60">병렬 처리 - 메인 작업 중단 없음</text>
+</svg>

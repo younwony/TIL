@@ -191,7 +191,8 @@ TIL/
 | `review-pr` | `/review-pr {PR번호}` | PR 코드 리뷰 및 개선 제안 |
 | `self-review` | `/self-review` | PR 생성 전 자체 리뷰 및 SELF-REVIEW.md 생성 |
 | `api-doc` | `/api-doc {대상}` | API 문서 생성 |
-| `work-log` | `/work-log` | 현재 브랜치 작업 내용 Confluence 문서화 |
+| `work-log` | `/work-log`, `/work-log --parent <pageId\|제목>` | 현재 브랜치 작업 내용 Confluence 문서화 (기본: WORK-LOG 하위) |
+| `work-share` | `/work-share` | 현재 브랜치 작업 내용 공유 페이지 하위에 Confluence 문서화 |
 | `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 생성 |
 | `work-plan-start` | `/work-plan-start [path]` | WORK-SPEC.md 기반 실제 작업 수행 |
 | `release-notes-kr` | `/release-notes-kr [버전/범위]` | Claude Code 릴리스 노트 한글 요약 정리 |
@@ -204,6 +205,8 @@ TIL/
 | `slack-remind` | `/slack-remind [대상] [시간] [메시지]` | 특정 시간에 Slack 메시지 예약 발송 |
 | `sprint-start-notify` | `/sprint-start-notify [#채널]` | 스프린트 시작 시 팀 채널에 할당 이슈 공유 |
 | `jira-notify` | `/jira-notify {이슈키} [#채널]` | Jira 이슈 상태를 Slack 채널에 알림 |
+| `debug-chrome` | `/debug-chrome` | 현재 브랜치 변경사항 분석 후 Claude in Chrome 디버깅 시작 |
+| `team-review` | `/team-review` | 4명의 전문 리뷰어 에이전트 팀으로 병렬 코드 리뷰 |
 
 ### Agents (Sub-agents)
 
@@ -216,8 +219,60 @@ Claude가 작업 유형에 따라 자동으로 위임하거나, 명시적으로 
 | `code-refactor` | "리팩토링", "코드 스멜" | Sonnet | CLAUDE.md 규칙 기반 코드 분석 + 개선 |
 | `debugger` | "디버깅", "에러 분석" | Sonnet | 스택 트레이스 추적 + 원인 분석 + 수정 |
 | `jira-updater` | "Jira 업데이트", "이슈 상태" | Haiku | 브랜치 기반 이슈 감지 + 상태 전환 + 코멘트 |
+| `review-performance` | "성능 리뷰" | Sonnet | N+1 쿼리, 고비용 객체, 컬렉션 최적화, I/O 병목 분석 |
+| `review-security` | "보안 리뷰" | Sonnet | OWASP Top 10, 인증/인가, 민감정보 노출, 입력 검증 |
+| `review-test-coverage` | "테스트 리뷰" | Sonnet | 테스트 존재 여부, 커버리지, 누락 시나리오, 테스트 품질 |
+| `review-convention` | "컨벤션 리뷰" | Sonnet | CLAUDE.md 규칙, 클린 코드, SOLID, 네이밍, 가독성 |
+| `cs-diagram-generator` | "다이어그램 생성" | Sonnet | CS 문서용 SVG/Mermaid 다이어그램 생성 |
+| `cs-index-manager` | "인덱스 업데이트" | Haiku | CS 문서 README.md 인덱스 업데이트 |
 
 > 가이드: [AGENT-GUIDE.md](./AGENT-GUIDE.md)
+
+### 팀 에이전트 워크플로우
+
+`/work-plan-start` 실행 시 아래 Phase별로 에이전트를 병렬 디스패치하여 작업한다.
+
+#### Phase 구성
+
+```
+Phase 1: 탐색 + 설계 (병렬, 결과 대기)
+├─ [Explore]  코드베이스 구조 파악, 영향 범위 분석
+└─ [Plan]     구현 전략 설계, 파일별 변경 계획
+
+Phase 2: 구현 + 테스트 (병렬)
+├─ [Main]            핵심 코드 수정 (Phase 1 결과 기반)
+└─ [test-generator]  테스트 자동 생성 (background, Phase 1 결과 기반)
+
+Phase 3: 검증 + 문서화 (병렬)
+├─ [code-refactor]   코드 품질 리뷰 (background)
+└─ [Main]            ARCHITECTURE.md, SPEC.md 작성
+```
+
+#### 디스패치 규칙
+
+- **Phase 1**은 foreground 실행 (결과가 Phase 2의 입력)
+- **Phase 2**의 test-generator는 background 실행 (Main과 병렬)
+- **Phase 3**의 code-refactor는 background 실행
+- Phase 간 의존성이 있으므로 Phase 순서는 반드시 순차 실행
+- 각 Phase 내 에이전트는 최대한 병렬 실행
+- 에이전트 실패 시 Main이 해당 작업을 직접 수행
+
+#### 에이전트별 입력
+
+| Phase | 에이전트 | 입력 |
+|-------|----------|------|
+| 1 | Explore | WORK-SPEC.md의 변경 대상 파일 목록 + 키워드 |
+| 1 | Plan | WORK-SPEC.md 전체 내용 |
+| 2 | Main | Phase 1 Explore/Plan 결과 |
+| 2 | test-generator | Phase 1 Plan 결과 + 변경된 소스 파일 경로 |
+| 3 | code-refactor | Phase 2에서 변경된 파일 목록 |
+| 3 | Main | Phase 2 완료된 코드 기반 |
+
+#### 적용 조건
+
+- WORK-SPEC.md가 존재할 때만 팀 워크플로우 적용
+- 단순 작업 (파일 1~2개 수정)은 Main 단독 처리
+- 에이전트 디스패치 여부는 작업 복잡도에 따라 자체 판단
 
 ## 언어 설정
 

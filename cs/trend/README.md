@@ -19,6 +19,7 @@
 - [MCP (Model Context Protocol)](../ai-agent/mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
 - [AI 보조 개발 (AI-Assisted Development)](../ai-agent/ai-assisted-development.md) - AI 코딩 도구 활용, 생산성 역설, 코드 품질 관리 전략 (2026)
 - [Claude Code Skill](../ai-agent/claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
+- [AI 코딩 에이전트 워크플로우 흡수](../ai-agent/ai-coding-agent-workflow-absorption.md) - 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 현상, Anthropic·OpenAI·Google 동시 업데이트 분석 (2026)
 - [Claude Cowork](../ai-agent/claude-cowork.md) - Claude Code 에이전트를 비개발자용으로 확장한 범용 AI 코워커, 플러그인 생태계 (2026)
 
 ### System Design
