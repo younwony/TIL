@@ -1,0 +1,138 @@
+<svg viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="headerInclude" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="headerExclude" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="headerProblem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="820" height="560" fill="#F8FAFB" rx="8"/>
+
+  <!-- 제목 -->
+  <rect x="20" y="14" width="780" height="42" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="410" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">AGENTS.md / CLAUDE.md 가이드라인</text>
+
+  <!-- ===== 왼쪽: 포함해야 할 것 ===== -->
+  <!-- 헤더 -->
+  <rect x="20" y="68" width="370" height="36" rx="6" fill="url(#headerInclude)" filter="url(#shadow)"/>
+  <text x="205" y="91" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">포함해야 할 것 (Include)</text>
+
+  <!-- 항목 1: 도구 선택 -->
+  <rect x="20" y="114" width="370" height="66" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="114" width="6" height="66" rx="3" fill="url(#headerInclude)"/>
+  <text x="38" y="134" font-size="11" font-weight="bold" fill="#2C3E50">도구 선택 (Tool Selection)</text>
+  <text x="38" y="151" font-size="10" fill="#7F8C8D">어떤 도구를 사용해야 하는지,</text>
+  <text x="38" y="165" font-size="10" fill="#7F8C8D">어떤 도구는 사용하지 말아야 하는지</text>
+
+  <!-- 항목 2: 아키텍처 제약 -->
+  <rect x="20" y="190" width="370" height="66" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="190" width="6" height="66" rx="3" fill="url(#headerInclude)"/>
+  <text x="38" y="210" font-size="11" font-weight="bold" fill="#2C3E50">아키텍처 제약 (Architecture Constraints)</text>
+  <text x="38" y="227" font-size="10" fill="#7F8C8D">변경 불가능한 패턴, 필수 구조,</text>
+  <text x="38" y="241" font-size="10" fill="#7F8C8D">설계 원칙 및 핵심 제약사항</text>
+
+  <!-- 항목 3: 위험 지역 -->
+  <rect x="20" y="266" width="370" height="66" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="266" width="6" height="66" rx="3" fill="url(#headerInclude)"/>
+  <text x="38" y="286" font-size="11" font-weight="bold" fill="#2C3E50">위험 지역 (Danger Zones)</text>
+  <text x="38" y="303" font-size="10" fill="#7F8C8D">수정 시 주의해야 할 파일/모듈,</text>
+  <text x="38" y="317" font-size="10" fill="#7F8C8D">사이드 이펙트가 큰 영역</text>
+
+  <!-- 항목 4: 운영 주의사항 -->
+  <rect x="20" y="342" width="370" height="66" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="342" width="6" height="66" rx="3" fill="url(#headerInclude)"/>
+  <text x="38" y="362" font-size="11" font-weight="bold" fill="#2C3E50">운영 주의사항 (Operational Notes)</text>
+  <text x="38" y="379" font-size="10" fill="#7F8C8D">배포 절차, 환경 변수 관리,</text>
+  <text x="38" y="393" font-size="10" fill="#7F8C8D">프로덕션 영향 범위 및 롤백 가이드</text>
+
+  <!-- ===== 오른쪽: 제외해야 할 것 ===== -->
+  <!-- 헤더 -->
+  <rect x="430" y="68" width="370" height="36" rx="6" fill="url(#headerExclude)" filter="url(#shadow)"/>
+  <text x="615" y="91" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">제외해야 할 것 (Exclude)</text>
+
+  <!-- 항목 1: 디렉토리 구조 -->
+  <rect x="430" y="114" width="370" height="66" rx="6" fill="#fff" stroke="#C0392B" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="430" y="114" width="6" height="66" rx="3" fill="url(#headerExclude)"/>
+  <text x="448" y="134" font-size="11" font-weight="bold" fill="#2C3E50">디렉토리 구조 (Directory Structure)</text>
+  <text x="448" y="151" font-size="10" fill="#7F8C8D">폴더/파일 트리는 AI가 직접 탐색 가능,</text>
+  <text x="448" y="165" font-size="10" fill="#7F8C8D">명시 시 중복 토큰 낭비 발생</text>
+
+  <!-- 항목 2: 기술 스택 -->
+  <rect x="430" y="190" width="370" height="66" rx="6" fill="#fff" stroke="#C0392B" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="430" y="190" width="6" height="66" rx="3" fill="url(#headerExclude)"/>
+  <text x="448" y="210" font-size="11" font-weight="bold" fill="#2C3E50">기술 스택 (Tech Stack)</text>
+  <text x="448" y="227" font-size="10" fill="#7F8C8D">언어·프레임워크는 package.json 등에서</text>
+  <text x="448" y="241" font-size="10" fill="#7F8C8D">자동 파악 가능</text>
+
+  <!-- 항목 3: 코드 컨벤션 -->
+  <rect x="430" y="266" width="370" height="66" rx="6" fill="#fff" stroke="#C0392B" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="430" y="266" width="6" height="66" rx="3" fill="url(#headerExclude)"/>
+  <text x="448" y="286" font-size="11" font-weight="bold" fill="#2C3E50">코드 컨벤션 (Code Conventions)</text>
+  <text x="448" y="303" font-size="10" fill="#7F8C8D">ESLint/Prettier/linter 설정 파일로 충분,</text>
+  <text x="448" y="317" font-size="10" fill="#7F8C8D">문서 중복 작성 불필요</text>
+
+  <!-- 항목 4: README 중복 -->
+  <rect x="430" y="342" width="370" height="66" rx="6" fill="#fff" stroke="#C0392B" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="430" y="342" width="6" height="66" rx="3" fill="url(#headerExclude)"/>
+  <text x="448" y="362" font-size="11" font-weight="bold" fill="#2C3E50">README 중복 (README Duplication)</text>
+  <text x="448" y="379" font-size="10" fill="#7F8C8D">README에 이미 있는 내용 재작성 금지,</text>
+  <text x="448" y="393" font-size="10" fill="#7F8C8D">정보 갱신 시 불일치 위험 증가</text>
+
+  <!-- 구분선 -->
+  <line x1="408" y1="68" x2="408" y2="420" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="408" y="58" text-anchor="middle" font-size="10" fill="#95A5A6">vs</text>
+
+  <!-- ===== 하단: 자동 생성의 문제점 ===== -->
+  <rect x="20" y="428" width="780" height="36" rx="6" fill="url(#headerProblem)" filter="url(#shadow)"/>
+  <text x="410" y="451" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">자동 생성(Auto-Generated)의 3가지 문제점</text>
+
+  <!-- 문제 1 -->
+  <rect x="20" y="474" width="242" height="68" rx="6" fill="#FFF5EE" stroke="#D35400" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="141" y="496" text-anchor="middle" font-size="11" font-weight="bold" fill="#D35400">토큰 낭비</text>
+  <text x="141" y="513" text-anchor="middle" font-size="10" fill="#7F8C8D">불필요한 정보로 인해</text>
+  <text x="141" y="528" text-anchor="middle" font-size="10" fill="#7F8C8D">컨텍스트의 약 20% 낭비</text>
+
+  <!-- 문제 2 -->
+  <rect x="289" y="474" width="242" height="68" rx="6" fill="#FFF5EE" stroke="#D35400" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="410" y="496" text-anchor="middle" font-size="11" font-weight="bold" fill="#D35400">앵커링 편향</text>
+  <text x="410" y="513" text-anchor="middle" font-size="10" fill="#7F8C8D">첫 번째 정보에 과도하게</text>
+  <text x="410" y="528" text-anchor="middle" font-size="10" fill="#7F8C8D">의존하는 추론 오류</text>
+
+  <!-- 문제 3 -->
+  <rect x="558" y="474" width="242" height="68" rx="6" fill="#FFF5EE" stroke="#D35400" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="679" y="496" text-anchor="middle" font-size="11" font-weight="bold" fill="#D35400">Lost in the Middle</text>
+  <text x="679" y="513" text-anchor="middle" font-size="10" fill="#7F8C8D">컨텍스트 중간부의 정보를</text>
+  <text x="679" y="528" text-anchor="middle" font-size="10" fill="#7F8C8D">모델이 무시하는 현상</text>
+</svg>

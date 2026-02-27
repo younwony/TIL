@@ -1,0 +1,158 @@
+<svg viewBox="0 0 820 580" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="bgPublic" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FDEDEC"/>
+      <stop offset="100%" style="stop-color:#FADBD8"/>
+    </linearGradient>
+    <linearGradient id="bgProtect" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#EAFAF1"/>
+      <stop offset="100%" style="stop-color:#D5F5E3"/>
+    </linearGradient>
+    <linearGradient id="moatGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2980B9"/>
+      <stop offset="100%" style="stop-color:#1A5276"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="820" height="580" fill="#F8FAFB" rx="8"/>
+
+  <!-- 제목 -->
+  <rect x="20" y="14" width="780" height="42" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="410" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">테스트(Test)가 해자(Moat)가 되는 구조 - AI 시대</text>
+
+  <!-- ===== 왼쪽 패널: 공개 영역 ===== -->
+  <rect x="20" y="68" width="356" height="282" rx="8" fill="url(#bgPublic)" stroke="#E74C3C" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- 공개 영역 헤더 -->
+  <rect x="20" y="68" width="356" height="40" rx="8" fill="url(#nodeRed)"/>
+  <rect x="20" y="92" width="356" height="16" fill="url(#nodeRed)"/>
+  <text x="198" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">공개 영역 (Public Domain)</text>
+  <text x="198" y="108" text-anchor="middle" font-size="10" fill="#FADBD8">AI가 학습 · 재현 가능한 영역</text>
+
+  <!-- 공개 항목 1 -->
+  <rect x="36" y="122" width="324" height="58" rx="6" fill="#fff" stroke="#E74C3C" stroke-width="1" filter="url(#shadow)"/>
+  <text x="56" y="142" font-size="13" fill="#E74C3C">&#128196;</text>
+  <text x="78" y="142" font-size="11" font-weight="bold" fill="#2C3E50">API 스펙 (API Specification)</text>
+  <text x="78" y="158" font-size="10" fill="#7F8C8D">엔드포인트, 파라미터, 응답 형식</text>
+  <text x="78" y="172" font-size="10" fill="#C0392B">AI가 스펙만으로 구현 재현 가능</text>
+
+  <!-- 공개 항목 2 -->
+  <rect x="36" y="190" width="324" height="58" rx="6" fill="#fff" stroke="#E74C3C" stroke-width="1" filter="url(#shadow)"/>
+  <text x="56" y="210" font-size="13" fill="#E74C3C">&#128196;</text>
+  <text x="78" y="210" font-size="11" font-weight="bold" fill="#2C3E50">문서 (Documentation)</text>
+  <text x="78" y="226" font-size="10" fill="#7F8C8D">README, 설계 문서, 아키텍처 가이드</text>
+  <text x="78" y="240" font-size="10" fill="#C0392B">공개된 정보로 구조 파악 가능</text>
+
+  <!-- 공개 항목 3 -->
+  <rect x="36" y="258" width="324" height="58" rx="6" fill="#fff" stroke="#E74C3C" stroke-width="1" filter="url(#shadow)"/>
+  <text x="56" y="278" font-size="13" fill="#E74C3C">&#128196;</text>
+  <text x="78" y="278" font-size="11" font-weight="bold" fill="#2C3E50">소스 코드 (Source Code)</text>
+  <text x="78" y="294" font-size="10" fill="#7F8C8D">오픈소스 / 공개 리포지토리</text>
+  <text x="78" y="308" font-size="10" fill="#C0392B">코드 자체는 복제·재현 장벽 낮음</text>
+
+  <!-- ===== 중앙: 해자 (Moat) ===== -->
+  <rect x="376" y="68" width="68" height="282" rx="0" fill="url(#moatGrad)"/>
+  <text x="410" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#AED6F1" transform="rotate(90, 410, 200)">MOAT (해자)</text>
+  <!-- 물결 효과 -->
+  <path d="M376,130 Q392,118 410,130 Q428,142 444,130" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M376,160 Q392,148 410,160 Q428,172 444,160" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M376,190 Q392,178 410,190 Q428,202 444,190" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M376,220 Q392,208 410,220 Q428,232 444,220" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M376,250 Q392,238 410,250 Q428,262 444,250" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M376,280 Q392,268 410,280 Q428,292 444,280" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M376,310 Q392,298 410,310 Q428,322 444,310" stroke="#AED6F1" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- ===== 오른쪽 패널: 보호 영역 ===== -->
+  <rect x="444" y="68" width="356" height="282" rx="8" fill="url(#bgProtect)" stroke="#27AE60" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- 보호 영역 헤더 -->
+  <rect x="444" y="68" width="356" height="40" rx="8" fill="url(#nodeGreen)"/>
+  <rect x="444" y="92" width="356" height="16" fill="url(#nodeGreen)"/>
+  <text x="622" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">보호 영역 (Protected Domain)</text>
+  <text x="622" y="108" text-anchor="middle" font-size="10" fill="#D5F5E3">AI가 재현하기 어려운 진정한 해자</text>
+
+  <!-- 보호 항목 1 -->
+  <rect x="460" y="122" width="324" height="58" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1" filter="url(#shadow)"/>
+  <text x="480" y="142" font-size="13" fill="#27AE60">&#9989;</text>
+  <text x="504" y="142" font-size="11" font-weight="bold" fill="#2C3E50">포괄적 테스트 (Comprehensive Tests)</text>
+  <text x="504" y="158" font-size="10" fill="#7F8C8D">비즈니스 의도가 담긴 테스트 시나리오</text>
+  <text x="504" y="172" font-size="10" fill="#27AE60">수년간 축적된 도메인 지식의 결정체</text>
+
+  <!-- 보호 항목 2 -->
+  <rect x="460" y="190" width="324" height="58" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1" filter="url(#shadow)"/>
+  <text x="480" y="210" font-size="13" fill="#27AE60">&#9989;</text>
+  <text x="504" y="210" font-size="11" font-weight="bold" fill="#2C3E50">엣지 케이스 (Edge Cases)</text>
+  <text x="504" y="226" font-size="10" fill="#7F8C8D">운영 중 발견된 예외 상황 테스트</text>
+  <text x="504" y="240" font-size="10" fill="#27AE60">실패 경험이 쌓인 무형 자산</text>
+
+  <!-- 보호 항목 3 -->
+  <rect x="460" y="258" width="324" height="58" rx="6" fill="#fff" stroke="#27AE60" stroke-width="1" filter="url(#shadow)"/>
+  <text x="480" y="278" font-size="13" fill="#27AE60">&#9989;</text>
+  <text x="504" y="278" font-size="11" font-weight="bold" fill="#2C3E50">통합 테스트 (Integration Tests)</text>
+  <text x="504" y="294" font-size="10" fill="#7F8C8D">시스템 상호작용 · 실제 환경 시뮬레이션</text>
+  <text x="504" y="308" font-size="10" fill="#27AE60">재현 불가능한 시스템 이해도</text>
+
+  <!-- ===== 하단: 실제 사례 ===== -->
+  <rect x="20" y="364" width="780" height="36" rx="6" fill="url(#nodePurple)" filter="url(#shadow)"/>
+  <text x="410" y="388" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">실제 사례 (Real-World Cases)</text>
+
+  <!-- 사례 1: SQLite -->
+  <rect x="20" y="410" width="244" height="150" rx="8" fill="#fff" stroke="#9B59B6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="410" width="244" height="38" rx="8" fill="url(#nodePurple)"/>
+  <rect x="20" y="432" width="244" height="16" fill="url(#nodePurple)"/>
+  <text x="142" y="434" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">SQLite</text>
+  <text x="36" y="464" font-size="10" font-weight="bold" fill="#2C3E50">소스 코드:</text>
+  <text x="36" y="480" font-size="10" fill="#7F8C8D">100% 오픈소스 공개</text>
+  <text x="36" y="498" font-size="10" font-weight="bold" fill="#2C3E50">테스트 스위트:</text>
+  <text x="36" y="514" font-size="10" fill="#7F8C8D">920만 라인 - 비공개 유지</text>
+  <text x="36" y="532" font-size="10" fill="#9B59B6">코드 공개 = 경쟁 우위 유지</text>
+  <text x="36" y="548" font-size="10" fill="#9B59B6">테스트가 진짜 해자</text>
+
+  <!-- 사례 2: Cloudflare -->
+  <rect x="288" y="410" width="244" height="150" rx="8" fill="#fff" stroke="#9B59B6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="288" y="410" width="244" height="38" rx="8" fill="url(#nodePurple)"/>
+  <rect x="288" y="432" width="244" height="16" fill="url(#nodePurple)"/>
+  <text x="410" y="434" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Cloudflare</text>
+  <text x="304" y="464" font-size="10" font-weight="bold" fill="#2C3E50">도전:</text>
+  <text x="304" y="480" font-size="10" fill="#7F8C8D">Next.js 핵심 기능 재구현 시도</text>
+  <text x="304" y="498" font-size="10" font-weight="bold" fill="#2C3E50">소요 기간:</text>
+  <text x="304" y="514" font-size="10" fill="#7F8C8D">단 1주일 만에 완료</text>
+  <text x="304" y="532" font-size="10" fill="#9B59B6">공개 코드는 빠르게 복제됨</text>
+  <text x="304" y="548" font-size="10" fill="#9B59B6">테스트 없이 품질 보장 불가</text>
+
+  <!-- 사례 3: tldraw -->
+  <rect x="556" y="410" width="244" height="150" rx="8" fill="#fff" stroke="#9B59B6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="556" y="410" width="244" height="38" rx="8" fill="url(#nodePurple)"/>
+  <rect x="556" y="432" width="244" height="16" fill="url(#nodePurple)"/>
+  <text x="678" y="434" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">tldraw</text>
+  <text x="572" y="464" font-size="10" font-weight="bold" fill="#2C3E50">전략 전환:</text>
+  <text x="572" y="480" font-size="10" fill="#7F8C8D">테스트 스위트 비공개로 전환</text>
+  <text x="572" y="498" font-size="10" font-weight="bold" fill="#2C3E50">이유:</text>
+  <text x="572" y="514" font-size="10" fill="#7F8C8D">코드 공개 상태에서도</text>
+  <text x="572" y="530" font-size="10" fill="#7F8C8D">품질 차별화 가능</text>
+  <text x="572" y="548" font-size="10" fill="#9B59B6">테스트 = 경쟁 비밀</text>
+</svg>

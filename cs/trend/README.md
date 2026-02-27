@@ -9,6 +9,7 @@
 ### AI/ML
 
 - [Agentic Coding](../ai-agent/agentic-coding.md) - AI 에이전트가 장시간 자율적으로 코드 작성, 개발자는 조율자로 역할 전환, Anthropic 2026 핵심 트렌드 (2026)
+- [AI 코딩 실전 베스트 프랙티스](../ai-agent/ai-coding-best-practices.md) - AI 코딩 도구를 실무에서 효과적으로 활용하기 위한 검증된 워크플로우, 컨텍스트 파일 작성법, 테스트 전략, 보안 원칙을 정리한 실전 가이드 (2026)
 - [AI Guardrails](../ai-agent/ai-guardrails.md) - LLM/AI 에이전트의 안전한 운영을 위한 입력/출력/행동 제어 메커니즘, "agents plus guardrails" (2026)
 - [Repository Intelligence](../ai-agent/repository-intelligence.md) - AI가 전체 코드베이스를 이해하여 맥락에 맞는 코드 제안, GitHub 2026 핵심 트렌드 (2026)
 - [SLM (Small Language Model)](../ai-agent/slm.md) - 특정 작업에 최적화된 소형 언어 모델, LLM 대비 10~30배 효율적, 2026 핵심 트렌드 (2026)
