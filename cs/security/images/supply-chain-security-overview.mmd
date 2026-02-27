@@ -1,0 +1,68 @@
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px', 'fontFamily': 'sans-serif'}}}%%
+flowchart TB
+    subgraph SRC["① 소스 코드"]
+        direction TB
+        S1["개발자 코드 작성"]
+        S2["코드 리뷰 & 서명"]
+        S1 --> S2
+    end
+
+    subgraph DEP["② 의존성 관리"]
+        direction TB
+        D1["패키지 레지스트리<br/>(npm, Maven, PyPI)"]
+        D2["SCA 스캔<br/>(취약점 분석)"]
+        D3["Lock 파일 고정<br/>& SBOM 생성"]
+        D1 --> D2 --> D3
+    end
+
+    subgraph BUILD["③ 빌드 & CI/CD"]
+        direction TB
+        B1["CI/CD 파이프라인"]
+        B2["SLSA 빌드 증명<br/>(Provenance)"]
+        B3["아티팩트 서명<br/>(Sigstore)"]
+        B1 --> B2 --> B3
+    end
+
+    subgraph DEPLOY["④ 배포 & 운영"]
+        direction TB
+        P1["컨테이너 이미지<br/>서명 검증"]
+        P2["런타임 모니터링<br/>& 감사 로그"]
+        P1 --> P2
+    end
+
+    SRC --> DEP --> BUILD --> DEPLOY
+
+    ATK1(["🔴 xz-utils 백도어<br/>(오픈소스 침투)"])
+    ATK2(["🔴 SolarWinds<br/>(빌드 시스템 침해)"])
+    ATK3(["🔴 Log4Shell<br/>(의존성 취약점)"])
+    ATK4(["🔴 악성 패키지<br/>(Typosquatting)"])
+
+    ATK1 -.->|"소스 변조"| SRC
+    ATK4 -.->|"가짜 패키지 배포"| DEP
+    ATK3 -.->|"취약 라이브러리 악용"| DEP
+    ATK2 -.->|"빌드 프로세스 변조"| BUILD
+
+    DEF1(["🟢 코드 서명 검증"])
+    DEF2(["🟢 SCA & SBOM"])
+    DEF3(["🟢 SLSA & Sigstore"])
+    DEF4(["🟢 이미지 서명 검증"])
+
+    DEF1 -.->|"방어"| SRC
+    DEF2 -.->|"방어"| DEP
+    DEF3 -.->|"방어"| BUILD
+    DEF4 -.->|"방어"| DEPLOY
+
+    style SRC fill:#9B59B6,stroke:#8E44AD,color:#FFFFFF
+    style DEP fill:#3498DB,stroke:#2980B9,color:#FFFFFF
+    style BUILD fill:#E67E22,stroke:#D35400,color:#FFFFFF
+    style DEPLOY fill:#1ABC9C,stroke:#16A085,color:#FFFFFF
+
+    style ATK1 fill:#E74C3C,stroke:#C0392B,color:#FFFFFF
+    style ATK2 fill:#E74C3C,stroke:#C0392B,color:#FFFFFF
+    style ATK3 fill:#E74C3C,stroke:#C0392B,color:#FFFFFF
+    style ATK4 fill:#E74C3C,stroke:#C0392B,color:#FFFFFF
+
+    style DEF1 fill:#2ECC71,stroke:#27AE60,color:#FFFFFF
+    style DEF2 fill:#2ECC71,stroke:#27AE60,color:#FFFFFF
+    style DEF3 fill:#2ECC71,stroke:#27AE60,color:#FFFFFF
+    style DEF4 fill:#2ECC71,stroke:#27AE60,color:#FFFFFF

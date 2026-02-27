@@ -48,3 +48,4 @@
 ### Security
 
 - [OWASP Top 10 for LLM](../security/owasp-llm-top10.md) - LLM 보안 취약점 10대 위협, Prompt Injection, AI 에이전트 보안
+- [공급망 보안](../security/supply-chain-security.md) - SBOM, SLSA, SCA, Sigstore, EU CRA 2026 시행, 소프트웨어 공급망 공격 방어 (2026)
