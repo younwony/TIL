@@ -22,6 +22,7 @@
 - [Claude Code Skill](../ai-agent/claude-code-skill.md) - AI 에이전트의 기능을 모듈화하여 확장하는 능력 패키징 시스템
 - [AI 코딩 에이전트 워크플로우 흡수](../ai-agent/ai-coding-agent-workflow-absorption.md) - 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 현상, Anthropic·OpenAI·Google 동시 업데이트 분석 (2026)
 - [Claude Cowork](../ai-agent/claude-cowork.md) - Claude Code 에이전트를 비개발자용으로 확장한 범용 AI 코워커, 플러그인 생태계 (2026)
+- [Nano Banana 2 이미지 생성](../ai-agent/nanobanana-image-generation.md) - Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 (2026)
 
 ### System Design
 

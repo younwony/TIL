@@ -54,6 +54,7 @@ AI 에이전트 기초를 이해한 후 학습하세요.
 | [SLM](./slm.md) | 특정 작업에 최적화된 소형 언어 모델 `Trend 2026` | LLM 기초 |
 | [AI 보조 개발](./ai-assisted-development.md) | AI 코딩 도구 활용과 생산성 역설 `Trend 2026` | LLM 기초 |
 | [Claude 제품 비교 가이드](./claude-product-comparison.md) | Claude AI, Cowork, Code 3대 제품 종합 비교 `Trend 2026` | AI Agent란 |
+| [Nano Banana 2 이미지 생성](./nanobanana-image-generation.md) | Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 `Trend 2026` | MCP |
 
 ### [3] 중급
 
@@ -116,6 +117,9 @@ Sub Agent를 이해한 후 도전하세요.
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
 - [WebMCP (Web Model Context Protocol)](./webmcp.md) - 웹 페이지가 브라우저 내 AI 에이전트에게 구조화된 도구를 직접 노출하는 웹 표준 `Trend 2025-2026`
 - [A2A (Agent-to-Agent) Protocol](./a2a-protocol.md) - AI 에이전트 간 통신과 협업을 위한 표준 프로토콜 `Trend 2025`
+
+### 이미지 생성
+- [Nano Banana 2 이미지 생성](./nanobanana-image-generation.md) - Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 `Trend 2026`
 
 ### AI 협업 & 코딩 패러다임
 - [AI 보조 개발 (AI-Assisted Development)](./ai-assisted-development.md) - AI 코딩 도구를 활용한 개발 방법론, 생산성 역설과 품질 관리 전략 `Trend 2026`
