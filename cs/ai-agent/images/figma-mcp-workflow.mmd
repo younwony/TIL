@@ -1,0 +1,58 @@
+flowchart TD
+    A["👤 사용자<br/>Figma URL + 요청사항 입력"] --> B["🤖 Claude Code<br/>URL 파싱 (fileKey, nodeId 추출)"]
+
+    B --> C{"디자인 도구 판별"}
+
+    C -->|"Figma URL"| D["Figma MCP<br/>get_design_context 호출"]
+    C -->|"Pencil 파일"| E["Pencil MCP<br/>batch_get + get_screenshot"]
+
+    D --> F["디자인 분석 결과"]
+    E --> F
+
+    F --> G["📋 컨텍스트 수집"]
+
+    G --> G1["코드 힌트<br/>(React + Tailwind)"]
+    G --> G2["스크린샷"]
+    G --> G3["Code Connect 매핑"]
+    G --> G4["디자인 토큰<br/>(CSS 변수)"]
+
+    G1 --> H["🔍 프로젝트 분석"]
+    G2 --> H
+    G3 --> H
+    G4 --> H
+
+    H --> H1["기존 컴포넌트 탐색"]
+    H --> H2["디자인 시스템 매핑"]
+    H --> H3["토큰 → 프로젝트 변수"]
+
+    H1 --> I["⚙️ 코드 생성"]
+    H2 --> I
+    H3 --> I
+
+    I --> J{"Code Connect<br/>매핑 존재?"}
+
+    J -->|"있음"| K["기존 컴포넌트 재사용<br/>import 참조"]
+    J -->|"없음"| L["새 컴포넌트 생성<br/>프로젝트 컨벤션 준수"]
+
+    K --> M["📦 최종 코드 출력"]
+    L --> M
+
+    M --> N["✅ 검증"]
+    N --> N1["타입 체크"]
+    N --> N2["스타일 일치 확인"]
+    N --> N3["반응형 검증"]
+
+    style A fill:#f59e0b,stroke:#d97706,color:#000
+    style B fill:#059669,stroke:#047857,color:#fff
+    style C fill:#6366f1,stroke:#4f46e5,color:#fff
+    style D fill:#a259ff,stroke:#7b3fe4,color:#fff
+    style E fill:#f97316,stroke:#ea580c,color:#fff
+    style F fill:#0284c7,stroke:#0369a1,color:#fff
+    style G fill:#0284c7,stroke:#0369a1,color:#fff
+    style H fill:#059669,stroke:#047857,color:#fff
+    style I fill:#059669,stroke:#047857,color:#fff
+    style J fill:#6366f1,stroke:#4f46e5,color:#fff
+    style K fill:#10b981,stroke:#059669,color:#fff
+    style L fill:#10b981,stroke:#059669,color:#fff
+    style M fill:#f59e0b,stroke:#d97706,color:#000
+    style N fill:#10b981,stroke:#059669,color:#fff

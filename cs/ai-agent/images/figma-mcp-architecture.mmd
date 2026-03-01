@@ -1,0 +1,41 @@
+graph TB
+    subgraph "디자인 도구"
+        F["🎨 Figma<br/>(디자인 파일)"]
+        P["✏️ Pencil<br/>(.pen 파일)"]
+    end
+
+    subgraph "MCP 프로토콜 계층"
+        FM["Figma MCP Server<br/>get_design_context<br/>get_screenshot<br/>get_code_connect_map"]
+        PM["Pencil MCP Server<br/>batch_design<br/>batch_get<br/>get_screenshot"]
+    end
+
+    subgraph "AI 에이전트"
+        CC["🤖 Claude Code<br/>(코드 생성 & 적응)"]
+    end
+
+    subgraph "코드베이스"
+        DS["📦 디자인 시스템<br/>(컴포넌트 라이브러리)"]
+        DT["🎯 디자인 토큰<br/>(CSS 변수 / 테마)"]
+        SC["📄 소스 코드<br/>(React / Vue / etc)"]
+    end
+
+    F -->|"REST API<br/>디자인 컨텍스트"| FM
+    P -->|"stdio<br/>노드 데이터"| PM
+
+    FM -->|"코드 힌트 + 스크린샷<br/>+ Code Connect 매핑"| CC
+    PM -->|"레이아웃 + 스타일<br/>+ 가이드라인"| CC
+
+    CC -->|"기존 컴포넌트 참조"| DS
+    CC -->|"토큰 매핑"| DT
+    CC -->|"코드 생성/수정"| SC
+
+    DS -.->|"Code Connect<br/>양방향 동기화"| F
+
+    style F fill:#a259ff,stroke:#7b3fe4,color:#fff
+    style P fill:#f97316,stroke:#ea580c,color:#fff
+    style FM fill:#6366f1,stroke:#4f46e5,color:#fff
+    style PM fill:#6366f1,stroke:#4f46e5,color:#fff
+    style CC fill:#059669,stroke:#047857,color:#fff
+    style DS fill:#0284c7,stroke:#0369a1,color:#fff
+    style DT fill:#0284c7,stroke:#0369a1,color:#fff
+    style SC fill:#0284c7,stroke:#0369a1,color:#fff

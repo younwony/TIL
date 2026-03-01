@@ -86,6 +86,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Prompt Engineering](./prompt-engineering.md) | 효과적인 프롬프트 작성 | LLM 기초, AI Agent란 |
 | [OpenClaw](./openclaw.md) | 오픈소스 로컬 AI 개인 비서 `Trend 2026` | AI Agent란, MCP, Tool Use |
 | [Firecrawl](./firecrawl.md) | 웹 데이터를 LLM-ready 마크다운으로 변환하는 API | AI Agent란, RAG, MCP |
+| [Figma + MCP + Claude Code 통합 가이드](./figma-mcp-design-to-code.md) | Figma 디자인을 MCP로 Claude Code에 연결하여 Design-to-Code 워크플로우를 자동화하는 통합 가이드 `Trend 2025-2026` | MCP, Tool Use |
 
 ### [4] 심화 - Multi-Agent & Context Engineering
 
@@ -118,6 +119,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
 - [WebMCP (Web Model Context Protocol)](./webmcp.md) - 웹 페이지가 브라우저 내 AI 에이전트에게 구조화된 도구를 직접 노출하는 웹 표준 `Trend 2025-2026`
 - [A2A (Agent-to-Agent) Protocol](./a2a-protocol.md) - AI 에이전트 간 통신과 협업을 위한 표준 프로토콜 `Trend 2025`
+- [Figma + MCP + Claude Code 통합 가이드](./figma-mcp-design-to-code.md) - Figma 디자인을 MCP로 Claude Code에 연결하여 Design-to-Code 워크플로우를 자동화하는 통합 가이드 `Trend 2025-2026`
 
 ### 이미지 생성
 - [Nano Banana 2 이미지 생성](./nanobanana-image-generation.md) - Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 `Trend 2026`
