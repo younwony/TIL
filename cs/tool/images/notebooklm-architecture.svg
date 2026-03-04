@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
+  <defs>
+    <style>
+      .title { font: bold 18px 'Segoe UI', sans-serif; fill: #1a1a2e; }
+      .subtitle { font: 14px 'Segoe UI', sans-serif; fill: #555; }
+      .box-label { font: bold 13px 'Segoe UI', sans-serif; fill: #fff; }
+      .box-detail { font: 11px 'Segoe UI', sans-serif; fill: #fff; opacity: 0.9; }
+      .section-label { font: bold 12px 'Segoe UI', sans-serif; fill: #666; }
+      .arrow-label { font: 11px 'Segoe UI', sans-serif; fill: #888; }
+      .note { font: 10px 'Segoe UI', sans-serif; fill: #999; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#888"/>
+    </marker>
+    <linearGradient id="sourceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4285F4"/>
+      <stop offset="100%" style="stop-color:#3367D6"/>
+    </linearGradient>
+    <linearGradient id="engineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#34A853"/>
+      <stop offset="100%" style="stop-color:#2D8F47"/>
+    </linearGradient>
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EA4335"/>
+      <stop offset="100%" style="stop-color:#C5221F"/>
+    </linearGradient>
+    <linearGradient id="planGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FBBC04"/>
+      <stop offset="100%" style="stop-color:#E8A800"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="900" height="620" rx="12" fill="#fafbfc" stroke="#e1e4e8" stroke-width="1"/>
+
+  <!-- 제목 -->
+  <text x="450" y="35" text-anchor="middle" class="title">Google NotebookLM - 시스템 아키텍처 개요</text>
+  <text x="450" y="55" text-anchor="middle" class="subtitle">소스 업로드 → Gemini AI 분석 → 다양한 출력 생성</text>
+
+  <!-- 섹션 1: 소스 입력 -->
+  <rect x="20" y="75" width="210" height="520" rx="8" fill="#EBF3FF" stroke="#4285F4" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="125" y="95" text-anchor="middle" class="section-label" fill="#4285F4">소스 입력 (Sources)</text>
+
+  <!-- 소스 박스들 -->
+  <rect x="35" y="110" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="128" text-anchor="middle" class="box-label">PDF / DOCX</text>
+  <text x="125" y="142" text-anchor="middle" class="box-detail">최대 500,000 단어</text>
+
+  <rect x="35" y="158" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="176" text-anchor="middle" class="box-label">Google Docs / Slides / Sheets</text>
+  <text x="125" y="190" text-anchor="middle" class="box-detail">Google Drive 연동</text>
+
+  <rect x="35" y="206" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="224" text-anchor="middle" class="box-label">YouTube URL</text>
+  <text x="125" y="238" text-anchor="middle" class="box-detail">자막 기반 분석</text>
+
+  <rect x="35" y="254" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="272" text-anchor="middle" class="box-label">웹사이트 URL</text>
+  <text x="125" y="286" text-anchor="middle" class="box-detail">웹 콘텐츠 크롤링</text>
+
+  <rect x="35" y="302" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="320" text-anchor="middle" class="box-label">텍스트 / Markdown</text>
+  <text x="125" y="334" text-anchor="middle" class="box-detail">복사/붙여넣기</text>
+
+  <rect x="35" y="350" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="368" text-anchor="middle" class="box-label">오디오 파일</text>
+  <text x="125" y="382" text-anchor="middle" class="box-detail">음성 콘텐츠</text>
+
+  <rect x="35" y="398" width="180" height="38" rx="6" fill="url(#sourceGrad)"/>
+  <text x="125" y="416" text-anchor="middle" class="box-label">이미지</text>
+  <text x="125" y="430" text-anchor="middle" class="box-detail">시각 자료 분석</text>
+
+  <text x="125" y="465" text-anchor="middle" class="note">무료: 50개 / Plus: 100개</text>
+  <text x="125" y="480" text-anchor="middle" class="note">Pro: 300개 / Ultra: 600개</text>
+
+  <!-- 화살표: 소스 → 엔진 -->
+  <line x1="230" y1="280" x2="290" y2="280" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="260" y="270" text-anchor="middle" class="arrow-label">업로드</text>
+
+  <!-- 섹션 2: AI 엔진 -->
+  <rect x="295" y="75" width="250" height="520" rx="8" fill="#E8F5E9" stroke="#34A853" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="420" y="95" text-anchor="middle" class="section-label" fill="#34A853">AI 엔진 (Gemini 3)</text>
+
+  <rect x="310" y="110" width="220" height="50" rx="6" fill="url(#engineGrad)"/>
+  <text x="420" y="132" text-anchor="middle" class="box-label">문서 파싱 &amp; 인덱싱</text>
+  <text x="420" y="150" text-anchor="middle" class="box-detail">청킹, 임베딩, 벡터 저장</text>
+
+  <rect x="310" y="175" width="220" height="50" rx="6" fill="url(#engineGrad)"/>
+  <text x="420" y="197" text-anchor="middle" class="box-label">RAG (검색 증강 생성)</text>
+  <text x="420" y="215" text-anchor="middle" class="box-detail">소스 기반 정확한 응답</text>
+
+  <rect x="310" y="240" width="220" height="50" rx="6" fill="url(#engineGrad)"/>
+  <text x="420" y="262" text-anchor="middle" class="box-label">요약 &amp; 분석</text>
+  <text x="420" y="280" text-anchor="middle" class="box-detail">핵심 주제 추출, 관계 파악</text>
+
+  <rect x="310" y="305" width="220" height="50" rx="6" fill="url(#engineGrad)"/>
+  <text x="420" y="327" text-anchor="middle" class="box-label">멀티모달 이해</text>
+  <text x="420" y="345" text-anchor="middle" class="box-detail">텍스트 + 이미지 + 오디오</text>
+
+  <rect x="310" y="370" width="220" height="50" rx="6" fill="url(#engineGrad)"/>
+  <text x="420" y="392" text-anchor="middle" class="box-label">Deep Research</text>
+  <text x="420" y="410" text-anchor="middle" class="box-detail">자율 연구 에이전트</text>
+
+  <rect x="310" y="435" width="220" height="50" rx="6" fill="url(#engineGrad)"/>
+  <text x="420" y="457" text-anchor="middle" class="box-label">인라인 인용</text>
+  <text x="420" y="475" text-anchor="middle" class="box-detail">출처 추적 &amp; 검증</text>
+
+  <!-- 화살표: 엔진 → 출력 -->
+  <line x1="545" y1="280" x2="605" y2="280" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="575" y="270" text-anchor="middle" class="arrow-label">생성</text>
+
+  <!-- 섹션 3: 출력 -->
+  <rect x="610" y="75" width="270" height="520" rx="8" fill="#FDE8E7" stroke="#EA4335" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="745" y="95" text-anchor="middle" class="section-label" fill="#EA4335">Studio 출력 (Outputs)</text>
+
+  <rect x="625" y="110" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="128" text-anchor="middle" class="box-label">Audio Overview (팟캐스트)</text>
+  <text x="745" y="142" text-anchor="middle" class="box-detail">Deep Dive / Brief / Critique / Debate</text>
+
+  <rect x="625" y="158" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="176" text-anchor="middle" class="box-label">Video Overview (영상)</text>
+  <text x="745" y="190" text-anchor="middle" class="box-detail">나레이션 슬라이드, 스타일 선택</text>
+
+  <rect x="625" y="206" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="224" text-anchor="middle" class="box-label">Mind Map (마인드맵)</text>
+  <text x="745" y="238" text-anchor="middle" class="box-detail">인터랙티브 주제 시각화</text>
+
+  <rect x="625" y="254" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="272" text-anchor="middle" class="box-label">Reports (보고서)</text>
+  <text x="745" y="286" text-anchor="middle" class="box-detail">구조화된 문서 생성</text>
+
+  <rect x="625" y="302" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="320" text-anchor="middle" class="box-label">Data Tables (데이터 테이블)</text>
+  <text x="745" y="334" text-anchor="middle" class="box-detail">구조화 비교표 → Google Sheets</text>
+
+  <rect x="625" y="350" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="368" text-anchor="middle" class="box-label">Flashcards / Quiz</text>
+  <text x="745" y="382" text-anchor="middle" class="box-detail">학습용 플래시카드, 퀴즈</text>
+
+  <rect x="625" y="398" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="416" text-anchor="middle" class="box-label">Slide Deck (프레젠테이션)</text>
+  <text x="745" y="430" text-anchor="middle" class="box-detail">발표 자료 자동 생성</text>
+
+  <rect x="625" y="446" width="240" height="38" rx="6" fill="url(#outputGrad)"/>
+  <text x="745" y="464" text-anchor="middle" class="box-label">Infographic (인포그래픽)</text>
+  <text x="745" y="478" text-anchor="middle" class="box-detail">시각적 정보 요약</text>
+
+  <!-- 하단 요금제 -->
+  <rect x="35" y="510" width="190" height="70" rx="6" fill="url(#planGrad)"/>
+  <text x="130" y="533" text-anchor="middle" class="box-label" fill="#333">Free</text>
+  <text x="130" y="548" text-anchor="middle" class="box-detail" fill="#333">50 소스 / 무료</text>
+  <text x="130" y="563" text-anchor="middle" class="box-detail" fill="#333">기본 기능</text>
+
+  <rect x="240" y="510" width="190" height="70" rx="6" fill="url(#planGrad)"/>
+  <text x="335" y="533" text-anchor="middle" class="box-label" fill="#333">Plus / Pro</text>
+  <text x="335" y="548" text-anchor="middle" class="box-detail" fill="#333">100~300 소스</text>
+  <text x="335" y="563" text-anchor="middle" class="box-detail" fill="#333">$14~$19.99/월</text>
+
+  <rect x="445" y="510" width="190" height="70" rx="6" fill="url(#planGrad)"/>
+  <text x="540" y="533" text-anchor="middle" class="box-label" fill="#333">Ultra</text>
+  <text x="540" y="548" text-anchor="middle" class="box-detail" fill="#333">600 소스</text>
+  <text x="540" y="563" text-anchor="middle" class="box-detail" fill="#333">$249.99/월</text>
+
+  <rect x="650" y="510" width="190" height="70" rx="6" fill="url(#planGrad)"/>
+  <text x="745" y="533" text-anchor="middle" class="box-label" fill="#333">Enterprise</text>
+  <text x="745" y="548" text-anchor="middle" class="box-detail" fill="#333">IAM / VPC-SC</text>
+  <text x="745" y="563" text-anchor="middle" class="box-detail" fill="#333">Google Cloud 연동</text>
+
+  <!-- 날짜 -->
+  <text x="870" y="610" text-anchor="end" class="note">2026-03 기준</text>
+</svg>

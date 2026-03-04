@@ -156,31 +156,165 @@ Claude Code에서 다음과 같이 확인:
 
 `nanobanana` 서버가 목록에 표시되면 설정 완료.
 
-## 사용 가이드
+## MCP 도구 레퍼런스
 
-### 기본 이미지 생성
-
-Claude Code에서 자연어로 요청하면 된다:
+Nano Banana MCP 서버는 4개의 도구를 제공한다. Claude Code에서 자연어로 요청하면 Claude가 적절한 도구를 자동으로 호출한다.
 
 ```
+┌───────────────────────────────────────────────────────────────────┐
+│                   Nano Banana MCP 도구 구조                        │
+│                                                                   │
+│  ┌────────────────────┐   핵심 도구                                │
+│  │  generate_image    │ ← 이미지 생성/편집 (가장 많이 사용)          │
+│  └────────────────────┘                                           │
+│  ┌────────────────────┐   보조 도구                                │
+│  │  upload_file       │ ← 대용량 파일 업로드 (20MB+, 재사용)        │
+│  └────────────────────┘                                           │
+│  ┌────────────────────┐   모니터링                                 │
+│  │  show_output_stats │ ← 출력 디렉토리 통계 확인                   │
+│  └────────────────────┘                                           │
+│  ┌────────────────────┐   관리                                    │
+│  │  maintenance       │ ← 정리, 할당량 확인, DB 정리                │
+│  └────────────────────┘                                           │
+└───────────────────────────────────────────────────────────────────┘
+```
+
+### 도구 1: generate_image (이미지 생성/편집)
+
+가장 핵심적인 도구로, 텍스트 프롬프트로 새 이미지를 생성하거나 기존 이미지를 편집한다.
+
+**입력 모드 (자동 감지):**
+
+| 모드 | 사용 조건 | 설명 |
+|------|----------|------|
+| `generate` | 프롬프트만 제공 | 새 이미지 생성 |
+| `edit` | input_image_path 또는 file_id 제공 | 기존 이미지 수정 |
+| `auto` | 기본값 | 파라미터에 따라 자동 결정 |
+
+**전체 파라미터:**
+
+| 파라미터 | 타입 | 필수 | 기본값 | 설명 |
+|---------|------|------|--------|------|
+| `prompt` | string | O | - | 이미지 설명 (최대 8,192자). 주제, 구도, 스타일, 텍스트 포함 |
+| `model_tier` | string | X | `auto` | `flash`(레거시 1024px), `nb2`(4K+빠름), `pro`(최고품질), `auto`(자동) |
+| `aspect_ratio` | string | X | null | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9` |
+| `output_path` | string | X | IMAGE_OUTPUT_DIR | 파일 경로(`/path/image.png`) 또는 디렉토리(`/path/to/dir/`) |
+| `n` | int | X | 1 | 생성 이미지 수 (1~4). 모델에 따라 실제 반환 수가 적을 수 있음 |
+| `negative_prompt` | string | X | null | 제외할 요소 (최대 1,024자) |
+| `resolution` | string | X | `high` | `high`, `4k`, `2k`, `1k`. 4K/2K는 Pro 모델 전용 |
+| `enable_grounding` | bool | X | true | Google Search 기반 정확도 향상 (Pro 모델 전용) |
+| `system_instruction` | string | X | null | 톤/스타일 가이드 (최대 512자) |
+| `thinking_level` | string | X | null | Pro 모델 추론 깊이: `low`(빠름), `high`(고품질) |
+| `mode` | string | X | `auto` | `generate`, `edit`, `auto` |
+| `input_image_path_1` | string | X | null | 첫 번째 입력 이미지 경로 (편집/합성용) |
+| `input_image_path_2` | string | X | null | 두 번째 입력 이미지 경로 (합성용) |
+| `input_image_path_3` | string | X | null | 세 번째 입력 이미지 경로 (합성용) |
+| `file_id` | string | X | null | Files API ID (`files/abc123`). input_image_path보다 우선 |
+| `return_full_image` | bool | X | env 값 | MCP 응답에 원본 포함 여부. 4K는 3~7MB로 토큰 사용량 증가 |
+
+**사용 예시 - 자연어 요청:**
+
+```
+# 기본 생성
 "바다 위 석양 이미지를 16:9 비율로 생성해줘"
+
+# 모델 지정
+"pro 모델로 4K 해상도의 도시 야경 이미지를 만들어줘"
+
+# 이미지 편집
+"./images/logo.png 의 배경을 파란 하늘로 바꿔줘"
+
+# 멀티 이미지 합성
+"이 두 이미지를 합성해줘" (경로 지정)
+
+# 부정 프롬프트 활용
+"깔끔한 UI 목업을 만들어줘, 텍스트나 워터마크는 제외해줘"
+
+# 스타일 가이드
+"미니멀한 톤으로 기술 블로그 배너를 만들어줘"
 ```
 
-Claude가 내부적으로 `generate_image` 도구를 호출한다.
+### 도구 2: upload_file (파일 업로드)
 
-### 주요 파라미터
+Gemini Files API에 로컬 파일을 업로드한다. 20MB 이상의 대용량 이미지나 여러 프롬프트에서 재사용할 파일에 유용하다.
 
-| 파라미터 | 타입 | 설명 |
-|---------|------|------|
-| `prompt` | string (필수) | 이미지 설명. 주제, 구도, 스타일, 텍스트 등 상세하게 작성 |
-| `model_tier` | string | `flash`, `nb2`, `pro`, `auto` 중 선택 |
-| `aspect_ratio` | string | `1:1`, `16:9`, `9:16`, `4:3` 등 |
-| `output_path` | string | 저장 경로. 파일명 또는 디렉토리 지정 |
-| `n` | int (1~4) | 생성할 이미지 수 |
-| `negative_prompt` | string | 제외할 요소 (스타일, 객체, 텍스트 등) |
-| `resolution` | string | `high`, `4k`, `2k`, `1k` |
-| `enable_grounding` | bool | Google Search 기반 정확도 향상 (Pro만) |
-| `system_instruction` | string | 톤/스타일 가이드 |
+**파라미터:**
+
+| 파라미터 | 타입 | 필수 | 설명 |
+|---------|------|------|------|
+| `path` | string | O | 업로드할 로컬 파일 경로 (최대 512자) |
+| `display_name` | string | X | 파일 표시 이름 (최대 256자) |
+
+**반환값:** 업로드된 파일의 URI와 메타데이터. 반환된 `file_id`를 `generate_image`의 `file_id` 파라미터로 전달하여 편집에 사용한다.
+
+**사용 예시:**
+
+```
+# 대용량 이미지 업로드 후 편집
+"이 30MB 이미지를 업로드하고 배경을 변경해줘"
+→ Claude가 upload_file → generate_image(file_id=...) 순서로 호출
+
+# 재사용할 이미지 업로드
+"이 로고 이미지를 업로드해줘, 여러 배너에 사용할 거야"
+```
+
+### 도구 3: show_output_stats (출력 통계)
+
+출력 디렉토리의 통계를 확인한다. 파라미터 없이 호출한다.
+
+**반환 정보:**
+- 출력 디렉토리 경로
+- 생성된 이미지 총 개수
+- 총 파일 크기
+- 최근 생성 이미지 목록
+
+**사용 예시:**
+
+```
+"지금까지 생성한 이미지 통계를 보여줘"
+"nano banana 출력 폴더 상태 확인해줘"
+```
+
+### 도구 4: maintenance (유지보수)
+
+저장 공간과 API 할당량을 관리하는 유지보수 도구다.
+
+**파라미터:**
+
+| 파라미터 | 타입 | 필수 | 기본값 | 설명 |
+|---------|------|------|--------|------|
+| `operation` | string | O | - | 실행할 작업 (아래 표 참고) |
+| `dry_run` | bool | X | true | `true`면 변경 없이 미리보기만 수행 |
+| `max_age_hours` | int | X | 168 (1주) | `cleanup_local`용: 보관 최대 시간 (1~8,760) |
+| `keep_count` | int | X | null | `cleanup_local`용: 최소 보관 파일 수 (1~1,000) |
+
+**작업(operation) 종류:**
+
+| 작업 | 설명 |
+|------|------|
+| `check_quota` | Files API 저장 사용량 확인 (~20GB 한도) |
+| `cleanup_local` | 오래된 로컬 이미지 정리 (age/LRU 기반) |
+| `cleanup_expired` | 만료된 Files API 항목 정리 |
+| `database_hygiene` | 데이터베이스 불일치 정리 |
+| `full_cleanup` | 위 4가지 작업을 순차 실행 |
+
+**사용 예시:**
+
+```
+# 할당량 확인
+"nano banana 할당량 확인해줘"
+
+# 로컬 정리 (미리보기)
+"1주일 넘은 이미지를 정리해줘 (미리보기만)"
+
+# 실제 정리 실행
+"오래된 이미지를 실제로 정리해줘, dry_run 끄고"
+
+# 전체 정리
+"nano banana 전체 정리 실행해줘"
+```
+
+## 사용 가이드
 
 ### 프롬프트 작성 팁
 
@@ -198,32 +332,38 @@ Claude가 내부적으로 `generate_image` 도구를 호출한다.
 | 아키텍처 일러스트 | "Isometric illustration of cloud computing architecture, servers connected to client devices, clean flat design" |
 | 마스코트 | "Cute cartoon robot character waving, friendly expression, pastel colors, simple vector style" |
 
-### 이미지 편집
-
-기존 이미지를 입력하여 수정할 수 있다:
+### 모델 선택 가이드
 
 ```
-"이 이미지의 배경을 파란 하늘로 바꿔줘"
-→ input_image_path_1에 원본 이미지 경로 지정
+                빠른 프로토타입?
+                    │
+                    ├── Yes → flash (레거시, 1024px, 가장 빠름)
+                    │
+                    └── No → 고품질 필요?
+                                │
+                                ├── Yes → 복잡한 장면/텍스트 렌더링?
+                                │           │
+                                │           ├── Yes → pro (최고 품질, 4K, 느림)
+                                │           │
+                                │           └── No → nb2 (4K + Flash 속도, 권장)
+                                │
+                                └── 잘 모르겠다 → auto (자동 선택)
 ```
 
-### 멀티 이미지 합성
-
-최대 3개 이미지를 입력하여 조합할 수 있다:
+### 이미지 편집 워크플로우
 
 ```
-"첫 번째 이미지의 인물을 두 번째 이미지의 배경에 합성해줘"
-→ input_image_path_1, input_image_path_2에 각각 경로 지정
+1. 단일 이미지 편집
+   "이 이미지의 배경을 파란 하늘로 바꿔줘"
+   → input_image_path_1에 원본 이미지 경로 지정
+
+2. 멀티 이미지 합성 (최대 3개)
+   "첫 번째 이미지의 인물을 두 번째 이미지의 배경에 합성해줘"
+   → input_image_path_1, input_image_path_2에 각각 경로 지정
+
+3. 대용량 이미지 편집 (20MB+)
+   → upload_file로 먼저 업로드 → file_id로 편집
 ```
-
-### 유지보수 명령
-
-| 명령 | 설명 |
-|------|------|
-| `check_quota` | Files API 저장 사용량 확인 (~20GB 한도) |
-| `cleanup_local` | 오래된 로컬 이미지 정리 |
-| `cleanup_expired` | 만료된 Files API 항목 정리 |
-| `full_cleanup` | 전체 정리 (위 3가지 순차 실행) |
 
 ## 트러블슈팅
 

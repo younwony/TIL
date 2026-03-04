@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 520" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (기본) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (성공) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 빨강 (경고) -->
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 주황 -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 연한 파랑 배경 -->
+    <linearGradient id="bgBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D6EAF8"/>
+      <stop offset="100%" style="stop-color:#AED6F1"/>
+    </linearGradient>
+    <!-- 연한 초록 배경 -->
+    <linearGradient id="bgGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D5F5E3"/>
+      <stop offset="100%" style="stop-color:#A9DFBF"/>
+    </linearGradient>
+    <!-- 연한 보라 배경 -->
+    <linearGradient id="bgPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8DAEF"/>
+      <stop offset="100%" style="stop-color:#D2B4DE"/>
+    </linearGradient>
+    <!-- 연한 주황 배경 -->
+    <linearGradient id="bgOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDEBD0"/>
+      <stop offset="100%" style="stop-color:#FAD7A0"/>
+    </linearGradient>
+    <!-- MySQL Shell 헤더 -->
+    <linearGradient id="shellHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#34495E"/>
+    </linearGradient>
+    <!-- 화살표 마커 -->
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980B9"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D35400"/>
+    </marker>
+  </defs>
+
+  <!-- ===================== 배경 ===================== -->
+  <rect x="0" y="0" width="780" height="520" fill="#F8F9FA" rx="12"/>
+
+  <!-- ===================== 제목 ===================== -->
+  <text x="390" y="32" text-anchor="middle" fill="#2C3E50" font-size="16" font-weight="bold">MySQL Shell 아키텍처</text>
+  <text x="390" y="50" text-anchor="middle" fill="#7F8C8D" font-size="11">SQL / JavaScript / Python 모드와 주요 기능 구조</text>
+
+  <!-- ===================== MySQL Shell 본체 ===================== -->
+  <!-- 외곽 컨테이너 -->
+  <rect x="30" y="65" width="480" height="390" fill="white" rx="10" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <!-- 헤더 바 -->
+  <rect x="30" y="65" width="480" height="38" fill="url(#shellHeader)" rx="10"/>
+  <rect x="30" y="88" width="480" height="15" fill="url(#shellHeader)"/>
+  <text x="270" y="90" text-anchor="middle" fill="white" font-size="13" font-weight="bold">MySQL Shell</text>
+  <text x="60" y="90" fill="#95A5A6" font-size="10">mysqlsh</text>
+
+  <!-- ===================== 입력 모드 섹션 ===================== -->
+  <rect x="50" y="118" width="440" height="105" fill="url(#bgBlue)" rx="8" stroke="#AED6F1" stroke-width="1"/>
+  <text x="270" y="137" text-anchor="middle" fill="#1A5276" font-size="11" font-weight="bold">입력 모드 (Input Mode)</text>
+
+  <!-- SQL 모드 -->
+  <rect x="68" y="145" width="120" height="62" fill="url(#nodeBlue)" rx="7"/>
+  <text x="128" y="166" text-anchor="middle" fill="white" font-size="12" font-weight="bold">SQL Mode</text>
+  <text x="128" y="182" text-anchor="middle" fill="#D6EAF8" font-size="9">\sql 또는 --sql</text>
+  <text x="128" y="197" text-anchor="middle" fill="#D6EAF8" font-size="9">표준 SQL 실행</text>
+
+  <!-- JavaScript 모드 -->
+  <rect x="210" y="145" width="120" height="62" fill="url(#nodeOrange)" rx="7"/>
+  <text x="270" y="162" text-anchor="middle" fill="white" font-size="12" font-weight="bold">JavaScript</text>
+  <text x="270" y="176" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Mode</text>
+  <text x="270" y="192" text-anchor="middle" fill="#FDEBD0" font-size="9">\js 또는 --js</text>
+  <text x="270" y="205" text-anchor="middle" fill="#FDEBD0" font-size="9">AdminAPI / X DevAPI</text>
+
+  <!-- Python 모드 -->
+  <rect x="352" y="145" width="120" height="62" fill="url(#nodePurple)" rx="7"/>
+  <text x="412" y="166" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Python Mode</text>
+  <text x="412" y="182" text-anchor="middle" fill="#E8DAEF" font-size="9">\py 또는 --py</text>
+  <text x="412" y="197" text-anchor="middle" fill="#E8DAEF" font-size="9">AdminAPI / X DevAPI</text>
+
+  <!-- ===================== 핵심 기능 섹션 ===================== -->
+  <!-- AdminAPI -->
+  <rect x="50" y="240" width="130" height="105" fill="url(#bgOrange)" rx="8" stroke="#FAD7A0" stroke-width="1"/>
+  <rect x="58" y="248" width="114" height="28" fill="url(#nodeOrange)" rx="5"/>
+  <text x="115" y="267" text-anchor="middle" fill="white" font-size="11" font-weight="bold">AdminAPI</text>
+  <text x="115" y="293" text-anchor="middle" fill="#6E2F00" font-size="9">InnoDB Cluster</text>
+  <text x="115" y="308" text-anchor="middle" fill="#6E2F00" font-size="9">dba.createCluster()</text>
+  <text x="115" y="323" text-anchor="middle" fill="#6E2F00" font-size="9">dba.getCluster()</text>
+  <text x="115" y="338" text-anchor="middle" fill="#6E2F00" font-size="9">cluster.addInstance()</text>
+
+  <!-- X DevAPI -->
+  <rect x="200" y="240" width="130" height="105" fill="url(#bgPurple)" rx="8" stroke="#D2B4DE" stroke-width="1"/>
+  <rect x="208" y="248" width="114" height="28" fill="url(#nodePurple)" rx="5"/>
+  <text x="265" y="267" text-anchor="middle" fill="white" font-size="11" font-weight="bold">X DevAPI</text>
+  <text x="265" y="293" text-anchor="middle" fill="#4A235A" font-size="9">Document Store</text>
+  <text x="265" y="308" text-anchor="middle" fill="#4A235A" font-size="9">session.getSchema()</text>
+  <text x="265" y="323" text-anchor="middle" fill="#4A235A" font-size="9">collection.find()</text>
+  <text x="265" y="338" text-anchor="middle" fill="#4A235A" font-size="9">X Protocol (33060)</text>
+
+  <!-- Classic Protocol -->
+  <rect x="350" y="240" width="140" height="105" fill="url(#bgBlue)" rx="8" stroke="#AED6F1" stroke-width="1"/>
+  <rect x="358" y="248" width="124" height="28" fill="url(#nodeBlue)" rx="5"/>
+  <text x="420" y="267" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Classic Protocol</text>
+  <text x="420" y="293" text-anchor="middle" fill="#1A5276" font-size="9">기존 MySQL 연결</text>
+  <text x="420" y="308" text-anchor="middle" fill="#1A5276" font-size="9">mysql.getSession()</text>
+  <text x="420" y="323" text-anchor="middle" fill="#1A5276" font-size="9">session.runSql()</text>
+  <text x="420" y="338" text-anchor="middle" fill="#1A5276" font-size="9">Port 3306</text>
+
+  <!-- ===================== Utilities 섹션 ===================== -->
+  <rect x="50" y="362" width="440" height="72" fill="#ECF0F1" rx="8" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="270" y="380" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="bold">Built-in Utilities</text>
+  <!-- Util 항목들 -->
+  <rect x="65" y="388" width="88" height="32" fill="#BDC3C7" rx="5"/>
+  <text x="109" y="403" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="bold">util.dumpInstance()</text>
+  <text x="109" y="415" text-anchor="middle" fill="#566573" font-size="8">논리 백업</text>
+
+  <rect x="163" y="388" width="88" height="32" fill="#BDC3C7" rx="5"/>
+  <text x="207" y="403" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="bold">util.loadDump()</text>
+  <text x="207" y="415" text-anchor="middle" fill="#566573" font-size="8">덤프 복원</text>
+
+  <rect x="261" y="388" width="88" height="32" fill="#BDC3C7" rx="5"/>
+  <text x="305" y="403" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="bold">util.checkForUpgrade()</text>
+  <text x="305" y="415" text-anchor="middle" fill="#566573" font-size="8">업그레이드 검사</text>
+
+  <rect x="359" y="388" width="115" height="32" fill="#BDC3C7" rx="5"/>
+  <text x="416" y="403" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="bold">util.copyInstance()</text>
+  <text x="416" y="415" text-anchor="middle" fill="#566573" font-size="8">인스턴스 복사</text>
+
+  <!-- ===================== 연결 대상 섹션 ===================== -->
+  <!-- MySQL Server -->
+  <rect x="535" y="120" width="210" height="110" fill="url(#bgGreen)" rx="10" stroke="#A9DFBF" stroke-width="1.5"/>
+  <rect x="543" y="128" width="194" height="30" fill="url(#nodeGreen)" rx="6"/>
+  <text x="640" y="148" text-anchor="middle" fill="white" font-size="12" font-weight="bold">MySQL Server</text>
+  <text x="640" y="173" text-anchor="middle" fill="#1D6A39" font-size="10">Standalone Instance</text>
+  <text x="640" y="190" text-anchor="middle" fill="#1D6A39" font-size="9">Port 3306 (Classic)</text>
+  <text x="640" y="205" text-anchor="middle" fill="#1D6A39" font-size="9">Port 33060 (X Protocol)</text>
+  <text x="640" y="220" text-anchor="middle" fill="#1D6A39" font-size="9">MySQL 8.0+</text>
+
+  <!-- InnoDB Cluster -->
+  <rect x="535" y="255" width="210" height="135" fill="#FDEDEC" rx="10" stroke="#FADBD8" stroke-width="1.5"/>
+  <rect x="543" y="263" width="194" height="30" fill="url(#nodeRed)" rx="6"/>
+  <text x="640" y="283" text-anchor="middle" fill="white" font-size="12" font-weight="bold">InnoDB Cluster</text>
+  <text x="640" y="310" text-anchor="middle" fill="#7B241C" font-size="10">Group Replication</text>
+  <!-- 클러스터 노드들 -->
+  <rect x="548" y="320" width="58" height="28" fill="url(#nodeRed)" rx="5"/>
+  <text x="577" y="332" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Primary</text>
+  <text x="577" y="343" text-anchor="middle" fill="#FADBD8" font-size="7">R/W</text>
+
+  <rect x="613" y="320" width="58" height="28" fill="#E8A0A0" rx="5"/>
+  <text x="642" y="332" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Secondary</text>
+  <text x="642" y="343" text-anchor="middle" fill="white" font-size="7">R/O</text>
+
+  <rect x="678" y="320" width="58" height="28" fill="#E8A0A0" rx="5"/>
+  <text x="707" y="332" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Secondary</text>
+  <text x="707" y="343" text-anchor="middle" fill="white" font-size="7">R/O</text>
+
+  <text x="640" y="375" text-anchor="middle" fill="#7B241C" font-size="9">MySQL Router 경유 가능</text>
+
+  <!-- MySQL Router 박스 -->
+  <rect x="535" y="410" width="210" height="55" fill="#EBF5FB" rx="10" stroke="#AED6F1" stroke-width="1.5"/>
+  <rect x="543" y="418" width="194" height="24" fill="url(#nodeBlue)" rx="5"/>
+  <text x="640" y="434" text-anchor="middle" fill="white" font-size="11" font-weight="bold">MySQL Router</text>
+  <text x="640" y="454" text-anchor="middle" fill="#1A5276" font-size="9">트래픽 라우팅 / 자동 페일오버</text>
+
+  <!-- ===================== 연결선 ===================== -->
+  <!-- Shell → MySQL Server -->
+  <line x1="510" y1="200" x2="533" y2="175" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <text x="520" y="192" text-anchor="middle" fill="#27AE60" font-size="8">SQL/X Protocol</text>
+
+  <!-- Shell → InnoDB Cluster -->
+  <line x1="510" y1="295" x2="533" y2="310" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="519" y="305" text-anchor="middle" fill="#E74C3C" font-size="8">AdminAPI</text>
+
+  <!-- Shell → MySQL Router -->
+  <line x1="510" y1="395" x2="533" y2="430" stroke="#2980B9" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowBlue)"/>
+
+  <!-- MySQL Router → InnoDB Cluster 수직 화살표 -->
+  <line x1="640" y1="410" x2="640" y2="393" stroke="#2980B9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===================== 범례 ===================== -->
+  <rect x="30" y="462" width="480" height="48" fill="white" rx="8" stroke="#ECF0F1" stroke-width="1"/>
+  <text x="50" y="477" fill="#7F8C8D" font-size="9" font-weight="bold">범례</text>
+
+  <!-- 점선 -->
+  <line x1="80" y1="490" x2="110" y2="490" stroke="#27AE60" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="115" y="494" fill="#566573" font-size="9">SQL / X Protocol 연결</text>
+
+  <line x1="230" y1="490" x2="260" y2="490" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="265" y="494" fill="#566573" font-size="9">AdminAPI 연결</text>
+
+  <!-- 포트 정보 -->
+  <rect x="360" y="480" width="8" height="8" fill="url(#nodeBlue)" rx="2"/>
+  <text x="373" y="489" fill="#566573" font-size="9">Classic: 3306</text>
+  <rect x="430" y="480" width="8" height="8" fill="url(#nodePurple)" rx="2"/>
+  <text x="443" y="489" fill="#566573" font-size="9">X Protocol: 33060</text>
+
+</svg>
