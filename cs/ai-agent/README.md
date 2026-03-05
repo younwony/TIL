@@ -55,6 +55,7 @@ AI 에이전트 기초를 이해한 후 학습하세요.
 | [AI 보조 개발](./ai-assisted-development.md) | AI 코딩 도구 활용과 생산성 역설 `Trend 2026` | LLM 기초 |
 | [Claude 제품 비교 가이드](./claude-product-comparison.md) | Claude AI, Cowork, Code 3대 제품 종합 비교 `Trend 2026` | AI Agent란 |
 | [Nano Banana 2 이미지 생성](./nanobanana-image-generation.md) | Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 `Trend 2026` | MCP |
+| [AI 슬라이드 생성 도구 비교 가이드](./ai-slide-tools.md) | Gamma, Beautiful.ai, Tome 등 AI 프레젠테이션 도구 비교와 선택 기준 `Trend 2026` | AI Agent란, LLM 기초 |
 
 ### [3] 중급
 
@@ -124,6 +125,9 @@ Sub Agent를 이해한 후 도전하세요.
 
 ### 이미지 생성
 - [Nano Banana 2 이미지 생성](./nanobanana-image-generation.md) - Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 `Trend 2026`
+
+### AI 생산성 도구
+- [AI 슬라이드 생성 도구 비교 가이드](./ai-slide-tools.md) - Gamma, Beautiful.ai, Tome 등 AI 프레젠테이션 도구 비교와 선택 기준 `Trend 2026`
 
 ### AI 협업 & 코딩 패러다임
 - [AI 보조 개발 (AI-Assisted Development)](./ai-assisted-development.md) - AI 코딩 도구를 활용한 개발 방법론, 생산성 역설과 품질 관리 전략 `Trend 2026`

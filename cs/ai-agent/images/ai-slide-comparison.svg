@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" font-family="Arial, sans-serif">
+  <defs>
+    <!-- Gamma 강조 그라디언트 -->
+    <linearGradient id="gradGamma" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 일반 서비스 그라디언트 -->
+    <linearGradient id="gradService" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 보라 -->
+    <linearGradient id="gradPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 초록 -->
+    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 주황 -->
+    <linearGradient id="gradOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 청록 -->
+    <linearGradient id="gradTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+    <!-- 회색 -->
+    <linearGradient id="gradGray" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#95A5A6"/>
+      <stop offset="100%" style="stop-color:#7F8C8D"/>
+    </linearGradient>
+
+    <!-- Gamma 글로우 효과 -->
+    <filter id="glowGamma">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadowDrop">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000020"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="900" height="540" fill="#FAFBFC" rx="12"/>
+
+  <!-- 타이틀 -->
+  <text x="450" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="bold">AI 슬라이드 서비스 포지셔닝 맵</text>
+  <text x="450" y="58" text-anchor="middle" fill="#7F8C8D" font-size="12">AI 자동화 수준 vs 디자인 퀄리티 비교</text>
+  <line x1="40" y1="70" x2="860" y2="70" stroke="#ECF0F1" stroke-width="1.5"/>
+
+  <!-- ===== 2x2 매트릭스 영역 ===== -->
+  <!-- 매트릭스 외곽 테두리 -->
+  <rect x="100" y="90" width="700" height="400" rx="4" fill="white" stroke="#BDC3C7" stroke-width="1.5" filter="url(#shadowDrop)"/>
+
+  <!-- 4분면 배경 색상 -->
+  <!-- 좌하단: AI 낮음, 디자인 낮음 (연한 회색) -->
+  <rect x="100" y="290" width="350" height="200" rx="0" fill="#F8F9FA"/>
+  <!-- 우하단: AI 높음, 디자인 낮음 (연한 노랑) -->
+  <rect x="450" y="290" width="350" height="200" rx="0" fill="#FFFDE7"/>
+  <!-- 좌상단: AI 낮음, 디자인 높음 (연한 파랑) -->
+  <rect x="100" y="90" width="350" height="200" rx="0" fill="#E8F4FD"/>
+  <!-- 우상단: AI 높음, 디자인 높음 (연한 초록, 이상적 영역) -->
+  <rect x="450" y="90" width="350" height="200" rx="0" fill="#EAFAF1"/>
+  <!-- 우상단 모서리 둥글게 처리 -->
+  <rect x="450" y="90" width="350" height="4" fill="#EAFAF1"/>
+  <rect x="446" y="90" width="4" height="4" fill="#FAFBFC"/>
+
+  <!-- 그리드 선 (점선) -->
+  <!-- 수직 중심선 -->
+  <line x1="450" y1="90" x2="450" y2="490" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <!-- 수평 중심선 -->
+  <line x1="100" y1="290" x2="800" y2="290" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+  <!-- 보조 그리드 선 (더 연하게) -->
+  <line x1="275" y1="90" x2="275" y2="490" stroke="#ECF0F1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="625" y1="90" x2="625" y2="490" stroke="#ECF0F1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="100" y1="190" x2="800" y2="190" stroke="#ECF0F1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="100" y1="390" x2="800" y2="390" stroke="#ECF0F1" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- ===== X축 (AI 자동화 수준) ===== -->
+  <!-- X축 라인 -->
+  <line x1="90" y1="490" x2="815" y2="490" stroke="#2C3E50" stroke-width="2"/>
+  <!-- X축 화살표 -->
+  <polygon points="815,486 825,490 815,494" fill="#2C3E50"/>
+  <!-- X축 레이블 -->
+  <text x="450" y="520" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="bold">AI 자동화 수준</text>
+  <text x="110" y="510" text-anchor="start" fill="#7F8C8D" font-size="10">낮음</text>
+  <text x="790" y="510" text-anchor="end" fill="#7F8C8D" font-size="10">높음</text>
+
+  <!-- ===== Y축 (디자인 퀄리티) ===== -->
+  <!-- Y축 라인 -->
+  <line x1="100" y1="500" x2="100" y2="78" stroke="#2C3E50" stroke-width="2"/>
+  <!-- Y축 화살표 -->
+  <polygon points="96,78 100,68 104,78" fill="#2C3E50"/>
+  <!-- Y축 레이블 (회전) -->
+  <text x="30" y="295" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="bold" transform="rotate(-90, 30, 295)">디자인 퀄리티</text>
+  <text x="88" y="485" text-anchor="end" fill="#7F8C8D" font-size="10">낮음</text>
+  <text x="88" y="100" text-anchor="end" fill="#7F8C8D" font-size="10">높음</text>
+
+  <!-- 사분면 레이블 -->
+  <text x="270" y="112" text-anchor="middle" fill="#5D6D7E" font-size="10" font-style="italic">수작업 + 고퀄리티</text>
+  <text x="630" y="112" text-anchor="middle" fill="#1E8449" font-size="10" font-style="italic" font-weight="bold">이상적 영역 (AI + 고퀄리티)</text>
+  <text x="270" y="478" text-anchor="middle" fill="#5D6D7E" font-size="10" font-style="italic">수작업 + 기본 품질</text>
+  <text x="630" y="478" text-anchor="middle" fill="#7D6608" font-size="10" font-style="italic">빠른 자동화 + 기본 품질</text>
+
+  <!-- ===== 서비스 버블 배치 =====
+       X 범위: 100(낮음) ~ 800(높음), 중심 450
+       Y 범위: 90(높음) ~ 490(낮음), 중심 290
+  -->
+
+  <!-- Beautiful.ai: AI 중간(400), 디자인 매우 높음(130) -->
+  <circle cx="380" cy="138" r="32" fill="url(#gradPurple)" opacity="0.9" filter="url(#shadowDrop)"/>
+  <text x="380" y="133" text-anchor="middle" fill="white" font-size="9" font-weight="bold">Beautiful</text>
+  <text x="380" y="146" text-anchor="middle" fill="white" font-size="9" font-weight="bold">.ai</text>
+  <!-- 라벨 -->
+  <rect x="318" y="174" width="124" height="20" rx="10" fill="white" stroke="#9B59B6" stroke-width="1"/>
+  <text x="380" y="188" text-anchor="middle" fill="#8E44AD" font-size="9">디자인 특화 서비스</text>
+
+  <!-- Pitch: AI 중간(390), 디자인 높음(160) -->
+  <circle cx="310" cy="175" r="28" fill="url(#gradGreen)" opacity="0.9" filter="url(#shadowDrop)"/>
+  <text x="310" y="170" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Pitch</text>
+  <text x="310" y="184" text-anchor="middle" fill="white" font-size="9"></text>
+  <!-- 라벨 -->
+  <rect x="248" y="207" width="124" height="20" rx="10" fill="white" stroke="#2ECC71" stroke-width="1"/>
+  <text x="310" y="221" text-anchor="middle" fill="#27AE60" font-size="9">협업 중심 플랫폼</text>
+
+  <!-- Canva AI: AI 중간(450), 디자인 높음(185) -->
+  <circle cx="440" cy="192" r="30" fill="url(#gradTeal)" opacity="0.9" filter="url(#shadowDrop)"/>
+  <text x="440" y="187" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Canva</text>
+  <text x="440" y="200" text-anchor="middle" fill="white" font-size="9">AI</text>
+  <!-- 라벨 -->
+  <rect x="378" y="226" width="124" height="20" rx="10" fill="white" stroke="#1ABC9C" stroke-width="1"/>
+  <text x="440" y="240" text-anchor="middle" fill="#16A085" font-size="9">범용 디자인 플랫폼</text>
+
+  <!-- ===== Gamma: AI 높음(700), 디자인 높음(150) - 강조 ===== -->
+  <!-- 강조 링 -->
+  <circle cx="690" cy="148" r="44" fill="none" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+  <!-- 메인 버블 -->
+  <circle cx="690" cy="148" r="38" fill="url(#gradGamma)" filter="url(#glowGamma)"/>
+  <!-- 별 표시 (추천) -->
+  <text x="720" y="118" font-size="14" fill="#F1C40F">&#x2605;</text>
+  <text x="690" y="143" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Gamma</text>
+  <text x="690" y="158" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9">추천</text>
+  <!-- 라벨 -->
+  <rect x="628" y="192" width="124" height="20" rx="10" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="690" y="206" text-anchor="middle" fill="#C0392B" font-size="9" font-weight="bold">AI + 디자인 선두주자</text>
+
+  <!-- Tome: AI 높음(640), 디자인 중상(230) -->
+  <circle cx="620" cy="238" r="28" fill="url(#gradService)" opacity="0.9" filter="url(#shadowDrop)"/>
+  <text x="620" y="243" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Tome</text>
+  <!-- 라벨 -->
+  <rect x="558" y="270" width="124" height="20" rx="10" fill="white" stroke="#3498DB" stroke-width="1"/>
+  <text x="620" y="284" text-anchor="middle" fill="#2980B9" font-size="9">스토리텔링 중심</text>
+
+  <!-- SlidesAI: AI 중간(430), 디자인 중간(295) -->
+  <circle cx="430" cy="305" r="26" fill="url(#gradGray)" opacity="0.9" filter="url(#shadowDrop)"/>
+  <text x="430" y="299" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Slides</text>
+  <text x="430" y="312" text-anchor="middle" fill="white" font-size="8" font-weight="bold">AI</text>
+  <!-- 라벨 -->
+  <rect x="368" y="336" width="124" height="20" rx="10" fill="white" stroke="#95A5A6" stroke-width="1"/>
+  <text x="430" y="350" text-anchor="middle" fill="#7F8C8D" font-size="9">기본 자동 변환</text>
+
+  <!-- Manus: AI 매우 높음(755), 디자인 중간(300) -->
+  <circle cx="750" cy="302" r="30" fill="url(#gradOrange)" opacity="0.9" filter="url(#shadowDrop)"/>
+  <text x="750" y="297" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Manus</text>
+  <text x="750" y="311" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8">Agent</text>
+  <!-- 라벨 -->
+  <rect x="688" y="337" width="124" height="20" rx="10" fill="white" stroke="#E67E22" stroke-width="1"/>
+  <text x="750" y="351" text-anchor="middle" fill="#D35400" font-size="9">완전 자율 에이전트</text>
+
+  <!-- ===== 범례 ===== -->
+  <rect x="55" y="370" width="36" height="100" rx="6" fill="white" stroke="#ECF0F1" stroke-width="1.5" filter="url(#shadowDrop)"/>
+  <text x="73" y="388" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="bold">범례</text>
+  <!-- Gamma 강조 -->
+  <circle cx="73" cy="405" r="8" fill="url(#gradGamma)"/>
+  <text x="87" y="409" fill="#2C3E50" font-size="8">추천</text>
+  <!-- 일반 서비스 -->
+  <circle cx="73" cy="425" r="8" fill="url(#gradService)"/>
+  <text x="87" y="429" fill="#2C3E50" font-size="8">서비스</text>
+  <!-- 버블 크기 설명은 생략 (단순화) -->
+
+</svg>

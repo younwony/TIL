@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (사용자 입력) -->
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (LLM 처리) -->
+    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 주황 (아웃라인 생성) -->
+    <linearGradient id="gradOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 (콘텐츠 작성) -->
+    <linearGradient id="gradPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 빨강 (디자인 적용) -->
+    <linearGradient id="gradRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 청록 (완성) -->
+    <linearGradient id="gradTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+
+    <!-- 화살표 마커 -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498DB"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2ECC71"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E67E22"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9B59B6"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="900" height="500" fill="#FAFBFC" rx="12"/>
+
+  <!-- 타이틀 -->
+  <text x="450" y="42" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="bold">AI 슬라이드 생성 파이프라인</text>
+  <text x="450" y="62" text-anchor="middle" fill="#7F8C8D" font-size="12">프롬프트 입력부터 완성된 슬라이드까지의 처리 흐름</text>
+
+  <!-- 구분선 -->
+  <line x1="40" y1="75" x2="860" y2="75" stroke="#ECF0F1" stroke-width="1.5"/>
+
+  <!-- ===== 수평 파이프라인 ===== -->
+
+  <!-- 단계 1: 사용자 프롬프트 (x=80) -->
+  <rect x="30" y="155" width="120" height="110" rx="10" fill="url(#gradBlue)"/>
+  <!-- 아이콘: 말풍선 -->
+  <ellipse cx="90" cy="185" rx="28" ry="20" fill="rgba(255,255,255,0.25)"/>
+  <text x="90" y="191" text-anchor="middle" fill="white" font-size="20">&#x1F4AC;</text>
+  <text x="90" y="218" text-anchor="middle" fill="white" font-size="12" font-weight="bold">사용자</text>
+  <text x="90" y="234" text-anchor="middle" fill="white" font-size="12" font-weight="bold">프롬프트</text>
+  <!-- 스텝 번호 -->
+  <circle cx="43" cy="168" r="11" fill="white" opacity="0.9"/>
+  <text x="43" y="172" text-anchor="middle" fill="#2980B9" font-size="10" font-weight="bold">1</text>
+
+  <!-- 설명 박스 1 -->
+  <rect x="24" y="278" width="132" height="72" rx="6" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1"/>
+  <text x="90" y="295" text-anchor="middle" fill="#1A5276" font-size="9" font-weight="bold">입력 방식</text>
+  <text x="90" y="310" text-anchor="middle" fill="#2C3E50" font-size="9">주제 / 키워드</text>
+  <text x="90" y="324" text-anchor="middle" fill="#2C3E50" font-size="9">발표 목적 · 대상</text>
+  <text x="90" y="338" text-anchor="middle" fill="#2C3E50" font-size="9">슬라이드 수 지정</text>
+
+  <!-- 화살표 1→2 -->
+  <line x1="152" y1="210" x2="188" y2="210" stroke="#3498DB" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- 단계 2: LLM 처리 (x=200) -->
+  <rect x="192" y="155" width="120" height="110" rx="10" fill="url(#gradGreen)"/>
+  <!-- 아이콘: 두뇌 -->
+  <ellipse cx="252" cy="185" rx="28" ry="20" fill="rgba(255,255,255,0.25)"/>
+  <text x="252" y="191" text-anchor="middle" fill="white" font-size="20">&#x1F9E0;</text>
+  <text x="252" y="218" text-anchor="middle" fill="white" font-size="12" font-weight="bold">LLM</text>
+  <text x="252" y="234" text-anchor="middle" fill="white" font-size="12" font-weight="bold">처리</text>
+  <!-- 스텝 번호 -->
+  <circle cx="205" cy="168" r="11" fill="white" opacity="0.9"/>
+  <text x="205" y="172" text-anchor="middle" fill="#27AE60" font-size="10" font-weight="bold">2</text>
+
+  <!-- 설명 박스 2 -->
+  <rect x="186" y="278" width="132" height="72" rx="6" fill="#EAFAF1" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="252" y="295" text-anchor="middle" fill="#1D6A39" font-size="9" font-weight="bold">AI 모델 처리</text>
+  <text x="252" y="310" text-anchor="middle" fill="#2C3E50" font-size="9">GPT-4 / Claude</text>
+  <text x="252" y="324" text-anchor="middle" fill="#2C3E50" font-size="9">의도 분석 · 파악</text>
+  <text x="252" y="338" text-anchor="middle" fill="#2C3E50" font-size="9">컨텍스트 이해</text>
+
+  <!-- 화살표 2→3 -->
+  <line x1="314" y1="210" x2="350" y2="210" stroke="#2ECC71" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- 단계 3: 아웃라인 생성 (x=354) -->
+  <rect x="354" y="155" width="120" height="110" rx="10" fill="url(#gradOrange)"/>
+  <!-- 아이콘: 목록 -->
+  <ellipse cx="414" cy="185" rx="28" ry="20" fill="rgba(255,255,255,0.25)"/>
+  <text x="414" y="191" text-anchor="middle" fill="white" font-size="20">&#x1F4CB;</text>
+  <text x="414" y="218" text-anchor="middle" fill="white" font-size="12" font-weight="bold">아웃라인</text>
+  <text x="414" y="234" text-anchor="middle" fill="white" font-size="12" font-weight="bold">생성</text>
+  <!-- 스텝 번호 -->
+  <circle cx="367" cy="168" r="11" fill="white" opacity="0.9"/>
+  <text x="367" y="172" text-anchor="middle" fill="#D35400" font-size="10" font-weight="bold">3</text>
+
+  <!-- 설명 박스 3 -->
+  <rect x="348" y="278" width="132" height="72" rx="6" fill="#FDF2E9" stroke="#FAD7A0" stroke-width="1"/>
+  <text x="414" y="295" text-anchor="middle" fill="#784212" font-size="9" font-weight="bold">구조 설계</text>
+  <text x="414" y="310" text-anchor="middle" fill="#2C3E50" font-size="9">슬라이드 목차 생성</text>
+  <text x="414" y="324" text-anchor="middle" fill="#2C3E50" font-size="9">섹션 구분 · 흐름</text>
+  <text x="414" y="338" text-anchor="middle" fill="#2C3E50" font-size="9">핵심 메시지 정의</text>
+
+  <!-- 화살표 3→4 -->
+  <line x1="476" y1="210" x2="512" y2="210" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- 단계 4: 콘텐츠 작성 (x=516) -->
+  <rect x="516" y="155" width="120" height="110" rx="10" fill="url(#gradPurple)"/>
+  <!-- 아이콘: 연필 -->
+  <ellipse cx="576" cy="185" rx="28" ry="20" fill="rgba(255,255,255,0.25)"/>
+  <text x="576" y="191" text-anchor="middle" fill="white" font-size="20">&#x270D;&#xFE0F;</text>
+  <text x="576" y="218" text-anchor="middle" fill="white" font-size="12" font-weight="bold">콘텐츠</text>
+  <text x="576" y="234" text-anchor="middle" fill="white" font-size="12" font-weight="bold">작성</text>
+  <!-- 스텝 번호 -->
+  <circle cx="529" cy="168" r="11" fill="white" opacity="0.9"/>
+  <text x="529" y="172" text-anchor="middle" fill="#8E44AD" font-size="10" font-weight="bold">4</text>
+
+  <!-- 설명 박스 4 -->
+  <rect x="510" y="278" width="132" height="72" rx="6" fill="#F4ECF7" stroke="#D7BDE2" stroke-width="1"/>
+  <text x="576" y="295" text-anchor="middle" fill="#512E5F" font-size="9" font-weight="bold">본문 자동 생성</text>
+  <text x="576" y="310" text-anchor="middle" fill="#2C3E50" font-size="9">슬라이드별 텍스트</text>
+  <text x="576" y="324" text-anchor="middle" fill="#2C3E50" font-size="9">이미지 추천 · 삽입</text>
+  <text x="576" y="338" text-anchor="middle" fill="#2C3E50" font-size="9">데이터 시각화</text>
+
+  <!-- 화살표 4→5 -->
+  <line x1="638" y1="210" x2="674" y2="210" stroke="#9B59B6" stroke-width="2.5" marker-end="url(#arrowPurple)"/>
+
+  <!-- 단계 5: 디자인 적용 (x=678) -->
+  <rect x="678" y="155" width="120" height="110" rx="10" fill="url(#gradRed)"/>
+  <!-- 아이콘: 팔레트 -->
+  <ellipse cx="738" cy="185" rx="28" ry="20" fill="rgba(255,255,255,0.25)"/>
+  <text x="738" y="191" text-anchor="middle" fill="white" font-size="20">&#x1F3A8;</text>
+  <text x="738" y="218" text-anchor="middle" fill="white" font-size="12" font-weight="bold">디자인</text>
+  <text x="738" y="234" text-anchor="middle" fill="white" font-size="12" font-weight="bold">적용</text>
+  <!-- 스텝 번호 -->
+  <circle cx="691" cy="168" r="11" fill="white" opacity="0.9"/>
+  <text x="691" y="172" text-anchor="middle" fill="#C0392B" font-size="10" font-weight="bold">5</text>
+
+  <!-- 설명 박스 5 -->
+  <rect x="672" y="278" width="132" height="72" rx="6" fill="#FDEDEC" stroke="#F5B7B1" stroke-width="1"/>
+  <text x="738" y="295" text-anchor="middle" fill="#641E16" font-size="9" font-weight="bold">테마 · 레이아웃</text>
+  <text x="738" y="310" text-anchor="middle" fill="#2C3E50" font-size="9">색상 · 폰트 선택</text>
+  <text x="738" y="324" text-anchor="middle" fill="#2C3E50" font-size="9">레이아웃 자동 배치</text>
+  <text x="738" y="338" text-anchor="middle" fill="#2C3E50" font-size="9">브랜딩 가이드 반영</text>
+
+  <!-- 화살표 5→6 (꺾인 화살표: 아래로 내려갔다가 왼쪽 결과 영역으로) -->
+  <line x1="800" y1="210" x2="840" y2="210" stroke="#E74C3C" stroke-width="2.5"/>
+  <line x1="840" y1="210" x2="840" y2="420" stroke="#E74C3C" stroke-width="2.5"/>
+  <line x1="840" y1="420" x2="500" y2="420" stroke="#1ABC9C" stroke-width="2.5"/>
+  <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#1ABC9C"/>
+  </marker>
+  <line x1="500" y1="420" x2="360" y2="420" stroke="#1ABC9C" stroke-width="2.5" marker-end="url(#arrowTeal)"/>
+
+  <!-- 결과: 완성된 슬라이드 -->
+  <rect x="50" y="385" width="300" height="70" rx="10" fill="url(#gradTeal)"/>
+  <text x="200" y="414" text-anchor="middle" fill="white" font-size="14" font-weight="bold">완성된 슬라이드</text>
+  <text x="200" y="433" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="10">PPTX · PDF · Google Slides · 웹 공유</text>
+  <text x="200" y="448" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">편집 가능 · 협업 공유 · 즉시 발표</text>
+
+  <!-- 완성 별 아이콘 -->
+  <text x="84" y="420" text-anchor="middle" fill="white" font-size="18">&#x2B50;</text>
+
+  <!-- 하단 흐름 라벨 -->
+  <text x="450" y="478" text-anchor="middle" fill="#95A5A6" font-size="10">자동화 파이프라인 처리 시간: 평균 30초 ~ 3분</text>
+</svg>
