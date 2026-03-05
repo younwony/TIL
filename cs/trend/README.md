@@ -16,6 +16,7 @@
 - [WebMCP (Web Model Context Protocol)](../ai-agent/webmcp.md) - 웹 페이지가 브라우저 내 AI 에이전트에게 도구를 노출하는 브라우저 네이티브 프로토콜 (2025-2026)
 - [A2A (Agent-to-Agent) Protocol](../ai-agent/a2a-protocol.md) - AI 에이전트 간 통신 표준, Gartner 2025 Top Tech Trend, Linux Foundation 거버넌스 (2025)
 - [Context Engineering](../ai-agent/context-engineering.md) - 프롬프트 엔지니어링의 진화, LLM 컨텍스트 동적 설계 및 관리 (2026)
+- [AI 에이전트 메모리 아키텍처](../ai-agent/agent-memory.md) - AI 에이전트의 장기 기억 관리, 에피소딕/시맨틱/프로시저럴 메모리 인프라 (2026)
 - [Vibe Coding](../ai-agent/vibe-coding.md) - AI 협업 코딩 패러다임, 2025년 개발자 82% 사용
 - [MCP (Model Context Protocol)](../ai-agent/mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
 - [AI 보조 개발 (AI-Assisted Development)](../ai-agent/ai-assisted-development.md) - AI 코딩 도구 활용, 생산성 역설, 코드 품질 관리 전략 (2026)

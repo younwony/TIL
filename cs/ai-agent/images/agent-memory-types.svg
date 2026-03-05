@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560">
+  <defs>
+    <!-- 파랑: Episodic -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록: Semantic -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 보라: Procedural -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 헤더 배경 -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#34495E"/>
+    </linearGradient>
+    <!-- 카드 배경 -->
+    <linearGradient id="cardBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EBF5FB"/>
+      <stop offset="100%" style="stop-color:#D6EAF8"/>
+    </linearGradient>
+    <linearGradient id="cardGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EAFAF1"/>
+      <stop offset="100%" style="stop-color:#D5F5E3"/>
+    </linearGradient>
+    <linearGradient id="cardPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EEF8"/>
+      <stop offset="100%" style="stop-color:#E8DAEF"/>
+    </linearGradient>
+    <filter id="shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000018"/>
+    </filter>
+    <!-- 화살표 마커 -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2980B9"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8E44AD"/>
+    </marker>
+  </defs>
+
+  <!-- 전체 배경 -->
+  <rect width="880" height="560" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+
+  <!-- 타이틀 헤더 -->
+  <rect x="0" y="0" width="880" height="64" rx="14" fill="url(#headerGrad)"/>
+  <rect x="0" y="50" width="880" height="14" fill="url(#headerGrad)"/>
+  <text x="440" y="37" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">AI 에이전트의 3가지 메모리 유형</text>
+  <text x="440" y="56" font-family="Arial, sans-serif" font-size="11" fill="#BDC3C7" text-anchor="middle">AI Agent Memory Types — Episodic · Semantic · Procedural</text>
+
+  <!-- ===== 열 헤더 영역 ===== -->
+  <!-- 행 레이블 헤더 (좌측) -->
+  <rect x="20" y="78" width="130" height="40" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="85" y="102" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7F8C8D" text-anchor="middle">구분</text>
+
+  <!-- Episodic 열 헤더 -->
+  <rect x="162" y="78" width="215" height="40" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="197" y="96" font-family="Arial, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">📘</text>
+  <text x="270" y="96" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Episodic Memory</text>
+  <text x="270" y="112" font-family="Arial, sans-serif" font-size="10" fill="#D6EAF8" text-anchor="middle">에피소딕 메모리</text>
+
+  <!-- Semantic 열 헤더 -->
+  <rect x="389" y="78" width="215" height="40" rx="6" fill="url(#nodeGreen)" filter="url(#shadow)"/>
+  <text x="424" y="96" font-family="Arial, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">📗</text>
+  <text x="497" y="96" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Semantic Memory</text>
+  <text x="497" y="112" font-family="Arial, sans-serif" font-size="10" fill="#D5F5E3" text-anchor="middle">시맨틱 메모리</text>
+
+  <!-- Procedural 열 헤더 -->
+  <rect x="616" y="78" width="244" height="40" rx="6" fill="url(#nodePurple)" filter="url(#shadow)"/>
+  <text x="651" y="96" font-family="Arial, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">📙</text>
+  <text x="730" y="96" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Procedural Memory</text>
+  <text x="730" y="112" font-family="Arial, sans-serif" font-size="10" fill="#E8DAEF" text-anchor="middle">프로시저럴 메모리</text>
+
+  <!-- ===== 행 1: 정의 ===== -->
+  <!-- 행 레이블 -->
+  <rect x="20" y="130" width="130" height="70" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="85" y="160" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">정의</text>
+  <text x="85" y="178" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D" text-anchor="middle">Definition</text>
+
+  <!-- Episodic 정의 셀 -->
+  <rect x="162" y="130" width="215" height="70" rx="6" fill="url(#cardBlue)" stroke="#AED6F1" stroke-width="1"/>
+  <text x="269" y="155" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50" text-anchor="middle">과거 상호작용 기록</text>
+  <text x="269" y="172" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">특정 사건/대화의 순서와</text>
+  <text x="269" y="188" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">맥락을 시간 순으로 저장</text>
+
+  <!-- Semantic 정의 셀 -->
+  <rect x="389" y="130" width="215" height="70" rx="6" fill="url(#cardGreen)" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="496" y="155" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50" text-anchor="middle">지식 저장소</text>
+  <text x="496" y="172" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">개념·사실·관계 등</text>
+  <text x="496" y="188" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">구조화된 세계 지식 보유</text>
+
+  <!-- Procedural 정의 셀 -->
+  <rect x="616" y="130" width="244" height="70" rx="6" fill="url(#cardPurple)" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="738" y="155" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50" text-anchor="middle">학습된 스킬</text>
+  <text x="738" y="172" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">반복 경험으로 체화된</text>
+  <text x="738" y="188" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">절차적 행동 패턴</text>
+
+  <!-- ===== 행 2: 저장 방식 ===== -->
+  <rect x="20" y="212" width="130" height="70" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="85" y="242" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">저장 방식</text>
+  <text x="85" y="260" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D" text-anchor="middle">Storage</text>
+
+  <!-- Episodic 저장 방식 -->
+  <rect x="162" y="212" width="215" height="70" rx="6" fill="url(#cardBlue)" stroke="#AED6F1" stroke-width="1"/>
+  <!-- 벡터DB 아이콘 표현 -->
+  <rect x="178" y="224" width="36" height="12" rx="3" fill="#3498DB" opacity="0.7"/>
+  <rect x="178" y="238" width="28" height="12" rx="3" fill="#3498DB" opacity="0.5"/>
+  <rect x="178" y="252" width="32" height="12" rx="3" fill="#3498DB" opacity="0.3"/>
+  <text x="295" y="238" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2980B9" text-anchor="middle">Vector DB</text>
+  <text x="295" y="254" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">임베딩 기반 유사도 검색</text>
+  <text x="295" y="270" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">(Pinecone, ChromaDB 등)</text>
+
+  <!-- Semantic 저장 방식 -->
+  <rect x="389" y="212" width="215" height="70" rx="6" fill="url(#cardGreen)" stroke="#A9DFBF" stroke-width="1"/>
+  <!-- 그래프 아이콘 -->
+  <circle cx="415" cy="238" r="6" fill="#27AE60" opacity="0.8"/>
+  <circle cx="433" cy="252" r="6" fill="#27AE60" opacity="0.6"/>
+  <circle cx="415" cy="265" r="5" fill="#27AE60" opacity="0.5"/>
+  <line x1="415" y1="238" x2="433" y2="252" stroke="#27AE60" stroke-width="1.5"/>
+  <line x1="415" y1="238" x2="415" y2="265" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="520" y="238" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#27AE60" text-anchor="middle">Knowledge Graph</text>
+  <text x="520" y="254" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">그래프 DB / RAG 파이프라인</text>
+  <text x="520" y="270" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">(Neo4j, Weaviate 등)</text>
+
+  <!-- Procedural 저장 방식 -->
+  <rect x="616" y="212" width="244" height="70" rx="6" fill="url(#cardPurple)" stroke="#D2B4DE" stroke-width="1"/>
+  <!-- 코드 아이콘 -->
+  <text x="645" y="245" font-family="Arial, sans-serif" font-size="18" fill="#9B59B6" text-anchor="middle">&lt;/&gt;</text>
+  <text x="752" y="238" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8E44AD" text-anchor="middle">Fine-tuned Model</text>
+  <text x="752" y="254" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">모델 가중치 / 코드 패턴</text>
+  <text x="752" y="270" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E" text-anchor="middle">(LoRA, 코드 템플릿 라이브러리)</text>
+
+  <!-- ===== 행 3: 활용 예시 ===== -->
+  <rect x="20" y="294" width="130" height="70" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="85" y="324" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">활용 예시</text>
+  <text x="85" y="342" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D" text-anchor="middle">Use Case</text>
+
+  <!-- Episodic 활용 예시 -->
+  <rect x="162" y="294" width="215" height="70" rx="6" fill="url(#cardBlue)" stroke="#AED6F1" stroke-width="1"/>
+  <text x="175" y="315" font-family="Arial, sans-serif" font-size="10" fill="#2980B9">&#9679; 이전 대화 내용 회상</text>
+  <text x="175" y="332" font-family="Arial, sans-serif" font-size="10" fill="#2980B9">&#9679; 사용자 선호도 이력 추적</text>
+  <text x="175" y="349" font-family="Arial, sans-serif" font-size="10" fill="#2980B9">&#9679; 이전 작업 결과 재활용</text>
+  <text x="175" y="357" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">   (오류 패턴, 성공 사례 포함)</text>
+
+  <!-- Semantic 활용 예시 -->
+  <rect x="389" y="294" width="215" height="70" rx="6" fill="url(#cardGreen)" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="402" y="315" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">&#9679; 도메인 지식 즉시 참조</text>
+  <text x="402" y="332" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">&#9679; 개념 간 관계 추론</text>
+  <text x="402" y="349" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">&#9679; RAG 기반 문서 검색</text>
+  <text x="402" y="357" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">   (의학 지식, 법령 데이터 등)</text>
+
+  <!-- Procedural 활용 예시 -->
+  <rect x="616" y="294" width="244" height="70" rx="6" fill="url(#cardPurple)" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="629" y="315" font-family="Arial, sans-serif" font-size="10" fill="#8E44AD">&#9679; 반복 작업 자동화 (CI/CD)</text>
+  <text x="629" y="332" font-family="Arial, sans-serif" font-size="10" fill="#8E44AD">&#9679; 코드 리뷰 스킬 체화</text>
+  <text x="629" y="349" font-family="Arial, sans-serif" font-size="10" fill="#8E44AD">&#9679; 도구 호출 패턴 학습</text>
+  <text x="629" y="357" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">   (API 호출 순서, 파라미터 패턴)</text>
+
+  <!-- ===== 행 4: 특징 ===== -->
+  <rect x="20" y="376" width="130" height="70" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="85" y="406" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">주요 특징</text>
+  <text x="85" y="424" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D" text-anchor="middle">Characteristics</text>
+
+  <!-- Episodic 특징 -->
+  <rect x="162" y="376" width="215" height="70" rx="6" fill="url(#cardBlue)" stroke="#AED6F1" stroke-width="1"/>
+  <rect x="178" y="388" width="60" height="18" rx="9" fill="#3498DB" opacity="0.2" stroke="#3498DB" stroke-width="1"/>
+  <text x="208" y="401" font-family="Arial, sans-serif" font-size="9" fill="#2980B9" text-anchor="middle">시간 순서</text>
+  <rect x="248" y="388" width="60" height="18" rx="9" fill="#3498DB" opacity="0.2" stroke="#3498DB" stroke-width="1"/>
+  <text x="278" y="401" font-family="Arial, sans-serif" font-size="9" fill="#2980B9" text-anchor="middle">맥락 의존</text>
+  <rect x="178" y="412" width="60" height="18" rx="9" fill="#3498DB" opacity="0.2" stroke="#3498DB" stroke-width="1"/>
+  <text x="208" y="425" font-family="Arial, sans-serif" font-size="9" fill="#2980B9" text-anchor="middle">망각 가능</text>
+  <rect x="248" y="412" width="80" height="18" rx="9" fill="#3498DB" opacity="0.2" stroke="#3498DB" stroke-width="1"/>
+  <text x="288" y="425" font-family="Arial, sans-serif" font-size="9" fill="#2980B9" text-anchor="middle">개인화 핵심</text>
+
+  <!-- Semantic 특징 -->
+  <rect x="389" y="376" width="215" height="70" rx="6" fill="url(#cardGreen)" stroke="#A9DFBF" stroke-width="1"/>
+  <rect x="404" y="388" width="60" height="18" rx="9" fill="#2ECC71" opacity="0.2" stroke="#2ECC71" stroke-width="1"/>
+  <text x="434" y="401" font-family="Arial, sans-serif" font-size="9" fill="#27AE60" text-anchor="middle">구조화됨</text>
+  <rect x="474" y="388" width="60" height="18" rx="9" fill="#2ECC71" opacity="0.2" stroke="#2ECC71" stroke-width="1"/>
+  <text x="504" y="401" font-family="Arial, sans-serif" font-size="9" fill="#27AE60" text-anchor="middle">공유 가능</text>
+  <rect x="404" y="412" width="60" height="18" rx="9" fill="#2ECC71" opacity="0.2" stroke="#2ECC71" stroke-width="1"/>
+  <text x="434" y="425" font-family="Arial, sans-serif" font-size="9" fill="#27AE60" text-anchor="middle">추론 기반</text>
+  <rect x="474" y="412" width="80" height="18" rx="9" fill="#2ECC71" opacity="0.2" stroke="#2ECC71" stroke-width="1"/>
+  <text x="514" y="425" font-family="Arial, sans-serif" font-size="9" fill="#27AE60" text-anchor="middle">업데이트 용이</text>
+
+  <!-- Procedural 특징 -->
+  <rect x="616" y="376" width="244" height="70" rx="6" fill="url(#cardPurple)" stroke="#D2B4DE" stroke-width="1"/>
+  <rect x="630" y="388" width="60" height="18" rx="9" fill="#9B59B6" opacity="0.2" stroke="#9B59B6" stroke-width="1"/>
+  <text x="660" y="401" font-family="Arial, sans-serif" font-size="9" fill="#8E44AD" text-anchor="middle">암묵적 지식</text>
+  <rect x="700" y="388" width="72" height="18" rx="9" fill="#9B59B6" opacity="0.2" stroke="#9B59B6" stroke-width="1"/>
+  <text x="736" y="401" font-family="Arial, sans-serif" font-size="9" fill="#8E44AD" text-anchor="middle">모델에 내재화</text>
+  <rect x="630" y="412" width="60" height="18" rx="9" fill="#9B59B6" opacity="0.2" stroke="#9B59B6" stroke-width="1"/>
+  <text x="660" y="425" font-family="Arial, sans-serif" font-size="9" fill="#8E44AD" text-anchor="middle">빠른 실행</text>
+  <rect x="700" y="412" width="72" height="18" rx="9" fill="#9B59B6" opacity="0.2" stroke="#9B59B6" stroke-width="1"/>
+  <text x="736" y="425" font-family="Arial, sans-serif" font-size="9" fill="#8E44AD" text-anchor="middle">수정 비용 높음</text>
+
+  <!-- ===== 하단 요약 바 ===== -->
+  <rect x="20" y="459" width="840" height="82" rx="10" fill="#F8F9FA" stroke="#E5E7EB" stroke-width="1.5"/>
+  <text x="440" y="479" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2C3E50" text-anchor="middle">메모리 유형별 상호 보완 관계</text>
+
+  <!-- Episodic 요약 -->
+  <rect x="35" y="488" width="260" height="44" rx="8" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1"/>
+  <text x="50" y="507" font-family="Arial, sans-serif" font-size="10" fill="#2980B9" font-weight="bold">Episodic</text>
+  <text x="50" y="522" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E">"언제, 어떤 상황에서" 경험한 사건 기억</text>
+
+  <!-- 화살표 -->
+  <text x="305" y="513" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D" text-anchor="middle">+</text>
+
+  <!-- Semantic 요약 -->
+  <rect x="320" y="488" width="240" height="44" rx="8" fill="#EAFAF1" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="335" y="507" font-family="Arial, sans-serif" font-size="10" fill="#27AE60" font-weight="bold">Semantic</text>
+  <text x="335" y="522" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E">"무엇이, 어떻게" 연결된 지식 구조</text>
+
+  <!-- 화살표 -->
+  <text x="570" y="513" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D" text-anchor="middle">+</text>
+
+  <!-- Procedural 요약 -->
+  <rect x="585" y="488" width="265" height="44" rx="8" fill="#F5EEF8" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="600" y="507" font-family="Arial, sans-serif" font-size="10" fill="#8E44AD" font-weight="bold">Procedural</text>
+  <text x="600" y="522" font-family="Arial, sans-serif" font-size="10" fill="#5D6D7E">"어떻게 하는지" 체화된 행동 패턴</text>
+
+  <!-- = 완전한 에이전트 -->
+  <text x="440" y="545" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7F8C8D" text-anchor="middle">= 맥락(Episodic) + 지식(Semantic) + 스킬(Procedural) → 완전한 AI 에이전트</text>
+</svg>

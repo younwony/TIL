@@ -75,6 +75,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
 | [Claude Code Plugin](./claude-code-plugin.md) | Skill/Hook/MCP를 패키징, 마켓플레이스 배포 `Trend 2025` | Skill, Hook |
+| [AI 에이전트 메모리 아키텍처](./agent-memory.md) | AI 에이전트가 컨텍스트 윈도우를 넘어 장기 기억을 관리하는 에피소딕/시맨틱/프로시저럴 메모리 인프라 `Trend 2026` | [AI Agent란](./ai-agent.md), [Context Engineering](./context-engineering.md) |
 | [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) | 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 패턴 분석 `Trend 2026` | AI Agent란, Hook, MCP |
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
 | [Claude Code 실전 가이드](./claude-code-guide.md) | 70가지 팁 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁 | Workflow, MCP, Skill |
@@ -164,6 +165,7 @@ Sub Agent를 이해한 후 도전하세요.
 
 ### 심화 기능
 - [Context Engineering](./context-engineering.md) - LLM이 작업을 성공적으로 수행하는 데 필요한 모든 컨텍스트를 동적으로 설계하고 관리하는 학문 `Trend 2026`
+- [AI 에이전트 메모리 아키텍처](./agent-memory.md) - AI 에이전트가 컨텍스트 윈도우를 넘어 장기 기억을 관리하는 에피소딕/시맨틱/프로시저럴 메모리 인프라 `Trend 2026`
 - [Multi-Agent Systems](./multi-agent-systems.md) - 여러 전문화된 AI 에이전트가 협력하여 복잡한 작업을 수행하는 분산 시스템 아키텍처 `Trend 2025`
 - [Claude Code Sub Agent](./claude-code-sub-agent.md) - 복잡한 작업을 독립적으로 처리하는 전문화된 AI 에이전트 시스템
 - [Claude Code Agent Team](./claude-code-agent-team.md) - 여러 독립 AI 에이전트를 팀으로 구성하여 병렬 협업하는 오케스트레이션 시스템 `Trend 2026`
