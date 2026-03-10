@@ -89,6 +89,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [OpenClaw](./openclaw.md) | 오픈소스 로컬 AI 개인 비서 `Trend 2026` | AI Agent란, MCP, Tool Use |
 | [Firecrawl](./firecrawl.md) | 웹 데이터를 LLM-ready 마크다운으로 변환하는 API | AI Agent란, RAG, MCP |
 | [Figma + MCP + Claude Code 통합 가이드](./figma-mcp-design-to-code.md) | Figma 디자인을 MCP로 Claude Code에 연결하여 Design-to-Code 워크플로우를 자동화하는 통합 가이드 `Trend 2025-2026` | MCP, Tool Use |
+| [AI 에이전트 생태계 트렌드 2026 (3월 2주차)](./geeknews-trends-2026-03-10.md) | GeekNews 2026.03.10 기준 AI 에이전트 생태계 주요 트렌드 분석 — 도구 전문화, 코드 품질 검증, MLP, 파일 기반 맥락 관리 `Trend 2026` | [AI Agent란](./ai-agent.md), [LLM 기초](./llm.md), [Agentic Coding](./agentic-coding.md) |
 
 ### [4] 심화 - Multi-Agent & Context Engineering
 
@@ -143,6 +144,7 @@ Sub Agent를 이해한 후 도전하세요.
 
 ### 시장 동향 & 분석
 - [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) - 커뮤니티 워크플로우를 벤더가 공식 기능으로 흡수하는 현상, 2026년 Anthropic·OpenAI·Google 동시 업데이트 분석 `Trend 2026`
+- [AI 에이전트 생태계 트렌드 2026 (3월 2주차)](./geeknews-trends-2026-03-10.md) - GeekNews 기준 AI 에이전트 생태계 주요 트렌드, 도구 전문화, 코드 품질 검증, MLP, 파일 기반 맥락 관리 `Trend 2026`
 
 ### 확장 & 커스터마이징
 - [Codex MCP 연결](./codex-mcp.md) - Claude Code에서 OpenAI Codex CLI를 MCP로 연결하여 두 AI 에이전트를 통합하는 방법

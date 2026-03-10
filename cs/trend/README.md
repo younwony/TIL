@@ -24,6 +24,7 @@
 - [AI 코딩 에이전트 워크플로우 흡수](../ai-agent/ai-coding-agent-workflow-absorption.md) - 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 현상, Anthropic·OpenAI·Google 동시 업데이트 분석 (2026)
 - [Claude Cowork](../ai-agent/claude-cowork.md) - Claude Code 에이전트를 비개발자용으로 확장한 범용 AI 코워커, 플러그인 생태계 (2026)
 - [Nano Banana 2 이미지 생성](../ai-agent/nanobanana-image-generation.md) - Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 (2026)
+- [AI 에이전트 생태계 트렌드 2026 (3월 2주차)](../ai-agent/geeknews-trends-2026-03-10.md) - GeekNews 2026.03.10 기준 AI 에이전트 생태계 주요 트렌드 분석 — 도구 전문화, 코드 품질 검증, MLP, 파일 기반 맥락 관리 (2026)
 
 ### System Design
 
