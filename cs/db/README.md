@@ -71,6 +71,7 @@ SQL 기본 개념을 이해한 후 학습하세요.
 | [Elasticsearch](./elasticsearch.md) | 역인덱스, 전문검색, 분산 검색엔진 | NoSQL, Index |
 | [open_table_cache](./open-table-cache.md) | MySQL 테이블 캐시, 파일 디스크립터, 성능 튜닝 | 파일 디스크립터, MySQL 인덱스 |
 | [MySQL CLI 쿼리 튜닝](./mysql-cli-query-tuning.md) | MySQL Shell 설치/설정, 인덱스 확인, EXPLAIN 실행 계획 분석, 쿼리 프로파일링, 성능 최적화 실전 가이드 | SQL, MySQL 인덱스, 실행 계획 |
+| [벡터 데이터베이스 (Vector Database)](./vector-db.md) | 고차원 벡터(임베딩) 저장 및 유사도 검색, RAG·시맨틱 검색 핵심 인프라 | Index, NoSQL |
 
 ### [4] 심화
 
@@ -102,6 +103,9 @@ SQL 기본 개념을 이해한 후 학습하세요.
 ### Elasticsearch
 - [Elasticsearch](./elasticsearch.md) - 역인덱스, 전문검색, Analyzer, 분산 검색엔진
 - [ES 풀 색인 전략](./elasticsearch-reindexing.md) - 덮어쓰기 vs Alias 스왑, Lucene 세그먼트, 디스크 용량 피크
+
+### Vector Database
+- [벡터 데이터베이스 (Vector Database)](./vector-db.md) - 고차원 벡터(임베딩) 저장 및 유사도 검색, RAG·시맨틱 검색·추천 핵심 인프라
 
 ### 기초
 - [데이터베이스란](./what-is-database.md) - DB의 정의, RDBMS vs NoSQL, DBMS, 기본 용어

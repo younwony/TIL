@@ -38,6 +38,10 @@
 - [GitOps](../devops/gitops.md) - Git 기반 선언적 배포, ArgoCD/FluxCD, Pull 기반 배포 패러다임
 - [AIOps](../devops/aiops.md) - AI 기반 IT 운영 자동화, 이상 탐지·자가 복구, Alert Fatigue 해소 (2026)
 
+### Database
+
+- [벡터 데이터베이스 (Vector Database)](../db/vector-db.md) - 고차원 벡터(임베딩) 저장 및 유사도 검색, RAG·시맨틱 검색 핵심 인프라 (2026)
+
 ### Spring
 
 - [Spring AI](../spring/spring-ai.md) - AI 통합 프레임워크, ChatClient·Advisor·MCP·RAG, 2026 핵심 트렌드
