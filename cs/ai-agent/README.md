@@ -80,6 +80,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) | 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 패턴 분석 `Trend 2026` | AI Agent란, Hook, MCP |
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
 | [Claude Code 실전 가이드](./claude-code-guide.md) | 70가지 팁 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁 | Workflow, MCP, Skill |
+| [Claude Code 실전 워크플로우 치트시트](./claude-code-practical-cheatsheet.md) | 컨텍스트 관리 + 워크플로우 철학으로 200% 활용, WAT 프레임워크 `Trend 2026` | 실전 가이드, Workflow |
 | [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) | 세션 인수인계 패턴으로 컨텍스트 윈도우 한계 극복 | Workflow, Context Engineering |
 | [Claude Code 설정 체계](./claude-code-settings.md) | 다계층 설정, 보안 Hook, 셸 별칭 실전 구성 | Hook, Skill |
 | [Claude Code 커스터마이징 마스터 가이드](./claude-code-customization.md) | 창시자/파워유저의 12가지 커스터마이징 팁, 병렬 워크플로우, 설정 최적화 `Trend 2026` | Workflow, Settings |
@@ -154,6 +155,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code Plugin](./claude-code-plugin.md) - Skill, Agent, Hook, MCP를 패키징하여 마켓플레이스로 배포하는 확장 시스템 `Trend 2025`
 - [Claude Code Workflow](./claude-code-workflow.md) - Claude Code의 효율적인 사용법과 실무 최적화 전략
 - [Claude Code 실전 가이드](./claude-code-guide.md) - 70가지 팁으로 배우는 Claude Code 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁
+- [Claude Code 실전 워크플로우 치트시트](./claude-code-practical-cheatsheet.md) - 컨텍스트 관리와 워크플로우 철학으로 Claude Code 200% 활용하기, WAT 프레임워크 `Trend 2026`
 - [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) - 장시간 AI 에이전트 작업에서 컨텍스트 윈도우 한계를 극복하는 세션 인수인계 패턴
 - [Claude Code 설정 체계](./claude-code-settings.md) - 다계층 설정 구조, 보안 Hook, 셸 별칭 등 실전 환경 구성 방법
 - [Claude Code 커스터마이징 마스터 가이드](./claude-code-customization.md) - GeekNews 검증 창시자/파워유저의 12가지 커스터마이징 팁, 병렬 워크플로우, 설정 최적화 `Trend 2026`

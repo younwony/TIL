@@ -1,0 +1,340 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 920">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#34495E"/>
+    </linearGradient>
+    <linearGradient id="asIsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="toBeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="newGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+    <linearGradient id="lightBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDFEFE"/>
+      <stop offset="100%" style="stop-color:#F4F6F7"/>
+    </linearGradient>
+    <linearGradient id="asIsBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDEDEC"/>
+      <stop offset="100%" style="stop-color:#FADBD8"/>
+    </linearGradient>
+    <linearGradient id="toBeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EAFAF1"/>
+      <stop offset="100%" style="stop-color:#D5F5E3"/>
+    </linearGradient>
+    <linearGradient id="newBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EBF5FB"/>
+      <stop offset="100%" style="stop-color:#D6EAF8"/>
+    </linearGradient>
+    <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980B9"/>
+    </marker>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 전체 배경 -->
+  <rect width="1100" height="920" fill="#F8F9FA" rx="12"/>
+
+  <!-- 타이틀 -->
+  <rect x="0" y="0" width="1100" height="52" fill="url(#headerGrad)" rx="12"/>
+  <rect x="0" y="40" width="1100" height="12" fill="url(#headerGrad)"/>
+  <text x="550" y="34" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Smart Session 통합 워크플로우 — AS-IS → TO-BE 아키텍처</text>
+
+  <!-- ============================================ -->
+  <!-- AS-IS 섹션 (왼쪽) -->
+  <!-- ============================================ -->
+  <rect x="20" y="70" width="510" height="390" fill="url(#asIsBg)" rx="10" stroke="#E74C3C" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="70" width="510" height="36" fill="url(#asIsGrad)" rx="10"/>
+  <rect x="20" y="96" width="510" height="10" fill="url(#asIsGrad)"/>
+  <text x="275" y="94" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">AS-IS (변경 전)</text>
+
+  <!-- 글로벌 CLAUDE.md 비대화 -->
+  <rect x="40" y="120" width="220" height="160" fill="white" rx="6" stroke="#E74C3C" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <rect x="40" y="120" width="220" height="28" fill="#E74C3C" rx="6"/>
+  <rect x="40" y="142" width="220" height="6" fill="#E74C3C"/>
+  <text x="150" y="139" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">~/.claude/CLAUDE.md</text>
+  <text x="150" y="157" text-anchor="middle" fill="#C0392B" font-family="Arial, sans-serif" font-size="10" font-weight="bold">268줄 (비대화)</text>
+
+  <text x="55" y="175" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">• 한글 설정 (1~6줄)</text>
+  <text x="55" y="188" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">• git add 규칙 (8~12줄)</text>
+  <text x="55" y="201" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">• 워크플로우 (21~55줄)</text>
+  <rect x="50" y="208" width="200" height="1" fill="#FADBD8"/>
+  <text x="55" y="221" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 코드 작성 원칙 상세 (57~125줄)</text>
+  <text x="55" y="234" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 커밋 규칙 (127~142줄) — 중복</text>
+  <text x="55" y="247" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 개발 워크플로우 (144~173줄)</text>
+  <text x="55" y="260" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 체크리스트 (175~198줄)</text>
+  <text x="55" y="273" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ Skills 테이블 (202~244줄) — 중복</text>
+
+  <!-- 프로젝트 CLAUDE.md -->
+  <rect x="280" y="120" width="230" height="160" fill="white" rx="6" stroke="#E74C3C" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <rect x="280" y="120" width="230" height="28" fill="#C0392B" rx="6"/>
+  <rect x="280" y="142" width="230" height="6" fill="#C0392B"/>
+  <text x="395" y="139" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">TIL/CLAUDE.md</text>
+  <text x="395" y="157" text-anchor="middle" fill="#C0392B" font-family="Arial, sans-serif" font-size="10" font-weight="bold">307줄</text>
+
+  <text x="295" y="175" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">• Git/폴더/마크다운 규칙</text>
+  <text x="295" y="188" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">• Skills/Commands/Agents 테이블</text>
+  <text x="295" y="201" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">• 팀 에이전트 워크플로우</text>
+  <rect x="290" y="208" width="210" height="1" fill="#FADBD8"/>
+  <text x="295" y="221" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 코드 작성 규칙 (126~143줄) — 중복</text>
+  <text x="295" y="234" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 언어 설정 (296~301줄) — 중복</text>
+  <text x="295" y="247" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 세션 관리 규칙 없음</text>
+  <text x="295" y="260" fill="#E74C3C" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✗ 컨텍스트 관리 없음</text>
+
+  <!-- 문제점 요약 -->
+  <rect x="40" y="300" width="480" height="148" fill="white" rx="6" stroke="#E74C3C" stroke-width="1" opacity="0.9"/>
+  <text x="280" y="320" text-anchor="middle" fill="#C0392B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">문제점</text>
+
+  <rect x="55" y="332" width="14" height="14" fill="#E74C3C" rx="3"/>
+  <text x="62" y="343" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">1</text>
+  <text x="78" y="343" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">글로벌 CLAUDE.md가 268줄로 비대 → 매 세션 토큰 낭비</text>
+
+  <rect x="55" y="354" width="14" height="14" fill="#E74C3C" rx="3"/>
+  <text x="62" y="365" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">2</text>
+  <text x="78" y="365" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">코드 규칙·커밋 규칙·언어 설정이 글로벌/프로젝트에 중복</text>
+
+  <rect x="55" y="376" width="14" height="14" fill="#E74C3C" rx="3"/>
+  <text x="62" y="387" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">3</text>
+  <text x="78" y="387" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">세션 라이프사이클(시작·실행·종료) 관리 체계 부재</text>
+
+  <rect x="55" y="398" width="14" height="14" fill="#E74C3C" rx="3"/>
+  <text x="62" y="409" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">4</text>
+  <text x="78" y="409" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">치트시트 기법(WAT, 스크립트 오프로드 등)이 구조화되지 않음</text>
+
+  <rect x="55" y="420" width="14" height="14" fill="#E74C3C" rx="3"/>
+  <text x="62" y="431" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">5</text>
+  <text x="78" y="431" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">Skills 테이블이 글로벌·프로젝트 양쪽에 존재 (동기화 부담)</text>
+
+  <!-- ============================================ -->
+  <!-- 화살표: AS-IS → TO-BE -->
+  <!-- ============================================ -->
+  <rect x="536" y="200" width="30" height="30" fill="url(#tealGrad)" rx="15"/>
+  <text x="551" y="220" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">→</text>
+
+  <!-- ============================================ -->
+  <!-- TO-BE 섹션 (오른쪽) -->
+  <!-- ============================================ -->
+  <rect x="572" y="70" width="510" height="390" fill="url(#toBeBg)" rx="10" stroke="#27AE60" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="572" y="70" width="510" height="36" fill="url(#toBeGrad)" rx="10"/>
+  <rect x="572" y="96" width="510" height="10" fill="url(#toBeGrad)"/>
+  <text x="827" y="94" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">TO-BE (변경 후)</text>
+
+  <!-- 슬림 글로벌 CLAUDE.md -->
+  <rect x="592" y="120" width="220" height="155" fill="white" rx="6" stroke="#27AE60" stroke-width="1.5"/>
+  <rect x="592" y="120" width="220" height="28" fill="#27AE60" rx="6"/>
+  <rect x="592" y="142" width="220" height="6" fill="#27AE60"/>
+  <text x="702" y="139" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">~/.claude/CLAUDE.md</text>
+  <text x="702" y="157" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="10" font-weight="bold">73줄 (−73% 슬림화)</text>
+
+  <text x="607" y="175" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ 한글 설정 (유지)</text>
+  <text x="607" y="188" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ git add 규칙 (유지)</text>
+  <text x="607" y="201" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ 플랜 모드 규칙 (유지)</text>
+  <text x="607" y="214" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ 5단계 워크플로우 (유지)</text>
+  <rect x="602" y="220" width="200" height="1" fill="#D5F5E3"/>
+  <text x="607" y="234" fill="#3498DB" font-family="Arial, sans-serif" font-size="9" font-weight="bold">★ 코드 원칙 3줄 요약 + 참조 링크</text>
+  <text x="607" y="248" fill="#3498DB" font-family="Arial, sans-serif" font-size="9" font-weight="bold">★ 세션 &amp; 컨텍스트 관리 (신규 6줄)</text>
+  <text x="607" y="262" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">✗ Skills 테이블 삭제 (프로젝트에 위임)</text>
+
+  <!-- 프로젝트 CLAUDE.md -->
+  <rect x="832" y="120" width="230" height="155" fill="white" rx="6" stroke="#27AE60" stroke-width="1.5"/>
+  <rect x="832" y="120" width="230" height="28" fill="#16A085" rx="6"/>
+  <rect x="832" y="142" width="230" height="6" fill="#16A085"/>
+  <text x="947" y="139" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">TIL/CLAUDE.md</text>
+  <text x="947" y="157" text-anchor="middle" fill="#16A085" font-family="Arial, sans-serif" font-size="10" font-weight="bold">~230줄 (−25% 경량화)</text>
+
+  <text x="847" y="175" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ Git/폴더/마크다운 규칙 (유지)</text>
+  <text x="847" y="188" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ Skills/Commands/Agents (유지)</text>
+  <text x="847" y="201" fill="#27AE60" font-family="Arial, sans-serif" font-size="9" font-weight="bold">✓ 팀 에이전트 워크플로우 (유지)</text>
+  <rect x="842" y="208" width="210" height="1" fill="#D5F5E3"/>
+  <text x="847" y="221" fill="#3498DB" font-family="Arial, sans-serif" font-size="9" font-weight="bold">★ 코드 규칙 → 2줄 참조로 대체</text>
+  <text x="847" y="234" fill="#3498DB" font-family="Arial, sans-serif" font-size="9" font-weight="bold">★ smart-session 스킬 등록 (신규)</text>
+  <text x="847" y="248" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">✗ 언어 설정 삭제 (글로벌에 위임)</text>
+  <text x="847" y="262" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">✗ 코드 규칙 중복 삭제</text>
+
+  <!-- 개선 효과 -->
+  <rect x="592" y="290" width="480" height="158" fill="white" rx="6" stroke="#27AE60" stroke-width="1" opacity="0.9"/>
+  <text x="832" y="310" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="12" font-weight="bold">개선 효과</text>
+
+  <rect x="607" y="322" width="14" height="14" fill="#27AE60" rx="3"/>
+  <text x="614" y="333" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">1</text>
+  <text x="630" y="333" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">글로벌 268줄→73줄: 매 세션 ~195줄 토큰 절약 (−73%)</text>
+
+  <rect x="607" y="344" width="14" height="14" fill="#27AE60" rx="3"/>
+  <text x="614" y="355" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">2</text>
+  <text x="630" y="355" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">중복 제거: 코드 규칙·언어 설정이 한 곳에서만 관리</text>
+
+  <rect x="607" y="366" width="14" height="14" fill="#27AE60" rx="3"/>
+  <text x="614" y="377" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">3</text>
+  <text x="630" y="377" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">Lazy Loading: CODE-RULES.md는 코드 작업 시에만 참조</text>
+
+  <rect x="607" y="388" width="14" height="14" fill="#27AE60" rx="3"/>
+  <text x="614" y="399" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">4</text>
+  <text x="630" y="399" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">세션 관리 체계화: 시작→실행→종료 라이프사이클 자동화</text>
+
+  <rect x="607" y="410" width="14" height="14" fill="#27AE60" rx="3"/>
+  <text x="614" y="421" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">5</text>
+  <text x="630" y="421" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10">치트시트 9기법이 구조화된 WAT 워크플로우로 자동 적용</text>
+
+  <!-- ============================================ -->
+  <!-- 신규 생성 파일 섹션 (하단) -->
+  <!-- ============================================ -->
+  <rect x="20" y="480" width="1062" height="420" fill="url(#newBg)" rx="10" stroke="#2980B9" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="480" width="1062" height="36" fill="url(#newGrad)" rx="10"/>
+  <rect x="20" y="506" width="1062" height="10" fill="url(#newGrad)"/>
+  <text x="551" y="504" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">NEW — 신규 생성 파일</text>
+
+  <!-- smart-session 스킬 (왼쪽) -->
+  <rect x="40" y="530" width="500" height="356" fill="white" rx="8" stroke="#2980B9" stroke-width="1.5"/>
+  <rect x="40" y="530" width="500" height="32" fill="url(#purpleGrad)" rx="8"/>
+  <rect x="40" y="556" width="500" height="6" fill="url(#purpleGrad)"/>
+  <text x="290" y="551" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">.claude/skills/smart-session/SKILL.md</text>
+  <text x="290" y="577" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="10" font-weight="bold">치트시트 기반 통합 워크플로우 오케스트레이터</text>
+
+  <!-- Phase 1 -->
+  <rect x="60" y="592" width="145" height="140" fill="#F5EEF8" rx="6" stroke="#9B59B6" stroke-width="1"/>
+  <rect x="60" y="592" width="145" height="24" fill="#9B59B6" rx="6"/>
+  <rect x="60" y="610" width="145" height="6" fill="#9B59B6"/>
+  <text x="132" y="609" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Phase 1: 세션 시작</text>
+  <text x="75" y="633" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">HANDOFF.md 로드</text>
+  <text x="75" y="648" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">TODO.md 확인</text>
+  <text x="75" y="663" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">MEMORY.md 참조</text>
+  <text x="75" y="678" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">MCP 상태 진단</text>
+  <text x="75" y="693" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">세션 목표 단일화</text>
+  <rect x="80" y="705" width="105" height="18" fill="#9B59B6" rx="4" opacity="0.2"/>
+  <text x="132" y="717" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="8" font-weight="bold">한 세션 = 한 피처</text>
+
+  <!-- Phase 2 -->
+  <rect x="218" y="592" width="155" height="140" fill="#EBF5FB" rx="6" stroke="#3498DB" stroke-width="1"/>
+  <rect x="218" y="592" width="155" height="24" fill="#3498DB" rx="6"/>
+  <rect x="218" y="610" width="155" height="6" fill="#3498DB"/>
+  <text x="295" y="609" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Phase 2: WAT 실행</text>
+  <text x="233" y="633" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">[T] 도구 준비</text>
+  <text x="233" y="648" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">[W] Plan Mode 설계</text>
+  <text x="233" y="663" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">[A] Sub Agent 위임</text>
+  <text x="233" y="678" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">가정 변경 알림</text>
+  <text x="233" y="693" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">에러 원본 분석</text>
+  <rect x="238" y="705" width="115" height="18" fill="#3498DB" rx="4" opacity="0.2"/>
+  <text x="295" y="717" text-anchor="middle" fill="#2980B9" font-family="Arial, sans-serif" font-size="8" font-weight="bold">스크립트 오프로드</text>
+
+  <!-- Phase 3 -->
+  <rect x="386" y="592" width="140" height="140" fill="#EAFAF1" rx="6" stroke="#27AE60" stroke-width="1"/>
+  <rect x="386" y="592" width="140" height="24" fill="#27AE60" rx="6"/>
+  <rect x="386" y="610" width="140" height="6" fill="#27AE60"/>
+  <text x="456" y="609" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Phase 3: 세션 종료</text>
+  <text x="401" y="633" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">/compact 판단</text>
+  <text x="401" y="648" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">/team-review 제안</text>
+  <text x="401" y="663" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">TODO.md 업데이트</text>
+  <text x="401" y="678" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">/memory 저장 제안</text>
+  <text x="401" y="693" fill="#2C3E50" font-family="Arial, sans-serif" font-size="9">결과 요약 보고</text>
+  <rect x="401" y="705" width="110" height="18" fill="#27AE60" rx="4" opacity="0.2"/>
+  <text x="456" y="717" text-anchor="middle" fill="#27AE60" font-family="Arial, sans-serif" font-size="8" font-weight="bold">상태 보존</text>
+
+  <!-- Phase 간 화살표 -->
+  <line x1="205" y1="662" x2="216" y2="662" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <line x1="373" y1="662" x2="384" y2="662" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- 기존 모듈 연동 -->
+  <text x="290" y="750" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="10" font-weight="bold">기존 모듈 오케스트레이션 (새로 만들지 않고 조합)</text>
+
+  <rect x="55" y="762" width="78" height="22" fill="url(#orangeGrad)" rx="4"/>
+  <text x="94" y="777" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">/handoff</text>
+
+  <rect x="141" y="762" width="78" height="22" fill="url(#orangeGrad)" rx="4"/>
+  <text x="180" y="777" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">/team-review</text>
+
+  <rect x="227" y="762" width="78" height="22" fill="url(#orangeGrad)" rx="4"/>
+  <text x="266" y="777" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Plan Mode</text>
+
+  <rect x="313" y="762" width="78" height="22" fill="url(#orangeGrad)" rx="4"/>
+  <text x="352" y="777" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Sub Agent</text>
+
+  <rect x="399" y="762" width="78" height="22" fill="url(#orangeGrad)" rx="4"/>
+  <text x="438" y="777" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">/memory</text>
+
+  <!-- 치트시트 기법 매핑 -->
+  <text x="290" y="804" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">치트시트 9기법: Second Brain · Lazy Loading · WAT · 점진적 복잡도 · 에러 원본</text>
+  <text x="290" y="817" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">스크립트 오프로드 · 한 세션=한 피처 · /compact 타이밍 · 크로스 리뷰</text>
+
+  <!-- CODE-RULES.md (오른쪽) -->
+  <rect x="560" y="530" width="500" height="356" fill="white" rx="8" stroke="#2980B9" stroke-width="1.5"/>
+  <rect x="560" y="530" width="500" height="32" fill="url(#tealGrad)" rx="8"/>
+  <rect x="560" y="556" width="500" height="6" fill="url(#tealGrad)"/>
+  <text x="810" y="551" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">.claude/docs/CODE-RULES.md</text>
+  <text x="810" y="577" text-anchor="middle" fill="#16A085" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Lazy Loading 참조 문서 — 코드 작업 시에만 로드</text>
+
+  <!-- 이동된 콘텐츠 목록 -->
+  <rect x="580" y="592" width="460" height="280" fill="#F0FFFE" rx="6" stroke="#1ABC9C" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="810" y="612" text-anchor="middle" fill="#16A085" font-family="Arial, sans-serif" font-size="11" font-weight="bold">글로벌 CLAUDE.md에서 이동된 상세 규칙</text>
+
+  <rect x="600" y="628" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="605" y="640" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">1. 테스트 코드 작성 (필수)</text>
+  <text x="615" y="653" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">TDD 원칙, 커버리지 80%+, Given-When-Then</text>
+
+  <rect x="600" y="664" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="605" y="676" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">2. 코드 품질</text>
+  <text x="615" y="689" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">상수, SRP/DRY, 네이밍 규칙</text>
+
+  <rect x="600" y="700" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="605" y="712" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">3. 성능 최적화</text>
+  <text x="615" y="725" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">객체 재사용, 캐싱 전략</text>
+
+  <rect x="600" y="736" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="605" y="748" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">4. 문서화</text>
+  <text x="615" y="761" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">주석, JavaDoc</text>
+
+  <rect x="820" y="628" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="825" y="640" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">5. 개발 워크플로우</text>
+  <text x="835" y="653" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">개발 전/중/후 단계별 가이드</text>
+
+  <rect x="820" y="664" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="825" y="676" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">6. 테스트 실행 명령</text>
+  <text x="835" y="689" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">gradlew test, jacocoTestReport</text>
+
+  <rect x="820" y="700" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="825" y="712" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">7. 체크리스트</text>
+  <text x="835" y="725" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">코드 작성 시 / Git / 커밋 시</text>
+
+  <rect x="820" y="736" width="210" height="28" fill="#1ABC9C" rx="5" opacity="0.15"/>
+  <text x="825" y="748" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">8. 스킬 생성 규칙</text>
+  <text x="835" y="761" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">skill-creator 참조, 500줄 이하</text>
+
+  <!-- Lazy Loading 설명 -->
+  <rect x="600" y="780" width="420" height="36" fill="#16A085" rx="6" opacity="0.12"/>
+  <text x="810" y="796" text-anchor="middle" fill="#16A085" font-family="Arial, sans-serif" font-size="10" font-weight="bold">참조 방식: @.claude/docs/CODE-RULES.md</text>
+  <text x="810" y="810" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">코드 작업 요청 시에만 로드 → 매 세션 ~140줄 토큰 절약</text>
+
+  <!-- 하단 요약 바 -->
+  <rect x="40" y="840" width="480" height="42" fill="url(#purpleGrad)" rx="6" opacity="0.9"/>
+  <text x="280" y="858" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">트리거: "스마트 세션" / "세션 시작" / "세션 정리"</text>
+  <text x="280" y="874" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" opacity="0.8">기존 모듈을 조합한 상위 오케스트레이션 레이어</text>
+
+  <rect x="560" y="840" width="480" height="42" fill="url(#tealGrad)" rx="6" opacity="0.9"/>
+  <text x="800" y="858" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Lazy Loading: 코드 작업 시에만 참조</text>
+  <text x="800" y="874" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" opacity="0.8">글로벌 CLAUDE.md 268줄→73줄 (총 토큰 −73% 절약)</text>
+</svg>

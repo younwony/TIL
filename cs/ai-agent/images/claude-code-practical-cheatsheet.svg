@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#34495E"/>
+    </linearGradient>
+    <linearGradient id="contextGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="workflowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="itemBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5DADE2"/>
+      <stop offset="100%" style="stop-color:#3498DB"/>
+    </linearGradient>
+    <linearGradient id="itemGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#58D68D"/>
+      <stop offset="100%" style="stop-color:#2ECC71"/>
+    </linearGradient>
+    <linearGradient id="centerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrowGray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#95A5A6"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="880" height="520" rx="12" fill="#F8F9FA"/>
+
+  <!-- 헤더 -->
+  <rect x="20" y="15" width="840" height="50" rx="8" fill="url(#headerGrad)" filter="url(#shadow)"/>
+  <text x="440" y="38" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Claude Code 실전 워크플로우 치트시트</text>
+  <text x="440" y="55" text-anchor="middle" fill="#BDC3C7" font-family="Arial, sans-serif" font-size="11">컨텍스트 관리 + 워크플로우 철학 = 200% 활용</text>
+
+  <!-- ========== 왼쪽: 컨텍스트 관리 ========== -->
+  <rect x="20" y="80" width="410" height="425" rx="10" fill="white" stroke="#3498DB" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- 컨텍스트 관리 헤더 -->
+  <rect x="20" y="80" width="410" height="38" rx="10" fill="url(#contextGrad)"/>
+  <rect x="20" y="100" width="410" height="18" fill="url(#contextGrad)"/>
+  <text x="225" y="105" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🧠 컨텍스트 관리</text>
+
+  <!-- 1. Second Brain -->
+  <rect x="40" y="130" width="175" height="54" rx="6" fill="url(#itemBlue)" filter="url(#shadow)"/>
+  <text x="127" y="151" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Second Brain</text>
+  <text x="127" y="174" text-anchor="middle" fill="#D6EAF8" font-family="Arial, sans-serif" font-size="9">/memory로 자동 기억 축적</text>
+
+  <!-- 2. Lazy Loading CLAUDE.md -->
+  <rect x="235" y="130" width="175" height="54" rx="6" fill="url(#itemBlue)" filter="url(#shadow)"/>
+  <text x="322" y="151" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Lazy Loading</text>
+  <text x="322" y="174" text-anchor="middle" fill="#D6EAF8" font-family="Arial, sans-serif" font-size="9">CLAUDE.md 참조 구조화</text>
+
+  <!-- 3. 한 세션 = 한 피처 -->
+  <rect x="40" y="198" width="175" height="54" rx="6" fill="url(#itemBlue)" filter="url(#shadow)"/>
+  <text x="127" y="219" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">한 세션 = 한 피처</text>
+  <text x="127" y="242" text-anchor="middle" fill="#D6EAF8" font-family="Arial, sans-serif" font-size="9">/clear · /compact 전략</text>
+
+  <!-- 4. MCP 토큰 모니터링 -->
+  <rect x="235" y="198" width="175" height="54" rx="6" fill="url(#itemBlue)" filter="url(#shadow)"/>
+  <text x="322" y="219" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">MCP 토큰 모니터링</text>
+  <text x="322" y="242" text-anchor="middle" fill="#D6EAF8" font-family="Arial, sans-serif" font-size="9">/context · MCP 래핑</text>
+
+  <!-- 5. /compact 활용 -->
+  <rect x="40" y="266" width="175" height="54" rx="6" fill="url(#itemBlue)" filter="url(#shadow)"/>
+  <text x="127" y="287" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">/compact 적극 활용</text>
+  <text x="127" y="310" text-anchor="middle" fill="#D6EAF8" font-family="Arial, sans-serif" font-size="9">70% 토큰 시 실행 권장</text>
+
+  <!-- 6. 파일 참조 최적화 -->
+  <rect x="235" y="266" width="175" height="54" rx="6" fill="url(#itemBlue)" filter="url(#shadow)"/>
+  <text x="322" y="287" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">파일 참조 최적화</text>
+  <text x="322" y="310" text-anchor="middle" fill="#D6EAF8" font-family="Arial, sans-serif" font-size="9">줄 범위 지정 · 선별 참조</text>
+
+  <!-- 핵심 공식 (왼쪽) -->
+  <rect x="40" y="338" width="370" height="40" rx="6" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1"/>
+  <text x="225" y="358" text-anchor="middle" fill="#2471A3" font-family="Arial, sans-serif" font-size="11" font-weight="bold">핵심: 토큰 예산 절약 → 더 복잡한 작업 처리 가능</text>
+  <text x="225" y="372" text-anchor="middle" fill="#5499C7" font-family="Arial, sans-serif" font-size="9">Lazy Loading만으로도 매 대화 ~6,500 토큰 절약</text>
+
+  <!-- 체크리스트 (왼쪽) -->
+  <text x="50" y="402" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">체크리스트</text>
+  <text x="50" y="418" fill="#5D6D7E" font-family="Arial, sans-serif" font-size="9">☐ /context로 토큰 확인  ☐ 불필요 MCP 비활성화</text>
+  <text x="50" y="433" fill="#5D6D7E" font-family="Arial, sans-serif" font-size="9">☐ Lazy Loading 구조 확인  ☐ 한 피처만 작업</text>
+  <text x="50" y="448" fill="#5D6D7E" font-family="Arial, sans-serif" font-size="9">☐ 50%→/compact 고려  ☐ 85%→HANDOFF+/clear</text>
+
+  <!-- ========== 오른쪽: 워크플로우 철학 ========== -->
+  <rect x="450" y="80" width="410" height="425" rx="10" fill="white" stroke="#27AE60" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- 워크플로우 철학 헤더 -->
+  <rect x="450" y="80" width="410" height="38" rx="10" fill="url(#workflowGrad)"/>
+  <rect x="450" y="100" width="410" height="18" fill="url(#workflowGrad)"/>
+  <text x="655" y="105" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">⚡ 워크플로우 철학</text>
+
+  <!-- 1. Thinking 로그 -->
+  <rect x="470" y="130" width="175" height="54" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="557" y="151" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Thinking 로그 읽기</text>
+  <text x="557" y="174" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">잘못된 가정 조기 포착</text>
+
+  <!-- 2. 크로스 리뷰 -->
+  <rect x="665" y="130" width="175" height="54" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="752" y="151" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">크로스 리뷰</text>
+  <text x="752" y="174" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">다른 AI · 팀 리뷰어 검증</text>
+
+  <!-- 3. TODO.md -->
+  <rect x="470" y="198" width="175" height="54" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="557" y="219" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">TODO.md 활용</text>
+  <text x="557" y="242" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">세션 간 연속성 유지</text>
+
+  <!-- 4. 스크립트 오프로드 -->
+  <rect x="665" y="198" width="175" height="54" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="752" y="219" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">스크립트 오프로드</text>
+  <text x="752" y="242" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">무거운 작업 외부 분리</text>
+
+  <!-- 5. WAT 프레임워크 -->
+  <rect x="470" y="266" width="175" height="54" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="557" y="287" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">WAT 프레임워크</text>
+  <text x="557" y="310" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">Workflows·Agents·Tools</text>
+
+  <!-- 6. 점진적 복잡도 -->
+  <rect x="665" y="266" width="175" height="54" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="752" y="287" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">점진적 복잡도 증가</text>
+  <text x="752" y="310" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">Phase 1→2→3→4 단계별</text>
+
+  <!-- 7. 피드백 루프 -->
+  <rect x="568" y="334" width="175" height="44" rx="6" fill="url(#itemGreen)" filter="url(#shadow)"/>
+  <text x="655" y="353" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">피드백 루프 설계</text>
+  <text x="655" y="370" text-anchor="middle" fill="#D5F5E3" font-family="Arial, sans-serif" font-size="9">코드 생성→테스트→검증→수정</text>
+
+  <!-- 핵심 공식 (오른쪽) -->
+  <rect x="470" y="392" width="370" height="40" rx="6" fill="#EAFAF1" stroke="#ABEBC6" stroke-width="1"/>
+  <text x="655" y="412" text-anchor="middle" fill="#1E8449" font-family="Arial, sans-serif" font-size="11" font-weight="bold">핵심: 작업 품질 최적화 → 재작업 최소화</text>
+  <text x="655" y="426" text-anchor="middle" fill="#52BE80" font-family="Arial, sans-serif" font-size="9">Thinking 로그 + 크로스 리뷰 = 잘못된 방향 조기 차단</text>
+
+  <!-- 체크리스트 (오른쪽) -->
+  <text x="480" y="455" fill="#2C3E50" font-family="Arial, sans-serif" font-size="10" font-weight="bold">체크리스트</text>
+  <text x="480" y="471" fill="#5D6D7E" font-family="Arial, sans-serif" font-size="9">☐ Thinking 로그 모니터링  ☐ 크로스 리뷰 실행</text>
+  <text x="480" y="486" fill="#5D6D7E" font-family="Arial, sans-serif" font-size="9">☐ 점진적 복잡도 전략 적용  ☐ 오프로드 대상 분리</text>
+  <text x="480" y="501" fill="#5D6D7E" font-family="Arial, sans-serif" font-size="9">☐ WAT 순서 준수 (T→W→A)  ☐ 피드백 루프 설계</text>
+
+  <!-- ========== 중앙 연결 화살표 ========== -->
+  <line x1="430" y1="240" x2="450" y2="240" stroke="#95A5A6" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+  <line x1="450" y1="240" x2="430" y2="240" stroke="#95A5A6" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+
+  <!-- 중앙 라벨 -->
+  <rect x="432" y="220" width="16" height="40" rx="3" fill="url(#centerGrad)"/>
+  <text x="440" y="237" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">+</text>
+  <text x="440" y="253" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">=</text>
+</svg>
