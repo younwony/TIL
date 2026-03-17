@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 700" font-family="Arial, sans-serif">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="nodeGray" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#95A5A6"/>
+      <stop offset="100%" style="stop-color:#7F8C8D"/>
+    </linearGradient>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000022"/>
+    </filter>
+    <filter id="shadowStrong" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#00000033"/>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrowBlack" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowDashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9B59B6"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+  </defs>
+
+  <!-- White background -->
+  <rect width="750" height="700" fill="#FFFFFF"/>
+
+  <!-- ===== TITLE ===== -->
+  <text x="375" y="32" font-size="16" font-weight="bold" fill="#2C3E50" text-anchor="middle">Skill Creator 평가 시스템 구성도</text>
+  <text x="375" y="50" font-size="11" fill="#7F8C8D" text-anchor="middle">5단계 평가 파이프라인 + 3종 에이전트</text>
+
+  <!-- ===== TOP: TEST EXECUTION SECTION ===== -->
+  <rect x="60" y="65" width="500" height="90" rx="10" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="310" y="83" font-size="11" font-weight="bold" fill="#2C3E50" text-anchor="middle">테스트 실행 (병렬)</text>
+
+  <!-- With-skill box -->
+  <rect x="85" y="90" width="195" height="55" rx="8" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <!-- Robot icon for With-skill -->
+  <circle cx="108" cy="110" r="8" fill="rgba(255,255,255,0.3)"/>
+  <rect x="102" y="116" width="12" height="8" rx="2" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="105" cy="108" r="2" fill="white"/>
+  <circle cx="111" cy="108" r="2" fill="white"/>
+  <text x="125" y="109" font-size="10" font-weight="bold" fill="white">With-skill 실행</text>
+  <text x="125" y="122" font-size="9" fill="rgba(255,255,255,0.85)">스킬 적용 테스트 케이스</text>
+  <text x="125" y="135" font-size="9" fill="rgba(255,255,255,0.85)">skill_result.json</text>
+
+  <!-- Baseline box -->
+  <rect x="300" y="90" width="195" height="55" rx="8" fill="url(#nodeGray)" filter="url(#shadow)"/>
+  <!-- Robot icon for Baseline -->
+  <circle cx="323" cy="110" r="8" fill="rgba(255,255,255,0.3)"/>
+  <rect x="317" y="116" width="12" height="8" rx="2" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="320" cy="108" r="2" fill="white"/>
+  <circle cx="326" cy="108" r="2" fill="white"/>
+  <text x="340" y="109" font-size="10" font-weight="bold" fill="white">Baseline 실행</text>
+  <text x="340" y="122" font-size="9" fill="rgba(255,255,255,0.85)">기준 테스트 케이스</text>
+  <text x="340" y="135" font-size="9" fill="rgba(255,255,255,0.85)">baseline_result.json</text>
+
+  <!-- Down arrow from test section to pipeline -->
+  <line x1="310" y1="155" x2="310" y2="172" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowBlack)"/>
+
+  <!-- ===== PIPELINE SECTION ===== -->
+  <!-- Pipeline vertical line (background) -->
+  <line x1="310" y1="175" x2="310" y2="620" stroke="#ECF0F1" stroke-width="4"/>
+
+  <!-- ===== STEP 1: GRADER ===== -->
+  <rect x="120" y="175" width="380" height="80" rx="10" fill="white" stroke="#27AE60" stroke-width="2" filter="url(#shadow)"/>
+  <!-- Step badge -->
+  <rect x="120" y="175" width="36" height="22" rx="6" fill="url(#nodeGreen)"/>
+  <text x="138" y="190" font-size="10" font-weight="bold" fill="white" text-anchor="middle">1</text>
+  <!-- Robot icon -->
+  <circle cx="160" cy="200" r="10" fill="#ECF0F1" stroke="#27AE60" stroke-width="1.5"/>
+  <circle cx="156" cy="197" r="2" fill="#27AE60"/>
+  <circle cx="164" cy="197" r="2" fill="#27AE60"/>
+  <path d="M154 203 Q160 207 166 203" stroke="#27AE60" stroke-width="1.5" fill="none"/>
+  <rect x="152" y="208" width="16" height="9" rx="2" fill="#ECF0F1" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="185" y="196" font-size="12" font-weight="bold" fill="#27AE60">Grader 서브에이전트</text>
+  <text x="185" y="211" font-size="10" fill="#2C3E50">각 assertion PASS / FAIL 판정</text>
+  <text x="185" y="225" font-size="10" fill="#7F8C8D">출력:</text>
+  <rect x="213" y="215" width="80" height="16" rx="4" fill="#EAFAF1" stroke="#27AE60" stroke-width="1"/>
+  <text x="253" y="226" font-size="9" fill="#27AE60" text-anchor="middle">grading.json</text>
+  <!-- PASS/FAIL tags -->
+  <rect x="385" y="192" width="36" height="16" rx="4" fill="#2ECC71"/>
+  <text x="403" y="203" font-size="9" font-weight="bold" fill="white" text-anchor="middle">PASS</text>
+  <rect x="385" y="212" width="36" height="16" rx="4" fill="#E74C3C"/>
+  <text x="403" y="223" font-size="9" font-weight="bold" fill="white" text-anchor="middle">FAIL</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="310" y1="255" x2="310" y2="273" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowBlack)"/>
+
+  <!-- ===== STEP 2: BENCHMARK ===== -->
+  <rect x="120" y="275" width="380" height="80" rx="10" fill="white" stroke="#2980B9" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="120" y="275" width="36" height="22" rx="6" fill="url(#nodeBlue)"/>
+  <text x="138" y="290" font-size="10" font-weight="bold" fill="white" text-anchor="middle">2</text>
+  <!-- Chart icon -->
+  <rect x="148" y="290" width="22" height="22" rx="3" fill="#ECF0F1" stroke="#2980B9" stroke-width="1.5"/>
+  <rect x="152" y="304" width="4" height="6" fill="#3498DB"/>
+  <rect x="158" y="299" width="4" height="11" fill="#3498DB"/>
+  <rect x="164" y="296" width="4" height="14" fill="#2980B9"/>
+  <text x="185" y="296" font-size="12" font-weight="bold" fill="#2980B9">Benchmark 집계</text>
+  <text x="185" y="311" font-size="10" fill="#2C3E50">pass_rate, time, tokens 집계</text>
+  <text x="185" y="325" font-size="10" fill="#7F8C8D">출력:</text>
+  <rect x="213" y="315" width="95" height="16" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="260" y="326" font-size="9" fill="#2980B9" text-anchor="middle">benchmark.json</text>
+  <!-- Metrics tags -->
+  <rect x="375" y="290" width="55" height="14" rx="4" fill="#EBF5FB" stroke="#3498DB" stroke-width="1"/>
+  <text x="402" y="300" font-size="8" fill="#2980B9" text-anchor="middle">pass_rate</text>
+  <rect x="375" y="308" width="55" height="14" rx="4" fill="#EBF5FB" stroke="#3498DB" stroke-width="1"/>
+  <text x="402" y="318" font-size="8" fill="#2980B9" text-anchor="middle">time / tokens</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="310" y1="355" x2="310" y2="373" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowBlack)"/>
+
+  <!-- ===== STEP 3: ANALYZER ===== -->
+  <rect x="120" y="375" width="380" height="90" rx="10" fill="white" stroke="#D35400" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="120" y="375" width="36" height="22" rx="6" fill="url(#nodeOrange)"/>
+  <text x="138" y="390" font-size="10" font-weight="bold" fill="white" text-anchor="middle">3</text>
+  <!-- Robot icon (Analyzer) -->
+  <circle cx="160" cy="403" r="10" fill="#ECF0F1" stroke="#D35400" stroke-width="1.5"/>
+  <circle cx="156" cy="400" r="2" fill="#E67E22"/>
+  <circle cx="164" cy="400" r="2" fill="#E67E22"/>
+  <path d="M154 406 Q160 410 166 406" stroke="#E67E22" stroke-width="1.5" fill="none"/>
+  <rect x="152" y="411" width="16" height="9" rx="2" fill="#ECF0F1" stroke="#D35400" stroke-width="1.5"/>
+  <text x="185" y="398" font-size="12" font-weight="bold" fill="#E67E22">Analyzer 서브에이전트</text>
+  <text x="185" y="413" font-size="10" fill="#2C3E50">항상 통과하는 assertion 식별</text>
+  <text x="185" y="428" font-size="10" fill="#2C3E50">고분산 평가 식별</text>
+  <text x="185" y="443" font-size="10" fill="#7F8C8D">출력:</text>
+  <rect x="213" y="433" width="85" height="16" rx="4" fill="#FEF9E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="255" y="444" font-size="9" fill="#E67E22" text-anchor="middle">analysis.json</text>
+  <!-- Warning badges -->
+  <rect x="375" y="392" width="55" height="16" rx="4" fill="#FEF9E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="402" y="403" font-size="8" fill="#D35400" text-anchor="middle">always-pass</text>
+  <rect x="375" y="412" width="55" height="16" rx="4" fill="#FEF9E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="402" y="423" font-size="8" fill="#D35400" text-anchor="middle">high-variance</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="310" y1="465" x2="310" y2="483" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowBlack)"/>
+
+  <!-- ===== STEP 4: VIEWER ===== -->
+  <rect x="120" y="485" width="380" height="80" rx="10" fill="white" stroke="#8E44AD" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="120" y="485" width="36" height="22" rx="6" fill="url(#nodePurple)"/>
+  <text x="138" y="500" font-size="10" font-weight="bold" fill="white" text-anchor="middle">4</text>
+  <!-- Browser icon -->
+  <rect x="148" y="492" width="22" height="18" rx="3" fill="#ECF0F1" stroke="#8E44AD" stroke-width="1.5"/>
+  <rect x="148" y="492" width="22" height="6" rx="3" fill="#9B59B6"/>
+  <circle cx="151" cy="495" r="1.5" fill="white"/>
+  <circle cx="156" cy="495" r="1.5" fill="white"/>
+  <text x="185" y="508" font-size="12" font-weight="bold" fill="#9B59B6">Viewer</text>
+  <text x="185" y="523" font-size="10" fill="#2C3E50">HTML 리뷰 페이지 생성</text>
+  <text x="185" y="538" font-size="10" fill="#2C3E50">브라우저에서 시각적 리뷰</text>
+  <!-- HTML output tag -->
+  <rect x="310" y="530" width="80" height="16" rx="4" fill="#F5EEF8" stroke="#8E44AD" stroke-width="1"/>
+  <text x="350" y="541" font-size="9" fill="#8E44AD" text-anchor="middle">report.html</text>
+  <!-- Browser open indicator -->
+  <rect x="400" y="512" width="78" height="16" rx="4" fill="#F5EEF8" stroke="#9B59B6" stroke-width="1"/>
+  <text x="439" y="523" font-size="8" fill="#8E44AD" text-anchor="middle">Browser Open</text>
+
+  <!-- Arrow 4->5 -->
+  <line x1="310" y1="565" x2="310" y2="583" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowBlack)"/>
+
+  <!-- ===== STEP 5: USER FEEDBACK ===== -->
+  <rect x="120" y="585" width="380" height="75" rx="10" fill="white" stroke="#C0392B" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="120" y="585" width="36" height="22" rx="6" fill="url(#nodeRed)"/>
+  <text x="138" y="600" font-size="10" font-weight="bold" fill="white" text-anchor="middle">5</text>
+  <!-- Person icon -->
+  <circle cx="162" cy="603" r="7" fill="#ECF0F1" stroke="#C0392B" stroke-width="1.5"/>
+  <circle cx="162" cy="601" r="3" fill="#E74C3C"/>
+  <path d="M155 615 Q162 610 169 615" stroke="#C0392B" stroke-width="1.5" fill="none"/>
+  <text x="185" y="608" font-size="12" font-weight="bold" fill="#E74C3C">사용자 피드백</text>
+  <text x="185" y="623" font-size="10" fill="#2C3E50">평가 결과 검토 및 피드백 수집</text>
+  <text x="185" y="638" font-size="10" fill="#7F8C8D">출력:</text>
+  <rect x="213" y="628" width="88" height="16" rx="4" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1"/>
+  <text x="257" y="639" font-size="9" fill="#E74C3C" text-anchor="middle">feedback.json</text>
+
+  <!-- ===== COMPARATOR AGENT (right side, optional) ===== -->
+  <rect x="560" y="275" width="155" height="170" rx="10" fill="white" stroke="#9B59B6" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#shadow)"/>
+  <!-- Optional badge -->
+  <rect x="560" y="275" width="72" height="20" rx="6" fill="#F5EEF8" stroke="#9B59B6" stroke-width="1"/>
+  <text x="596" y="288" font-size="9" fill="#8E44AD" text-anchor="middle">선택사항</text>
+  <!-- Robot icon (Comparator) -->
+  <circle cx="590" cy="320" r="12" fill="#F5EEF8" stroke="#9B59B6" stroke-width="1.5"/>
+  <circle cx="585" cy="317" r="2.5" fill="#9B59B6"/>
+  <circle cx="595" cy="317" r="2.5" fill="#9B59B6"/>
+  <path d="M583 324 Q590 329 597 324" stroke="#9B59B6" stroke-width="1.5" fill="none"/>
+  <rect x="583" y="330" width="14" height="8" rx="2" fill="#F5EEF8" stroke="#9B59B6" stroke-width="1.5"/>
+  <text x="638" y="308" font-size="11" font-weight="bold" fill="#9B59B6" text-anchor="middle">Comparator</text>
+  <text x="638" y="322" font-size="10" font-weight="bold" fill="#9B59B6" text-anchor="middle">에이전트</text>
+  <text x="638" y="342" font-size="9" fill="#2C3E50" text-anchor="middle">맹목 비교</text>
+  <text x="638" y="356" font-size="9" fill="#7F8C8D" text-anchor="middle">(A/B 레이블)</text>
+  <!-- comparison.json -->
+  <rect x="580" y="368" width="115" height="18" rx="5" fill="#F5EEF8" stroke="#9B59B6" stroke-width="1"/>
+  <text x="637" y="380" font-size="9" fill="#8E44AD" text-anchor="middle">comparison.json</text>
+  <!-- A/B badges -->
+  <rect x="587" y="395" width="26" height="20" rx="4" fill="#9B59B6"/>
+  <text x="600" y="409" font-size="11" font-weight="bold" fill="white" text-anchor="middle">A</text>
+  <rect x="622" y="395" width="26" height="20" rx="4" fill="#E67E22"/>
+  <text x="635" y="409" font-size="11" font-weight="bold" fill="white" text-anchor="middle">B</text>
+
+  <!-- Dashed connection line from pipeline to Comparator -->
+  <line x1="500" y1="315" x2="558" y2="315" stroke="#9B59B6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <line x1="500" y1="395" x2="558" y2="395" stroke="#9B59B6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="60" y="650" width="630" height="38" rx="8" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <!-- Robot icon legend -->
+  <circle cx="85" cy="669" r="7" fill="#ECF0F1" stroke="#7F8C8D" stroke-width="1.5"/>
+  <circle cx="82" cy="667" r="1.5" fill="#7F8C8D"/>
+  <circle cx="88" cy="667" r="1.5" fill="#7F8C8D"/>
+  <path d="M80 672 Q85 675 90 672" stroke="#7F8C8D" stroke-width="1" fill="none"/>
+  <text x="100" y="673" font-size="9" fill="#2C3E50">서브에이전트 (자동화)</text>
+  <!-- Person icon legend -->
+  <circle cx="215" cy="669" r="7" fill="#ECF0F1" stroke="#7F8C8D" stroke-width="1.5"/>
+  <circle cx="215" cy="667" r="3" fill="#7F8C8D"/>
+  <path x="208" y="672" d="M208 676 Q215 671 222 676" stroke="#7F8C8D" stroke-width="1" fill="none"/>
+  <text x="228" y="673" font-size="9" fill="#2C3E50">사용자 (수동 개입)</text>
+  <!-- Solid arrow legend -->
+  <line x1="320" y1="669" x2="345" y2="669" stroke="#7F8C8D" stroke-width="1.5" marker-end="url(#arrowBlack)"/>
+  <text x="350" y="673" font-size="9" fill="#2C3E50">필수 흐름</text>
+  <!-- Dashed arrow legend -->
+  <line x1="415" y1="669" x2="440" y2="669" stroke="#9B59B6" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrowDashed)"/>
+  <text x="445" y="673" font-size="9" fill="#2C3E50">선택적 연결</text>
+  <!-- JSON output legend -->
+  <rect x="520" y="662" width="55" height="15" rx="4" fill="#EBF5FB" stroke="#3498DB" stroke-width="1"/>
+  <text x="547" y="672" font-size="9" fill="#2980B9" text-anchor="middle">*.json</text>
+  <text x="582" y="673" font-size="9" fill="#2C3E50">출력 파일</text>
+
+</svg>

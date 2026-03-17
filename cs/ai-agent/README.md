@@ -76,6 +76,8 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Hook](./claude-code-hook.md) | 생명주기 자동 실행 셸 명령어 | MCP, 셸 스크립트 |
 | [Claude Code Slash Command](./claude-code-slash-command.md) | 자주 사용하는 프롬프트 명령어화 | MCP |
 | [Claude Code Plugin](./claude-code-plugin.md) | Skill/Hook/MCP를 패키징, 마켓플레이스 배포 `Trend 2025` | Skill, Hook |
+| [Claude Code Superpowers](./claude-code-superpowers.md) | 14개 스킬로 구성된 완전한 개발 워크플로우, TDD·디버깅·검증 기반 규율 `Trend 2025-2026` | Skill, Plugin |
+| [Claude Code Skill Creator](./claude-code-skill-creator.md) | 평가 주도 개발로 스킬 생성·테스트·최적화하는 전문 도구 `Trend 2025-2026` | Skill, Plugin |
 | [AI 에이전트 메모리 아키텍처](./agent-memory.md) | AI 에이전트가 컨텍스트 윈도우를 넘어 장기 기억을 관리하는 에피소딕/시맨틱/프로시저럴 메모리 인프라 `Trend 2026` | [AI Agent란](./ai-agent.md), [Context Engineering](./context-engineering.md) |
 | [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) | 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 패턴 분석 `Trend 2026` | AI Agent란, Hook, MCP |
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
@@ -153,6 +155,8 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code Hook](./claude-code-hook.md) - AI 에이전트의 생명주기에서 자동 실행되는 사용자 정의 셸 명령어 시스템
 - [Claude Code Slash Command](./claude-code-slash-command.md) - 자주 사용하는 프롬프트를 명령어로 만들어 빠르게 실행하는 시스템
 - [Claude Code Plugin](./claude-code-plugin.md) - Skill, Agent, Hook, MCP를 패키징하여 마켓플레이스로 배포하는 확장 시스템 `Trend 2025`
+- [Claude Code Superpowers](./claude-code-superpowers.md) - 14개 스킬로 구성된 완전한 소프트웨어 개발 워크플로우, TDD·디버깅·검증 기반 규율 있는 개발 `Trend 2025-2026`
+- [Claude Code Skill Creator](./claude-code-skill-creator.md) - 평가 주도 개발(EDD)로 스킬을 생성·테스트·최적화하는 전문 도구 `Trend 2025-2026`
 - [Claude Code Workflow](./claude-code-workflow.md) - Claude Code의 효율적인 사용법과 실무 최적화 전략
 - [Claude Code 실전 가이드](./claude-code-guide.md) - 70가지 팁으로 배우는 Claude Code 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁
 - [Claude Code 실전 워크플로우 치트시트](./claude-code-practical-cheatsheet.md) - 컨텍스트 관리와 워크플로우 철학으로 Claude Code 200% 활용하기, WAT 프레임워크 `Trend 2026`

@@ -1,0 +1,228 @@
+<svg viewBox="0 0 700 850" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 필수 팔레트 그라디언트 -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 청록색 (Finishing) -->
+    <linearGradient id="nodeTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+    <!-- 회색 (Git Worktrees) -->
+    <linearGradient id="nodeGray" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7F8C8D"/>
+      <stop offset="100%" style="stop-color:#636E72"/>
+    </linearGradient>
+    <!-- 타이틀 배경 그라디언트 -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#3D5166"/>
+    </linearGradient>
+    <!-- 드롭 쉐도우 필터 -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="125%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000018"/>
+    </filter>
+    <filter id="shadowLight" x="-3%" y="-3%" width="110%" height="118%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000012"/>
+    </filter>
+  </defs>
+
+  <!-- ====== 배경 ====== -->
+  <rect width="700" height="850" fill="#F8FAFB" rx="10"/>
+
+  <!-- ====== 타이틀 ====== -->
+  <rect x="20" y="16" width="660" height="50" rx="8" fill="url(#titleGrad)" filter="url(#shadow)"/>
+  <text x="350" y="36" text-anchor="middle" font-size="9" font-weight="bold" fill="#BDC3C7" letter-spacing="2">SUPERPOWERS PLUGIN</text>
+  <text x="350" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">7단계 개발 워크플로우</text>
+
+  <!-- ====== 세로 연결선 (노드보다 먼저 그려 z-order 처리) ====== -->
+  <!-- Step 1 → 2 -->
+  <line x1="350" y1="168" x2="350" y2="192" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="344,189 350,200 356,189" fill="#BDC3C7"/>
+  <!-- Step 2 → 3 -->
+  <line x1="350" y1="270" x2="350" y2="294" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="344,291 350,302 356,291" fill="#BDC3C7"/>
+  <!-- Step 3 → 4 -->
+  <line x1="350" y1="372" x2="350" y2="396" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="344,393 350,404 356,393" fill="#BDC3C7"/>
+  <!-- Step 4 → 5 -->
+  <line x1="350" y1="474" x2="350" y2="498" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="344,495 350,506 356,495" fill="#BDC3C7"/>
+  <!-- Step 5 → 6 -->
+  <line x1="350" y1="590" x2="350" y2="614" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="344,611 350,622 356,611" fill="#BDC3C7"/>
+  <!-- Step 6 → 7 -->
+  <line x1="350" y1="700" x2="350" y2="724" stroke="#BDC3C7" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="344,721 350,732 356,721" fill="#BDC3C7"/>
+
+  <!-- ====== STEP 1: Brainstorming ====== -->
+  <rect x="40" y="88" width="620" height="80" rx="10" fill="#fff" stroke="#9B59B6" stroke-width="2" filter="url(#shadow)"/>
+  <!-- 왼쪽 색상 바 -->
+  <rect x="40" y="88" width="8" height="80" rx="4" fill="url(#nodePurple)"/>
+  <!-- 번호 배지 -->
+  <circle cx="80" cy="128" r="16" fill="url(#nodePurple)"/>
+  <text x="80" y="133" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">1</text>
+  <!-- 제목 -->
+  <text x="112" y="118" font-size="13" font-weight="bold" fill="#2C3E50">Brainstorming</text>
+  <text x="112" y="135" font-size="10" fill="#7F8C8D">아이디어 발굴 및 설계 문서 작성</text>
+  <!-- 산출물 태그 -->
+  <rect x="112" y="146" width="110" height="16" rx="8" fill="#F3E5F5"/>
+  <text x="167" y="158" text-anchor="middle" font-size="9" fill="#8E44AD">설계 문서 (Design Doc)</text>
+  <!-- 우측 아이콘 영역 -->
+  <rect x="490" y="104" width="150" height="52" rx="6" fill="#F8F3FE" stroke="#D7BDE2" stroke-width="1"/>
+  <text x="565" y="122" text-anchor="middle" font-size="9" fill="#7F8C8D">핵심 도구</text>
+  <text x="565" y="139" text-anchor="middle" font-size="10" font-weight="bold" fill="#8E44AD">Brainstorm MCP</text>
+  <text x="565" y="152" text-anchor="middle" font-size="9" fill="#7F8C8D">AI 협업 아이디어 생성</text>
+
+  <!-- ====== STEP 2: Git Worktrees ====== -->
+  <rect x="40" y="192" width="620" height="78" rx="10" fill="#fff" stroke="#7F8C8D" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="192" width="8" height="78" rx="4" fill="url(#nodeGray)"/>
+  <circle cx="80" cy="231" r="16" fill="url(#nodeGray)"/>
+  <text x="80" y="236" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">2</text>
+  <text x="112" y="221" font-size="13" font-weight="bold" fill="#2C3E50">Git Worktrees</text>
+  <text x="112" y="238" font-size="10" fill="#7F8C8D">격리된 작업 환경 설정</text>
+  <rect x="112" y="249" width="115" height="16" rx="8" fill="#F0F0F0"/>
+  <text x="169" y="261" text-anchor="middle" font-size="9" fill="#636E72">독립 브랜치 작업공간</text>
+  <!-- 우측 -->
+  <rect x="490" y="206" width="150" height="50" rx="6" fill="#F5F5F5" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="565" y="225" text-anchor="middle" font-size="9" fill="#7F8C8D">병렬 작업</text>
+  <text x="565" y="241" text-anchor="middle" font-size="10" font-weight="bold" fill="#636E72">git worktree add</text>
+  <text x="565" y="253" text-anchor="middle" font-size="9" fill="#7F8C8D">컨텍스트 격리 보장</text>
+
+  <!-- ====== STEP 3: Writing Plans ====== -->
+  <rect x="40" y="294" width="620" height="78" rx="10" fill="#fff" stroke="#3498DB" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="294" width="8" height="78" rx="4" fill="url(#nodeBlue)"/>
+  <circle cx="80" cy="333" r="16" fill="url(#nodeBlue)"/>
+  <text x="80" y="338" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">3</text>
+  <text x="112" y="323" font-size="13" font-weight="bold" fill="#2C3E50">Writing Plans</text>
+  <text x="112" y="340" font-size="10" fill="#7F8C8D">구현 계획서 작성 및 검토</text>
+  <rect x="112" y="351" width="105" height="16" rx="8" fill="#EBF5FB"/>
+  <text x="164" y="363" text-anchor="middle" font-size="9" fill="#2980B9">구현 명세서 (SPEC)</text>
+  <!-- 우측 -->
+  <rect x="490" y="308" width="150" height="50" rx="6" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1"/>
+  <text x="565" y="327" text-anchor="middle" font-size="9" fill="#7F8C8D">산출물</text>
+  <text x="565" y="343" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980B9">WORK-SPEC.md</text>
+  <text x="565" y="355" text-anchor="middle" font-size="9" fill="#7F8C8D">단계별 실행 계획</text>
+
+  <!-- ====== STEP 4: Subagent Development ====== -->
+  <rect x="40" y="396" width="620" height="78" rx="10" fill="#fff" stroke="#2ECC71" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="396" width="8" height="78" rx="4" fill="url(#nodeGreen)"/>
+  <circle cx="80" cy="435" r="16" fill="url(#nodeGreen)"/>
+  <text x="80" y="440" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">4</text>
+  <text x="112" y="425" font-size="13" font-weight="bold" fill="#2C3E50">Subagent Development</text>
+  <text x="112" y="442" font-size="10" fill="#7F8C8D">병렬 서브에이전트 구현</text>
+  <!-- 서브에이전트 배지들 -->
+  <rect x="112" y="453" width="58" height="16" rx="8" fill="#E8F8F5"/>
+  <text x="141" y="465" text-anchor="middle" font-size="9" fill="#27AE60">Coder</text>
+  <rect x="176" y="453" width="58" height="16" rx="8" fill="#E8F8F5"/>
+  <text x="205" y="465" text-anchor="middle" font-size="9" fill="#27AE60">Tester</text>
+  <rect x="240" y="453" width="70" height="16" rx="8" fill="#E8F8F5"/>
+  <text x="275" y="465" text-anchor="middle" font-size="9" fill="#27AE60">Reviewer</text>
+  <!-- 우측 -->
+  <rect x="490" y="410" width="150" height="50" rx="6" fill="#E8F8F5" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="565" y="429" text-anchor="middle" font-size="9" fill="#7F8C8D">병렬 실행</text>
+  <text x="565" y="445" text-anchor="middle" font-size="10" font-weight="bold" fill="#27AE60">독립 컨텍스트</text>
+  <text x="565" y="457" text-anchor="middle" font-size="9" fill="#7F8C8D">동시 다중 작업</text>
+
+  <!-- ====== STEP 5: Test-Driven Development ====== -->
+  <rect x="40" y="498" width="620" height="92" rx="10" fill="#fff" stroke="#E74C3C" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="498" width="8" height="92" rx="4" fill="url(#nodeRed)"/>
+  <circle cx="80" cy="544" r="16" fill="url(#nodeRed)"/>
+  <text x="80" y="549" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">5</text>
+  <text x="112" y="522" font-size="13" font-weight="bold" fill="#2C3E50">Test-Driven Development</text>
+  <text x="112" y="539" font-size="10" fill="#7F8C8D">RED → GREEN → REFACTOR 사이클</text>
+  <!-- TDD 사이클 시각화 -->
+  <!-- RED -->
+  <rect x="112" y="550" width="72" height="28" rx="6" fill="#FADBD8" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="148" y="565" text-anchor="middle" font-size="10" font-weight="bold" fill="#C0392B">RED</text>
+  <text x="148" y="575" text-anchor="middle" font-size="8" fill="#E74C3C">실패 테스트</text>
+  <!-- 화살표 -->
+  <line x1="184" y1="564" x2="200" y2="564" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="197,560 204,564 197,568" fill="#BDC3C7"/>
+  <!-- GREEN -->
+  <rect x="204" y="550" width="72" height="28" rx="6" fill="#D5F5E3" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="240" y="565" text-anchor="middle" font-size="10" font-weight="bold" fill="#27AE60">GREEN</text>
+  <text x="240" y="575" text-anchor="middle" font-size="8" fill="#27AE60">테스트 통과</text>
+  <!-- 화살표 -->
+  <line x1="276" y1="564" x2="292" y2="564" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="289,560 296,564 289,568" fill="#BDC3C7"/>
+  <!-- REFACTOR -->
+  <rect x="296" y="550" width="72" height="28" rx="6" fill="#D6EAF8" stroke="#2980B9" stroke-width="1.5"/>
+  <text x="332" y="565" text-anchor="middle" font-size="9" font-weight="bold" fill="#2980B9">REFACTOR</text>
+  <text x="332" y="575" text-anchor="middle" font-size="8" fill="#2980B9">코드 개선</text>
+  <!-- 순환 화살표 (되돌아가는 화살표) -->
+  <path d="M368 564 Q420 590 380 578 Q360 572 296 578" stroke="#BDC3C7" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+  <!-- 우측 -->
+  <rect x="490" y="512" width="150" height="64" rx="6" fill="#FDEDEC" stroke="#F1948A" stroke-width="1"/>
+  <text x="565" y="531" text-anchor="middle" font-size="9" fill="#7F8C8D">품질 보증</text>
+  <text x="565" y="547" text-anchor="middle" font-size="10" font-weight="bold" fill="#C0392B">테스트 커버리지</text>
+  <text x="565" y="560" text-anchor="middle" font-size="9" fill="#7F8C8D">회귀 방지</text>
+  <text x="565" y="572" text-anchor="middle" font-size="9" fill="#7F8C8D">자동화 검증</text>
+
+  <!-- ====== STEP 6: Code Review ====== -->
+  <rect x="40" y="614" width="620" height="86" rx="10" fill="#fff" stroke="#E67E22" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="614" width="8" height="86" rx="4" fill="url(#nodeOrange)"/>
+  <circle cx="80" cy="657" r="16" fill="url(#nodeOrange)"/>
+  <text x="80" y="662" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">6</text>
+  <text x="112" y="636" font-size="13" font-weight="bold" fill="#2C3E50">Code Review</text>
+  <text x="112" y="653" font-size="10" fill="#7F8C8D">2단계 리뷰 프로세스</text>
+  <!-- 2단계 리뷰 박스 -->
+  <!-- 1단계 -->
+  <rect x="112" y="662" width="155" height="28" rx="6" fill="#FEF9E7" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="128" y="674" font-size="9" font-weight="bold" fill="#D35400">1단계</text>
+  <text x="128" y="684" font-size="9" fill="#7F8C8D">스펙 준수 검토</text>
+  <!-- 화살표 -->
+  <line x1="267" y1="676" x2="283" y2="676" stroke="#BDC3C7" stroke-width="1.5"/>
+  <polygon points="280,672 287,676 280,680" fill="#BDC3C7"/>
+  <!-- 2단계 -->
+  <rect x="287" y="662" width="155" height="28" rx="6" fill="#FEF9E7" stroke="#D35400" stroke-width="1.5"/>
+  <text x="303" y="674" font-size="9" font-weight="bold" fill="#D35400">2단계</text>
+  <text x="303" y="684" font-size="9" fill="#7F8C8D">코드 품질 검토</text>
+  <!-- 우측 -->
+  <rect x="490" y="628" width="150" height="58" rx="6" fill="#FEF5E7" stroke="#FAD7A0" stroke-width="1"/>
+  <text x="565" y="648" text-anchor="middle" font-size="9" fill="#7F8C8D">검토 항목</text>
+  <text x="565" y="663" text-anchor="middle" font-size="10" font-weight="bold" fill="#D35400">보안 / 성능</text>
+  <text x="565" y="677" text-anchor="middle" font-size="9" fill="#7F8C8D">가독성 / 컨벤션</text>
+
+  <!-- ====== STEP 7: Finishing Branch ====== -->
+  <rect x="40" y="724" width="620" height="80" rx="10" fill="#fff" stroke="#1ABC9C" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="724" width="8" height="80" rx="4" fill="url(#nodeTeal)"/>
+  <circle cx="80" cy="764" r="16" fill="url(#nodeTeal)"/>
+  <text x="80" y="769" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">7</text>
+  <text x="112" y="752" font-size="13" font-weight="bold" fill="#2C3E50">Finishing Branch</text>
+  <text x="112" y="769" font-size="10" fill="#7F8C8D">브랜치 정리 및 메인 통합</text>
+  <!-- 산출물 태그들 -->
+  <rect x="112" y="779" width="70" height="16" rx="8" fill="#E8F8F5"/>
+  <text x="147" y="791" text-anchor="middle" font-size="9" fill="#16A085">PR 생성</text>
+  <rect x="188" y="779" width="82" height="16" rx="8" fill="#E8F8F5"/>
+  <text x="229" y="791" text-anchor="middle" font-size="9" fill="#16A085">브랜치 병합</text>
+  <rect x="276" y="779" width="82" height="16" rx="8" fill="#E8F8F5"/>
+  <text x="317" y="791" text-anchor="middle" font-size="9" fill="#16A085">정리 완료</text>
+  <!-- 우측 -->
+  <rect x="490" y="738" width="150" height="52" rx="6" fill="#E8F8F5" stroke="#A2D9CE" stroke-width="1"/>
+  <text x="565" y="757" text-anchor="middle" font-size="9" fill="#7F8C8D">최종 산출물</text>
+  <text x="565" y="773" text-anchor="middle" font-size="10" font-weight="bold" fill="#16A085">Merged PR</text>
+  <text x="565" y="785" text-anchor="middle" font-size="9" fill="#7F8C8D">배포 준비 완료</text>
+
+  <!-- ====== 하단 범례 ====== -->
+  <rect x="40" y="820" width="620" height="18" rx="4" fill="#ECF0F1"/>
+  <text x="350" y="833" text-anchor="middle" font-size="9" fill="#7F8C8D">Superpowers Plugin · Agentic Development Workflow · 7 Phases</text>
+</svg>
