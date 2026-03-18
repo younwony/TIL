@@ -104,6 +104,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Multi-Agent Systems](./multi-agent-systems.md) | 다중 에이전트 협력 아키텍처 `Trend` | AI Agent란, MCP, Tool Use |
 | [Claude Code Sub Agent](./claude-code-sub-agent.md) | 독립적 작업 위임, 병렬 실행, Resume | Skill, Hook |
 | [Claude Code Agent Team](./claude-code-agent-team.md) | 독립 AI 에이전트 팀 구성, 병렬 협업 오케스트레이션 `Trend 2026` | Sub Agent, Multi-Agent |
+| [MCP Gateway](./mcp-gateway.md) | AI Agent와 MCP 서버 사이의 중앙 관리 계층 - 보안, 관찰가능성, 비용 제어, 거버넌스를 통합 제공하는 엔터프라이즈 인프라 `Trend 2026` | MCP, AI Agent란 |
 
 ### [5] 심화 - SDK
 
@@ -181,6 +182,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Multi-Agent Systems](./multi-agent-systems.md) - 여러 전문화된 AI 에이전트가 협력하여 복잡한 작업을 수행하는 분산 시스템 아키텍처 `Trend 2025`
 - [Claude Code Sub Agent](./claude-code-sub-agent.md) - 복잡한 작업을 독립적으로 처리하는 전문화된 AI 에이전트 시스템
 - [Claude Code Agent Team](./claude-code-agent-team.md) - 여러 독립 AI 에이전트를 팀으로 구성하여 병렬 협업하는 오케스트레이션 시스템 `Trend 2026`
+- [MCP Gateway](./mcp-gateway.md) - AI Agent와 MCP 서버 사이의 중앙 관리 계층 - 보안, 관찰가능성, 비용 제어, 거버넌스를 통합 제공하는 엔터프라이즈 인프라 `Trend 2026`
 - [Agent SDK](./agent-sdk.md) - 커스텀 AI 에이전트를 프로그래밍 방식으로 구축하기 위한 개발 도구
 
 ## 작성 예정
