@@ -1,0 +1,82 @@
+[
+  {
+    "query": "스마트 세션 시작해줘. 어제 작업하다 끊겼는데 HANDOFF.md 읽고 이전 작업 맥락 파악해서 이어서 시작하자",
+    "should_trigger": true
+  },
+  {
+    "query": "세션 시작할게. 오늘 cs/network/ 문서 정리 작업 할 건데 이전 작업 이어서인지 새로 시작인지 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "작업 시작하기 전에 세션 점검해줘. TODO.md랑 HANDOFF.md 있으면 읽어서 오늘 뭐 해야 할지 파악해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "세션 정리해줘. 오늘 작업 마무리하고 내일 이어서 할 수 있게 상태 보존해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "세션 종료 전 정리해줘. 오늘 cs/db/ 문서 5개 작성했는데 TODO.md 업데이트하고 HANDOFF.md로 저장해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "스마트 세션으로 오늘 작업 계획 수립해줘. 이전 세션 맥락 로드하고 세션 목표 단일화해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "새 세션 시작이야. MEMORY.md, TODO.md, HANDOFF.md 있으면 순서대로 읽고 현재 상태 보고해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "작업 시작할게. WAT 프레임워크 기반으로 오늘 할 일 정리하고 MCP 상태도 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "이전 작업 이어받아줘. 지난번에 cs-guide-writer로 Redis 문서 작성 중이었는데 어디까지 했는지 확인하고 계속하자",
+    "should_trigger": true
+  },
+  {
+    "query": "세션 마무리할게. 오늘 완료한 작업들 TODO.md에 체크하고, 팀 리뷰 필요한지 판단하고, 컨텍스트 상태 진단해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cs/network/http.md 파일에서 HTTP/2 멀티플렉싱 섹션 내용 보강해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "UserService.java에 캐싱 로직 추가해줘. @Cacheable 어노테이션 사용해서",
+    "should_trigger": false
+  },
+  {
+    "query": "git status 확인해줘. 어떤 파일이 staged 됐는지 보여줘",
+    "should_trigger": false
+  },
+  {
+    "query": "HANDOFF.md 파일 내용 읽어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 브랜치에서 PR 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/ 폴더에 있는 문서 목록 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "오늘의 CS: 메시지 큐 개념 정리해줘. RabbitMQ vs Kafka 비교 포함해서",
+    "should_trigger": false
+  },
+  {
+    "query": "TODO.md 파일에 새 항목 추가해줘. Redis 문서 작성 남아있어",
+    "should_trigger": false
+  },
+  {
+    "query": "코드 리뷰 해줘. 오늘 작성한 OrderService.java 검토해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "깨진 링크 수정해줘. cs/db/ 폴더 전체 체크해줘",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "query": "CS 동기화 실행해줘. CS-GUIDE.md에 트러블슈팅 섹션을 새로 추가했는데 기존 문서들에도 이 섹션 형식을 반영해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "가이드 반영해줘. cs/CS-GUIDE.md 업데이트했는데 난이도 표기 형식이 바뀌어서 기존 cs/db/, cs/network/ 문서들을 새 형식으로 통일해야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "CS 싱크 실행해줘. 키워드 섹션이 새로 추가됐는데 기존 문서 40개에 다 누락되어 있어. 전체 동기화 해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "템플릿 동기화 해줘. CS-GUIDE.md의 면접 예상 질문 섹션 형식이 Q&A 형식으로 바뀌었는데 기존 문서들이 아직 예전 형식이야",
+    "should_trigger": true
+  },
+  {
+    "query": "db 동기화 해줘. cs/db/ 폴더 문서들만 새 가이드 형식에 맞게 섹션 순서 정렬하고 누락된 섹션 채워줘",
+    "should_trigger": true
+  },
+  {
+    "query": "network 동기화 실행해줘. cs/network/ 폴더 전체 문서에 왜 알아야 하는가 섹션이 없는 것들 찾아서 추가해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "CS 문서들 형식이 제각각이야. CS-GUIDE.md 기준으로 전체 동기화해서 섹션 순서랑 난이도 표기 통일해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cs/algorithm/ 문서들 동기화 해줘. 쉽게 이해하기 섹션이 없는 문서들에 템플릿 추가해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "CS-GUIDE.md에 트레이드오프 섹션을 필수로 바꿨는데 기존 비교 주제 문서들에 모두 반영해줘. cs/sync",
+    "should_trigger": true
+  },
+  {
+    "query": "전체 CS 문서 형식 통일해줘. 난이도 표기가 '난이도: 중급' 형식인 것들을 '[3] 중급' 새 형식으로 일괄 변경해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "TCP/IP 문서 내용 업데이트해줘. 혼잡 제어 알고리즘 설명이 부족한데 CUBIC, BBR 알고리즘 설명 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/http.md에서 깨진 링크 수정해줘. 연관 문서 링크가 404야",
+    "should_trigger": false
+  },
+  {
+    "query": "오늘의 CS로 인터럽트 개념 정리해줘. 하드웨어 인터럽트, 소프트웨어 인터럽트 차이 포함해서",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/db/ 폴더에 새 문서 추가해줘. Redis Pub/Sub vs Kafka 비교 문서야",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/README.md에서 ai-agent 카테고리 링크가 빠져있어. 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/ 디렉토리에 어떤 파일들이 있는지 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/os/process.md 파일에 있는 트러블슈팅 사례 내용이 맞는지 검토해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "링크 체크해줘. cs/db/ 폴더 문서들의 연관 문서 링크가 깨진 게 있는지 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/CS-GUIDE.md 파일 내용 읽어줘. 어떤 섹션들이 필수인지 확인하고 싶어",
+    "should_trigger": false
+  },
+  {
+    "query": "JVM GC 알고리즘 CS 문서 새로 만들어줘. G1GC와 ZGC 비교 포함해서",
+    "should_trigger": false
+  }
+]

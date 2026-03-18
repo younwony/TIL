@@ -1,0 +1,31 @@
+{
+  "skill_name": "smart-session",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "스마트 세션 시작해줘",
+      "expected_output": "Phase 1 실행: HANDOFF.md/TODO.md/MEMORY.md 확인, 세션 목표 질문, MCP 상태 확인, 세션 진단 결과 출력",
+      "files": [],
+      "expectations": [
+        "HANDOFF.md 존재 여부가 확인됨",
+        "TODO.md 존재 여부가 확인됨",
+        "MEMORY.md가 참조됨",
+        "세션 목표를 사용자에게 질문함",
+        "세션 진단 결과가 마크다운 형식으로 출력됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "세션 정리해줘. 오늘 작업 마무리하고 다음에 이어서 하려고",
+      "expected_output": "Phase 3 실행: 변경 사항 요약, TODO.md 업데이트, 메모리 저장 제안, 코드 리뷰 제안",
+      "files": [],
+      "expectations": [
+        "이번 세션 완료 작업이 요약됨",
+        "git status로 변경 파일이 확인됨",
+        "TODO.md 업데이트가 제안됨",
+        "주요 결정사항 메모리 저장 여부가 질문됨",
+        "세션 정리 결과가 마크다운 형식으로 출력됨"
+      ]
+    }
+  ]
+}

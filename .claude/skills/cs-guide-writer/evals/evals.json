@@ -1,0 +1,47 @@
+{
+  "skill_name": "cs-guide-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "오늘의 CS: 트랜잭션 격리 수준",
+      "expected_output": "cs/db/ 디렉토리에 트랜잭션 격리 수준 문서가 생성되고, 난이도/키워드/면접질문/연관문서가 포함되며, 다이어그램 에이전트와 인덱스 에이전트가 병렬로 실행됨",
+      "files": [],
+      "expectations": [
+        "cs/db/ 하위에 .md 파일이 생성됨",
+        "난이도 표기([N] 형식)가 문서 상단에 존재함",
+        "한 줄 정의가 > 인용구로 포함됨",
+        "키워드(#태그 형식)가 10개 이상 포함됨",
+        "## 왜 알아야 하는가? 섹션이 존재함",
+        "## 면접 예상 질문 섹션이 존재함",
+        "## 연관 문서 섹션이 존재함",
+        "다이어그램 에이전트가 백그라운드로 디스패치됨",
+        "cs-index-manager 에이전트가 백그라운드로 디스패치됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "JWT 인증 방식에 대해 CS 문서 정리해줘. 면접 준비용으로 상세하게 부탁해",
+      "expected_output": "cs/security/ 디렉토리에 JWT 문서가 생성되고, 토큰 구조/동작원리/보안 고려사항이 포함됨",
+      "files": [],
+      "expectations": [
+        "cs/security/ 하위에 .md 파일이 생성됨",
+        "JWT 토큰 구조(Header, Payload, Signature)가 설명됨",
+        "## 쉽게 이해하기 섹션에 비유가 포함됨",
+        "## 트레이드오프 섹션이 존재함",
+        "Access Token/Refresh Token 관련 내용이 포함됨"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "오늘의 CS",
+      "expected_output": "주제 미지정이므로 AskUserQuestion으로 3가지 옵션(최신 트렌드/카테고리/TODO)을 제안함",
+      "files": [],
+      "expectations": [
+        "AskUserQuestion 도구가 호출됨",
+        "최신 트렌드 옵션이 제안됨",
+        "카테고리 선택 옵션이 제안됨",
+        "TODO 목록 옵션이 제안됨"
+      ]
+    }
+  ]
+}

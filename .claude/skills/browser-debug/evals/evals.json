@@ -1,0 +1,30 @@
+{
+  "skill_name": "browser-debug",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "http://localhost:3000 으로 프로젝트 페이지 전체 점검해줘. 콘솔 에러랑 동작 안 되는 버튼 찾아줘",
+      "expected_output": "Chrome in Claude로 모든 페이지를 순회하며 콘솔 에러, 인터랙션 동작을 점검하고 TODO.md에 이슈 반영",
+      "files": [],
+      "expectations": [
+        "tabs_context_mcp로 브라우저 탭이 준비됨",
+        "navigate로 지정된 URL에 접속됨",
+        "read_console_messages로 JS 에러가 확인됨",
+        "read_page로 인터랙티브 요소가 확인됨",
+        "발견된 이슈가 TODO.md에 반영됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "방금 만든 체크리스트 페이지가 제대로 동작하는지 브라우저에서 확인해줘",
+      "expected_output": "Chrome에서 체크리스트 페이지를 열고 체크박스, 탭, 버튼 등 인터랙션을 테스트",
+      "files": [],
+      "expectations": [
+        "브라우저에서 체크리스트 페이지가 열림",
+        "체크박스 토글이 테스트됨",
+        "javascript_tool 또는 computer로 DOM 상태가 검증됨",
+        "콘솔 에러 유무가 확인됨"
+      ]
+    }
+  ]
+}

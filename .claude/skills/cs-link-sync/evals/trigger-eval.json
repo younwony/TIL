@@ -1,0 +1,82 @@
+[
+  {
+    "query": "깨진 링크 수정해줘. cs/network/ 폴더 리팩토링하면서 파일명 여러 개 바꿨는데 다른 문서에서 참조하는 링크들이 다 깨졌을 것 같아",
+    "should_trigger": true
+  },
+  {
+    "query": "링크 체크 해줘. 전체 CS 문서에서 참조하는 상대 경로 링크들 중에 실제로 존재하지 않는 파일 가리키는 것들 찾아줘",
+    "should_trigger": true
+  },
+  {
+    "query": "링크 동기화 실행해줘. what-is-network.md를 network/ 폴더 안으로 옮겼는데 이 파일을 참조하는 링크들 경로 업데이트해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cs/db/ 링크 수정해줘. index.md를 b-tree-index.md로 이름 바꿨는데 다른 문서에서 ./index.md로 참조하는 링크들 전부 찾아서 업데이트해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "링크 검증해줘. cs/network/README.md 목차에 있는 링크들이 실제 파일과 일치하는지 확인하고 깨진 것 수정해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "깨진 링크 확인해줘. cs/os/ 폴더 구조를 재정리했는데 README.md 목차 링크들이 제대로 작동하는지 검증해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "network 링크 수정해줘. cs/network/ 카테고리 문서들에 있는 연관 문서 섹션 링크들 전부 체크해서 깨진 것 고쳐줘",
+    "should_trigger": true
+  },
+  {
+    "query": "선수 지식 링크 체크해줘. 각 CS 문서 상단의 선수 지식 링크가 실제 파일 경로와 맞는지 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cs/ 전체 링크 동기화해줘. 파일 3개 이름 바꿨어: http.md→http-https.md, process.md→process-thread.md, memory.md→memory-management.md",
+    "should_trigger": true
+  },
+  {
+    "query": "README 목차 링크 검증해줘. cs/db/README.md에서 링크하는 파일들이 다 존재하는지 확인하고 없는 것은 삭제하거나 경로 수정해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cs/network/tcp-ip.md 파일 내용 업데이트해줘. 혼잡 제어 섹션에 BBR 알고리즘 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "CS 동기화 실행해줘. CS-GUIDE.md에 새 섹션 추가했으니 기존 문서들에 반영해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "오늘의 CS: DNS 동작 원리 정리해줘. Recursive Query, Iterative Query 차이 포함해서",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/db/redis.md 파일에서 연관 문서 섹션에 새 문서 링크 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/ 폴더에 있는 파일 목록 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/db/README.md 목차 섹션 순서를 알파벳 순으로 정렬해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/algorithm/sort.md 내용이 정확한지 검토해줘. Quick Sort 시간복잡도 분석 부분",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/ 폴더 전체 문서 트러블슈팅 섹션 형식 통일해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/system-design/ 폴더에 로드 밸런싱 문서 새로 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/programming/solid.md 파일에서 DIP 예제 코드를 Java 버전으로 추가해줘",
+    "should_trigger": false
+  }
+]

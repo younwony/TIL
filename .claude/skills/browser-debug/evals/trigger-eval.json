@@ -1,0 +1,82 @@
+[
+  {
+    "query": "브라우저 디버깅 해줘. cs-web 프로젝트 로컬 서버 띄워놨는데 Chrome에서 모든 페이지 순회하면서 콘솔 에러랑 기능 동작 점검해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Chrome 디버깅 실행해줘. localhost:8080에 접속해서 메인 페이지, 검색 페이지, 상세 페이지 각각 기능 검증하고 발견된 이슈 TODO.md에 업데이트해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "페이지 점검 해줘. pencil-to-code로 생성한 HTML 파일들 브라우저에서 직접 확인해서 레이아웃 깨진 것, JS 에러, 링크 오작동 있으면 찾아줘",
+    "should_trigger": true
+  },
+  {
+    "query": "UI 테스트 실행해줘. 현재 로컬 서버에서 검색 폼, 필터 버튼, 상세 페이지 이동 기능이 제대로 동작하는지 Chrome 자동화로 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "기능 검증해줘. cs-web 프로젝트 모든 HTML 페이지 순회하면서 JavaScript 에러랑 이벤트 바인딩 누락 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "브라우저 디버깅으로 cs-web 점검해줘. 폼 submit 이벤트가 toast만 표시하고 실제 저장은 안 되는 스텁 구현이 있을 것 같아. JS 코드랑 브라우저 동작 같이 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Chrome 테스트 실행해줘. localStorage CRUD 동작이 제대로 되는지 브라우저에서 직접 확인하고 누락된 기능 TODO에 추가해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "localhost:3000 페이지 점검해줘. 전체 라우트 순회하면서 콘솔 에러, 네트워크 에러, DOM 이상 있으면 찾아서 보고해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "UI 버그 찾아줘. 브라우저에서 실제로 접속해서 인터랙티브 요소들 클릭해보면서 동작 안 하는 것들 TODO.md에 정리해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "브라우저 자동화로 기능 검증해줘. 삭제 버튼, 수정 폼, 검색 필터 기능 순서대로 테스트하고 각 페이지 스크린샷도 찍어줘",
+    "should_trigger": true
+  },
+  {
+    "query": "UserServiceTest.java 단위 테스트 실행해줘. 모든 케이스 통과하는지 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "OrderController.java에서 NullPointerException 발생하는데 스택 트레이스 분석해서 원인 찾아줘",
+    "should_trigger": false
+  },
+  {
+    "query": "application.log 파일에서 ERROR 레벨 로그 분석해줘. 패턴 찾아줘",
+    "should_trigger": false
+  },
+  {
+    "query": "JUnit 테스트 결과에서 실패한 케이스 분석해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/http.md 내용 검토해줘. HTTP 캐싱 섹션이 맞는지 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Postman으로 API 테스트하는 방법 알려줘. GET /api/users 엔드포인트 테스트해보고 싶어",
+    "should_trigger": false
+  },
+  {
+    "query": "Spring Boot 서버 로그에서 SQL 쿼리 실행 시간 분석해줘. 느린 쿼리 찾아줘",
+    "should_trigger": false
+  },
+  {
+    "query": "git diff 결과 보고 어떤 변경사항이 있는지 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Selenium WebDriver 테스트 코드 작성해줘. 로그인 페이지 E2E 테스트야",
+    "should_trigger": false
+  },
+  {
+    "query": "index.html 파일에서 CSS 스타일 수정해줘. 버튼 색상 변경하고 싶어",
+    "should_trigger": false
+  }
+]

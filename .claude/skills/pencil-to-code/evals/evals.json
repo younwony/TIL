@@ -1,0 +1,34 @@
+{
+  "skill_name": "pencil-to-code",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "대시보드 화면을 HTML/CSS/JS 코드로 변환해줘",
+      "expected_output": "Pencil 대시보드 디자인이 시맨틱 HTML + BEM CSS + vanilla JS로 변환됨",
+      "files": [],
+      "expectations": [
+        "get_guidelines(topic: 'code')가 호출됨",
+        "batch_get으로 Desktop과 Mobile 프레임 구조가 파악됨",
+        "get_screenshot으로 디자인이 참조됨",
+        "HTML 파일이 시맨틱 태그(header, main, aside 등)를 사용함",
+        "CSS에 하드코딩된 색상 대신 CSS 변수(var(--color-*))가 사용됨",
+        "BEM 네이밍(.block__element--modifier)이 적용됨",
+        "mobile-first 반응형(@media min-width)이 적용됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "체크리스트 화면 디자인을 코드로 만들어줘. 탭 전환이랑 체크박스 토글 JS도 포함해줘",
+      "expected_output": "체크리스트 디자인이 HTML/CSS/JS로 변환되고 탭 전환/체크박스 인터랙션이 구현됨",
+      "files": [],
+      "expectations": [
+        "get_variables로 디자인 토큰이 확인됨",
+        "Pencil 탭 컴포넌트(Kbr4h)가 div.tabs로 매핑됨",
+        "체크박스 컴포넌트가 input[type=checkbox]로 매핑됨",
+        "탭 전환 JS가 구현됨",
+        "체크박스 토글 JS가 구현됨",
+        "Lucide 아이콘(data-lucide)이 사용됨"
+      ]
+    }
+  ]
+}

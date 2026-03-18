@@ -1,0 +1,82 @@
+[
+  {
+    "query": "코드 생성해줘. .pen 파일의 main-desktop, main-mobile 화면 기반으로 index.html이랑 main.css 만들어줘. BEM 네이밍이랑 CSS 변수 사용해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "디자인 적용해줘. Pencil로 만든 dashboard 화면을 실제 HTML로 변환해줘. Desktop + Mobile 반응형으로 구현하고 mobile-first CSS 작성해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "코드로 변환해줘. login-desktop이랑 login-mobile 프레임을 login.html, login.css, login.js 파일로 변환해줘. 폼 유효성 검사 JS도 포함해서",
+    "should_trigger": true
+  },
+  {
+    "query": "Pencil to code 실행해줘. .pen 파일의 search-results 화면을 search.html로 변환하고, 검색 입력 이벤트랑 필터 토글 JS 인터랙션도 구현해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "HTML 변환해줘. product-card 컴포넌트를 시맨틱 HTML로 변환하고 CSS 변수(--color-primary, --spacing-md 등) 사용해서 스타일링해줘",
+    "should_trigger": true
+  },
+  {
+    "query": ".pen 파일의 profile-desktop 화면 코드 생성해줘. 프로필 편집 폼, 이미지 업로드 영역, 저장 버튼 인터랙션 포함해서 vanilla JS로 구현해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "디자인을 웹 페이지로 만들어줘. Pencil MCP에서 notification 화면 읽어서 HTML/CSS/JS로 변환하고 탭 전환 인터랙션 구현해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cart.pen 파일의 checkout 화면을 실제 동작하는 HTML 코드로 구현해줘. 수량 변경, 쿠폰 적용, 결제 버튼 이벤트 모두 JS로 작성해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Pencil 디자인 토큰을 CSS 변수로 매핑해줘. .pen 파일 get_variables 결과를 css/variables.css에 정의해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "admin-desktop 화면을 HTML 테이블 구조로 변환해줘. 정렬, 페이지네이션, 행 선택 기능 JS로 구현하고 aria 접근성 속성도 추가해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "dashboard-desktop 프레임에서 KPI 카드 색상 변경해줘. 현재 파란색을 초록색으로 바꿔줘",
+    "should_trigger": false
+  },
+  {
+    "query": "새 알림 화면 디자인해줘. .pen 파일에 notification-desktop, notification-mobile 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Figma에서 design-system.fig 파일 읽어서 HTML로 변환해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "index.html 파일에서 nav 요소 반응형 CSS 수정해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "React 컴포넌트로 변환해줘. ProductCard.tsx 파일 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "login-desktop 프레임에서 '로그인' 버튼 텍스트 크기 늘려줘",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 .pen 파일 구조 확인해줘. 어떤 프레임이 있는지 보여줘",
+    "should_trigger": false
+  },
+  {
+    "query": "CSS Grid Layout 사용법 알려줘. 대시보드 레이아웃 구성 방법",
+    "should_trigger": false
+  },
+  {
+    "query": "Tailwind CSS로 로그인 페이지 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "main.css 파일에서 :root 색상 변수 확인해줘. 어떤 변수들 있어?",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "query": "오늘의 CS 정리해줘. 최근 트렌드 기술 중에서 면접에 자주 나오는 주제로 골라줘",
+    "should_trigger": true
+  },
+  {
+    "query": "트랜잭션 격리 수준 CS 문서로 만들어줘. READ UNCOMMITTED부터 SERIALIZABLE까지 각 격리 수준별 특성과 문제점 포함해서 cs/db/ 폴더에 정리해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "면접 준비용으로 Redis 캐싱 전략 정리해줘. Look-Aside, Write-Through, Write-Behind 패턴 비교하고 실무 트러블슈팅 사례도 포함해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "오늘의 CS: JVM GC 알고리즘 비교 문서 작성해줘. Serial, Parallel, CMS, G1, ZGC 각각의 장단점이랑 선택 기준도 정리해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "HTTP/2와 HTTP/3 차이점을 CS 문서로 정리해줘. QUIC 프로토콜 원리, 멀티플렉싱 개선점, 실무 적용 시 고려사항 포함해서 cs/network/에 저장해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "최근 이슈 CS 뭐가 있어? 2026년 트렌드 기술 중 개발자가 알아야 할 핵심 주제로 문서 만들어줘",
+    "should_trigger": true
+  },
+  {
+    "query": "CAP 정리 개념 알려줘. 분산 시스템 면접에서 자주 나오는데 쉽게 이해할 수 있게 설명해주고 cs/system-design/에 저장해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "B-Tree 인덱스 동작 원리 문서 만들어줘. 왜 DB가 B-Tree를 사용하는지, 클러스터드 vs 논클러스터드 인덱스 차이, 인덱스 설계 가이드까지 포함해서",
+    "should_trigger": true
+  },
+  {
+    "query": "오늘의 CS: 트랜잭션, 인덱스, 정규화 세 가지 정리해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Kafka 문서 만들어줘. Producer-Consumer-Broker 아키텍처, 파티셔닝 전략, 오프셋 관리, 실무에서 자주 겪는 lag 이슈까지 정리해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "cs/network/http.md 파일에서 쿠키 섹션에 SameSite 속성 설명 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "UserService.java 파일에 캐싱 로직 추가해줘. Redis를 사용해서 사용자 조회 결과를 5분 TTL로 캐싱해",
+    "should_trigger": false
+  },
+  {
+    "query": "NullPointerException 에러가 발생하는데 스택 트레이스 보고 원인 찾아줘",
+    "should_trigger": false
+  },
+  {
+    "query": "TCP와 UDP 차이가 뭐야? 간단히 설명해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/db/index.md 파일에서 연관 문서 섹션 링크가 깨졌어. 수정해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "study/effective-java/chapter02/item01.md 내용 리뷰해줘. 내용이 정확한지 확인해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "README.md에 새로 추가한 cs/ai-agent/ 카테고리 링크 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 작업 중인 브랜치에 어떤 파일이 변경됐어?",
+    "should_trigger": false
+  },
+  {
+    "query": "Spring Data JPA 코드 예제 리포지토리 만들어줘. CRUD, 페이징, 동적 쿼리 Querydsl 예제 포함해서",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/CS-GUIDE.md에 새로 추가한 키워드 섹션 형식을 기존 문서들에 반영해줘",
+    "should_trigger": false
+  }
+]

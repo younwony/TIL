@@ -1,0 +1,31 @@
+{
+  "skill_name": "pencil-screen",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "설정 페이지 화면 새로 디자인해줘. 다크모드 토글, 알림 설정, 데이터 관리 섹션이 필요해",
+      "expected_output": "Pencil MCP로 Desktop(1440x900) + Mobile(390x844) 설정 페이지 프레임 쌍이 생성됨",
+      "files": [],
+      "expectations": [
+        "get_editor_state가 호출됨",
+        "find_empty_space_on_canvas로 빈 공간이 확인됨",
+        "Desktop 프레임(1440x900)이 생성됨",
+        "Mobile 프레임(390x844)이 생성됨",
+        "placeholder: true로 작업 후 false로 해제됨",
+        "get_screenshot으로 결과가 검증됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "프로필 편집 화면 추가해줘. 프로필 사진, 이름, 이메일 입력 폼이 있어야 해",
+      "expected_output": "Desktop + Mobile 프로필 편집 화면이 기존 컴포넌트를 활용하여 생성됨",
+      "files": [],
+      "expectations": [
+        "batch_get으로 기존 컴포넌트 구조가 파악됨",
+        "Input Group 컴포넌트가 ref로 재사용됨",
+        "Desktop과 Mobile 프레임 쌍이 생성됨",
+        "batch_design의 operation 수가 25개 이하임"
+      ]
+    }
+  ]
+}

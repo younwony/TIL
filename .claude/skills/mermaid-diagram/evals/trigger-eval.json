@@ -1,0 +1,82 @@
+[
+  {
+    "query": "사용자 로그인 API 호출 흐름을 시퀀스 다이어그램으로 그려줘. Client → API Gateway → Auth Service → DB 순서로 요청하고 JWT 토큰 발급까지 보여줘",
+    "should_trigger": true
+  },
+  {
+    "query": "우리 서비스의 주문 처리 상태 머신을 다이어그램으로 만들어줘. 주문생성 → 결제대기 → 결제완료 → 배송중 → 배송완료 흐름이고, 결제실패 시 취소 상태로 분기해",
+    "should_trigger": true
+  },
+  {
+    "query": "User, Order, Product, OrderItem, Payment 테이블 간의 ER 다이어그램 그려줘. 외래키 관계와 카디널리티도 표시해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Git Flow 브랜치 전략 시각화해줘. main, develop, feature, release, hotfix 브랜치 흐름이야. gitGraph로 merge 포인트까지 보여줬으면 해",
+    "should_trigger": true
+  },
+  {
+    "query": "Spring Boot 애플리케이션 클래스 다이어그램 만들어줘. Controller → Service → Repository → Entity 레이어 구조랑 의존성 화살표 포함해서",
+    "should_trigger": true
+  },
+  {
+    "query": "2주 스프린트 일정을 간트 차트로 그려줘. 요구사항 분석, API 설계, 백엔드 개발, 프론트 개발, QA, 배포 단계를 포함하고 병렬 진행 구간도 표시해",
+    "should_trigger": true
+  },
+  {
+    "query": "마이크로서비스 아키텍처 구성도 흐름도로 그려줘. API Gateway, Auth Service, Order Service, Payment Service, Notification Service 간 호출 관계 보여줘",
+    "should_trigger": true
+  },
+  {
+    "query": "CS 공부 마인드맵 만들어줘. 루트는 '백엔드 개발'이고, 하위 노드로 DB, 네트워크, 운영체제, 알고리즘, 언어 분야를 넣고 각각 세부 항목도 추가해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "우리 팀 Kanban 보드 현황을 다이어그램으로 시각화해줘. ToDo, In Progress, Review, Done 컬럼에 각 태스크를 배치해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "OAuth 2.0 인증 코드 흐름을 시퀀스 다이어그램으로 그려줘. User, Browser, Client App, Authorization Server, Resource Server 참여자 포함해서",
+    "should_trigger": true
+  },
+  {
+    "query": "TCP/IP 패킷 구조를 헤더 필드별로 정밀하게 시각화해줘. Source Port, Dest Port, Sequence Number, Flags 필드를 비트 단위 레이아웃으로 표현해야 해",
+    "should_trigger": false
+  },
+  {
+    "query": "이더넷 프레임 구조를 바이트 단위로 정확하게 그려줘. Preamble, Dest MAC, Src MAC, EtherType, Payload, FCS 각 필드 크기를 픽셀 단위로 맞춰줘",
+    "should_trigger": false
+  },
+  {
+    "query": "JVM 메모리 구조를 그림으로 설명해줘. Heap의 Young/Old Generation, Stack, Method Area, Native Memory 각 영역 경계선이 정확하게 보여야 해",
+    "should_trigger": false
+  },
+  {
+    "query": "Quick Sort 알고리즘이 어떻게 동작하는지 단계별로 텍스트로 설명해줘. 코드 예시랑 시간복잡도 분석 포함해서",
+    "should_trigger": false
+  },
+  {
+    "query": "REST API 설계 원칙 6가지를 정리해서 마크다운으로 작성해줘. 각 원칙별로 예시 코드도 포함해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/tcp-ip.md 파일에서 혼잡 제어 부분 코드 블록 예시를 Java로 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "OSI 7계층을 박스 형태의 계층 다이어그램으로 그려야 하는데, 각 계층별로 다른 색상을 입히고 좌우에 PDU 이름과 프로토콜 예시도 텍스트로 붙여야 해. 정확한 크기와 정렬이 중요해",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 TIL 프로젝트 cs/ 폴더 구조를 트리 형태로 출력해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "네트워크 토폴로지를 그려야 하는데 스위치, 라우터, 서버 아이콘을 커스텀 이미지로 배치하고 IP 주소도 정확히 표기해야 해. Mermaid로는 아이콘 커스터마이징이 안 될 것 같아",
+    "should_trigger": false
+  },
+  {
+    "query": "Spring Security 필터 체인 동작 방식을 간단히 텍스트로 요약해줘. 코드 예시 없이 개념만 설명해도 돼",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "skill_name": "pencil-update",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "대시보드 화면에서 카드 제목 텍스트를 '오사카 여행'에서 '도쿄 여행'으로 바꿔줘",
+      "expected_output": "수정 전 스크린샷 확인 → placeholder 설정 → 텍스트 Update → placeholder 해제 → 수정 후 스크린샷 검증",
+      "files": [],
+      "expectations": [
+        "get_screenshot으로 수정 전 상태가 확인됨",
+        "batch_get으로 대상 노드 구조가 파악됨",
+        "placeholder: true가 설정됨",
+        "U() operation으로 content가 변경됨",
+        "placeholder: false로 해제됨",
+        "get_screenshot으로 수정 결과가 검증됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "체크리스트 화면에 새 탭 하나 추가해줘. '교통' 탭이 필요해",
+      "expected_output": "기존 탭 컴포넌트를 복사하여 새 '교통' 탭을 추가하고 Desktop+Mobile 모두 반영",
+      "files": [],
+      "expectations": [
+        "batch_get으로 기존 탭 구조가 파악됨",
+        "C() operation으로 탭이 복사됨",
+        "복사된 탭의 텍스트가 '교통'으로 변경됨",
+        "Desktop과 Mobile 양쪽 모두 수정됨"
+      ]
+    }
+  ]
+}

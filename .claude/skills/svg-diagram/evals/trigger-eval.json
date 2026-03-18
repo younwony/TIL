@@ -1,0 +1,82 @@
+[
+  {
+    "query": "TCP 세그먼트 헤더 구조를 SVG로 그려줘. Source Port(16bit), Dest Port(16bit), Sequence Number(32bit), Acknowledgment Number(32bit), Flags, Window Size 필드를 비트 단위로 정확하게 표현해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "JVM 메모리 구조 다이어그램 만들어줘. Heap(Young Gen - Eden/S0/S1, Old Gen), Metaspace, Stack, Native Memory 영역을 각기 다른 색상으로 정확한 경계선 표시해서 SVG로",
+    "should_trigger": true
+  },
+  {
+    "query": "이더넷 프레임 구조를 바이트 단위 레이아웃으로 그려줘. Preamble 7바이트, SFD 1바이트, Dest MAC 6바이트 순서로 필드 크기 비례해서 SVG 직접 코딩해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "OSI 7계층 계층 다이어그램 SVG로 만들어줘. 각 레이어를 그라디언트 배경의 박스로 표현하고, 왼쪽에는 PDU 이름, 오른쪽에는 주요 프로토콜을 정확히 배치해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "B-Tree vs B+Tree 비교 다이어그램 SVG로 그려줘. 두 트리 구조를 나란히 배치하고, 리프 노드 연결 여부와 내부 노드 키 차이를 시각적으로 강조해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "네트워크 토폴로지 구성도 SVG로 만들어줘. 인터넷 → 방화벽 → 코어 스위치 → 액세스 스위치 → 서버팜 구조이고 각 장비를 커스텀 박스로 그려서 IP 주소도 표기해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "CPU 캐시 계층 구조를 SVG로 그려줘. L1 Cache, L2 Cache, L3 Cache, Main Memory를 동심원이나 계층형 박스로 크기와 속도/용량 트레이드오프를 시각화해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Consistent Hashing 링 구조를 SVG로 표현해줘. 360도 원형 링에 서버 노드들과 가상 노드들을 배치하고 키가 어떤 서버로 라우팅되는지 화살표로 표시해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "HTTP/1.1 vs HTTP/2 vs HTTP/3 비교 다이어그램을 SVG로 그려줘. 각 버전의 요청 처리 방식(순차, 멀티플렉싱, QUIC)을 좌우로 나란히 비교하는 레이아웃으로",
+    "should_trigger": true
+  },
+  {
+    "query": "IPv4 패킷 헤더 구조를 정밀하게 그려줘. Version(4bit), IHL(4bit), DSCP(6bit), ECN(2bit), Total Length(16bit) 등 모든 필드를 RFC 같은 비트 단위 레이아웃으로 SVG 코딩해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "사용자 로그인 API 호출 순서를 시퀀스 다이어그램으로 그려줘. Client → Server → DB 흐름이야",
+    "should_trigger": false
+  },
+  {
+    "query": "마이크로서비스 간 호출 흐름을 플로우차트로 만들어줘. Order Service → Payment Service → Notification Service 순서야",
+    "should_trigger": false
+  },
+  {
+    "query": "User, Order, Product 테이블 ER 다이어그램 그려줘. 외래키 관계 표시해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Git Flow 브랜치 전략을 gitGraph로 시각화해줘. main, develop, feature 브랜치 흐름이야",
+    "should_trigger": false
+  },
+  {
+    "query": "스프린트 2주 일정을 Mermaid 간트 차트로 그려줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/tcp-ip.md에서 혼잡 제어 알고리즘 설명 섹션 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Figma 디자인을 SVG 파일로 내보내는 방법 알려줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Spring Boot 클래스 의존 관계를 UML 클래스 다이어그램으로 그려줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Redis Sorted Set 자료구조 동작 원리를 텍스트로 설명해줘. 내부적으로 skiplist 사용한다고 들었는데",
+    "should_trigger": false
+  },
+  {
+    "query": "notebooklm.md 파일에 워크플로우 다이어그램 이미지를 삽입하는 마크다운 문법 알려줘",
+    "should_trigger": false
+  }
+]

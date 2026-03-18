@@ -1,0 +1,29 @@
+{
+  "skill_name": "cs-link-sync",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "CS 문서 전체에서 깨진 링크 확인해줘",
+      "expected_output": "전체 CS 문서의 마크다운 링크를 스캔하여 깨진 링크를 발견하고 수정 후보를 제안",
+      "files": [],
+      "expectations": [
+        "cs/ 디렉토리의 모든 .md 파일에서 마크다운 링크가 추출됨",
+        "각 상대 경로 링크의 대상 파일 존재 여부가 확인됨",
+        "깨진 링크가 있으면 수정 후보가 제안됨",
+        "결과 보고서에 수정 완료/수동 확인 필요 목록이 포함됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "http.md 파일을 http-protocol.md로 이름 바꿨어. 관련 링크 다 수정해줘",
+      "expected_output": "http.md를 참조하는 모든 문서를 찾아 http-protocol.md로 링크를 업데이트",
+      "files": [],
+      "expectations": [
+        "http.md를 참조하는 모든 파일이 검색됨",
+        "링크가 ./http.md에서 ./http-protocol.md로 변경됨",
+        "README 목차 링크도 업데이트됨",
+        "변경된 파일 목록이 보고됨"
+      ]
+    }
+  ]
+}
