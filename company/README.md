@@ -49,8 +49,15 @@ company/
     │
     ├── skills/                               # 자동 트리거 스킬 (4개)
     │   ├── smart-session/SKILL.md            # 통합 워크플로우 오케스트레이터
-    │   ├── mermaid-diagram/SKILL.md          # Mermaid 다이어그램 생성
-    │   ├── svg-diagram/SKILL.md              # SVG 다이어그램 생성
+    │   ├── mermaid-diagram/                  # Mermaid 다이어그램 생성
+    │   │   ├── SKILL.md                      # 핵심 워크플로우 (~120줄)
+    │   │   └── references/                   # 상세 레퍼런스 (Lazy Loading)
+    │   │       ├── syntax-guide.md           # 20가지 다이어그램 유형별 문법
+    │   │       └── cli-usage.md              # mmdc CLI 사용법, 테마, 스타일링
+    │   ├── svg-diagram/                      # SVG 다이어그램 생성
+    │   │   ├── SKILL.md                      # 핵심 워크플로우 (~80줄)
+    │   │   └── references/
+    │   │       └── templates.md              # 5가지 SVG 템플릿 + 색상 팔레트
     │   └── 3ai-plan/SKILL.md                 # 3-AI 협업 플랜
     │
     └── docs/
@@ -193,9 +200,38 @@ cp -r .claude/ <회사-프로젝트>/.claude/
 | 스킬 | 트리거 | 설명 |
 |------|--------|------|
 | `smart-session` | "스마트 세션", "세션 시작", "세션 정리" | 치트시트 9기법 통합 워크플로우 (Phase 1→2→3) |
-| `mermaid-diagram` | Mermaid 다이어그램 필요 시 | Mermaid CLI로 다이어그램 생성 |
-| `svg-diagram` | SVG 다이어그램 필요 시 | SVG 코드 직접 작성으로 정교한 다이어그램 |
-| `3ai-plan` | "3AI 플랜", "3AI 협업" | Claude+Gemini+Codex 3-AI 협업 플랜 생성 |
+| `mermaid-diagram` | "다이어그램", "흐름도", "시퀀스", "ER" 등 | Mermaid CLI로 20가지 다이어그램 생성 |
+| `svg-diagram` | "구조도", "패킷 구조", "계층 다이어그램" 등 | 정밀 레이아웃이 필요한 SVG 다이어그램 |
+| `3ai-plan` | "3AI 플랜", "3AI 협업", "멀티 AI 리뷰" | Claude+Gemini+Codex 3-AI 협업 플랜 생성 |
+
+#### 스킬 구조 (Progressive Disclosure)
+
+스킬은 3단계 로딩 구조를 사용합니다:
+
+1. **Metadata** (name + description) — 항상 컨텍스트에 로드 (~100 words)
+2. **SKILL.md 본문** — 스킬 트리거 시 로드 (500줄 이내)
+3. **references/** — 필요 시 Read 도구로 로드 (무제한)
+
+이 구조로 불필요한 토큰 소비를 줄이면서도, 상세 레퍼런스가 필요할 때는 references/에서 가져옵니다.
+
+| 스킬 | SKILL.md | references/ | 설명 |
+|------|----------|-------------|------|
+| `mermaid-diagram` | ~120줄 | syntax-guide.md, cli-usage.md | 20개 다이어그램 문법 + CLI 사용법 분리 |
+| `svg-diagram` | ~80줄 | templates.md | 5가지 SVG 템플릿 + 색상 팔레트 분리 |
+| `smart-session` | ~180줄 | — | 3 Phase 워크플로우 전체 포함 |
+| `3ai-plan` | ~130줄 | — | Gemini/Codex 실행 가이드 전체 포함 |
+
+#### 개선 내역 (v2, 2026-03-18)
+
+| 항목 | 변경 전 | 변경 후 |
+|------|---------|---------|
+| **description** | 1줄 요약 | 2-3줄, 트리거 상황/키워드/사용 맥락 포함 |
+| **트리거 키워드 섹션** | 본문에 중복 나열 | 삭제 (description이 유일한 트리거) |
+| **WHY 설명** | MUST/NEVER 대문자 남발 | 이유 기반 설명으로 전환 |
+| **mermaid-diagram** | 840줄 (한 파일) | 120줄 + references/ 2개 파일 |
+| **svg-diagram** | 300줄 (한 파일) | 80줄 + references/ 1개 파일 |
+| **smart-session** | Phase별 WHY 없음 | 각 Phase에 WHY 1줄씩 추가 |
+| **3ai-plan** | WHY 없음 | "왜 3-AI 협업인가?" 섹션 추가 |
 
 **제외된 스킬 (TIL 전용):**
 - `cs-guide-writer`, `cs-sync`, `cs-link-sync` — CS 문서 작성용
