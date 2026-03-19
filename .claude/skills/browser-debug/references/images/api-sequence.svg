@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720">
+  <defs>
+    <linearGradient id="actorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="apiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="svcGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <marker id="arrowR" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498DB"/>
+    </marker>
+    <marker id="arrowL" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowO" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E67E22"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="900" height="720" fill="#FAFBFC" rx="12"/>
+
+  <!-- 타이틀 -->
+  <text x="450" y="30" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="16" font-weight="bold">API Sequence - Brand Missing</text>
+
+  <!-- 참가자 헤더 -->
+  <rect x="40" y="50" width="100" height="32" rx="6" fill="url(#actorGrad)" filter="url(#shadow)"/>
+  <text x="90" y="71" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Browser</text>
+
+  <rect x="270" y="50" width="160" height="32" rx="6" fill="url(#apiGrad)" filter="url(#shadow)"/>
+  <text x="350" y="71" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">BrandMissingApi</text>
+
+  <rect x="530" y="50" width="160" height="32" rx="6" fill="url(#svcGrad)" filter="url(#shadow)"/>
+  <text x="610" y="71" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">BrandMissingService</text>
+
+  <rect x="770" y="50" width="100" height="32" rx="6" fill="url(#dbGrad)" filter="url(#shadow)"/>
+  <text x="820" y="71" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Database</text>
+
+  <!-- 생명선 -->
+  <line x1="90" y1="82" x2="90" y2="700" stroke="#3498DB" stroke-width="2" stroke-dasharray="6,4" opacity="0.4"/>
+  <line x1="350" y1="82" x2="350" y2="700" stroke="#27AE60" stroke-width="2" stroke-dasharray="6,4" opacity="0.4"/>
+  <line x1="610" y1="82" x2="610" y2="700" stroke="#E67E22" stroke-width="2" stroke-dasharray="6,4" opacity="0.4"/>
+  <line x1="820" y1="82" x2="820" y2="700" stroke="#8E44AD" stroke-width="2" stroke-dasharray="6,4" opacity="0.4"/>
+
+  <!-- ===== 1. 목록 조회 (GET) ===== -->
+  <rect x="20" y="100" width="860" height="170" rx="8" fill="#EBF5FB" opacity="0.5"/>
+  <text x="40" y="118" fill="#2980B9" font-family="Arial, sans-serif" font-size="11" font-weight="bold">1. 목록 조회</text>
+
+  <!-- Browser → API -->
+  <line x1="90" y1="140" x2="340" y2="140" stroke="#3498DB" stroke-width="2" marker-end="url(#arrowR)"/>
+  <rect x="140" y="126" width="140" height="18" rx="3" fill="#3498DB"/>
+  <text x="210" y="139" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">GET /api/brand-missings</text>
+
+  <!-- API → Service -->
+  <line x1="350" y1="170" x2="600" y2="170" stroke="#E67E22" stroke-width="2" marker-end="url(#arrowO)"/>
+  <text x="475" y="165" text-anchor="middle" fill="#D35400" font-family="Arial, sans-serif" font-size="9">search(searchDto)</text>
+
+  <!-- Service → DB -->
+  <line x1="610" y1="195" x2="810" y2="195" stroke="#8E44AD" stroke-width="2" marker-end="url(#arrowR)"/>
+  <text x="710" y="190" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="9">SELECT brand_missing ...</text>
+
+  <!-- DB → Service (응답) -->
+  <line x1="810" y1="215" x2="620" y2="215" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowL)"/>
+  <text x="710" y="210" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">List&lt;BrandMissing&gt;</text>
+
+  <!-- API → Browser (응답) -->
+  <line x1="340" y1="245" x2="100" y2="245" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowL)"/>
+  <rect x="145" y="232" width="170" height="18" rx="3" fill="#27AE60"/>
+  <text x="230" y="245" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">200 {content, totalElements: 45}</text>
+
+  <!-- ===== 2. 처리 (PUT) ===== -->
+  <rect x="20" y="285" width="860" height="170" rx="8" fill="#EAFAF1" opacity="0.5"/>
+  <text x="40" y="303" fill="#27AE60" font-family="Arial, sans-serif" font-size="11" font-weight="bold">2. 처리</text>
+
+  <!-- Browser → API -->
+  <line x1="90" y1="325" x2="340" y2="325" stroke="#3498DB" stroke-width="2" marker-end="url(#arrowR)"/>
+  <rect x="115" y="311" width="200" height="18" rx="3" fill="#3498DB"/>
+  <text x="215" y="324" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">PUT /api/brand-missings/123/process</text>
+
+  <!-- API → Service -->
+  <line x1="350" y1="350" x2="600" y2="350" stroke="#E67E22" stroke-width="2" marker-end="url(#arrowO)"/>
+  <text x="475" y="345" text-anchor="middle" fill="#D35400" font-family="Arial, sans-serif" font-size="9">process(123)</text>
+
+  <!-- Service → DB -->
+  <line x1="610" y1="375" x2="810" y2="375" stroke="#8E44AD" stroke-width="2" marker-end="url(#arrowR)"/>
+  <text x="710" y="370" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="9">UPDATE status = 'PROCESSED'</text>
+
+  <!-- DB → Service -->
+  <line x1="810" y1="395" x2="620" y2="395" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowL)"/>
+  <text x="710" y="390" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">OK</text>
+
+  <!-- API → Browser -->
+  <line x1="340" y1="425" x2="100" y2="425" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowL)"/>
+  <rect x="130" y="412" width="195" height="18" rx="3" fill="#27AE60"/>
+  <text x="228" y="425" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">200 {id: 123, status: PROCESSED}</text>
+
+  <!-- ===== 3. 반려 (PUT) ===== -->
+  <rect x="20" y="470" width="860" height="210" rx="8" fill="#FEF9E7" opacity="0.5"/>
+  <text x="40" y="488" fill="#E67E22" font-family="Arial, sans-serif" font-size="11" font-weight="bold">3. 반려</text>
+
+  <!-- Browser → API -->
+  <line x1="90" y1="515" x2="340" y2="515" stroke="#3498DB" stroke-width="2" marker-end="url(#arrowR)"/>
+  <rect x="115" y="501" width="195" height="18" rx="3" fill="#E67E22"/>
+  <text x="213" y="514" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">PUT /api/brand-missings/456/reject</text>
+
+  <!-- API → Service -->
+  <line x1="350" y1="545" x2="600" y2="545" stroke="#E67E22" stroke-width="2" marker-end="url(#arrowO)"/>
+  <text x="475" y="540" text-anchor="middle" fill="#D35400" font-family="Arial, sans-serif" font-size="9">reject(456, "중복 요청")</text>
+
+  <!-- Service → DB -->
+  <line x1="610" y1="575" x2="810" y2="575" stroke="#8E44AD" stroke-width="2" marker-end="url(#arrowR)"/>
+  <text x="710" y="570" text-anchor="middle" fill="#8E44AD" font-family="Arial, sans-serif" font-size="9">UPDATE status = 'REJECTED'</text>
+
+  <!-- DB → Service -->
+  <line x1="810" y1="600" x2="620" y2="600" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowL)"/>
+  <text x="710" y="595" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">OK</text>
+
+  <!-- API → Browser -->
+  <line x1="340" y1="635" x2="100" y2="635" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowL)"/>
+  <rect x="130" y="622" width="190" height="18" rx="3" fill="#E67E22"/>
+  <text x="225" y="635" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">200 {id: 456, status: REJECTED}</text>
+
+  <!-- Browser: 성공 토스트 -->
+  <rect x="30" y="660" width="120" height="22" rx="11" fill="#27AE60" opacity="0.8"/>
+  <text x="90" y="675" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9">성공 토스트 표시</text>
+</svg>

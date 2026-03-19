@@ -1,53 +1,31 @@
 ---
-name: browser-debug
-description: |
-  Chrome in Claude 브라우저 자동화로 웹 프로젝트를 점검합니다.
-  기본 동작: 현재 브랜치 변경사항 분석 → QA 시나리오 MD 생성 → Plan 모드 실행 → Chrome 자동화 점검.
-  서버가 기동되지 않은 상태에서도 자동 탐지하여 서버를 기동한 뒤 점검을 수행합니다.
-  콘솔 에러, 인터랙션 동작, DOM 상태, 네트워크 에러를 자동 검사하고 발견된 이슈를 즉시 수정합니다.
-
-  다음 키워드/문맥에서 트리거됩니다:
-  - "브라우저 디버깅", "Chrome 디버깅", "크롬 디버깅"
-  - "브라우저 QA", "웹 QA", "QA 점검", "QA 테스트"
-  - "웹 디버그", "웹 디버깅", "프론트 디버깅"
-  - "페이지 점검", "UI 테스트", "기능 검증", "화면 확인"
-  - "Claude in Chrome으로 확인", "브라우저에서 확인"
-  - "프로젝트 QA", "전체 점검", "사이트 점검"
-  - `/browser-debug` 슬래시 커맨드로도 호출 가능
-
-  프로젝트 코드를 브라우저에서 직접 확인하고 싶거나, UI 버그를 체계적으로 찾고 싶을 때 사용하세요.
-  서버가 꺼져 있어도 자동으로 기동합니다.
+description: 현재 브랜치 변경사항 기반 Chrome 브라우저 QA (변경사항 분석 → QA 시나리오 MD 생성 → Plan 모드 실행 → 자동 점검)
+allowed-tools: Bash, Read, Glob, Grep, Edit, Write, ToolSearch, Agent, EnterPlanMode, ExitPlanMode, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__read_page, mcp__claude-in-chrome__get_page_text, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__find, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__form_input, mcp__claude-in-chrome__read_console_messages, mcp__claude-in-chrome__read_network_requests, mcp__claude-in-chrome__gif_creator, mcp__claude-in-chrome__resize_window, mcp__claude-in-chrome__upload_image
 ---
 
-# Browser Debug & QA - Chrome 자동화 웹 점검
+# Browser Debug & QA
 
-## 개요
+현재 브랜치의 변경사항을 분석하여 QA 시나리오 MD 파일을 생성하고, Plan 모드 기반으로 Chrome 자동화 점검을 수행합니다.
 
-현재 브랜치의 변경사항을 분석하여 QA 시나리오 MD 파일을 생성하고, Plan 모드 기반으로 Chrome 자동화 점검을 수행한다.
-FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
+$ARGUMENTS
+
+## 실행 워크플로우
 
 반드시 아래 Phase를 순서대로 수행한다. Phase를 건너뛰지 않는다.
 
 ---
 
-## Phase 1: 변경사항 분석 (Plan 모드 진입)
+### Phase 1: 변경사항 분석 (Plan 모드 진입)
 
 **EnterPlanMode**로 Plan 모드에 진입한 후 분석한다.
 
 1. `git diff --cached --name-status` 및 `git status`로 변경된 파일 목록 수집
 2. 변경 파일을 분류:
-
-| 카테고리 | 파일 패턴 | 분석 대상 |
-|---------|----------|-----------|
-| **Controller** | `*Controller.java` | URL 엔드포인트 파악 |
-| **Service** | `*Service.java` | 비즈니스 로직 변경 |
-| **JSP/HTML** | `*.jsp`, `*.html` | UI 렌더링, 레이아웃 |
-| **JavaScript** | `*.js`, `*.ts` | 이벤트 핸들러, API 호출 |
-| **CSS** | `*.css`, `*.scss` | 스타일링, 반응형 |
-| **Entity/DTO** | `*Entity.java`, `*Dto.java` | 데이터 모델 변경 |
-| **Mapper XML** | `*.xml` (MyBatis) | 쿼리 동작 |
-| **설정** | `application.*`, `tiles*.xml`, `build.gradle` | 서버 재기동 필요 여부 판단 |
-
+   - **Controller** (WebController, ApiController) → URL 엔드포인트 파악
+   - **Service** → 비즈니스 로직 변경 파악
+   - **JSP/JS/CSS** → UI 변경 파악
+   - **Entity/DTO** → 데이터 모델 변경 파악
+   - **Mapper XML** → 쿼리 변경 파악
 3. Explore 에이전트를 사용하여 변경된 코드의 전체 기능을 "very thorough"로 분석:
    - 모든 사용자 인터랙션 (onclick, jQuery handler, form submit 등)
    - 모든 API 호출 (AJAX URL, 요청/응답 구조)
@@ -57,13 +35,14 @@ FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
 
 ---
 
-## Phase 2: QA 시나리오 MD 파일 생성
+### Phase 2: QA 시나리오 MD 파일 생성
 
 Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md` 파일을 생성**한다.
 
-**시나리오 작성 시 `references/qa-scenario-guide.md`를 반드시 참조**하여 다이어그램과 BDD 형식을 적용한다.
+시나리오 문서에 **Mermaid 다이어그램**과 **BDD Given-When-Then 형식**을 적용한다.
+프로젝트에 `references/qa-scenario-guide.md`가 있으면 참조하여 다이어그램 종류를 결정한다.
 
-### QA-SCENARIOS.md 파일 구조
+#### QA-SCENARIOS.md 파일 구조
 
 ```markdown
 # QA Scenarios - {브랜치명}
@@ -81,12 +60,12 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 ## 유저 플로우 다이어그램
 
 {Mermaid flowchart - 변경사항이 영향을 주는 전체 사용자 동선}
-{성공 경로=초록, 실패 경로=빨강, 시작점=파랑 스타일 적용}
+{성공 경로=초록, 실패 경로=빨강, 시작점=파랑}
 
 ## API 시퀀스 다이어그램
 
 {Controller/API 변경이 있을 때만 포함}
-{Mermaid sequenceDiagram - 프론트↔백엔드 통신 흐름, 성공/실패 경로}
+{Mermaid sequenceDiagram - 프론트↔백엔드 통신 흐름}
 
 ## 시나리오 목록
 
@@ -112,7 +91,6 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 #### S10. ...
 
 ## 결과 요약
-
 {QA 완료 후 Mermaid pie chart로 PASS/FAIL/FIX/BLOCKED 비율 표시}
 
 ## 발견된 버그
@@ -124,17 +102,17 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 - {테스트 데이터 부족 등으로 확인 불가한 항목}
 ```
 
-### 다이어그램 포함 규칙
+#### 다이어그램 포함 규칙
 
 | 변경 유형 | 필수 다이어그램 | 선택 다이어그램 |
 |----------|--------------|--------------|
-| 페이지 신규/수정 | flowchart (유저 플로우) | journey (사용자 경험) |
+| 페이지 신규/수정 | flowchart | journey |
 | API 추가/변경 | sequenceDiagram | flowchart |
 | 상태 전이 로직 | stateDiagram | flowchart |
 | CRUD 전체 | flowchart + sequenceDiagram | journey |
 | UI만 변경 | flowchart | - |
 
-### 시나리오 분류 기준
+#### 시나리오 분류 기준
 
 | 우선순위 | 범위 | 설명 |
 |---------|------|------|
@@ -142,7 +120,7 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 | **P1** | S05~S09 | UI 인터랙션, 탭 전환, 필터 연동, 일괄변경 |
 | **P2** | S10~ | 엣지 케이스, 엑셀, 외부 연동, 빈 데이터 |
 
-### 시나리오 작성 후 사용자 승인
+#### 시나리오 작성 후 사용자 승인
 
 `QA-SCENARIOS.md` 파일을 생성한 후:
 1. 사용자에게 시나리오 요약 테이블을 보여준다
@@ -151,39 +129,42 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 
 ---
 
-## Phase 3: 서버 및 브라우저 준비
+### Phase 3: 서버 및 브라우저 준비
 
-### 서버 확인
-
+#### 서버 확인
 1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080` 로 서버 상태 확인
-2. 서버 미기동 시 프로젝트 타입 자동 탐지 후 기동 (`references/server-detection.md` 참조)
+2. 서버 미기동 시 자체 기동:
+   ```bash
+   # Windows: 기존 프로세스 종료
+   netstat -ano | findstr :8080
+   taskkill /PID <pid> /F
+   # 서버 기동
+   cd <프로젝트루트> && ./gradlew bootRun &
+   ```
 3. Health check로 서버 ready 확인 (최대 60초 대기)
 
-### 서버 재기동이 필요한 경우
-
+#### 서버 재기동이 필요한 경우
 다음 파일이 변경된 경우 서버 재기동이 필요하다:
 - `tiles*.xml` (Tiles 정의)
-- `application*.yml` / `application*.properties` (설정)
+- `application*.yml` (설정)
 - Java 소스 파일 (Controller, Service, Entity 등)
-- `build.gradle` / `pom.xml`
+- `build.gradle`
 
 서버 재기동이 필요하면 **사용자에게 묻지 않고 Bash로 자체 재기동**한다.
 
-### 브라우저 준비
-
-1. Chrome 도구를 `ToolSearch`로 사전 로드
-   → `"select:mcp__claude-in-chrome__tabs_context_mcp,mcp__claude-in-chrome__tabs_create_mcp,mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__computer,mcp__claude-in-chrome__javascript_tool,mcp__claude-in-chrome__read_page,mcp__claude-in-chrome__read_console_messages,mcp__claude-in-chrome__read_network_requests,mcp__claude-in-chrome__get_page_text,mcp__claude-in-chrome__gif_creator,mcp__claude-in-chrome__form_input,mcp__claude-in-chrome__find"`
+#### 브라우저 준비
+1. Chrome 도구를 `ToolSearch`로 사전 로드 (tabs_context_mcp, navigate, computer, javascript_tool, read_console_messages, read_network_requests)
 2. `tabs_context_mcp`로 현재 탭 상태 확인, 새 탭 생성
 3. `read_console_messages` + `read_network_requests` 한 번 호출하여 **트래킹 활성화**
 4. 로그인 페이지로 이동 → 자동 로그인 (CLAUDE.md의 로그인 정보 사용)
 
 ---
 
-## Phase 4: QA 시나리오 순차 실행
+### Phase 4: QA 시나리오 순차 실행
 
 `QA-SCENARIOS.md`의 시나리오를 **P0 → P1 → P2 순서대로** 실행한다.
 
-### 각 시나리오 실행 절차
+#### 각 시나리오 실행 절차
 
 1. **QA-SCENARIOS.md 업데이트**: 해당 시나리오 결과를 ⬜ → 🔄 실행중으로 변경
 2. **사전 준비**: 필요한 페이지 이동, 데이터 준비
@@ -199,7 +180,7 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
    - BLOCKED → ⚠️ BLOCKED (사유 기록)
 6. `QA-SCENARIOS.md`의 해당 시나리오 결과를 즉시 업데이트
 
-### FAIL 시 즉시 수정
+#### FAIL 시 즉시 수정
 
 - FAIL 발견 시 **원인 분석 → 코드 수정 → 재검증**을 즉시 수행
 - 수정 후 해당 시나리오를 재실행하여 PASS 확인
@@ -208,21 +189,21 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 - 수정 내용을 `QA-SCENARIOS.md`의 "발견된 버그" 테이블에 기록
 - 결과를 🔧 FIX→PASS로 업데이트
 
-### P0 FAIL 시 중단 정책
+#### P0 FAIL 시 중단 정책
 
 - P0 시나리오가 FAIL이면 후속 시나리오 실행을 중단하고 수정에 집중
 - P1/P2 FAIL은 기록 후 다음 시나리오 계속 진행
 
 ---
 
-## Phase 5: 결과 보고
+### Phase 5: 결과 보고
 
 모든 시나리오 실행 후:
 
 1. `QA-SCENARIOS.md`의 모든 시나리오 결과가 업데이트되었는지 확인
 2. 미검증 항목이 있으면 사유와 함께 기록
-3. QA 과정에서 수정한 파일을 `git add` (commit은 하지 않음)
-4. 사용자에게 최종 결과 요약:
+3. QA 과정에서 수정한 파일을 `git add` (CLAUDE.md 규칙: commit은 하지 않음)
+4. 사용자에게 최종 결과 요약을 보여준다:
    - 전체 시나리오 수 / PASS / FAIL / FIX / BLOCKED 카운트
    - 발견 및 수정한 버그 요약
    - 수정된 파일 목록
@@ -235,13 +216,5 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 - **Console/Network 트래킹 선 활성화**: 페이지 로드 전에 한 번 호출하여 트래킹 시작
 - **서버 재기동 자체 처리**: 사용자에게 재기동 요청하지 않고 Bash로 직접 처리
 - **QA-SCENARIOS.md 실시간 업데이트**: 각 시나리오 실행 즉시 결과 반영
+- **CLAUDE.md 규칙 준수**: commit은 하지 않음, git add만 수행
 - **QA-SCENARIOS.md는 git add 대상 제외**: QA 문서는 로컬 참조용
-- JavaScript `alert()`, `confirm()`, `prompt()` 등 모달 다이얼로그를 트리거하지 않는다
-- 페이지 내 삭제/수정 등 실제 데이터에 영향을 주는 동작은 사용자 확인 후 진행
-- 브라우저 확장 프로그램이 응답하지 않으면 2~3회 재시도 후 사용자에게 안내
-- 로그인이 필요한 페이지는 사용자에게 로그인 완료를 요청한 후 진행
-
-## 관련 스킬
-
-- `pencil-to-code`: 디자인 → 코드 변환 후 브라우저 검증에 활용
-- `pencil-update`: 디버깅에서 발견된 UI 이슈를 디자인에 먼저 반영할 때

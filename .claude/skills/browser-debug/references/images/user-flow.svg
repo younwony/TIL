@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 920">
+  <defs>
+    <linearGradient id="startGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5DADE2"/>
+      <stop offset="100%" style="stop-color:#3498DB"/>
+    </linearGradient>
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F39C12"/>
+      <stop offset="100%" style="stop-color:#E67E22"/>
+    </linearGradient>
+    <linearGradient id="decisionGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="620" height="920" fill="#FAFBFC" rx="12"/>
+
+  <!-- 타이틀 -->
+  <text x="310" y="35" text-anchor="middle" fill="#2C3E50" font-family="Arial, sans-serif" font-size="16" font-weight="bold">User Flow - Brand Missing CRUD</text>
+  <text x="310" y="52" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">feature/brand-missing-crud</text>
+
+  <!-- === 간선 (먼저 그리기) === -->
+  <!-- 로그인 → 메뉴 -->
+  <line x1="310" y1="105" x2="310" y2="130" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 메뉴 → 목록 -->
+  <line x1="310" y1="170" x2="310" y2="195" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 목록 → 필터 -->
+  <line x1="310" y1="240" x2="310" y2="265" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 필터 → 검색 -->
+  <line x1="310" y1="305" x2="310" y2="330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 검색 → 그리드 -->
+  <line x1="310" y1="370" x2="310" y2="395" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 그리드 → 행 클릭 (분기) -->
+  <line x1="310" y1="440" x2="310" y2="475" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 그리드 → 엑셀 (오른쪽 분기) -->
+  <line x1="420" y1="420" x2="500" y2="420" stroke="#7F8C8D" stroke-width="2"/>
+  <line x1="500" y1="420" x2="500" y2="475" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 행 클릭 → 모달 -->
+  <line x1="310" y1="520" x2="310" y2="545" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 모달 → 처리 버튼 (분기) -->
+  <line x1="310" y1="590" x2="310" y2="625" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 처리 → 처리 API (왼쪽) -->
+  <line x1="280" y1="660" x2="170" y2="710" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <!-- 처리 → 반려 사유 (오른쪽) -->
+  <line x1="340" y1="660" x2="440" y2="710" stroke="#E67E22" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 반려 사유 → 반려 API -->
+  <line x1="460" y1="750" x2="460" y2="775" stroke="#E67E22" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- 처리 API → 토스트 -->
+  <line x1="150" y1="750" x2="150" y2="810" stroke="#27AE60" stroke-width="2"/>
+  <line x1="150" y1="810" x2="270" y2="840" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <!-- 반려 API → 토스트 -->
+  <line x1="460" y1="815" x2="460" y2="840" stroke="#27AE60" stroke-width="2"/>
+  <line x1="460" y1="840" x2="370" y2="855" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <!-- 토스트 → 갱신 -->
+  <line x1="310" y1="875" x2="310" y2="895" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- === 노드 === -->
+
+  <!-- 1. 관리자 로그인 -->
+  <rect x="210" y="70" width="200" height="35" rx="17" fill="url(#startGrad)" filter="url(#shadow)"/>
+  <text x="310" y="93" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="bold">관리자 로그인</text>
+
+  <!-- 2. 사이드바 메뉴 클릭 -->
+  <rect x="210" y="135" width="200" height="35" rx="6" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <text x="310" y="158" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">사이드바 메뉴 클릭</text>
+
+  <!-- 3. 브랜드 누락 목록 페이지 -->
+  <rect x="195" y="200" width="230" height="40" rx="6" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <text x="310" y="225" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">브랜드 누락 목록 페이지</text>
+
+  <!-- 4. 필터 조건 설정 -->
+  <rect x="220" y="270" width="180" height="35" rx="6" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <text x="310" y="293" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">필터 조건 설정</text>
+
+  <!-- 5. 검색 버튼 클릭 -->
+  <rect x="220" y="335" width="180" height="35" rx="6" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <text x="310" y="358" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">검색 버튼 클릭</text>
+
+  <!-- 6. 그리드 데이터 표시 -->
+  <rect x="200" y="400" width="220" height="40" rx="6" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <text x="310" y="425" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">그리드 데이터 표시</text>
+
+  <!-- 7. 행 클릭 (분기점) -->
+  <polygon points="310,475 365,497 310,520 255,497" fill="url(#decisionGrad)" filter="url(#shadow)"/>
+  <text x="310" y="502" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">행 클릭</text>
+
+  <!-- 8. 엑셀 다운로드 (오른쪽 분기) -->
+  <rect x="430" y="480" width="160" height="35" rx="6" fill="url(#successGrad)" filter="url(#shadow)"/>
+  <text x="510" y="503" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11">엑셀 파일 다운로드</text>
+  <text x="500" y="470" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="9">엑셀 다운로드</text>
+
+  <!-- 9. 상세 모달 열림 -->
+  <rect x="220" y="550" width="180" height="40" rx="6" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <text x="310" y="575" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">상세 모달 열림</text>
+
+  <!-- 10. 처리 버튼 (분기점) -->
+  <polygon points="310,625 370,647 310,670 250,647" fill="url(#decisionGrad)" filter="url(#shadow)"/>
+  <text x="310" y="652" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">처리 버튼</text>
+
+  <!-- 11. 처리 API 호출 (왼쪽) -->
+  <rect x="70" y="715" width="160" height="35" rx="6" fill="url(#successGrad)" filter="url(#shadow)"/>
+  <text x="150" y="738" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">처리 API 호출</text>
+  <text x="200" y="698" fill="#27AE60" font-family="Arial, sans-serif" font-size="10" font-weight="bold">처리</text>
+
+  <!-- 12. 반려 사유 입력 (오른쪽) -->
+  <rect x="380" y="715" width="160" height="35" rx="6" fill="url(#warnGrad)" filter="url(#shadow)"/>
+  <text x="460" y="738" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">반려 사유 입력</text>
+  <text x="410" y="698" fill="#E67E22" font-family="Arial, sans-serif" font-size="10" font-weight="bold">반려</text>
+
+  <!-- 13. 반려 API 호출 -->
+  <rect x="380" y="780" width="160" height="35" rx="6" fill="url(#successGrad)" filter="url(#shadow)"/>
+  <text x="460" y="803" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">반려 API 호출</text>
+
+  <!-- 14. 성공 토스트 -->
+  <rect x="230" y="845" width="160" height="30" rx="15" fill="url(#successGrad)" filter="url(#shadow)"/>
+  <text x="310" y="865" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">성공 토스트</text>
+
+  <!-- 15. 그리드 갱신 -->
+  <rect x="240" y="895" width="140" height="20" rx="4" fill="#ECF0F1"/>
+  <text x="310" y="909" text-anchor="middle" fill="#7F8C8D" font-family="Arial, sans-serif" font-size="10">그리드 갱신</text>
+</svg>

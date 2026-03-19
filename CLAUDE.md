@@ -139,8 +139,8 @@ TIL/
 | `cs-guide-writer` | "오늘의 CS", "CS 정리", "{주제} 정리해줘" | CS 학습 문서 작성 |
 | `cs-sync` | "CS 동기화", "가이드 반영" | CS 문서 템플릿 동기화 |
 | `cs-link-sync` | "링크 동기화", "깨진 링크 수정", "링크 체크" | CS 문서 링크 검증 및 수정 |
-| `mermaid-diagram` | - | Mermaid CLI 다이어그램 생성 |
-| `svg-diagram` | - | SVG 코드 다이어그램 생성 |
+| `svg-diagram` | - | SVG 코드 다이어그램 생성 (기본, 우선 사용) |
+| `mermaid-diagram` | - | Mermaid CLI 다이어그램 생성 (빠른 프로토타이핑용) |
 | `3ai-plan` | "3AI 플랜", "3AI 협업" | 3-AI(Claude+Gemini+Codex) 협업 플랜 생성 |
 | `pencil-screen` | "새 화면 디자인", "스크린 추가", "화면 만들어줘" | Pencil MCP로 새 화면(Desktop+Mobile) 디자인 |
 | `pencil-update` | "디자인 수정", "화면 변경", "레이아웃 조정" | Pencil MCP 기존 화면 수정 |
