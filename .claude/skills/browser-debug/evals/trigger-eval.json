@@ -40,6 +40,58 @@
     "should_trigger": true
   },
   {
+    "query": "크롬 디버깅 해줘. 방금 배포한 페이지에서 버튼 클릭이 안 먹히는 것 같아",
+    "should_trigger": true
+  },
+  {
+    "query": "웹 QA 점검해줘. 전체 페이지 순회하면서 깨진 링크, 콘솔 에러, 동작 안 하는 기능 찾아줘",
+    "should_trigger": true
+  },
+  {
+    "query": "브라우저 QA 실행해줘. 로그인 → 대시보드 → 설정 페이지 순서로 기능 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "QA 테스트 해줘. 프로젝트 전체 화면을 브라우저에서 하나씩 점검하고 이슈 리스트 만들어줘",
+    "should_trigger": true
+  },
+  {
+    "query": "웹 디버깅 해줘. React 앱에서 state 변경 후 렌더링이 제대로 안 되는 것 같아. 브라우저에서 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "프론트 디버깅 해줘. CSS가 깨지는 페이지가 있는데 Chrome에서 확인해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "화면 확인해줘. 새로 만든 페이지가 정상적으로 렌더링되는지 브라우저에서 봐줘",
+    "should_trigger": true
+  },
+  {
+    "query": "Claude in Chrome으로 확인해줘. 폼 제출하면 데이터가 제대로 저장되는지 테스트해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "브라우저에서 확인해줘. 검색 기능이 동작하는지 직접 테스트해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "프로젝트 QA 해줘. 서버 안 띄워놨는데 알아서 기동하고 전체 페이지 점검해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "전체 점검 해줘. cs-web 프로젝트 서버부터 기동하고 모든 페이지 QA 진행해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "사이트 점검 해줘. localhost에서 동작하는 웹앱 전체를 브라우저에서 검증해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "웹 디버그 해줘. 네트워크 탭에서 API 호출 실패하는 것 같은데 브라우저에서 확인해줘",
+    "should_trigger": true
+  },
+  {
     "query": "UserServiceTest.java 단위 테스트 실행해줘. 모든 케이스 통과하는지 확인해줘",
     "should_trigger": false
   },
@@ -77,6 +129,22 @@
   },
   {
     "query": "index.html 파일에서 CSS 스타일 수정해줘. 버튼 색상 변경하고 싶어",
+    "should_trigger": false
+  },
+  {
+    "query": "REST API 성능 테스트 해줘. JMeter로 부하 테스트 스크립트 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "k6로 API 부하 테스트 스크립트 작성해줘. 동시 접속 100명 시뮬레이션",
+    "should_trigger": false
+  },
+  {
+    "query": "Cypress E2E 테스트 코드 작성해줘. 회원가입 플로우 테스트야",
+    "should_trigger": false
+  },
+  {
+    "query": "단위 테스트 커버리지 확인해줘. JaCoCo 리포트 분석해줘",
     "should_trigger": false
   }
 ]

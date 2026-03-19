@@ -1,0 +1,45 @@
+{
+  "skill_name": "test-coverage-check",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "테스트 커버리지 체크해줘",
+      "expected_output": "git diff로 변경된 Java/Kotlin 소스 파일을 식별하고 review-test-coverage 에이전트로 분석 후 누락 테스트를 test-generator 에이전트로 생성",
+      "files": [],
+      "expectations": [
+        "git diff/cached/ls-files 명령으로 변경된 Java/Kotlin 소스 파일 목록을 추출함",
+        "src/test/ 하위 파일은 분석 대상에서 제외됨",
+        "review-test-coverage 에이전트가 foreground로 디스패치됨",
+        "분석 결과에 우선순위(Critical/High/Medium/Low)가 포함됨",
+        "누락 테스트가 있으면 test-generator 에이전트가 디스패치됨",
+        "최종 결과가 테이블 형식 통합 보고로 출력됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "방금 수정한 코드에 테스트 빠진거 없나 확인해줘",
+      "expected_output": "변경 파일 분석 후 누락된 테스트 시나리오를 식별하고 Critical/High 우선순위 테스트 자동 생성",
+      "files": [],
+      "expectations": [
+        "staged + unstaged + untracked 변경 파일 모두 감지함",
+        "각 파일에 대응하는 테스트 파일 존재 여부를 확인함",
+        "Critical/High 우선순위 테스트만 생성됨 (Low는 건너뜀)",
+        "생성된 테스트 파일이 git add로 staging됨 (commit은 하지 않음)",
+        "결과 요약에 분석 파일 수, 테스트 충분/생성/건너뜀 수가 포함됨"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "커버리지 점검해줘. UserService랑 OrderController 수정했어",
+      "expected_output": "UserService, OrderController 관련 테스트 커버리지 분석 및 누락 테스트 생성",
+      "files": [],
+      "expectations": [
+        "UserService와 OrderController가 분석 대상에 포함됨",
+        "기존 테스트 파일이 있으면 해당 파일에 테스트 메서드 추가",
+        "기존 테스트 파일이 없으면 새로 생성",
+        "프로젝트 테스트 컨벤션(JUnit5, AssertJ, Mockito)을 준수함",
+        "테스트 프레임워크 미설정 시 분석만 수행하고 생성 건너뜀"
+      ]
+    }
+  ]
+}
