@@ -259,6 +259,12 @@ AI 코딩 도구 사용 시 팀 전체가 지켜야 할 보안 원칙입니다.
 - 프로덕션 환경 접근 금지
 - `.env`, `credentials.json` 등 민감 파일 커밋 방지
 
+### DB 접근 제어 (mysqlsh)
+- `block-dangerous-sql.sh` hook이 Bash 명령 중 mysqlsh 호출을 감지하여 위험 SQL을 자동 차단
+- **허용**: `SELECT`, `SHOW`, `DESCRIBE`, `DESC`, `EXPLAIN`
+- **차단**: `DELETE`, `UPDATE`, `INSERT`, `DROP`, `ALTER`, `TRUNCATE`, `CREATE`, `GRANT`, `REVOKE`, `LOAD DATA`, `CALL` 등
+- `/work-plan` 실행 시 Spring Boot/Batch 프로젝트에서 DB 스키마를 자동 조회할 때 적용
+
 ## 참고 문서
 
 - [CONVENTION.md](./CONVENTION.md): 상세 컨벤션 가이드
