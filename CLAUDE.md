@@ -148,6 +148,7 @@ TIL/
 | `smart-session` | "스마트 세션", "세션 시작", "세션 정리" | 치트시트 기반 통합 워크플로우 (컨텍스트 진단→WAT 실행→상태 보존) |
 | `test-coverage-check` | "테스트 커버리지", "커버리지 체크", "테스트 점검" | 변경 파일 커버리지 분석 + 누락 테스트 자동 생성 |
 | `browser-debug` | "브라우저 QA", "웹 QA", "크롬 디버깅", "페이지 점검", "화면 확인" | 변경사항 기반 QA 시나리오 생성 → 서버 자동 기동 → Chrome 자동화 점검 |
+| `skill-rebuild` | "스킬 재구성", "스킬 개선", "스킬 리빌드" | 기존 스킬 개선 시 전체 파이프라인(evals, 벤치마크, description 최적화) 강제 |
 
 ### Commands (슬래시 명령)
 
@@ -175,6 +176,7 @@ TIL/
 | `jira-notify` | `/jira-notify {이슈키} [#채널]` | Jira 이슈 상태를 Slack 채널에 알림 |
 | `browser-debug` | `/browser-debug` | 현재 브랜치 변경사항 기반 Chrome 브라우저 QA (browser-debug 스킬 실행) |
 | `team-review` | `/team-review` | 4명의 전문 리뷰어 에이전트 팀으로 병렬 코드 리뷰 |
+| `skill-rebuild` | `/skill-rebuild {스킬명}` | 기존 스킬 재구성 (전체 파이프라인 강제) |
 
 ### Agents (Sub-agents)
 

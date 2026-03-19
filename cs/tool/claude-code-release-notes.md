@@ -1,7 +1,297 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-03-11
-> 정리 범위: v2.1.43 ~ v2.1.72
+> 정리 일시: 2026-03-19
+> 정리 범위: v2.1.43 ~ v2.1.79
+
+---
+
+## Version 2.1.79
+
+### 주요 하이라이트
+- `--console` 플래그로 Anthropic Console(API 빌링) 인증 지원
+- 시작 시 메모리 사용량 ~18MB 감소
+- VSCode에서 `/remote-control` 명령으로 브라우저/폰에서 세션 이어받기
+
+### 새 기능
+- **`claude auth login --console`**: Anthropic Console(API 빌링) 인증 전용 플래그 추가
+- **턴 소요 시간 표시**: `/config` 메뉴에 "Show turn duration" 토글 추가
+- **[VSCode] `/remote-control`**: 세션을 claude.ai/code로 브릿지하여 브라우저나 폰에서 이어서 작업
+- **[VSCode] AI 생성 세션 제목**: 첫 메시지 기반으로 세션 탭에 자동 제목 부여
+
+### 개선
+- **시작 메모리 최적화**: 모든 시나리오에서 ~18MB 감소
+- **비스트리밍 API 폴백 개선**: 2분 타임아웃으로 세션 무한 대기 방지
+- **`CLAUDE_CODE_PLUGIN_SEED_DIR`**: 플랫폼 구분자(Unix `:`, Windows `;`)로 여러 시드 디렉토리 지원
+
+### 버그 수정
+- `claude -p`가 stdin 없이 서브프로세스로 실행될 때 행(hang)되던 문제 수정
+- `-p`(print) 모드에서 Ctrl+C가 작동하지 않던 문제 수정
+- `/btw`가 스트리밍 중 실행 시 사이드 질문 대신 메인 에이전트 출력을 반환하던 문제 수정
+- `voiceEnabled: true` 설정 시 음성 모드가 시작 시 정상 활성화되지 않던 문제 수정
+- `/permissions`에서 좌우 화살표 탭 네비게이션 수정
+- `CLAUDE_CODE_DISABLE_TERMINAL_TITLE`이 시작 시 터미널 제목 설정을 막지 못하던 문제 수정
+- 커스텀 상태줄이 워크스페이스 신뢰 차단 시 빈 화면을 표시하던 문제 수정
+- 엔터프라이즈 사용자가 429 레이트 리밋 에러에서 재시도할 수 없던 문제 수정
+- `SessionEnd` 훅이 인터랙티브 `/resume`로 세션 전환 시 발동되지 않던 문제 수정
+- **[VSCode]** thinking pill이 응답 완료 후 "Thought for Ns" 대신 "Thinking"을 표시하던 문제 수정
+- **[VSCode]** 좌측 사이드바에서 세션 열 때 세션 diff 버튼이 누락되던 문제 수정
+
+---
+
+## Version 2.1.78
+
+### 주요 하이라이트
+- `StopFailure` 훅 이벤트 추가 — API 에러 시 훅 발동
+- 응답 텍스트가 생성 즉시 줄 단위로 스트리밍
+- 보안: 샌드박스 의존성 미설치 시 자동 비활성화 방지 (시작 경고 표시)
+
+### 새 기능
+- **`StopFailure` 훅 이벤트**: 턴이 API 에러(레이트 리밋, 인증 실패 등)로 종료될 때 발동
+- **`${CLAUDE_PLUGIN_DATA}` 변수**: 플러그인 업데이트 후에도 유지되는 영속 상태 디렉토리; `/plugin uninstall` 시 삭제 전 확인
+- **플러그인 에이전트 frontmatter**: `effort`, `maxTurns`, `disallowedTools` 지원
+- **`ANTHROPIC_CUSTOM_MODEL_OPTION` 환경변수**: `/model` 피커에 커스텀 모델 항목 추가 (`_NAME`, `_DESCRIPTION` 접미사 변수 지원)
+
+### 개선
+- **tmux 터미널 알림**: `set -g allow-passthrough on` 설정 시 iTerm2/Kitty/Ghostty 팝업, 프로그레스바가 외부 터미널까지 전달
+- **줄 단위 스트리밍**: 응답 텍스트가 생성 즉시 줄 단위로 표시
+- **대용량 세션 재개 성능 개선**: 메모리 사용량 및 시작 시간 최적화
+
+### 버그 수정
+- Linux 샌드박스 Bash에서 `git log HEAD`가 "ambiguous argument" 실패하고 `git status`에 스텁 파일이 보이던 문제 수정
+- `cc log`와 `--resume`이 대용량 세션(>5MB)에서 대화 기록을 자동 절단하던 문제 수정
+- API 에러가 stop 훅을 트리거하고 차단 에러가 모델에 재입력되는 무한 루프 수정
+- `deny: ["mcp__servername"]` 권한 규칙이 MCP 서버 도구를 모델 전송 전 제거하지 않던 문제 수정
+- `sandbox.filesystem.allowWrite`가 절대 경로에서 작동하지 않던 문제 수정 (이전에는 `//` 접두사 필요)
+- `/sandbox` Dependencies 탭이 macOS에서 Linux 필수 조건을 표시하던 문제 수정
+- **보안**: `sandbox.enabled: true` 설정 시 의존성 미설치로 샌드박스가 자동 비활성화되던 문제 — 이제 시작 경고 표시
+- `bypassPermissions` 모드에서 `.git`, `.claude` 등 보호 디렉토리가 프롬프트 없이 쓰기 가능하던 문제 수정
+- ctrl+u가 일반 모드에서 readline kill-line 대신 스크롤하던 문제 수정 (ctrl+u/ctrl+d 반 페이지 스크롤은 트랜스크립트 모드로 이동)
+- 음성 모드 modifier-combo push-to-talk 키바인딩(예: ctrl+k)이 즉시 활성화 대신 홀드를 요구하던 문제 수정
+- WSL2 + WSLg(Windows 11)에서 음성 모드가 작동하지 않던 문제 수정; WSL1/Win10 사용자에게 명확한 에러 표시
+- `--worktree` 플래그가 워크트리 디렉토리에서 스킬과 훅을 로드하지 않던 문제 수정
+- `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS`와 `includeGitInstructions` 설정이 시스템 프롬프트의 git status 섹션을 억제하지 못하던 문제 수정
+- VS Code가 Dock/Spotlight에서 실행될 때 Bash 도구가 Homebrew 등 PATH 의존 바이너리를 찾지 못하던 문제 수정
+- truecolor를 지원하지 않는 터미널에서 Claude 오렌지 색상이 흐리게 표시되던 문제 수정
+- `ANTHROPIC_BETAS` 환경변수가 Haiku 모델 사용 시 무시되던 문제 수정
+- 큐된 프롬프트가 줄바꿈 구분 없이 연결되던 문제 수정
+- **[VSCode]** 인증된 상태에서 사이드바 열 때 로그인 화면이 잠깐 보이던 문제 수정
+- **[VSCode]** Opus 선택 시 "API Error: Rate limit reached" — 플랜 티어 미확인 구독자에게 1M 컨텍스트 변형을 제공하지 않도록 수정
+
+---
+
+## Version 2.1.77
+
+### 주요 하이라이트
+- Claude Opus 4.6 기본 최대 출력 토큰 64k로 증가, 상한 128k
+- "Always Allow" 복합 명령 권한 규칙 수정 — 서브커맨드별 저장
+- `/fork`가 `/branch`로 이름 변경
+
+### 새 기능
+- **`allowRead` 샌드박스 설정**: `denyRead` 영역 내에서 읽기 접근을 다시 허용
+- **`/copy N`**: N번째 최근 어시스턴트 응답을 복사
+
+### 개선
+- **출력 토큰 한도 증가**: Opus 4.6 기본 64k, Opus 4.6/Sonnet 4.6 상한 128k
+- **macOS 시작 속도 ~60ms 향상**: 키체인 자격 증명 병렬 읽기
+- **`--resume` 성능**: 포크 많고 대용량 세션에서 최대 45% 빠른 로딩, ~100-150MB 피크 메모리 감소
+- **Esc 개선**: 진행 중인 비스트리밍 API 요청 중단
+- **`claude plugin validate`**: 스킬, 에이전트, 커맨드 frontmatter + `hooks/hooks.json` YAML 파싱 에러 및 스키마 위반 검사
+- **백그라운드 bash 작업**: 출력이 5GB 초과 시 자동 종료 (디스크 가득 참 방지)
+- **플랜 수락 시 세션 자동 이름 지정**
+- **Agent 도구 변경**: `resume` 파라미터 제거 → `SendMessage({to: agentId})`로 이전 에이전트 재개
+- **`SendMessage`**: 중지된 에이전트를 백그라운드에서 자동 재개
+- **`/fork` → `/branch` 이름 변경** (`/fork`는 별칭으로 유지)
+- **[VSCode]** 플랜 프리뷰 탭 제목이 "Claude's Plan" 대신 플랜 헤딩 사용
+- **[VSCode]** option+click 네이티브 선택 미작동 시 `macOptionClickForcesSelection` 설정 안내
+
+### 버그 수정
+- "Always Allow"가 복합 bash 명령에 대해 전체 문자열을 하나의 규칙으로 저장하여 재매칭 실패하던 문제 수정 → 서브커맨드별 규칙 저장
+- auto-updater가 슬래시 커맨드 오버레이 반복 열기/닫기 시 중복 바이너리 다운로드를 시작하여 수십 GB 메모리를 소모하던 문제 수정
+- `--resume`이 메모리 추출 쓰기와 메인 트랜스크립트 간 경쟁 조건으로 최근 대화 기록을 자동 절단하던 문제 수정
+- PreToolUse 훅이 `"allow"` 반환 시 `deny` 권한 규칙(엔터프라이즈 관리 설정 포함)을 우회하던 문제 수정
+- Write 도구가 CRLF 파일 덮어쓰기 또는 CRLF 디렉토리에서 파일 생성 시 줄 끝을 자동 변환하던 문제 수정
+- 긴 세션에서 progress 메시지가 compaction 후에도 남아 메모리 증가하던 문제 수정
+- API 비스트리밍 폴백 시 비용 및 토큰 사용량이 추적되지 않던 문제 수정
+- `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`가 베타 도구 스키마 필드를 제거하지 않아 프록시 게이트웨이가 요청을 거부하던 문제 수정
+- 시스템 임시 디렉토리 경로에 공백이 포함될 때 Bash 도구가 성공한 명령에 대해 에러를 보고하던 문제 수정
+- 붙여넣기 직후 입력 시 붙여넣기가 손실되던 문제 수정
+- `/feedback` 텍스트 입력에서 Ctrl+D가 두 번째 누름으로 세션 종료 대신 전방 삭제하던 문제 수정
+- 0바이트 이미지 파일 드래그 시 API 에러 수정
+- Claude Desktop 세션이 OAuth 대신 터미널 CLI의 API 키를 잘못 사용하던 문제 수정
+- `git-subdir` 플러그인이 같은 모노레포의 다른 서브디렉토리에서 플러그인 캐시 충돌하던 문제 수정
+- 터미널 UI에서 번호 목록이 렌더링되지 않던 문제 수정
+- 오래된 워크트리 정리가 이전 크래시에서 재개된 에이전트 워크트리를 삭제할 수 있던 경쟁 조건 수정
+- `/mcp` 등 다이얼로그 열기 시 에이전트 실행 중 입력 데드락 수정
+- vim NORMAL 모드에서 Backspace와 Delete 키가 작동하지 않던 문제 수정
+- vim 모드 토글 시 상태줄이 업데이트되지 않던 문제 수정
+- VS Code/Cursor 등 xterm.js 기반 터미널에서 Cmd+click으로 하이퍼링크가 두 번 열리던 문제 수정
+- tmux 기본 설정에서 배경색이 터미널 기본값으로 렌더링되던 문제 수정
+- SSH 위 tmux에서 텍스트 선택 시 iTerm2 세션 크래시 수정
+- tmux 세션에서 클립보드 복사가 자동 실패하던 문제 수정; 복사 토스트에 `⌘V` 또는 tmux `prefix+]` 중 어느 것으로 붙여넣기할지 표시
+- 설정/권한/샌드박스 다이얼로그에서 리스트 탐색 중 `←`/`→`가 실수로 탭을 전환하던 문제 수정
+- IDE 통합이 tmux 또는 screen 내에서 자동 연결되지 않던 문제 수정
+- CJK 문자가 오른쪽 가장자리에서 잘릴 때 인접 UI 요소에 시각적으로 침범하던 문제 수정
+- 리더 종료 시 팀원 패널이 닫히지 않던 문제 수정
+- iTerm2 auto 모드가 네이티브 split-pane 팀원을 위해 iTerm2를 감지하지 못하던 문제 수정
+
+---
+
+## Version 2.1.76
+
+### 주요 하이라이트
+- MCP 엘리시테이션(elicitation) 지원 — MCP 서버가 작업 중 구조화된 입력을 요청 가능
+- `/effort` 슬래시 커맨드 추가
+- `worktree.sparsePaths` 설정으로 대규모 모노레포에서 필요한 디렉토리만 체크아웃
+
+### 새 기능
+- **MCP 엘리시테이션**: MCP 서버가 인터랙티브 다이얼로그(폼 필드 또는 브라우저 URL)로 구조화된 입력을 요청 가능
+- **`Elicitation`/`ElicitationResult` 훅**: 응답이 전송되기 전에 가로채고 오버라이드
+- **`-n` / `--name <name>` CLI 플래그**: 시작 시 세션 표시 이름 설정
+- **`worktree.sparsePaths` 설정**: `claude --worktree` 시 대규모 모노레포에서 git sparse-checkout으로 필요한 디렉토리만 체크아웃
+- **`PostCompact` 훅**: compaction 완료 후 발동
+- **`/effort` 슬래시 커맨드**: 모델 effort 레벨 설정
+- **세션 품질 설문**: 엔터프라이즈 관리자가 `feedbackSurveyRate` 설정으로 샘플 비율 조정
+
+### 개선
+- **`--worktree` 시작 성능 개선**: git refs 직접 읽기, 리모트 브랜치 로컬 가용 시 `git fetch` 생략
+- **백그라운드 에이전트 종료 시 부분 결과 보존**
+- **모델 폴백 알림 가시성 향상**: verbose 모드가 아니어도 항상 표시, 사람이 읽기 쉬운 모델 이름
+- **블록인용 가독성 향상**: 다크 테마에서 dim 대신 이탤릭 + 왼쪽 바
+- **오래된 워크트리 자동 정리**: 중단된 병렬 실행 후 남은 워크트리 자동 제거
+- **Remote Control 세션 제목**: "Interactive session" 대신 첫 프롬프트 기반
+- **`/voice` 언어 표시**: 활성화 시 딕테이션 언어 표시, 미지원 언어 경고
+- **`--plugin-dir`**: 하나의 경로만 수용 (서브커맨드 지원), 여러 디렉토리는 반복 사용
+
+### 버그 수정
+- deferred 도구(`ToolSearch`로 로드)가 compaction 후 입력 스키마를 잃어 배열/숫자 파라미터가 타입 에러로 거부되던 문제 수정
+- 슬래시 커맨드가 "Unknown skill" 표시하던 문제 수정
+- 플랜 모드가 이미 수락된 플랜에 대해 재승인을 요청하던 문제 수정
+- 권한 다이얼로그나 플랜 에디터 열려 있을 때 음성 모드가 키 입력을 삼키던 문제 수정
+- Windows npm 설치에서 `/voice`가 작동하지 않던 문제 수정
+- `model:` frontmatter가 있는 스킬을 1M 컨텍스트 세션에서 호출 시 "Context limit reached" 에러 수정
+- 비표준 모델 문자열 사용 시 "adaptive thinking is not supported" 에러 수정
+- `Bash(cmd:*)` 권한 규칙이 `#`이 포함된 인용 인자와 매칭되지 않던 문제 수정
+- Bash 권한 다이얼로그의 "don't ask again"이 파이프/복합 명령에 대해 전체 원시 명령을 표시하던 문제 수정
+- 자동 compaction이 연속 실패 후 무한 재시도하던 문제 → 3회 후 서킷 브레이커로 중단
+- MCP 재연결 스피너가 성공 후에도 지속되던 문제 수정
+- LSP 플러그인이 LSP Manager 초기화 후 마켓플레이스 조정 전 서버를 등록하지 못하던 문제 수정
+- SSH 위 tmux에서 클립보드 복사 수정 — 직접 터미널 쓰기와 tmux 클립보드 통합 모두 시도
+- `/export`가 전체 파일 경로 대신 파일명만 표시하던 문제 수정
+- 텍스트 선택 후 트랜스크립트가 새 메시지로 자동 스크롤되지 않던 문제 수정
+- Escape 키로 로그인 방법 선택 화면을 종료할 수 없던 문제 수정
+- Remote Control 여러 문제 수정: 유휴 환경 종료 시 세션 자동 사망, 빠른 메시지가 배치 대신 하나씩 큐잉, JWT 갱신 후 재전달
+- 장시간 WebSocket 연결 끊김 후 브릿지 세션 복구 실패 수정
+- soft-hidden 커맨드의 정확한 이름 입력 시 슬래시 커맨드가 발견되지 않던 문제 수정
+- **[VSCode]** 쉼표가 포함된 gitignore 패턴이 @-mention 파일 피커에서 전체 파일 타입을 자동 제외하던 문제 수정
+
+---
+
+## Version 2.1.75
+
+### 주요 하이라이트
+- Opus 4.6에 기본 1M 컨텍스트 윈도우 (Max, Team, Enterprise 플랜)
+- `/color` 커맨드로 프롬프트바 색상 설정
+- 메모리 파일에 최종 수정 타임스탬프 추가
+
+### 새 기능
+- **1M 컨텍스트 윈도우 기본 제공**: Opus 4.6, Max/Team/Enterprise 플랜 (이전에는 추가 사용량 필요)
+- **`/color` 커맨드**: 세션 프롬프트바 색상 설정 (모든 사용자)
+- **세션 이름 표시**: `/rename` 사용 시 프롬프트바에 세션 이름 표시
+- **메모리 파일 타임스탬프**: 최종 수정 시각 추가 — 최신/오래된 메모리 구분에 도움
+- **훅 소스 표시**: 권한 프롬프트에서 훅의 출처(설정/플러그인/스킬) 표시
+
+### 개선
+- **macOS 시작 성능 향상**: 비-MDM 머신에서 불필요한 서브프로세스 생략
+- **async 훅 완료 메시지 기본 숨김**: `--verbose` 또는 트랜스크립트 모드에서만 표시
+
+### 버그 수정
+- 신규 설치에서 `/voice`를 두 번 토글해야 음성 모드가 활성화되던 문제 수정
+- `/model` 또는 Option+P로 모델 전환 후 헤더에 표시된 모델 이름이 업데이트되지 않던 문제 수정
+- 첨부 메시지 연산이 undefined 값을 반환할 때 세션 크래시 수정
+- Bash 도구가 파이프 명령에서 `!`를 맹글링하던 문제 수정 (예: `jq 'select(.x != .y)'` 정상 작동)
+- 관리자가 강제 비활성화한 플러그인이 `/plugin` 설치됨 탭에 표시되던 문제 수정
+- thinking 및 `tool_use` 블록의 토큰 추정이 과다 계산되어 조기 compaction이 발생하던 문제 수정
+- 손상된 마켓플레이스 설정 경로 처리 수정
+- `/resume`이 포크/이어받기 세션 재개 후 세션 이름을 잃어버리던 문제 수정
+- Config 탭 방문 후 `/status` 다이얼로그에서 Esc가 닫히지 않던 문제 수정
+- 플랜 수락/거부 시 입력 처리 수정
+- 에이전트 팀에서 푸터 힌트가 "↓ to expand" 대신 올바른 "shift + ↓ to expand" 표시
+
+### 변경
+- **Breaking**: Windows 관리 설정 폴백 경로 `C:\ProgramData\ClaudeCode\managed-settings.json` 제거 → `C:\Program Files\ClaudeCode\managed-settings.json` 사용
+
+---
+
+## Version 2.1.74
+
+### 주요 하이라이트
+- `/context` 커맨드에 최적화 제안 추가 — 컨텍스트 과부하 도구, 메모리 비대, 용량 경고 감지
+- `autoMemoryDirectory` 설정으로 자동 메모리 저장 디렉토리 변경 가능
+- 스트리밍 API 응답 버퍼 메모리 누수 수정
+
+### 새 기능
+- **`/context` 최적화 제안**: 컨텍스트 과부하 도구, 메모리 비대, 용량 경고를 감지하고 구체적인 최적화 팁 제공
+- **`autoMemoryDirectory` 설정**: 자동 메모리 저장을 위한 커스텀 디렉토리 구성
+
+### 개선
+- **[VSCode]** 통합 터미널에서 터미널 인식 가속으로 스크롤 휠 반응성 향상
+
+### 버그 수정
+- 스트리밍 API 응답 버퍼가 제너레이터 조기 종료 시 해제되지 않아 Node.js/npm 코드 경로에서 RSS가 무한 증가하던 메모리 누수 수정
+- 관리 정책 `ask` 규칙이 사용자 `allow` 규칙이나 스킬 `allowed-tools`에 의해 우회되던 문제 수정
+- 에이전트 frontmatter `model:` 필드와 `--agents` JSON 설정에서 전체 모델 ID(예: `claude-opus-4-5`)가 무시되던 문제 수정 — `--model`과 동일한 값 수용
+- MCP OAuth 인증이 콜백 포트 사용 중일 때 행되던 문제 수정
+- MCP OAuth 갱신 토큰 만료 시 재인증 프롬프트가 나오지 않던 문제 수정 (HTTP 200으로 에러 반환하는 OAuth 서버, 예: Slack)
+- macOS 네이티브 바이너리에서 마이크 권한 미부여 시 음성 모드가 자동 실패하던 문제 수정 — `audio-input` entitlement 포함
+- `SessionEnd` 훅이 `hook.timeout`과 관계없이 종료 후 1.5초에 종료되던 문제 수정 → `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS`로 설정 가능
+- REPL 내 마켓플레이스 플러그인 `/plugin install` 실패 수정
+- 마켓플레이스 업데이트가 git 서브모듈을 동기화하지 않던 문제 수정
+- 인자가 포함된 알 수 없는 슬래시 커맨드가 입력을 자동 삭제하던 문제 수정 → 경고 표시
+- Windows Terminal, conhost, VS Code 통합 터미널에서 히브리어, 아랍어 등 RTL 텍스트가 올바르게 렌더링되지 않던 문제 수정
+- Windows에서 잘못된 파일 URI로 LSP 서버가 작동하지 않던 문제 수정
+- `--plugin-dir` 변경: 로컬 개발 복사본이 동일 이름의 설치된 마켓플레이스 플러그인을 오버라이드
+- **[VSCode]** Untitled 세션의 삭제 버튼이 작동하지 않던 문제 수정
+
+---
+
+## Version 2.1.73
+
+### 주요 하이라이트
+- `modelOverrides` 설정으로 모델 피커 항목을 커스텀 프로바이더 모델 ID에 매핑
+- 복합 bash 명령의 권한 프롬프트로 인한 멈춤 및 100% CPU 루프 수정
+- Bedrock/Vertex/Foundry 기본 Opus 모델이 4.6으로 변경
+
+### 새 기능
+- **`modelOverrides` 설정**: 모델 피커 항목을 커스텀 프로바이더 모델 ID(예: Bedrock 추론 프로필 ARN)에 매핑
+- **SSL 인증서 에러 안내**: OAuth 로그인 또는 연결 체크 실패 시 (기업 프록시, `NODE_EXTRA_CA_CERTS`) 실행 가능한 가이드 제공
+
+### 개선
+- **위쪽 화살표 개선**: Claude 중단 후 중단된 프롬프트를 복원하고 대화를 한 단계에서 되감기
+- **IDE 감지 속도 향상**
+- **macOS 클립보드 이미지 붙여넣기 성능 개선**
+- **`/effort`**: Claude 응답 중에도 작동 (`/model` 동작과 일치)
+- **음성 모드**: 빠른 push-to-talk 재누름 시 일시적 연결 실패 자동 재시도
+- **Remote Control 스폰 모드 선택 프롬프트 개선**
+- **Bedrock/Vertex/Foundry 기본 Opus 모델**: 4.1 → **4.6**으로 변경
+- **`/output-style` 커맨드 Deprecated**: `/config` 사용 권장. 출력 스타일은 세션 시작 시 고정 (프롬프트 캐싱 개선)
+
+### 버그 수정
+- 복합 bash 명령의 권한 프롬프트로 인한 멈춤 및 100% CPU 루프 수정
+- 많은 스킬 파일이 동시에 변경될 때(예: `.claude/skills/` 디렉토리가 큰 레포에서 `git pull`) 데드락 수정
+- 같은 프로젝트 디렉토리에서 여러 Claude Code 세션 실행 시 Bash 도구 출력 손실 수정
+- `model: opus`/`sonnet`/`haiku` 서브에이전트가 Bedrock/Vertex/Foundry에서 이전 모델 버전으로 자동 다운그레이드되던 문제 수정
+- 서브에이전트가 생성한 백그라운드 bash 프로세스가 에이전트 종료 시 정리되지 않던 문제 수정
+- `/resume`이 피커에 현재 세션을 표시하던 문제 수정
+- `/ide`가 확장 자동 설치 시 `onInstall is not defined` 크래시 수정
+- `/loop`가 Bedrock/Vertex/Foundry 및 텔레메트리 비활성화 시 사용 불가하던 문제 수정
+- `--resume` 또는 `--continue`로 세션 재개 시 SessionStart 훅이 두 번 발동되던 문제 수정
+- JSON 출력 훅이 매 턴마다 no-op system-reminder 메시지를 모델 컨텍스트에 주입하던 문제 수정
+- 느린 연결에서 새 녹음과 겹칠 때 음성 모드 세션 손상 수정
+- Linux 샌드박스가 "ripgrep (rg) not found"로 시작 실패하던 문제 수정
+- Amazon Linux 2 등 glibc 2.26 시스템에서 Linux 네이티브 모듈 로딩 실패 수정
+- Remote Control로 이미지 수신 시 "media_type: Field required" API 에러 수정
+- Windows에서 Desktop 폴더가 이미 존재할 때 `/heapdump` EEXIST 에러 수정
+- **[VSCode]** 프록시 뒤이거나 Bedrock/Vertex에서 Claude 4.5 모델 사용 시 HTTP 400 에러 수정
 
 ---
 
