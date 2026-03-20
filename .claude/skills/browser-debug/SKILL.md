@@ -23,141 +23,77 @@ description: |
 
 ## 개요
 
-현재 브랜치의 변경사항을 분석하여 QA 시나리오 MD 파일을 생성하고, Plan 모드 기반으로 Chrome 자동화 점검을 수행한다.
+QA 시나리오를 기반으로 Chrome 자동화 점검을 수행한다.
 FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
 
 반드시 아래 Phase를 순서대로 수행한다. Phase를 건너뛰지 않는다.
 
 ---
 
-## Phase 1: 변경사항 분석 (Plan 모드 진입)
+## Phase 0: QA 시나리오 확인 (기존 시나리오 체크)
 
-**EnterPlanMode**로 Plan 모드에 진입한 후 분석한다.
+**먼저 프로젝트 루트에 `QA-SCENARIOS.md` 파일이 이미 존재하는지 확인한다.**
 
-1. `git diff --cached --name-status` 및 `git status`로 변경된 파일 목록 수집
-2. 변경 파일을 분류:
+### 기존 시나리오가 있는 경우 (QA-SCENARIOS.md 존재)
 
-| 카테고리 | 파일 패턴 | 분석 대상 |
-|---------|----------|-----------|
-| **Controller** | `*Controller.java` | URL 엔드포인트 파악 |
-| **Service** | `*Service.java` | 비즈니스 로직 변경 |
-| **JSP/HTML** | `*.jsp`, `*.html` | UI 렌더링, 레이아웃 |
-| **JavaScript** | `*.js`, `*.ts` | 이벤트 핸들러, API 호출 |
-| **CSS** | `*.css`, `*.scss` | 스타일링, 반응형 |
-| **Entity/DTO** | `*Entity.java`, `*Dto.java` | 데이터 모델 변경 |
-| **Mapper XML** | `*.xml` (MyBatis) | 쿼리 동작 |
-| **설정** | `application.*`, `tiles*.xml`, `build.gradle` | 서버 재기동 필요 여부 판단 |
+1. `QA-SCENARIOS.md`를 읽어 내용을 확인한다
+2. 시나리오가 유효한지 검증:
+   - 시나리오에 명시된 **테스트 URL**이 현재 프로젝트와 일치하는가
+   - **변경 파일**과 현재 git 변경사항이 대체로 일치하는가 (완전 일치 불필요)
+   - 시나리오에 **P0 시나리오가 1개 이상** 있는가
+3. 유효하면 → **Phase 1, Phase 2를 건너뛰고 Phase 3(서버 및 브라우저 준비)로 직행**
+4. 유효하지 않으면 (오래된 시나리오, 다른 브랜치의 시나리오 등) → Phase 1로 진행
 
-3. Explore 에이전트를 사용하여 변경된 코드의 전체 기능을 "very thorough"로 분석:
-   - 모든 사용자 인터랙션 (onclick, jQuery handler, form submit 등)
-   - 모든 API 호출 (AJAX URL, 요청/응답 구조)
-   - 모달/팝업
-   - 엑셀 업로드/다운로드
-   - 기존 버전과의 차이점
+### 기존 시나리오가 없는 경우
+
+1. `qa-scenario` 스킬을 **Skill 도구로 호출**하여 QA 시나리오를 생성한다
+   → `Skill("qa-scenario")`
+2. `qa-scenario` 스킬이 Plan 모드에서 분석 → 사용자 승인 → `QA-SCENARIOS.md` 생성을 완료한다
+3. 생성 완료 후 Phase 3으로 진행한다
+
+**핵심 원칙:** QA 시나리오 생성은 `qa-scenario` 스킬의 책임이다. `browser-debug`는 시나리오 **실행**에 집중한다.
 
 ---
 
-## Phase 2: QA 시나리오 MD 파일 생성
-
-Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md` 파일을 생성**한다.
-
-**시나리오 작성 시 `references/qa-scenario-guide.md`를 반드시 참조**하여 다이어그램과 BDD 형식을 적용한다.
-
-### QA-SCENARIOS.md 파일 구조
-
-```markdown
-# QA Scenarios - {브랜치명}
-
-## 환경
-- 브랜치: {branch_name}
-- 비교 기준: {compare_branch}
-- 테스트 URL: http://localhost:{port}
-- 생성 일시: {datetime}
-- 변경 파일: {N}개
-
-## 변경 요약
-{변경된 기능 1~2줄 요약}
-
-## 유저 플로우 다이어그램
-
-{Mermaid flowchart - 변경사항이 영향을 주는 전체 사용자 동선}
-{성공 경로=초록, 실패 경로=빨강, 시작점=파랑 스타일 적용}
-
-## API 시퀀스 다이어그램
-
-{Controller/API 변경이 있을 때만 포함}
-{Mermaid sequenceDiagram - 프론트↔백엔드 통신 흐름, 성공/실패 경로}
-
-## 시나리오 목록
-
-### P0 - 핵심 기능 (반드시 테스트)
-
-#### S01. {기능명}
-- **테스트 URL**: {URL}
-- **시나리오**:
-  - **Given**: {사전 조건}
-  - **When**: {사용자 액션}
-  - **Then**: {기대 결과}
-- **검증 방법**: screenshot / javascript_exec / network_request / console_log
-- **검증 코드**:
-  ```javascript
-  // 자동화 검증에 사용할 코드
-  ```
-- **결과**: ⬜ 미실행
-
-### P1 - 주요 기능
-#### S05. ...
-
-### P2 - 부가 기능
-#### S10. ...
-
-## 결과 요약
-
-{QA 완료 후 Mermaid pie chart로 PASS/FAIL/FIX/BLOCKED 비율 표시}
-
-## 발견된 버그
-
-| # | 시나리오 | 심각도 | 문제 | 원인 | 수정 파일 | 수정 내용 |
-|---|---------|--------|------|------|---------|---------|
-
-## 미검증 항목
-- {테스트 데이터 부족 등으로 확인 불가한 항목}
-```
-
-### 다이어그램 포함 규칙
-
-| 변경 유형 | 필수 다이어그램 | 선택 다이어그램 |
-|----------|--------------|--------------|
-| 페이지 신규/수정 | flowchart (유저 플로우) | journey (사용자 경험) |
-| API 추가/변경 | sequenceDiagram | flowchart |
-| 상태 전이 로직 | stateDiagram | flowchart |
-| CRUD 전체 | flowchart + sequenceDiagram | journey |
-| UI만 변경 | flowchart | - |
-
-### 시나리오 분류 기준
-
-| 우선순위 | 범위 | 설명 |
-|---------|------|------|
-| **P0** | S01~S04 | 페이지 로드, Tiles 레이아웃, 핵심 API, 메인 CRUD |
-| **P1** | S05~S09 | UI 인터랙션, 탭 전환, 필터 연동, 일괄변경 |
-| **P2** | S10~ | 엣지 케이스, 엑셀, 외부 연동, 빈 데이터 |
-
-### 시나리오 작성 후 사용자 승인
-
-`QA-SCENARIOS.md` 파일을 생성한 후:
-1. 사용자에게 시나리오 요약 테이블을 보여준다
-2. 추가/수정/삭제할 시나리오가 있는지 확인한다
-3. 승인 후 **ExitPlanMode**로 Plan 모드를 종료하고 Phase 3으로 진행한다
-
----
-
-## Phase 3: 서버 및 브라우저 준비
+## Phase 1: 서버 및 브라우저 준비
 
 ### 서버 확인
 
-1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080` 로 서버 상태 확인
-2. 서버 미기동 시 프로젝트 타입 자동 탐지 후 기동 (`references/server-detection.md` 참조)
-3. Health check로 서버 ready 확인 (최대 60초 대기)
+1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:{port}` 로 서버 상태 확인
+2. 서버 미기동 시 → **빌드 → java -jar 기동** 방식으로 자동 시작 (`references/server-detection.md` 참조)
+3. 포트 충돌 시 → 대체 포트로 자동 전환하여 기동 (설정 파일 수정 없이 `--server.port` 인자 사용)
+4. Health check로 서버 ready 확인 (최대 60초 대기)
+
+### Java 프로젝트 빌드 & 기동 절차
+
+```
+1. 빌드 도구 탐지: build.gradle → Gradle / pom.xml → Maven
+2. WAR 패키징 여부 확인: build.gradle의 'war' 플러그인 / pom.xml의 <packaging>war</packaging>
+3. 빌드 실행:
+   - Gradle JAR: gradlew.bat bootJar (Windows) / ./gradlew bootJar
+   - Gradle WAR: gradlew.bat bootWar (Windows) / ./gradlew bootWar
+   - Maven: mvnw.cmd package -DskipTests (Windows) / ./mvnw package -DskipTests
+4. 산출물 탐지:
+   - Gradle: build/libs/*.jar 또는 *.war (-plain 제외, 가장 큰 파일 선택)
+   - Maven: target/*.jar 또는 *.war (.original 제외, 가장 큰 파일 선택)
+5. 포트 결정: 설정 파일 → 기본 8080 → 충돌 시 8081/8082/8083/8090/9080 순서
+6. 기동: java -jar {artifact} --server.port={port}
+7. Health check 폴링 (3초 간격, 최대 20회)
+```
+
+### 포트 충돌 자동 해결
+
+서버 기동 전 반드시 포트 점유 여부를 확인한다:
+```bash
+# Windows
+netstat -ano | findstr :{port} | findstr LISTENING
+```
+
+충돌 시 **설정 파일을 수정하지 않고** 커맨드 라인 인자로 포트를 오버라이드한다:
+- Spring Boot: `java -jar {artifact} --server.port={alt_port}`
+- 대체 포트: 8081 → 8082 → 8083 → 8090 → 9080
+
+대체 포트로 기동한 경우 **QA 시나리오의 테스트 URL도 해당 포트로 자동 조정**한다.
 
 ### 서버 재기동이 필요한 경우
 
@@ -167,7 +103,11 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 - Java 소스 파일 (Controller, Service, Entity 등)
 - `build.gradle` / `pom.xml`
 
-서버 재기동이 필요하면 **사용자에게 묻지 않고 Bash로 자체 재기동**한다.
+서버 재기동이 필요하면 **사용자에게 묻지 않고 Bash로 자체 재기동**한다:
+1. 기존 서버 프로세스 종료 (PID 기반)
+2. 코드 변경이 있으면 재빌드 (bootJar/bootWar/package)
+3. 동일 포트로 `java -jar` 재기동
+4. Health check 통과 후 QA 재개
 
 ### 브라우저 준비
 
@@ -179,7 +119,7 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 
 ---
 
-## Phase 4: QA 시나리오 순차 실행
+## Phase 2: QA 시나리오 순차 실행
 
 `QA-SCENARIOS.md`의 시나리오를 **P0 → P1 → P2 순서대로** 실행한다.
 
@@ -215,7 +155,7 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 
 ---
 
-## Phase 5: 결과 보고
+## Phase 3: 결과 보고
 
 모든 시나리오 실행 후:
 
@@ -243,5 +183,6 @@ Phase 1 분석 결과를 기반으로 **프로젝트 루트에 `QA-SCENARIOS.md`
 
 ## 관련 스킬
 
+- `qa-scenario`: QA 시나리오 문서 생성 (Phase 0에서 자동 호출)
 - `pencil-to-code`: 디자인 → 코드 변환 후 브라우저 검증에 활용
 - `pencil-update`: 디버깅에서 발견된 UI 이슈를 디자인에 먼저 반영할 때

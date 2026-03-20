@@ -1,0 +1,23 @@
+{
+  "skill_name": "qa-scenario",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "방금 ItemController에 CRUD 기능 추가하고 ItemService, ItemRepository, item-list.jsp도 수정했어. QA 시나리오 만들어줘",
+      "expected_output": "영향도 매트릭스 포함, P0~P2 BDD 시나리오, flowchart+sequenceDiagram 포함된 QA-SCENARIOS.md 생성",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "CSS랑 JS만 수정했는데 테스트 시나리오 작성해줘. brand-list.js에서 필터 로직 변경하고 brand-list.css에서 그리드 스타일 수정함",
+      "expected_output": "UI 중심 시나리오, flowchart만 포함, P1~P2 위주 시나리오, 검증 코드는 javascript/screenshot 중심",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "이번 브랜치 작업 QA 문서 만들어서 PR에 첨부하려고 해. 변경 영향 분석부터 해줘",
+      "expected_output": "git diff 분석 → 영향도 매트릭스 → Plan 모드에서 시나리오 제안 → 승인 후 QA-SCENARIOS.md 생성",
+      "files": []
+    }
+  ]
+}
