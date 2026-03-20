@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (CLI 하네스) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (평가 하네스) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 보라 (프레임워크 하네스) -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 연한 파랑 배경 -->
+    <linearGradient id="bgBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EBF5FB"/>
+      <stop offset="100%" style="stop-color:#D6EAF8"/>
+    </linearGradient>
+    <!-- 연한 초록 배경 -->
+    <linearGradient id="bgGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EAFAF1"/>
+      <stop offset="100%" style="stop-color:#D5F5E3"/>
+    </linearGradient>
+    <!-- 연한 보라 배경 -->
+    <linearGradient id="bgPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EEF8"/>
+      <stop offset="100%" style="stop-color:#EBD5F8"/>
+    </linearGradient>
+    <!-- 하단 바 그라디언트 -->
+    <linearGradient id="bottomBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2980B9"/>
+      <stop offset="50%" style="stop-color:#27AE60"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 드롭섀도우 -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000022"/>
+    </filter>
+    <filter id="headerShadow" x="-5%" y="-5%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000033"/>
+    </filter>
+  </defs>
+
+  <!-- 전체 배경 -->
+  <rect width="820" height="520" rx="12" fill="#F8F9FA"/>
+
+  <!-- 타이틀 -->
+  <text x="410" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#2C3E50">AI 하네스 3가지 유형 비교</text>
+  <text x="410" y="58" text-anchor="middle" font-size="11" fill="#7F8C8D">CLI / 평가 / 프레임워크 — 대상을 감싸서 생명주기를 제어한다</text>
+
+  <!-- ===================== 1. CLI 하네스 (왼쪽) ===================== -->
+  <!-- 카드 배경 -->
+  <rect x="30" y="75" width="238" height="380" rx="10" fill="url(#bgBlue)" stroke="#AED6F1" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 헤더 -->
+  <rect x="30" y="75" width="238" height="52" rx="10" fill="url(#nodeBlue)" filter="url(#headerShadow)"/>
+  <rect x="30" y="106" width="238" height="21" fill="url(#nodeBlue)"/>
+
+  <!-- 터미널 아이콘 -->
+  <rect x="50" y="85" width="32" height="22" rx="4" fill="none" stroke="white" stroke-width="2"/>
+  <text x="66" y="101" text-anchor="middle" font-size="11" fill="white" font-weight="bold">&gt;_</text>
+
+  <!-- 헤더 텍스트 -->
+  <text x="100" y="97" font-size="14" font-weight="bold" fill="white">CLI 하네스</text>
+  <text x="100" y="113" font-size="10" fill="#D6EAF8">Execution Harness</text>
+
+  <!-- 대표 도구 -->
+  <text x="149" y="151" text-anchor="middle" font-size="10" font-weight="bold" fill="#1A5276">대표 도구</text>
+  <rect x="48" y="158" width="202" height="22" rx="5" fill="#2980B9" opacity="0.15"/>
+  <text x="149" y="173" text-anchor="middle" font-size="11" fill="#1A5276">Claude Code · Cursor · Codex CLI</text>
+
+  <!-- 역할 -->
+  <text x="149" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#1A5276">역할</text>
+  <text x="149" y="218" text-anchor="middle" font-size="11" fill="#2C3E50">실행 환경 제어</text>
+  <text x="149" y="234" text-anchor="middle" font-size="11" fill="#2C3E50">권한 관리</text>
+  <text x="149" y="250" text-anchor="middle" font-size="11" fill="#2C3E50">Hook 시스템</text>
+
+  <!-- 구분선 -->
+  <line x1="50" y1="264" x2="248" y2="264" stroke="#AED6F1" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 핵심 키워드 -->
+  <text x="149" y="284" text-anchor="middle" font-size="10" font-weight="bold" fill="#1A5276">핵심 키워드</text>
+
+  <rect x="48" y="292" width="60" height="24" rx="12" fill="url(#nodeBlue)"/>
+  <text x="78" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Permission</text>
+
+  <rect x="119" y="292" width="40" height="24" rx="12" fill="url(#nodeBlue)"/>
+  <text x="139" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Hook</text>
+
+  <rect x="170" y="292" width="52" height="24" rx="12" fill="url(#nodeBlue)"/>
+  <text x="196" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Sandbox</text>
+
+  <!-- 흐름 설명 -->
+  <rect x="48" y="328" width="202" height="70" rx="8" fill="white" stroke="#AED6F1" stroke-width="1"/>
+  <text x="149" y="347" text-anchor="middle" font-size="10" font-weight="bold" fill="#2980B9">동작 흐름</text>
+  <text x="149" y="364" text-anchor="middle" font-size="10" fill="#2C3E50">사용자 명령</text>
+  <text x="149" y="378" text-anchor="middle" font-size="10" fill="#7F8C8D">→ 권한 검사 → 실행</text>
+  <text x="149" y="391" text-anchor="middle" font-size="10" fill="#7F8C8D">→ Hook 트리거 → 결과</text>
+
+  <!-- ===================== 2. 평가 하네스 (중앙) ===================== -->
+  <!-- 카드 배경 -->
+  <rect x="291" y="75" width="238" height="380" rx="10" fill="url(#bgGreen)" stroke="#A9DFBF" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 헤더 -->
+  <rect x="291" y="75" width="238" height="52" rx="10" fill="url(#nodeGreen)" filter="url(#headerShadow)"/>
+  <rect x="291" y="106" width="238" height="21" fill="url(#nodeGreen)"/>
+
+  <!-- 그래프 아이콘 (막대 차트) -->
+  <rect x="311" y="102" width="6" height="12" rx="1" fill="white" opacity="0.9"/>
+  <rect x="320" y="96" width="6" height="18" rx="1" fill="white" opacity="0.9"/>
+  <rect x="329" y="90" width="6" height="24" rx="1" fill="white" opacity="0.9"/>
+  <line x1="309" y1="114" x2="337" y2="114" stroke="white" stroke-width="1.5"/>
+
+  <!-- 헤더 텍스트 -->
+  <rect x="291" y="106" width="238" height="21" fill="url(#nodeGreen)"/>
+  <text x="360" y="97" font-size="14" font-weight="bold" fill="white">평가 하네스</text>
+  <text x="360" y="113" font-size="10" fill="#D5F5E3">Evaluation Harness</text>
+
+  <!-- 대표 도구 -->
+  <text x="410" y="151" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D6A3B">대표 도구</text>
+  <rect x="309" y="158" width="202" height="22" rx="5" fill="#27AE60" opacity="0.15"/>
+  <text x="410" y="173" text-anchor="middle" font-size="11" fill="#1D6A3B">lm-eval-harness · HELM · Evals</text>
+
+  <!-- 역할 -->
+  <text x="410" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D6A3B">역할</text>
+  <text x="410" y="218" text-anchor="middle" font-size="11" fill="#2C3E50">벤치마크 실행</text>
+  <text x="410" y="234" text-anchor="middle" font-size="11" fill="#2C3E50">성능 측정</text>
+  <text x="410" y="250" text-anchor="middle" font-size="11" fill="#2C3E50">결과 비교·리포트</text>
+
+  <!-- 구분선 -->
+  <line x1="311" y1="264" x2="509" y2="264" stroke="#A9DFBF" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 핵심 키워드 -->
+  <text x="410" y="284" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D6A3B">핵심 키워드</text>
+
+  <rect x="309" y="292" width="62" height="24" rx="12" fill="url(#nodeGreen)"/>
+  <text x="340" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Benchmark</text>
+
+  <rect x="382" y="292" width="42" height="24" rx="12" fill="url(#nodeGreen)"/>
+  <text x="403" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Score</text>
+
+  <rect x="435" y="292" width="46" height="24" rx="12" fill="url(#nodeGreen)"/>
+  <text x="458" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Report</text>
+
+  <!-- 흐름 설명 -->
+  <rect x="309" y="328" width="202" height="70" rx="8" fill="white" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="410" y="347" text-anchor="middle" font-size="10" font-weight="bold" fill="#27AE60">동작 흐름</text>
+  <text x="410" y="364" text-anchor="middle" font-size="10" fill="#2C3E50">태스크 로드</text>
+  <text x="410" y="378" text-anchor="middle" font-size="10" fill="#7F8C8D">→ 모델 추론 → 채점</text>
+  <text x="410" y="391" text-anchor="middle" font-size="10" fill="#7F8C8D">→ 집계 → 리포트</text>
+
+  <!-- ===================== 3. 프레임워크 하네스 (오른쪽) ===================== -->
+  <!-- 카드 배경 -->
+  <rect x="552" y="75" width="238" height="380" rx="10" fill="url(#bgPurple)" stroke="#D2B4DE" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 헤더 -->
+  <rect x="552" y="75" width="238" height="52" rx="10" fill="url(#nodePurple)" filter="url(#headerShadow)"/>
+  <rect x="552" y="106" width="238" height="21" fill="url(#nodePurple)"/>
+
+  <!-- 순환 화살표 아이콘 -->
+  <circle cx="577" cy="101" r="11" fill="none" stroke="white" stroke-width="2"/>
+  <path d="M 577 90 A 11 11 0 1 1 566 101" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="566,95 566,101 572,101" fill="white"/>
+
+  <!-- 헤더 텍스트 -->
+  <text x="622" y="97" font-size="14" font-weight="bold" fill="white">프레임워크 하네스</text>
+  <text x="622" y="113" font-size="10" fill="#EBD5F8">Framework Harness</text>
+
+  <!-- 대표 도구 -->
+  <text x="671" y="151" text-anchor="middle" font-size="10" font-weight="bold" fill="#512E5F">대표 도구</text>
+  <rect x="570" y="158" width="202" height="22" rx="5" fill="#8E44AD" opacity="0.15"/>
+  <text x="671" y="173" text-anchor="middle" font-size="11" fill="#512E5F">LangChain · CrewAI · Agent SDK</text>
+
+  <!-- 역할 -->
+  <text x="671" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#512E5F">역할</text>
+  <text x="671" y="218" text-anchor="middle" font-size="11" fill="#2C3E50">에이전트 루프 관리</text>
+  <text x="671" y="234" text-anchor="middle" font-size="11" fill="#2C3E50">도구 라우팅</text>
+  <text x="671" y="250" text-anchor="middle" font-size="11" fill="#2C3E50">멀티 에이전트 조율</text>
+
+  <!-- 구분선 -->
+  <line x1="570" y1="264" x2="772" y2="264" stroke="#D2B4DE" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 핵심 키워드 -->
+  <text x="671" y="284" text-anchor="middle" font-size="10" font-weight="bold" fill="#512E5F">핵심 키워드</text>
+
+  <!-- Plan-Execute-Observe 키워드 (3개) -->
+  <rect x="570" y="292" width="36" height="24" rx="12" fill="url(#nodePurple)"/>
+  <text x="588" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Plan</text>
+
+  <rect x="615" y="292" width="52" height="24" rx="12" fill="url(#nodePurple)"/>
+  <text x="641" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Execute</text>
+
+  <rect x="677" y="292" width="58" height="24" rx="12" fill="url(#nodePurple)"/>
+  <text x="706" y="308" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Observe</text>
+
+  <!-- 흐름 설명 -->
+  <rect x="570" y="328" width="202" height="70" rx="8" fill="white" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="671" y="347" text-anchor="middle" font-size="10" font-weight="bold" fill="#8E44AD">동작 흐름</text>
+  <text x="671" y="364" text-anchor="middle" font-size="10" fill="#2C3E50">목표 수신</text>
+  <text x="671" y="378" text-anchor="middle" font-size="10" fill="#7F8C8D">→ Plan → 도구 실행</text>
+  <text x="671" y="391" text-anchor="middle" font-size="10" fill="#7F8C8D">→ Observe → 반복</text>
+
+  <!-- ===================== 하단 공통 특성 바 ===================== -->
+  <rect x="30" y="468" width="760" height="38" rx="8" fill="url(#bottomBar)" filter="url(#shadow)"/>
+
+  <!-- 아이콘 (공통 심볼: 감싸는 괄호) -->
+  <text x="58" y="493" text-anchor="middle" font-size="18" fill="white" opacity="0.85">{</text>
+  <text x="762" y="493" text-anchor="middle" font-size="18" fill="white" opacity="0.85">}</text>
+
+  <!-- 공통 특성 텍스트 -->
+  <text x="410" y="487" text-anchor="middle" font-size="12" font-weight="bold" fill="white">공통 특성</text>
+  <text x="410" y="500" text-anchor="middle" font-size="11" fill="white" opacity="0.92">대상을 감싸서(wrap) 생명주기를 제어한다</text>
+</svg>

@@ -51,6 +51,7 @@ AI 에이전트 기초를 이해한 후 학습하세요.
 |------|------|----------|
 | [Tool Use](./tool-use.md) | LLM의 도구 사용 패턴 | AI Agent란 |
 | [MCP](./mcp.md) | AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜 | AI Agent란 |
+| [AI 하네스 (AI Harness)](./harness.md) | AI 모델이나 에이전트를 외부에서 감싸서 실행 환경·권한·생명주기를 제어하는 프레임워크 | [AI Agent란](./ai-agent.md) |
 | [SLM](./slm.md) | 특정 작업에 최적화된 소형 언어 모델 `Trend 2026` | LLM 기초 |
 | [AI 보조 개발](./ai-assisted-development.md) | AI 코딩 도구 활용과 생산성 역설 `Trend 2026` | LLM 기초 |
 | [Claude 제품 비교 가이드](./claude-product-comparison.md) | Claude AI, Cowork, Code 3대 제품 종합 비교 `Trend 2026` | AI Agent란 |
@@ -124,6 +125,7 @@ Sub Agent를 이해한 후 도전하세요.
 ### 도구 & 프로토콜
 - [Tool Use](./tool-use.md) - LLM이 외부 도구를 호출하여 실제 작업을 수행하는 능력
 - [MCP (Model Context Protocol)](./mcp.md) - AI 에이전트와 외부 시스템 연결을 위한 표준 프로토콜
+- [AI 하네스 (AI Harness)](./harness.md) - AI 모델이나 에이전트를 외부에서 감싸서 실행 환경·권한·생명주기를 제어하는 프레임워크
 - [WebMCP (Web Model Context Protocol)](./webmcp.md) - 웹 페이지가 브라우저 내 AI 에이전트에게 구조화된 도구를 직접 노출하는 웹 표준 `Trend 2025-2026`
 - [A2A (Agent-to-Agent) Protocol](./a2a-protocol.md) - AI 에이전트 간 통신과 협업을 위한 표준 프로토콜 `Trend 2025`
 - [Figma + MCP + Claude Code 통합 가이드](./figma-mcp-design-to-code.md) - Figma 디자인을 MCP로 Claude Code에 연결하여 Design-to-Code 워크플로우를 자동화하는 통합 가이드 `Trend 2025-2026`

@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 580" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (기본) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (격리) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 빨강 (보안) -->
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 주황 (훅) -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 (LLM) -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 청록 (Context) -->
+    <linearGradient id="nodeTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+    <!-- LLM 그라디언트 (보라+파랑) -->
+    <linearGradient id="llmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 드롭섀도우 -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000033"/>
+    </filter>
+    <filter id="shadowLight" x="-3%" y="-3%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+    <!-- 화살표 마커 -->
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#E74C3C"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#E67E22"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2980B9"/>
+    </marker>
+  </defs>
+
+  <!-- ===== 가장 바깥: Harness 박스 ===== -->
+  <rect x="10" y="10" width="800" height="560" rx="16"
+        fill="none" stroke="#2C3E50" stroke-width="2.5" stroke-dasharray="10,5"
+        filter="url(#shadow)"/>
+  <rect x="10" y="10" width="164" height="30" rx="8" fill="#2C3E50"/>
+  <text x="92" y="30" text-anchor="middle" font-size="13" font-weight="bold"
+        fill="white">Harness (Claude Code)</text>
+
+  <!-- ===== Permission Layer (상단) ===== -->
+  <rect x="240" y="55" width="340" height="90" rx="10"
+        fill="url(#nodeRed)" filter="url(#shadowLight)" opacity="0.92"/>
+  <text x="410" y="83" text-anchor="middle" font-size="13" font-weight="bold"
+        fill="white">Permission Layer</text>
+  <text x="410" y="101" text-anchor="middle" font-size="10" fill="#FDECEA">
+    도구 실행 허용 / 차단 정책 관리
+  </text>
+  <!-- 허용/차단 분기 아이콘 -->
+  <rect x="290" y="110" width="52" height="22" rx="5" fill="#C0392B"/>
+  <text x="316" y="125" text-anchor="middle" font-size="10" fill="white" font-weight="bold">차단</text>
+  <rect x="368" y="110" width="52" height="22" rx="5" fill="#27AE60"/>
+  <text x="394" y="125" text-anchor="middle" font-size="10" fill="white" font-weight="bold">허용</text>
+  <rect x="446" y="110" width="80" height="22" rx="5" fill="rgba(255,255,255,0.18)"/>
+  <text x="486" y="125" text-anchor="middle" font-size="9" fill="white">Rules / Patterns</text>
+
+  <!-- ===== Hook System (좌측) ===== -->
+  <rect x="30" y="170" width="175" height="240" rx="10"
+        fill="url(#nodeOrange)" filter="url(#shadowLight)" opacity="0.93"/>
+  <text x="117" y="196" text-anchor="middle" font-size="13" font-weight="bold"
+        fill="white">Hook System</text>
+  <!-- PreToolUse -->
+  <rect x="45" y="208" width="145" height="85" rx="8" fill="rgba(0,0,0,0.18)"/>
+  <text x="117" y="227" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFD580">PreToolUse</text>
+  <text x="117" y="244" text-anchor="middle" font-size="9" fill="white">실행 전 검사</text>
+  <text x="117" y="259" text-anchor="middle" font-size="9" fill="#FFE8B0">- 위험 명령 차단</text>
+  <text x="117" y="273" text-anchor="middle" font-size="9" fill="#FFE8B0">- 입력값 검증</text>
+  <text x="117" y="287" text-anchor="middle" font-size="9" fill="#FFE8B0">- 로깅 / 감사</text>
+  <!-- PostToolUse -->
+  <rect x="45" y="302" width="145" height="85" rx="8" fill="rgba(0,0,0,0.18)"/>
+  <text x="117" y="321" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFD580">PostToolUse</text>
+  <text x="117" y="338" text-anchor="middle" font-size="9" fill="white">실행 후 검증</text>
+  <text x="117" y="353" text-anchor="middle" font-size="9" fill="#FFE8B0">- 결과값 검증</text>
+  <text x="117" y="367" text-anchor="middle" font-size="9" fill="#FFE8B0">- 부작용 감지</text>
+  <text x="117" y="381" text-anchor="middle" font-size="9" fill="#FFE8B0">- 알림 발송</text>
+
+  <!-- ===== Sandbox (우측) ===== -->
+  <rect x="615" y="170" width="175" height="240" rx="10"
+        fill="url(#nodeGreen)" filter="url(#shadowLight)" opacity="0.93"/>
+  <text x="702" y="196" text-anchor="middle" font-size="13" font-weight="bold"
+        fill="white">Sandbox</text>
+  <text x="702" y="212" text-anchor="middle" font-size="9" fill="#D5F5E3">격리된 실행 환경</text>
+  <!-- 항목들 -->
+  <rect x="630" y="222" width="145" height="170" rx="8" fill="rgba(0,0,0,0.15)"/>
+  <text x="702" y="244" text-anchor="middle" font-size="10" font-weight="bold" fill="#ABEBC6">파일 시스템 제한</text>
+  <text x="702" y="260" text-anchor="middle" font-size="9" fill="white">- 허용 경로만 접근</text>
+  <text x="702" y="275" text-anchor="middle" font-size="9" fill="white">- 루트 디렉토리 격리</text>
+  <line x1="640" y1="282" x2="764" y2="282" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="702" y="300" text-anchor="middle" font-size="10" font-weight="bold" fill="#ABEBC6">네트워크 제어</text>
+  <text x="702" y="316" text-anchor="middle" font-size="9" fill="white">- 외부 호출 차단</text>
+  <text x="702" y="331" text-anchor="middle" font-size="9" fill="white">- 허용 목록 기반</text>
+  <line x1="640" y1="338" x2="764" y2="338" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="702" y="357" text-anchor="middle" font-size="10" font-weight="bold" fill="#ABEBC6">프로세스 격리</text>
+  <text x="702" y="373" text-anchor="middle" font-size="9" fill="white">- 별도 컨테이너</text>
+  <text x="702" y="388" text-anchor="middle" font-size="9" fill="white">- 자원 사용 제한</text>
+
+  <!-- ===== Context Manager (하단) ===== -->
+  <rect x="240" y="430" width="340" height="110" rx="10"
+        fill="url(#nodeTeal)" filter="url(#shadowLight)" opacity="0.93"/>
+  <text x="410" y="458" text-anchor="middle" font-size="13" font-weight="bold"
+        fill="white">Context Manager</text>
+  <!-- 3개 항목 -->
+  <rect x="255" y="468" width="90" height="56" rx="7" fill="rgba(0,0,0,0.2)"/>
+  <text x="300" y="487" text-anchor="middle" font-size="10" font-weight="bold" fill="#A3E4D7">CLAUDE.md</text>
+  <text x="300" y="502" text-anchor="middle" font-size="9" fill="white">규칙 / 설정</text>
+  <text x="300" y="516" text-anchor="middle" font-size="9" fill="#D1F2EB">프로젝트 컨텍스트</text>
+
+  <rect x="360" y="468" width="90" height="56" rx="7" fill="rgba(0,0,0,0.2)"/>
+  <text x="405" y="487" text-anchor="middle" font-size="10" font-weight="bold" fill="#A3E4D7">System Prompt</text>
+  <text x="405" y="502" text-anchor="middle" font-size="9" fill="white">역할 / 지시</text>
+  <text x="405" y="516" text-anchor="middle" font-size="9" fill="#D1F2EB">행동 가이드라인</text>
+
+  <rect x="465" y="468" width="100" height="56" rx="7" fill="rgba(0,0,0,0.2)"/>
+  <text x="515" y="487" text-anchor="middle" font-size="10" font-weight="bold" fill="#A3E4D7">Memory</text>
+  <text x="515" y="502" text-anchor="middle" font-size="9" fill="white">MEMORY.md</text>
+  <text x="515" y="516" text-anchor="middle" font-size="9" fill="#D1F2EB">세션 간 학습</text>
+
+  <!-- ===== 중앙: LLM / AI Agent 박스 ===== -->
+  <rect x="270" y="180" width="280" height="230" rx="14"
+        fill="url(#llmGrad)" filter="url(#shadow)"/>
+  <text x="410" y="214" text-anchor="middle" font-size="15" font-weight="bold" fill="white">LLM / AI Agent</text>
+  <line x1="285" y1="222" x2="535" y2="222" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+
+  <!-- Tool Use 그룹 -->
+  <rect x="288" y="232" width="244" height="100" rx="9" fill="rgba(0,0,0,0.22)"/>
+  <text x="410" y="252" text-anchor="middle" font-size="11" font-weight="bold" fill="#D6EAF8">Tool Use</text>
+  <!-- 4개 도구 태그 -->
+  <rect x="298" y="260" width="50" height="22" rx="5" fill="rgba(255,255,255,0.2)"/>
+  <text x="323" y="275" text-anchor="middle" font-size="9" fill="white">Bash</text>
+  <rect x="356" y="260" width="50" height="22" rx="5" fill="rgba(255,255,255,0.2)"/>
+  <text x="381" y="275" text-anchor="middle" font-size="9" fill="white">Read</text>
+  <rect x="414" y="260" width="50" height="22" rx="5" fill="rgba(255,255,255,0.2)"/>
+  <text x="439" y="275" text-anchor="middle" font-size="9" fill="white">Write</text>
+  <rect x="472" y="260" width="50" height="22" rx="5" fill="rgba(255,255,255,0.2)"/>
+  <text x="497" y="275" text-anchor="middle" font-size="9" fill="white">Edit</text>
+  <text x="410" y="317" text-anchor="middle" font-size="9" fill="#AED6F1">도구 호출 요청 생성</text>
+
+  <!-- 추론 흐름 -->
+  <rect x="288" y="342" width="244" height="55" rx="9" fill="rgba(0,0,0,0.22)"/>
+  <text x="410" y="362" text-anchor="middle" font-size="10" font-weight="bold" fill="#D6EAF8">Reasoning Loop</text>
+  <text x="410" y="378" text-anchor="middle" font-size="9" fill="#AED6F1">Plan → Act → Observe → Reflect</text>
+  <text x="410" y="392" text-anchor="middle" font-size="9" fill="#AED6F1">목표 달성까지 반복</text>
+
+  <!-- ===== 연결 화살표 ===== -->
+
+  <!-- LLM → Tool Use → Permission Layer (위로) -->
+  <!-- LLM 상단 중앙 → Permission 하단 -->
+  <line x1="410" y1="180" x2="410" y2="145"
+        stroke="#E74C3C" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <rect x="340" y="148" width="140" height="18" rx="4" fill="rgba(231,76,60,0.12)"/>
+  <text x="410" y="161" text-anchor="middle" font-size="9" fill="#C0392B" font-weight="bold">
+    도구 실행 요청
+  </text>
+
+  <!-- Permission Layer → LLM (허용 신호, 아래로) -->
+  <line x1="440" y1="145" x2="440" y2="180"
+        stroke="#27AE60" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <text x="460" y="165" font-size="8" fill="#27AE60">허용</text>
+
+  <!-- Hook System ↔ LLM (양방향 수평) -->
+  <!-- PreToolUse → LLM -->
+  <line x1="205" y1="250" x2="270" y2="270"
+        stroke="#E67E22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <!-- LLM → PostToolUse -->
+  <line x1="270" y1="320" x2="205" y2="340"
+        stroke="#E67E22" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowOrange)"/>
+  <!-- Hook 레이블 -->
+  <text x="235" y="262" text-anchor="middle" font-size="8" fill="#D35400">검사</text>
+  <text x="235" y="335" text-anchor="middle" font-size="8" fill="#D35400">검증</text>
+
+  <!-- LLM ↔ Sandbox (우측) -->
+  <line x1="550" y1="270" x2="615" y2="255"
+        stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="615" y1="295" x2="550" y2="330"
+        stroke="#27AE60" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <text x="583" y="262" text-anchor="middle" font-size="8" fill="#1E8449">실행</text>
+  <text x="583" y="322" text-anchor="middle" font-size="8" fill="#1E8449">결과</text>
+
+  <!-- Context Manager → LLM (아래에서 위로) -->
+  <line x1="410" y1="430" x2="410" y2="410"
+        stroke="#1ABC9C" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="330" y="412" width="160" height="18" rx="4" fill="rgba(26,188,156,0.12)"/>
+  <text x="410" y="425" text-anchor="middle" font-size="9" fill="#148F77" font-weight="bold">
+    컨텍스트 주입
+  </text>
+
+  <!-- ===== 외부: 차단된 요청 표시 ===== -->
+  <!-- 차단 화살표 (Permission → 왼쪽 튕김) -->
+  <line x1="290" y1="121" x2="240" y2="100"
+        stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="215" y="99" font-size="9" fill="#C0392B" font-weight="bold">X 차단</text>
+
+  <!-- ===== 타이틀 ===== -->
+  <text x="410" y="555" text-anchor="middle" font-size="11" fill="#7F8C8D">
+    AI Harness Architecture - LLM/에이전트 제어 레이어 구조
+  </text>
+</svg>
