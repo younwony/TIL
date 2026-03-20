@@ -179,6 +179,7 @@ TIL/
 | `qa-scenario` | `/qa-scenario` | 변경사항 분석 → 영향도 매트릭스 → BDD QA 시나리오 문서 생성 |
 | `team-review` | `/team-review` | 4명의 전문 리뷰어 에이전트 팀으로 병렬 코드 리뷰 |
 | `skill-rebuild` | `/skill-rebuild {스킬명}` | 기존 스킬 재구성 (전체 파이프라인 강제) |
+| `track-status` | `/track-status [track_id]` | Track 작업 추적 현황 조회 |
 
 ### Agents (Sub-agents)
 
