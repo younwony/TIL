@@ -36,25 +36,38 @@ Phase 5에서 `QA-SCENARIOS.md`를 생성할 때 참조하는 상세 템플릿.
 
 ## 유저 플로우 다이어그램
 
-변경사항이 영향을 주는 전체 사용자 동선을 Mermaid flowchart로 표현.
+변경사항이 영향을 주는 전체 사용자 동선을 SVG 이미지로 표현.
 전체 시스템이 아닌, 변경과 관련된 흐름만 포함한다.
 
+`cs-diagram-generator` 에이전트를 사용하여 `qa-images/user-flow.svg`로 생성한다.
+
 스타일 규칙:
-- 시작점: `style node fill:#e1f5fe` (파랑)
-- 성공 경로: `style node fill:#c8e6c9` (초록)
-- 실패 경로: `style node fill:#ffcdd2` (빨강)
-- 분기점: 마름모 `{}` 사용
+- 시작점: 파랑 (#e1f5fe)
+- 성공 경로: 초록 (#c8e6c9)
+- 실패 경로: 빨강 (#ffcdd2)
+- 분기점: 마름모 형태
+
+문서에는 이미지 참조로 포함:
+```markdown
+![유저 플로우](qa-images/user-flow.svg)
+```
 
 ## API 시퀀스 다이어그램
 
 Controller/API 변경이 있을 때만 포함.
-프론트엔드 ↔ 백엔드 간 통신 흐름을 Mermaid sequenceDiagram으로 표현.
+프론트엔드 ↔ 백엔드 간 통신 흐름을 SVG 이미지로 표현.
+
+`cs-diagram-generator` 에이전트를 사용하여 `qa-images/api-sequence.svg`로 생성한다.
 
 포함 사항:
 - 변경된 API 엔드포인트만 포함
 - HTTP 메서드 + URL + 주요 파라미터
 - 성공/실패 경로 모두
-- `Note over`로 분기점 설명
+
+문서에는 이미지 참조로 포함:
+```markdown
+![API 시퀀스](qa-images/api-sequence.svg)
+```
 
 ## 시나리오 목록
 

@@ -110,7 +110,7 @@ git diff main...HEAD --stat
 
 ## Phase 3: QA 시나리오 초안 작성 (Plan 모드 유지)
 
-### 3-1. 다이어그램 생성
+### 3-1. 다이어그램 생성 (SVG 이미지)
 
 변경 유형에 따라 적절한 다이어그램을 선택한다:
 
@@ -127,6 +127,23 @@ git diff main...HEAD --stat
 - 실패 경로: `style node fill:#ffcdd2` (빨강)
 - 시작점: `style node fill:#e1f5fe` (파랑)
 - 분기점: 마름모 `{}` 사용
+
+**SVG 생성 절차:**
+
+다이어그램은 Mermaid 코드 블록이 아닌 **SVG 이미지 파일**로 생성한다.
+
+1. 프로젝트 루트에 `qa-images/` 디렉토리를 생성한다
+2. `cs-diagram-generator` 에이전트를 사용하여 각 다이어그램을 SVG로 생성한다:
+   - 유저 플로우 → `qa-images/user-flow.svg`
+   - API 시퀀스 → `qa-images/api-sequence.svg` (해당 시)
+   - 상태 다이어그램 → `qa-images/state-diagram.svg` (해당 시)
+3. QA-SCENARIOS.md에서는 이미지 참조로 포함한다:
+   ```markdown
+   ![유저 플로우](qa-images/user-flow.svg)
+   ```
+
+> `cs-diagram-generator` 에이전트가 실패하면, `mermaid-diagram` 스킬로 폴백한다.
+> `mermaid-diagram`도 실패하면, Mermaid 코드 블록을 문서에 직접 포함한다.
 
 ### 3-2. 시나리오 작성 형식
 
@@ -238,10 +255,11 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 {변경 파일별 직접/간접 영향, 위험도 테이블}
 
 ## 유저 플로우 다이어그램
-{Mermaid flowchart}
+![유저 플로우](qa-images/user-flow.svg)
 
 ## API 시퀀스 다이어그램
-{Controller/API 변경 시에만 포함, Mermaid sequenceDiagram}
+{Controller/API 변경 시에만 포함}
+![API 시퀀스](qa-images/api-sequence.svg)
 
 ## 시나리오 목록
 
@@ -278,12 +296,27 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 
 ---
 
-## Phase 6: 완료 보고
+## Phase 6: Track 연동 및 완료 보고
+
+### Track 연동
+
+`.claude/tracks/` 디렉토리에서 status가 `in_progress`인 활성 Track을 탐색한다.
+
+활성 Track이 있는 경우:
+1. Track의 `plan.md`에서 "브라우저 QA" Phase를 찾는다
+2. "QA 시나리오 생성" Task를 `[x]`로 마킹한다
+3. `metadata.json`의 `current_phase`를 QA Phase 번호로 갱신한다
+4. `.claude/tracks/index.md`에서 해당 Track이 `[~]` 상태인지 확인한다
+
+활성 Track이 없는 경우: Track 연동 없이 진행한다.
+
+### 완료 보고
 
 1. `QA-SCENARIOS.md` 생성 완료 알림
 2. 시나리오 수/우선순위별 분포 요약
 3. `browser-debug` 스킬로 자동 실행 가능함을 안내
 4. `git add QA-SCENARIOS.md`는 하지 않음 (로컬 참조용)
+5. Track 연동된 경우: Track ID와 QA Phase 상태를 함께 표시
 
 ---
 

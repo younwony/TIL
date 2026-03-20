@@ -155,7 +155,27 @@ netstat -ano | findstr :{port} | findstr LISTENING
 
 ---
 
-## Phase 3: 결과 보고
+## Phase 3: Track 연동 및 결과 보고
+
+### Track 연동
+
+`.claude/tracks/` 디렉토리에서 status가 `in_progress`인 활성 Track을 탐색한다.
+
+활성 Track이 있는 경우:
+1. Track의 `plan.md`에서 "브라우저 QA" Phase를 찾는다
+2. "브라우저 QA 실행" Task를 `[x]`로 마킹한다
+3. **Checkpoint**에 QA 결과 요약을 기록한다:
+   ```
+   [x] **Checkpoint**: QA 검증 완료
+     - 전체: {N}건, PASS: {N}, FIX→PASS: {N}, FAIL: {N}, BLOCKED: {N}
+     - QA 문서: QA-SCENARIOS.md
+   ```
+4. 모든 QA Task가 완료되면 `metadata.json`의 `status`를 `completed`로 변경한다
+5. `.claude/tracks/index.md`에서 `[~]` → `[x]`로 변경, Active → Completed로 이동한다
+
+활성 Track이 없는 경우: Track 연동 없이 진행한다.
+
+### 결과 보고
 
 모든 시나리오 실행 후:
 
@@ -166,6 +186,7 @@ netstat -ano | findstr :{port} | findstr LISTENING
    - 전체 시나리오 수 / PASS / FAIL / FIX / BLOCKED 카운트
    - 발견 및 수정한 버그 요약
    - 수정된 파일 목록
+5. Track 연동된 경우: Track 완료 상태를 함께 표시
 
 ---
 

@@ -214,14 +214,40 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
 - [ ] Task: {Task 설명}
 - [ ] **Checkpoint**: Phase 2 검증
 
-## Phase N: 마무리
+## Phase N-2: 마무리
 - [ ] git add
 - [ ] 완료 보고
-- [ ] **Checkpoint**: 최종 검증
+- [ ] **Checkpoint**: 구현 완료 검증
+
+## Phase N-2: 테스트 커버리지
+- [ ] 테스트 커버리지 체크 (`/test-coverage-check`)
+- [ ] 누락 테스트 생성 및 실행
+- [ ] **Checkpoint**: 커버리지 검증 완료
+
+## Phase N-1: 코드 리뷰
+- [ ] 자체 코드 리뷰 (`/self-review`)
+- [ ] 코드 품질 개선 (`/simplify`)
+- [ ] 리뷰 발견사항 수정
+- [ ] **Checkpoint**: 코드 리뷰 완료
+
+## Phase N-1: 브라우저 QA
+- [ ] QA 시나리오 생성 (`/qa-scenario`)
+- [ ] 브라우저 QA 실행 (`/browser-debug`)
+- [ ] **사용자 QA 확인** (수동 검증 완료 후 `/track-status`에서 다음 단계 진행)
+- [ ] **Checkpoint**: QA 검증 완료
+
+## Phase N: PR & 문서화
+- [ ] PR 생성 (`/pr`)
+- [ ] Confluence 작업 문서화 (`/work-log`)
+- [ ] **Checkpoint**: 작업 완료
 ```
 
 > Phase 구조는 WORK-SPEC.md의 "작업 단계 (Phase)" 섹션을 기반으로 생성한다.
 > 각 Phase 마지막에 **Checkpoint** Task를 자동 삽입한다.
+> 코드가 포함된 프로젝트(Java, Kotlin, JS 등)는 "테스트 커버리지", "코드 리뷰" Phase를 자동 추가한다.
+> 웹 프로젝트(Spring Boot, Node.js, 프론트엔드)는 "브라우저 QA" Phase도 자동 추가한다.
+> "PR & 문서화" Phase는 모든 프로젝트 유형에 자동 추가한다.
+> TIL 문서 등 코드가 없는 프로젝트 유형은 테스트/리뷰/QA Phase를 생략하고 "PR & 문서화"만 포함한다.
 
 #### metadata.json
 ```json
