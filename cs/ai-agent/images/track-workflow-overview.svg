@@ -1,0 +1,212 @@
+<svg viewBox="0 0 860 500" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (구현 단계) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (테스트/리뷰) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 주황 (QA) -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 (PR/문서) -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 다이아몬드 (분기) -->
+    <linearGradient id="nodeDiamond" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F39C12"/>
+      <stop offset="100%" style="stop-color:#E67E22"/>
+    </linearGradient>
+    <!-- 드롭섀도우 -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#00000033"/>
+    </filter>
+    <!-- 화살표 마커 (기본) -->
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <!-- 화살표 마커 (파랑) -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498DB"/>
+    </marker>
+    <!-- 화살표 마커 (주황) -->
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E67E22"/>
+    </marker>
+    <!-- 화살표 마커 (초록) -->
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <!-- 화살표 마커 (보라) -->
+    <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9B59B6"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="860" height="500" fill="#F8F9FA" rx="12"/>
+
+  <!-- 제목 -->
+  <text x="430" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#2C3E50">Track 워크플로우 전체 흐름도</text>
+  <line x1="200" y1="44" x2="660" y2="44" stroke="#BDC3C7" stroke-width="1"/>
+
+  <!-- ===== 상단 행: 구현 단계 ===== -->
+  <!-- /work-plan -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="70" width="130" height="50" rx="8" fill="url(#nodeBlue)"/>
+  </g>
+  <text x="95" y="91" text-anchor="middle" font-size="12" font-weight="bold" fill="white">/work-plan</text>
+  <text x="95" y="108" text-anchor="middle" font-size="10" fill="#D6EAF8">WORK-SPEC.md 생성</text>
+
+  <!-- /work-plan-start -->
+  <g filter="url(#shadow)">
+    <rect x="210" y="70" width="140" height="50" rx="8" fill="url(#nodeBlue)"/>
+  </g>
+  <text x="280" y="91" text-anchor="middle" font-size="12" font-weight="bold" fill="white">/work-plan-start</text>
+  <text x="280" y="108" text-anchor="middle" font-size="10" fill="#D6EAF8">Phase 1~3 실행</text>
+
+  <!-- /test-coverage-check -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="70" width="150" height="50" rx="8" fill="url(#nodeGreen)"/>
+  </g>
+  <text x="475" y="91" text-anchor="middle" font-size="12" font-weight="bold" fill="white">/test-coverage-check</text>
+  <text x="475" y="108" text-anchor="middle" font-size="10" fill="#D5F5E3">커버리지 분석</text>
+
+  <!-- /self-review -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="70" width="120" height="50" rx="8" fill="url(#nodeGreen)"/>
+  </g>
+  <text x="660" y="91" text-anchor="middle" font-size="12" font-weight="bold" fill="white">/self-review</text>
+  <text x="660" y="108" text-anchor="middle" font-size="10" fill="#D5F5E3">자체 코드 리뷰</text>
+
+  <!-- 상단 화살표: work-plan → work-plan-start -->
+  <line x1="160" y1="95" x2="208" y2="95" stroke="#3498DB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <!-- 상단 화살표: work-plan-start → test-coverage-check -->
+  <line x1="350" y1="95" x2="398" y2="95" stroke="#3498DB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <!-- 상단 화살표: test-coverage-check → self-review -->
+  <line x1="550" y1="95" x2="598" y2="95" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Track 생성 레이블 (work-plan 아래쪽 화살표) -->
+  <line x1="95" y1="120" x2="95" y2="190" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowBlue)"/>
+  <text x="50" y="162" font-size="10" fill="#2980B9">Track 생성</text>
+
+  <!-- Phase 진행 레이블 (work-plan-start 아래쪽 화살표) -->
+  <line x1="280" y1="120" x2="280" y2="190" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowBlue)"/>
+  <text x="220" y="162" font-size="10" fill="#2980B9">Phase 진행</text>
+
+  <!-- ===== 분기 다이아몬드 ===== -->
+  <!-- self-review에서 분기 다이아몬드로 내려가는 선 -->
+  <line x1="660" y1="120" x2="660" y2="195" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 다이아몬드: has_ui 판별 -->
+  <polygon points="660,200 710,235 660,270 610,235" fill="url(#nodeDiamond)" filter="url(#shadow)"/>
+  <text x="660" y="230" text-anchor="middle" font-size="11" font-weight="bold" fill="white">has_ui?</text>
+  <text x="660" y="245" text-anchor="middle" font-size="9" fill="#FEF9E7">UI 여부 판별</text>
+
+  <!-- has_ui: true → qa-scenario (오른쪽 경로) -->
+  <line x1="710" y1="235" x2="760" y2="235" stroke="#E67E22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="730" y="228" text-anchor="middle" font-size="10" fill="#D35400">true</text>
+
+  <!-- has_ui: false → /pr 직행 (아래쪽) -->
+  <line x1="660" y1="270" x2="660" y2="340" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <text x="670" y="310" font-size="10" fill="#27AE60">false</text>
+  <text x="670" y="322" font-size="10" fill="#27AE60">QA 스킵</text>
+
+  <!-- ===== 하단 행: QA → PR → 문서 (오른쪽→왼쪽) ===== -->
+  <!-- /qa-scenario -->
+  <g filter="url(#shadow)">
+    <rect x="760" y="210" width="80" height="50" rx="8" fill="url(#nodeOrange)"/>
+  </g>
+  <text x="800" y="231" text-anchor="middle" font-size="11" font-weight="bold" fill="white">/qa-scenario</text>
+  <text x="800" y="247" text-anchor="middle" font-size="9" fill="#FDEBD0">QA 계획</text>
+
+  <!-- /qa-scenario → /browser-debug (아래쪽) -->
+  <line x1="800" y1="260" x2="800" y2="330" stroke="#E67E22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- /browser-debug -->
+  <g filter="url(#shadow)">
+    <rect x="740" y="330" width="110" height="50" rx="8" fill="url(#nodeOrange)"/>
+  </g>
+  <text x="795" y="351" text-anchor="middle" font-size="11" font-weight="bold" fill="white">/browser-debug</text>
+  <text x="795" y="367" text-anchor="middle" font-size="9" fill="#FDEBD0">브라우저 자동화</text>
+
+  <!-- /browser-debug → 사용자 QA -->
+  <line x1="740" y1="355" x2="660" y2="355" stroke="#E67E22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- 사용자 QA -->
+  <g filter="url(#shadow)">
+    <rect x="560" y="330" width="100" height="50" rx="8" fill="url(#nodeOrange)"/>
+  </g>
+  <text x="610" y="351" text-anchor="middle" font-size="11" font-weight="bold" fill="white">사용자 QA</text>
+  <text x="610" y="367" text-anchor="middle" font-size="9" fill="#FDEBD0">수동 검증</text>
+
+  <!-- 사용자 QA → /pr -->
+  <line x1="560" y1="355" x2="490" y2="355" stroke="#9B59B6" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+  <!-- /pr -->
+  <g filter="url(#shadow)">
+    <rect x="390" y="330" width="100" height="50" rx="8" fill="url(#nodePurple)"/>
+  </g>
+  <text x="440" y="351" text-anchor="middle" font-size="12" font-weight="bold" fill="white">/pr</text>
+  <text x="440" y="367" text-anchor="middle" font-size="10" fill="#E8DAEF">PR 자동 생성</text>
+
+  <!-- /pr → /work-log -->
+  <line x1="390" y1="355" x2="290" y2="355" stroke="#9B59B6" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+  <!-- /work-log -->
+  <g filter="url(#shadow)">
+    <rect x="180" y="330" width="110" height="50" rx="8" fill="url(#nodePurple)"/>
+  </g>
+  <text x="235" y="351" text-anchor="middle" font-size="12" font-weight="bold" fill="white">/work-log</text>
+  <text x="235" y="367" text-anchor="middle" font-size="10" fill="#E8DAEF">Confluence 문서화</text>
+
+  <!-- has_ui: false 경로: /pr로 직접 연결 (점선) -->
+  <path d="M660,340 L660,355 L490,355" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" fill="none" marker-end="url(#arrowGreen)"/>
+
+  <!-- ===== Track 상태 박스 ===== -->
+  <rect x="30" y="195" width="155" height="115" rx="8" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="108" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#2980B9">Track 상태 추적</text>
+  <text x="40" y="233" font-size="10" fill="#2C3E50">• PENDING</text>
+  <text x="40" y="249" font-size="10" fill="#2C3E50">• IN_PROGRESS</text>
+  <text x="40" y="265" font-size="10" fill="#2C3E50">• BLOCKED</text>
+  <text x="40" y="281" font-size="10" fill="#2C3E50">• DONE</text>
+  <text x="40" y="297" font-size="10" fill="#7F8C8D">/track-status 로 조회</text>
+
+  <!-- Track 상태 박스에서 연결선 -->
+  <line x1="95" y1="190" x2="95" y2="195" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="280" y1="190" x2="280" y2="253" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="185" y1="253" x2="185" y2="253" stroke="none"/>
+
+  <!-- ===== 범례 ===== -->
+  <rect x="30" y="430" width="800" height="55" rx="8" fill="#FDFEFE" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="50" y="450" font-size="11" font-weight="bold" fill="#2C3E50">범례</text>
+
+  <rect x="80" y="440" width="14" height="14" rx="3" fill="url(#nodeBlue)"/>
+  <text x="98" y="452" font-size="10" fill="#2C3E50">구현 단계</text>
+
+  <rect x="180" y="440" width="14" height="14" rx="3" fill="url(#nodeGreen)"/>
+  <text x="198" y="452" font-size="10" fill="#2C3E50">테스트/리뷰</text>
+
+  <rect x="300" y="440" width="14" height="14" rx="3" fill="url(#nodeOrange)"/>
+  <text x="318" y="452" font-size="10" fill="#2C3E50">QA 단계</text>
+
+  <rect x="400" y="440" width="14" height="14" rx="3" fill="url(#nodePurple)"/>
+  <text x="418" y="452" font-size="10" fill="#2C3E50">PR/문서화</text>
+
+  <line x1="505" y1="447" x2="540" y2="447" stroke="#E67E22" stroke-width="2"/>
+  <text x="545" y="452" font-size="10" fill="#2C3E50">has_ui: true 경로</text>
+
+  <line x1="660" y1="447" x2="695" y2="447" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="700" y="452" font-size="10" fill="#2C3E50">has_ui: false 경로</text>
+
+  <!-- 하단 구분선 -->
+  <text x="430" y="475" text-anchor="middle" font-size="9" fill="#BDC3C7">Track 워크플로우 · /track-status 로 단계별 상태 확인 가능</text>
+</svg>

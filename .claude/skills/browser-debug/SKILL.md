@@ -76,8 +76,8 @@ FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
 4. 산출물 탐지:
    - Gradle: build/libs/*.jar 또는 *.war (-plain 제외, 가장 큰 파일 선택)
    - Maven: target/*.jar 또는 *.war (.original 제외, 가장 큰 파일 선택)
-5. 포트 결정: 설정 파일 → 기본 8080 → 충돌 시 8081/8082/8083/8090/9080 순서
-6. 기동: java -jar {artifact} --server.port={port}
+5. 포트 결정: 28080부터 체크 (28080 → 28081 → 28082 → 28083 → 28090). 8080은 사용자 자체 테스트용으로 사용 금지.
+6. 기동: java -Djasypt.encryptor.password={jasypt_key} -Dspring.profiles.active={profile} -jar {artifact} --server.port={port}
 7. Health check 폴링 (3초 간격, 최대 20회)
 ```
 
@@ -91,7 +91,8 @@ netstat -ano | findstr :{port} | findstr LISTENING
 
 충돌 시 **설정 파일을 수정하지 않고** 커맨드 라인 인자로 포트를 오버라이드한다:
 - Spring Boot: `java -jar {artifact} --server.port={alt_port}`
-- 대체 포트: 8081 → 8082 → 8083 → 8090 → 9080
+- 기본 포트: 28080 (8080은 사용자 자체 테스트용이므로 사용 금지)
+- 대체 포트: 28080 → 28081 → 28082 → 28083 → 28090
 
 대체 포트로 기동한 경우 **QA 시나리오의 테스트 URL도 해당 포트로 자동 조정**한다.
 

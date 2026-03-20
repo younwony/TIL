@@ -88,6 +88,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code 설정 체계](./claude-code-settings.md) | 다계층 설정, 보안 Hook, 셸 별칭 실전 구성 | Hook, Skill |
 | [Claude Code 커스터마이징 마스터 가이드](./claude-code-customization.md) | 창시자/파워유저의 12가지 커스터마이징 팁, 병렬 워크플로우, 설정 최적화 `Trend 2026` | Workflow, Settings |
 | [Claude Code 코드 리뷰 명령어](./claude-code-review-commands.md) | /self-review, /review-pr, /pr 사용 가이드 | Slash Command, Skill |
+| [Claude Code Track 시스템](./claude-code-track.md) | Track 기반 작업 추적, Phase 관리, 조건부 QA, 커맨드 파이프라인 `Trend 2026` | Workflow, Skill |
 | [Claude Cowork](./claude-cowork.md) | Claude Code의 에이전트를 비개발자용으로 확장한 범용 AI 코워커 `Trend 2026` | AI Agent란, Skill, MCP |
 | [Prompt Engineering](./prompt-engineering.md) | 효과적인 프롬프트 작성 | LLM 기초, AI Agent란 |
 | [OpenClaw](./openclaw.md) | 오픈소스 로컬 AI 개인 비서 `Trend 2026` | AI Agent란, MCP, Tool Use |
@@ -167,6 +168,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code 설정 체계](./claude-code-settings.md) - 다계층 설정 구조, 보안 Hook, 셸 별칭 등 실전 환경 구성 방법
 - [Claude Code 커스터마이징 마스터 가이드](./claude-code-customization.md) - GeekNews 검증 창시자/파워유저의 12가지 커스터마이징 팁, 병렬 워크플로우, 설정 최적화 `Trend 2026`
 - [Claude Code 코드 리뷰 명령어](./claude-code-review-commands.md) - /self-review, /review-pr, /pr 슬래시 명령어를 활용한 코드 리뷰 자동화 워크플로우
+- [Claude Code Track 시스템](./claude-code-track.md) - `/work-plan`으로 생성하고 `/track-status`로 추적하는 작업 관리 시스템, Phase 기반 진행률·조건부 QA·커맨드 파이프라인 `Trend 2026`
 - [Prompt Engineering](./prompt-engineering.md) - LLM에서 원하는 결과를 얻기 위한 프롬프트 설계 및 최적화 기술
 
 ### 데이터 수집 & 웹 크롤링
