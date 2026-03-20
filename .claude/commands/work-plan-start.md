@@ -35,9 +35,16 @@ WORK-SPEC.md 검증 후, Track 디렉토리를 탐색한다:
 3. Track을 찾으면:
    - `metadata.json`의 `status`를 `"in_progress"`로 업데이트
    - `metadata.json`의 `current_phase`를 `1`로 설정
+   - `metadata.json`의 `has_ui` 값을 확인하여 QA Phase 포함 여부 결정
    - `.claude/tracks/index.md`에서 해당 Track의 `[ ]`를 `[~]`로 변경
    - Track의 `plan.md`를 로드하여 Phase 진행 상태 확인
 4. Track을 못 찾으면: Track 없이 기존 방식대로 진행 (하위 호환)
+
+### has_ui 기반 Phase 자동 추가 규칙
+
+> has_ui가 true인 프로젝트만 "브라우저 QA" Phase를 자동 추가한다.
+> has_ui가 false인 프로젝트(Spring Boot API-only, Batch, 라이브러리 등)는 QA Phase를 생략하고 테스트 커버리지 → 코드 리뷰 → PR & 문서화로 직행한다.
+> has_ui 필드가 없는 기존 Track은 type 기반으로 추론한다 (frontend → true, 그 외 → false).
 
 ## 1단계: TaskCreate로 작업 목록 생성
 

@@ -43,6 +43,21 @@ req.md를 읽은 후 **프로젝트 유형을 자동 판별**한다.
 | **라이브러리/모듈** | 독립 모듈 구조 | 인터페이스 설계, 의존성, 배포 |
 | **프론트엔드** | `package.json` + React/Vue 등 | 컴포넌트 구조, 상태 관리, 라우팅 |
 
+### UI 유무 판별 기준 (`has_ui`)
+
+프로젝트 유형에 따라 `has_ui` 값을 자동 판별한다. 이 값은 QA Phase 포함 여부를 결정한다.
+
+| 프로젝트 유형 | `has_ui` 기본값 | 판별 조건 |
+|-------------|----------------|----------|
+| Spring Boot API | `false` | JSP/CSS/HTML 등 UI 파일 변경이 포함되면 `true` |
+| Spring Batch | `false` | 항상 |
+| 프론트엔드 | `true` | 항상 |
+| TIL 문서 | `false` | 항상 |
+| 알고리즘 | `false` | 항상 |
+| 라이브러리 | `false` | 항상 |
+
+> **UI 파일 변경 감지**: 변경 대상 파일 중 `*.jsp`, `*.html`, `*.css`, `*.js`, `*.ts`, `*.tsx`, `*.vue` 등 UI 관련 파일이 포함되면 `has_ui: true`로 설정한다.
+
 ### 분석 항목
 
 다음을 자동으로 파악한다:
@@ -230,7 +245,7 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
 - [ ] 리뷰 발견사항 수정
 - [ ] **Checkpoint**: 코드 리뷰 완료
 
-## Phase N-1: 브라우저 QA
+## Phase N-1: 브라우저 QA (has_ui: true인 경우만)
 - [ ] QA 시나리오 생성 (`/qa-scenario`)
 - [ ] 브라우저 QA 실행 (`/browser-debug`)
 - [ ] **사용자 QA 확인** (수동 검증 완료 후 `/track-status`에서 다음 단계 진행)
@@ -245,7 +260,9 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
 > Phase 구조는 WORK-SPEC.md의 "작업 단계 (Phase)" 섹션을 기반으로 생성한다.
 > 각 Phase 마지막에 **Checkpoint** Task를 자동 삽입한다.
 > 코드가 포함된 프로젝트(Java, Kotlin, JS 등)는 "테스트 커버리지", "코드 리뷰" Phase를 자동 추가한다.
-> 웹 프로젝트(Spring Boot, Node.js, 프론트엔드)는 "브라우저 QA" Phase도 자동 추가한다.
+> has_ui가 true인 프로젝트만 "브라우저 QA" Phase를 자동 추가한다.
+> has_ui가 false이면 테스트 커버리지 → 코드 리뷰 → PR & 문서화로 직행한다.
+> has_ui 미설정 시 type 기반으로 추론한다 (frontend → true, 그 외 → UI 파일 변경 여부로 판별).
 > "PR & 문서화" Phase는 모든 프로젝트 유형에 자동 추가한다.
 > TIL 문서 등 코드가 없는 프로젝트 유형은 테스트/리뷰/QA Phase를 생략하고 "PR & 문서화"만 포함한다.
 
@@ -255,6 +272,7 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
   "track_id": "{track_id}",
   "description": "{Track 설명}",
   "type": "{프로젝트 유형: spring-boot-api | spring-batch | til-docs | algorithm | frontend | library}",
+  "has_ui": "{boolean: UI 유무 판별 결과}",
   "status": "new",
   "created_at": "{ISO 8601 형식}",
   "work_spec_path": "{WORK-SPEC.md 경로}",
