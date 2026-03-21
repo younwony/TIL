@@ -1,0 +1,30 @@
+flowchart TD
+    subgraph Indexing["1. Indexing Phase (오프라인)"]
+        direction TB
+        A[원본 문서] --> B[텍스트 청크 분할]
+        B --> C[Entity/Relation 추출<br/>LLM 기반]
+        C --> D[Knowledge Graph 구축<br/>노드 + 엣지]
+        D --> E[Community Detection<br/>Leiden Algorithm]
+        E --> F[Community Summary 생성<br/>LLM 기반 요약]
+        F --> G[계층적 커뮤니티 구조]
+    end
+
+    subgraph Query["2. Query Phase (온라인)"]
+        direction TB
+        H[사용자 질문] --> I{쿼리 유형 판별}
+        I -->|글로벌| J[Global Search<br/>커뮤니티 요약 기반]
+        I -->|로컬| K[Local Search<br/>엔티티 이웃 탐색]
+        J --> L[Map: 커뮤니티별 부분 답변]
+        L --> M[Reduce: 통합 답변 생성]
+        K --> N[관련 엔티티 + 관계 수집]
+        N --> O[컨텍스트 구성 + LLM 응답]
+    end
+
+    G -.->|인덱스 활용| I
+
+    style Indexing fill:#e8f4f8,stroke:#2980b9,stroke-width:2px
+    style Query fill:#fef9e7,stroke:#f39c12,stroke-width:2px
+    style A fill:#3498db,stroke:#2980b9,color:#fff
+    style H fill:#e67e22,stroke:#d35400,color:#fff
+    style M fill:#27ae60,stroke:#229954,color:#fff
+    style O fill:#27ae60,stroke:#229954,color:#fff

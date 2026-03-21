@@ -102,6 +102,7 @@ MCP 개념을 이해한 후 학습하세요.
 
 | 문서 | 설명 | 선수 지식 |
 |------|------|----------|
+| [GraphRAG](./graph-rag.md) | 지식 그래프 기반 차세대 RAG, 커뮤니티 감지로 글로벌 질문 해결 `Trend 2026` | RAG, AI Agent란 |
 | [Context Engineering](./context-engineering.md) | 컨텍스트 설계 및 관리 `Trend` | Prompt Engineering, AI Agent란 |
 | [Multi-Agent Systems](./multi-agent-systems.md) | 다중 에이전트 협력 아키텍처 `Trend` | AI Agent란, MCP, Tool Use |
 | [Claude Code Sub Agent](./claude-code-sub-agent.md) | 독립적 작업 위임, 병렬 실행, Resume | Skill, Hook |
@@ -140,6 +141,7 @@ Sub Agent를 이해한 후 도전하세요.
 ### AI 협업 & 코딩 패러다임
 - [AI 보조 개발 (AI-Assisted Development)](./ai-assisted-development.md) - AI 코딩 도구를 활용한 개발 방법론, 생산성 역설과 품질 관리 전략 `Trend 2026`
 - [RAG (Retrieval-Augmented Generation)](./rag.md) - 외부 지식을 검색하여 LLM 응답을 강화하는 하이브리드 AI 아키텍처 `Trend 2025`
+- [GraphRAG (Graph-based RAG)](./graph-rag.md) - 지식 그래프와 커뮤니티 감지를 활용하여 복합적인 글로벌 질문에 답변하는 차세대 RAG 아키텍처 `Trend 2026`
 - [Vibe Coding](./vibe-coding.md) - AI와 협업하여 코드를 생성하고 검토하는 새로운 코딩 패러다임 `Trend 2025`
 - [Agentic Coding](./agentic-coding.md) - AI 에이전트가 장시간 자율적으로 코드 작성, 개발자는 조율자로 역할 전환 `Trend 2026`
 - [AI 코딩 실전 베스트 프랙티스](./ai-coding-best-practices.md) - AI 코딩 도구를 실무에서 효과적으로 활용하기 위한 검증된 워크플로우, 컨텍스트 파일 작성법, 테스트 전략, 보안 원칙을 정리한 실전 가이드 `Trend 2026`
@@ -181,6 +183,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [AI Guardrails](./ai-guardrails.md) - LLM과 AI 에이전트의 안전한 운영을 위한 입력/출력/행동 제어 메커니즘 `Trend 2026`
 
 ### 심화 기능
+- [GraphRAG (Graph-based RAG)](./graph-rag.md) - 지식 그래프와 커뮤니티 감지를 활용하여 복합적인 글로벌 질문에 답변하는 차세대 RAG 아키텍처 `Trend 2026`
 - [Context Engineering](./context-engineering.md) - LLM이 작업을 성공적으로 수행하는 데 필요한 모든 컨텍스트를 동적으로 설계하고 관리하는 학문 `Trend 2026`
 - [AI 에이전트 메모리 아키텍처](./agent-memory.md) - AI 에이전트가 컨텍스트 윈도우를 넘어 장기 기억을 관리하는 에피소딕/시맨틱/프로시저럴 메모리 인프라 `Trend 2026`
 - [Multi-Agent Systems](./multi-agent-systems.md) - 여러 전문화된 AI 에이전트가 협력하여 복잡한 작업을 수행하는 분산 시스템 아키텍처 `Trend 2025`
