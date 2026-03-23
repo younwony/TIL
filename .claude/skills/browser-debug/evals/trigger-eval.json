@@ -12,7 +12,7 @@
     "should_trigger": true
   },
   {
-    "query": "UI 테스트 실행해줘. 현재 로컬 서버에서 검색 폼, 필터 버튼, 상세 페이지 이동 기능이 제대로 동작하는지 Chrome 자동화로 확인해줘",
+    "query": "UI 테스트 실행해줘. 현재 로컬 서버에서 검색 폼, 필터 버튼, 상세 페이지 이동 기능이 제대로 동작하는지 확인해줘",
     "should_trigger": true
   },
   {
@@ -20,27 +20,7 @@
     "should_trigger": true
   },
   {
-    "query": "브라우저 디버깅으로 cs-web 점검해줘. 폼 submit 이벤트가 toast만 표시하고 실제 저장은 안 되는 스텁 구현이 있을 것 같아. JS 코드랑 브라우저 동작 같이 확인해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "Chrome 테스트 실행해줘. localStorage CRUD 동작이 제대로 되는지 브라우저에서 직접 확인하고 누락된 기능 TODO에 추가해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "localhost:3000 페이지 점검해줘. 전체 라우트 순회하면서 콘솔 에러, 네트워크 에러, DOM 이상 있으면 찾아서 보고해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "UI 버그 찾아줘. 브라우저에서 실제로 접속해서 인터랙티브 요소들 클릭해보면서 동작 안 하는 것들 TODO.md에 정리해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "브라우저 자동화로 기능 검증해줘. 삭제 버튼, 수정 폼, 검색 필터 기능 순서대로 테스트하고 각 페이지 스크린샷도 찍어줘",
-    "should_trigger": true
-  },
-  {
-    "query": "크롬 디버깅 해줘. 방금 배포한 페이지에서 버튼 클릭이 안 먹히는 것 같아",
+    "query": "브라우저 QA 해줘",
     "should_trigger": true
   },
   {
@@ -48,31 +28,11 @@
     "should_trigger": true
   },
   {
-    "query": "브라우저 QA 실행해줘. 로그인 → 대시보드 → 설정 페이지 순서로 기능 확인해줘",
-    "should_trigger": true
-  },
-  {
     "query": "QA 테스트 해줘. 프로젝트 전체 화면을 브라우저에서 하나씩 점검하고 이슈 리스트 만들어줘",
     "should_trigger": true
   },
   {
-    "query": "웹 디버깅 해줘. React 앱에서 state 변경 후 렌더링이 제대로 안 되는 것 같아. 브라우저에서 확인해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "프론트 디버깅 해줘. CSS가 깨지는 페이지가 있는데 Chrome에서 확인해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "화면 확인해줘. 새로 만든 페이지가 정상적으로 렌더링되는지 브라우저에서 봐줘",
-    "should_trigger": true
-  },
-  {
-    "query": "Claude in Chrome으로 확인해줘. 폼 제출하면 데이터가 제대로 저장되는지 테스트해줘",
-    "should_trigger": true
-  },
-  {
-    "query": "브라우저에서 확인해줘. 검색 기능이 동작하는지 직접 테스트해줘",
+    "query": "크롬 디버깅 해줘. 방금 배포한 페이지에서 버튼 클릭이 안 먹히는 것 같아",
     "should_trigger": true
   },
   {
@@ -80,15 +40,15 @@
     "should_trigger": true
   },
   {
-    "query": "전체 점검 해줘. cs-web 프로젝트 서버부터 기동하고 모든 페이지 QA 진행해줘",
+    "query": "화면 확인해줘. 새로 만든 페이지가 정상적으로 렌더링되는지 브라우저에서 봐줘",
     "should_trigger": true
   },
   {
-    "query": "사이트 점검 해줘. localhost에서 동작하는 웹앱 전체를 브라우저에서 검증해줘",
+    "query": "Playwright로 QA 해줘. headless로 빠르게 전체 시나리오 돌려줘",
     "should_trigger": true
   },
   {
-    "query": "웹 디버그 해줘. 네트워크 탭에서 API 호출 실패하는 것 같은데 브라우저에서 확인해줘",
+    "query": "Playwright QA 실행해줘. 1차 점검하고 실패한 것만 Chrome으로 확인해줘",
     "should_trigger": true
   },
   {
@@ -104,23 +64,11 @@
     "should_trigger": false
   },
   {
-    "query": "JUnit 테스트 결과에서 실패한 케이스 분석해줘",
-    "should_trigger": false
-  },
-  {
     "query": "cs/network/http.md 내용 검토해줘. HTTP 캐싱 섹션이 맞는지 확인해줘",
     "should_trigger": false
   },
   {
-    "query": "Postman으로 API 테스트하는 방법 알려줘. GET /api/users 엔드포인트 테스트해보고 싶어",
-    "should_trigger": false
-  },
-  {
-    "query": "Spring Boot 서버 로그에서 SQL 쿼리 실행 시간 분석해줘. 느린 쿼리 찾아줘",
-    "should_trigger": false
-  },
-  {
-    "query": "git diff 결과 보고 어떤 변경사항이 있는지 확인해줘",
+    "query": "Playwright 테스트 코드만 작성해줘. QA 시나리오 실행은 안 해도 돼",
     "should_trigger": false
   },
   {
@@ -128,23 +76,7 @@
     "should_trigger": false
   },
   {
-    "query": "index.html 파일에서 CSS 스타일 수정해줘. 버튼 색상 변경하고 싶어",
-    "should_trigger": false
-  },
-  {
-    "query": "REST API 성능 테스트 해줘. JMeter로 부하 테스트 스크립트 만들어줘",
-    "should_trigger": false
-  },
-  {
-    "query": "k6로 API 부하 테스트 스크립트 작성해줘. 동시 접속 100명 시뮬레이션",
-    "should_trigger": false
-  },
-  {
-    "query": "Cypress E2E 테스트 코드 작성해줘. 회원가입 플로우 테스트야",
-    "should_trigger": false
-  },
-  {
-    "query": "단위 테스트 커버리지 확인해줘. JaCoCo 리포트 분석해줘",
+    "query": "git diff 결과 보고 어떤 변경사항이 있는지 확인해줘",
     "should_trigger": false
   }
 ]

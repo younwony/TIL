@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" width="800" height="720" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 계열 (Layer 1) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 계열 (PASS) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 주황 계열 (Layer 2) -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 계열 (입력/기본) -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 회색 계열 (중간 단계) -->
+    <linearGradient id="nodeGray" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7F8C8D"/>
+      <stop offset="100%" style="stop-color:#6C7A7D"/>
+    </linearGradient>
+    <!-- 빨강 (FAIL) -->
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 드롭 섀도우 -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#00000033"/>
+    </filter>
+    <!-- 서브박스 섀도우 -->
+    <filter id="shadowSm" x="-5%" y="-5%" width="115%" height="125%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="800" height="720" fill="#F8FAFC" rx="12"/>
+
+  <!-- 제목 -->
+  <text x="400" y="36" text-anchor="middle" font-size="17" font-weight="bold" fill="#2C3E50">browser-debug 2-Layer Architecture</text>
+
+  <!-- ───────────── 1. QA-SCENARIOS.md ───────────── -->
+  <rect x="260" y="56" width="280" height="46" rx="10" fill="url(#nodePurple)" filter="url(#shadow)"/>
+  <text x="400" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">QA-SCENARIOS.md</text>
+  <text x="400" y="92" text-anchor="middle" font-size="10" fill="#E8D5FF">테스트 시나리오 입력 문서</text>
+
+  <!-- 화살표 1 -->
+  <line x1="400" y1="102" x2="400" y2="126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow-gray)"/>
+  <defs>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980B9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D35400"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#C0392B"/>
+    </marker>
+  </defs>
+
+  <!-- ───────────── 2. Phase 2 ───────────── -->
+  <rect x="240" y="126" width="320" height="46" rx="10" fill="url(#nodeGray)" filter="url(#shadow)"/>
+  <text x="400" y="144" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Phase 2: Playwright 테스트 생성</text>
+  <text x="400" y="162" text-anchor="middle" font-size="10" fill="#D5E8D4">QA 시나리오 기반 테스트 코드 자동 생성</text>
+
+  <!-- 화살표 2 -->
+  <line x1="400" y1="172" x2="400" y2="196" stroke="#2980B9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- ───────────── 3. Phase 3 (Layer 1) ───────────── -->
+  <rect x="210" y="196" width="380" height="54" rx="10" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="400" y="216" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Phase 3: Layer 1 - Playwright headless 실행</text>
+  <text x="400" y="232" text-anchor="middle" font-size="10" fill="#D6EAF8">빠른 자동 테스트 (headless 브라우저)</text>
+  <text x="400" y="244" text-anchor="middle" font-size="9" fill="#AED6F1">--layer1</text>
+
+  <!-- 분기 화살표 왼쪽 (PASS) -->
+  <line x1="320" y1="250" x2="210" y2="310" stroke="#27AE60" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <!-- 분기 화살표 오른쪽 (FAIL) -->
+  <line x1="480" y1="250" x2="590" y2="310" stroke="#C0392B" stroke-width="2" marker-end="url(#arrow-red)"/>
+
+  <!-- 분기 레이블 -->
+  <rect x="215" y="268" width="82" height="22" rx="6" fill="#27AE60" opacity="0.9"/>
+  <text x="256" y="283" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">모든 PASS</text>
+
+  <rect x="500" y="268" width="82" height="22" rx="6" fill="#E74C3C" opacity="0.9"/>
+  <text x="541" y="283" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">FAIL 존재</text>
+
+  <!-- ───────────── 4. Phase 5 (PASS 경로) ───────────── -->
+  <rect x="90" y="310" width="230" height="54" rx="10" fill="url(#nodeGreen)" filter="url(#shadow)"/>
+  <text x="205" y="330" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Phase 5: 결과 보고</text>
+  <text x="205" y="346" text-anchor="middle" font-size="10" fill="#D5F5E3">테스트 결과 요약 및 최종 보고</text>
+  <text x="205" y="358" text-anchor="middle" font-size="9" fill="#A9DFBF">PASS / SUMMARY</text>
+
+  <!-- ───────────── 5. Phase 4 (Layer 2) ───────────── -->
+  <rect x="480" y="310" width="235" height="54" rx="10" fill="url(#nodeOrange)" filter="url(#shadow)"/>
+  <text x="597" y="328" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">Phase 4: Layer 2 - Chrome 정밀 디버깅</text>
+  <text x="597" y="344" text-anchor="middle" font-size="10" fill="#FDEBD0">Chrome 실제 브라우저 기반 심층 분석</text>
+  <text x="597" y="356" text-anchor="middle" font-size="9" fill="#FAD7A0">--layer2</text>
+
+  <!-- Phase 4 서브박스 3개 -->
+  <rect x="488" y="378" width="68" height="38" rx="7" fill="#BDC3C7" filter="url(#shadowSm)"/>
+  <text x="522" y="392" text-anchor="middle" font-size="8" font-weight="bold" fill="#2C3E50">read_console</text>
+  <text x="522" y="406" text-anchor="middle" font-size="8" fill="#555">_messages</text>
+
+  <rect x="563" y="378" width="68" height="38" rx="7" fill="#BDC3C7" filter="url(#shadowSm)"/>
+  <text x="597" y="392" text-anchor="middle" font-size="8" font-weight="bold" fill="#2C3E50">read_network</text>
+  <text x="597" y="406" text-anchor="middle" font-size="8" fill="#555">_requests</text>
+
+  <rect x="638" y="378" width="70" height="38" rx="7" fill="#BDC3C7" filter="url(#shadowSm)"/>
+  <text x="673" y="392" text-anchor="middle" font-size="8" font-weight="bold" fill="#2C3E50">javascript</text>
+  <text x="673" y="406" text-anchor="middle" font-size="8" fill="#555">_tool</text>
+
+  <!-- Phase 4 서브박스 → 코드 수정 화살표 -->
+  <line x1="597" y1="416" x2="597" y2="444" stroke="#D35400" stroke-width="2" marker-end="url(#arrow-orange)"/>
+
+  <!-- 코드 수정 박스 -->
+  <rect x="532" y="444" width="130" height="38" rx="8" fill="#E67E22" filter="url(#shadowSm)" opacity="0.9"/>
+  <text x="597" y="458" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">코드 수정</text>
+  <text x="597" y="474" text-anchor="middle" font-size="9" fill="#FDEBD0">버그 원인 기반 수정</text>
+
+  <!-- 코드 수정 → Playwright 재검증 화살표 -->
+  <line x1="597" y1="482" x2="597" y2="510" stroke="#D35400" stroke-width="2" marker-end="url(#arrow-orange)"/>
+
+  <!-- Playwright 재검증 박스 -->
+  <rect x="524" y="510" width="146" height="38" rx="8" fill="#E67E22" filter="url(#shadowSm)" opacity="0.75"/>
+  <text x="597" y="525" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">Playwright 재검증</text>
+  <text x="597" y="541" text-anchor="middle" font-size="9" fill="#FDEBD0">Phase 3으로 피드백</text>
+
+  <!-- 피드백 화살표 (재검증 → Phase 3) -->
+  <path d="M 524 529 Q 440 490 420 250" fill="none" stroke="#E67E22" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-orange)"/>
+  <text x="435" y="400" text-anchor="middle" font-size="9" fill="#D35400" transform="rotate(-72, 435, 400)">재검증 루프</text>
+
+  <!-- 재검증 → Phase 5 합류 화살표 (PASS 시) -->
+  <path d="M 597 548 Q 597 600 380 600 Q 205 600 205 590" fill="none" stroke="#27AE60" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-green)"/>
+  <text x="420" y="617" text-anchor="middle" font-size="9" fill="#27AE60">수정 완료 시 결과 보고</text>
+
+  <!-- ───────────── 범례 ───────────── -->
+  <rect x="30" y="444" width="190" height="148" rx="10" fill="#fff" stroke="#BDC3C7" stroke-width="1.5" filter="url(#shadowSm)"/>
+  <text x="125" y="464" text-anchor="middle" font-size="11" font-weight="bold" fill="#2C3E50">범례 (Legend)</text>
+
+  <!-- 파랑 -->
+  <rect x="46" y="476" width="16" height="12" rx="3" fill="url(#nodeBlue)"/>
+  <text x="70" y="488" font-size="10" fill="#2C3E50">Layer 1 - Playwright headless</text>
+
+  <!-- 주황 -->
+  <rect x="46" y="498" width="16" height="12" rx="3" fill="url(#nodeOrange)"/>
+  <text x="70" y="510" font-size="10" fill="#2C3E50">Layer 2 - Chrome 정밀 디버깅</text>
+
+  <!-- 초록 -->
+  <rect x="46" y="520" width="16" height="12" rx="3" fill="url(#nodeGreen)"/>
+  <text x="70" y="532" font-size="10" fill="#2C3E50">PASS 경로</text>
+
+  <!-- 빨강 -->
+  <rect x="46" y="542" width="16" height="12" rx="3" fill="url(#nodeRed)"/>
+  <text x="70" y="554" font-size="10" fill="#2C3E50">FAIL 경로</text>
+
+  <!-- 실선 -->
+  <line x1="46" y1="570" x2="62" y2="570" stroke="#7F8C8D" stroke-width="2"/>
+  <text x="70" y="574" font-size="10" fill="#2C3E50">기본 흐름</text>
+
+  <!-- 점선 -->
+  <line x1="46" y1="590" x2="62" y2="590" stroke="#E67E22" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="70" y="594" font-size="10" fill="#2C3E50">피드백 / 재검증 루프</text>
+
+</svg>

@@ -1,0 +1,59 @@
+{
+  "skill_name": "browser-debug",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "http://localhost:3000 으로 프로젝트 페이지 전체 점검해줘. 콘솔 에러랑 동작 안 되는 버튼 찾아줘",
+      "expected_output": "Chrome in Claude로 모든 페이지를 순회하며 콘솔 에러, 인터랙션 동작을 점검하고 이슈 목록 보고",
+      "files": [],
+      "expectations": [
+        "Phase 0에서 URL health check 수행",
+        "tabs_context_mcp로 브라우저 탭이 준비됨",
+        "navigate로 지정된 URL에 접속됨",
+        "read_console_messages로 JS 에러가 확인됨",
+        "read_page로 인터랙티브 요소가 확인됨",
+        "발견된 이슈가 심각도별로 정리됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "방금 만든 체크리스트 페이지가 제대로 동작하는지 브라우저에서 확인해줘",
+      "expected_output": "Chrome에서 체크리스트 페이지를 열고 체크박스, 탭, 버튼 등 인터랙션을 테스트",
+      "files": [],
+      "expectations": [
+        "브라우저에서 체크리스트 페이지가 열림",
+        "체크박스 토글이 테스트됨",
+        "javascript_tool 또는 computer로 DOM 상태가 검증됨",
+        "콘솔 에러 유무가 확인됨"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "브라우저 QA 해줘",
+      "expected_output": "현재 브랜치 변경사항을 git diff로 분석하여 관련 페이지를 도출하고, 서버 기동 후 해당 페이지만 집중 QA",
+      "files": [],
+      "expectations": [
+        "git diff로 변경된 파일 목록 추출",
+        "변경 파일에서 QA 대상 페이지 역추적 (Controller→URL, HTML 직접 등)",
+        ".claude/docs/QA-SCENARIO.md 유저 시나리오 파일 생성",
+        "시나리오를 사용자에게 공유 후 승인받고 진행",
+        "서버 상태 확인 및 필요 시 자동 기동",
+        "시나리오별 PASS/FAIL 결과 기록",
+        "발견된 이슈가 정리되어 보고됨"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "cs-web 프로젝트 QA해줘. 서버 안 띄워놨는데 알아서 기동하고 전체 점검해줘",
+      "expected_output": "프로젝트 타입 자동 탐지 → 서버 기동 → 전체 페이지 QA 점검",
+      "files": [],
+      "expectations": [
+        "Phase 0에서 프로젝트 타입 탐지 (build.gradle 또는 pom.xml 확인)",
+        "서버 기동 커맨드가 백그라운드로 실행됨",
+        "health check 폴링으로 서버 준비 완료 확인",
+        "Phase 1~5 순서대로 점검 수행",
+        "발견된 이슈가 정리되어 보고됨"
+      ]
+    }
+  ]
+}
