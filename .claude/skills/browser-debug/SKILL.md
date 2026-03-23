@@ -32,7 +32,11 @@ FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
 
 ## Phase 0: QA 시나리오 확인 (기존 시나리오 체크)
 
-**먼저 프로젝트 루트에 `QA-SCENARIOS.md` 파일이 이미 존재하는지 확인한다.**
+**다음 순서로 `QA-SCENARIOS.md` 파일을 탐색한다:**
+
+1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track의 `.claude/tracks/{track_id}/QA-SCENARIOS.md`
+2. `.claude/docs/QA-SCENARIOS.md`
+3. 프로젝트 루트 `QA-SCENARIOS.md` (하위 호환)
 
 ### 기존 시나리오가 있는 경우 (QA-SCENARIOS.md 존재)
 

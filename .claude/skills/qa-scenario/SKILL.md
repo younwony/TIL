@@ -233,7 +233,16 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 
 ## Phase 5: QA-SCENARIOS.md 생성
 
-프로젝트 루트에 `QA-SCENARIOS.md` 파일을 생성한다.
+### 문서 저장 경로 결정
+
+1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track을 탐색
+2. 활성 Track이 있으면 → `.claude/tracks/{track_id}/` 하위에 문서 생성
+3. 활성 Track이 없으면 → `.claude/docs/` 하위에 문서 생성
+4. 대상 디렉토리가 없으면 생성
+
+> 이하 `{DOC_DIR}`은 위 규칙으로 결정된 경로를 의미한다.
+
+`{DOC_DIR}/QA-SCENARIOS.md` 파일을 생성한다.
 (`references/qa-document-template.md` 참조)
 
 ### 문서 구조
@@ -255,11 +264,11 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 {변경 파일별 직접/간접 영향, 위험도 테이블}
 
 ## 유저 플로우 다이어그램
-![유저 플로우](qa-images/user-flow.svg)
+![유저 플로우]({DOC_DIR}/qa-images/user-flow.svg)
 
 ## API 시퀀스 다이어그램
 {Controller/API 변경 시에만 포함}
-![API 시퀀스](qa-images/api-sequence.svg)
+![API 시퀀스]({DOC_DIR}/qa-images/api-sequence.svg)
 
 ## 시나리오 목록
 

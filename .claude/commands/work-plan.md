@@ -281,6 +281,11 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
 }
 ```
 
+### WORK-SPEC.md를 Track 하위에 복사
+
+WORK-SPEC.md를 `.claude/tracks/{track_id}/WORK-SPEC.md`에 복사한다.
+이후 `/work-plan-start`에서는 Track 하위의 WORK-SPEC.md를 우선 참조한다.
+
 ### WORK-SPEC.md에 Track 참조 추가
 
 WORK-SPEC.md 상단 메타데이터에 Track ID를 추가한다:

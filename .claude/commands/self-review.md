@@ -155,7 +155,16 @@ codex review --base {COMPARE_BRANCH}
 
 ## 4단계: 결과 통합 → SELF-REVIEW.md 생성
 
-6명의 리뷰 결과를 통합하여 프로젝트 루트에 `SELF-REVIEW.md` 파일을 생성한다 (이전 내용은 덮어쓰기):
+### 문서 저장 경로 결정
+
+1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track을 탐색
+2. 활성 Track이 있으면 → `.claude/tracks/{track_id}/SELF-REVIEW.md`에 생성
+3. 활성 Track이 없으면 → `.claude/docs/SELF-REVIEW.md`에 생성
+4. 대상 디렉토리가 없으면 생성
+
+> 이하 `{DOC_DIR}`은 위 규칙으로 결정된 경로를 의미한다.
+
+6명의 리뷰 결과를 통합하여 `{DOC_DIR}/SELF-REVIEW.md` 파일을 생성한다 (이전 내용은 덮어쓰기):
 
 ```markdown
 # Self Review
@@ -250,7 +259,7 @@ codex review --base {COMPARE_BRANCH}
 ## 5단계: git add + 다음 액션 선택
 
 ```bash
-git add SELF-REVIEW.md
+git add {DOC_DIR}/SELF-REVIEW.md
 ```
 
 AskUserQuestion으로 다음 액션을 선택:

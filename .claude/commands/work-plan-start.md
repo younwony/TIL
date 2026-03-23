@@ -184,14 +184,23 @@ WORK-SPEC.md의 설계에 따라 코드를 구현한다.
 
 CLAUDE.md 규칙에 따라 문서를 생성한다.
 
-### ARCHITECTURE.md
+### 문서 저장 경로 결정
+
+1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track을 탐색
+2. 활성 Track이 있으면 → `.claude/tracks/{track_id}/` 하위에 문서 생성
+3. 활성 Track이 없으면 → `.claude/docs/` 하위에 문서 생성
+4. 대상 디렉토리가 없으면 생성
+
+> 이하 `{DOC_DIR}`은 위 규칙으로 결정된 경로를 의미한다.
+
+### ARCHITECTURE.md (`{DOC_DIR}/ARCHITECTURE.md`)
 - 시스템 아키텍처
 - 데이터 흐름
 - 핵심 로직 (ASCII 다이어그램)
 - 파일 구조
 - 관련 이슈 번호 (req.md에 있는 경우)
 
-### SPEC.md
+### SPEC.md (`{DOC_DIR}/SPEC.md`)
 - 기능 설명
 - 사용자 인터페이스 (해당 시)
 - 데이터 흐름 (ASCII 다이어그램)

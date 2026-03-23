@@ -44,13 +44,27 @@ TIL/
 ├── CONVENTION.md          # 컨벤션 가이드
 ├── CLAUDE.md              # Claude 설정 (이 문서)
 ├── .claude/
-│   └── skills/            # Claude Code Skills
+│   ├── commands/          # Claude Code Commands
+│   ├── skills/            # Claude Code Skills
+│   ├── docs/              # 워크플로우 생성 문서 (Track 없을 때)
+│   │   └── CODE-RULES.md
+│   └── tracks/            # Track별 작업 추적 + 문서
+│       └── {track_id}/    # WORK-SPEC, ARCHITECTURE, SPEC, QA-SCENARIOS, SELF-REVIEW 등
 ├── cs/                    # CS 지식 (마크다운 중심)
 │   └── {category}/        # kebab-case
 ├── cs-web/                # CS 문서 웹 뷰어 (Spring Boot)
 └── study/                 # 스터디 (프로젝트 단위)
     └── {study-name}/      # kebab-case
 ```
+
+### 워크플로우 문서 저장 위치
+
+Track 워크플로우에서 생성되는 문서(ARCHITECTURE.md, SPEC.md, QA-SCENARIOS.md, SELF-REVIEW.md)는 프로젝트 루트가 아닌 `.claude/` 하위에 저장된다.
+
+| 상황 | 저장 경로 |
+|------|----------|
+| 활성 Track이 있는 경우 | `.claude/tracks/{track_id}/` 하위 |
+| 활성 Track이 없는 경우 | `.claude/docs/` 하위 |
 
 ## 네이밍 컨벤션
 
