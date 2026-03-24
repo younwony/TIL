@@ -46,7 +46,11 @@ npx playwright --version
 │   ├── playwright.config.ts   # Playwright 설정 (인라인 생성)
 │   ├── qa-s01.spec.ts         # 시나리오별 테스트 파일
 │   ├── qa-s02.spec.ts
-│   └── auth.setup.ts          # 로그인 설정 (필요 시)
+│   ├── auth.setup.ts          # 로그인 설정 (필요 시)
+│   └── __screenshots__/       # Visual Regression 기준 스크린샷
+│       └── qa-scenarios.spec.ts/
+│           ├── items-page.png       # 전체 페이지 baseline
+│           └── items-grid.png       # 컴포넌트 baseline
 ├── playwright-results/        # 테스트 실행 결과
 │   ├── results.json           # JSON reporter 출력
 │   └── screenshots/           # 실패 시 스크린샷
@@ -62,7 +66,15 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: '.',
   timeout: 30_000,
-  expect: { timeout: 10_000 },
+  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
+  expect: {
+    timeout: 10_000,
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.01,  // 1% 이내 차이 허용 (폰트 렌더링 차이 흡수)
+      animations: 'disabled',   // 애니메이션 비활성화 (일관된 비교)
+      caret: 'hide',            // 커서 깜빡임 제거
+    },
+  },
   retries: 0,
   workers: 1,  // 순차 실행 (서버 부하 방지)
   reporter: [
@@ -72,6 +84,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:{port}',
     headless: true,
+    viewport: { width: 1280, height: 720 },  // 일관된 뷰포트 (screenshot 비교용)
     screenshot: 'only-on-failure',
     trace: 'off',
     actionTimeout: 10_000,

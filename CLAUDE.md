@@ -237,6 +237,10 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `browser-debug-chrome` | `/browser-debug-chrome`, "Chrome-only QA" | Chrome MCP만 사용하는 레거시 QA (백업) |
 | `qa-scenario` | "QA 시나리오", "테스트 시나리오", "변경 영향 분석", "QA 문서" | 변경사항 분석 → 영향도 매트릭스 → BDD QA 시나리오 문서 생성 |
 | `skill-rebuild` | "스킬 재구성", "스킬 개선", "스킬 리빌드" | 기존 스킬 개선 시 전체 파이프라인(evals, 벤치마크, description 최적화) 강제 |
+| `ai-slop-detect` | "AI slop", "코드 과잉", "오버엔지니어링 체크", "불필요한 코드" | AI 생성 코드 품질 감지 (과잉 추상화, YAGNI, 미사용 코드) |
+| `weekly-retro` | "주간 회고", "이번 주 뭐했지", "작업 돌아보기" | git 기반 주간 회고 자동 생성 (학습/패턴/개선점) |
+| `security-audit` | "보안 감사", "STRIDE 분석", "위협 모델링", "취약점 분석" | STRIDE + OWASP Top 10 통합 보안 감사 |
+| `product-review` | "제품 검증", "이거 필요해?", "기능 검증", "오피스아워" | 기능 구현 전 제품 검증 (6질문 + 4확장모드) |
 
 ### Commands (슬래시 명령)
 
@@ -264,9 +268,14 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `jira-notify` | `/jira-notify {이슈키} [#채널]` | Jira 이슈 상태를 Slack 채널에 알림 |
 | `browser-debug` | `/browser-debug` | Playwright + Chrome 2-Layer 브라우저 QA |
 | `browser-debug-chrome` | `/browser-debug-chrome` | Chrome MCP만 사용하는 레거시 QA (백업) |
+| `figma-read` | `/figma-read {Figma URL}` | Figma URL 디자인을 figma-team MCP로 읽기 |
 | `qa-scenario` | `/qa-scenario` | 변경사항 분석 → 영향도 매트릭스 → BDD QA 시나리오 문서 생성 |
 | `team-review` | `/team-review` | 4명의 전문 리뷰어 에이전트 팀으로 병렬 코드 리뷰 |
 | `skill-rebuild` | `/skill-rebuild {스킬명}` | 기존 스킬 재구성 (전체 파이프라인 강제) |
+| `ai-slop-detect` | `/ai-slop-detect` | AI 생성 코드 품질 감지 (과잉 추상화, YAGNI 위반) |
+| `weekly-retro` | `/weekly-retro` | git 기반 주간 회고 자동 생성 |
+| `security-audit` | `/security-audit` | STRIDE + OWASP 통합 보안 감사 |
+| `product-review` | `/product-review` | 기능 구현 전 제품 검증 (6질문 + 4확장모드) |
 | `track-status` | `/track-status [track_id]` | Track 작업 추적 현황 조회 |
 
 ### Agents (Sub-agents)

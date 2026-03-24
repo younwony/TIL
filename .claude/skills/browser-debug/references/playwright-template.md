@@ -156,7 +156,48 @@ test('S01 - JS 에러 없음', async ({ page }) => {
 });
 ```
 
-### 4. 복합 검증 (여러 방법 조합)
+### 4. screenshot 검증 (Visual Regression)
+
+페이지나 컴포넌트의 시각적 변경을 감지한다.
+
+```typescript
+// 패턴 1: 전체 페이지 스크린샷 비교
+test('S05 - 페이지 시각적 검증', async ({ page }) => {
+  await page.goto('/admin/items/page');
+  await page.waitForLoadState('networkidle');
+  await expect(page).toHaveScreenshot('items-page.png', {
+    maxDiffPixelRatio: 0.01,
+    fullPage: true,
+  });
+});
+
+// 패턴 2: 특정 컴포넌트 스크린샷 비교
+test('S06 - 그리드 컴포넌트 시각적 검증', async ({ page }) => {
+  await page.goto('/admin/items/page');
+  await page.waitForSelector('.ag-root-wrapper');
+  await expect(page.locator('.ag-root-wrapper')).toHaveScreenshot('items-grid.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
+// 패턴 3: 동적 데이터 마스킹 (날짜, 시간 등 변동 데이터 제외)
+test('S07 - 마스킹 적용 시각적 검증', async ({ page }) => {
+  await page.goto('/admin/items/page');
+  await page.waitForLoadState('networkidle');
+  await expect(page).toHaveScreenshot('items-masked.png', {
+    maxDiffPixelRatio: 0.01,
+    mask: [page.locator('.date-column'), page.locator('.time-column')],
+  });
+});
+```
+
+**screenshot 검증 시 주의사항:**
+- 첫 실행 시 baseline이 없으면 FAIL → `--update-snapshots`로 재실행하여 기준 생성
+- 동적 데이터(날짜, 시간, 카운터 등)는 `mask` 옵션으로 제외
+- `animations: 'disabled'`로 애니메이션 차이 방지 (config에서 전역 설정)
+- `maxDiffPixelRatio: 0.01` (1% 이내 차이 허용 - 폰트 렌더링 차이 흡수)
+
+### 5. 복합 검증 (여러 방법 조합)
 
 ```typescript
 test('S01 - 목록 페이지 로드 및 그리드 표시', async ({ page }) => {

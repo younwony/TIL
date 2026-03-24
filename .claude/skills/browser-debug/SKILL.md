@@ -99,6 +99,7 @@ Layer 2 (Chrome MCP): FAIL건만 Chrome으로 재실행
    - `network` 검증 → `page.waitForResponse()` + status 체크
    - `javascript` 검증 → `page.locator()` + `expect` 또는 `page.evaluate()`
    - `console` 검증 → `page.on('console')` 에러 수집
+   - `screenshot` 검증 → `expect(page).toHaveScreenshot()` 또는 `expect(locator).toHaveScreenshot()` (Visual Regression)
    - 검증 코드 블록 → `page.evaluate()` 래핑
 3. 로그인 처리: `beforeAll`에서 form submit → `storageState` 저장
 4. BLOCKED 시나리오 → `test.skip` 처리
@@ -120,11 +121,23 @@ Layer 2 (Chrome MCP): FAIL건만 Chrome으로 재실행
 cd .claude/playwright-tests && npx playwright test --reporter=json,list 2>&1
 ```
 
+### Screenshot Baseline 처리
+
+`screenshot` 검증이 포함된 시나리오의 첫 실행 시:
+1. baseline 스크린샷이 없으면 FAIL이 발생한다 (Playwright 기본 동작)
+2. `--update-snapshots` 플래그로 재실행하여 기준 스크린샷을 자동 생성한다:
+   ```bash
+   cd .claude/playwright-tests && npx playwright test --update-snapshots --reporter=json,list 2>&1
+   ```
+3. 생성된 baseline은 `.claude/playwright-tests/__screenshots__/`에 저장된다
+4. 이후 실행에서는 baseline 대비 pixel diff로 비교한다
+
 ### 결과 처리
 
 1. `.claude/playwright-results/results.json` 파싱
 2. 각 시나리오별 pass/fail 분류
-3. QA-SCENARIOS.md 업데이트:
+3. screenshot FAIL 시: diff 이미지 경로(`*-diff.png`)를 QA-SCENARIOS.md에 기록
+4. QA-SCENARIOS.md 업데이트:
    - PASS → ✅ PASS
    - FAIL → ❌ (Layer 2 대기)
    - SKIP → ⏭️ SKIP
