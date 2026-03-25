@@ -198,22 +198,36 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
 
 `.claude/tracks/{track_id}/` 디렉토리에 다음 파일을 생성한다:
 
-#### spec.md
+#### *_WORK-SPEC.md
+
+WORK-SPEC.md의 내용을 Track 디렉토리에 번호 접두사를 붙여 복사한다.
+(`.claude/docs/WORK-SPEC.md` → `.claude/tracks/{track_id}/*_WORK-SPEC.md`)
+번호는 문서 번호 체계 테이블의 현재 순서를 따른다.
+
+#### *_REQ-SNAPSHOT.md
+
+req.md 원본 내용을 Track에 스냅샷으로 보존한다.
+나중에 "어떤 요구사항이었는지" 추적 가능하도록 한다.
+
 ```markdown
-# Spec: {Track 설명}
+# 요구사항 스냅샷
 
+> 이 문서는 `/work-plan` 실행 시점의 원본 요구사항(req.md)을 보존한 스냅샷입니다.
 > Track ID: {track_id}
-> 생성일: {YYYY-MM-DD}
-> 기반 문서: {req.md 경로}
+> 원본 파일: {req.md 경로}
+> 스냅샷 일시: {YYYY-MM-DD}
 
-## 요구사항 요약
-{WORK-SPEC.md의 "요구사항 요약" 섹션 내용}
+---
 
-## 기능 요구사항
-{WORK-SPEC.md의 기능 요구사항 체크리스트}
+{req.md 전체 내용}
 ```
 
-#### plan.md
+생성 규칙:
+- req.md 원본을 그대로 복사하되, 상단에 메타데이터 헤더를 추가한다
+- 이미지/외부 참조 경로는 Track 기준 상대 경로로 변환한다 (예: `.claude/docs/figma/` → `figma/`)
+- figma/ 등 참조 이미지가 있으면 Track 디렉토리에 함께 복사한다
+
+#### 3_PLAN.md
 ```markdown
 # Plan: {Track 설명}
 
@@ -280,11 +294,6 @@ WORK-SPEC.md 생성 후, 작업 추적을 위한 Track 디렉토리를 생성한
   "current_phase": 0
 }
 ```
-
-### WORK-SPEC.md를 Track 하위에 복사
-
-WORK-SPEC.md를 `.claude/tracks/{track_id}/WORK-SPEC.md`에 복사한다.
-이후 `/work-plan-start`에서는 Track 하위의 WORK-SPEC.md를 우선 참조한다.
 
 ### WORK-SPEC.md에 Track 참조 추가
 

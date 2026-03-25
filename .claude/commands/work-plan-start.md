@@ -37,7 +37,7 @@ WORK-SPEC.md 검증 후, Track 디렉토리를 탐색한다:
    - `metadata.json`의 `current_phase`를 `1`로 설정
    - `metadata.json`의 `has_ui` 값을 확인하여 QA Phase 포함 여부 결정
    - `.claude/tracks/index.md`에서 해당 Track의 `[ ]`를 `[~]`로 변경
-   - Track의 `plan.md`를 로드하여 Phase 진행 상태 확인
+   - Track의 `*_PLAN.md` (예: `3_PLAN.md`)를 로드하여 Phase 진행 상태 확인
 4. Track을 못 찾으면: Track 없이 기존 방식대로 진행 (하위 호환)
 
 ### has_ui 기반 Phase 자동 추가 규칙
@@ -118,7 +118,7 @@ WORK-SPEC.md의 설계에 따라 코드를 구현한다.
 
 각 Phase 완료 시 다음 Checkpoint 프로토콜을 실행한다:
 
-1. **plan.md 업데이트** (Track이 있는 경우):
+1. **`*_PLAN.md` 업데이트** (Track이 있는 경우):
    - 완료된 Task의 `[ ]`를 `[x]`로 변경
    - 진행 중 Task의 `[ ]`를 `[~]`로 변경
    - Checkpoint Task에 `[x] **Checkpoint**: Phase N 검증 (verified)` 기록
@@ -184,30 +184,21 @@ WORK-SPEC.md의 설계에 따라 코드를 구현한다.
 
 CLAUDE.md 규칙에 따라 문서를 생성한다.
 
-### 문서 저장 경로 결정
-
-1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track을 탐색
-2. 활성 Track이 있으면 → `.claude/tracks/{track_id}/` 하위에 문서 생성
-3. 활성 Track이 없으면 → `.claude/docs/` 하위에 문서 생성
-4. 대상 디렉토리가 없으면 생성
-
-> 이하 `{DOC_DIR}`은 위 규칙으로 결정된 경로를 의미한다.
-
-### ARCHITECTURE.md (`{DOC_DIR}/ARCHITECTURE.md`)
+### *_ARCHITECTURE.md
 - 시스템 아키텍처
 - 데이터 흐름
 - 핵심 로직 (ASCII 다이어그램)
 - 파일 구조
 - 관련 이슈 번호 (req.md에 있는 경우)
 
-### SPEC.md (`{DOC_DIR}/SPEC.md`)
+### *_SPEC.md
 - 기능 설명
 - 사용자 인터페이스 (해당 시)
 - 데이터 흐름 (ASCII 다이어그램)
 - 핵심 로직
 - 관련 이슈 번호
 
-**TIL 문서 프로젝트의 경우**: ARCHITECTURE.md, SPEC.md 대신 해당 문서 자체가 결과물이므로 이 단계를 건너뛴다.
+**TIL 문서 프로젝트의 경우**: *_ARCHITECTURE.md, *_SPEC.md 대신 해당 문서 자체가 결과물이므로 이 단계를 건너뛴다.
 
 ## 5단계: Phase 4 - 마무리
 
@@ -227,7 +218,7 @@ Track이 있는 경우, git add 후 다음을 수행한다:
 1. `metadata.json` 업데이트:
    - `status`를 `"completed"`로 변경
    - `completed_at` 필드 추가 (ISO 8601 형식)
-2. `plan.md`의 모든 항목이 `[x]`인지 확인
+2. `*_PLAN.md`의 모든 항목이 `[x]`인지 확인
 3. `.claude/tracks/index.md` 업데이트:
    - 해당 Track의 `[~]`를 `[x]`로 변경
    - Active 섹션에서 Completed 섹션으로 이동
@@ -254,8 +245,8 @@ Track이 있는 경우, git add 후 다음을 수행한다:
 - 통합 테스트: {통과}/{전체} 통과
 
 #### 문서화
-- ARCHITECTURE.md: {생성됨/해당 없음}
-- SPEC.md: {생성됨/해당 없음}
+- *_ARCHITECTURE.md: {생성됨/해당 없음}
+- *_SPEC.md: {생성됨/해당 없음}
 
 ### Track 상태 (해당 시)
 - Track ID: {track_id}
@@ -300,7 +291,7 @@ Track이 있는 경우, git add 후 다음을 수행한다:
 |-------|------|
 | Phase 1 | Entity, DTO, Repository, Service, Controller 구현 |
 | Phase 2 | 단위 테스트 + 통합 테스트 |
-| Phase 3 | ARCHITECTURE.md + SPEC.md 작성 |
+| Phase 3 | *_ARCHITECTURE.md + *_SPEC.md 작성 |
 | Phase 4 | git add + 완료 보고 |
 
 ## 주의사항

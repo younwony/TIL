@@ -15,7 +15,7 @@ $ARGUMENTS
 이 커맨드는 스킬의 트리거 역할만 수행하며, 실제 로직은 스킬에 정의되어 있다.
 
 스킬 워크플로우:
-1. QA-SCENARIOS.md 확인 (없으면 `qa-scenario` 스킬로 생성)
+1. `*_QA-SCENARIOS.md` 확인 (없으면 `qa-scenario` 스킬로 생성)
 2. 서버 상태 확인 및 자동 기동
 3. Chrome 자동화로 시나리오 순차 실행
 4. FAIL 시 즉시 수정 및 재검증

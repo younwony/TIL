@@ -74,7 +74,7 @@ allowed-tools: Read, Glob, Grep
 
 ## 2단계: 진행률 계산
 
-각 Track의 `plan.md`를 읽어 진행률을 계산한다:
+각 Track의 `*_PLAN.md` (예: `3_PLAN.md`)를 읽어 진행률을 계산한다:
 
 ```
 진행률 = (체크된 항목 [x] 수) / (전체 체크박스 수) × 100%
