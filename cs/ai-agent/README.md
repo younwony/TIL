@@ -55,6 +55,7 @@ AI 에이전트 기초를 이해한 후 학습하세요.
 | [SLM](./slm.md) | 특정 작업에 최적화된 소형 언어 모델 `Trend 2026` | LLM 기초 |
 | [AI 보조 개발](./ai-assisted-development.md) | AI 코딩 도구 활용과 생산성 역설 `Trend 2026` | LLM 기초 |
 | [Claude 제품 비교 가이드](./claude-product-comparison.md) | Claude AI, Cowork, Code 3대 제품 종합 비교 `Trend 2026` | AI Agent란 |
+| [Claude Code Auto Memory (MEMORY.md)](./claude-code-auto-memory.md) | Claude Code가 세션 간 학습 내용을 자동으로 축적하는 파일 기반 메모리 시스템 | [Claude Code 설정 체계](./claude-code-settings.md) |
 | [Nano Banana 2 이미지 생성](./nanobanana-image-generation.md) | Claude Code에서 MCP를 통해 Gemini 이미지 생성 모델을 호출하여 고품질 이미지를 생성하는 도구 설정 및 사용 가이드 `Trend 2026` | MCP |
 | [AI 슬라이드 생성 도구 비교 가이드](./ai-slide-tools.md) | Gamma, Beautiful.ai, Tome 등 AI 프레젠테이션 도구 비교와 선택 기준 `Trend 2026` | AI Agent란, LLM 기초 |
 
@@ -168,6 +169,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Claude Code 실전 워크플로우 치트시트](./claude-code-practical-cheatsheet.md) - 컨텍스트 관리와 워크플로우 철학으로 Claude Code 200% 활용하기, WAT 프레임워크 `Trend 2026`
 - [HANDOFF.md 컨텍스트 관리](./claude-code-handoff.md) - 장시간 AI 에이전트 작업에서 컨텍스트 윈도우 한계를 극복하는 세션 인수인계 패턴
 - [Claude Code 설정 체계](./claude-code-settings.md) - 다계층 설정 구조, 보안 Hook, 셸 별칭 등 실전 환경 구성 방법
+- [Claude Code Auto Memory (MEMORY.md)](./claude-code-auto-memory.md) - Claude Code가 세션 간 학습 내용을 자동으로 축적하는 파일 기반 메모리 시스템
 - [Claude Code 커스터마이징 마스터 가이드](./claude-code-customization.md) - GeekNews 검증 창시자/파워유저의 12가지 커스터마이징 팁, 병렬 워크플로우, 설정 최적화 `Trend 2026`
 - [Claude Code 코드 리뷰 명령어](./claude-code-review-commands.md) - /self-review, /review-pr, /pr 슬래시 명령어를 활용한 코드 리뷰 자동화 워크플로우
 - [Claude Code Track 시스템](./claude-code-track.md) - `/work-plan`으로 생성하고 `/track-status`로 추적하는 작업 관리 시스템, Phase 기반 진행률·조건부 QA·커맨드 파이프라인 `Trend 2026`

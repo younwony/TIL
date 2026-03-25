@@ -1,0 +1,175 @@
+---
+name: work-log
+description: |
+  현재 브랜치의 작업 내용을 분석하여 Confluence에 구조화된 작업 로그를 자동 생성합니다. 비개발자도 이해할 수 있도록 표(Table)와 다이어그램(Mermaid/SVG/ASCII)을 포함합니다.
+  "/work-log", "작업 내용 정리", "Confluence에 올려", "브랜치 작업 문서화", "팀에 작업 공유", "작업 로그 작성", "작업 문서화", "Confluence 작업 로그", "이번 작업 기록", "커밋 내용 정리", "작업 히스토리 남겨" 같은 요청에 트리거됩니다.
+  브랜치에서 변경된 코드를 읽고, 기능의 목적·동작 방식·아키텍처를 파악하여 Confluence 페이지로 문서화합니다. 기존 페이지가 있으면 업데이트하고, 없으면 신규 생성합니다.
+---
+
+# Work Log Skill
+
+현재 브랜치에서 작업한 내용을 Confluence에 문서화합니다.
+비개발자도 이해할 수 있도록 표(Table)와 다이어그램(Mermaid/SVG/ASCII)을 포함합니다.
+
+## 왜 이 스킬인가?
+
+- **자동 분석**: git diff를 기반으로 변경 내용을 파악하고, 코드를 읽어 기능의 목적과 동작 방식을 이해
+- **비개발자 친화**: 기술 용어에 쉬운 설명을 붙이고, 다이어그램으로 흐름을 시각화
+- **중복 방지**: 이슈 번호 기반 타이틀로 동일 작업의 페이지를 자동 식별하여 업데이트
+
+---
+
+## 사용법
+
+```
+/work-log                              # 기본: WORK-LOG 페이지 하위에 작성
+/work-log --parent <pageId>            # 지정한 페이지 ID 하위에 작성
+/work-log --parent "<페이지 제목>"       # 지정한 제목의 페이지 하위에 작성 (개인 스페이스 내 검색)
+```
+
+---
+
+## 설정
+
+| 항목 | 값 |
+|------|------|
+| Confluence Cloud ID | 1d77eaeb-5f74-4e36-8f0c-1d7ffc53faf9 |
+| 기본 스페이스 | 개인 스페이스 |
+| 개인 스페이스 ID | 1983741954 |
+| 개인 스페이스 키 | ~645023757 |
+| 홈페이지 ID | 1983742135 |
+| WORK-LOG 페이지 ID | 3255435270 |
+| 기본 부모 페이지 | WORK-LOG (ID: 3255435270) |
+
+### 페이지 계층
+
+```
+개인 스페이스 홈 (1983742135)
+└── WORK-LOG (3255435270)        <- 기본 부모 페이지
+    ├── TECH-21436               <- 작업 로그 페이지
+    ├── TECH-21437
+    └── ...
+```
+
+### 페이지 타이틀 규칙
+
+타이틀은 Jira 이슈 번호만 사용한다 (예: `TECH-21436`). 브랜치명이 변경되어도 동일 페이지를 찾아 업데이트할 수 있기 때문이다.
+
+---
+
+## 작업 절차
+
+### Step 1: 브랜치 정보 수집
+
+```bash
+git branch --show-current
+git log master..HEAD --oneline --no-decorate
+git diff master..HEAD --stat
+git diff master..HEAD --stat --summary
+```
+
+### Step 2: 코드 분석
+
+변경된 주요 파일을 읽고 분석하여 다음을 파악한다:
+- 이 작업이 **무엇을 하는지** (기능 설명)
+- **왜 필요한지** (배경과 목적)
+- **어떻게 동작하는지** (처리 흐름 — 다이어그램과 표로 표현)
+
+### Step 3: Confluence 페이지 구조 작성
+
+Read 도구로 `references/page-template.md`를 읽어서 페이지 구조 템플릿을 참조한다.
+
+#### 다이어그램 작성
+
+처리 흐름, 시스템 아키텍처, 데이터 흐름 등 시각화가 필요하면 다음 순서로 도구를 선택한다:
+
+1. **Mermaid 우선**: 플로우차트, 시퀀스, ER, 클래스 다이어그램 등 표준 유형은 `mermaid-diagram` 스킬을 사용한다. SVG로 변환하여 Confluence에 이미지로 첨부한다.
+2. **SVG 직접 생성**: 패킷 구조, 메모리 레이아웃, 네트워크 토폴로지 등 픽셀 단위 제어가 필요하면 `svg-diagram` 스킬을 사용한다.
+3. **ASCII 폴백**: Mermaid CLI가 미설치이거나, Confluence 코드 블록 내 인라인 표현이 필요한 경우 ASCII 다이어그램을 사용한다. `references/ascii-guide.md`를 참조한다.
+
+관련 없는 섹션은 생략한다 (예: DB 변경이 없으면 데이터베이스 섹션 생략).
+
+### Step 4: 부모 페이지 결정
+
+`$ARGUMENTS`에서 `--parent` 옵션을 파싱한다:
+
+| 케이스 | 입력 | 부모 페이지 |
+|--------|------|------------|
+| 기본 (argument 없음) | `/work-log` | WORK-LOG (ID: 3255435270) |
+| pageId 지정 | `/work-log --parent 1234567890` | 해당 ID의 페이지 |
+| 제목 지정 | `/work-log --parent "프로젝트 문서"` | 개인 스페이스에서 해당 제목 검색 |
+
+#### 기본 동작
+
+1. `mcp__atlassian__get-page-by-id` (pageId: 3255435270)로 WORK-LOG 페이지 존재 확인
+2. 있으면 -> 3255435270을 부모로 사용
+3. 없으면 (삭제된 경우) -> 자동 재생성:
+   - `mcp__atlassian__create-page` (spaceId: 1983741954, parentId: 1983742135, title: "WORK-LOG")
+
+#### --parent 지정 시
+
+1. 숫자만 입력 (pageId): `mcp__atlassian__get-page-by-id`로 존재 확인
+2. 문자열 입력 (제목): `mcp__atlassian__get-pages` (title, spaceId)로 검색
+3. 페이지를 찾지 못하면 오류 메시지 출력 후 중단 — --parent로 지정한 페이지는 자동 생성하지 않는다
+
+### Step 5: Confluence 페이지 생성/수정 (MCP)
+
+**5-1. Jira 이슈 정보 조회**
+- `mcp__atlassian__get-issue` (issueKey로 조회)
+
+**5-2. 기존 작업 로그 페이지 확인**
+- `mcp__atlassian__get-pages` (title, spaceId로 검색)
+
+**5-3a. 기존 페이지가 있으면 -> 업데이트**
+- `mcp__atlassian__update-page` 사용
+- bodyValue는 **Confluence Storage Format (XML)** 사용 — wiki markup이나 markdown은 Confluence API가 거부하기 때문이다
+- `mcp__atlassian__confluence-storage-format-help`로 형식 확인
+
+**5-3b. 기존 페이지가 없으면 -> 신규 생성**
+- `mcp__atlassian__create-page` 사용
+- spaceId: 1983741954
+- parentId: Step 4에서 결정된 부모 페이지 ID (기본: 3255435270)
+- bodyValue는 **Confluence Storage Format (XML)** 사용
+
+타이틀은 Jira 이슈 번호만 사용한다 (예: `TECH-21436`).
+
+### Step 6: MCP 실패 시 curl 폴백
+
+MCP 도구가 네트워크 오류를 2회 이상 반환하면 curl 폴백으로 전환한다.
+
+Read 도구로 `references/curl-fallback.md`를 읽어서 curl REST API 호출 절차를 참조한다.
+
+---
+
+## 문서 작성 원칙
+
+### 비개발자 친화적으로 작성하는 이유
+
+작업 로그는 PM, 디자이너, QA 등 비개발자도 읽는다. 기술 용어만으로 가득 찬 문서는 소통 비용을 높이므로:
+
+- 기술 용어에 쉬운 설명을 추가한다 ("핵심 용어 설명" 표 활용)
+- 도메인 지식 없이도 배경을 이해할 수 있도록 "왜 필요한가요?" 섹션을 포함한다
+- 처리 흐름은 글보다 다이어그램이 직관적이므로 시각화한다 (Mermaid → SVG → ASCII 순으로 선택)
+
+### 표(Table)를 적극 활용하는 이유
+
+산문형 설명보다 표가 비교 정보를 빠르게 전달한다:
+- 변경 전/후 비교
+- 레이어별 역할
+- 문제-해결-효과 구조
+
+### 코드 스니펫 포함 기준
+
+- 핵심 로직만 발췌한다 (전체 코드 붙여넣기 금지)
+- 언어별 syntax highlighting을 적용한다 (java, javascript, sql 등)
+- 코드 앞에 설명 주석을 추가한다
+
+---
+
+## 주의사항
+
+- master 브랜치와 비교하여 작업 내용을 추출한다
+- 브랜치명에서 이슈 키(예: TECH-12345)를 자동 추출한다
+- 기존 페이지가 있으면 업데이트, 없으면 신규 생성하여 중복 페이지를 방지한다
+- Jira 상태(Status)는 자주 변경되므로 문서에 포함하지 않는다 — 문서가 즉시 outdated 되는 것을 방지하기 위함이다
+- 테스트 파일이 포함된 경우 테스트 관련 섹션도 작성한다

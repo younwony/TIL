@@ -1,0 +1,42 @@
+{
+  "skill_name": "work-log",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "현재 브랜치 작업 내용을 Confluence에 문서화해줘",
+      "expected_output": "브랜치의 git diff/log를 분석하여 Confluence 개인 스페이스 WORK-LOG 하위에 작업 로그 페이지 생성",
+      "files": [],
+      "expectations": [
+        "git branch --show-current로 현재 브랜치명을 확인함",
+        "git log master..HEAD로 커밋 목록을 수집함",
+        "git diff master..HEAD --stat로 변경 파일 통계를 수집함",
+        "변경된 주요 파일을 읽고 분석함",
+        "Confluence 페이지 타이틀이 Jira 이슈 번호 형식(TECH-XXXXX)임",
+        "ASCII 다이어그램이 포함된 페이지 구조가 생성됨",
+        "MCP 또는 curl로 Confluence API를 호출함"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "/work-log --parent 9876543210",
+      "expected_output": "지정된 페이지 ID(9876543210) 하위에 작업 로그 페이지를 생성",
+      "files": [],
+      "expectations": [
+        "--parent 인자가 파싱되어 부모 페이지 ID로 사용됨",
+        "기본 WORK-LOG 페이지(3255435270) 대신 지정된 페이지 하위에 생성됨",
+        "지정된 페이지 존재 여부를 먼저 확인함"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/work-log --parent \"Sprint 25 문서\"",
+      "expected_output": "개인 스페이스에서 'Sprint 25 문서' 제목의 페이지를 검색하여 그 하위에 작업 로그 생성",
+      "files": [],
+      "expectations": [
+        "--parent 인자가 문자열(제목)로 파싱됨",
+        "개인 스페이스(spaceId: 1983741954)에서 해당 제목의 페이지를 검색함",
+        "페이지를 찾지 못하면 오류 메시지를 출력하고 중단함"
+      ]
+    }
+  ]
+}

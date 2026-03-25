@@ -1,0 +1,74 @@
+[
+  {
+    "query": "지금 feature/TECH-21436-campaign-api 브랜치에서 작업한 내용 정리해서 Confluence에 올려줘. 팀장님이 작업 내용 공유하라고 하셨거든",
+    "should_trigger": true
+  },
+  {
+    "query": "/work-log",
+    "should_trigger": true
+  },
+  {
+    "query": "이번 스프린트에서 한 작업 내용을 문서로 남기고 싶은데, Confluence 개인 스페이스에 작업 로그 만들어줄 수 있어?",
+    "should_trigger": true
+  },
+  {
+    "query": "/work-log --parent \"Sprint 25 회고\"",
+    "should_trigger": true
+  },
+  {
+    "query": "현재 브랜치 변경사항 분석해서 Confluence 작업 로그 페이지로 만들어줘. ASCII 다이어그램이랑 표 포함해서 비개발자도 이해할 수 있게",
+    "should_trigger": true
+  },
+  {
+    "query": "master 브랜치랑 비교해서 지금까지 작업한 내용을 Confluence에 정리해줘. TECH-21450 이슈 번호로 페이지 만들어줘",
+    "should_trigger": true
+  },
+  {
+    "query": "작업 문서화 해줘. 이번에 캠페인 API 수정한 거 Confluence에 올려야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "/work-log --parent 3255435270",
+    "should_trigger": true
+  },
+  {
+    "query": "현재 브랜치에서 변경된 파일 목록 보여줘",
+    "should_trigger": false
+  },
+  {
+    "query": "git diff master..HEAD 결과 보여줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Confluence에 새 페이지 만들어줘. 제목은 'API 설계 가이드'이고 내용은 REST API 설계 원칙이야",
+    "should_trigger": false
+  },
+  {
+    "query": "TECH-21436 이슈 상태를 In Progress로 변경해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "이번 스프린트 현황을 Slack #dev-team 채널에 공유해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "/work-plan req.md 기반으로 작업 명세서 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "README.md에 프로젝트 설명 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Slack 스레드 내용을 Confluence 페이지로 변환해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "PR 만들어줘. 현재 브랜치에서 main-review로",
+    "should_trigger": false
+  },
+  {
+    "query": "커밋 메시지 작성해줘. 캠페인 API 수정 관련으로",
+    "should_trigger": false
+  }
+]

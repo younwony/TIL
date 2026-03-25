@@ -1,0 +1,45 @@
+{
+  "skill_name": "java-code-rules",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Campaign 도메인에 대한 CRUD Service를 구현해줘. JPA Repository 사용하고, 조회/수정/삭제 메서드 포함해줘",
+      "expected_output": "CLAUDE.md 코딩 규칙을 준수하는 CampaignService 클래스 생성",
+      "files": [],
+      "expectations": [
+        "@Data 대신 @Getter + @NoArgsConstructor(access=PROTECTED) + @Builder 사용",
+        "System.out.println 대신 SLF4J 로거 사용",
+        "조회 메서드에 @Transactional(readOnly=true) 적용",
+        "Entity를 API에 직접 노출하지 않고 DTO로 분리",
+        "Optional.orElseThrow() 패턴 사용",
+        "매직 넘버/문자열 없이 상수 또는 Enum 사용"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "주문 처리 로직을 리팩토링해줘. if-else가 5개 이상이고 String 연결도 반복문 안에서 하고 있어",
+      "expected_output": "if-else를 switch/Enum/Map으로 변환하고, StringBuilder 사용으로 성능 개선",
+      "files": [],
+      "expectations": [
+        "3개 이상 if-else가 switch expression 또는 Enum/Map 다형성으로 변환됨",
+        "반복문 내 String 덧셈이 StringBuilder로 변환됨",
+        "구체적 예외 처리 (최상위 Exception catch 금지)",
+        "사용하지 않는 메서드/기능이 생성되지 않음"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "User 엔티티와 UserRepository, UserService, UserController를 만들어줘. 단위 테스트도 포함해서",
+      "expected_output": "Spring Boot 레이어 구조를 따르는 User 도메인 코드 + Given-When-Then 패턴의 테스트",
+      "files": [],
+      "expectations": [
+        "Controller -> Service -> Repository 레이어 구조 준수",
+        "Entity에 FetchType.LAZY 적용",
+        "RequestDTO/ResponseDTO가 record로 분리됨",
+        "테스트에 @DisplayName 한글 사용",
+        "Given-When-Then 패턴 사용",
+        "TDD 순서 (테스트 먼저) 안내"
+      ]
+    }
+  ]
+}

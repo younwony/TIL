@@ -15,9 +15,6 @@
 - **모든 작업에서 git add까지만 진행** (commit은 사용자 요청 시에만)
 - 새로 생성/수정/삭제된 파일 모두 `git add`만 수행
 - 커밋 메시지는 사용자가 명시적으로 요청할 때만 작성
-- **`.claude/` 디렉토리는 git add 하지 않음**
-  - 신규 생성, 수정, 삭제 등 어떤 변경이든 `.claude/` 하위 파일은 staging 제외
-  - 워크플로우 문서, skills, commands, settings 등 모두 해당
 
 ### PR 설정
 
@@ -80,12 +77,13 @@ TIL/
 | 0 | `0_INDEX.md` | - | 문서 인덱스 (읽는 순서, 요약) |
 | 1 | `1_REQ-SNAPSHOT.md` | `/work-plan` | 요구사항 원본 스냅샷 |
 | 2 | `2_WORK-SPEC.md` | `/work-plan` | 작업 명세서 |
-| 3 | `3_PLAN.md` | `/work-plan-start` | Phase별 구현 진행률 |
-| 4 | `4_ARCHITECTURE.md` | 구현 완료 | 시스템 아키텍처 |
-| 5 | `5_SPEC.md` | 구현 완료 | 기능 명세 |
-| 6 | `6_SELF-REVIEW.md` | `/self-review` | 셀프 코드 리뷰 결과 |
-| 7 | `7_QA-SCENARIOS.md` | `/qa-scenario` | QA 시나리오 |
-| 8+ | `8_*.md` | 기타 | 프로젝트별 추가 문서 |
+| 3 | `3_FEATURE-CHECKLIST.md` | `/work-plan` | 기능 체크리스트 (사용자/QA 관점) |
+| 4 | `4_PLAN.md` | `/work-plan-start` | Phase별 구현 진행률 |
+| 5 | `5_ARCHITECTURE.md` | 구현 완료 | 시스템 아키텍처 |
+| 6 | `6_SPEC.md` | 구현 완료 | 기능 명세 |
+| 7 | `7_SELF-REVIEW.md` | `/self-review` | 셀프 코드 리뷰 결과 |
+| 8 | `8_QA-SCENARIOS.md` | `/qa-scenario` | QA 시나리오 |
+| 9+ | `9_*.md` | 기타 | 프로젝트별 추가 문서 |
 
 ### 문서화 규칙
 
@@ -260,6 +258,7 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `browser-debug` | "브라우저 QA", "웹 QA", "크롬 디버깅", "Playwright QA" | 2-Layer QA: Playwright 1차 검증 → FAIL건만 Chrome 정밀 디버깅 |
 | `browser-debug-chrome` | `/browser-debug-chrome`, "Chrome-only QA" | Chrome MCP만 사용하는 레거시 QA (백업) |
 | `qa-scenario` | "QA 시나리오", "테스트 시나리오", "변경 영향 분석", "QA 문서" | 변경사항 분석 → 영향도 매트릭스 → BDD QA 시나리오 문서 생성 |
+| `feature-check` | "기능 체크", "기능 검증", "구현 확인", "체크리스트 검증" | FEATURE-CHECKLIST.md 기반 코드 레벨 기능 구현 자동 검증 |
 | `skill-rebuild` | "스킬 재구성", "스킬 개선", "스킬 리빌드" | 기존 스킬 개선 시 전체 파이프라인(evals, 벤치마크, description 최적화) 강제 |
 | `ai-slop-detect` | "AI slop", "코드 과잉", "오버엔지니어링 체크", "불필요한 코드" | AI 생성 코드 품질 감지 (과잉 추상화, YAGNI, 미사용 코드) |
 | `weekly-retro` | "주간 회고", "이번 주 뭐했지", "작업 돌아보기" | git 기반 주간 회고 자동 생성 (학습/패턴/개선점) |
@@ -278,7 +277,7 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `api-doc` | `/api-doc {대상}` | API 문서 생성 |
 | `work-log` | `/work-log`, `/work-log --parent <pageId\|제목>` | 현재 브랜치 작업 내용 Confluence 문서화 (기본: WORK-LOG 하위) |
 | `work-share` | `/work-share` | 현재 브랜치 작업 내용 공유 페이지 하위에 Confluence 문서화 |
-| `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 생성 |
+| `work-plan` | `/work-plan [path]` | req.md 기반 WORK-SPEC.md 작업 명세서 + FEATURE-CHECKLIST.md 생성 |
 | `work-plan-start` | `/work-plan-start [path]` | WORK-SPEC.md 기반 실제 작업 수행 |
 | `release-notes-kr` | `/release-notes-kr [버전/범위]` | Claude Code 릴리스 노트 한글 요약 정리 |
 | `slack-to-jira` | `/slack-to-jira {Slack URL}` | Slack 스레드 읽어 Jira 이슈 자동 생성 |
@@ -295,6 +294,7 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `figma-read` | `/figma-read {Figma URL}` | Figma URL 디자인을 figma-team MCP로 읽기 |
 | `qa-scenario` | `/qa-scenario` | 변경사항 분석 → 영향도 매트릭스 → BDD QA 시나리오 문서 생성 |
 | `team-review` | `/team-review` | 4명의 전문 리뷰어 에이전트 팀으로 병렬 코드 리뷰 |
+| `feature-check` | `/feature-check` | FEATURE-CHECKLIST.md 기반 코드 레벨 기능 구현 자동 검증 |
 | `skill-rebuild` | `/skill-rebuild {스킬명}` | 기존 스킬 재구성 (전체 파이프라인 강제) |
 | `ai-slop-detect` | `/ai-slop-detect` | AI 생성 코드 품질 감지 (과잉 추상화, YAGNI 위반) |
 | `weekly-retro` | `/weekly-retro` | git 기반 주간 회고 자동 생성 |

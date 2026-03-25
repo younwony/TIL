@@ -1,0 +1,74 @@
+[
+  {
+    "query": "Campaign 도메인 CRUD API 구현해줘. Entity, DTO, Repository, Service, Controller 전부 만들어줘. Spring Boot 3.x에 JPA 사용하고 있어",
+    "should_trigger": true
+  },
+  {
+    "query": "이 Service 코드 리팩토링해줘. @Data 쓰고 있고 System.out.println도 있어. src/main/java/com/guhada/campaign/service/CampaignService.java",
+    "should_trigger": true
+  },
+  {
+    "query": "주문 처리 로직에 if-else가 7개나 있는데 깔끔하게 정리해줘. OrderService.java에 processOrder 메서드야",
+    "should_trigger": true
+  },
+  {
+    "query": "User 엔티티 만들어줘. id, name, email, status 필드 있고, BaseEntity 상속해야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "CampaignService 단위 테스트 작성해줘. findById, create, update 메서드 테스트 필요해",
+    "should_trigger": true
+  },
+  {
+    "query": "코드 작성해줘. PaymentService에 결제 취소 로직 추가해야 하는데, 환불 상태 검증이랑 부분 취소도 지원해야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "구현해줘. Redis 캐시 적용한 상품 조회 API. @Cacheable 사용하고 TTL 30분으로",
+    "should_trigger": true
+  },
+  {
+    "query": "Kotlin으로 NotificationService 만들어줘. 이메일이랑 SMS 발송 로직 포함해서. Strategy 패턴 적용해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "TCP 3-way handshake 과정을 CS 문서로 정리해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "다이어그램 그려줘. 마이크로서비스 아키텍처 구성도",
+    "should_trigger": false
+  },
+  {
+    "query": "React 컴포넌트 만들어줘. 사용자 목록 테이블이야",
+    "should_trigger": false
+  },
+  {
+    "query": "Dockerfile 작성해줘. Spring Boot 앱 컨테이너화 해야 해",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 브랜치 작업 내용 Confluence에 올려줘",
+    "should_trigger": false
+  },
+  {
+    "query": "build.gradle에 MapStruct 의존성 추가해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "application.yml에 Redis 설정 추가해줘. 호스트는 localhost:6379야",
+    "should_trigger": false
+  },
+  {
+    "query": "Git Flow 브랜치 전략 시각화해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Slack 스레드 내용으로 Jira 이슈 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Python으로 데이터 분석 스크립트 작성해줘. pandas 사용해서 CSV 파일 처리",
+    "should_trigger": false
+  }
+]
