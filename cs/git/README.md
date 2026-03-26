@@ -53,6 +53,7 @@
 | [Rebase vs Merge](./rebase-vs-merge.md) | 히스토리 정리 vs 보존 | Git 기본 개념 |
 | [Git Hooks](./git-hooks.md) | 커밋/푸시 시 자동화 | Git 기본 개념 |
 | [Git 고급 명령어](./git-advanced-commands.md) | cherry-pick, revert, reset | Git 기본 개념 |
+| [Git Worktree](./git-worktree.md) | 하나의 저장소에서 여러 브랜치를 동시에 체크아웃하여 병렬 작업 | Git 기본 개념 |
 
 ## 전체 목차
 
@@ -63,6 +64,7 @@
 - [Rebase vs Merge](./rebase-vs-merge.md) - 히스토리 정리 vs 보존
 - [Git Hooks](./git-hooks.md) - 커밋/푸시 시 자동화
 - [Git 고급 명령어](./git-advanced-commands.md) - cherry-pick, revert, reset
+- [Git Worktree](./git-worktree.md) - 하나의 저장소에서 여러 브랜치를 동시에 체크아웃하여 병렬 작업
 
 ## 작성 예정
 
