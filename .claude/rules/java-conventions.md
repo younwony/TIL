@@ -6,6 +6,9 @@ paths:
 
 # Java/Kotlin 코드 컨벤션
 
+> 이 파일이 Single Source of Truth이다.
+> 코드 생성 시 자동 적용되고, `/self-review`·`/simplify` 실행 시에도 이 규칙을 기준으로 점검한다.
+
 ## 기능 구현 원칙
 
 - 사용하지 않는 기능은 반드시 제거한다 (구현 X)
@@ -31,9 +34,14 @@ paths:
 - Custom Exception은 `RuntimeException`을 상속하여 정의하고, Controller에서 `@ExceptionHandler`로 처리
 - `@ControllerAdvice`는 공통 예외 처리용으로만 사용 (개별 Controller에서 먼저 처리 시도)
 
-## 설계 원칙
+## 설계 원칙 (SOLID)
 
-- SOLID, 일급 컬렉션(불변), 디자인 패턴(Strategy/Factory/Builder/Template) 적용
+- **SRP**: 클래스/메서드는 단일 책임만 가진다
+- **OCP**: 확장에 열려 있고 수정에 닫혀 있는 구조 (Strategy/Template 패턴)
+- **LSP**: 상위 타입 대체 가능
+- **ISP**: 인터페이스는 클라이언트별로 분리
+- **DIP**: 구체 클래스가 아닌 추상화에 의존
+- 일급 컬렉션(불변), 디자인 패턴(Strategy/Factory/Builder/Template) 적용
 - TDD 필수, 매직 넘버/문자열 금지, SRP/DRY 준수
 
 ## 객체지향 리팩토링 원칙
@@ -69,6 +77,14 @@ paths:
 - 와일드카드 import (`*`) 금지 — 명시적 import 사용
 - public API에 **Javadoc 필수**
 
+## DTO & Entity 설계
+
+- Entity API 직접 노출 금지 → `RequestDTO`/`ResponseDTO` 분리, `record` 권장
+- Entity↔DTO 변환은 **정적 팩토리 메서드** (`from()`, `toEntity()`)로 캡슐화
+  - Controller/Service에 변환 로직을 흩어놓지 않는다
+- DTO는 불변(immutable)으로 설계 → `record` 또는 `@Builder` + `@Getter`
+- MyBatis resultType 매핑용 DTO만 `@Setter` 허용
+
 ## 금지 항목 (위반 시 즉시 수정)
 
 - `@Data` → `@Getter` + `@NoArgsConstructor(access = PROTECTED)` + `@Builder`
@@ -77,15 +93,17 @@ paths:
 - `Optional`을 필드/파라미터로 사용 → 반환 타입으로만, `orElseThrow()` 권장
 - 매직 넘버/문자열 → `static final` 상수 또는 `Enum`
 - `if-else` 3개 이상 → `switch expression` 또는 `Enum`/`Map` 다형성
-- 최상위 `Exception` catch → 구체적 예외 처리, Custom Exception 정의
-- `Entity` API 직접 노출 → `RequestDTO`/`ResponseDTO` 분리, `record` 권장
+- `else` 사용 → Early Return 패턴으로 대체
+- 최상위 `Exception` catch → 구체적 예외 처리 (`RuntimeException` 등), Custom Exception 정의
 - `FetchType.EAGER` → 모든 연관관계 `LAZY` 필수
 - 예외 삼키기(swallow exception) 금지
+- 와일드카드 import (`*`) 금지
+- `.isPresent()` + `.get()` → `orElseThrow()` / `ifPresent()`
 
 ## 성능 위험 지역
 
 - `Pattern`, `ObjectMapper` 등 고비용 객체 → `static final` 캐싱
 - 반복문 내 `String +` → `StringBuilder`
-- 반복문 내 DB/API 호출 → Bulk 연산
+- 반복문 내 DB/API 호출 → Bulk 연산 (N+1 방지)
 - 컬렉션 조회 → `Fetch Join` 또는 `EntityGraph` (N+1 방지)
 - 조회 전용 메소드 → `@Transactional(readOnly = true)`
