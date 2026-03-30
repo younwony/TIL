@@ -176,33 +176,47 @@ git diff master..HEAD --stat --summary
 
 > 관련 없는 섹션은 생략 가능 (예: DB 변경이 없으면 데이터베이스 섹션 생략, 테스트가 없으면 테스트 섹션 생략)
 
-## 4단계: MCP Tool 사용 (1차 시도)
+## 4단계: 미리보기 및 사용자 승인
 
-### 페이지 생성/수정 프로세스
+페이지를 생성하기 **전에**, 작성될 문서의 미리보기를 사용자에게 제시하고 승인을 받는다.
 
-**Step 1: Jira 이슈 정보 조회**
-- `mcp__atlassian__get-issue` (issueKey로 조회)
+### 미리보기 출력 형식
 
-**Step 2: 기존 작업 문서 확인**
-- `mcp__atlassian__get-pages` (title, spaceId로 검색)
-- 또는 `mcp__atlassian__get-page-by-id` (pageId로 직접 조회)
+```
+📋 Confluence 공유 문서 미리보기
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**Step 3a: 기존 페이지가 있는 경우 → 업데이트**
-- `mcp__atlassian__update-page` 사용
-- bodyValue는 반드시 **Confluence Storage Format (XML)** 사용
-- `mcp__atlassian__confluence-storage-format-help`로 형식 확인 필수
+📌 페이지 정보
+  - 타이틀: {TECH-XXXXX}
+  - 부모 페이지: 공유 페이지 (3255664674)
+  - 동작: {신규 생성 | 기존 페이지 업데이트}
 
-**Step 3b: 기존 페이지가 없는 경우 → 신규 생성**
-- `mcp__atlassian__create-page` 사용
-- spaceId: 1983741954
-- **parentId: 3255664674** (공유 페이지)
-- bodyValue는 반드시 **Confluence Storage Format (XML)** 사용
+📝 문서 구성
+  1. 한눈에 보기 (이슈 번호, 작업일시, 브랜치, 변경 파일 수)
+  2. 이 작업은 무엇인가요? (배경 및 목적, 핵심 용어)
+  3. 주요 변경사항 ({변경 기능 목록 요약})
+  4. 시스템 아키텍처 (레이어별 역할)
+  5. 주요 파일 변경 내역 (신규 {N}개, 수정 {M}개)
+  6. 코드 하이라이트
+  7. 관련 링크
 
-**중요**: 타이틀은 반드시 Jira 이슈 번호만 사용 (예: `TECH-21436`)
+📊 요약
+  - 커밋 수: {N}개
+  - 변경 파일: {M}개 (+{additions} / -{deletions})
+  - 주요 변경: {핵심 변경사항 1줄 요약}
 
-## 5단계: MCP 실패 시 curl 폴백 (2차 시도)
+진행하시겠습니까? (Y/n)
+```
 
-MCP 도구가 `Network error occurred` 등의 오류를 반환하는 경우, **curl을 사용하여 Atlassian REST API를 직접 호출**한다.
+### 승인 규칙
+
+- 사용자가 승인(`Y`, `yes`, `진행`, `ㅇ`, Enter 등)하면 → 5단계로 진행
+- 사용자가 거부하면 → 수정 요청 사항을 반영하여 미리보기를 다시 제시
+- 사용자가 특정 섹션 추가/제거를 요청하면 → 반영 후 재확인
+
+## 5단계: curl로 Confluence 페이지 생성
+
+curl을 사용하여 Atlassian REST API를 직접 호출한다.
 
 ### 인증 정보
 
@@ -214,7 +228,7 @@ Base URL (Confluence): https://temcolabs.atlassian.net/wiki/api/v2
 
 - API 토큰은 `.claude.json`의 `mcpServers.atlassian.env.ATLASSIAN_API_TOKEN`에서 가져옴
 
-### curl 폴백 프로세스
+### curl 프로세스
 
 **Step 1: Jira 이슈 조회**
 ```bash
@@ -277,15 +291,12 @@ JSON 구조:
 }
 ```
 
-### 폴백 판단 기준
-- MCP 도구 호출 시 `Network error occurred`, `timeout`, `connection refused` 등의 오류가 **2회 이상** 발생하면 즉시 curl 폴백으로 전환
-- curl 폴백 사용 시, JSON 파일은 `/tmp/confluence_page.json`에 임시 저장 후 전송
-- **bodyValue는 반드시 Confluence Storage Format (XML)** 사용 (wiki markup, markdown 사용 금지)
-
 ### 주의사항
 - API 토큰은 `.claude.json`에서 읽어와 사용 (하드코딩 금지)
 - curl 응답에서 `_links.webui`를 추출하여 사용자에게 페이지 URL 제공
+- JSON 파일은 `/tmp/confluence_page.json`에 임시 저장 후 전송
 - JSON 파일 내 특수문자(따옴표, 꺽쇠 등)는 적절히 이스케이프 처리
+- **bodyValue는 반드시 Confluence Storage Format (XML)** 사용 (wiki markup, markdown 사용 금지)
 
 ## 문서 작성 원칙
 

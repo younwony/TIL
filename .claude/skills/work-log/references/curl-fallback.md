@@ -1,12 +1,6 @@
-# curl 폴백 프로세스
+# curl을 사용한 Confluence REST API 호출
 
-MCP 도구(`mcp__atlassian__*`)가 네트워크 오류를 반환할 때 curl로 직접 Atlassian REST API를 호출하는 절차입니다.
-
----
-
-## 폴백 전환 기준
-
-MCP 도구 호출 시 `Network error occurred`, `timeout`, `connection refused` 등의 오류가 **2회 이상** 발생하면 curl 폴백으로 전환합니다. 1회는 일시적 오류일 수 있으므로 재시도합니다.
+Confluence 페이지 생성/수정 시 curl로 Atlassian REST API를 직접 호출하는 절차입니다.
 
 ---
 
