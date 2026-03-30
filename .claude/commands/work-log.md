@@ -70,7 +70,7 @@ git diff master..HEAD --stat --summary
 변경된 주요 파일들을 읽고 분석하여:
 - 이 작업이 **무엇을 하는지** 파악
 - **왜 필요한지** 배경 설명 작성
-- **어떻게 동작하는지** 흐름을 ASCII 다이어그램과 표로 작성
+- **어떻게 동작하는지** 흐름을 SVG 다이어그램과 표로 작성
 
 ## 3단계: Confluence 페이지 생성
 
@@ -115,7 +115,7 @@ git diff master..HEAD --stat --summary
 
 #### 처리 흐름 다이어그램
 
-(ASCII 박스 다이어그램으로 시각화)
+(SVG 다이어그램으로 시각화 — Confluence HTML 매크로로 삽입)
 
 #### 상세 처리 단계
 
@@ -133,7 +133,7 @@ git diff master..HEAD --stat --summary
 
 ## 시스템 아키텍처
 
-(레이어별 ASCII 다이어그램)
+(SVG 다이어그램으로 레이어별 구조 시각화)
 
 ### 레이어별 역할
 
@@ -345,26 +345,24 @@ JSON 구조:
 - 도메인 지식이 없어도 이해할 수 있도록 배경 설명 포함
 - "왜 필요한가요?", "어떻게 동작하나요?" 형식 사용
 
-### 2. ASCII 다이어그램 필수 사용
-- **처리 흐름**은 ASCII 박스 다이어그램으로 시각화
-- **시스템 아키텍처**는 레이어별 ASCII 다이어그램으로 표현
-- **테이블 스키마**는 ASCII 테이블로 표현
-- Confluence 코드 블록 내에서 깔끔하게 표시됨
+### 2. SVG 다이어그램 우선 사용
+- **처리 흐름**, **시스템 아키텍처**, **데이터 흐름** 등 복잡한 구조는 SVG 다이어그램으로 시각화
+- `svg-diagram` 스킬의 템플릿/팔레트 적용 (그라디언트, 드롭섀도우 등)
+- SVG는 Confluence HTML 매크로(`ac:structured-macro ac:name="html"`)로 인라인 삽입
+- 간단한 트리 구조, 폴더 계층 등은 ASCII 코드 블록 사용 가능 (폴백)
 
-### 3. ASCII 다이어그램 가이드
-```
-# 박스 그리기
-┌─────────┐  ╔═════════╗
-│  내용   │  ║  강조   ║
-└─────────┘  ╚═════════╝
-
-# 화살표
-─▶  (오른쪽)    ◀─  (왼쪽)
-│▼  (아래)      ▲│  (위)
-
-# 연결선
-─────  (가로선)   │  (세로선)
-├──   (T 분기)    └──  (L 코너)
+### 3. SVG → Confluence 삽입 방법
+Confluence Storage Format에서 SVG를 삽입하려면 HTML 매크로를 사용한다:
+```xml
+<ac:structured-macro ac:name="html">
+  <ac:plain-text-body><![CDATA[
+    <div style="text-align:center;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+        <!-- SVG 다이어그램 내용 -->
+      </svg>
+    </div>
+  ]]></ac:plain-text-body>
+</ac:structured-macro>
 ```
 
 ### 4. 표(Table) 기반 정보 정리
@@ -385,5 +383,6 @@ JSON 구조:
 - **기존 페이지가 있으면 업데이트, 없으면 신규 생성** - 중복 페이지 방지
 - **기본 스페이스는 개인 스페이스** - 특별한 조건이 없으면 개인 스페이스에 작성
 - **Jira 상태(Status)는 포함하지 않음** - QA Ready, In Progress 등 상태는 자주 변경되므로 문서에 포함하지 않음
-- **ASCII 다이어그램은 반드시 코드 블록(\`\`\`) 안에 작성하여 Confluence에서 깨지지 않도록 한다**
+- **복잡한 흐름/아키텍처는 SVG 다이어그램으로 시각화** (svg-diagram 스킬 사용, Confluence HTML 매크로로 삽입)
+- **간단한 트리/목록 구조는 ASCII 코드 블록(\`\`\`) 사용 가능**
 - 관련 없는 섹션은 생략 가능 (예: DB 변경이 없으면 데이터베이스 섹션 생략)
