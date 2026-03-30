@@ -81,6 +81,7 @@ MCP 개념을 이해한 후 학습하세요.
 | [Claude Code Superpowers](./claude-code-superpowers.md) | 14개 스킬로 구성된 완전한 개발 워크플로우, TDD·디버깅·검증 기반 규율 `Trend 2025-2026` | Skill, Plugin |
 | [Claude Code Skill Creator](./claude-code-skill-creator.md) | 평가 주도 개발로 스킬 생성·테스트·최적화하는 전문 도구 `Trend 2025-2026` | Skill, Plugin |
 | [AI 에이전트 메모리 아키텍처](./agent-memory.md) | AI 에이전트가 컨텍스트 윈도우를 넘어 장기 기억을 관리하는 에피소딕/시맨틱/프로시저럴 메모리 인프라 `Trend 2026` | [AI Agent란](./ai-agent.md), [Context Engineering](./context-engineering.md) |
+| [에이전트 팀 하네스 (Agent Team Harness)](./agent-team-harness.md) | 멀티 에이전트 팀을 설계하고 스킬을 자동 생성하는 메타 스킬 — 6가지 아키텍처 패턴과 수제 vs 범용 하네스 비교 | [AI Agent란](./ai-agent.md), [AI 하네스](./harness.md) |
 | [AI 코딩 에이전트 워크플로우 흡수](./ai-coding-agent-workflow-absorption.md) | 커뮤니티 워크플로우를 벤더가 공식 제품으로 흡수하는 패턴 분석 `Trend 2026` | AI Agent란, Hook, MCP |
 | [Claude Code Workflow](./claude-code-workflow.md) | 병렬 세션, Plan 모드, 최적화 전략 | AI Agent란, Skill |
 | [Claude Code 실전 가이드](./claude-code-guide.md) | 70가지 팁 핵심 정리, 단축키, 컨텍스트 관리, 실전 꿀팁 | Workflow, MCP, Skill |
@@ -191,6 +192,7 @@ Sub Agent를 이해한 후 도전하세요.
 - [Multi-Agent Systems](./multi-agent-systems.md) - 여러 전문화된 AI 에이전트가 협력하여 복잡한 작업을 수행하는 분산 시스템 아키텍처 `Trend 2025`
 - [Claude Code Sub Agent](./claude-code-sub-agent.md) - 복잡한 작업을 독립적으로 처리하는 전문화된 AI 에이전트 시스템
 - [Claude Code Agent Team](./claude-code-agent-team.md) - 여러 독립 AI 에이전트를 팀으로 구성하여 병렬 협업하는 오케스트레이션 시스템 `Trend 2026`
+- [에이전트 팀 하네스 (Agent Team Harness)](./agent-team-harness.md) - 멀티 에이전트 팀을 설계하고 스킬을 자동 생성하는 메타 스킬, 6가지 아키텍처 패턴과 수제 vs 범용 하네스 비교
 - [MCP Gateway](./mcp-gateway.md) - AI Agent와 MCP 서버 사이의 중앙 관리 계층 - 보안, 관찰가능성, 비용 제어, 거버넌스를 통합 제공하는 엔터프라이즈 인프라 `Trend 2026`
 - [Agent SDK](./agent-sdk.md) - 커스텀 AI 에이전트를 프로그래밍 방식으로 구축하기 위한 개발 도구
 

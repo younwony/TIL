@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 720" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (기본) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (성공) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 빨강 (경고) -->
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 주황 -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 청록 -->
+    <linearGradient id="nodeTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+    <!-- 단계 배경 그라디언트 -->
+    <linearGradient id="phaseBg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#EBF5FB"/>
+      <stop offset="100%" style="stop-color:#F8F9FA"/>
+    </linearGradient>
+    <!-- 드롭섀도우 -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000022"/>
+    </filter>
+    <filter id="shadowLight" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000015"/>
+    </filter>
+    <!-- 화살표 마커 -->
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#7F8C8D"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3498DB"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="860" height="720" fill="#F8F9FA" rx="8"/>
+
+  <!-- 타이틀 -->
+  <rect x="0" y="0" width="860" height="52" fill="url(#nodeBlue)" rx="8"/>
+  <rect x="0" y="44" width="860" height="8" fill="url(#nodeBlue)"/>
+  <text x="430" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="white">하네스 6단계 워크플로우 (Harness 6-Phase Workflow)</text>
+
+  <!-- 플로우 연결선 (노드 뒤에 그림) -->
+  <!-- Phase 1 -> Phase 2 -->
+  <line x1="430" y1="145" x2="430" y2="168" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <!-- Phase 2 -> Phase 3 -->
+  <line x1="430" y1="253" x2="430" y2="276" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <!-- Phase 3 -> Phase 4 -->
+  <line x1="430" y1="361" x2="430" y2="384" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <!-- Phase 4 -> Phase 5 -->
+  <line x1="430" y1="469" x2="430" y2="492" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <!-- Phase 5 -> Phase 6 -->
+  <line x1="430" y1="577" x2="430" y2="600" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- ========== Phase 1: Domain Analysis ========== -->
+  <!-- 단계 배경 -->
+  <rect x="20" y="68" width="820" height="77" fill="url(#phaseBg)" rx="8" stroke="#D5E8F5" stroke-width="1" filter="url(#shadowLight)"/>
+  <!-- 단계 번호 배지 -->
+  <circle cx="55" cy="106" r="18" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="55" y="111" text-anchor="middle" font-size="13" font-weight="bold" fill="white">1</text>
+  <!-- 단계 제목 -->
+  <text x="84" y="98" font-size="13" font-weight="bold" fill="#2C3E50">Domain Analysis</text>
+  <text x="84" y="114" font-size="11" fill="#7F8C8D">도메인 분석 - 어떤 분야인지 파악하고 요구사항을 정의한다</text>
+  <!-- 산출물 칩들 -->
+  <rect x="84" y="122" width="110" height="16" fill="#D6EAF8" rx="8" stroke="#AED6F1" stroke-width="1"/>
+  <text x="139" y="133" text-anchor="middle" font-size="9" fill="#1A5276">domain-spec.md</text>
+  <rect x="202" y="122" width="130" height="16" fill="#D6EAF8" rx="8" stroke="#AED6F1" stroke-width="1"/>
+  <text x="267" y="133" text-anchor="middle" font-size="9" fill="#1A5276">agent-requirements.md</text>
+  <rect x="340" y="122" width="100" height="16" fill="#D6EAF8" rx="8" stroke="#AED6F1" stroke-width="1"/>
+  <text x="390" y="133" text-anchor="middle" font-size="9" fill="#1A5276">team-topology.md</text>
+
+  <!-- ========== Phase 2: Team Architecture Design ========== -->
+  <rect x="20" y="176" width="820" height="77" fill="url(#phaseBg)" rx="8" stroke="#D5F5E3" stroke-width="1" filter="url(#shadowLight)"/>
+  <circle cx="55" cy="214" r="18" fill="url(#nodeGreen)" filter="url(#shadow)"/>
+  <text x="55" y="219" text-anchor="middle" font-size="13" font-weight="bold" fill="white">2</text>
+  <text x="84" y="206" font-size="13" font-weight="bold" fill="#2C3E50">Team Architecture Design</text>
+  <text x="84" y="222" font-size="11" fill="#7F8C8D">팀 아키텍처 설계 - 6가지 패턴(단일/수평/수직/오케스트레이터 등) 중 선택</text>
+  <!-- 산출물 칩들 -->
+  <rect x="84" y="230" width="120" height="16" fill="#D5F5E3" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="144" y="241" text-anchor="middle" font-size="9" fill="#145A32">architecture-pattern.md</text>
+  <rect x="212" y="230" width="110" height="16" fill="#D5F5E3" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="267" y="241" text-anchor="middle" font-size="9" fill="#145A32">team-structure.svg</text>
+  <rect x="330" y="230" width="110" height="16" fill="#D5F5E3" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="385" y="241" text-anchor="middle" font-size="9" fill="#145A32">communication-flow.md</text>
+
+  <!-- ========== Phase 3: Agent Definition Generation ========== -->
+  <rect x="20" y="284" width="820" height="77" fill="url(#phaseBg)" rx="8" stroke="#FAD7A0" stroke-width="1" filter="url(#shadowLight)"/>
+  <circle cx="55" cy="322" r="18" fill="url(#nodeOrange)" filter="url(#shadow)"/>
+  <text x="55" y="327" text-anchor="middle" font-size="13" font-weight="bold" fill="white">3</text>
+  <text x="84" y="314" font-size="13" font-weight="bold" fill="#2C3E50">Agent Definition Generation</text>
+  <text x="84" y="330" font-size="11" fill="#7F8C8D">에이전트 정의 생성 - 각 에이전트의 역할·권한·도구를 .claude/agents/ 파일로 작성</text>
+  <!-- 산출물 칩들 -->
+  <rect x="84" y="338" width="155" height="16" fill="#FDEBD0" rx="8" stroke="#FAD7A0" stroke-width="1"/>
+  <text x="161" y="349" text-anchor="middle" font-size="9" fill="#784212">.claude/agents/{name}.md</text>
+  <rect x="247" y="338" width="115" height="16" fill="#FDEBD0" rx="8" stroke="#FAD7A0" stroke-width="1"/>
+  <text x="304" y="349" text-anchor="middle" font-size="9" fill="#784212">tool-permissions.json</text>
+  <rect x="370" y="338" width="105" height="16" fill="#FDEBD0" rx="8" stroke="#FAD7A0" stroke-width="1"/>
+  <text x="422" y="349" text-anchor="middle" font-size="9" fill="#784212">system-prompts.md</text>
+
+  <!-- ========== Phase 4: Skill Generation ========== -->
+  <rect x="20" y="392" width="820" height="77" fill="url(#phaseBg)" rx="8" stroke="#E8DAEF" stroke-width="1" filter="url(#shadowLight)"/>
+  <circle cx="55" cy="430" r="18" fill="url(#nodePurple)" filter="url(#shadow)"/>
+  <text x="55" y="435" text-anchor="middle" font-size="13" font-weight="bold" fill="white">4</text>
+  <text x="84" y="422" font-size="13" font-weight="bold" fill="#2C3E50">Skill Generation</text>
+  <text x="84" y="438" font-size="11" fill="#7F8C8D">스킬 생성 - 공통 워크플로우를 .claude/skills/ 파일로 캡슐화하여 재사용성 확보</text>
+  <!-- 산출물 칩들 -->
+  <rect x="84" y="446" width="155" height="16" fill="#E8DAEF" rx="8" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="161" y="457" text-anchor="middle" font-size="9" fill="#4A235A">.claude/skills/{name}.md</text>
+  <rect x="247" y="446" width="105" height="16" fill="#E8DAEF" rx="8" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="299" y="457" text-anchor="middle" font-size="9" fill="#4A235A">SKILL.md (명세서)</text>
+  <rect x="360" y="446" width="105" height="16" fill="#E8DAEF" rx="8" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="412" y="457" text-anchor="middle" font-size="9" fill="#4A235A">trigger-patterns.md</text>
+
+  <!-- ========== Phase 5: Integration & Orchestration ========== -->
+  <rect x="20" y="500" width="820" height="77" fill="url(#phaseBg)" rx="8" stroke="#D1F2EB" stroke-width="1" filter="url(#shadowLight)"/>
+  <circle cx="55" cy="538" r="18" fill="url(#nodeTeal)" filter="url(#shadow)"/>
+  <text x="55" y="543" text-anchor="middle" font-size="13" font-weight="bold" fill="white">5</text>
+  <text x="84" y="530" font-size="13" font-weight="bold" fill="#2C3E50">Integration &amp; Orchestration</text>
+  <text x="84" y="546" font-size="11" fill="#7F8C8D">통합 및 오케스트레이션 - 에이전트 간 통신, 컨텍스트 전달, 병렬/순차 실행 조율</text>
+  <!-- 산출물 칩들 -->
+  <rect x="84" y="554" width="115" height="16" fill="#D1F2EB" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="141" y="565" text-anchor="middle" font-size="9" fill="#0E6655">CLAUDE.md (통합)</text>
+  <rect x="207" y="554" width="100" height="16" fill="#D1F2EB" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="257" y="565" text-anchor="middle" font-size="9" fill="#0E6655">settings.json</text>
+  <rect x="315" y="554" width="120" height="16" fill="#D1F2EB" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="375" y="565" text-anchor="middle" font-size="9" fill="#0E6655">orchestration-flow.md</text>
+  <rect x="443" y="554" width="110" height="16" fill="#D1F2EB" rx="8" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="498" y="565" text-anchor="middle" font-size="9" fill="#0E6655">hook-definitions.json</text>
+
+  <!-- ========== Phase 6: Validation & Testing ========== -->
+  <rect x="20" y="608" width="820" height="77" fill="url(#phaseBg)" rx="8" stroke="#FADBD8" stroke-width="1" filter="url(#shadowLight)"/>
+  <circle cx="55" cy="646" r="18" fill="url(#nodeRed)" filter="url(#shadow)"/>
+  <text x="55" y="651" text-anchor="middle" font-size="13" font-weight="bold" fill="white">6</text>
+  <text x="84" y="638" font-size="13" font-weight="bold" fill="#2C3E50">Validation &amp; Testing</text>
+  <text x="84" y="654" font-size="11" fill="#7F8C8D">검증 및 테스트 - 드라이런(Dry-run), 트리거 검증, 엣지 케이스 시나리오 실행</text>
+  <!-- 산출물 칩들 -->
+  <rect x="84" y="662" width="110" height="16" fill="#FADBD8" rx="8" stroke="#F1948A" stroke-width="1"/>
+  <text x="139" y="673" text-anchor="middle" font-size="9" fill="#78281F">eval-results.md</text>
+  <rect x="202" y="662" width="110" height="16" fill="#FADBD8" rx="8" stroke="#F1948A" stroke-width="1"/>
+  <text x="257" y="673" text-anchor="middle" font-size="9" fill="#78281F">trigger-test-report.md</text>
+  <rect x="320" y="662" width="110" height="16" fill="#FADBD8" rx="8" stroke="#F1948A" stroke-width="1"/>
+  <text x="375" y="673" text-anchor="middle" font-size="9" fill="#78281F">benchmark-scores.md</text>
+  <rect x="438" y="662" width="100" height="16" fill="#FADBD8" rx="8" stroke="#F1948A" stroke-width="1"/>
+  <text x="488" y="673" text-anchor="middle" font-size="9" fill="#78281F">qa-scenarios.md</text>
+
+  <!-- 범례 -->
+  <rect x="600" y="68" width="240" height="140" fill="white" rx="6" stroke="#DEE2E6" stroke-width="1" filter="url(#shadowLight)"/>
+  <text x="720" y="86" text-anchor="middle" font-size="11" font-weight="bold" fill="#2C3E50">범례 (Legend)</text>
+  <line x1="615" y1="92" x2="830" y2="92" stroke="#DEE2E6" stroke-width="1"/>
+  <!-- 단계 색상 범례 -->
+  <circle cx="625" cy="106" r="7" fill="url(#nodeBlue)"/>
+  <text x="638" y="110" font-size="10" fill="#2C3E50">1단계: 도메인 분석</text>
+  <circle cx="625" cy="122" r="7" fill="url(#nodeGreen)"/>
+  <text x="638" y="126" font-size="10" fill="#2C3E50">2단계: 아키텍처 설계</text>
+  <circle cx="625" cy="138" r="7" fill="url(#nodeOrange)"/>
+  <text x="638" y="142" font-size="10" fill="#2C3E50">3단계: 에이전트 정의</text>
+  <circle cx="625" cy="154" r="7" fill="url(#nodePurple)"/>
+  <text x="638" y="158" font-size="10" fill="#2C3E50">4단계: 스킬 생성</text>
+  <circle cx="625" cy="170" r="7" fill="url(#nodeTeal)"/>
+  <text x="638" y="174" font-size="10" fill="#2C3E50">5단계: 통합/오케스트레이션</text>
+  <circle cx="625" cy="186" r="7" fill="url(#nodeRed)"/>
+  <text x="638" y="190" font-size="10" fill="#2C3E50">6단계: 검증/테스트</text>
+  <!-- 산출물 칩 범례 -->
+  <rect x="615" y="197" width="52" height="10" fill="#D6EAF8" rx="5" stroke="#AED6F1" stroke-width="1"/>
+  <text x="672" y="206" font-size="10" fill="#7F8C8D">= 산출물(Output)</text>
+</svg>

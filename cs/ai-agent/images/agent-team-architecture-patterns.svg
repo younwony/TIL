@@ -1,0 +1,345 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" width="900" height="900">
+  <defs>
+    <style>text { font-family: Arial, sans-serif; }</style>
+
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <linearGradient id="nodeTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C"/>
+      <stop offset="100%" style="stop-color:#16A085"/>
+    </linearGradient>
+    <linearGradient id="centerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2C3E50"/>
+      <stop offset="100%" style="stop-color:#1A252F"/>
+    </linearGradient>
+
+    <linearGradient id="cardBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EBF5FB"/>
+      <stop offset="100%" style="stop-color:#D6EAF8"/>
+    </linearGradient>
+    <linearGradient id="cardGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EAFAF1"/>
+      <stop offset="100%" style="stop-color:#D5F5E3"/>
+    </linearGradient>
+    <linearGradient id="cardRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDEDEC"/>
+      <stop offset="100%" style="stop-color:#FADBD8"/>
+    </linearGradient>
+    <linearGradient id="cardOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEF9E7"/>
+      <stop offset="100%" style="stop-color:#FDEBD0"/>
+    </linearGradient>
+    <linearGradient id="cardPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EEF8"/>
+      <stop offset="100%" style="stop-color:#E8DAEF"/>
+    </linearGradient>
+    <linearGradient id="cardTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F8F5"/>
+      <stop offset="100%" style="stop-color:#D1F2EB"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#00000020"/>
+    </filter>
+    <filter id="shadowLight" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000015"/>
+    </filter>
+
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2980B9"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#27AE60"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C0392B"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#D35400"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8E44AD"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16A085"/>
+    </marker>
+  </defs>
+
+  <!-- 전체 배경 -->
+  <rect x="0" y="0" width="900" height="900" rx="16" ry="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+
+  <!-- 타이틀 -->
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3E50">AI 에이전트 팀 아키텍처 패턴 6가지</text>
+  <text x="450" y="60" text-anchor="middle" font-size="13" fill="#7F8C8D">Agent Team Architecture Patterns</text>
+
+  <!-- ===== 중앙 → 각 카드 연결선 (카드 뒤에 위치) ===== -->
+  <!-- 중앙(450,450) → Pipeline 카드 중심(172,300) -->
+  <line x1="418" y1="420" x2="295" y2="300" stroke="#2980B9" stroke-width="1.8" stroke-dasharray="6,3" opacity="0.55"/>
+  <!-- 중앙 → Fan-out 카드 중심(727,300) -->
+  <line x1="482" y1="420" x2="605" y2="300" stroke="#27AE60" stroke-width="1.8" stroke-dasharray="6,3" opacity="0.55"/>
+  <!-- 중앙 → Expert Pool 카드 중심(172,450) -->
+  <line x1="385" y1="450" x2="295" y2="450" stroke="#C0392B" stroke-width="1.8" stroke-dasharray="6,3" opacity="0.55"/>
+  <!-- 중앙 → Producer-Reviewer 카드 중심(727,450) -->
+  <line x1="515" y1="450" x2="605" y2="450" stroke="#D35400" stroke-width="1.8" stroke-dasharray="6,3" opacity="0.55"/>
+  <!-- 중앙 → Supervisor 카드 중심(172,620) -->
+  <line x1="418" y1="480" x2="295" y2="620" stroke="#8E44AD" stroke-width="1.8" stroke-dasharray="6,3" opacity="0.55"/>
+  <!-- 중앙 → Hierarchical 카드 중심(727,620) -->
+  <line x1="482" y1="480" x2="605" y2="620" stroke="#16A085" stroke-width="1.8" stroke-dasharray="6,3" opacity="0.55"/>
+
+  <!-- ===== 중앙 허브 ===== -->
+  <circle cx="450" cy="450" r="65" fill="url(#centerGrad)" filter="url(#shadow)"/>
+  <circle cx="450" cy="450" r="60" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.35"/>
+  <text x="450" y="440" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Agent Team</text>
+  <text x="450" y="456" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Architecture</text>
+  <text x="450" y="474" text-anchor="middle" font-size="11" fill="#95A5A6">6 Patterns</text>
+
+  <!-- ================================================================ -->
+  <!-- 패턴 01: Pipeline (좌상)   카드 x=50 y=80  w=245 h=230 -->
+  <!-- ================================================================ -->
+  <rect x="50" y="80" width="245" height="230" rx="12" ry="12" fill="url(#cardBlue)" stroke="#2980B9" stroke-width="2" filter="url(#shadowLight)"/>
+  <!-- 헤더 -->
+  <rect x="50" y="80" width="245" height="42" rx="12" ry="12" fill="url(#nodeBlue)"/>
+  <rect x="50" y="102" width="245" height="20" fill="url(#nodeBlue)"/>
+  <text x="70" y="108" font-size="11" fill="#AED6F1">01</text>
+  <text x="172" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Pipeline</text>
+  <!-- 미니 다이어그램: A → B → C → Result -->
+  <rect x="64" y="136" width="36" height="22" rx="5" fill="url(#nodeBlue)" opacity="0.85"/>
+  <text x="82" y="151" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">A</text>
+  <line x1="100" y1="147" x2="116" y2="147" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="116" y="136" width="36" height="22" rx="5" fill="url(#nodeBlue)" opacity="0.85"/>
+  <text x="134" y="151" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">B</text>
+  <line x1="152" y1="147" x2="168" y2="147" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="168" y="136" width="36" height="22" rx="5" fill="url(#nodeBlue)" opacity="0.85"/>
+  <text x="186" y="151" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">C</text>
+  <line x1="204" y1="147" x2="220" y2="147" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="220" y="136" width="52" height="22" rx="5" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="246" y="151" text-anchor="middle" font-size="10" fill="#7F8C8D">Result</text>
+  <!-- 구분선 -->
+  <line x1="64" y1="173" x2="283" y2="173" stroke="#AED6F1" stroke-width="1"/>
+  <!-- 설명 -->
+  <text x="64" y="191" font-size="11" fill="#2C3E50">순차 실행: 각 단계 완료 후 다음 시작</text>
+  <text x="64" y="209" font-size="11" fill="#2C3E50">이전 단계의 출력이 다음 단계의 입력</text>
+  <text x="64" y="229" font-size="11" fill="#7F8C8D">용도: 의존적 작업 체인</text>
+  <text x="64" y="249" font-size="10" fill="#2980B9" font-style="italic">e.g. 분석 → 설계 → 구현 → 검증</text>
+  <text x="64" y="267" font-size="10" fill="#2980B9" font-style="italic">e.g. 데이터 수집 → 정제 → 변환</text>
+  <text x="64" y="287" font-size="10" fill="#7F8C8D">특징: 단순 · 예측 가능 · 디버그 용이</text>
+
+  <!-- ================================================================ -->
+  <!-- 패턴 02: Fan-out/Fan-in (우상)  x=605 y=80 w=245 h=230 -->
+  <!-- ================================================================ -->
+  <rect x="605" y="80" width="245" height="230" rx="12" ry="12" fill="url(#cardGreen)" stroke="#27AE60" stroke-width="2" filter="url(#shadowLight)"/>
+  <rect x="605" y="80" width="245" height="42" rx="12" ry="12" fill="url(#nodeGreen)"/>
+  <rect x="605" y="102" width="245" height="20" fill="url(#nodeGreen)"/>
+  <text x="625" y="108" font-size="11" fill="#A9DFBF">02</text>
+  <text x="727" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Fan-out / Fan-in</text>
+  <!-- 미니 다이어그램 -->
+  <rect x="614" y="134" width="40" height="20" rx="5" fill="url(#nodeGreen)" opacity="0.85"/>
+  <text x="634" y="148" text-anchor="middle" font-size="9" font-weight="700" fill="#FFFFFF">Task</text>
+  <!-- fan-out -->
+  <line x1="654" y1="138" x2="682" y2="128" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="654" y1="144" x2="682" y2="144" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="654" y1="150" x2="682" y2="160" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- 병렬 에이전트 -->
+  <rect x="682" y="121" width="38" height="16" rx="4" fill="url(#nodeGreen)" opacity="0.8"/>
+  <text x="701" y="133" text-anchor="middle" font-size="9" fill="#FFFFFF">A-1</text>
+  <rect x="682" y="137" width="38" height="16" rx="4" fill="url(#nodeGreen)" opacity="0.8"/>
+  <text x="701" y="149" text-anchor="middle" font-size="9" fill="#FFFFFF">A-2</text>
+  <rect x="682" y="153" width="38" height="16" rx="4" fill="url(#nodeGreen)" opacity="0.8"/>
+  <text x="701" y="165" text-anchor="middle" font-size="9" fill="#FFFFFF">A-3</text>
+  <!-- fan-in -->
+  <line x1="720" y1="129" x2="748" y2="139" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="720" y1="145" x2="748" y2="145" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="720" y1="161" x2="748" y2="151" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- 결합 -->
+  <rect x="748" y="135" width="44" height="20" rx="5" fill="#ECF0F1" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="770" y="149" text-anchor="middle" font-size="9" fill="#27AE60" font-weight="700">Merge</text>
+  <!-- 구분선 -->
+  <line x1="614" y1="173" x2="836" y2="173" stroke="#A9DFBF" stroke-width="1"/>
+  <text x="614" y="191" font-size="11" fill="#2C3E50">작업 분산 후 병렬 처리</text>
+  <text x="614" y="209" font-size="11" fill="#2C3E50">완료 후 결과 통합(Aggregate)</text>
+  <text x="614" y="229" font-size="11" fill="#7F8C8D">용도: 독립적 병렬 작업</text>
+  <text x="614" y="249" font-size="10" fill="#27AE60" font-style="italic">e.g. 멀티 에이전트 병렬 코드 리뷰</text>
+  <text x="614" y="267" font-size="10" fill="#27AE60" font-style="italic">e.g. 병렬 데이터 수집 및 분석</text>
+  <text x="614" y="287" font-size="10" fill="#7F8C8D">특징: 고속 · 스케일아웃 · 집계 필요</text>
+
+  <!-- ================================================================ -->
+  <!-- 패턴 03: Expert Pool (좌중)  x=50 y=340 w=245 h=230 -->
+  <!-- ================================================================ -->
+  <rect x="50" y="335" width="245" height="230" rx="12" ry="12" fill="url(#cardRed)" stroke="#C0392B" stroke-width="2" filter="url(#shadowLight)"/>
+  <rect x="50" y="335" width="245" height="42" rx="12" ry="12" fill="url(#nodeRed)"/>
+  <rect x="50" y="357" width="245" height="20" fill="url(#nodeRed)"/>
+  <text x="70" y="363" font-size="11" fill="#F1948A">03</text>
+  <text x="172" y="363" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Expert Pool</text>
+  <!-- 미니 다이어그램 -->
+  <rect x="60" y="390" width="52" height="20" rx="5" fill="url(#nodeRed)" opacity="0.9"/>
+  <text x="86" y="404" text-anchor="middle" font-size="9" font-weight="700" fill="#FFFFFF">Router</text>
+  <line x1="112" y1="394" x2="140" y2="384" stroke="#C0392B" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <line x1="112" y1="400" x2="140" y2="400" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.5" marker-end="url(#arrowRed)"/>
+  <line x1="112" y1="406" x2="140" y2="416" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.5" marker-end="url(#arrowRed)"/>
+  <!-- 전문 에이전트 풀 -->
+  <rect x="140" y="377" width="48" height="16" rx="4" fill="url(#nodeRed)" opacity="0.9"/>
+  <text x="164" y="389" text-anchor="middle" font-size="9" fill="#FFFFFF">보안</text>
+  <rect x="140" y="393" width="48" height="16" rx="4" fill="#ECF0F1" stroke="#E74C3C" stroke-width="1"/>
+  <text x="164" y="405" text-anchor="middle" font-size="9" fill="#C0392B">성능</text>
+  <rect x="140" y="409" width="48" height="16" rx="4" fill="#ECF0F1" stroke="#E74C3C" stroke-width="1"/>
+  <text x="164" y="421" text-anchor="middle" font-size="9" fill="#C0392B">테스트</text>
+  <line x1="188" y1="385" x2="214" y2="396" stroke="#C0392B" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <rect x="214" y="388" width="52" height="20" rx="5" fill="#ECF0F1" stroke="#C0392B" stroke-width="1.5"/>
+  <text x="240" y="402" text-anchor="middle" font-size="9" fill="#C0392B" font-weight="700">Result</text>
+  <!-- 구분선 -->
+  <line x1="60" y1="430" x2="283" y2="430" stroke="#F1948A" stroke-width="1"/>
+  <text x="60" y="448" font-size="11" fill="#2C3E50">맥락에 맞는 전문 에이전트 선택</text>
+  <text x="60" y="466" font-size="11" fill="#2C3E50">라우터가 요청 유형 분류 후 위임</text>
+  <text x="60" y="486" font-size="11" fill="#7F8C8D">용도: 도메인별 특화 처리</text>
+  <text x="60" y="506" font-size="10" fill="#C0392B" font-style="italic">e.g. 코드 리뷰 전문 팀 라우팅</text>
+  <text x="60" y="524" font-size="10" fill="#C0392B" font-style="italic">e.g. 언어별 번역 에이전트 선택</text>
+  <text x="60" y="542" font-size="10" fill="#7F8C8D">특징: 전문화 · 유연 · 확장 용이</text>
+
+  <!-- ================================================================ -->
+  <!-- 패턴 04: Producer-Reviewer (우중)  x=605 y=335 w=245 h=230 -->
+  <!-- ================================================================ -->
+  <rect x="605" y="335" width="245" height="230" rx="12" ry="12" fill="url(#cardOrange)" stroke="#D35400" stroke-width="2" filter="url(#shadowLight)"/>
+  <rect x="605" y="335" width="245" height="42" rx="12" ry="12" fill="url(#nodeOrange)"/>
+  <rect x="605" y="357" width="245" height="20" fill="url(#nodeOrange)"/>
+  <text x="625" y="363" font-size="11" fill="#FAD7A0">04</text>
+  <text x="727" y="363" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Producer-Reviewer</text>
+  <!-- 미니 다이어그램 -->
+  <rect x="614" y="388" width="54" height="20" rx="5" fill="url(#nodeOrange)" opacity="0.9"/>
+  <text x="641" y="402" text-anchor="middle" font-size="9" font-weight="700" fill="#FFFFFF">Producer</text>
+  <line x1="668" y1="398" x2="692" y2="398" stroke="#D35400" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <text x="680" y="394" text-anchor="middle" font-size="8" fill="#D35400">생성</text>
+  <rect x="692" y="388" width="54" height="20" rx="5" fill="#ECF0F1" stroke="#D35400" stroke-width="1.5"/>
+  <text x="719" y="402" text-anchor="middle" font-size="9" fill="#D35400" font-weight="700">Reviewer</text>
+  <!-- 수정 루프 -->
+  <path d="M 719 408 Q 719 424, 680 424 Q 641 424, 641 408" fill="none" stroke="#D35400" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrowOrange)"/>
+  <text x="680" y="421" text-anchor="middle" font-size="8" fill="#D35400">수정 요청</text>
+  <!-- PASS -->
+  <line x1="746" y1="398" x2="770" y2="398" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <rect x="770" y="388" width="44" height="20" rx="5" fill="#ECF0F1" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="792" y="402" text-anchor="middle" font-size="9" fill="#27AE60" font-weight="700">PASS</text>
+  <!-- 구분선 -->
+  <line x1="614" y1="430" x2="836" y2="430" stroke="#FAD7A0" stroke-width="1"/>
+  <text x="614" y="448" font-size="11" fill="#2C3E50">생성 → 검증 → 수정 반복 루프</text>
+  <text x="614" y="466" font-size="11" fill="#2C3E50">품질 기준 충족 시 루프 종료</text>
+  <text x="614" y="486" font-size="11" fill="#7F8C8D">용도: 품질 보증이 필요한 작업</text>
+  <text x="614" y="506" font-size="10" fill="#D35400" font-style="italic">e.g. 코드 생성 + 테스트 자동 검증</text>
+  <text x="614" y="524" font-size="10" fill="#D35400" font-style="italic">e.g. 문서 초안 + 리뷰어 검토</text>
+  <text x="614" y="542" font-size="10" fill="#7F8C8D">특징: 자가 교정 · 품질 보장</text>
+
+  <!-- ================================================================ -->
+  <!-- 패턴 05: Supervisor (좌하)  x=50 y=595 w=245 h=230 -->
+  <!-- ================================================================ -->
+  <rect x="50" y="595" width="245" height="230" rx="12" ry="12" fill="url(#cardPurple)" stroke="#8E44AD" stroke-width="2" filter="url(#shadowLight)"/>
+  <rect x="50" y="595" width="245" height="42" rx="12" ry="12" fill="url(#nodePurple)"/>
+  <rect x="50" y="617" width="245" height="20" fill="url(#nodePurple)"/>
+  <text x="70" y="623" font-size="11" fill="#D2B4DE">05</text>
+  <text x="172" y="623" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Supervisor</text>
+  <!-- 미니 다이어그램 -->
+  <rect x="60" y="650" width="66" height="20" rx="5" fill="url(#nodePurple)" opacity="0.9"/>
+  <text x="93" y="664" text-anchor="middle" font-size="9" font-weight="700" fill="#FFFFFF">Supervisor</text>
+  <line x1="126" y1="654" x2="152" y2="644" stroke="#8E44AD" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <line x1="126" y1="660" x2="152" y2="660" stroke="#8E44AD" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <line x1="126" y1="666" x2="152" y2="676" stroke="#8E44AD" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <rect x="152" y="637" width="42" height="16" rx="3" fill="url(#nodePurple)" opacity="0.78"/>
+  <text x="173" y="649" text-anchor="middle" font-size="8" fill="#FFFFFF">Worker1</text>
+  <rect x="152" y="653" width="42" height="16" rx="3" fill="url(#nodePurple)" opacity="0.78"/>
+  <text x="173" y="665" text-anchor="middle" font-size="8" fill="#FFFFFF">Worker2</text>
+  <rect x="152" y="669" width="42" height="16" rx="3" fill="url(#nodePurple)" opacity="0.78"/>
+  <text x="173" y="681" text-anchor="middle" font-size="8" fill="#FFFFFF">Worker3</text>
+  <!-- 피드백 -->
+  <line x1="194" y1="645" x2="215" y2="653" stroke="#8E44AD" stroke-width="1" stroke-dasharray="3,2" opacity="0.65" marker-end="url(#arrowPurple)"/>
+  <line x1="194" y1="661" x2="215" y2="661" stroke="#8E44AD" stroke-width="1" stroke-dasharray="3,2" opacity="0.65" marker-end="url(#arrowPurple)"/>
+  <line x1="194" y1="677" x2="215" y2="669" stroke="#8E44AD" stroke-width="1" stroke-dasharray="3,2" opacity="0.65" marker-end="url(#arrowPurple)"/>
+  <rect x="215" y="654" width="44" height="16" rx="4" fill="#ECF0F1" stroke="#8E44AD" stroke-width="1.5"/>
+  <text x="237" y="666" text-anchor="middle" font-size="8" fill="#8E44AD" font-weight="700">Result</text>
+  <!-- 구분선 -->
+  <line x1="60" y1="700" x2="283" y2="700" stroke="#D2B4DE" stroke-width="1"/>
+  <text x="60" y="718" font-size="11" fill="#2C3E50">중앙 에이전트가 전체 작업 조율</text>
+  <text x="60" y="736" font-size="11" fill="#2C3E50">상황 따라 동적 작업 분배 및 재조정</text>
+  <text x="60" y="756" font-size="11" fill="#7F8C8D">용도: 복잡한 동적 워크플로우</text>
+  <text x="60" y="776" font-size="10" fill="#8E44AD" font-style="italic">e.g. 프로젝트 매니저 + 전문 팀원</text>
+  <text x="60" y="794" font-size="10" fill="#8E44AD" font-style="italic">e.g. 오케스트레이터 패턴</text>
+  <text x="60" y="812" font-size="10" fill="#7F8C8D">특징: 중앙 집중 · 동적 적응</text>
+
+  <!-- ================================================================ -->
+  <!-- 패턴 06: Hierarchical Delegation (우하)  x=605 y=595 w=245 h=230 -->
+  <!-- ================================================================ -->
+  <rect x="605" y="595" width="245" height="230" rx="12" ry="12" fill="url(#cardTeal)" stroke="#16A085" stroke-width="2" filter="url(#shadowLight)"/>
+  <rect x="605" y="595" width="245" height="42" rx="12" ry="12" fill="url(#nodeTeal)"/>
+  <rect x="605" y="617" width="245" height="20" fill="url(#nodeTeal)"/>
+  <text x="625" y="623" font-size="11" fill="#A2D9CE">06</text>
+  <text x="727" y="623" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Hierarchical Delegation</text>
+  <!-- 미니 다이어그램: 트리 -->
+  <!-- L1 -->
+  <rect x="697" y="648" width="46" height="18" rx="4" fill="url(#nodeTeal)" opacity="0.95"/>
+  <text x="720" y="661" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">L1 Agent</text>
+  <!-- L1 → L2 -->
+  <line x1="706" y1="666" x2="678" y2="677" stroke="#16A085" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <line x1="737" y1="666" x2="753" y2="677" stroke="#16A085" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <!-- L2 -->
+  <rect x="648" y="677" width="42" height="16" rx="3" fill="url(#nodeTeal)" opacity="0.75"/>
+  <text x="669" y="689" text-anchor="middle" font-size="8" fill="#FFFFFF">L2-A</text>
+  <rect x="732" y="677" width="42" height="16" rx="3" fill="url(#nodeTeal)" opacity="0.75"/>
+  <text x="753" y="689" text-anchor="middle" font-size="8" fill="#FFFFFF">L2-B</text>
+  <!-- L2 → L3 -->
+  <line x1="655" y1="693" x2="638" y2="703" stroke="#16A085" stroke-width="1.2" marker-end="url(#arrowTeal)"/>
+  <line x1="682" y1="693" x2="699" y2="703" stroke="#16A085" stroke-width="1.2" marker-end="url(#arrowTeal)"/>
+  <line x1="739" y1="693" x2="722" y2="703" stroke="#16A085" stroke-width="1.2" marker-end="url(#arrowTeal)"/>
+  <line x1="768" y1="693" x2="784" y2="703" stroke="#16A085" stroke-width="1.2" marker-end="url(#arrowTeal)"/>
+  <!-- L3 -->
+  <rect x="617" y="703" width="34" height="14" rx="3" fill="#ECF0F1" stroke="#16A085" stroke-width="1"/>
+  <text x="634" y="714" text-anchor="middle" font-size="7" fill="#16A085">L3-1</text>
+  <rect x="681" y="703" width="34" height="14" rx="3" fill="#ECF0F1" stroke="#16A085" stroke-width="1"/>
+  <text x="698" y="714" text-anchor="middle" font-size="7" fill="#16A085">L3-2</text>
+  <rect x="705" y="703" width="34" height="14" rx="3" fill="#ECF0F1" stroke="#16A085" stroke-width="1"/>
+  <text x="722" y="714" text-anchor="middle" font-size="7" fill="#16A085">L3-3</text>
+  <rect x="767" y="703" width="34" height="14" rx="3" fill="#ECF0F1" stroke="#16A085" stroke-width="1"/>
+  <text x="784" y="714" text-anchor="middle" font-size="7" fill="#16A085">L3-4</text>
+  <!-- 구분선 -->
+  <line x1="614" y1="730" x2="836" y2="730" stroke="#A2D9CE" stroke-width="1"/>
+  <text x="614" y="748" font-size="11" fill="#2C3E50">상위 에이전트가 하위로 재귀 위임</text>
+  <text x="614" y="766" font-size="11" fill="#2C3E50">서브태스크로 분해 후 단계별 처리</text>
+  <text x="614" y="786" font-size="11" fill="#7F8C8D">용도: 복잡한 대형 작업 분해</text>
+  <text x="614" y="806" font-size="10" fill="#16A085" font-style="italic">e.g. 대규모 코드베이스 리팩토링</text>
+  <text x="614" y="824" font-size="10" fill="#16A085" font-style="italic">e.g. 멀티 서비스 마이그레이션</text>
+  <text x="614" y="842" font-size="10" fill="#7F8C8D">특징: 확장성 · 관심사 분리</text>
+
+  <!-- ================================================================ -->
+  <!-- 하단 범례 -->
+  <!-- ================================================================ -->
+  <rect x="50" y="858" width="800" height="30" rx="8" ry="8" fill="#F8F9FA" stroke="#E5E7EB" stroke-width="1"/>
+  <rect x="64" y="867" width="12" height="12" rx="2" fill="url(#nodeBlue)"/>
+  <text x="82" y="877" font-size="10" fill="#2C3E50">Pipeline</text>
+  <rect x="142" y="867" width="12" height="12" rx="2" fill="url(#nodeGreen)"/>
+  <text x="160" y="877" font-size="10" fill="#2C3E50">Fan-out/in</text>
+  <rect x="234" y="867" width="12" height="12" rx="2" fill="url(#nodeRed)"/>
+  <text x="252" y="877" font-size="10" fill="#2C3E50">Expert Pool</text>
+  <rect x="336" y="867" width="12" height="12" rx="2" fill="url(#nodeOrange)"/>
+  <text x="354" y="877" font-size="10" fill="#2C3E50">Producer-Reviewer</text>
+  <rect x="464" y="867" width="12" height="12" rx="2" fill="url(#nodePurple)"/>
+  <text x="482" y="877" font-size="10" fill="#2C3E50">Supervisor</text>
+  <rect x="558" y="867" width="12" height="12" rx="2" fill="url(#nodeTeal)"/>
+  <text x="576" y="877" font-size="10" fill="#2C3E50">Hierarchical</text>
+  <line x1="660" y1="873" x2="692" y2="873" stroke="#7F8C8D" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="700" y="877" font-size="10" fill="#7F8C8D">허브 연결선</text>
+  <circle cx="768" cy="873" r="5" fill="url(#centerGrad)"/>
+  <text x="779" y="877" font-size="10" fill="#7F8C8D">중앙 허브</text>
+</svg>

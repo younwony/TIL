@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 580" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (수제 하네스) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (범용 하네스) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 주황 (항목 라벨) -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 (제목 헤더) -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 파이프라인 배경 (연한 파랑) -->
+    <linearGradient id="pipelineBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EBF5FB"/>
+      <stop offset="100%" style="stop-color:#D6EAF8"/>
+    </linearGradient>
+    <!-- 범용 배경 (연한 초록) -->
+    <linearGradient id="genericBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EAFAF1"/>
+      <stop offset="100%" style="stop-color:#D5F5E3"/>
+    </linearGradient>
+    <!-- 드롭섀도우 -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#00000025"/>
+    </filter>
+  </defs>
+
+  <!-- ===== 배경 ===== -->
+  <rect width="820" height="580" fill="#F8F9FA" rx="10"/>
+
+  <!-- ===== 제목 ===== -->
+  <rect x="20" y="14" width="780" height="46" rx="8" fill="url(#nodePurple)" filter="url(#shadow)"/>
+  <text x="410" y="43" text-anchor="middle" fill="white" font-size="17" font-weight="bold">수제 하네스 vs 범용 하네스 (Harness 플러그인) 비교</text>
+
+  <!-- ===== 왼쪽 컬럼 헤더: 수제 하네스 ===== -->
+  <rect x="20" y="74" width="375" height="42" rx="8" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="207" y="91" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Custom Harness</text>
+  <text x="207" y="107" text-anchor="middle" fill="#D6EAF8" font-size="11">수제 하네스</text>
+
+  <!-- ===== 오른쪽 컬럼 헤더: 범용 하네스 ===== -->
+  <rect x="425" y="74" width="375" height="42" rx="8" fill="url(#nodeGreen)" filter="url(#shadow)"/>
+  <text x="612" y="91" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Generic Harness</text>
+  <text x="612" y="107" text-anchor="middle" fill="#D5F5E3" font-size="11">범용 하네스 (메타 스킬 자동 생성)</text>
+
+  <!-- ===== 항목 라벨 + 비교 행들 ===== -->
+
+  <!-- 항목1: 대상 도메인 -->
+  <rect x="20" y="128" width="780" height="38" rx="6" fill="#ECF0F1"/>
+  <rect x="20" y="128" width="780" height="38" rx="6" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="32" y="144" fill="#7F8C8D" font-size="10" font-weight="bold">대상 도메인</text>
+  <text x="32" y="158" fill="#2C3E50" font-size="11">특정 도메인 전용</text>
+  <text x="150" y="158" fill="#7F8C8D" font-size="11">(예: 소프트웨어 개발)</text>
+  <line x1="410" y1="128" x2="410" y2="166" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="432" y="144" fill="#7F8C8D" font-size="10" font-weight="bold">대상 도메인</text>
+  <text x="432" y="158" fill="#2C3E50" font-size="11">모든 도메인 대응</text>
+  <text x="536" y="158" fill="#7F8C8D" font-size="11">(리서치, 마케팅, 법률 등)</text>
+
+  <!-- 항목2: 제작 방식 -->
+  <rect x="20" y="170" width="780" height="38" rx="6" fill="white"/>
+  <rect x="20" y="170" width="780" height="38" rx="6" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="32" y="186" fill="#7F8C8D" font-size="10" font-weight="bold">제작 방식</text>
+  <text x="32" y="200" fill="#2C3E50" font-size="11">수동 제작</text>
+  <text x="96" y="200" fill="#7F8C8D" font-size="11">(CLAUDE.md + 스킬 직접 작성)</text>
+  <line x1="410" y1="170" x2="410" y2="208" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="432" y="186" fill="#7F8C8D" font-size="10" font-weight="bold">제작 방식</text>
+  <text x="432" y="200" fill="#2C3E50" font-size="11">자동 생성</text>
+  <text x="496" y="200" fill="#7F8C8D" font-size="11">(메타 스킬이 즉석 생성)</text>
+
+  <!-- 항목3: 실행 패턴 -->
+  <rect x="20" y="212" width="780" height="38" rx="6" fill="#ECF0F1"/>
+  <rect x="20" y="212" width="780" height="38" rx="6" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="32" y="228" fill="#7F8C8D" font-size="10" font-weight="bold">실행 패턴</text>
+  <text x="32" y="242" fill="#2C3E50" font-size="11">파이프라인 + 팬아웃/팬인 고정 패턴</text>
+  <line x1="410" y1="212" x2="410" y2="250" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="432" y="228" fill="#7F8C8D" font-size="10" font-weight="bold">실행 패턴</text>
+  <text x="432" y="242" fill="#2C3E50" font-size="11">6가지 패턴 중 선택 가능</text>
+
+  <!-- 항목4: 도메인 핏 / 범용성 -->
+  <rect x="20" y="254" width="780" height="38" rx="6" fill="white"/>
+  <rect x="20" y="254" width="780" height="38" rx="6" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="32" y="270" fill="#7F8C8D" font-size="10" font-weight="bold">도메인 핏 / 범용성</text>
+  <text x="32" y="284" fill="#2C3E50" font-size="11">높은 도메인 핏</text>
+  <text x="118" y="284" fill="#7F8C8D" font-size="11"> / </text>
+  <text x="128" y="284" fill="#E74C3C" font-size="11">낮은 범용성</text>
+  <line x1="410" y1="254" x2="410" y2="292" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="432" y="270" fill="#7F8C8D" font-size="10" font-weight="bold">도메인 핏 / 범용성</text>
+  <text x="432" y="284" fill="#E67E22" font-size="11">낮을 수 있음</text>
+  <text x="510" y="284" fill="#7F8C8D" font-size="11"> / </text>
+  <text x="520" y="284" fill="#2C3E50" font-size="11">높은 범용성</text>
+
+  <!-- ===== 워크플로우 예시 영역 ===== -->
+
+  <!-- 왼쪽: 수제 하네스 파이프라인 -->
+  <rect x="20" y="304" width="375" height="148" rx="8" fill="url(#pipelineBg)" filter="url(#shadow)"/>
+  <text x="207" y="322" text-anchor="middle" fill="#2980B9" font-size="11" font-weight="bold">워크플로우 예시</text>
+
+  <!-- 파이프라인 스텝들 -->
+  <rect x="50" y="332" width="110" height="30" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="105" y="352" text-anchor="middle" fill="white" font-size="10" font-weight="bold">/work-plan</text>
+
+  <text x="165" y="350" text-anchor="middle" fill="#2980B9" font-size="14" font-weight="bold">→</text>
+
+  <rect x="178" y="332" width="110" height="30" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="233" y="348" text-anchor="middle" fill="white" font-size="9" font-weight="bold">/work-plan-start</text>
+
+  <!-- 두 번째 줄 -->
+  <line x1="233" y1="362" x2="233" y2="376" stroke="#2980B9" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="207" y="388" text-anchor="middle" fill="#2980B9" font-size="12" font-weight="bold">↓</text>
+
+  <rect x="50" y="394" width="110" height="30" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="105" y="414" text-anchor="middle" fill="white" font-size="10" font-weight="bold">/self-review</text>
+
+  <text x="165" y="412" text-anchor="middle" fill="#2980B9" font-size="14" font-weight="bold">→</text>
+
+  <rect x="178" y="394" width="110" height="30" rx="6" fill="url(#nodeBlue)" filter="url(#shadow)"/>
+  <text x="233" y="414" text-anchor="middle" fill="white" font-size="10" font-weight="bold">/pr</text>
+
+  <text x="207" y="442" text-anchor="middle" fill="#7F8C8D" font-size="9">고정된 순서로 실행되는 파이프라인</text>
+
+  <!-- 오른쪽: 범용 하네스 패턴 선택 -->
+  <rect x="425" y="304" width="375" height="148" rx="8" fill="url(#genericBg)" filter="url(#shadow)"/>
+  <text x="612" y="322" text-anchor="middle" fill="#27AE60" font-size="11" font-weight="bold">워크플로우 예시</text>
+
+  <!-- 입력 트리거 -->
+  <rect x="490" y="332" width="150" height="28" rx="6" fill="url(#nodeGreen)" filter="url(#shadow)"/>
+  <text x="565" y="351" text-anchor="middle" fill="white" font-size="10" font-weight="bold">"딥리서치 팀 만들어줘"</text>
+
+  <text x="565" y="373" text-anchor="middle" fill="#27AE60" font-size="12" font-weight="bold">↓</text>
+
+  <!-- 메타 스킬 -->
+  <rect x="468" y="378" width="190" height="26" rx="6" fill="#A9DFBF"/>
+  <text x="563" y="396" text-anchor="middle" fill="#1E8449" font-size="10" font-weight="bold">메타 스킬 (harness-generator)</text>
+
+  <text x="565" y="417" text-anchor="middle" fill="#27AE60" font-size="12" font-weight="bold">↓</text>
+
+  <!-- 패턴 선택 힌트 -->
+  <text x="468" y="430" fill="#27AE60" font-size="9" font-weight="bold">6가지 패턴 중 자동 선택:</text>
+  <text x="468" y="443" fill="#2C3E50" font-size="9">Pipeline / Fan-out / Critic-loop / ...</text>
+
+  <!-- ===== 하단: 적합한 상황 ===== -->
+  <rect x="20" y="464" width="375" height="96" rx="8" fill="white" stroke="#3498DB" stroke-width="1.5"/>
+  <text x="207" y="482" text-anchor="middle" fill="#2980B9" font-size="11" font-weight="bold">적합한 상황</text>
+  <text x="36" y="500" fill="#2C3E50" font-size="10">• 반복적인 개발 워크플로우 자동화</text>
+  <text x="36" y="516" fill="#2C3E50" font-size="10">• 팀 컨벤션이 명확한 경우</text>
+  <text x="36" y="532" fill="#2C3E50" font-size="10">• 도메인 전문 지식이 깊게 반영된 파이프라인</text>
+  <text x="36" y="548" fill="#2C3E50" font-size="10">• 예측 가능한 결과가 중요한 경우</text>
+
+  <rect x="425" y="464" width="375" height="96" rx="8" fill="white" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="612" y="482" text-anchor="middle" fill="#27AE60" font-size="11" font-weight="bold">적합한 상황</text>
+  <text x="441" y="500" fill="#2C3E50" font-size="10">• 다양한 도메인에 즉시 적용이 필요한 경우</text>
+  <text x="441" y="516" fill="#2C3E50" font-size="10">• 실험적 워크플로우 빠른 프로토타이핑</text>
+  <text x="441" y="532" fill="#2C3E50" font-size="10">• 에이전트 패턴을 학습하는 단계</text>
+  <text x="441" y="548" fill="#2C3E50" font-size="10">• 특정 도메인 경험이 없는 경우</text>
+
+  <!-- ===== 구분선 (가운데) ===== -->
+  <line x1="410" y1="68" x2="410" y2="456" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="410" cy="68" r="4" fill="#BDC3C7"/>
+  <circle cx="410" cy="456" r="4" fill="#BDC3C7"/>
+
+  <!-- ===== 범례 ===== -->
+  <rect x="20" y="564" width="780" height="1" fill="#BDC3C7"/>
+  <rect x="20" y="567" width="12" height="10" rx="2" fill="url(#nodeBlue)"/>
+  <text x="36" y="577" fill="#7F8C8D" font-size="9">수제 하네스 (Custom)</text>
+  <rect x="180" y="567" width="12" height="10" rx="2" fill="url(#nodeGreen)"/>
+  <text x="196" y="577" fill="#7F8C8D" font-size="9">범용 하네스 (Generic)</text>
+  <text x="380" y="577" fill="#7F8C8D" font-size="9">→ 파이프라인 흐름</text>
+  <text x="520" y="577" fill="#7F8C8D" font-size="9">↓ 자동 생성 흐름</text>
+</svg>
