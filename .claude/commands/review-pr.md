@@ -1,6 +1,6 @@
 ---
 description: 특정 PR에 대해 4명의 전문 리뷰어 에이전트 팀 + Gemini/Codex 크로스 리뷰를 병렬 수행합니다.
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Read, Write, Glob, Grep, Task
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Bash(test:*), Bash(node:*), Read, Write, Glob, Grep, Task, Skill(codex:*)
 ---
 
 # PR 팀 코드 리뷰

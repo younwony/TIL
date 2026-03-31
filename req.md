@@ -1,7 +1,4 @@
-# 스킬 생성 가이드
+# 검증 테스트
 
-참고 문헌
-- https://news.hada.io/topic?id=26328
-- https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf
-
-이를 기반으로 스킬 생성 가이드 문서화하여 작성하고자함.
+- 테스트 파일 하나 생성1
+  - 간단하게 codex 가 cli 가 plugin 을 사용하는지 체크하기 위함

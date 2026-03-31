@@ -1,6 +1,6 @@
 ---
 description: PR 생성 전 현재 브랜치의 변경사항을 4명의 전문 리뷰어 에이전트 팀 + Gemini/Codex 크로스 리뷰로 자체 리뷰하고 SELF-REVIEW.md를 생성합니다.
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Read, Write, Glob, Grep, Task
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Bash(test:*), Bash(node:*), Read, Write, Glob, Grep, Task, Skill(codex:*)
 ---
 
 # 셀프 팀 코드 리뷰
