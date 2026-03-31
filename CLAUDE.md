@@ -292,6 +292,39 @@ Phase 3: 검증 + 문서화 (병렬)
 - 단순 작업 (파일 1~2개 수정)은 Main 단독 처리
 - 에이전트 디스패치 여부는 작업 복잡도에 따라 자체 판단
 
+## Codex Plugin 협업
+
+Codex CLI를 Claude Code 내에서 네이티브 슬래시 커맨드로 사용할 수 있는 플러그인이다.
+기존 Bash CLI 방식보다 우선 사용하며, Plugin 미설치 시 Bash CLI로 fallback한다.
+
+### 설치
+
+```
+/plugin marketplace add openai/codex-plugin-cc
+/plugin install codex@openai-codex
+/reload-plugins
+/codex:setup
+```
+
+### 커맨드 매핑 (Plugin 우선, CLI fallback)
+
+| 용도 | Plugin (우선) | CLI fallback |
+|------|--------------|-------------|
+| 코드 리뷰 | `/codex:review --base main` | `codex review --base main` |
+| 적대적 리뷰 | `/codex:adversarial-review --base main` | 없음 |
+| 작업 위임 | `/codex:rescue 자연어 설명` | `codex exec -` |
+| 작업 상태 | `/codex:status` | 없음 |
+| 작업 결과 | `/codex:result` | 없음 |
+| Review Gate | `/codex:setup --enable-review-gate` | 없음 |
+
+### 적용 원칙
+
+- **Plugin 우선**: Plugin이 설치되어 있으면 항상 Plugin 방식을 사용
+- **Bash fallback**: Plugin 미설치 또는 실행 실패 시 기존 Bash CLI로 폴백
+- **리뷰 시 adversarial-review 권장**: 일반 review보다 설계 결정, 가정, 실패 모드까지 검증
+- **Review Gate 주의**: 토큰 소비가 크므로 핵심 로직 구현 시에만 선택적 활성화
+- **상세 가이드**: [Codex Plugin 문서](./cs/tool/codex-plugin-claude-code.md)
+
 ## AI 코딩 보안
 
 AI 코딩 도구 사용 시 팀 전체가 지켜야 할 보안 원칙입니다.

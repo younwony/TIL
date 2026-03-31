@@ -30,9 +30,10 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 1. `where gemini` 명령으로 Gemini CLI 설치 여부 확인
    - 설치됨: Gemini 크로스 리뷰 활성화
    - 미설치: "Gemini CLI가 설치되지 않아 Gemini 크로스 리뷰를 건너뜁니다" 안내
-2. `where codex` 명령으로 Codex CLI 설치 여부 확인
-   - 설치됨: Codex 크로스 리뷰 활성화
-   - 미설치: "Codex CLI가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
+2. Codex Plugin 설치 여부 확인 (`/codex:setup` 실행 가능 여부)
+   - Plugin 설치됨: Codex 크로스 리뷰 활성화 (Plugin 방식)
+   - Plugin 미설치, CLI 설치됨: Codex 크로스 리뷰 활성화 (Bash fallback)
+   - 둘 다 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
 
 > Gemini와 Codex 모두 비활성화된 경우: "외부 크로스 리뷰 없이 에이전트 팀 리뷰로 진행합니다" 안내
 
@@ -123,28 +124,23 @@ gh pr diff $PR_NUMBER -- {주요파일1} {주요파일2} ... | gemini -p "다음
 
 - 실행 실패 시 "Gemini 리뷰 실행에 실패했습니다." 안내 후 계속 진행
 
-### 3-3. Codex 크로스 리뷰 (Bash 도구, 선택적)
+### 3-3. Codex 크로스 리뷰 (Codex Plugin, 선택적)
 
-> 사전 확인에서 Codex CLI가 설치된 경우에만 실행.
+> 사전 확인에서 Codex Plugin이 설치된 경우에만 실행.
 
-#### 대용량 diff 처리
+#### Codex 리뷰 실행
 
-Gemini 크로스 리뷰와 동일한 기준을 적용한다.
+Codex Plugin의 적대적 리뷰를 사용하여 설계 결정, 가정, 트레이드오프까지 검증한다.
+대용량 diff도 Plugin이 자체적으로 처리하므로 별도 분기가 불필요하다.
 
-#### Codex 리뷰 실행 (**Bash timeout: 300000ms 필수**)
-
-> **참고**: Codex CLI의 `-p` 플래그는 config profile 선택 용도이므로, PR diff를 stdin으로 전달하여 `codex exec`로 실행한다.
-
-```bash
-# 일반적인 경우 (1,000줄 이하)
-(echo "다음 PR의 코드 변경사항을 코드 리뷰해줘. 코드 품질, 보안, 성능, 설계 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && gh pr diff $PR_NUMBER) | codex exec -
+```
+/codex:adversarial-review --base {baseRefName} --wait
 ```
 
-```bash
-# 대용량인 경우 (1,000줄 초과): 주요 파일 diff만 전달
-(echo "다음 PR의 코드 변경사항을 코드 리뷰해줘. 코드 품질, 보안, 성능, 설계 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && gh pr diff $PR_NUMBER -- {주요파일1} {주요파일2} ...) | codex exec -
-```
-
+- **Plugin 미설치 시 fallback** (Bash, timeout: 300000ms):
+  ```bash
+  (echo "다음 PR의 코드 변경사항을 코드 리뷰해줘. 코드 품질, 보안, 성능, 설계 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && gh pr diff $PR_NUMBER) | codex exec -
+  ```
 - 실행 실패 시 "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
 
 ## 4단계: 결과 통합 → 리뷰 결과 출력

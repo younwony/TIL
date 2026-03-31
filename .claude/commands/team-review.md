@@ -54,8 +54,11 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 에이전트 4명이 작업하는 동안:
 
 1. `where gemini`으로 Gemini CLI 설치 확인
-2. `where codex`으로 Codex CLI 설치 확인
-3. 설치된 외부 CLI로 크로스 리뷰 병렬 실행 (기존 self-review의 4~5단계와 동일)
+2. Codex Plugin 설치 여부 확인 (Plugin 우선, CLI fallback)
+3. 설치된 외부 도구로 크로스 리뷰 병렬 실행:
+   - Gemini: `git diff {COMPARE_BRANCH}...HEAD | gemini -p "..."` (기존 방식)
+   - Codex (Plugin): `/codex:adversarial-review --base {COMPARE_BRANCH} --background`
+   - Codex (fallback): `codex review --base {COMPARE_BRANCH}` (Bash, timeout: 300000ms)
 4. 미설치 시 해당 크로스 리뷰 건너뜀
 
 ### 3단계: 결과 통합 → TEAM-REVIEW.md 생성

@@ -56,7 +56,24 @@ cat << 'EOF' | gemini -p -
 한국어로 답변해주세요.
 EOF
 
-# Codex: 기술 정확성/구조/검증
+# Codex: 기술 정확성/구조/검증 (Plugin 우선)
+```
+
+**Codex Plugin 방식** (Plugin 설치 시):
+
+```
+/codex:rescue 다음 플랜을 기술적/구조적 관점에서 검토하고 개선안을 제시해줘:
+1. 데이터 무결성과 검증 전략
+2. 자동화 가능 구간 식별
+3. 단계별 의존성과 최적 실행 순서
+4. 기술적 정확성과 Trade-off
+[현재 → 문제 → 개선 제안] 형식으로 한국어 답변.
+{컨텍스트 + 현황 + 기존 플랜 요약}
+```
+
+**Plugin 미설치 시 fallback:**
+
+```bash
 cat << 'EOF' > /tmp/codex_prompt.txt
 {컨텍스트 + 현황 + 기존 플랜}
 
@@ -73,7 +90,7 @@ cat /tmp/codex_prompt.txt | codex exec - --full-auto
 ```
 
 **Gemini CLI 문법**: `cat << 'EOF' | gemini -p -` 또는 `gemini -p "프롬프트"`
-**Codex CLI 문법**: `cat file | codex exec - --full-auto` (stdin으로 전달)
+**Codex Plugin 문법**: `/codex:rescue 자연어 설명` (Plugin 우선) 또는 `cat file | codex exec - --full-auto` (fallback)
 
 ### Step 3: Claude 종합
 

@@ -124,9 +124,9 @@ where codex     # 설치 여부 확인
 
 #### 4-2. 크로스 체크 실행
 
-Gemini와 Codex는 독립적이므로 **가능한 경우 병렬 실행**한다. **Bash timeout: 300000ms 필수.**
+Gemini와 Codex는 독립적이므로 **가능한 경우 병렬 실행**한다.
 
-**Gemini:**
+**Gemini** (Bash timeout: 300000ms 필수):
 
 ```bash
 (cat {req.md 경로} && echo -e "\n---\n" && cat {WORK-SPEC.md 경로}) | gemini -p "다음은 요구사항 문서(req.md)와 이를 기반으로 생성한 작업 명세서(WORK-SPEC.md)입니다.
@@ -143,13 +143,19 @@ Gemini와 Codex는 독립적이므로 **가능한 경우 병렬 실행**한다. 
 한국어로 답변해줘."
 ```
 
-**Codex:**
+**Codex (Plugin 우선):**
+
+Codex Plugin이 설치된 경우 `/codex:rescue`로 자연어 위임한다:
+
+```
+/codex:rescue 다음 WORK-SPEC.md를 검증해줘. 요구사항 커버리지, 기술적 타당성, 누락된 고려사항, 작업 범위, 작업 순서 관점에서 이슈를 심각도와 함께 한국어로 정리해줘. --wait
+```
+
+**Plugin 미설치 시 fallback** (Bash, timeout: 300000ms):
 
 ```bash
 (echo "다음은 요구사항 문서(req.md)와 이를 기반으로 생성한 작업 명세서(WORK-SPEC.md)입니다. 요구사항 커버리지, 기술적 타당성, 누락된 고려사항, 작업 범위, 작업 순서 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && cat {req.md 경로} && echo -e "\n---\n" && cat {WORK-SPEC.md 경로}) | codex exec -
 ```
-
-> Codex CLI의 `-p` 플래그는 config profile 선택 용도이므로, stdin + `codex exec -`로 실행한다.
 
 실행 실패 시 안내 메시지만 출력하고 계속 진행한다.
 

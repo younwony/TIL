@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" font-family="Arial, sans-serif">
+  <defs>
+    <!-- 파랑 (After 노드) -->
+    <linearGradient id="nodeBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <!-- 초록 (After 특징) -->
+    <linearGradient id="nodeGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <!-- 빨강 (Before 특징) -->
+    <linearGradient id="nodeRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <!-- 회색 (Before 노드) -->
+    <linearGradient id="nodeGray" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#95A5A6"/>
+      <stop offset="100%" style="stop-color:#7F8C8D"/>
+    </linearGradient>
+    <!-- 주황 (매핑 테이블 헤더) -->
+    <linearGradient id="nodeOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <!-- 보라 (섹션 헤더) -->
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6"/>
+      <stop offset="100%" style="stop-color:#8E44AD"/>
+    </linearGradient>
+    <!-- 드롭섀도우 -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#00000033"/>
+    </filter>
+    <!-- 화살표 마커 (회색) -->
+    <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#95A5A6"/>
+    </marker>
+    <!-- 화살표 마커 (파랑) -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980B9"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1000" height="660" fill="#F8F9FA" rx="8"/>
+
+  <!-- 전체 타이틀 -->
+  <rect x="20" y="14" width="960" height="40" rx="6" fill="url(#nodePurple)" filter="url(#shadow)"/>
+  <text x="500" y="39" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Codex 워크플로우 비교: Bash CLI vs Plugin 방식</text>
+
+  <!-- ===== 왼쪽 패널: Before (Bash CLI) ===== -->
+  <rect x="20" y="64" width="460" height="410" rx="8" fill="white" stroke="#BDC3C7" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Before 헤더 -->
+  <rect x="20" y="64" width="460" height="44" rx="8" fill="url(#nodeGray)"/>
+  <rect x="20" y="90" width="460" height="18" fill="url(#nodeGray)"/>
+  <text x="250" y="91" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Before - Bash CLI 방식</text>
+  <text x="250" y="106" text-anchor="middle" font-size="11" fill="#ECF0F1">codex review --base main</text>
+
+  <!-- Before 단계 박스들 -->
+  <!-- 단계 1 -->
+  <rect x="60" y="122" width="380" height="40" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="110" y="138" font-size="11" fill="#2C3E50" font-weight="bold">1</text>
+  <circle cx="100" cy="136" r="12" fill="url(#nodeGray)"/>
+  <text x="100" y="140" text-anchor="middle" font-size="11" fill="white" font-weight="bold">1</text>
+  <text x="125" y="136" font-size="11" fill="#2C3E50">Claude Code에서</text>
+  <text x="125" y="150" font-size="11" fill="#2C3E50">Bash 도구 호출</text>
+
+  <!-- 화살표 -->
+  <line x1="250" y1="162" x2="250" y2="176" stroke="#95A5A6" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- 단계 2 -->
+  <rect x="60" y="178" width="380" height="40" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <circle cx="100" cy="198" r="12" fill="url(#nodeGray)"/>
+  <text x="100" y="202" text-anchor="middle" font-size="11" fill="white" font-weight="bold">2</text>
+  <text x="125" y="194" font-size="11" fill="#2C3E50">터미널에서 실행:</text>
+  <text x="125" y="208" font-size="11" fill="#7F8C8D" font-family="Courier New, monospace">codex review --base main</text>
+
+  <line x1="250" y1="218" x2="250" y2="232" stroke="#95A5A6" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- 단계 3 -->
+  <rect x="60" y="234" width="380" height="40" rx="6" fill="#FADBD8" stroke="#E74C3C" stroke-width="1"/>
+  <circle cx="100" cy="254" r="12" fill="url(#nodeRed)"/>
+  <text x="100" y="258" text-anchor="middle" font-size="11" fill="white" font-weight="bold">3</text>
+  <text x="125" y="250" font-size="11" fill="#C0392B" font-weight="bold">300초 타임아웃 제한</text>
+  <text x="125" y="264" font-size="11" fill="#C0392B">장시간 리뷰 시 강제 종료</text>
+
+  <line x1="250" y1="274" x2="250" y2="288" stroke="#95A5A6" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- 단계 4 -->
+  <rect x="60" y="290" width="380" height="40" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <circle cx="100" cy="310" r="12" fill="url(#nodeGray)"/>
+  <text x="100" y="314" text-anchor="middle" font-size="11" fill="white" font-weight="bold">4</text>
+  <text x="125" y="306" font-size="11" fill="#2C3E50">결과를 텍스트로 수신</text>
+  <text x="125" y="320" font-size="11" fill="#7F8C8D">(구조화되지 않은 출력)</text>
+
+  <line x1="250" y1="330" x2="250" y2="344" stroke="#95A5A6" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- 단계 5 -->
+  <rect x="60" y="346" width="380" height="40" rx="6" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="1"/>
+  <circle cx="100" cy="366" r="12" fill="url(#nodeGray)"/>
+  <text x="100" y="370" text-anchor="middle" font-size="11" fill="white" font-weight="bold">5</text>
+  <text x="125" y="362" font-size="11" fill="#2C3E50">Claude가 수동으로 파싱 / 통합</text>
+  <text x="125" y="376" font-size="11" fill="#7F8C8D">(추가 처리 필요)</text>
+
+  <!-- Before 특징 -->
+  <rect x="36" y="400" width="428" height="64" rx="6" fill="#FADBD8" stroke="#E74C3C" stroke-width="1"/>
+  <text x="56" y="418" font-size="11" fill="#C0392B">X  백그라운드 실행 불가 (동기 대기)</text>
+  <text x="56" y="433" font-size="11" fill="#C0392B">X  작업 상태 추적 불가</text>
+  <text x="280" y="418" font-size="11" fill="#C0392B">X  적대적 리뷰 불가</text>
+  <text x="280" y="433" font-size="11" fill="#C0392B">X  Review Gate 불가</text>
+  <text x="56" y="452" font-size="11" fill="#C0392B">X  작업 재개 불가</text>
+
+  <!-- ===== 오른쪽 패널: After (Plugin) ===== -->
+  <rect x="520" y="64" width="460" height="410" rx="8" fill="white" stroke="#2980B9" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- After 헤더 -->
+  <rect x="520" y="64" width="460" height="44" rx="8" fill="url(#nodeBlue)"/>
+  <rect x="520" y="90" width="460" height="18" fill="url(#nodeBlue)"/>
+  <text x="750" y="91" text-anchor="middle" font-size="14" font-weight="bold" fill="white">After - Plugin 방식</text>
+  <text x="750" y="106" text-anchor="middle" font-size="11" fill="#ECF0F1">/codex:review  /codex:adversarial-review</text>
+
+  <!-- After 단계 박스들 -->
+  <!-- 단계 1 -->
+  <rect x="560" y="122" width="380" height="40" rx="6" fill="#EBF5FB" stroke="#3498DB" stroke-width="1"/>
+  <circle cx="600" cy="142" r="12" fill="url(#nodeBlue)"/>
+  <text x="600" y="146" text-anchor="middle" font-size="11" fill="white" font-weight="bold">1</text>
+  <text x="625" y="138" font-size="11" fill="#2C3E50">Claude Code에서 명령 실행:</text>
+  <text x="625" y="152" font-size="11" fill="#7F8C8D" font-family="Courier New, monospace">/codex:review  또는  /codex:adversarial-review</text>
+
+  <line x1="750" y1="162" x2="750" y2="176" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 단계 2 -->
+  <rect x="560" y="178" width="380" height="40" rx="6" fill="#EBF5FB" stroke="#3498DB" stroke-width="1"/>
+  <circle cx="600" cy="198" r="12" fill="url(#nodeBlue)"/>
+  <text x="600" y="202" text-anchor="middle" font-size="11" fill="white" font-weight="bold">2</text>
+  <text x="625" y="194" font-size="11" fill="#2C3E50">Plugin이 Codex App Server에</text>
+  <text x="625" y="208" font-size="11" fill="#2C3E50">비동기 요청 전송</text>
+
+  <line x1="750" y1="218" x2="750" y2="232" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 단계 3 -->
+  <rect x="560" y="234" width="380" height="40" rx="6" fill="#D5F5E3" stroke="#2ECC71" stroke-width="1"/>
+  <circle cx="600" cy="254" r="12" fill="url(#nodeGreen)"/>
+  <text x="600" y="258" text-anchor="middle" font-size="11" fill="white" font-weight="bold">3</text>
+  <text x="625" y="250" font-size="11" fill="#1A5276" font-weight="bold">--background 옵션으로</text>
+  <text x="625" y="264" font-size="11" fill="#1A5276">백그라운드 비동기 실행</text>
+
+  <line x1="750" y1="274" x2="750" y2="288" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 단계 4 -->
+  <rect x="560" y="290" width="380" height="40" rx="6" fill="#EBF5FB" stroke="#3498DB" stroke-width="1"/>
+  <circle cx="600" cy="310" r="12" fill="url(#nodeBlue)"/>
+  <text x="600" y="314" text-anchor="middle" font-size="11" fill="white" font-weight="bold">4</text>
+  <text x="625" y="306" font-size="11" fill="#2C3E50">진행 상태 확인 (언제든지 가능):</text>
+  <text x="625" y="320" font-size="11" fill="#7F8C8D" font-family="Courier New, monospace">/codex:status</text>
+
+  <line x1="750" y1="330" x2="750" y2="344" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- 단계 5 -->
+  <rect x="560" y="346" width="380" height="40" rx="6" fill="#D5F5E3" stroke="#2ECC71" stroke-width="1"/>
+  <circle cx="600" cy="366" r="12" fill="url(#nodeGreen)"/>
+  <text x="600" y="370" text-anchor="middle" font-size="11" fill="white" font-weight="bold">5</text>
+  <text x="625" y="362" font-size="11" fill="#1A5276" font-weight="bold">구조화된 결과 수신:</text>
+  <text x="625" y="376" font-size="11" fill="#7F8C8D" font-family="Courier New, monospace">/codex:result</text>
+
+  <!-- After 특징 -->
+  <rect x="536" y="400" width="428" height="64" rx="6" fill="#D5F5E3" stroke="#2ECC71" stroke-width="1"/>
+  <text x="556" y="418" font-size="11" fill="#1A5276">O  백그라운드 비동기 실행</text>
+  <text x="556" y="433" font-size="11" fill="#1A5276">O  작업 상태 추적 (/codex:status)</text>
+  <text x="556" y="448" font-size="11" fill="#1A5276">O  작업 재개 (--resume)</text>
+  <text x="760" y="418" font-size="11" fill="#1A5276">O  적대적 리뷰 지원</text>
+  <text x="760" y="433" font-size="11" fill="#1A5276">O  Review Gate (자동 리뷰 훅)</text>
+  <text x="760" y="448" font-size="11" fill="#1A5276">O  구조화된 JSON 결과</text>
+
+  <!-- ===== 중앙 구분선 + 화살표 ===== -->
+  <line x1="490" y1="130" x2="510" y2="130" stroke="#E67E22" stroke-width="2.5"/>
+  <line x1="490" y1="200" x2="510" y2="200" stroke="#E67E22" stroke-width="2.5"/>
+  <line x1="490" y1="270" x2="510" y2="270" stroke="#E67E22" stroke-width="2.5"/>
+  <line x1="490" y1="340" x2="510" y2="340" stroke="#E67E22" stroke-width="2.5"/>
+  <line x1="490" y1="410" x2="510" y2="410" stroke="#E67E22" stroke-width="2.5"/>
+
+  <!-- 중앙 개선 화살표 -->
+  <rect x="464" y="225" width="72" height="30" rx="14" fill="url(#nodeOrange)" filter="url(#shadow)"/>
+  <text x="500" y="244" text-anchor="middle" font-size="12" font-weight="bold" fill="white">개선</text>
+  <polygon points="516,240 530,240 523,248" fill="#E67E22"/>
+  <line x1="470" y1="240" x2="516" y2="240" stroke="#E67E22" stroke-width="0"/>
+
+  <!-- ===== 하단 매핑 테이블 ===== -->
+  <rect x="20" y="485" width="960" height="158" rx="8" fill="white" stroke="#BDC3C7" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- 테이블 헤더 -->
+  <rect x="20" y="485" width="960" height="34" rx="8" fill="url(#nodeOrange)"/>
+  <rect x="20" y="503" width="960" height="16" fill="url(#nodeOrange)"/>
+  <text x="500" y="507" text-anchor="middle" font-size="13" font-weight="bold" fill="white">워크플로우 적용 매핑</text>
+
+  <!-- 컬럼 헤더 -->
+  <rect x="20" y="519" width="960" height="26" fill="#FDEBD0"/>
+  <line x1="260" y1="519" x2="260" y2="643" stroke="#D5D8DC" stroke-width="1"/>
+  <line x1="620" y1="519" x2="620" y2="643" stroke="#D5D8DC" stroke-width="1"/>
+  <text x="140" y="536" text-anchor="middle" font-size="11" font-weight="bold" fill="#2C3E50">워크플로우</text>
+  <text x="440" y="536" text-anchor="middle" font-size="11" font-weight="bold" fill="#7F8C8D">Before (Bash CLI)</text>
+  <text x="790" y="536" text-anchor="middle" font-size="11" font-weight="bold" fill="#2980B9">After (Plugin)</text>
+
+  <!-- 행 1 -->
+  <rect x="20" y="545" width="960" height="28" fill="#FDFEFE"/>
+  <text x="140" y="563" text-anchor="middle" font-size="11" fill="#2C3E50" font-weight="bold">self-review</text>
+  <text x="440" y="560" text-anchor="middle" font-size="10" fill="#7F8C8D" font-family="Courier New, monospace">codex review --base main</text>
+  <text x="440" y="572" text-anchor="middle" font-size="10" fill="#E74C3C">(타임아웃 위험)</text>
+  <text x="790" y="560" text-anchor="middle" font-size="10" fill="#2980B9" font-family="Courier New, monospace">/codex:adversarial-review --base main</text>
+  <text x="790" y="572" text-anchor="middle" font-size="10" fill="#27AE60">(비동기 + 적대적 리뷰)</text>
+
+  <!-- 행 2 -->
+  <rect x="20" y="573" width="960" height="28" fill="#F2F3F4"/>
+  <text x="140" y="591" text-anchor="middle" font-size="11" fill="#2C3E50" font-weight="bold">3ai-plan</text>
+  <text x="440" y="588" text-anchor="middle" font-size="10" fill="#7F8C8D" font-family="Courier New, monospace">codex exec [태스크]</text>
+  <text x="440" y="600" text-anchor="middle" font-size="10" fill="#E74C3C">(블로킹 실행)</text>
+  <text x="790" y="588" text-anchor="middle" font-size="10" fill="#2980B9" font-family="Courier New, monospace">/codex:rescue</text>
+  <text x="790" y="600" text-anchor="middle" font-size="10" fill="#27AE60">(비동기 + 상태 추적)</text>
+
+  <!-- 행 3 -->
+  <rect x="20" y="601" width="960" height="28" fill="#FDFEFE"/>
+  <text x="140" y="619" text-anchor="middle" font-size="11" fill="#2C3E50" font-weight="bold">work-plan-start</text>
+  <text x="440" y="614" text-anchor="middle" font-size="10" fill="#7F8C8D">없음</text>
+  <text x="440" y="626" text-anchor="middle" font-size="10" fill="#E74C3C">(자동 리뷰 불가)</text>
+  <text x="790" y="614" text-anchor="middle" font-size="10" fill="#2980B9" font-family="Courier New, monospace">Review Gate (선택적 자동 훅)</text>
+  <text x="790" y="626" text-anchor="middle" font-size="10" fill="#27AE60">(구현 완료 시 자동 리뷰 트리거)</text>
+
+  <!-- 행 하단 경계 -->
+  <rect x="20" y="629" width="960" height="14" rx="0" fill="#FDFEFE"/>
+  <rect x="20" y="629" width="960" height="14" rx="0" fill="none" stroke="none"/>
+  <text x="500" y="641" text-anchor="middle" font-size="9" fill="#95A5A6">* Review Gate: work-plan-start 완료 후 자동으로 /codex:review 또는 /codex:adversarial-review 를 트리거하는 훅</text>
+
+  <!-- ===== 범례 ===== -->
+  <rect x="20" y="488" width="200" height="0" rx="4" fill="none"/>
+
+  <!-- 하단 테두리 닫기 -->
+  <rect x="20" y="635" width="960" height="8" rx="0" fill="white"/>
+  <rect x="20" y="635" width="960" height="8" rx="0" fill="none" stroke="#BDC3C7" stroke-width="0"/>
+
+</svg>
