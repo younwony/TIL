@@ -311,7 +311,7 @@ Codex CLI를 Claude Code 내에서 네이티브 슬래시 커맨드로 사용할
 | 용도 | Plugin (우선) | CLI fallback |
 |------|--------------|-------------|
 | 코드 리뷰 | `/codex:review --base main` | `codex review --base main` |
-| 적대적 리뷰 | `/codex:adversarial-review --base main` | 없음 |
+| 적대적 리뷰 | `/codex:review --base main` | 없음 |
 | 작업 위임 | `/codex:rescue 자연어 설명` | `codex exec -` |
 | 작업 상태 | `/codex:status` | 없음 |
 | 작업 결과 | `/codex:result` | 없음 |

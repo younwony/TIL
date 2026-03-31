@@ -30,10 +30,10 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 1. `where gemini` 명령으로 Gemini CLI 설치 여부 확인
    - 설치됨: Gemini 크로스 리뷰 활성화
    - 미설치: "Gemini CLI가 설치되지 않아 Gemini 크로스 리뷰를 건너뜁니다" 안내
-2. Codex Plugin 설치 여부 확인 (`/codex:setup` 실행 가능 여부)
-   - Plugin 설치됨: Codex 크로스 리뷰 활성화 (Plugin 방식)
-   - Plugin 미설치, CLI 설치됨: Codex 크로스 리뷰 활성화 (Bash fallback)
-   - 둘 다 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
+2. Codex 설치 여부 확인 (Plugin 우선, CLI fallback):
+   1. `test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs"` → Plugin 설치됨: `/codex:review` 사용
+   2. Plugin 미설치 시 `where codex` → CLI 설치됨: `codex exec -` fallback 사용
+   3. 둘 다 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
 
 > Gemini와 Codex 모두 비활성화된 경우: "외부 크로스 리뷰 없이 에이전트 팀 리뷰로 진행합니다" 안내
 
@@ -130,18 +130,31 @@ gh pr diff $PR_NUMBER -- {주요파일1} {주요파일2} ... | gemini -p "다음
 
 #### Codex 리뷰 실행
 
-Codex Plugin의 적대적 리뷰를 사용하여 설계 결정, 가정, 트레이드오프까지 검증한다.
-대용량 diff도 Plugin이 자체적으로 처리하므로 별도 분기가 불필요하다.
+Codex Plugin의 리뷰를 사용한다. 대용량 diff도 Plugin이 자체적으로 처리하므로 별도 분기가 불필요하다.
 
-```
-/codex:adversarial-review --base {baseRefName} --wait
-```
-
-- **Plugin 미설치 시 fallback** (Bash, timeout: 300000ms):
-  ```bash
-  (echo "다음 PR의 코드 변경사항을 코드 리뷰해줘. 코드 품질, 보안, 성능, 설계 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && gh pr diff $PR_NUMBER) | codex exec -
+**실행 모드 선택** (2단계에서 수집한 additions + deletions 기준):
+- 변경 1,000줄 이하: foreground 실행
   ```
-- 실행 실패 시 "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
+  /codex:review --base {baseRefName} --wait
+  ```
+- 변경 1,000줄 초과: background 실행 (타임아웃 방지)
+  ```
+  /codex:review --base {baseRefName} --background
+  ```
+  → 결과 통합 시점에 `/codex:result`로 수집
+
+**실패 시 재시도:**
+1. 1차 실패 → `--resume`으로 재시도 (이전 컨텍스트 유지)
+   ```
+   /codex:rescue --resume 이전 리뷰를 이어서 완료해줘 --wait
+   ```
+2. 2차 실패 → CLI fallback (Bash, timeout: 300000ms):
+   ```bash
+   (echo "다음 PR의 코드 변경사항을 코드 리뷰해줘. 코드 품질, 보안, 성능, 설계 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && gh pr diff $PR_NUMBER) | codex exec -
+   ```
+3. 3차 실패 → "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
+
+- **Plugin 미설치 시**: CLI fallback 직행
 
 ## 4단계: 결과 통합 → 리뷰 결과 출력
 
