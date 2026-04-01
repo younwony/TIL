@@ -246,51 +246,94 @@ Claude가 작업 유형에 따라 자동으로 위임하거나, 명시적으로 
 
 > 가이드: [AGENT-GUIDE.md](./AGENT-GUIDE.md)
 
-### 팀 에이전트 워크플로우
+### 일반 요청 병렬 에이전트 디스패치
 
-`/work-plan-start` 실행 시 아래 Phase별로 에이전트를 병렬 디스패치하여 작업한다.
+WORK-SPEC.md 없이도, 아래 패턴의 요청 시 에이전트를 병렬 디스패치한다.
 
-#### Phase 구성
+#### 구현 요청 ("구현해줘", "작업해줘", "추가해줘", "변경해줘")
 
+변경 파일 3개 이상 예상 시:
 ```
-Phase 1: 탐색 + 설계 (병렬, 결과 대기)
-├─ [Explore]  코드베이스 구조 파악, 영향 범위 분석
-└─ [Plan]     구현 전략 설계, 파일별 변경 계획
-
-Phase 2: 구현 + 테스트 (병렬)
-├─ [Main]            핵심 코드 수정 (Phase 1 결과 기반)
-└─ [test-generator]  테스트 자동 생성 (background, Phase 1 결과 기반)
-
-Phase 3: 검증 + 문서화 (병렬)
-├─ [code-refactor]   코드 품질 리뷰 (background)
-└─ [Main]            ARCHITECTURE.md, SPEC.md 작성
+[Main]            코드 구현 (foreground)
+[test-generator]  테스트 자동 생성 (background, Main 구현 시작 후 디스패치)
 ```
 
-#### 디스패치 규칙
+#### 리팩토링 요청 ("리팩토링해줘", "정리해줘", "코드 개선")
 
-- **Phase 1**은 foreground 실행 (결과가 Phase 2의 입력)
-- **Phase 2**의 test-generator는 background 실행 (Main과 병렬)
-- **Phase 3**의 code-refactor는 background 실행
-- Phase 간 의존성이 있으므로 Phase 순서는 반드시 순차 실행
-- 각 Phase 내 에이전트는 최대한 병렬 실행
-- 에이전트 실패 시 Main이 해당 작업을 직접 수행
+```
+[code-refactor]   CLAUDE.md 규칙 기반 분석 → 개선안 도출 (foreground)
+[Main]            분석 결과 기반 수정 적용
+```
 
-#### 에이전트별 입력
+#### 버그 수정 요청 ("버그 수정", "에러 수정", "안돼", "동작 안함")
 
-| Phase | 에이전트 | 입력 |
-|-------|----------|------|
-| 1 | Explore | WORK-SPEC.md의 변경 대상 파일 목록 + 키워드 |
-| 1 | Plan | WORK-SPEC.md 전체 내용 |
-| 2 | Main | Phase 1 Explore/Plan 결과 |
-| 2 | test-generator | Phase 1 Plan 결과 + 변경된 소스 파일 경로 |
-| 3 | code-refactor | Phase 2에서 변경된 파일 목록 |
-| 3 | Main | Phase 2 완료된 코드 기반 |
+```
+[debugger]        스택 트레이스/로그 분석 (foreground, 결과 대기)
+[Main]            분석 결과 기반 수정
+[test-generator]  수정 후 회귀 테스트 생성 (background)
+```
 
 #### 적용 조건
 
+- **파일 1~2개 수정**: Main 단독 (에이전트 오버헤드 > 이득)
+- **파일 3개+**: 위 패턴 적용
+- **단순 삭제/이름 변경**: Main 단독 (Grep/Edit으로 즉시 처리)
+
+### 에이전트 에러 처리 (Withhold-then-Recover)
+
+에이전트 실패 시 **즉시 에러를 전파하지 않고, 보류(withhold) 후 자동 복구를 시도**한다.
+
+| 시도 | 행동 |
+|------|------|
+| 1차 실패 | 에러 메시지를 분석하여 에이전트에게 수정 지시 (SendMessage) |
+| 2차 실패 | 다른 접근 방식으로 재시도 |
+| 3차 실패 | Main이 해당 작업을 직접 수행 |
+
+- 컴파일 에러, 테스트 실패 등 **수정 가능한 에러**는 에이전트에게 재시도 기회를 준다
+- 네트워크 에러, 권한 에러 등 **환경 문제**는 즉시 Main으로 전환
+- 에이전트가 3회 실패 후에도 해결 못하면 사용자에게 보고
+
+### 팀 에이전트 워크플로우
+
+`/work-plan-start` 실행 시 변경 파일 수에 따라 실행 모드를 선택한다.
+
+#### 모드 선택
+
+| 예상 변경 파일 수 | 모드 | Main 역할 |
+|------------------|------|----------|
+| 1~2개 | **Solo** | Main 단독 처리. 에이전트 오버헤드 불필요 |
+| 3~4개 | **Standard** | Main이 조율 + 구현 + 문서화 |
+| 5개+ | **Coordinator** | Main은 순수 조율자. 구현을 워커에 위임 |
+
+> 각 모드의 상세 Phase 구성, 에이전트별 입력, 워커 분배 규칙은 `work-plan-start` 스킬(SKILL.md) 참조.
+
+#### 공통 디스패치 규칙
+
+- Phase 간 의존성이 있으므로 Phase 순서는 반드시 순차 실행
+- 각 Phase 내 에이전트는 최대한 병렬 실행
 - WORK-SPEC.md가 존재할 때만 팀 워크플로우 적용
-- 단순 작업 (파일 1~2개 수정)은 Main 단독 처리
-- 에이전트 디스패치 여부는 작업 복잡도에 따라 자체 판단
+
+### 외부 도구 에러 타입 판별
+
+Codex, Gemini, MCP 등 외부 도구 실패 시 에러 유형에 따라 다르게 처리한다.
+
+| 에러 유형 | 판별 기준 | 처리 방법 |
+|----------|----------|----------|
+| **네트워크 에러** | timeout, connection refused, ECONNRESET | 5초 대기 후 1회 재시도 → 실패 시 스킵 |
+| **인증 에러** | 401, 403, unauthorized, forbidden | 재시도 없이 즉시 사용자에게 안내 ("API 토큰 확인 필요") |
+| **타임아웃** | 120초+ 무응답 | 대기 시간을 늘려 1회 재시도 (timeout: 180000ms) |
+| **Rate Limit** | 429, rate limit, too many requests | 30초 대기 후 재시도 |
+| **모델/서비스 에러** | 500, 502, 503, internal server error | 1회 재시도 → 실패 시 대체 도구로 전환 (Codex↔Gemini) |
+| **입력 에러** | 400, invalid input, schema validation | 입력을 수정하여 재시도 (프롬프트 축소, 형식 변경) |
+
+- `CODEX_FAIL`, `GEMINI_FAIL` 같은 단순 문자열 대신 위 분류에 따라 분기
+- Codex/Gemini 둘 다 실패 시 "외부 크로스 체크 없이 Claude 단독으로 진행합니다" 안내
+
+### 리뷰 에이전트 컨텍스트 최적화
+
+리뷰 에이전트 4명이 동일한 diff를 반복 탐색하지 않도록, Main이 요약 컨텍스트를 한 번 생성하여 전달한다.
+
+> 상세 절차는 각 커맨드(`self-review.md`, `review-pr.md`, `team-review.md`)의 2단계 참조.
 
 ## Codex Plugin 협업
 
@@ -325,6 +368,59 @@ Codex CLI를 Claude Code 내에서 네이티브 슬래시 커맨드로 사용할
 - **Review Gate 주의**: 토큰 소비가 크므로 핵심 로직 구현 시에만 선택적 활성화
 - **상세 가이드**: [Codex Plugin 문서](./cs/tool/codex-plugin-claude-code.md)
 
+## PR 설정
+
+각 프로젝트의 CLAUDE.md에서 PR base branch를 설정할 수 있습니다.
+
+```
+PR_BASE_BRANCH: main-review
+```
+
+설정이 없으면 기본값 `main`을 사용합니다.
+
+### 리뷰어 제외 목록
+
+리뷰어 랜덤 선정 시 아래 계정은 항상 후보에서 제외합니다.
+
+```
+PR_REVIEWER_EXCLUDE: temcolabs, happyfridaycode
+```
+
+## Confluence 설정
+
+작업 로그를 Confluence에 업로드할 때 사용하는 설정입니다.
+
+| 항목 | 값 |
+|------|------|
+| **사이트 URL** | `https://temcolabs.atlassian.net` |
+| **이메일** | `wonhee.youn@temco.io` |
+| **개인 스페이스 키** | `~645023757` |
+| **개인 스페이스 ID** | `1983741954` |
+| **홈페이지 ID** | `1983742135` |
+| **API 인증** | Basic Auth (이메일 + API 토큰) |
+
+- API 토큰은 환경변수 `ATLASSIAN_API_TOKEN`으로 관리하거나 MCP 설정에서 참조
+- Confluence REST API v2 엔드포인트: `{사이트URL}/wiki/api/v2/`
+
+### Atlassian API 우선순위
+
+**curl REST API를 기본으로 사용**한다. MCP는 실패율이 높아 폴백으로만 사용한다.
+
+| 우선순위 | 방법 | 사용 조건 |
+|---------|------|----------|
+| **1순위** | `curl` REST API (Basic Auth) | `ATLASSIAN_API_TOKEN` 환경변수 존재 시 항상 |
+| **2순위 (폴백)** | `mcp__atlassian__*` MCP 도구 | curl 실패 시 또는 MCP 전용 기능 필요 시 |
+
+```bash
+# curl 기본 사용 패턴
+curl -s -u "wonhee.youn@temco.io:$ATLASSIAN_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  "https://temcolabs.atlassian.net/wiki/api/v2/pages"
+```
+
+- MCP 먼저 시도하지 않는다. 바로 curl로 요청한다.
+- curl 실패 시에만 MCP 폴백을 시도한다.
+
 ## AI 코딩 보안
 
 AI 코딩 도구 사용 시 팀 전체가 지켜야 할 보안 원칙입니다.
@@ -349,6 +445,39 @@ AI 코딩 도구 사용 시 팀 전체가 지켜야 할 보안 원칙입니다.
 - **허용**: `SELECT`, `SHOW`, `DESCRIBE`, `DESC`, `EXPLAIN`
 - **차단**: `DELETE`, `UPDATE`, `INSERT`, `DROP`, `ALTER`, `TRUNCATE`, `CREATE`, `GRANT`, `REVOKE`, `LOAD DATA`, `CALL` 등
 - `/work-plan` 실행 시 Spring Boot/Batch 프로젝트에서 DB 스키마를 자동 조회할 때 적용
+
+## 세션 & 컨텍스트 관리
+
+- **한 세션 = 한 피처**: 하나의 대화에서 하나의 기능/작업만 완료
+- **에러는 원본 그대로**: 에러 로그/스택 트레이스는 가공 없이 전문 기반 분석
+- **가정 변경 알림**: 기술 스택이나 아키텍처 가정이 변경될 때 사용자에게 먼저 확인
+- **/compact 타이밍**: 응답이 느려지면 `/compact` 실행, 85% 초과 시 `/clear`
+- **스크립트 오프로드**: 대량 파일 변환, 포맷팅 등 반복 작업은 셸 스크립트로 분리
+- **세션 시작 시**: MEMORY.md, TODO.md, HANDOFF.md가 있으면 읽고 맥락 파악 후 시작
+
+### 메모리 에이징
+
+- MEMORY.md, HANDOFF.md, TODO.md 등 메모리 파일을 읽을 때, 파일의 수정 시각(mtime)을 확인
+- **2일 이상 경과**된 파일의 정보는 "이 정보는 N일 전 것" 으로 인지하고 현재 사실과 다를 수 있음을 고려
+- 특히 **파일:줄 번호 인용**, **브랜치 상태**, **작업 진행률** 등은 반드시 현재 코드/git 상태와 대조 후 사용
+- ISO 날짜보다 "N일 전" 형태로 경과 시간을 인지하면 staleness 판단이 더 정확함
+
+### 커맨드 사전 조건
+
+아래 커맨드는 해당 조건이 충족될 때만 사용한다. 조건이 안 맞으면 사용자에게 안내하고 실행하지 않는다.
+
+| 커맨드 그룹 | 사전 조건 | 해당 커맨드 |
+|------------|----------|------------|
+| Slack 연동 | Slack MCP 연결 필요 | `slack-to-jira`, `slack-to-confluence`, `slack-digest`, `slack-remind`, `standup-summary`, `meeting-notes`, `sprint-start-notify` |
+| Jira 연동 | Jira MCP 연결 필요 | `jira-report`, `jira-notify` |
+| Confluence 연동 | `ATLASSIAN_API_TOKEN` 환경변수 필요 | `work-log`, `work-share`, `slack-to-confluence`, `meeting-notes` |
+| Figma 연동 | Figma MCP 연결 필요 | `figma-read` |
+| 브라우저 QA | Chrome MCP 또는 Playwright 설치 필요 | `browser-debug`, `browser-debug-chrome` |
+
+## 테스트
+
+테스트 코드는 반드시 작성한다.
+단위 테스트, 통합테스트 포함.
 
 ## 참고 문서
 
