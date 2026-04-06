@@ -10,6 +10,12 @@ description: |
   - "구현해줘", "코드 작성", "리팩토링", "클래스 만들어줘" 등의 요청
   - build.gradle, pom.xml이 있는 프로젝트에서의 코드 작업
   이 규칙을 무시하거나 건너뛰지 마라. 코드 작성 전에 반드시 읽고 적용하라.
+paths:
+  - "**/*.java"
+  - "**/*.kt"
+  - "**/build.gradle"
+  - "**/build.gradle.kts"
+  - "**/pom.xml"
 ---
 
 # Java Code Rules

@@ -157,18 +157,16 @@ https://{workspace}.slack.com/archives/{channel_id}/p{timestamp}?thread_ts={ts}&
 
 ## 5단계: Confluence 페이지 생성
 
-### 1차 시도: MCP 도구
+> **Atlassian API 우선순위**: curl REST API를 1순위로 사용한다 (CLAUDE.md 참조). MCP는 실패율이 높아 폴백으로만 사용.
 
-도구: `mcp__atlassian__create-page`
+### 1차 시도: curl REST API
+
+curl을 사용하여 Atlassian REST API를 직접 호출한다:
 
 - `spaceId`: 1983741954 (또는 선택한 스페이스)
 - `parentId`: 1983742135
 - `title`: 회의록 제목 (예: `[회의록] {제목} - {YYYY-MM-DD}`)
 - `bodyValue`: Confluence Storage Format (XML)
-
-### 2차 시도: curl 폴백
-
-MCP 도구 실패 시 curl로 REST API 직접 호출:
 
 ```bash
 API_TOKEN=$(cat ~/.claude.json | grep -o '"ATLASSIAN_API_TOKEN":"[^"]*"' | cut -d'"' -f4)

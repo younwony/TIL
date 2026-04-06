@@ -1,5 +1,6 @@
 ---
 name: browser-debug-chrome
+disableModelInvocation: true
 description: |
   Chrome in Claude 브라우저 자동화로 웹 프로젝트를 점검합니다 (Chrome-only 레거시 버전).
   기본 동작: 현재 브랜치 변경사항 분석 → QA 시나리오 MD 생성 → Plan 모드 실행 → Chrome 자동화 점검.

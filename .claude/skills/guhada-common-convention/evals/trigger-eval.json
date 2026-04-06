@@ -1,0 +1,74 @@
+[
+  {
+    "query": "guhada 프로젝트에서 새 도메인 Campaign API 구현해줘. 생성, 조회, 수정, 삭제 전부 필요하고 MapStruct로 DTO 변환해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "kglowing 프로젝트에서 인플루언서 관리 서비스 만들어줘. JPA Repository랑 MyBatis Mapper 둘 다 필요해",
+    "should_trigger": true
+  },
+  {
+    "query": "guhada 캠페인 서비스에 상태 변경 로직 추가해줘. DRAFT → ACTIVE → COMPLETED 순서로 전환되어야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "kglowing 레거시 코드 리팩토링해줘. controller/product/ 아래에 있는 ProductController.java 정리 필요해",
+    "should_trigger": true
+  },
+  {
+    "query": "guhada 프로젝트에 ElasticSearch 7.6 기반 상품 검색 API 추가해줘. GuhadaApiResponse 형식으로 응답해야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "guhada 예외 처리 구조 만들어줘. GuhadaApiRuntimeException 기반으로 도메인별 커스텀 예외 추가",
+    "should_trigger": true
+  },
+  {
+    "query": "kglowing 프로젝트에서 Redis Caffeine 캐시 적용한 상품 조회 만들어줘. 기존 수평 분할 구조 유지하면서",
+    "should_trigger": true
+  },
+  {
+    "query": "guhada BaseEntity 상속받는 새 Entity 만들어줘. Seeding 도메인이야. createdBy, updatedAt 자동 관리되어야 해",
+    "should_trigger": true
+  },
+  {
+    "query": "개인 프로젝트에서 Spring Boot API 구현해줘. 사용자 관리 CRUD",
+    "should_trigger": false
+  },
+  {
+    "query": "TIL 프로젝트에 CS 문서 추가해줘. 네트워크 관련이야",
+    "should_trigger": false
+  },
+  {
+    "query": "Spring Boot 3.x에서 JWT 인증 구현해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "다이어그램 그려줘. 시퀀스 다이어그램으로 API 호출 흐름",
+    "should_trigger": false
+  },
+  {
+    "query": "React 프론트엔드에서 Axios로 API 호출하는 코드 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Kafka Consumer 구현해줘. 주문 이벤트 처리용이야",
+    "should_trigger": false
+  },
+  {
+    "query": "Jira 이슈 상태 업데이트해줘. TECH-21436",
+    "should_trigger": false
+  },
+  {
+    "query": "Docker Compose로 MySQL + Redis + ElasticSearch 환경 구성해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 브랜치 작업 로그 Confluence에 올려줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Python FastAPI로 마이크로서비스 만들어줘",
+    "should_trigger": false
+  }
+]

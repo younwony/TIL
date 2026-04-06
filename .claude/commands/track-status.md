@@ -72,9 +72,36 @@ allowed-tools: Read, Glob, Grep
 
 하위의 모든 `metadata.json`을 읽는다.
 
+## 1.5단계: 실행 모드 판단
+
+각 Track의 `*_WORK-SPEC.md`에서 "파일 변경 목록" 섹션을 읽어 변경 예상 파일 수를 카운트한다.
+
+| 파일 수 | 모드 | 안내 |
+|---------|------|------|
+| 1~2개 | **Solo** | "Main 단독 실행 권장" |
+| 3~4개 | **Standard** | "팀 워크플로우 (Main 구현 + 에이전트 보조)" |
+| 5개+ | **Coordinator** | "Coordinator 모드 권장 (Main 조율 + 워커 구현)" |
+
+모드 정보를 Track 현황 테이블에 포함한다.
+
+## 1.6단계: 워크플로우 상태 체크
+
+Track에 존재하는 파일을 스캔하여 각 워크플로우 단계의 완료 여부를 판단한다.
+
+| 체크 항목 | 판별 방법 | 상태 |
+|----------|----------|------|
+| 계획 수립 | `*_WORK-SPEC.md` 존재 | ✅/❌ |
+| 기능 체크리스트 | `*_FEATURE-CHECKLIST.md` 존재 | ✅/❌ |
+| 구현 진행 | `*_PLAN.md`의 체크박스 진행률 | N% |
+| 테스트 커버리지 | 마지막 `/test-coverage-check` 실행 여부 (git log에서 테스트 파일 변경 확인) | ✅/❌/⏳ |
+| 셀프 리뷰 | `*_SELF-REVIEW.md` 존재 | ✅/❌ |
+| QA 시나리오 | `*_QA-SCENARIOS.md` 존재 | ✅/❌ |
+| 아키텍처 문서 | `*_ARCHITECTURE.md` 존재 | ✅/❌ |
+| 기능 명세 | `*_SPEC.md` 존재 | ✅/❌ |
+
 ## 2단계: 진행률 계산
 
-각 Track의 `*_PLAN.md` (예: `4_PLAN.md`)를 읽어 진행률을 계산한다:
+각 Track의 `*_PLAN.md` (예: `3_PLAN.md`)를 읽어 진행률을 계산한다:
 
 ```
 진행률 = (체크된 항목 [x] 수) / (전체 체크박스 수) × 100%
@@ -96,17 +123,32 @@ allowed-tools: Read, Glob, Grep
 ## Track 현황
 
 ### Active
-| Track ID | 설명 | 타입 | 생성일 | 진행률 | 현재 Phase |
-|----------|------|------|--------|--------|-----------|
-| {id} | {desc} | {type} | {date} | {N}% ({done}/{total}) | Phase {N}: {name} |
+| Track ID | 설명 | 모드 | 파일 수 | 진행률 | 현재 Phase |
+|----------|------|------|---------|--------|-----------|
+| {id} | {desc} | {Solo/Standard/Coordinator} | {N}개 | {N}% ({done}/{total}) | Phase {N}: {name} |
+
+### 워크플로우 상태 ({track_id})
+
+| 단계 | 상태 | 다음 액션 |
+|------|------|----------|
+| 1. 계획 (`*_WORK-SPEC.md`) | ✅ | - |
+| 2. 구현 (`*_PLAN.md`) | 🔄 65% | `/work-plan-start` 계속 |
+| 3. 테스트 커버리지 | ⏳ | `/test-coverage-check` |
+| 4. 셀프 리뷰 (`*_SELF-REVIEW.md`) | ⏳ | `/self-review` |
+| 5. QA 시나리오 (`*_QA-SCENARIOS.md`) | ⏳ | `/qa-scenario` |
+| 6. 브라우저 QA | ⏳ | `/browser-debug` |
+| 7. PR | ⏳ | `/pr` |
+| 8. 문서화 | ⏳ | `/work-log` |
+
+> ✅ 완료 | 🔄 진행 중 | ⏳ 대기 | ❌ 스킵/불필요
 
 ### 다음 단계
 {현재 Phase에 따라 안내 메시지 출력 - 아래 규칙 참조}
 
 ### Completed
-| Track ID | 설명 | 타입 | 생성일 | 완료일 |
+| Track ID | 설명 | 모드 | 생성일 | 완료일 |
 |----------|------|------|--------|--------|
-| {id} | {desc} | {type} | {date} | {date} |
+| {id} | {desc} | {mode} | {date} | {date} |
 
 ### 요약
 - Active: {N}개
@@ -146,6 +188,20 @@ allowed-tools: Read, Glob, Grep
 - 상태: {status}
 - 생성일: {created_at}
 - WORK-SPEC: {work_spec_path}
+- **실행 모드**: {Solo / Standard / Coordinator} (변경 파일 {N}개)
+
+### 워크플로우 체크
+
+| # | 단계 | 파일 | 상태 |
+|---|------|------|------|
+| 1 | 계획 수립 | `*_WORK-SPEC.md` | ✅/❌ |
+| 2 | 기능 체크리스트 | `*_FEATURE-CHECKLIST.md` | ✅/❌ |
+| 3 | 구현 | `*_PLAN.md` | 🔄 N% |
+| 4 | 테스트 커버리지 | (테스트 파일 존재 여부) | ✅/❌/⏳ |
+| 5 | 셀프 리뷰 | `*_SELF-REVIEW.md` | ✅/❌ |
+| 6 | QA 시나리오 | `*_QA-SCENARIOS.md` | ✅/❌ |
+| 7 | 아키텍처 문서 | `*_ARCHITECTURE.md` | ✅/❌ |
+| 8 | 기능 명세 | `*_SPEC.md` | ✅/❌ |
 
 ### Phase 진행 상황
 

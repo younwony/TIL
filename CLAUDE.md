@@ -188,6 +188,7 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `weekly-retro` | "주간 회고", "이번 주 뭐했지", "작업 돌아보기" | git 기반 주간 회고 자동 생성 (학습/패턴/개선점) |
 | `security-audit` | "보안 감사", "STRIDE 분석", "위협 모델링", "취약점 분석" | STRIDE + OWASP Top 10 통합 보안 감사 |
 | `product-review` | "제품 검증", "이거 필요해?", "기능 검증", "오피스아워" | 기능 구현 전 제품 검증 (6질문 + 4확장모드) |
+| `sync-global` | "설정 동기화", "글로벌 싱크", "스킬 동기화" | 글로벌 Claude 설정을 프로젝트와 동기화 (push/pull/status) |
 
 ### Commands (슬래시 명령)
 
@@ -225,6 +226,7 @@ Track 디렉토리에 문서가 2개 이상 생성될 때, **0_INDEX.md**를 자
 | `security-audit` | `/security-audit` | STRIDE + OWASP 통합 보안 감사 |
 | `product-review` | `/product-review` | 기능 구현 전 제품 검증 (6질문 + 4확장모드) |
 | `track-status` | `/track-status [track_id]` | Track 작업 추적 현황 조회 |
+| `sync-global` | `/sync-global push\|pull\|status` | 글로벌 Claude 설정을 프로젝트와 동기화 |
 
 ### Agents (Sub-agents)
 

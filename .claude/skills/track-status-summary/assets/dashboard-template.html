@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TRACK_ID__ — Track Summary Dashboard</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-hover: #273548;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-dim: #0c4a6e;
+    --green: #4ade80;
+    --green-dim: #064e3b;
+    --yellow: #fbbf24;
+    --yellow-dim: #78350f;
+    --red: #f87171;
+    --gray: #64748b;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--surface), var(--accent-dim));
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .header .desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+  }
+  .meta-item .label { font-weight: 600; color: var(--accent); }
+
+  /* Status Badge */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge.completed { background: var(--green-dim); color: var(--green); }
+  .badge.in-progress { background: var(--accent-dim); color: var(--accent); }
+  .badge.pending { background: var(--surface); color: var(--gray); }
+  .badge.blocked { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  /* Section */
+  .section {
+    margin-bottom: 2rem;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-title .icon { font-size: 1.2rem; }
+
+  /* Phase Cards */
+  .phases-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+    border-left: 4px solid var(--gray);
+  }
+  .phase-card:hover { border-color: var(--accent); }
+  .phase-card.completed { border-left-color: var(--green); }
+  .phase-card.in-progress { border-left-color: var(--accent); }
+  .phase-card.pending { border-left-color: var(--gray); }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .phase-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .phase-card.completed .phase-badge { background: var(--green-dim); color: var(--green); }
+  .phase-card.pending .phase-badge { background: var(--surface-hover); color: var(--gray); }
+  .phase-header h3 { font-size: 1.1rem; flex: 1; }
+  .status-icon { font-size: 1.2rem; }
+
+  .phase-goal {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .phase-body h4 {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin: 0.75rem 0 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .phase-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  .phase-body ul li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+    font-size: 0.9rem;
+  }
+  .phase-body ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .file-list li {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .file-list li::before { content: '📄'; left: 0; }
+
+  /* Diagrams */
+  .diagrams-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .diagram-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .diagram-card h3 {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+  .diagram-container {
+    padding: 1.5rem;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    background: #0b1120;
+  }
+  .diagram-container svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Git Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+  .stat-card.additions .stat-value { color: var(--green); }
+  .stat-card.deletions .stat-value { color: var(--red); }
+
+  /* Docs Status */
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.5rem;
+  }
+  .doc-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .doc-item .check { font-size: 1rem; }
+  .doc-item.exists .check { color: var(--green); }
+  .doc-item.missing .check { color: var(--gray); }
+  .doc-item.missing { opacity: 0.5; }
+
+  /* Handoff / Next Steps */
+  .handoff-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .handoff-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .task-list { list-style: none; padding: 0; }
+  .task-list li {
+    padding: 0.4rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 0.9rem;
+  }
+  .task-list li.done::before { content: '✅'; position: absolute; left: 0; }
+  .task-list li.todo::before { content: '⬜'; position: absolute; left: 0; }
+  .task-list li.done { color: var(--text-muted); text-decoration: line-through; }
+
+  .next-steps {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    border: 1px solid rgba(56,189,248,0.2);
+  }
+  .next-steps h4 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    body { padding: 1rem; }
+    .header h1 { font-size: 1.5rem; }
+    .meta-row { flex-direction: column; align-items: center; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Collapsible */
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+  }
+  details summary {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    user-select: none;
+  }
+  details summary:hover { background: var(--surface-hover); border-radius: var(--radius); }
+  details[open] summary { border-bottom: 1px solid var(--border); }
+  details .detail-content { padding: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>__TRACK_ID__</h1>
+  <p class="desc">__TRACK_DESC__</p>
+  <div class="meta-row">
+    <span class="meta-item"><span class="label">Status</span> __TRACK_STATUS__</span>
+    <span class="meta-item"><span class="label">Branch</span> <code>__TRACK_BRANCH__</code></span>
+    <span class="meta-item"><span class="label">Created</span> __TRACK_CREATED__</span>
+    <span class="meta-item"><span class="label">Jira</span> __TRACK_JIRA__</span>
+  </div>
+</div>
+
+<!-- Phase별 작업 내역 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon">📋</span> Phase별 작업 내역</h2>
+  <div class="phases-grid">
+    __PHASES_HTML__
+  </div>
+</div>
+
+<!-- 아키텍처 / 다이어그램 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon">🏗️</span> 아키텍처 & 다이어그램</h2>
+  <div class="diagrams-grid">
+    __DIAGRAMS_HTML__
+  </div>
+</div>
+
+<!-- Git 변경 통계 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon">📊</span> 변경 통계</h2>
+  <div class="stats-grid">
+    __GIT_STATS_HTML__
+  </div>
+</div>
+
+<!-- 문서 현황 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon">📁</span> 문서 현황</h2>
+  <div class="docs-grid">
+    __DOCS_STATUS_HTML__
+  </div>
+</div>
+
+<!-- 현재 상태 & 다음 단계 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon">🎯</span> 현재 상태 & 다음 단계</h2>
+  __HANDOFF_HTML__
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  Generated at __GENERATED_AT__ by <code>/track-status-summary</code>
+</div>
+
+</body>
+</html>

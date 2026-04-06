@@ -3,6 +3,7 @@ name: review-security
 description: 보안 관점 코드 리뷰 전문 에이전트. 팀 리뷰 시 보안 분석 담당. "보안 리뷰", "security review" 요청 시 사용.
 tools: Read, Glob, Grep, Bash
 model: sonnet
+omitClaudeMd: true
 maxTurns: 15
 ---
 

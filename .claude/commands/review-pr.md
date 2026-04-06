@@ -32,7 +32,7 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
    - 미설치: "Gemini CLI가 설치되지 않아 Gemini 크로스 리뷰를 건너뜁니다" 안내
 2. Codex 설치 여부 확인 (Plugin 우선, CLI fallback):
    1. `test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs"` → Plugin 설치됨: `/codex:review` 사용
-   2. Plugin 미설치 시 `where codex` → CLI 설치됨: `codex exec -` fallback 사용
+   2. Plugin 미설치 시 `where codex` → CLI 설치됨: `codex review --base` fallback 사용
    3. 둘 다 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
 
 > Gemini와 Codex 모두 비활성화된 경우: "외부 크로스 리뷰 없이 에이전트 팀 리뷰로 진행합니다" 안내
@@ -46,7 +46,9 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 3. `gh pr view $PR_NUMBER --json comments` - PR 코멘트
 4. `gh pr diff $PR_NUMBER --name-only 2>/dev/null || gh pr view $PR_NUMBER --json files --jq '.files[].path'` - 변경 파일 목록
 
-## 2단계: 전체 개요
+## 2단계: 리뷰 컨텍스트 생성 (Fork 캐시 최적화)
+
+4명의 에이전트가 동일한 diff를 반복 탐색하지 않도록, Main이 **요약 컨텍스트를 한 번 생성**한다.
 
 수집한 정보를 바탕으로 다음을 정리:
 
@@ -54,6 +56,8 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 - **주요 변경 파일**: 변경된 파일 목록과 각 파일의 변경 규모 (추가/삭제 라인)
 - **커밋 히스토리**: 커밋 메시지 요약
 - **현재 상태**: 리뷰 상태, 코멘트 유무
+- **변경 클래스/메서드 목록**: diff에서 추출한 주요 변경 지점
+- **관련 테스트 파일 존재 여부**: 변경 파일에 대응하는 테스트 파일 확인
 
 ## 3단계: 6명의 리뷰어 병렬 실행
 
@@ -61,11 +65,12 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 
 ### 3-1. 4명의 에이전트 팀 (Task 도구)
 
-4개의 Task를 **동시에** 실행한다. 각 에이전트에게 다음 정보를 전달:
+4개의 Task를 **동시에** 실행한다. 각 에이전트에게 2단계에서 생성한 요약 컨텍스트를 전달:
 
 - PR 번호: `$PR_NUMBER`
-- 변경 파일 목록 (1단계에서 수집)
+- 변경 파일 목록 + 변경 클래스/메서드 요약 (2단계에서 정리)
 - PR diff 내용 (1단계에서 수집)
+- 관련 테스트 파일 존재 여부
 
 각 에이전트에게 전달할 프롬프트 템플릿:
 
@@ -73,11 +78,14 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 PR #$PR_NUMBER 의 변경사항을 {관점} 관점에서 리뷰해줘.
 
 변경 파일: {파일 목록}
+변경 클래스/메서드: {클래스/메서드 요약}
+관련 테스트: {테스트 파일 목록 또는 "없음"}
 
 PR diff:
 {diff 내용}
 
 에이전트 정의의 작업 흐름과 보고 형식을 따라서 결과를 반환해줘.
+전달된 컨텍스트를 기반으로 분석하고, 추가 파일 탐색은 필요한 경우에만 수행해줘.
 ```
 
 ### 3-2. Gemini 크로스 리뷰 (Bash 도구, 선택적)
@@ -148,13 +156,14 @@ Codex Plugin의 리뷰를 사용한다. 대용량 diff도 Plugin이 자체적으
    ```
    /codex:rescue --resume 이전 리뷰를 이어서 완료해줘 --wait
    ```
-2. 2차 실패 → CLI fallback (Bash, timeout: 300000ms):
+2. 2차 실패 → CLI fallback (Bash, timeout: 120000ms):
    ```bash
-   (echo "다음 PR의 코드 변경사항을 코드 리뷰해줘. 코드 품질, 보안, 성능, 설계 관점에서 이슈를 심각도와 함께 한국어로 정리해줘:" && gh pr diff $PR_NUMBER) | codex exec -
+   codex review --base {baseRefName} 2>&1 || echo "CODEX_FAIL"
    ```
 3. 3차 실패 → "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
 
-- **Plugin 미설치 시**: CLI fallback 직행
+- **Plugin 미설치 시**: CLI fallback (`codex review --base`) 직행
+- **⚠️ 절대 `codex exec -`를 사용하지 않는다. 반드시 Plugin(Skill 도구) 우선.**
 
 ## 4단계: 결과 통합 → 리뷰 결과 출력
 

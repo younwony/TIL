@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# 위험한 Bash 명령 실행을 사전에 차단하는 PreToolUse Hook
+# 위험한 Bash 명령 실행을 사전에 차단하는 PreToolUse Hook (글로벌)
 # exit 0: 허용, exit 2: 차단 (BLOCKED)
 #
 
@@ -30,9 +30,9 @@ RULES=(
     "drop table|테이블 삭제"
     "drop database|데이터베이스 삭제"
     "truncate table|테이블 데이터 전체 삭제"
-    "curl.*|.*sh$|원격 스크립트 파이프 실행"
-    "curl.*|.*bash$|원격 스크립트 파이프 실행"
-    "wget.*|.*sh$|원격 스크립트 파이프 실행"
+    "curl.*\|.*sh$|원격 스크립트 파이프 실행"
+    "curl.*\|.*bash$|원격 스크립트 파이프 실행"
+    "wget.*\|.*sh$|원격 스크립트 파이프 실행"
     "chmod -R 777|전체 권한 개방"
     "dd if=|디스크 직접 쓰기"
     "mkfs\.|파일시스템 포맷"

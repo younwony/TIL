@@ -37,7 +37,7 @@ WORK-SPEC.md 검증 후, Track 디렉토리를 탐색한다:
    - `metadata.json`의 `current_phase`를 `1`로 설정
    - `metadata.json`의 `has_ui` 값을 확인하여 QA Phase 포함 여부 결정
    - `.claude/tracks/index.md`에서 해당 Track의 `[ ]`를 `[~]`로 변경
-   - Track의 `*_PLAN.md` (예: `4_PLAN.md`)를 로드하여 Phase 진행 상태 확인
+   - Track의 `*_PLAN.md` (예: `3_PLAN.md`)를 로드하여 Phase 진행 상태 확인
 4. Track을 못 찾으면: Track 없이 기존 방식대로 진행 (하위 호환)
 
 ### has_ui 기반 Phase 자동 추가 규칙
