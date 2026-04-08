@@ -1,7 +1,358 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-03-24
-> 정리 범위: v2.1.43 ~ v2.1.81
+> 정리 일시: 2026-04-08
+> 정리 범위: v2.1.43 ~ v2.1.94
+
+---
+
+## Version 2.1.94
+
+### 주요 하이라이트
+- **기본 노력 수준(Effort) 변경**: API 키, Bedrock/Vertex/Foundry, Team, Enterprise 사용자의 기본값이 medium → **high**로 변경
+- **Amazon Bedrock Mantle 지원**: `CLAUDE_CODE_USE_MANTLE=1`로 활성화
+- **429 레이트 리밋 대기 수정**: 긴 `Retry-After` 헤더 시 에이전트가 멈춘 것처럼 보이던 문제 해결
+
+### 새 기능
+- **Amazon Bedrock Mantle 지원**: `CLAUDE_CODE_USE_MANTLE=1` 환경변수로 활성화
+- **Slack MCP 전송 시 간결한 헤더**: 클릭 가능한 채널 링크가 포함된 `Slacked #channel` 헤더 표시
+- **`keep-coding-instructions` 프론트매터**: 플러그인 출력 스타일에서 지원
+- **`hookSpecificOutput.sessionTitle`**: `UserPromptSubmit` 훅에서 세션 제목 설정 가능
+- **플러그인 스킬 네이밍 개선**: `"skills": ["./"]`로 선언된 스킬이 디렉토리명 대신 프론트매터 `name`을 사용
+
+### 개선
+- **`--resume` 개선**: 다른 워크트리의 세션을 `cd` 명령 출력 대신 직접 재개
+- **CJK 텍스트 깨짐 수정**: stream-json 입출력에서 UTF-8 시퀀스가 청크 경계에서 분할될 때 U+FFFD로 깨지던 문제 해결
+
+### 버그 수정
+- 429 레이트 리밋 응답 후 에이전트가 무한 대기하던 문제 수정 — 에러가 즉시 표시됨
+- macOS Console 로그인 시 키체인 잠금/비밀번호 불일치로 "Not logged in" 실패하던 문제 수정 (`claude doctor`로 진단 가능)
+- 플러그인 스킬 훅이 YAML 프론트매터에서 정의 시 무시되던 문제 수정
+- `${CLAUDE_PLUGIN_ROOT}`가 설치 캐시 대신 마켓플레이스 소스 디렉토리로 해석되던 문제 수정
+- 스크롤백에서 같은 diff가 반복 표시되고 긴 세션에서 빈 페이지가 나타나던 문제 수정
+- Shift+Space가 검색 입력에서 공백 대신 "space" 문자열을 삽입하던 문제 수정
+- tmux 내 xterm.js 기반 터미널(VS Code, Hyper, Tabby)에서 하이퍼링크 클릭 시 브라우저 탭 2개 열리던 문제 수정
+- SDK/print 모드에서 스트림 중단 시 부분 어시스턴트 응답이 대화 기록에 보존되지 않던 문제 수정
+- Bedrock에서 Sonnet 3.5 v2 호출 시 `us.` 추론 프로필 ID 사용하도록 수정
+
+### 플랫폼
+- **[VSCode]** 세션 시작 시 서브프로세스 작업 감소 (콜드 오픈 개선)
+- **[VSCode]** 드롭다운 메뉴에서 키보드 입력/화살표 사용 중 마우스 위치의 항목이 잘못 선택되던 문제 수정
+- **[VSCode]** `settings.json` 파싱 실패 시 경고 배너 표시
+
+---
+
+## Version 2.1.92
+
+### 주요 하이라이트
+- **`forceRemoteSettingsRefresh` 정책**: 원격 관리 설정을 시작 시 강제로 새로 가져오고, 실패 시 종료 (fail-closed)
+- **Bedrock 대화형 설정 마법사**: 로그인 화면에서 AWS 인증, 리전, 자격 증명, 모델 핀닝까지 안내
+- **`/release-notes` 대화형 버전 피커**: 버전별 선택 가능
+
+### 새 기능
+- **`forceRemoteSettingsRefresh` 정책 설정**: 설정 시 CLI 시작을 원격 설정 갱신까지 차단, 실패 시 종료
+- **Bedrock 대화형 설정 마법사**: "3rd-party platform" 선택 시 접근 가능
+- **`/cost` 세부 분석**: 구독 사용자에게 모델별, 캐시 히트별 비용 내역 표시
+- **Remote Control 세션 이름**: 호스트명을 기본 접두사로 사용 (예: `myhost-graceful-unicorn`), `--remote-control-session-name-prefix`로 변경 가능
+- **프롬프트 캐시 만료 힌트**: Pro 사용자가 캐시 만료 후 세션 복귀 시 비캐시 전송 토큰 수 표시
+
+### 버그 수정
+- tmux 창이 세션 중 삭제/재번호 시 서브에이전트 스폰이 "Could not determine pane count"로 영구 실패하던 문제 수정
+- `prompt-type Stop` 훅이 소형 모델이 `ok:false` 반환 시 잘못 실패하던 문제 수정
+- 확장 사고(Extended Thinking)가 공백만 있는 텍스트 블록 생성 시 API 400 에러 발생 문제 수정
+- 자동 조종 키 입력과 연속 프롬프트 숫자 충돌로 피드백 설문이 실수로 제출되던 문제 수정
+- 풀스크린 모드에서 텍스트 선택 시 "esc to interrupt" 힌트가 "esc to clear"와 함께 표시되던 문제 수정
+- Homebrew 설치 업데이트 프롬프트가 cask 릴리스 채널을 사용하도록 수정
+- 풀스크린 스크롤업 시 같은 메시지가 두 위치에 표시되던 문제 수정 (iTerm2, Ghostty 등)
+- 유휴 복귀 "/clear to save X tokens" 힌트가 현재 컨텍스트 대신 누적 세션 토큰을 표시하던 문제 수정
+
+### 개선
+- **Write 도구 diff 계산 속도 60% 향상**: 탭/`&`/`$`가 있는 대형 파일에서 개선
+
+### 변경
+- `/tag` 명령 제거
+- `/vim` 명령 제거 (vim 모드는 `/config` → Editor mode에서 토글)
+- Linux 샌드박스에 `apply-seccomp` 헬퍼를 npm/네이티브 빌드 모두에 포함
+
+---
+
+## Version 2.1.91
+
+### 주요 하이라이트
+- **MCP 도구 결과 크기 오버라이드**: `_meta["anthropic/maxResultSizeChars"]` 어노테이션으로 최대 500K까지 허용 (DB 스키마 등 대형 결과 지원)
+- **`disableSkillShellExecution` 설정**: 스킬, 슬래시 커맨드, 플러그인 커맨드에서 인라인 셸 실행 비활성화
+- **Edit 도구 최적화**: 더 짧은 `old_string` 앵커 사용으로 출력 토큰 감소
+
+### 새 기능
+- **MCP 도구 결과 크기 오버라이드**: `_meta["anthropic/maxResultSizeChars"]`로 최대 500K 허용
+- **`disableSkillShellExecution` 설정**: 스킬/커맨드에서 셸 실행 차단
+- **멀티라인 딥링크 지원**: `claude-cli://open?q=`에서 인코딩된 줄바꿈(`%0A`) 허용
+- **플러그인 실행 파일 지원**: `bin/` 하위 실행 파일을 Bash 도구에서 직접 호출 가능
+
+### 버그 수정
+- `--resume` 시 비동기 트랜스크립트 쓰기 실패로 대화 기록이 유실되던 문제 수정
+- iTerm2, kitty, WezTerm, Ghostty, Windows Terminal에서 `cmd+delete`가 줄 시작까지 삭제 안 되던 문제 수정
+- 원격 세션에서 컨테이너 재시작 후 플랜 모드가 플랜 파일을 추적 못하던 문제 수정
+- Windows 버전 정리 시 활성 버전의 롤백 복사본이 보호되지 않던 문제 수정
+
+### 개선
+- `/claude-api` 스킬 가이드 개선: 에이전트 설계 패턴(도구 선택, 컨텍스트 관리, 캐싱 전략) 포함
+- Bun에서 `stripAnsi` 성능 향상 (`Bun.stripANSI` 활용)
+
+---
+
+## Version 2.1.90
+
+### 주요 하이라이트
+- **`/powerup` 명령**: Claude Code 기능을 애니메이션 데모로 배우는 대화형 레슨
+- **자동 모드(Auto Mode) 경계 준수**: 사용자의 명시적 제한("push 하지 마", "X 전에 Y 기다려")을 준수
+- **`--resume` 프롬프트 캐시 미스 수정**: v2.1.69 이후 회귀 버그 해결
+
+### 새 기능
+- **`/powerup`**: 애니메이션 데모가 포함된 대화형 기능 학습
+- **`CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE`**: `git pull` 실패 시 기존 마켓플레이스 캐시 유지 (오프라인 환경용)
+- **`.husky` 보호 디렉토리 추가**: acceptEdits 모드에서 보호
+
+### 버그 수정
+- 사용량 한도 도달 후 레이트 리밋 옵션 대화상자가 반복 자동 열려 세션 크래시하던 문제 수정
+- `Edit`/`Write`가 PostToolUse format-on-save 훅이 파일을 다시 쓸 때 "File content has changed" 실패하던 문제 수정
+- `PreToolUse` 훅이 JSON stdout + exit code 2 시 도구 호출을 올바르게 차단하지 못하던 문제 수정
+- 자동 모드가 사용자의 명시적 경계를 무시하던 문제 수정
+- 라이트 터미널 테마에서 클릭 확장 호버 텍스트가 거의 보이지 않던 문제 수정
+
+### 개선
+- **SSE 전송 성능**: 대형 스트림 프레임 처리가 O(n²) → O(n)으로 개선
+- **SDK 세션 성능**: 긴 대화의 트랜스크립트 쓰기 O(n²) → O(n)
+- **`/resume` 전체 프로젝트 뷰**: 프로젝트 세션을 병렬 로드하여 로딩 시간 개선
+
+### 변경
+- `--resume` 피커에서 `claude -p`나 SDK 호출로 생성된 세션 숨김
+- `Get-DnsClientCache`와 `ipconfig /displaydns` 자동 허용 목록에서 제거 (DNS 캐시 프라이버시)
+- **PowerShell 보안 강화**: trailing `&` 백그라운드 잡 우회, `-ErrorAction Break` 디버거 행, 아카이브 추출 TOCTOU 등 수정
+
+---
+
+## Version 2.1.89
+
+### 주요 하이라이트
+- **`"defer"` 권한 결정**: `PreToolUse` 훅에서 헤드리스 세션이 도구 호출을 일시 중지하고 `--resume`으로 재개 가능
+- **`CLAUDE_CODE_NO_FLICKER=1`**: 가상화된 스크롤백을 사용한 깜빡임 없는 alt-screen 렌더링
+- **`PermissionDenied` 훅**: 자동 모드 분류기 거부 후 실행, `{retry: true}` 반환으로 재시도 가능
+- **자동 컴팩트 무한 루프 수정**: 3회 연속 컴팩트 후 컨텍스트가 즉시 재충전되면 API 호출 낭비 대신 오류 메시지 표시
+
+### 새 기능
+- **`"defer"` 권한 결정**: PreToolUse 훅에서 헤드리스 세션의 도구 호출 일시 중지/재개
+- **`CLAUDE_CODE_NO_FLICKER=1`**: 깜빡임 없는 렌더링 모드
+- **`PermissionDenied` 훅**: 자동 모드 거부 후 재시도 가능
+- **`@` 멘션 자동완성에 이름 있는 서브에이전트 추가**
+- **`MCP_CONNECTION_NONBLOCKING=true`**: `-p` 모드에서 MCP 연결 대기 완전 스킵, `--mcp-config` 서버 연결 5초 제한
+- **자동 모드 거부 알림**: `/permissions` → Recent 탭에서 `r`로 재시도 가능
+
+### 버그 수정
+- `Edit`/`Read` 허용 규칙이 심볼릭 링크 대상이 아닌 요청 경로만 확인하던 문제 수정
+- 음성 푸시투톡 활성화 안 되던 문제, Windows에서 "WebSocket upgrade rejected with HTTP 101" 문제 수정
+- Windows에서 Edit/Write 도구가 CRLF를 이중화하고 Markdown 하드 줄바꿈을 제거하던 문제 수정
+- `StructuredOutput` 스키마 캐시 버그로 여러 스키마 사용 시 ~50% 실패율 문제 수정
+- 긴 세션에서 대형 JSON 입력이 LRU 캐시 키로 유지되어 메모리 누수 문제 수정
+- 50MB 이상 세션 파일에서 메시지 제거 시 크래시 수정
+- LSP 서버 크래시 후 좀비 상태 유지 문제 수정 — 다음 요청 시 재시작
+- CJK/이모지 포함 프롬프트 기록이 4KB 경계에서 무시되던 문제 수정
+- `/stats`가 서브에이전트 사용량 미포함으로 토큰 과소 집계하던 문제 수정
+- 자동 컴팩트가 3회 연속 컨텍스트 재충전 시 무한 루프 발생 문제 수정
+- 중첩 CLAUDE.md 파일이 긴 세션에서 수십 번 재주입되던 문제 수정
+- 데바나가리 등 결합 마크 텍스트가 어시스턴트 출력에서 잘리던 문제 수정
+- macOS Apple Silicon에서 음성 모드 마이크 권한 요청 실패 문제 수정
+- Windows Terminal Preview 1.25에서 Shift+Enter가 줄바꿈 대신 제출되던 문제 수정
+- Edit 도구가 1GiB 이상 파일에서 OOM 크래시 가능성 수정
+
+### 개선
+- `@` 멘션 자동완성에서 소스 파일을 유사 이름의 MCP 리소스보다 상위 랭킹
+- `Edit` 도구가 `Bash`에서 `sed -n`이나 `cat`으로 본 파일에도 별도 `Read` 없이 작동
+
+### 변경
+- 사고 요약(Thinking Summaries)이 대화형 세션에서 기본 비활성화 — `showThinkingSummaries: true`로 복원
+- 훅 출력 50K 문자 초과 시 컨텍스트 직접 주입 대신 디스크 파일 + 미리보기로 전환
+- `cleanupPeriodDays: 0` 설정 시 검증 에러 표시 (이전에는 트랜스크립트 지속성을 무시)
+- `/buddy` 만우절 이스터에그 🐣
+
+---
+
+## Version 2.1.87
+
+### 주요 하이라이트
+- Cowork Dispatch의 메시지 전달 안 되던 문제 수정 (핫픽스)
+
+---
+
+## Version 2.1.86
+
+### 주요 하이라이트
+- **`X-Claude-Code-Session-Id` 헤더**: API 요청에 추가되어 프록시에서 세션별 요청 집계 가능
+- **VCS 디렉토리 제외 확장**: `.jj`(Jujutsu), `.sl`(Sapling) 디렉토리를 Grep/자동완성에서 제외
+
+### 새 기능
+- **`X-Claude-Code-Session-Id` 헤더**: 프록시가 본문 파싱 없이 세션별 요청 집계 가능
+- **VCS 디렉토리 제외**: `.jj`, `.sl` 디렉토리 추가
+
+### 버그 수정
+- v2.1.85 이전 생성 세션에서 `--resume` 실패하던 문제 수정 ("tool_use ids were found without tool_result blocks")
+- 조건부 스킬/규칙 설정 시 프로젝트 루트 외부 파일(예: `~/.claude/CLAUDE.md`)에 Write/Edit/Read 실패하던 문제 수정
+- Windows에서 스킬 호출마다 불필요한 설정 디스크 쓰기로 성능 저하/설정 손상 문제 수정
+- `--bare` 모드에서 대화형 세션의 MCP 도구 누락 및 턴 중 메시지 무시 문제 수정
+- OAuth 로그인 URL 복사 시 `c` 단축키가 ~20자만 복사하던 문제 수정
+- 좁은 터미널에서 마스크 입력이 여러 줄 줄바꿈 시 토큰 시작 부분 노출 문제 수정
+- v2.1.83 이후 macOS/Linux에서 공식 마켓플레이스 플러그인 스크립트 "Permission denied" 문제 수정
+- 여러 Claude Code 인스턴스 실행 시 `/model` 사용 시 다른 세션의 모델이 상태줄에 표시되던 문제 수정
+
+### 개선
+- macOS 키체인 캐시를 5초→30초로 확장하여 claude.ai MCP 커넥터 많을 때 시작 이벤트 루프 지연 감소
+- `@` 파일 멘션 시 원시 문자열 콘텐츠의 JSON 이스케이프 제거로 토큰 오버헤드 감소
+- Bedrock, Vertex, Foundry 사용자를 위해 도구 설명에서 동적 콘텐츠 제거하여 프롬프트 캐시 히트율 개선
+- Read 도구가 간결한 줄번호 형식 사용 + 변경 없는 재읽기 중복 제거로 토큰 사용량 감소
+- 스킬 설명이 `/skills` 목록에서 250자로 제한되어 컨텍스트 사용량 감소
+
+### 변경
+- `/skills` 메뉴가 알파벳순 정렬로 변경
+- 자동 모드에서 플랜 제한으로 비활성화 시 "unavailable for your plan" 메시지 표시
+
+---
+
+## Version 2.1.85
+
+### 주요 하이라이트
+- **MCP `headersHelper` 환경변수**: `CLAUDE_CODE_MCP_SERVER_NAME`, `CLAUDE_CODE_MCP_SERVER_URL`로 하나의 헬퍼가 여러 서버 지원
+- **훅 `if` 조건 필드**: 권한 규칙 문법(예: `Bash(git *)`)으로 훅 실행 필터링, 프로세스 스폰 오버헤드 감소
+- **MCP OAuth RFC 9728**: Protected Resource Metadata 탐색으로 인증 서버 발견
+
+### 새 기능
+- **MCP `headersHelper` 환경변수**: 서버명/URL을 스크립트에 전달하여 하나의 헬퍼로 여러 서버 지원
+- **훅 `if` 조건 필드**: `Bash(git *)` 같은 문법으로 훅 실행 범위 제한
+- **트랜스크립트 타임스탬프 마커**: `/loop`, `CronCreate` 실행 시 타임스탬프 기록
+- **딥링크 확장**: 최대 5,000자 지원, 긴 프리필 프롬프트에 "scroll to review" 경고
+- **조직 정책 플러그인 차단**: `managed-settings.json`으로 차단된 플러그인 설치/활성화/마켓플레이스 노출 불가
+- **PreToolUse 훅에서 `AskUserQuestion` 응답**: `updatedInput` + `permissionDecision: "allow"` 반환으로 헤드리스 통합 지원
+
+### 버그 수정
+- `/compact` 실행 시 대화가 너무 커서 컴팩트 요청 자체가 컨텍스트 초과로 실패하던 문제 수정
+- `/plugin enable`/`disable`이 설치 위치와 선언 위치가 다를 때 실패하던 문제 수정
+- `--worktree`가 비git 저장소에서 `WorktreeCreate` 훅 실행 전 에러로 종료하던 문제 수정
+- `deniedMcpServers` 설정이 claude.ai MCP 서버를 차단하지 못하던 문제 수정
+- 멀티 모니터에서 `switch_display`가 "not available in this session" 반환하던 문제 수정
+- 원격 세션에서 스트리밍 응답 중단 시 메모리 누수 수정
+- ECONNRESET 오류 시 새 TCP 연결로 재시도
+- Python Agent SDK: `--mcp-config`로 전달된 `type:'sdk'` MCP 서버가 시작 시 누락되던 문제 수정
+- SSH/VS Code 통합 터미널에서 원시 키 시퀀스가 프롬프트에 표시되던 문제 수정
+- Ghostty, Kitty, WezTerm에서 종료 후 터미널이 향상 키보드 모드에 남아 Ctrl+C/D 작동 안 하던 문제 수정
+
+### 개선
+- WASM yoga-layout를 순수 TypeScript 구현으로 교체하여 대형 트랜스크립트 스크롤 성능 향상
+- @멘션 파일 자동완성 성능 개선 (대형 저장소)
+
+---
+
+## Version 2.1.84
+
+### 주요 하이라이트
+- **PowerShell 도구 (Windows)**: Windows 전용 옵트인 프리뷰로 PowerShell 도구 추가
+- **유휴 복귀 프롬프트**: 75분+ 유휴 후 복귀 시 `/clear` 권장 알림으로 불필요한 토큰 재캐싱 방지
+- **MCP 도구/서버 설명 2KB 제한**: OpenAPI 생성 서버의 컨텍스트 팽창 방지
+
+### 새 기능
+- **PowerShell 도구 (Windows 옵트인 프리뷰)**: Windows에서 PowerShell 도구 사용 가능
+- **`ANTHROPIC_DEFAULT_{OPUS,SONNET,HAIKU}_MODEL_SUPPORTS`**: 핀된 기본 모델의 노력/사고 감지 오버라이드 (Bedrock, Vertex, Foundry)
+- **`CLAUDE_STREAM_IDLE_TIMEOUT_MS`**: 스트리밍 유휴 워치독 임계값 설정 (기본 90초)
+- **`TaskCreated` 훅**: `TaskCreate`로 태스크 생성 시 실행
+- **`WorktreeCreate` HTTP 훅 지원**: `hookSpecificOutput.worktreePath`로 워크트리 경로 반환
+- **`allowedChannelPlugins` 관리 설정**: 팀/엔터프라이즈 관리자용 채널 플러그인 허용 목록
+- **`x-client-request-id` 헤더**: API 요청에 추가하여 타임아웃 디버깅 지원
+- **유휴 복귀 `/clear` 권장**: 75분+ 유휴 후 복귀 시 알림
+- **규칙/스킬 `paths:` 프론트매터**: YAML 글로브 리스트 지원
+- **딥링크 터미널 선택**: 검색 순서가 아닌 선호 터미널에서 열림
+
+### 버그 수정
+- 음성 푸시투톡 시 키 입력이 텍스트 입력에 누출되던 문제 수정
+- 하단 항목 포커스 시 위/아래 화살표 키 미반응 문제 수정
+- `Ctrl+U`가 멀티라인 입력에서 줄 경계에서 작동 안 하던 문제 수정
+- 널 바인딩된 코드 바인딩이 코드 대기 모드에 진입하던 문제 수정
+- 마우스 이벤트가 트랜스크립트 검색에 "mouse" 텍스트 삽입하던 문제 수정
+- 워크플로우 서브에이전트가 `--json-schema` 사용 외부 세션에서 API 400 에러 발생 문제 수정
+- 대형 편집 파일의 첨부 스니펫 생성 시 행 문제 수정
+- Scalar/GVFS 부분 클론 저장소에서 대량 blob 다운로드 발생하던 시작 성능 문제 수정
+- IME 조합(CJK 입력)이 인라인 렌더링 안 되던 문제 수정
+- macOS에서 일시적 키체인 읽기 실패로 "Not logged in" 에러 발생 문제 수정
+
+### 개선
+- 대화형 시작 ~30ms 향상: `setup()`을 슬래시 커맨드/에이전트 로딩과 병렬 실행
+- MCP 서버 연결 시 REPL 즉시 렌더링 (서버 연결 대기 안 함)
+- 글로벌 시스템 프롬프트 캐싱이 `ToolSearch` 활성화/MCP 도구 설정 시에도 작동
+- p90 프롬프트 캐시 히트율 개선
+- 1M 이상 토큰을 "1.5m" 형식으로 표시 (기존: "1512.6k")
+
+### 변경
+- 이슈/PR 참조가 `owner/repo#123` 형식만 클릭 링크로 변환 (단순 `#123` 더 이상 자동 링크 안 됨)
+- 현재 인증에서 사용 불가능한 슬래시 커맨드(`/voice`, `/mobile` 등) 숨김 처리
+
+### 플랫폼
+- **[VSCode]** 레이트 리밋 경고 배너(사용률, 리셋 시간) 추가
+- **Stats 스크린샷** (`Ctrl+S` in `/stats`) 모든 빌드에서 작동, 16배 빠름
+
+---
+
+## Version 2.1.83
+
+### 주요 하이라이트
+- **`managed-settings.d/` 드롭인 디렉토리**: 여러 팀이 독립 정책 파편을 배포, 알파벳순 병합
+- **`CwdChanged`/`FileChanged` 훅 이벤트**: 디렉토리 변경/파일 변경 시 반응형 환경 관리 (예: direnv)
+- **트랜스크립트 검색**: `Ctrl+O`로 트랜스크립트 모드 진입 후 `/`로 검색, `n`/`N`으로 이동
+- **붙여넣은 이미지에 `[Image #N]` 칩**: 프롬프트에서 위치 참조 가능
+
+### 새 기능
+- **`managed-settings.d/` 드롭인 디렉토리**: `managed-settings.json` 옆에 배치, 알파벳순 병합
+- **`CwdChanged`/`FileChanged` 훅 이벤트**: 반응형 환경 관리
+- **`sandbox.failIfUnavailable` 설정**: 샌드박스 시작 불가 시 비샌드박스 실행 대신 에러 종료
+- **`disableDeepLinkRegistration` 설정**: `claude-cli://` 프로토콜 핸들러 등록 방지
+- **`CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1`**: 서브프로세스 환경에서 Anthropic/클라우드 자격 증명 제거
+- **트랜스크립트 검색**: `Ctrl+O` → `/` → `n`/`N`
+- **`Ctrl+X Ctrl+E`**: 외부 에디터 열기 별칭 (readline 네이티브 바인딩)
+- **이미지 붙여넣기 `[Image #N]` 칩**: 커서 위치에 삽입
+- **에이전트 `initialPrompt` 프론트매터**: 첫 턴 자동 제출
+- **`chat:killAgents`/`chat:fastMode` 키바인딩 커스터마이즈**: `~/.claude/keybindings.json`에서 변경 가능
+
+### 버그 수정
+- 마우스 트래킹 이스케이프 시퀀스가 종료 후 셸에 남던 문제 수정
+- macOS에서 종료 시 행 문제 수정
+- 유휴 몇 초 후 화면이 빈 상태로 깜빡이던 문제 수정
+- 대형 파일의 diff가 공통 줄이 적을 때 무한 루프 — 5초 타임아웃 + 그레이스풀 폴백
+- 음성 입력 활성화 시 네이티브 오디오 모듈 즉시 로딩으로 1~8초 UI 프리즈 문제 수정
+- claude.ai MCP 설정 가져오기 ~3초 대기 시작 회귀 수정
+- `--mcp-config` 플래그가 `allowedMcpServers`/`deniedMcpServers` 관리 정책을 우회하던 문제 수정
+- 싱글턴 `--print` 모드에서 claude.ai MCP 커넥터(Slack, Gmail 등) 사용 불가하던 문제 수정
+- `caffeinate` 프로세스가 종료 후 제대로 종료되지 않아 Mac 슬립 방해하던 문제 수정
+- 백그라운드 서브에이전트가 컨텍스트 컴팩션 후 보이지 않아 중복 스폰되던 문제 수정
+- SDK 세션 이력이 훅 progress/attachment 메시지로 parentUuid 체인이 분기되어 재개 시 유실되던 문제 수정
+- 종료 후 Ghostty, Kitty, WezTerm에서 Ctrl+C/D 작동 안 하던 문제 수정 (터미널 향상 키보드 모드 잔류)
+- 도구 결과 파일이 `cleanupPeriodDays` 설정 무시하고 정리 안 되던 문제 수정
+- 음성 홀드투톡 해제 후 3초간 스페이스 키 무시되던 문제 수정
+- Linux에서 오디오 하드웨어 없는 환경(Docker, 헤드리스, WSL1)에서 ALSA 에러가 터미널 UI 손상하던 문제 수정
+- Remote Control 세션이 실행 중인데 웹 목록에서 Idle로 표시되던 문제 수정
+- 원격 세션에서 도구 사용 ID 무한 누적 메모리 누수 수정
+
+### 개선
+- Bedrock SDK 콜드스타트 지연 개선: 프로필 가져오기를 다른 부팅 작업과 겹침
+- `--resume` 대형 세션에서 메모리 사용량/시작 지연 개선
+- 플러그인 시작: 커맨드, 스킬, 에이전트가 디스크 캐시에서 재가져오기 없이 로드
+- `WebFetch`가 `Claude-User`로 식별되어 사이트 운영자가 `robots.txt`로 허용 가능
+- 비스트리밍 폴백 토큰 상한 21k→64k, 타임아웃 120초→300초(로컬)
+- `/status`가 Claude 응답 중에도 작동 (이전: 턴 종료까지 큐)
+- 인터럽트 후 입력 자동 복원 (편집 후 재제출 가능)
+
+### 변경
+- "백그라운드 에이전트 전체 중지" 키바인딩: `Ctrl+F` → `Ctrl+X Ctrl+K` (readline forward-char 충돌 방지)
+- `TaskOutput` 도구 deprecated → 백그라운드 태스크의 출력 파일 경로에 `Read` 사용
+- Linux: `XDG_DATA_HOME`에 `claude-cli://` 프로토콜 핸들러 등록
+
+### 플랫폼
+- **[VSCode]** 백엔드 60초 무응답 시 스피너가 빨간색 "Not responding"으로 변경
+- **[VSCode]** URL/재시작으로 세션 재오픈 시 세션 히스토리 미로딩 문제 수정
 
 ---
 
