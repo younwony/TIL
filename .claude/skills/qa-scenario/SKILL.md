@@ -67,7 +67,12 @@ git diff main...HEAD --stat
 
 ## Phase 2: 영향 범위 분석 (Plan 모드)
 
-**EnterPlanMode**로 Plan 모드에 진입한 후, Explore 에이전트를 사용하여 변경 코드의 영향 범위를 "very thorough"로 분석한다.
+**EnterPlanMode**로 Plan 모드에 진입한 후, Explore 에이전트를 **`model: "haiku"`** 로 디스패치하여 변경 코드의 영향 범위를 "very thorough"로 분석한다.
+
+Agent 도구 파라미터:
+- `subagent_type`: `"Explore"`
+- `model`: `"haiku"`
+- `thoroughness`: `"very thorough"`
 
 ### 2-1. 코드 흐름 추적
 

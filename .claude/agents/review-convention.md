@@ -2,7 +2,7 @@
 name: review-convention
 description: 컨벤션/가독성/유지보수성 관점 코드 리뷰 전문 에이전트. 팀 리뷰 시 코드 품질 분석 담당. "컨벤션 리뷰", "convention review" 요청 시 사용.
 tools: Read, Glob, Grep, Bash
-model: sonnet
+model: haiku
 omitClaudeMd: true
 maxTurns: 15
 ---

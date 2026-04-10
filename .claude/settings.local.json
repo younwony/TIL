@@ -86,7 +86,18 @@
       "mcp__claude_ai_Atlassian__searchConfluenceUsingCql",
       "mcp__claude_ai_Atlassian__createConfluencePage",
       "Bash(git mv:*)",
-      "mcp__claude_ai_Atlassian__updateConfluencePage"
+      "mcp__claude_ai_Atlassian__updateConfluencePage",
+      "Bash(mkdir -p /c/workspace/intellij/TIL/.claude/agents)",
+      "Bash(cp __TRACKED_VAR__/agents/review-convention.md /c/workspace/intellij/TIL/.claude/agents/review-convention.md)",
+      "Bash(cp __TRACKED_VAR__/agents/review-performance.md /c/workspace/intellij/TIL/.claude/agents/review-performance.md)",
+      "Bash(cp __TRACKED_VAR__/agents/review-test-coverage.md /c/workspace/intellij/TIL/.claude/agents/review-test-coverage.md)",
+      "Bash(cp /c/workspace/intellij/TIL/.claude/skills/qa-scenario/SKILL.md __TRACKED_VAR__/skills/qa-scenario/SKILL.md)",
+      "Bash(mkdir -p __TRACKED_VAR__/skills/security-audit)",
+      "Bash(cp /c/workspace/intellij/TIL/.claude/skills/security-audit/SKILL.md __TRACKED_VAR__/skills/security-audit/SKILL.md)",
+      "Bash(cp /c/workspace/intellij/TIL/.claude/skills/work-plan/SKILL.md __TRACKED_VAR__/skills/work-plan/SKILL.md)",
+      "Bash(cp __TRACKED_VAR__/.claude/agents/debugger.md C:/workspace/intellij/TIL/.claude/agents/debugger.md)",
+      "Bash(cp __TRACKED_VAR__/.claude/agents/test-generator.md C:/workspace/intellij/TIL/.claude/agents/test-generator.md)",
+      "Bash(cp __TRACKED_VAR__/.claude/agents/code-refactor.md C:/workspace/intellij/TIL/.claude/agents/code-refactor.md)"
     ],
     "deny": [],
     "ask": []

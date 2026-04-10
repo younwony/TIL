@@ -2,7 +2,7 @@
 name: review-performance
 description: 성능 관점 코드 리뷰 전문 에이전트. 팀 리뷰 시 성능 분석 담당. "성능 리뷰", "performance review" 요청 시 사용.
 tools: Read, Glob, Grep, Bash
-model: sonnet
+model: haiku
 omitClaudeMd: true
 maxTurns: 15
 ---

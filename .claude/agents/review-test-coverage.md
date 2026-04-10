@@ -2,7 +2,7 @@
 name: review-test-coverage
 description: 테스트 커버리지 관점 코드 리뷰 전문 에이전트. 팀 리뷰 시 테스트 분석 담당. "테스트 리뷰", "test coverage review" 요청 시 사용.
 tools: Read, Glob, Grep, Bash
-model: sonnet
+model: haiku
 omitClaudeMd: true
 maxTurns: 15
 ---
