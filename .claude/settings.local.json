@@ -97,7 +97,9 @@
       "Bash(cp /c/workspace/intellij/TIL/.claude/skills/work-plan/SKILL.md __TRACKED_VAR__/skills/work-plan/SKILL.md)",
       "Bash(cp __TRACKED_VAR__/.claude/agents/debugger.md C:/workspace/intellij/TIL/.claude/agents/debugger.md)",
       "Bash(cp __TRACKED_VAR__/.claude/agents/test-generator.md C:/workspace/intellij/TIL/.claude/agents/test-generator.md)",
-      "Bash(cp __TRACKED_VAR__/.claude/agents/code-refactor.md C:/workspace/intellij/TIL/.claude/agents/code-refactor.md)"
+      "Bash(cp __TRACKED_VAR__/.claude/agents/code-refactor.md C:/workspace/intellij/TIL/.claude/agents/code-refactor.md)",
+      "Bash(cp __TRACKED_VAR__/.claude/agents/design-reviewer.md C:/workspace/intellij/TIL/.claude/agents/design-reviewer.md)",
+      "Bash(cp C:/workspace/intellij/TIL/.claude/skills/work-plan/SKILL.md __TRACKED_VAR__/.claude/skills/work-plan/SKILL.md)"
     ],
     "deny": [],
     "ask": []
