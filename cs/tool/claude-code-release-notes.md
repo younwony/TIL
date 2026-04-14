@@ -1,7 +1,112 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-04-08
-> 정리 범위: v2.1.43 ~ v2.1.94
+> 정리 일시: 2026-04-13
+> 정리 범위: v2.1.43 ~ v2.1.104
+
+---
+
+## Version 2.1.104
+
+### 주요 하이라이트
+- 내부 변경사항 및 CHANGELOG.md 업데이트 (패치 릴리스)
+
+### 변경
+- CHANGELOG.md 업데이트
+
+---
+
+## Version 2.1.101
+
+### 주요 하이라이트
+- **`/team-onboarding` 커맨드 추가**: 팀원 온보딩 가이드 자동 생성
+- **OS CA 인증서 저장소 기본 신뢰**: 기업 TLS 프록시 환경 기본 지원
+- **`/ultraplan` 클라우드 환경 자동 생성**: 플랜 실행 시 기본 클라우드 환경 자동 생성
+
+### 새 기능
+- **`/team-onboarding` 커맨드**: 팀원 온보딩용 가이드 자동 생성
+- **`/ultraplan` 개선**: 기본 클라우드 환경 자동 생성
+- **`claude -p --resume <name>`**: `/rename`으로 지정한 세션 제목으로 재개 가능
+- **설정 복원력 향상**: 인식되지 않는 훅 이벤트를 무시하지 않고 경고 처리
+- **플러그인 훅**: `allowManagedHooksOnly`로 실행
+
+### 개선
+- **OS CA 인증서 저장소 기본 신뢰**: 기업 TLS 프록시 환경에서 별도 설정 없이 동작
+- **Brief 모드 재시도 로직 개선**: 일반 텍스트 응답 처리 향상
+- **Focus 모드 개선**: 독립적인 요약 제공
+- **도구 미사용 에러 메시지 개선**: 더 명확한 안내 메시지
+- **레이트 리밋 재시도 메시지 개선**: 리셋 시간 표시
+
+### 버그 수정
+- 메모리 누수 수정
+- 권한 처리 오류 수정
+- MCP 도구 관련 40개 이상 버그 수정
+
+---
+
+## Version 2.1.98
+
+### 주요 하이라이트
+- **Google Vertex AI 대화형 설정 마법사**: 인터랙티브 Vertex AI 설정 지원
+- **`Monitor` 도구 추가**: 백그라운드 스크립트 이벤트 스트리밍
+- **서브프로세스 샌드박싱**: Linux PID 네임스페이스 격리 지원
+- **Bash 도구 권한 우회 버그 수정**: 백슬래시 이스케이프 플래그, 복합 명령 취약점 패치
+
+### 새 기능
+- **Google Vertex AI 대화형 설정 마법사**: 로그인 화면에서 Vertex AI 구성 안내
+- **`CLAUDE_CODE_PERFORCE_MODE` 환경변수**: 읽기 전용 파일 처리 모드
+- **`Monitor` 도구**: 백그라운드 스크립트 이벤트 실시간 스트리밍
+- **서브프로세스 샌드박싱**: Linux PID 네임스페이스 격리 (`--sandbox` 플래그)
+- **`--exclude-dynamic-system-prompt-sections` 플래그**: 동적 시스템 프롬프트 섹션 제외
+- **W3C `TRACEPARENT` 환경변수**: OTEL(OpenTelemetry) 추적 지원
+
+### 개선
+- 429 레이트 리밋 재시도 지수 백오프(Exponential Backoff) 개선
+- MCP OAuth 설정 오버라이드 수정
+- 터미널, macOS, 권한 처리 관련 40개 이상 개선
+
+### 버그 수정
+- **Bash 도구 권한 우회 취약점 수정**: 백슬래시 이스케이프 플래그, 복합 명령 처리 강화
+- 스트리밍 응답 멈춤(Stall) 타임아웃 수정
+- MCP HTTP/SSE 관련 버그 수정
+
+---
+
+## Version 2.1.97
+
+### 주요 하이라이트
+- **Focus View 토글** (`Ctrl+O`): `NO_FLICKER` 모드에서 집중 뷰 전환
+- **MCP HTTP/SSE 메모리 누수 수정**: 시간당 약 50MB 메모리 누수 해결
+- **Bash 도구 권한 강화**: 보안 취약점 하드닝
+
+### 새 기능
+- **Focus View 토글** (`Ctrl+O`): `NO_FLICKER` 모드에서 집중 뷰 전환
+- **`refreshInterval` 상태 표시줄 설정**: 상태 표시줄 갱신 주기 설정 가능
+- **`● N running` 인디케이터**: `/agents` 뷰에서 실행 중인 에이전트 수 표시
+- **Cedar 정책 파일 구문 강조**: Cedar 정책 파일 syntax highlighting 지원
+
+### 개선
+- Accept Edits 모드 개선: 안전한 환경변수 자동 승인
+- CJK 텍스트 슬래시 커맨드 처리 개선
+- Bridge 세션에서 git 저장소/브랜치/작업 디렉토리 표시
+
+### 버그 수정
+- **MCP HTTP/SSE 메모리 누수 수정**: 시간당 약 50MB 메모리 누수 해결
+- `/resume` 피커 관련 오류 수정
+- `--resume` 시 10KB 이상 파일에서 파일 편집 diff가 사라지던 문제 수정
+- **Bash 도구 권한 강화**: 보안 취약점 하드닝
+
+---
+
+## Version 2.1.96
+
+### 주요 하이라이트
+- **Bedrock 인증 오류 수정**: `403 "Authorization header is missing"` 오류 핫픽스
+
+### 버그 수정
+- Bedrock `403 "Authorization header is missing"` 오류 수정
+  - `AWS_BEARER_TOKEN_BEDROCK` 또는 `CLAUDE_CODE_SKIP_BEDROCK_AUTH` 환경변수로 우회 가능
+
+---
 
 ---
 

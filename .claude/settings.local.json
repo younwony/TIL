@@ -99,9 +99,31 @@
       "Bash(cp __TRACKED_VAR__/.claude/agents/test-generator.md C:/workspace/intellij/TIL/.claude/agents/test-generator.md)",
       "Bash(cp __TRACKED_VAR__/.claude/agents/code-refactor.md C:/workspace/intellij/TIL/.claude/agents/code-refactor.md)",
       "Bash(cp __TRACKED_VAR__/.claude/agents/design-reviewer.md C:/workspace/intellij/TIL/.claude/agents/design-reviewer.md)",
-      "Bash(cp C:/workspace/intellij/TIL/.claude/skills/work-plan/SKILL.md __TRACKED_VAR__/.claude/skills/work-plan/SKILL.md)"
+      "Bash(cp C:/workspace/intellij/TIL/.claude/skills/work-plan/SKILL.md __TRACKED_VAR__/.claude/skills/work-plan/SKILL.md)",
+      "Bash(cat)",
+      "Bash(chmod +x '/mnt/c/Users/youn.wonhee/.claude/hooks/block-dangerous-ssh.sh')",
+      "Bash(mkdir -p /mnt/c/workspace/intellij/TIL/.claude/skills/ssh-server-inspect/references)",
+      "Bash(mkdir -p /mnt/c/workspace/intellij/TIL/.claude/hooks)",
+      "Bash(cp /mnt/c/Users/youn.wonhee/.claude/skills/ssh-server-inspect/SKILL.md /mnt/c/workspace/intellij/TIL/.claude/skills/ssh-server-inspect/SKILL.md)",
+      "Bash(cp /mnt/c/Users/youn.wonhee/.claude/skills/ssh-server-inspect/references/servers.md /mnt/c/workspace/intellij/TIL/.claude/skills/ssh-server-inspect/references/servers.md)",
+      "Bash(cp /mnt/c/Users/youn.wonhee/.claude/hooks/block-dangerous-ssh.sh /mnt/c/workspace/intellij/TIL/.claude/hooks/block-dangerous-ssh.sh)"
     ],
     "deny": [],
     "ask": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-ssh.sh\"",
+            "timeout": 10,
+            "statusMessage": "SSH 명령 보안 검사 중..."
+          }
+        ]
+      }
+    ]
   }
 }
