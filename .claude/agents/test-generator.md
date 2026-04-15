@@ -35,10 +35,15 @@ model: haiku
 
 #### Advisor 디스패치 (복잡한 비즈니스 로직인 경우)
 
-아래 조건 중 하나라도 해당하면 Sonnet Advisor에게 테스트 시나리오 설계를 위임한다:
-- 여러 Service/Repository가 얽힌 복잡한 트랜잭션 흐름
-- 외부 API 연동, 이벤트 발행/구독, 스케줄러 등 비동기/이벤트 기반 로직
-- 도메인 정책이 복잡하여 경계값/예외 케이스가 비자명한 경우
+> **비용 절감 원칙**: Advisor 호출은 haiku 에이전트 위에 sonnet을 추가 실행하는 2중 비용이다.
+> **아래 조건을 모두(AND) 충족할 때만** Advisor를 디스패치한다.
+
+아래 조건을 **모두** 충족해야 Sonnet Advisor에게 테스트 시나리오 설계를 위임한다:
+1. 3개 이상의 Service/Repository가 연관된 복잡한 트랜잭션 흐름 **AND**
+2. 외부 API 연동, 비동기/이벤트 기반 로직이 **함께** 존재 **AND**
+3. 도메인 정책이 복잡하여 경계값/예외 케이스가 비자명한 경우
+
+단일 서비스 로직, 단순 CRUD, 동기 흐름은 Advisor 없이 haiku가 직접 처리한다.
 
 Agent 도구 파라미터:
 - `subagent_type`: `"general-purpose"`

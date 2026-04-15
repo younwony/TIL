@@ -2,7 +2,7 @@
 name: design-reviewer
 description: WORK-SPEC.md 기반 코드 설계 품질 전문 리뷰어. 디자인 패턴, SQL 쿼리 성능, Ops(로깅/롤백) 관점을 Opus 수준으로 분석하고 개선안을 제시한다. work-plan이 WORK-SPEC 생성 후 자동 디스패치.
 tools: Read, Glob, Grep
-model: opus
+model: sonnet
 omitClaudeMd: true
 maxTurns: 10
 ---

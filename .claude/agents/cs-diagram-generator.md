@@ -2,7 +2,7 @@
 name: cs-diagram-generator
 description: CS 문서용 다이어그램(SVG/Mermaid) 전문 생성 에이전트. cs-guide-writer 팀 모드에서 이미지 생성 담당. "다이어그램 생성", "이미지 생성" 요청 시 사용.
 tools: Write, Bash, Read, Glob
-model: sonnet
+model: haiku
 maxTurns: 15
 ---
 
