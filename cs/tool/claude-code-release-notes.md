@@ -1,7 +1,154 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-04-15
-> 정리 범위: v2.1.43 ~ v2.1.108
+> 정리 일시: 2026-04-20
+> 정리 범위: v2.1.43 ~ v2.1.114
+
+---
+
+## Version 2.1.114
+
+### 주요 하이라이트
+- 에이전트 팀 권한 다이얼로그 크래시 수정
+
+### 버그 수정
+- 에이전트 팀 멤버가 도구 권한 요청 시 권한 다이얼로그에서 발생하던 크래시 수정
+
+---
+
+## Version 2.1.113
+
+### 주요 하이라이트
+- **네이티브 바이너리 전환**: CLI가 번들 JavaScript 대신 플랫폼별 네이티브 바이너리를 사용하도록 변경
+- **보안 강화**: 다수의 Bash 도구 권한 우회 취약점 수정 (macOS 위험 경로, exec 래퍼, `find -exec` 등)
+- **다양한 UX 개선**: 멀티라인 입력 단축키, URL 클릭 지원, `/loop` 개선 등
+
+### 새 기능
+- `sandbox.network.deniedDomains` 설정 추가 — 와일드카드 `allowedDomains` 규칙이 허용하는 도메인도 차단 가능
+- `/extra-usage` 및 `@`-파일 자동완성을 Remote Control (모바일/웹) 클라이언트에서 사용 가능
+
+### 개선
+- 전체화면 모드: `Shift+↑/↓`로 선택 영역이 화면 끝에 도달해도 스크롤 가능
+- `Ctrl+A`/`Ctrl+E`로 멀티라인 입력에서 현재 논리 줄의 시작/끝으로 이동 (readline 동작과 일치)
+- Windows: `Ctrl+Backspace`로 이전 단어 삭제 지원
+- 줄 바꿈된 긴 URL도 클릭 가능 (OSC 8 하이퍼링크 지원 터미널)
+- `/loop` 개선: Esc로 예약된 웨이크업 취소, "Claude resuming /loop wakeup" 표시
+- `/ultrareview` 개선: 병렬 검사로 빠른 실행, diffstat 표시, 애니메이션 상태
+- 10분간 응답 없는 서브에이전트는 명확한 에러와 함께 실패 처리
+
+### 버그 수정
+- MCP 동시 호출 타임아웃 처리 수정 (한 도구의 메시지가 다른 도구의 워치독 해제 방지)
+- `Cmd-backspace`/`Ctrl+U` 줄 시작까지 삭제 복구
+- 파이프 문자 포함 인라인 코드의 마크다운 테이블 렌더링 수정
+- 세션 요약이 입력 중인 텍스트 도중 자동 실행되는 문제 수정
+- `/copy` "전체 응답" 마크다운 테이블 컬럼 정렬 수정
+- 서브에이전트 열람 중 입력된 메시지가 숨겨지던 문제 수정
+- Bash `dangerouslyDisableSandbox` 권한 프롬프트 없이 실행되던 문제 수정
+- `/effort auto` 확인 메시지 수정
+- 복사 토스트에서 이모지 문자 수 오버카운트 수정
+- Windows: `/insights` EBUSY 크래시 수정
+- 일정 예약 작업 종료 다이얼로그 레이블 수정
+- `ToolSearch` 랭킹 수정 (정확한 MCP 도구명 우선)
+- 긴 컨텍스트 세션 재개 시 Extra Usage 오류 수정
+- SDK 이미지 처리 실패 시 세션 크래시 대신 텍스트 플레이스홀더로 대체
+- Remote Control 세션 서브에이전트 트랜스크립트 스트리밍 수정
+- Bedrock Application Inference Profile ARN으로 Opus 4.7 사용 시 400 에러 수정
+
+### 보안
+- macOS: `/private/{etc,var,tmp,home}` 경로를 `Bash(rm:*)` 위험 대상으로 처리
+- Bash 거부 규칙이 `env`/`sudo`/`watch`/`ionice`/`setsid` 등 exec 래퍼로 감싼 명령어에도 적용
+- `Bash(find:*)` 허용 규칙에서 `find -exec`/`-delete` 자동 승인 제거
+- 첫 번째 줄이 주석인 멀티라인 명령어도 전체 명령어를 트랜스크립트에 표시 (UI 스푸핑 방지)
+
+---
+
+## Version 2.1.112
+
+### 주요 하이라이트
+- auto 모드에서 "claude-opus-4-7 is temporarily unavailable" 오류 수정
+
+### 버그 수정
+- auto 모드에서 Claude Opus 4.7 일시 불가 오류 수정
+
+---
+
+## Version 2.1.111
+
+### 주요 하이라이트
+- **Claude Opus 4.7 xhigh effort 지원**: `/effort`로 속도 vs 지능 조절 가능
+- **Max 구독자 auto 모드 지원**: Opus 4.7에서 auto 모드 사용 가능
+- **`/ultrareview` 추가**: 병렬 멀티 에이전트 분석을 통한 종합적 코드 리뷰
+- **PowerShell 도구 Windows 출시 (미리보기)**
+- **auto 모드**: `--enable-auto-mode` 플래그 없이도 사용 가능
+
+### 새 기능
+- Claude Opus 4.7 전용 `xhigh` 노력(effort) 레벨 추가 (`/effort`, `--effort`, 모델 선택기로 사용)
+- `/effort` 인자 없이 실행 시 인터랙티브 슬라이더 표시 (화살표로 탐색, Enter로 확인)
+- "Auto (match terminal)" 테마 옵션 추가 — 터미널의 다크/라이트 모드에 자동 맞춤
+- `/less-permission-prompts` 스킬 추가 — 트랜스크립트를 분석해 읽기 전용 Bash/MCP 도구 허용 목록 제안
+- `/ultrareview` — 현재 브랜치 또는 `/ultrareview <PR#>` 형식으로 GitHub PR 종합 코드 리뷰
+- Windows: PowerShell 도구 미리보기 출시 (`CLAUDE_CODE_USE_POWERSHELL_TOOL`로 옵트인/아웃)
+- 계획 파일명을 무작위 단어 대신 프롬프트 기반으로 명명 (예: `fix-auth-race-snug-otter.md`)
+
+### 개선
+- 글로브 패턴이 포함된 읽기 전용 bash 명령어, `cd <project-dir> &&` 로 시작하는 명령어는 권한 프롬프트 생략
+- 오타가 있는 서브커맨드 입력 시 가장 가까운 커맨드 제안 (예: `claude udpate` → `claude update`)
+- `/setup-vertex` 및 `/setup-bedrock` 개선: 실제 `settings.json` 경로 표시, 모델 후보 사전 설정
+- `/skills` 메뉴에 예상 토큰 수 기준 정렬 기능 추가 (`t` 키)
+- `Ctrl+U`가 전체 입력 버퍼 초기화 (이전: 줄 시작까지만 삭제); `Ctrl+Y`로 복원
+- `Ctrl+L`이 전체 화면 리드로우 추가 기능 수행
+- 트랜스크립트 뷰 푸터에 `[` (스크롤백 덤프), `v` (편집기에서 열기) 단축키 표시
+- 헤드리스 `--output-format stream-json`에 플러그인 오류 정보 포함
+- 디버깅용 OTEL 로그 전체 API 요청/응답 옵션 추가 (`OTEL_LOG_RAW_API_BODIES`)
+
+### 버그 수정
+- iTerm2 + tmux 조합에서 터미널 표시 깨짐 수정
+- `@` 파일 제안이 비git 폴더에서 매 턴 전체 프로젝트를 재검색하던 문제 수정
+- LSP 진단이 편집 이전 정보를 보여주던 문제 수정
+- `/resume` 탭 완성 시 임의 세션이 즉시 열리던 문제 수정
+- `/context` 그리드 여분 빈 줄 수정
+- `/clear` 시 `/rename`으로 설정한 세션 이름이 드롭되던 문제 수정
+- 플러그인 오류 처리 개선 및 다수 버그 수정
+- Opus 4.7 via Bedrock ARN 사용 시 400 에러 수정
+
+---
+
+## Version 2.1.110
+
+### 주요 하이라이트
+- **`/tui fullscreen` 명령어 추가**: 플리커 없는 전체화면 렌더링
+- **모바일 푸시 알림**: Remote Control + "Push when Claude decides" 설정 시 Claude가 푸시 알림 발송 가능
+
+### 새 기능
+- `/tui` 커맨드 및 `tui` 설정 추가 — `/tui fullscreen`으로 플리커 없는 렌더링 전환
+- 푸시 알림 도구 추가 (Remote Control + 설정 필요)
+- `autoScrollEnabled` 설정으로 전체화면 모드 자동 스크롤 비활성화 옵션
+- `Ctrl+G` 외부 편집기에서 Claude 마지막 응답을 주석 컨텍스트로 표시 옵션 (`/config`)
+- SDK/헤드리스 세션에서 분산 추적 연결을 위한 `TRACEPARENT`/`TRACESTATE` 환경변수 지원
+- `Ctrl+O`는 이제 일반/상세 트랜스크립트만 토글; 포커스 뷰는 새 `/focus` 명령어로 분리
+
+### 개선
+- `/plugin` 설치됨 탭: 주의 필요 항목 및 즐겨찾기를 상단에, 비활성 항목은 접힘 처리
+- `/doctor`에서 여러 config 범위에 다른 엔드포인트로 정의된 MCP 서버 경고
+- `--resume`/`--continue`가 만료되지 않은 예약 작업도 복구
+- `/context`, `/exit`, `/reload-plugins`를 Remote Control에서 사용 가능
+- Bash 도구 최대 타임아웃 문서화 및 강제 적용
+- Bedrock/Vertex/Foundry 사용자도 세션 Recap 기능 사용 가능 (`CLAUDE_CODE_ENABLE_AWAY_SUMMARY=0`으로 비활성)
+- Write 도구가 IDE diff에서 내용 편집 후 수락 시 모델에게 알림
+
+### 버그 수정
+- MCP 도구 호출이 SSE/HTTP 전송에서 서버 연결 끊김 시 무한 대기하던 문제 수정
+- 논스트리밍 폴백 재시도로 여러 분 동안 세션이 멈추던 문제 수정
+- `/skills` 메뉴 스크롤 수정
+- Remote Control 세션에서 재로그인 필요 시 일반 에러 대신 프롬프트 표시
+- Remote Control 세션 제목 동기화 수정
+- 기타 다수 안정성 및 성능 개선
+
+---
+
+## Version 2.1.109
+
+### 주요 하이라이트
+- 확장 사고(Extended Thinking) 진행 표시기 개선 — 회전하는 진행 힌트 표시
 
 ---
 
