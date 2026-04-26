@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" font-family="'Segoe UI', 'Apple SD Gothic Neo', sans-serif" font-size="13">
+  <defs>
+    <linearGradient id="modelGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D97757"/>
+      <stop offset="100%" stop-color="#B85A3F"/>
+    </linearGradient>
+    <linearGradient id="canvasGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0EDE5"/>
+    </linearGradient>
+    <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5436DA"/>
+      <stop offset="100%" stop-color="#3F26B0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="540" fill="#FAF9F5"/>
+
+  <!-- Title -->
+  <text x="460" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#1F1F1F">Claude Design 아키텍처</text>
+  <text x="460" y="52" text-anchor="middle" font-size="12" fill="#666">입력 → Claude Opus 4.7 → 캔버스 → 익스포트 / Claude Code 핸드오프</text>
+
+  <!-- INPUT column -->
+  <text x="120" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#444">입력 (Inputs)</text>
+  <g filter="url(#shadow)">
+    <rect x="40" y="105" width="160" height="48" rx="8" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+    <text x="120" y="127" text-anchor="middle" font-weight="600" fill="#1F1F1F">텍스트 프롬프트</text>
+    <text x="120" y="144" text-anchor="middle" font-size="11" fill="#777">목표/레이아웃/콘텐츠/대상</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="40" y="165" width="160" height="48" rx="8" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+    <text x="120" y="187" text-anchor="middle" font-weight="600" fill="#1F1F1F">이미지 / 문서</text>
+    <text x="120" y="204" text-anchor="middle" font-size="11" fill="#777">로고, 스크린샷, 자산</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="40" y="225" width="160" height="48" rx="8" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+    <text x="120" y="247" text-anchor="middle" font-weight="600" fill="#1F1F1F">코드베이스</text>
+    <text x="120" y="264" text-anchor="middle" font-size="11" fill="#777">디자인 시스템 자동 학습</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="40" y="285" width="160" height="48" rx="8" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+    <text x="120" y="307" text-anchor="middle" font-weight="600" fill="#1F1F1F">Figma .fig 파일</text>
+    <text x="120" y="324" text-anchor="middle" font-size="11" fill="#777">★ 디자인 시스템 임포트</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="40" y="345" width="160" height="48" rx="8" fill="#FFFFFF" stroke="#D97757" stroke-width="1.5"/>
+    <text x="120" y="367" text-anchor="middle" font-weight="600" fill="#1F1F1F">design.md</text>
+    <text x="120" y="384" text-anchor="middle" font-size="11" fill="#777">awesome-design-md 등</text>
+  </g>
+
+  <!-- MODEL column (center) -->
+  <text x="460" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#444">처리 (Model)</text>
+  <g filter="url(#shadow)">
+    <rect x="320" y="115" width="280" height="180" rx="14" fill="url(#modelGrad)"/>
+    <text x="460" y="155" text-anchor="middle" font-size="22" font-weight="700" fill="#FFF">Claude Opus 4.7</text>
+    <text x="460" y="180" text-anchor="middle" font-size="12" fill="#FFE">Anthropic 최상위 vision 모델</text>
+    <line x1="350" y1="200" x2="570" y2="200" stroke="#FFFFFF" stroke-opacity="0.4"/>
+    <text x="460" y="225" text-anchor="middle" font-size="13" font-weight="600" fill="#FFF">디자인 시스템 자동 생성</text>
+    <text x="460" y="248" text-anchor="middle" font-size="12" fill="#FFE">컬러 · 타이포 · 컴포넌트 · 간격</text>
+    <text x="460" y="275" text-anchor="middle" font-size="12" fill="#FFE">Need Review N개 → Publish</text>
+  </g>
+
+  <!-- CANVAS column -->
+  <text x="460" y="325" text-anchor="middle" font-size="13" font-weight="700" fill="#444">캔버스 (4개 탭)</text>
+  <g filter="url(#shadow)">
+    <rect x="280" y="340" width="360" height="80" rx="10" fill="url(#canvasGrad)" stroke="#D8D2C0" stroke-width="1"/>
+    <g font-size="12" font-weight="600" fill="#1F1F1F">
+      <rect x="295" y="358" width="80" height="44" rx="6" fill="#F4E8DA" stroke="#D97757" stroke-width="1"/>
+      <text x="335" y="380" text-anchor="middle">Prototype</text>
+      <text x="335" y="395" text-anchor="middle" font-size="10" font-weight="400" fill="#777">UI · 3D · WebGL</text>
+
+      <rect x="385" y="358" width="80" height="44" rx="6" fill="#F4E8DA" stroke="#D97757" stroke-width="1"/>
+      <text x="425" y="380" text-anchor="middle">Slidedeck</text>
+      <text x="425" y="395" text-anchor="middle" font-size="10" font-weight="400" fill="#777">+ 발표자 노트</text>
+
+      <rect x="475" y="358" width="80" height="44" rx="6" fill="#F4E8DA" stroke="#D97757" stroke-width="1"/>
+      <text x="515" y="378" text-anchor="middle">Prompt</text>
+      <text x="515" y="392" text-anchor="middle">Templates</text>
+
+      <rect x="565" y="358" width="60" height="44" rx="6" fill="#F4E8DA" stroke="#D97757" stroke-width="1"/>
+      <text x="595" y="380" text-anchor="middle">Custom</text>
+      <text x="595" y="395" text-anchor="middle" font-size="10" font-weight="400" fill="#777">자유 유형</text>
+    </g>
+  </g>
+
+  <!-- EXPORT column (bottom) -->
+  <text x="460" y="450" text-anchor="middle" font-size="13" font-weight="700" fill="#444">출력 (Exports)</text>
+  <g filter="url(#shadow)">
+    <rect x="60" y="465" width="800" height="56" rx="10" fill="url(#exportGrad)"/>
+    <g font-size="12" font-weight="600" fill="#FFFFFF">
+      <text x="115" y="492" text-anchor="middle">URL 공유</text>
+      <text x="115" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">조직 내</text>
+
+      <text x="205" y="492" text-anchor="middle">.zip 폴더</text>
+      <text x="205" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">로컬</text>
+
+      <text x="295" y="492" text-anchor="middle">Canva</text>
+      <text x="295" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">편집 연계</text>
+
+      <text x="385" y="492" text-anchor="middle">PDF</text>
+      <text x="385" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">인쇄/공유</text>
+
+      <text x="475" y="492" text-anchor="middle">PPTX</text>
+      <text x="475" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">PowerPoint</text>
+
+      <text x="585" y="492" text-anchor="middle">HTML</text>
+      <text x="585" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">정적 호스팅</text>
+
+      <text x="745" y="492" text-anchor="middle" font-weight="700">★ Claude Code 핸드오프</text>
+      <text x="745" y="508" text-anchor="middle" font-size="10" font-weight="400" fill="#E0DBFF">번들 → 단일 명령으로 코드 구현</text>
+    </g>
+  </g>
+
+  <!-- Arrows: Inputs → Model -->
+  <g stroke="#888" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <path d="M 200 129 L 320 165"/>
+    <path d="M 200 189 L 320 195"/>
+    <path d="M 200 249 L 320 220"/>
+    <path d="M 200 309 L 320 245"/>
+    <path d="M 200 369 L 320 270"/>
+  </g>
+
+  <!-- Arrow: Model → Canvas -->
+  <line x1="460" y1="295" x2="460" y2="338" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Arrow: Model → Export (right side) -->
+  <path d="M 600 215 Q 720 215 745 463" stroke="#888" stroke-width="2" fill="none" marker-end="url(#arrow)" stroke-dasharray="4,4"/>
+  <text x="710" y="340" font-size="11" fill="#666">핸드오프 번들</text>
+
+  <!-- Arrow: Canvas → Export -->
+  <line x1="460" y1="420" x2="460" y2="463" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <g font-size="10" fill="#777">
+    <rect x="40" y="425" width="12" height="3" fill="#D97757"/>
+    <text x="58" y="429">입력 채널</text>
+    <rect x="120" y="425" width="12" height="3" fill="#5436DA"/>
+    <text x="138" y="429">출력 채널</text>
+    <rect x="200" y="425" width="12" height="3" fill="#888" stroke-dasharray="2,2"/>
+    <text x="218" y="429">데이터 흐름</text>
+  </g>
+</svg>

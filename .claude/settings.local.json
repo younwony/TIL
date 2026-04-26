@@ -106,7 +106,9 @@
       "Bash(mkdir -p /mnt/c/workspace/intellij/TIL/.claude/hooks)",
       "Bash(cp /mnt/c/Users/youn.wonhee/.claude/skills/ssh-server-inspect/SKILL.md /mnt/c/workspace/intellij/TIL/.claude/skills/ssh-server-inspect/SKILL.md)",
       "Bash(cp /mnt/c/Users/youn.wonhee/.claude/skills/ssh-server-inspect/references/servers.md /mnt/c/workspace/intellij/TIL/.claude/skills/ssh-server-inspect/references/servers.md)",
-      "Bash(cp /mnt/c/Users/youn.wonhee/.claude/hooks/block-dangerous-ssh.sh /mnt/c/workspace/intellij/TIL/.claude/hooks/block-dangerous-ssh.sh)"
+      "Bash(cp /mnt/c/Users/youn.wonhee/.claude/hooks/block-dangerous-ssh.sh /mnt/c/workspace/intellij/TIL/.claude/hooks/block-dangerous-ssh.sh)",
+      "Bash(mkdir -p .claude/tracks/claude-design-guide/references)",
+      "Bash(cp \"C:/Users/wony9/AppData/Local/Temp/claude-design-subs/NnIuDXt-KKI.ko.vtt\" .claude/tracks/claude-design-guide/references/youtube-NnIuDXt-KKI-ko.vtt)"
     ],
     "deny": [],
     "ask": []

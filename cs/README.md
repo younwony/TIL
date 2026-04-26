@@ -40,6 +40,7 @@
 
 ### AI & 에이전트
 
+- [AI](./ai) - AI 활용 도구·서비스 가이드 (Claude Design 등)
 - [AI Agent](./ai-agent) - AI 에이전트, MCP, LLM 도구 확장 기술
 
 ### 최신 트렌드

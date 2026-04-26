@@ -1,7 +1,194 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-04-20
-> 정리 범위: v2.1.43 ~ v2.1.114
+> 정리 일시: 2026-04-26
+> 정리 범위: v2.1.43 ~ v2.1.119
+
+---
+
+## Version 2.1.119
+
+### 주요 하이라이트
+- **`/config` 설정 영구 저장**: 테마, 에디터 모드, verbose 등이 `~/.claude/settings.json`에 저장되며 프로젝트/로컬/정책 우선순위 체계에 참여
+- **PowerShell 도구 자동 승인**: 권한 모드에서 PowerShell 명령어가 Bash와 동일하게 자동 승인 가능
+- **`--from-pr` 멀티 플랫폼 지원**: GitLab MR, Bitbucket PR, GitHub Enterprise PR URL 모두 지원
+- **`--print` 모드 일관성**: 에이전트의 `tools:`/`disallowedTools:` frontmatter를 인터랙티브 모드와 동일하게 적용
+
+### 새 기능
+- `prUrlTemplate` 설정 추가 — 푸터의 PR 배지를 github.com 대신 커스텀 코드 리뷰 URL로 연결
+- `CLAUDE_CODE_HIDE_CWD` 환경변수 — 시작 로고에서 작업 디렉토리 숨김
+- 빌트인 에이전트의 `--agent <name>` 호출 시 에이전트 정의의 `permissionMode` 적용
+- Hooks: `PostToolUse` / `PostToolUseFailure` 입력에 `duration_ms`(권한 프롬프트와 PreToolUse hook 제외 도구 실행 시간) 추가
+- OpenTelemetry: `tool_result` / `tool_decision` 이벤트에 `tool_use_id` 추가, `tool_result`에 `tool_input_size_bytes` 추가
+- 상태 표시줄 stdin JSON에 `effort.level`, `thinking.enabled` 포함
+
+### 개선
+- 서브에이전트 및 SDK MCP 서버 재구성 시 직렬 → 병렬 연결로 변경
+- 다른 플러그인의 버전 제약으로 핀된 플러그인이 만족 가능한 가장 높은 git 태그로 자동 업데이트
+- Vim 모드: INSERT 모드에서 Esc가 큐에 들어간 메시지를 입력으로 되돌리지 않음. 인터럽트하려면 Esc 두 번 누르기
+- 슬래시 커맨드 제안: 검색어와 매칭된 글자를 강조 표시
+- 슬래시 커맨드 피커: 긴 설명을 잘라내지 않고 두 번째 줄로 줄바꿈
+- `owner/repo#N` 단축 링크가 항상 github.com 대신 git remote의 호스트로 연결
+- 보안: `blockedMarketplaces`가 `hostPattern`/`pathPattern` 항목을 올바르게 적용
+- Vertex AI에서 Tool Search 기본 비활성화 (지원 안 되는 베타 헤더 오류 회피, `ENABLE_TOOL_SEARCH`로 옵트인)
+
+### 버그 수정
+- CRLF 콘텐츠 붙여넣기(Windows 클립보드, Xcode 콘솔) 시 줄마다 빈 줄이 추가되던 문제 수정
+- Kitty 키보드 프로토콜 시퀀스 사용 터미널의 멀티라인 붙여넣기에서 줄바꿈이 사라지던 문제 수정
+- 네이티브 macOS/Linux 빌드에서 Bash 도구 권한 거부 시 `Glob`/`Grep` 도구가 사라지던 문제 수정
+- 풀스크린 모드에서 도구 종료 시마다 스크롤이 맨 아래로 튀는 문제 수정
+- MCP HTTP 연결 시 OAuth 검색 응답이 non-JSON일 때 "Invalid OAuth error response"로 실패하던 문제 수정
+- Rewind 오버레이가 이미지 첨부된 메시지를 "(no prompt)"로 표시하던 문제 수정
+- auto 모드가 plan 모드를 "Execute immediately"로 덮어쓰던 문제 수정
+- 응답 페이로드가 없는 비동기 `PostToolUse` hook이 세션 트랜스크립트에 빈 항목을 쓰던 문제 수정
+- 서브에이전트 작업 알림이 큐에 고립되었을 때 스피너가 멈추지 않던 문제 수정
+- `@`-파일 Tab 완성이 슬래시 커맨드 안에서 절대 경로 사용 시 전체 프롬프트를 대체하던 문제 수정
+- macOS Terminal.app에서 Docker/SSH 통해 시작 시 프롬프트에 부유 `p` 문자 표시 수정
+- HTTP/SSE/WebSocket MCP 서버의 `headers` 안 `${ENV_VAR}` 플레이스홀더가 요청 전 치환되지 않던 문제 수정
+- `--client-secret`로 저장된 MCP OAuth 클라이언트 시크릿이 `client_secret_post` 필요 서버에서 전달되지 않던 문제 수정
+- `/skills` Enter 키가 다이얼로그를 닫는 대신 프롬프트에 `/<skill-name>` 미리 입력하도록 수정
+- `/agents` 상세 뷰가 서브에이전트에 사용 불가한 빌트인 도구를 "Unrecognized"로 잘못 표시하던 문제 수정
+- 플러그인 캐시가 불완전할 때 Windows에서 플러그인의 MCP 서버가 시작되지 않던 문제 수정
+- `/export`가 대화에 실제 사용된 모델이 아닌 현재 기본 모델을 표시하던 문제 수정
+- verbose 출력 설정이 재시작 후 유지되지 않던 문제 수정
+- `/usage` 진행 막대가 "Resets …" 라벨과 겹치던 문제 수정
+- `${user_config.*}`가 비어있는 선택 필드 참조 시 플러그인 MCP 서버 실패 수정
+- 문장 끝 숫자가 포함된 리스트 항목에서 숫자가 별도 줄로 줄바꿈되던 문제 수정
+- `/plan`, `/plan open` 진입 시 기존 플랜에 작용하지 않던 문제 수정
+- 자동 압축 직전 호출된 스킬이 다음 사용자 메시지에 재실행되던 문제 수정
+- `/reload-plugins`, `/doctor`가 비활성화 플러그인의 로드 오류를 보고하던 문제 수정
+- Agent 도구 `isolation: "worktree"`가 이전 세션의 stale worktree 재사용하던 문제 수정
+- 비활성 MCP 서버가 `/status`에서 "failed"로 표시되던 문제 수정
+- `TaskList`가 임의 파일시스템 순서가 아닌 ID 정렬로 반환되도록 수정
+- `gh` 출력의 PR 제목에 "rate limit"이 포함되었을 때 발생하던 가짜 "GitHub API rate limit exceeded" 힌트 수정
+- SDK/bridge `read_file`이 커지는 파일에 대한 크기 상한을 올바르게 적용하지 않던 문제 수정
+- git worktree 작업 시 PR이 세션에 연결되지 않던 문제 수정
+- `/doctor`가 더 높은 우선순위 스코프로 덮어쓰인 MCP 서버 항목을 경고하던 문제 수정
+- Windows: 잘못된 "Windows requires 'cmd /c' wrapper" MCP 설정 경고 제거
+- [VSCode] macOS에서 마이크 권한 프롬프트 표시 중에 음성 받아쓰기 첫 녹음이 빈 결과 반환되던 문제 수정
+
+---
+
+## Version 2.1.118
+
+### 주요 하이라이트
+- **Vim Visual 모드 추가**: `v` (visual), `V` (visual-line) 모드 — 선택, 연산자, 시각 피드백 지원
+- **`/cost` + `/stats` → `/usage`로 통합**: `/cost`, `/stats`는 해당 탭을 여는 단축키로 유지
+- **커스텀 테마**: `/theme`에서 명명된 커스텀 테마 생성/전환, `~/.claude/themes/` JSON 직접 편집 가능, 플러그인이 `themes/` 디렉토리로 테마 배포 가능
+- **Hook에서 MCP 도구 직접 호출**: `type: "mcp_tool"` 지원
+
+### 새 기능
+- `DISABLE_UPDATES` 환경변수 — `claude update` 수동 실행을 포함한 모든 업데이트 경로 차단 (`DISABLE_AUTOUPDATER`보다 엄격)
+- WSL on Windows: `wslInheritsWindowsSettings` 정책 키로 Windows 측 관리 설정 상속
+- auto 모드: `autoMode.allow`/`soft_deny`/`environment`에 `"$defaults"` 포함 시 빌트인 규칙을 대체하지 않고 추가
+- auto 모드 옵트인 프롬프트에 "Don't ask again" 옵션 추가
+- `claude plugin tag` 추가 — 플러그인용 릴리스 git 태그 생성 (버전 검증 포함)
+
+### 개선
+- `--continue`/`--resume`이 `/add-dir`로 현재 디렉토리를 추가한 세션도 검색
+- `/color`가 Remote Control 연결 시 세션 액센트 색상을 claude.ai/code에 동기화
+- `/model` 피커가 커스텀 `ANTHROPIC_BASE_URL` 게이트웨이 사용 시 `ANTHROPIC_DEFAULT_*_MODEL_NAME`/`_DESCRIPTION` 오버라이드 적용
+- 다른 플러그인의 버전 제약으로 자동 업데이트가 스킵된 경우 `/doctor`와 `/plugin` Errors 탭에 표시
+
+### 버그 수정
+- `/mcp` 메뉴가 `headersHelper` 설정 서버에 OAuth 인증/재인증 액션을 숨기던 문제 수정
+- 일시적 401 후 커스텀 헤더 HTTP/SSE MCP 서버가 "needs authentication"에 묶여있던 문제 수정
+- OAuth 토큰 응답에 `expires_in`이 빠진 MCP 서버가 매시간 재인증 요구하던 문제 수정
+- MCP step-up 인증이 `insufficient_scope` 403의 스코프를 이미 보유한 경우 재동의 프롬프트 대신 조용히 갱신하던 문제 수정
+- MCP 서버 OAuth 흐름 타임아웃/취소 시 미처리 promise rejection 수정
+- MCP OAuth 갱신이 cross-process 락 없이 진행되던 문제 수정
+- macOS keychain 경합으로 동시 MCP 토큰 갱신이 새로 갱신된 OAuth 토큰을 덮어쓰던 문제 수정 (예기치 않은 "Please run /login" 프롬프트)
+- 서버가 로컬 만료 시간 전에 토큰 폐기 시 OAuth 갱신 실패 수정
+- Linux/Windows 자격 증명 저장 크래시로 `~/.claude/.credentials.json` 손상되던 문제 수정
+- `CLAUDE_CODE_OAUTH_TOKEN` 환경변수로 시작한 세션에서 `/login`이 동작하지 않던 문제 수정 (env 토큰 클리어 후 디스크 자격 증명 적용)
+- "new messages" 스크롤 알약과 `/plugin` 배지의 읽을 수 없는 텍스트 수정
+- `--dangerously-skip-permissions` 실행 시 플랜 수락 다이얼로그가 "auto mode" 대신 "bypass permissions" 제공하도록 수정
+- 에이전트 타입 hook이 `Stop`/`SubagentStop` 외 이벤트로 설정 시 "Messages are required for agent hooks" 실패하던 문제 수정
+- `prompt` hook이 에이전트 hook verifier 서브에이전트의 도구 호출에 재발화되던 문제 수정
+- `/fork`가 fork마다 부모 대화 전체를 디스크에 쓰던 문제 수정 — 이제 포인터 저장 후 읽을 때 hydrate
+- Alt+K / Alt+X / Alt+^ / Alt+_ 가 키보드 입력을 멈추던 문제 수정
+- 원격 세션 연결 시 로컬 `model` 설정이 `~/.claude/settings.json`에 덮어써지던 문제 수정
+- `/`로 시작하는 파일 경로 붙여넣기 시 typeahead가 "No commands match" 오류 표시하던 문제 수정
+- 이미 설치된 플러그인에 `plugin install` 시 잘못된 버전 의존성을 재해결하지 않던 문제 수정
+- 잘못된 경로/fd 고갈 시 파일 워처의 미처리 오류 수정
+- JWT 갱신 중 일시적 CCR 초기화 결함으로 Remote Control 세션이 archive되던 문제 수정
+- `SendMessage`로 재개된 서브에이전트가 시작 시 명시한 `cwd`를 복원하지 않던 문제 수정
+
+---
+
+## Version 2.1.117
+
+### 주요 하이라이트
+- **네이티브 macOS/Linux 빌드 성능 향상**: `Glob`/`Grep` 도구가 임베디드 `bfs`/`ugrep`로 대체되어 Bash 도구 통해 사용 — 별도 도구 round-trip 없이 빠른 검색 (Windows/npm 빌드는 변경 없음)
+- **Pro/Max 기본 effort 변경**: Opus 4.6 / Sonnet 4.6에서 기본 effort가 `medium` → `high`로 상향
+- **Opus 4.7 컨텍스트 윈도우 정확히 적용**: 200K가 아닌 네이티브 1M 윈도우 기준으로 `/context` 표시·자동 압축 동작
+
+### 새 기능
+- `CLAUDE_CODE_FORK_SUBAGENT=1` 환경변수로 외부 빌드에서도 forked subagent 활성화 가능
+- 에이전트 frontmatter `mcpServers`가 `--agent`로 실행되는 메인 스레드 에이전트 세션에 로드됨
+- `/resume`가 stale, 대용량 세션을 재로딩 전 요약 제안 (기존 `--resume` 동작과 일치)
+
+### 개선
+- `/model` 선택이 프로젝트가 다른 모델을 핀하더라도 재시작 후에도 유지됨, 시작 헤더에 활성 모델이 프로젝트/관리설정 핀에서 왔음을 표시
+- 로컬 + claude.ai MCP 서버 동시 구성 시 시작 빠름 (병렬 연결 기본화)
+- `plugin install`이 이미 설치된 플러그인에서 누락된 의존성을 설치 (기존: "already installed"에서 중단)
+- 플러그인 의존성 오류 메시지가 "not installed" + 설치 힌트로 변경, `claude plugin marketplace add`가 누락 의존성을 자동 해결
+- 관리 설정 `blockedMarketplaces`, `strictKnownMarketplaces`가 plugin install/update/refresh/autoupdate 모두에 적용
+- Advisor Tool (실험적): "experimental" 라벨, 학습 링크, 활성화 시 시작 알림 추가. 매 프롬프트와 `/compact`마다 발생하던 "Advisor tool result content could not be processed" 오류 해결
+- `cleanupPeriodDays` 보존 정리가 `~/.claude/tasks/`, `~/.claude/shell-snapshots/`, `~/.claude/backups/`도 포함
+- OpenTelemetry: 슬래시 커맨드의 `user_prompt` 이벤트에 `command_name`, `command_source` 추가. `cost.usage`, `token.usage`, `api_request`, `api_error`에 effort 레벨 모델 사용 시 `effort` 속성 추가. 커스텀/MCP 커맨드명은 `OTEL_LOG_TOOL_DETAILS=1` 미설정 시 마스킹
+- Windows: 프로세스당 `where.exe` 실행파일 조회 캐싱으로 서브프로세스 시작 빠름
+
+### 버그 수정
+- Plain-CLI OAuth 세션이 액세스 토큰 만료 중 "Please run /login"으로 죽던 문제 수정 — 401 시 반응적 토큰 갱신
+- 매우 큰 HTML 페이지에서 `WebFetch`가 멈추던 문제 수정 (HTML→마크다운 변환 전 입력 절단)
+- 프록시가 HTTP 204 No Content 반환 시 `TypeError` 대신 명확한 오류 표시
+- `CLAUDE_CODE_OAUTH_TOKEN` 환경변수로 시작 후 토큰 만료 시 `/login`이 동작하지 않던 문제 수정
+- 입력 후 즉시 prompt undo (`Ctrl+_`)가 동작하지 않거나 undo 단계가 건너뛰어지던 문제 수정
+- Bun 환경에서 원격 API 요청 시 `NO_PROXY`가 무시되던 문제 수정
+- 느린 연결에서 키 이름이 합쳐진 텍스트로 도착할 때 가짜 escape/return 트리거 수정
+- SDK `reload_plugins`가 모든 사용자 MCP 서버를 직렬 재연결하던 문제 수정
+- thinking 비활성화 Opus 4.7 백엔드의 Bedrock application-inference-profile 요청이 400으로 실패하던 문제 수정
+- 서버가 연결 완료 중인 도중 print/SDK 모드의 MCP `elicitation/create` 요청이 자동 취소되던 문제 수정
+- 서브에이전트가 메인 에이전트와 다른 모델 실행 시 파일 읽기를 멀웨어 경고로 잘못 표시하던 문제 수정
+- 백그라운드 작업 존재 시 idle 재렌더 루프 수정 (Linux 메모리 증가 완화)
+- [VSCode] 다중 대형 마켓플레이스 구성 시 "Manage Plugins" 패널이 깨지던 문제 수정
+
+---
+
+## Version 2.1.116
+
+### 주요 하이라이트
+- **`/resume` 대용량 세션 67% 빠름**: 40MB+ 세션과 다수 dead-fork 항목 효율적 처리
+- **MCP 시작 빨라짐**: 다중 stdio 서버 + `resources/templates/list` 첫 `@`-mention 시까지 지연 로드
+- **풀스크린 스크롤 부드러워짐**: VS Code, Cursor, Windsurf 터미널에서 `/terminal-setup`이 에디터의 스크롤 감도 자동 설정
+- **Thinking 스피너 진행 표시**: "still thinking", "thinking more", "almost done thinking" 인라인 표시 (별도 힌트 행 대체)
+
+### 변경
+- 다운로드 URL 변경: `https://storage.googleapis.com/...` → `https://downloads.claude.ai/claude-code-releases`
+
+### 개선
+- `/config` 검색이 옵션 값까지 매칭 (예: "vim" 검색 시 Editor mode 설정 발견)
+- Claude 응답 중에도 `/doctor` 열기 가능 (현재 턴 종료 대기 불필요)
+- `/reload-plugins` 및 백그라운드 플러그인 자동 업데이트가 이미 추가된 마켓플레이스에서 누락 플러그인 의존성 자동 설치
+- Bash 도구가 `gh` 명령어의 GitHub API rate limit 도달 시 힌트 제공 (에이전트가 백오프 가능)
+- 설정의 Usage 탭이 5시간/주간 사용량을 즉시 표시, usage 엔드포인트 rate limit에도 실패하지 않음
+- 에이전트 frontmatter `hooks:`가 `--agent`로 실행되는 메인 스레드 에이전트에서 발화
+- 슬래시 커맨드 메뉴: 필터에 매칭 결과 0이면 "No commands match" 표시 (사라지지 않음)
+- 보안: 샌드박스 자동 허용이 `/`, `$HOME`, 기타 중요 시스템 디렉토리를 대상으로 하는 `rm`/`rmdir`의 위험 경로 안전 검사를 우회하지 않음
+
+### 버그 수정
+- 데바나가리 등 인도 문자 스크립트가 터미널 UI에서 컬럼 정렬 깨짐 수정
+- Kitty 키보드 프로토콜 사용 터미널(iTerm2, Ghostty, kitty, WezTerm, Windows Terminal)에서 Ctrl+- undo 미작동 수정
+- Kitty 키보드 프로토콜 사용 터미널(Warp 풀스크린, kitty, Ghostty, WezTerm)에서 Cmd+Left/Right 줄 시작/끝 이동 미작동 수정
+- 래퍼 프로세스(`npx`, `bun run`)로 시작 시 Ctrl+Z가 터미널을 멈추던 문제 수정
+- 인라인 모드에서 터미널 리사이즈/대량 출력 폭증 시 이전 대화 히스토리가 반복되던 스크롤백 중복 수정
+- 짧은 터미널 높이에서 모달 검색 다이얼로그가 화면 넘치며 검색 박스/단축키 힌트 숨겨지던 문제 수정
+- VS Code 통합 터미널 스크롤 중 빈 셀 흩어짐 + 컴포저 chrome 사라짐 수정
+- 병렬 요청이 요청 셋업 중 완료될 때 발생하던 cache control TTL 순서 관련 일시적 API 400 오류 수정
+- `/branch`가 50MB 초과 트랜스크립트 대화를 거부하던 문제 수정
+- 대용량 세션 파일에 `/resume` 시 빈 대화 표시 (로드 오류 미보고) 문제 수정
+- `/plugin` Installed 탭에서 동일 항목이 Needs attention/Favorites에 나타날 때 두 번 표시되던 문제 수정
+- 워크트리 진입 후 세션 중간에 `/update`, `/tui`가 동작하지 않던 문제 수정
 
 ---
 
