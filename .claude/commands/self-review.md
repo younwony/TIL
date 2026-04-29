@@ -1,5 +1,6 @@
 ---
 description: PR 생성 전 현재 브랜치의 변경사항을 4명의 전문 리뷰어 에이전트 팀 + Gemini/Codex 크로스 리뷰로 자체 리뷰하고 SELF-REVIEW.md를 생성합니다.
+effort: high
 allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Bash(test:*), Bash(node:*), Read, Write, Glob, Grep, Task, Skill(codex:*)
 ---
 
@@ -111,7 +112,7 @@ diff:
    - 변경 규모가 큰 상위 파일들의 diff만 선택적으로 포함
    - "diff가 커서 주요 파일만 Gemini에 전달되었습니다." 안내
 
-#### Gemini 리뷰 실행 (**Bash timeout: 300000ms 필수**)
+#### Gemini 리뷰 실행 (**Bash timeout: 240000ms 필수**)
 
 ```bash
 # 일반적인 경우 (1,000줄 이하)
@@ -169,7 +170,7 @@ Codex Plugin의 리뷰를 사용한다. 대용량 diff도 Plugin이 자체적으
    ```
    /codex:rescue --resume 이전 리뷰를 이어서 완료해줘 --wait
    ```
-2. 2차 실패 → CLI fallback: `codex review --base {COMPARE_BRANCH}` (Bash, timeout: 300000ms)
+2. 2차 실패 → CLI fallback: `codex review --base {COMPARE_BRANCH}` (Bash, timeout: 240000ms)
 3. 3차 실패 → "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
 
 - **Plugin 미설치 시**: CLI fallback 직행

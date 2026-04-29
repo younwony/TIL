@@ -1,0 +1,116 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8FAFC"/>
+      <stop offset="100%" style="stop-color:#EEF2FF"/>
+    </linearGradient>
+    <radialGradient id="hubGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1E293B"/>
+      <stop offset="100%" style="stop-color:#0F172A"/>
+    </radialGradient>
+    <linearGradient id="p1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#EF4444"/><stop offset="100%" style="stop-color:#B91C1C"/></linearGradient>
+    <linearGradient id="p2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#F59E0B"/><stop offset="100%" style="stop-color:#B45309"/></linearGradient>
+    <linearGradient id="p3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#10B981"/><stop offset="100%" style="stop-color:#047857"/></linearGradient>
+    <linearGradient id="p4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#3B82F6"/><stop offset="100%" style="stop-color:#1D4ED8"/></linearGradient>
+    <linearGradient id="p5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#8B5CF6"/><stop offset="100%" style="stop-color:#6D28D9"/></linearGradient>
+    <linearGradient id="p6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#EC4899"/><stop offset="100%" style="stop-color:#BE185D"/></linearGradient>
+    <linearGradient id="p7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#0EA5E9"/><stop offset="100%" style="stop-color:#0369A1"/></linearGradient>
+    <filter id="shadow2" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="720" fill="url(#bg2)" rx="12"/>
+
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#0F172A">
+    Matt Pocock 하네스 7가지 횡단 패턴
+  </text>
+  <text x="500" y="62" text-anchor="middle" font-size="13" fill="#64748B">
+    skill 단위가 아닌 "어떤 문제를 푸는 도구인가" 관점의 패턴 분류
+  </text>
+
+  <!-- Hub -->
+  <circle cx="500" cy="380" r="80" fill="url(#hubGrad)" filter="url(#shadow2)"/>
+  <text x="500" y="370" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">하네스</text>
+  <text x="500" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">엔지니어링</text>
+  <text x="500" y="410" text-anchor="middle" font-size="10" fill="#94A3B8">Harness Engineering</text>
+
+  <!-- Spokes -->
+  <line x1="500" y1="300" x2="500" y2="180" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="571" y1="320" x2="780" y2="200" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="580" y1="380" x2="850" y2="380" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="571" y1="440" x2="780" y2="560" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="500" y1="460" x2="500" y2="600" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="429" y1="440" x2="220" y2="560" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="420" y1="380" x2="150" y2="380" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="429" y1="320" x2="220" y2="200" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- Pattern 1: Alignment (top) -->
+  <g filter="url(#shadow2)">
+    <rect x="400" y="100" width="200" height="80" rx="10" fill="url(#p1)"/>
+    <text x="500" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">① Alignment</text>
+    <text x="500" y="143" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">사용자-에이전트 정합</text>
+    <text x="500" y="161" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">grill-me · grill-with-docs</text>
+  </g>
+
+  <!-- Pattern 2: Context Compression (top-right) -->
+  <g filter="url(#shadow2)">
+    <rect x="700" y="140" width="200" height="80" rx="10" fill="url(#p2)"/>
+    <text x="800" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">② Context Compression</text>
+    <text x="800" y="183" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">토큰/단어 절약</text>
+    <text x="800" y="201" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">caveman · CONTEXT.md</text>
+  </g>
+
+  <!-- Pattern 3: Architecture Hygiene (right) -->
+  <g filter="url(#shadow2)">
+    <rect x="780" y="340" width="200" height="80" rx="10" fill="url(#p3)"/>
+    <text x="880" y="365" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">③ Architecture Hygiene</text>
+    <text x="880" y="383" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">deep module · seam</text>
+    <text x="880" y="401" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">improve-codebase · zoom-out</text>
+  </g>
+
+  <!-- Pattern 4: Feedback Loop (bottom-right) -->
+  <g filter="url(#shadow2)">
+    <rect x="700" y="540" width="200" height="80" rx="10" fill="url(#p4)"/>
+    <text x="800" y="565" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">④ Feedback Loop</text>
+    <text x="800" y="583" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">검증 신호 인프라</text>
+    <text x="800" y="601" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">tdd · diagnose</text>
+  </g>
+
+  <!-- Pattern 5: Workflow State Machine (bottom) -->
+  <g filter="url(#shadow2)">
+    <rect x="400" y="600" width="200" height="80" rx="10" fill="url(#p5)"/>
+    <text x="500" y="625" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">⑤ Workflow State Machine</text>
+    <text x="500" y="643" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">issue 라이프사이클</text>
+    <text x="500" y="661" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">triage · to-issues · to-prd</text>
+  </g>
+
+  <!-- Pattern 6: Guardrail (bottom-left) -->
+  <g filter="url(#shadow2)">
+    <rect x="100" y="540" width="200" height="80" rx="10" fill="url(#p6)"/>
+    <text x="200" y="565" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">⑥ Guardrail / Safety</text>
+    <text x="200" y="583" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">PreToolUse · pre-commit</text>
+    <text x="200" y="601" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">git-guardrails · setup-pre-commit</text>
+  </g>
+
+  <!-- Pattern 7: Composability (left) -->
+  <g filter="url(#shadow2)">
+    <rect x="20" y="340" width="200" height="80" rx="10" fill="url(#p7)"/>
+    <text x="120" y="365" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">⑦ Composability / Setup</text>
+    <text x="120" y="383" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">한 번 setup → 여러 skill 소비</text>
+    <text x="120" y="401" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">setup-matt-pocock-skills · plugin.json</text>
+  </g>
+
+  <!-- Inverted: write-a-skill node (top-left) -->
+  <g filter="url(#shadow2)">
+    <rect x="100" y="140" width="200" height="80" rx="10" fill="#475569"/>
+    <text x="200" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">⑦+ Skill Authoring</text>
+    <text x="200" y="183" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">새 skill 작성 가이드</text>
+    <text x="200" y="201" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.9">write-a-skill</text>
+  </g>
+
+  <!-- Legend bottom -->
+  <text x="500" y="710" text-anchor="middle" font-size="11" fill="#64748B" font-style="italic">
+    "These skills are small, easy to adapt, and composable. They work with any model." — README
+  </text>
+</svg>

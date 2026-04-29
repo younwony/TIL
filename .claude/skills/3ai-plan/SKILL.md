@@ -41,6 +41,12 @@ Claude, Gemini CLI, Codex CLI 3개 AI가 각자의 강점으로 플랜을 검토
 두 AI에게 동일한 컨텍스트 + 각자 역할에 맞는 프롬프트를 전달한다.
 **반드시 병렬로 실행**하여 시간을 절약한다.
 
+> ⏱️ **Timeout 정책 (필수)**:
+> - **Bash 호출** (`gemini -p`, `codex exec -`): `timeout: 240000` (4분) 명시
+> - **Codex Plugin Skill** (`/codex:rescue`): args에 "최대 5분 안에 답변 못 하면 부분 결과 반환" 추가. 5분 watchdog 후 응답 없으면 `/codex:cancel` 호출
+> - **3ai-plan은 가장 비싼 호출**이므로 timeout이 특히 중요. 어느 한 AI라도 hung되면 즉시 중단하고 나머지 결과로 진행
+> - 상세: `.claude/docs/WORKFLOW-GUIDELINE.md` "외부 AI 크로스 체크 timeout 정책" 참조
+
 ```bash
 # Gemini: 표현/리스크/사용자 관점
 cat << 'EOF' | gemini -p -

@@ -123,6 +123,12 @@
             "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-ssh.sh\"",
             "timeout": 10,
             "statusMessage": "SSH 명령 보안 검사 중..."
+          },
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-sql.sh\"",
+            "timeout": 5,
+            "statusMessage": "SQL 명령 보안 검사 중..."
           }
         ]
       }

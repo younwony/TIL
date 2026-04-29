@@ -110,7 +110,7 @@ where codex
 
 ### Gemini 크로스 체크
 
-> Gemini CLI가 설치된 경우에만 실행. **Bash timeout: 300000ms 필수**
+> Gemini CLI가 설치된 경우에만 실행. **Bash timeout: 240000ms (4분) 필수** — 4분 초과 시 hung 처리
 > Codex 크로스 체크와 독립적이므로 **가능한 경우 병렬로 실행**한다.
 
 WORK-SPEC.md와 req.md 내용을 Gemini에게 파이프로 전달하여 검증한다:
@@ -151,7 +151,7 @@ Skill 도구 호출:
   args: "다음 WORK-SPEC.md를 검증해줘. {WORK-SPEC.md 경로}를 읽고, 요구사항 커버리지, 기술적 타당성, 누락된 고려사항, 작업 범위, 작업 순서 관점에서 이슈를 심각도와 함께 한국어로 정리해줘."
 ```
 
-**Plugin 미설치 시 CLI fallback (Bash, timeout: 120000ms):**
+**Plugin 미설치 시 CLI fallback (Bash, timeout: 240000ms):**
 ```bash
 (echo "검증 요청:" && cat {req.md 경로} && echo -e "\n---\n" && cat {WORK-SPEC.md 경로}) | codex exec - 2>&1 || echo "CODEX_FAIL"
 ```

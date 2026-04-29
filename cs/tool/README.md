@@ -19,3 +19,4 @@
 | [Claude Code 릴리스 노트](./claude-code-release-notes.md) | Claude Code 버전별 변경 사항 한글 요약 | [1] 기초 |
 | [Codex Plugin for Claude Code](./codex-plugin-claude-code.md) | OpenAI Codex를 Claude Code 내 네이티브 슬래시 커맨드로 활용하는 플러그인 가이드 | [2] 활용 |
 | [Advisor Strategy](./advisor-strategy.md) | Executor(Haiku/Sonnet) + Advisor(Opus) 이중 모델 구조로 비용 최대 85% 절감하는 전략 | [2] 활용 |
+| [Matt Pocock Skills 하네스 분석](./mattpocock-skills-harness.md) | mattpocock/skills 저장소의 12개 skill을 7가지 횡단 패턴(Alignment·Feedback Loop·Architecture Hygiene 등)으로 분류하고 우리 저장소에 차용할 Top 10을 제시 | [2] 활용 |

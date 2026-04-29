@@ -37,6 +37,8 @@ RULES=(
     "dd if=|디스크 직접 쓰기"
     "mkfs\.|파일시스템 포맷"
     "--no-verify|Git Hook 우회"
+    "git\s+add\s+.*\.claude|.claude/ 디렉토리 git add 금지 (CLAUDE.md 규칙)"
+    "git\s+add\s+-A|--all 추가는 .claude/ 포함 위험. 개별 파일 명시 권장"
 )
 
 for rule in "${RULES[@]}"; do

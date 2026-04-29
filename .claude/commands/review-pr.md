@@ -98,7 +98,7 @@ PR diff:
 2. 총 변경 라인이 **1,000줄 이하**인 경우: 전체 diff를 그대로 전달
 3. 총 변경 라인이 **1,000줄 초과**인 경우: stat 요약 + 핵심 파일의 diff만 선별 전달
 
-#### Gemini 리뷰 실행 (**Bash timeout: 300000ms 필수**)
+#### Gemini 리뷰 실행 (**Bash timeout: 240000ms (4분) 필수** — 4분 초과 시 hung 처리)
 
 ```bash
 # 일반적인 경우 (1,000줄 이하)
@@ -156,7 +156,7 @@ Codex Plugin의 리뷰를 사용한다. 대용량 diff도 Plugin이 자체적으
    ```
    /codex:rescue --resume 이전 리뷰를 이어서 완료해줘 --wait
    ```
-2. 2차 실패 → CLI fallback (Bash, timeout: 120000ms):
+2. 2차 실패 → CLI fallback (Bash, timeout: 240000ms):
    ```bash
    codex review --base {baseRefName} 2>&1 || echo "CODEX_FAIL"
    ```

@@ -50,6 +50,46 @@
 |----------|----------|------|
 | {경로} | {변경 내용} | {비고} |
 
+> **참고**: 파일 경로는 mode 선택(Solo/Standard/Coordinator) 및 파일 수 기준 분기에 사용된다. 그러나 작업의 본질은 아래 "변경 인터페이스"에 적는다.
+
+## 3-1. 변경 인터페이스 (Agent Brief)
+
+> 이 섹션은 **인터페이스 수준의 spec**이다. 파일 경로/줄 번호와 달리 코드를 리팩터링해도 살아남는다.
+> Matt Pocock의 AGENT-BRIEF 양식 차용. "**Don't reference file paths — they go stale. Do describe interfaces, types, and behavioral contracts.**"
+
+### Summary
+{한 줄 요약 — 무엇이 어떻게 바뀌는가}
+
+### Current Behavior (현재 동작)
+{지금 무엇이 일어나는가 — 깨진 상태 또는 status quo}
+
+### Desired Behavior (목표 동작)
+{구체적으로 어떻게 동작해야 하는가 — edge case 포함}
+
+### Key Interfaces (변경되는 인터페이스)
+신호: type 시그니처, 메서드 시그니처, 프로토콜 변경, 새 예외 타입 등.
+
+| 종류 | 식별자 | 변경 내용 |
+|------|--------|---------|
+| {Class/Method/Type/Endpoint/Event} | `{풀 식별자}` | {추가/제거/수정 사항} |
+
+예시:
+- `OrderService.createOrder(Long, OrderRequest)` → `OrderService.createOrder(Long, OrderRequest, String tenantId)` (tenantId 파라미터 추가)
+- 신규 예외 `OrderTenantMismatchException extends BusinessException`
+- 신규 응답 필드 `OrderResponse.tenantInfo: TenantSummary`
+
+### Acceptance Criteria (인수 조건)
+**테스트 가능한** 체크리스트:
+
+- [ ] {조건 1 — 검증 가능한 형태로}
+- [ ] {조건 2}
+
+### Out of Scope (이 작업 범위 밖)
+같은 영역이지만 **이번에는 건드리지 않는** 것. `.out-of-scope/`에 보관할 가치가 있는지 검토.
+
+- {영역 1}: 이유 ...
+- {영역 2}: 이유 ...
+
 ## 4. 데이터 모델 (해당 시)
 
 ### Entity 설계

@@ -1,0 +1,158 @@
+<svg viewBox="0 0 980 600" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8FAFC"/>
+      <stop offset="100%" style="stop-color:#EAF4FB"/>
+    </linearGradient>
+    <linearGradient id="redCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    <linearGradient id="orangeCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E67E22"/>
+      <stop offset="100%" style="stop-color:#D35400"/>
+    </linearGradient>
+    <linearGradient id="blueCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB"/>
+      <stop offset="100%" style="stop-color:#2980B9"/>
+    </linearGradient>
+    <linearGradient id="greenCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    <linearGradient id="skillCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#F1F5F9"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#00000022"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="980" height="600" fill="url(#bgGrad)" rx="12"/>
+
+  <text x="490" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1E293B">
+    Matt Pocock의 4가지 실패 모드 → Skill 매핑
+  </text>
+  <text x="490" y="62" text-anchor="middle" font-size="13" fill="#64748B">
+    실제 엔지니어링에서 AI 에이전트가 무너지는 4가지 지점을 각각 어떤 skill로 막는가
+  </text>
+
+  <!-- Card 1: Misalignment -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="100" width="220" height="200" rx="12" fill="url(#redCard)"/>
+    <text x="150" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">#1 의도 불일치</text>
+    <text x="150" y="150" text-anchor="middle" font-size="11" fill="#FFFFFF">Misalignment</text>
+    <line x1="60" y1="165" x2="240" y2="165" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <text x="150" y="190" text-anchor="middle" font-size="12" fill="#FFFFFF">에이전트가</text>
+    <text x="150" y="208" text-anchor="middle" font-size="12" fill="#FFFFFF">"내가 원한 걸"</text>
+    <text x="150" y="226" text-anchor="middle" font-size="12" fill="#FFFFFF">만들지 않음</text>
+    <text x="150" y="262" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">"No-one knows</text>
+    <text x="150" y="278" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">exactly what they want"</text>
+  </g>
+
+  <!-- Card 2: Verbose -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="100" width="220" height="200" rx="12" fill="url(#orangeCard)"/>
+    <text x="390" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">#2 장황한 응답</text>
+    <text x="390" y="150" text-anchor="middle" font-size="11" fill="#FFFFFF">Verbose / Token Waste</text>
+    <line x1="300" y1="165" x2="480" y2="165" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <text x="390" y="190" text-anchor="middle" font-size="12" fill="#FFFFFF">도메인 용어 부재로</text>
+    <text x="390" y="208" text-anchor="middle" font-size="12" fill="#FFFFFF">1단어로 끝낼 걸</text>
+    <text x="390" y="226" text-anchor="middle" font-size="12" fill="#FFFFFF">20단어로 설명</text>
+    <text x="390" y="262" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">"Ubiquitous language</text>
+    <text x="390" y="278" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">— Eric Evans, DDD"</text>
+  </g>
+
+  <!-- Card 3: Broken Code -->
+  <g filter="url(#shadow)">
+    <rect x="520" y="100" width="220" height="200" rx="12" fill="url(#blueCard)"/>
+    <text x="630" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">#3 동작 안 함</text>
+    <text x="630" y="150" text-anchor="middle" font-size="11" fill="#FFFFFF">Code Doesn't Work</text>
+    <line x1="540" y1="165" x2="720" y2="165" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <text x="630" y="190" text-anchor="middle" font-size="12" fill="#FFFFFF">피드백 루프 부재로</text>
+    <text x="630" y="208" text-anchor="middle" font-size="12" fill="#FFFFFF">에이전트가</text>
+    <text x="630" y="226" text-anchor="middle" font-size="12" fill="#FFFFFF">눈 감고 코딩</text>
+    <text x="630" y="262" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">"Rate of feedback is</text>
+    <text x="630" y="278" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">your speed limit"</text>
+  </g>
+
+  <!-- Card 4: Ball of Mud -->
+  <g filter="url(#shadow)">
+    <rect x="760" y="100" width="180" height="200" rx="12" fill="url(#greenCard)"/>
+    <text x="850" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">#4 진흙 덩어리</text>
+    <text x="850" y="150" text-anchor="middle" font-size="11" fill="#FFFFFF">Ball of Mud</text>
+    <line x1="780" y1="165" x2="920" y2="165" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <text x="850" y="190" text-anchor="middle" font-size="12" fill="#FFFFFF">AI가 가속하는</text>
+    <text x="850" y="208" text-anchor="middle" font-size="12" fill="#FFFFFF">소프트웨어</text>
+    <text x="850" y="226" text-anchor="middle" font-size="12" fill="#FFFFFF">엔트로피</text>
+    <text x="850" y="262" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">"Invest in design</text>
+    <text x="850" y="278" text-anchor="middle" font-size="11" fill="#FFFFFF" font-style="italic">every day" — Beck</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="150" y1="305" x2="150" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="390" y1="305" x2="390" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="630" y1="305" x2="630" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="850" y1="305" x2="850" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Skill Boxes -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="350" width="220" height="220" rx="10" fill="url(#skillCard)" stroke="#E74C3C" stroke-width="2"/>
+    <text x="150" y="375" text-anchor="middle" font-size="12" font-weight="bold" fill="#C0392B">대응: Alignment</text>
+    <text x="60" y="402" font-size="12" fill="#1E293B" font-weight="bold">/grill-me</text>
+    <text x="60" y="418" font-size="10" fill="#64748B">decision tree 끝까지 인터뷰</text>
+    <text x="60" y="442" font-size="12" fill="#1E293B" font-weight="bold">/grill-with-docs</text>
+    <text x="60" y="458" font-size="10" fill="#64748B">grilling + CONTEXT.md/ADR</text>
+    <text x="60" y="482" font-size="12" fill="#1E293B" font-weight="bold">/to-prd</text>
+    <text x="60" y="498" font-size="10" fill="#64748B">대화를 PRD로 합성</text>
+    <text x="60" y="522" font-size="12" fill="#1E293B" font-weight="bold">/triage</text>
+    <text x="60" y="538" font-size="10" fill="#64748B">state machine 기반 분류</text>
+    <text x="60" y="558" font-size="9" fill="#94A3B8" font-style="italic">한 번에 한 질문, 권장 답안 제시</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="280" y="350" width="220" height="220" rx="10" fill="url(#skillCard)" stroke="#E67E22" stroke-width="2"/>
+    <text x="390" y="375" text-anchor="middle" font-size="12" font-weight="bold" fill="#D35400">대응: Context Compression</text>
+    <text x="300" y="402" font-size="12" fill="#1E293B" font-weight="bold">/grill-with-docs</text>
+    <text x="300" y="418" font-size="10" fill="#64748B">CONTEXT.md에 도메인 용어집</text>
+    <text x="300" y="442" font-size="12" fill="#1E293B" font-weight="bold">/caveman</text>
+    <text x="300" y="458" font-size="10" fill="#64748B">~75% 토큰 절약 모드</text>
+    <text x="300" y="482" font-size="12" fill="#1E293B" font-weight="bold">/zoom-out</text>
+    <text x="300" y="498" font-size="10" fill="#64748B">domain glossary로 추상화</text>
+    <text x="300" y="522" font-size="11" fill="#475569" font-style="italic">핵심: 같은 단어를</text>
+    <text x="300" y="538" font-size="11" fill="#475569" font-style="italic">매 세션마다 재정의 X</text>
+    <text x="300" y="558" font-size="9" fill="#94A3B8" font-style="italic">"materialization cascade" = 8단어</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="520" y="350" width="220" height="220" rx="10" fill="url(#skillCard)" stroke="#3498DB" stroke-width="2"/>
+    <text x="630" y="375" text-anchor="middle" font-size="12" font-weight="bold" fill="#2980B9">대응: Feedback Loop</text>
+    <text x="540" y="402" font-size="12" fill="#1E293B" font-weight="bold">/tdd</text>
+    <text x="540" y="418" font-size="10" fill="#64748B">red-green-refactor + tracer bullet</text>
+    <text x="540" y="442" font-size="12" fill="#1E293B" font-weight="bold">/diagnose</text>
+    <text x="540" y="458" font-size="10" fill="#64748B">재현→가설→계측→fix→회귀</text>
+    <text x="540" y="486" font-size="11" fill="#475569" font-style="italic">"2초 deterministic loop</text>
+    <text x="540" y="502" font-size="11" fill="#475569" font-style="italic">= debugging superpower"</text>
+    <text x="540" y="528" font-size="11" fill="#475569" font-style="italic">"30초 flaky loop</text>
+    <text x="540" y="544" font-size="11" fill="#475569" font-style="italic">= 거의 쓸모없음"</text>
+    <text x="540" y="562" font-size="9" fill="#94A3B8" font-style="italic">10단계 loop 옵션 progressive list</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="760" y="350" width="180" height="220" rx="10" fill="url(#skillCard)" stroke="#27AE60" stroke-width="2"/>
+    <text x="850" y="375" text-anchor="middle" font-size="11" font-weight="bold" fill="#27AE60">대응: Architecture</text>
+    <text x="850" y="392" text-anchor="middle" font-size="11" font-weight="bold" fill="#27AE60">Hygiene</text>
+    <text x="780" y="418" font-size="11" fill="#1E293B" font-weight="bold">/improve-codebase</text>
+    <text x="780" y="432" font-size="11" fill="#1E293B" font-weight="bold">-architecture</text>
+    <text x="780" y="448" font-size="9" fill="#64748B">deep module 후보 발굴</text>
+    <text x="780" y="472" font-size="12" fill="#1E293B" font-weight="bold">/zoom-out</text>
+    <text x="780" y="488" font-size="10" fill="#64748B">한 단계 추상화</text>
+    <text x="780" y="510" font-size="11" fill="#475569" font-style="italic">Module · Interface</text>
+    <text x="780" y="526" font-size="11" fill="#475569" font-style="italic">Depth · Seam · Adapter</text>
+    <text x="780" y="548" font-size="9" fill="#94A3B8" font-style="italic">매일 design care</text>
+  </g>
+</svg>

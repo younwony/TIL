@@ -8,6 +8,12 @@
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous.sh\"",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-sql.sh\"",
+            "timeout": 5,
+            "statusMessage": "SQL 명령 보안 검사 중..."
           }
         ]
       }
