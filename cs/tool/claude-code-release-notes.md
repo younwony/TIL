@@ -1,7 +1,230 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-04-26
-> 정리 범위: v2.1.43 ~ v2.1.119
+> 정리 일시: 2026-05-06
+> 정리 범위: v2.1.43 ~ v2.1.128
+> 참고: v2.1.124, v2.1.125, v2.1.127, v2.1.129는 공식 CHANGELOG에 등록되지 않은 스킵 버전
+
+---
+
+## Version 2.1.128
+
+### 주요 하이라이트
+- **`/mcp` 도구 개수 표시**: 도구 개수와 함께 도구 0개인 서버를 플래그로 표시
+- **`--plugin-dir` zip 아카이브 지원**: 디렉토리 외에 `.zip` 아카이브도 허용
+- **`EnterWorktree` 로컬 HEAD 기반 브랜치 생성**: 푸시되지 않은 커밋 보존
+- **MCP 재연결 요약**: 서버 prefix별로 재공지된 도구를 요약 표시
+
+### 새 기능
+- 인자 없는 `/color` 호출 시 랜덤 세션 색상 선택
+- `--channels`가 `channelsEnabled: true` 시 콘솔 인증과 함께 동작
+- `workspace`를 MCP 서버 이름으로 예약 (기존 서버는 경고와 함께 스킵)
+- SDK 호스트가 Bash 프롬프트에 대한 영구적인 `localSettings` 제안 수신
+- Auto 모드 분류기 에러에 힌트 포함 (재시도, `/compact`, `--debug`)
+- 헤드리스 `stream-json`: `init.plugin_errors`에 `--plugin-dir` 실패 포함
+
+### 개선
+- `/model` 피커가 중복 Opus 항목을 통합 (현재는 "Opus"로 표시)
+- 서브프로세스가 더 이상 `OTEL_*` 환경변수 상속 안 함
+
+### 버그 수정
+- 새 프롬프트 시 포커스 모드가 이전 응답을 잠시 흐리게 표시하던 문제
+- Kitty 터미널에서 `/exit` 시 부유 데스크톱 알림 표시되던 문제
+- Rate limit 시 Remote Control이 빈 메시지를 표시하던 문제
+- 드래그앤드롭 이미지 업로드가 읽기 실패 시 멈추던 문제
+- `claude -p`로 매우 큰 stdin (>10MB) 입력 시 크래시 루프 발생하던 문제
+- 풀스크린에서 줄바꿈된 행의 긴 URL이 개별 클릭되지 않던 문제
+- `/plugin` Components 패널에서 "Marketplace 'inline' not found" 오류 발생 문제
+- 구조화된 콘텐츠와 함께 MCP 도구 결과가 이미지를 누락하던 문제
+- 리스트 안 fenced 코드 블록이 클립보드로 공백을 옮기던 문제
+- `/config` 탭 네비게이션이 포커스를 가두던 문제
+- OSC 8 미지원 터미널에서 마크다운 링크 라벨 손실 문제
+- 1M-context 세션이 "Prompt is too long"으로 잘못 차단되던 문제
+- 병렬 셸 도구 호출에서 실패한 read-only 명령이 형제 호출을 취소하던 문제
+- effort 미지원 모델에서 배너에 "with X effort" 표시되던 문제
+- `/fast`가 "not available" 대신 무관한 스킬을 fuzzy match 하던 문제
+- Bedrock 기본값이 region별 prefix 대신 `global.*`로 해석되던 문제
+- vim 모드: NORMAL 모드에서 `Space`가 이제 커서를 오른쪽으로 이동
+- 도구 호출 사이 터미널 진행 표시기가 깜빡거리던 문제
+- compact 경계 있는 resumed 세션에서 `/rename` 실패하던 문제
+- `--resume` 후 stale "remote-control is active" 상태 표시되던 문제
+- stale `installed_plugins.json` 항목이 PATH 오염시키던 문제
+- `CLAUDE_CODE_SHELL_PREFIX`로 MCP stdio 서버가 손상된 인자를 받던 문제
+- 서브에이전트 진행 요약이 prompt cache를 누락하던 문제
+- `/plugin update`가 새 npm 소스 플러그인 버전 감지 못하던 문제
+- 서브에이전트 요약이 정적 트랜스크립트에서 반복 발생하던 문제
+
+---
+
+## Version 2.1.126
+
+### 주요 하이라이트
+- **`/model` 피커 게이트웨이 모델 목록**: 게이트웨이 `/v1/models` 엔드포인트에서 모델 목록 표시
+- **`claude project purge [path]`**: 모든 프로젝트 상태를 일괄 삭제하는 서브커맨드 추가
+- **`--dangerously-skip-permissions` 보호 경로 우회**: 보호 경로 프롬프트도 건너뛰기
+- **Windows PowerShell 7 자동 감지**: Store, MSI, .NET 글로벌 도구로 설치된 PowerShell 7 자동 감지
+
+### 새 기능
+- `claude auth login`이 OAuth 코드를 터미널에 붙여넣기 허용
+- `claude_code.skill_activated` OpenTelemetry 이벤트에 `invocation_trigger` 포함
+- Windows: 활성화 시 PowerShell이 주(primary) 셸로 사용
+- Security: `allowManagedDomainsOnly` / `allowManagedReadPathsOnly` 정책 강제
+
+### 개선
+- Auto 모드 스피너가 권한 확인 지연 시 빨간색으로 변경
+- Host-managed 배포에서 분석(analytics) 자동 비활성화 안 함
+- Read 도구: 파일별 멀웨어 평가 알림 제거
+- 대량 린터 변경 시 file-modified 알림 제한
+- Windows: 클립보드 쓰기가 더 이상 프로세스 인자에 콘텐츠 노출 안 함
+- PowerShell: 단독 `--`가 stop-parsing 토큰으로 잘못 플래그되지 않음
+
+### 버그 수정
+- 2000px 초과 이미지 붙여넣기 시 세션 깨지던 문제
+- "OAuth not allowed" 에러에 로그인 화면이 표시되던 문제
+- 느린 연결 및 IPv6-only 환경에서 OAuth 로그인 타임아웃 발생 문제
+- 동시 자격 증명 쓰기가 유효한 refresh token을 지우던 race condition
+- API 재시도 카운트다운이 "0s"에 멈춰있던 문제
+- Mac sleep 후 요청 중 "Stream idle timeout" 발생 문제
+- 백그라운드/원격 세션이 thinking 일시정지 중 중단되던 문제
+- 빈 turn과 출력 없을 때 hang 발생 문제
+- Cursor 및 VS Code 1.92~1.104에서 트랙패드 스크롤 문제
+- 멈춘 수동 서버에 의해 claude.ai MCP 커넥터가 억제되던 문제
+- Windows no-flicker 모드에서 일본어/한국어/중국어 깨짐 문제
+- `Ctrl+L`이 화면 다시 그리기 대신 prompt 입력을 지우던 문제
+- `context: fork` 서브에이전트에서 deferred 도구 사용 불가 문제
+- `--channels` 세션에서 plan-mode 도구 사용 불가 문제
+- `/plugin` Uninstall이 "Uninstalled" 대신 "Enabled"로 보고되던 문제
+- `/remote-control` 재시도가 멈춘 듯 보이던 문제
+- Remote Control 실패 알림이 에러 사유를 숨기던 문제
+- 22KB 초과 클립보드 선택이 클립보드에 도달 못 하던 문제
+- 잘못된 병렬 도구 호출 배치에서 Agent SDK 멈춤 문제
+
+---
+
+## Version 2.1.123
+
+### 버그 수정
+- `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` 설정 시 401 재시도 루프로 OAuth가 실패하던 문제 수정
+
+---
+
+## Version 2.1.122
+
+### 주요 하이라이트
+- **`ANTHROPIC_BEDROCK_SERVICE_TIER` 환경변수**: Bedrock tier 선택 가능
+- **`/resume` PR URL 붙여넣기 지원**: PR을 만든 세션 자동 탐색
+
+### 새 기능
+- `ANTHROPIC_BEDROCK_SERVICE_TIER` 환경변수 추가
+- `/resume`에서 PR URL 붙여넣기 시 생성한 세션 찾기
+- `/mcp`가 수동 서버 중복으로 가려진 claude.ai 커넥터 표시
+- `/mcp`가 인증 필요한 서버에 대한 메시지 명확화
+- OpenTelemetry: 숫자 속성을 문자열이 아닌 숫자로 emit
+- OpenTelemetry: `claude_code.at_mention` 로그 이벤트 추가
+
+### 버그 수정
+- 되감기된(rewound) 타임라인 세션에서 `/branch` 동작 문제
+- Bedrock ARN에서 `/model`이 Effort 옵션을 표시하지 않던 문제
+- Vertex AI / Bedrock가 구조화된 출력에서 `invalid_request_error` 반환하던 문제
+- 프록시 사용자에 대해 Vertex AI `count_tokens`가 400 반환하던 문제
+- `spinnerTipsOverride.excludeDefault`가 시간 기반 팁을 억제하지 않던 문제
+- 비차단(nonblocking) 모드에서 ToolSearch가 늦게 연결된 MCP 도구를 누락하던 문제
+- `!exit` / `!quit`가 명령 실행 대신 CLI를 종료시키던 문제
+- 새 모델이 이미지를 최대 2000px 대신 2576px로 리사이즈하던 문제
+- Remote control 상태가 초당 두 번 다시 그려지던 문제
+- 오래된 view preference로 어시스턴트 메시지가 빈 채로 표시되던 문제
+- 잘못된 hooks 항목이 `settings.json` 전체를 무효화하던 문제
+- Voice 모드: Caps Lock 키바인딩이 에러 표시
+
+---
+
+## Version 2.1.121
+
+### 주요 하이라이트
+- **`alwaysLoad` 옵션**: MCP 서버 config에 deferral 우회 옵션 추가
+- **`claude plugin prune`**: 고아(orphaned) 의존성 제거 명령
+- **`/skills` 검색 필터**: type-to-filter 검색 추가
+- **PostToolUse hooks 출력 교체**: `hookSpecificOutput.updatedToolOutput`로 도구 출력 변경 가능
+
+### 새 기능
+- MCP 서버 config에 `alwaysLoad` 옵션 추가 — deferral 우회
+- `claude plugin prune` 추가 — 고아 의존성 제거
+- `/skills`에 type-to-filter 검색 추가
+- PostToolUse hooks가 `hookSpecificOutput.updatedToolOutput`로 도구 출력 교체
+- SDK/`claude -p`: 비대화형(non-interactive)에서 `CLAUDE_CODE_FORK_SUBAGENT=1` 동작
+- `--dangerously-skip-permissions`가 `.claude/`, `.git/`, `.vscode/` 우회
+- `/terminal-setup`이 iTerm2 클립보드 액세스 활성화
+- 시작 에러 있는 MCP 서버 자동 재시도 (최대 3회)
+- 동일 URL의 Claude.ai 커넥터 중복 제거
+- Vertex AI: X.509 인증서 기반 mTLS ADC 지원
+- LSP 진단 요약이 클릭/`Ctrl+O`로 확장
+- SDK: `mcp_authenticate`가 `redirectUri` 지원
+- OpenTelemetry: `stop_reason`, `finish_reasons`, `user_system_prompt` 추가
+- VSCode: voice dictation이 `accessibility.voice.speechLanguage` 따름
+- VSCode: `/context`가 네이티브 토큰 사용 다이얼로그 열기
+
+### 개선
+- 풀스크린: 위로 스크롤 후 입력 시 더 이상 스크롤이 점프하지 않음
+- 스크롤 가능 다이얼로그가 화살표 키, PgUp/PgDn, Home/End, 마우스 휠 지원
+- 풀스크린에서 줄바꿈된 URL 클릭 시 전체 URL 열기
+- 터미널 탭 제목이 설정된 언어로 생성
+- 시작 속도 향상: 릴리스 노트에서 Recent Activity 제거
+
+### 버그 수정
+- 다수 이미지로 인한 무제한 메모리 증가 문제
+- 큰 history에서 `/usage`가 ~2GB 누수하던 문제
+- 장시간 도구 실패에 메모리 누수 문제
+- 시작 디렉토리 삭제 시 Bash 도구가 영구 사용 불가하던 문제
+- 외부 빌드에서 `--resume` 크래시 문제
+- 손상된 줄 있는 큰 세션에서 `--resume` 실패 문제
+- Bedrock ARN에서 "thinking.type.enabled not supported" 문제
+- 중복 매개변수가 있는 Microsoft 365 MCP OAuth 문제
+- tmux/GNOME/Windows Terminal에서 `Ctrl+L` 시 스크롤백 중복 문제
+- 일시적 인증 에러에 claude.ai MCP 커넥터가 사라지던 문제
+- "Always allow" 규칙이 worker 재시작 후 유지 안 되던 문제
+- 모든 HTTP 클라이언트에 대해 `NO_PROXY` 미적용 문제
+- 관리되는 settings 승인 수락 시 세션이 종료되던 문제
+- stale OAuth 토큰에서 `/usage` "rate limited" 표시 문제
+- `settings.json`의 잘못된 legacy enum 값 처리 문제
+- no-flicker 모드 비활성화 시 `/usage` 다이얼로그 잘림 문제
+- 풀스크린 렌더러 없이 `/focus`가 "Unknown command" 표시하던 문제
+- 큰 트리에서 `find` 시 파일 디스크립터 고갈 문제
+
+---
+
+## Version 2.1.120
+
+### 주요 하이라이트
+- **Windows: Git for Windows 더 이상 필수 아님**: PowerShell 폴백 사용
+- **`claude ultrareview [target]`**: CI/스크립트용 서브커맨드 추가
+- **Skills `${CLAUDE_EFFORT}` 참조**: skills에서 effort 레벨 참조 가능
+
+### 새 기능
+- Windows: Git for Windows 없이 PowerShell 폴백 사용
+- `claude ultrareview [target]` 서브커맨드 추가 (CI/스크립트용)
+- Skills에서 `${CLAUDE_EFFORT}`로 effort 레벨 참조
+- 서브프로세스 Claude Code 귀속(attribution)을 위한 `AI_AGENT` 환경변수 설정
+- `claude plugin validate`가 `$schema`, `version`, `description` 허용
+
+### 개선
+- 데스크톱 앱이나 skills/agents가 이미 있을 때 spinner 팁 숨김
+- 화살표 키 터미널에 "use PgUp/PgDn to scroll" 힌트 표시
+- 다수 claude.ai 커넥터 시 세션 시작 속도 향상
+- Auto 모드 거부 메시지가 설정 문서로 링크
+- 자동 압축이 오해 소지 있는 토큰 값 대신 "auto"로 표시
+- VSCode: `/usage`가 네이티브 Account & Usage 다이얼로그 열기
+- VSCode: voice dictation이 언어 설정 따름
+
+### 버그 수정
+- Stdio MCP 사용 중 Esc가 전체 연결을 닫던 문제
+- `--resume` 시작 후 `/rewind` 무응답 문제
+- 비풀스크린 모드에서 터미널 스크롤백 중복 문제
+- `DISABLE_TELEMETRY`가 사용량 메트릭을 억제하지 않던 문제
+- Auto 모드에서 false-positive "Dangerous rm" 프롬프트 발생 문제
+- 풀스크린 모드에서 긴 선택 메뉴가 잘리던 문제
+- Write 도구 출력이 확장 대신 축소되던 문제
+- 입력 중 슬래시 커맨드 picker가 점프하던 문제
+- 인식되지 않는 항목으로 `/plugin` marketplace가 실패하던 문제
+- 큰 트리에서 `find` 파일 디스크립터 고갈 문제
 
 ---
 
