@@ -54,12 +54,11 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 에이전트 4명이 작업하는 동안:
 
 1. `where gemini`으로 Gemini CLI 설치 확인
-2. Codex 설치 여부 확인: `test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs"` (Plugin 우선, CLI fallback)
-3. 설치된 외부 도구로 크로스 리뷰 병렬 실행:
-   - Gemini: `git diff {COMPARE_BRANCH}...HEAD | gemini -p "..."` (기존 방식)
-   - Codex (Plugin): `/codex:review --base {COMPARE_BRANCH} --background` → 결과 통합 시 `/codex:result`로 수집. 실패 시 `/codex:rescue --resume` 재시도 1회 → CLI fallback
-   - Codex (fallback): `codex review --base {COMPARE_BRANCH}` (Bash, timeout: 240000ms). **절대 `codex exec -` 사용 금지.**
-4. 미설치 시 해당 크로스 리뷰 건너뜀
+2. `where codex`으로 Codex CLI 설치 확인 (**Bash CLI 단독, Plugin Skill 사용 금지** — CLAUDE.md "Codex 협업" 섹션 참조)
+3. 설치된 외부 도구로 크로스 리뷰 병렬 실행 (**Bash 도구 timeout: 240000ms 필수**):
+   - Gemini: `git diff {COMPARE_BRANCH}...HEAD | gemini -p "..." 2>&1 || echo "GEMINI_FAIL"`
+   - Codex: `codex review --base {COMPARE_BRANCH} 2>&1 || echo "CODEX_FAIL"`
+4. 미설치 시 해당 크로스 리뷰 건너뜀. `*_FAIL` 검출 시 즉시 다음 단계 진행.
 
 ### 3단계: 결과 통합 → TEAM-REVIEW.md 생성
 

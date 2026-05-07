@@ -42,14 +42,15 @@ Claude, Gemini CLI, Codex CLI 3개 AI가 각자의 강점으로 플랜을 검토
 **반드시 병렬로 실행**하여 시간을 절약한다.
 
 > ⏱️ **Timeout 정책 (필수)**:
-> - **Bash 호출** (`gemini -p`, `codex exec -`): `timeout: 240000` (4분) 명시
-> - **Codex Plugin Skill** (`/codex:rescue`): args에 "최대 5분 안에 답변 못 하면 부분 결과 반환" 추가. 5분 watchdog 후 응답 없으면 `/codex:cancel` 호출
+> - **Bash 호출** (`gemini -p`, `codex exec -`): **Bash 도구 `timeout: 240000` (4분) 필수 명시 + `2>&1 \|\| echo "FAIL"` 패턴**
+> - **Codex Plugin Skill 사용 금지** (`/codex:rescue` 등): Bash timeout 미적용으로 무기한 hang 위험. 반드시 `codex exec -` (Bash CLI)만 사용
 > - **3ai-plan은 가장 비싼 호출**이므로 timeout이 특히 중요. 어느 한 AI라도 hung되면 즉시 중단하고 나머지 결과로 진행
-> - 상세: `.claude/docs/WORKFLOW-GUIDELINE.md` "외부 AI 크로스 체크 timeout 정책" 참조
+> - 상세: CLAUDE.md "Codex 협업" 섹션 참조
 
 ```bash
 # Gemini: 표현/리스크/사용자 관점
-cat << 'EOF' | gemini -p -
+# ⚠️ Bash 도구 호출 시 timeout: 240000 명시 필수
+cat << 'EOF' | gemini -p - 2>&1 || echo "GEMINI_FAIL"
 {컨텍스트 + 현황 + 기존 플랜}
 
 다음 관점에서 플랜을 검토하고 개선안을 제시해주세요:
@@ -61,25 +62,13 @@ cat << 'EOF' | gemini -p -
 [현재 → 문제 → 개선 제안 → 구체적 실행 방안] 형식으로 답변.
 한국어로 답변해주세요.
 EOF
-
-# Codex: 기술 정확성/구조/검증 (Plugin 우선)
 ```
 
-**Codex Plugin 방식** (Plugin 설치 시):
-
-```
-/codex:rescue 다음 플랜을 기술적/구조적 관점에서 검토하고 개선안을 제시해줘:
-1. 데이터 무결성과 검증 전략
-2. 자동화 가능 구간 식별
-3. 단계별 의존성과 최적 실행 순서
-4. 기술적 정확성과 Trade-off
-[현재 → 문제 → 개선 제안] 형식으로 한국어 답변.
-{컨텍스트 + 현황 + 기존 플랜 요약}
-```
-
-**Plugin 미설치 시 fallback:**
+**Codex: 기술 정확성/구조/검증 (Bash CLI 단독 사용, Plugin Skill 금지)**
 
 ```bash
+# ⚠️ Bash 도구 호출 시 반드시 timeout: 240000 (4분) 명시
+# ⚠️ Plugin Skill (/codex:rescue 등)은 사용 금지 — hang 위험
 cat << 'EOF' > /tmp/codex_prompt.txt
 {컨텍스트 + 현황 + 기존 플랜}
 
@@ -92,11 +81,12 @@ cat << 'EOF' > /tmp/codex_prompt.txt
 [현재 → 문제 → 개선 제안] 형식으로 답변.
 한국어로 답변해주세요.
 EOF
-cat /tmp/codex_prompt.txt | codex exec - --full-auto
+cat /tmp/codex_prompt.txt | codex exec - --full-auto 2>&1 || echo "CODEX_FAIL"
 ```
 
 **Gemini CLI 문법**: `cat << 'EOF' | gemini -p -` 또는 `gemini -p "프롬프트"`
-**Codex Plugin 문법**: `/codex:rescue 자연어 설명` (Plugin 우선) 또는 `cat file | codex exec - --full-auto` (fallback)
+**Codex CLI 문법**: `cat file | codex exec - --full-auto` (Bash CLI 단독, Plugin Skill 금지)
+**필수**: Bash 도구 호출 시 `timeout: 240000` 명시. `*_FAIL` 검출 시 즉시 다음 단계 진행.
 
 ### Step 3: Claude 종합
 

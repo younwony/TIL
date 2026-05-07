@@ -279,37 +279,26 @@ where gemini 2>/dev/null && echo "GEMINI_OK" || echo "GEMINI_SKIP"
 ```
 
 ```bash
-# 개별 Bash 호출 2: Codex 설치 여부 확인 (Plugin 우선, CLI fallback)
-# 1) Plugin 설치 확인
-test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs" && echo "CODEX_PLUGIN_OK" || echo "CODEX_PLUGIN_SKIP"
-```
-
-```bash
-# 개별 Bash 호출 3: Plugin 미설치 시 CLI fallback 확인
-where codex 2>/dev/null && echo "CODEX_CLI_OK" || echo "CODEX_CLI_SKIP"
+# 개별 Bash 호출 2: Codex CLI 설치 여부 확인 (Bash CLI 단독, Plugin Skill 사용 금지)
+where codex 2>/dev/null && echo "CODEX_OK" || echo "CODEX_SKIP"
 ```
 
 **Codex 사용 방식 결정:**
-1. `CODEX_PLUGIN_OK` → **Skill 도구**로 `/codex:rescue` 호출 (Bash 사용 금지)
-2. `CODEX_PLUGIN_SKIP` + `CODEX_CLI_OK` → CLI fallback (이때만 Bash `codex exec -` 허용)
-3. 둘 다 SKIP → "Codex가 설치되지 않아 크로스 체크를 건너뜁니다" 안내
+- `CODEX_OK` → Bash CLI 호출 (`codex exec -`, timeout: 240000ms 필수)
+- `CODEX_SKIP` → "Codex가 설치되지 않아 크로스 체크를 건너뜁니다" 안내
 
-- 미설치 CLI는 해당 크로스 체크를 건너뛴다 (안내 메시지 출력).
 - Gemini/Codex 둘 다 미설치면 "외부 크로스 체크 없이 Claude 단독으로 진행합니다" 안내 후 계속.
 - **주의**: `where` 명령이 exit code 1을 반환하면 병렬 호출 시 다른 명령까지 취소될 수 있다. 반드시 `|| echo` 패턴 사용.
-- **주의**: Codex Plugin이 설치되어 있으면 **절대 Bash로 codex를 호출하지 않는다**. 반드시 Skill 도구를 사용한다.
+- **Plugin Skill 사용 금지**: `/codex:rescue`, `/codex:review` 등은 Bash timeout 미적용으로 hang 위험. CLAUDE.md "Codex 협업" 섹션 참조.
 
 #### 4-2. 크로스 체크 실행
 
-Gemini와 Codex는 독립적이므로 **병렬 실행**한다. **Gemini는 Bash 도구, Codex는 Skill 도구**로 호출한다.
-**절대 Codex를 Bash(`codex exec -`)로 호출하지 않는다. 반드시 Skill 도구를 사용한다.**
+Gemini와 Codex는 독립적이므로 **병렬 실행**한다. **둘 다 Bash 도구**로 호출한다 (Plugin Skill 사용 금지).
 
-> **⚠️ 중요**: Codex 호출 시 Bash 도구가 아닌 **Skill 도구**(`skill: "codex:rescue"`)를 사용한다.
-> Gemini와 Codex를 둘 다 Bash로 병렬 실행하는 것은 **금지된 패턴**이다.
+> **⚠️ 정책**: Codex Plugin Skill(`/codex:rescue`, `/codex:review` 등)은 Bash timeout 미적용으로
+> hang 위험이 있어 **사용 금지**. CLAUDE.md "Codex 협업" 섹션 참조.
 
 **Gemini** (Bash 도구, **timeout: 240000ms (4분) 필수**):
-
-> ⏱️ **Timeout 정책**: 외부 AI 응답이 4분을 초과하면 hung 상태로 간주하고 강제 종료한다. Bash 도구 호출 시 반드시 `timeout: 240000` 명시.
 
 ```bash
 (cat {req.md 경로} && echo -e "\n---\n" && cat {WORK-SPEC.md 경로}) | gemini -p "다음은 요구사항 문서(req.md)와 이를 기반으로 생성한 작업 명세서(WORK-SPEC.md)입니다.
@@ -326,46 +315,30 @@ Gemini와 Codex는 독립적이므로 **병렬 실행**한다. **Gemini는 Bash 
 한국어로 답변해줘." 2>&1 || echo "GEMINI_FAIL"
 ```
 
-**Codex** (Skill 도구 — Bash가 아님!):
+**Codex** (Bash 도구, **timeout: 240000ms (4분) 필수**):
 
-Gemini Bash 호출과 **동시에** Skill 도구로 병렬 호출한다:
+Gemini와 **동시에 병렬** Bash 도구로 호출:
 
-```
-Skill 도구 호출:
-  skill: "codex:rescue"
-  args: "다음 WORK-SPEC.md를 검증해줘. {WORK-SPEC.md 경로}를 읽고, 요구사항 커버리지, 기술적 타당성, 누락된 고려사항, 작업 범위, 작업 순서 관점에서 이슈를 심각도와 함께 한국어로 정리해줘."
+```bash
+(echo "검증 요청 — req.md와 WORK-SPEC.md를 읽고, 요구사항 커버리지 / 기술적 타당성 / 누락된 고려사항 / 작업 범위 / 작업 순서 관점에서 이슈를 심각도(필수 반영 / 권장 / 참고)와 함께 한국어로 정리해줘." && cat {req.md 경로} && echo -e "\n---\n" && cat {WORK-SPEC.md 경로}) | codex exec - 2>&1 || echo "CODEX_FAIL"
 ```
 
-> ⚠️ **Codex Plugin Skill 도구는 Bash timeout이 적용되지 않는다**. 다음 watchdog 정책을 따른다:
->
-> 1. **호출 후 5분 한도**: Skill 도구 호출 후 메인이 다른 도구 호출(Gemini Bash 등)을 처리하는 동안 5분 카운트.
-> 2. **5분 초과 시**: 메인이 응답 받지 못한 상태라면 `/codex:cancel` Skill 호출로 강제 중단.
-> 3. **부분 결과 활용**: cancel 후 `/codex:result`로 부분 결과를 가져와 반영(있는 경우).
-> 4. **Claude 단독 진행**: 부분 결과도 없으면 "Codex 크로스 체크 timeout — Claude 단독으로 진행" 안내 후 계속.
->
-> args에 협력 지시 추가: "**최대 5분 안에 답변 못 하면 그 시점까지의 부분 분석이라도 반환해줘.**"
-
-**실패 시 재시도:**
-1. Plugin(Skill) 1차 실패 또는 5분 timeout → Skill 도구로 재호출 (`skill: "codex:rescue"`, args에 "이전 검증을 이어서 5분 내 완료해줘" 추가)
-2. Plugin 2차 실패 → CLI fallback (Bash, **timeout: 240000ms**):
-   ```bash
-   (echo "검증 요청:" && cat {req.md 경로} && echo -e "\n---\n" && cat {WORK-SPEC.md 경로}) | codex exec - 2>&1 || echo "CODEX_FAIL"
-   ```
-3. CLI도 실패/timeout → 안내 메시지 출력 후 계속 진행
+**실패 시 처리:**
+- `*_FAIL` 검출 시 즉시 다음 단계로 진행 ("크로스 체크에 실패했습니다" 안내)
+- 4분 초과 시 Bash가 자동 종료 → `_FAIL` 분기로 진입
+- 둘 다 실패 시 "외부 크로스 체크 없이 Claude 단독으로 진행" 안내
 
 **올바른 병렬 호출 예시:**
 ```
-동시에 2개 도구 호출:
-├─ Bash 도구: gemini -p "..." (timeout: 240000ms)
-└─ Skill 도구: skill="codex:rescue", args="...최대 5분 안에 답변..."
-   └─ 5분 watchdog: 응답 없으면 /codex:cancel → /codex:result
+동시에 2개 Bash 도구 호출 (둘 다 timeout: 240000ms):
+├─ Bash 도구: gemini -p "..."
+└─ Bash 도구: codex exec -
 ```
 
 **금지된 패턴:**
 ```
-❌ 동시에 2개 Bash 도구 호출:
-├─ Bash 도구: gemini -p "..."
-└─ Bash 도구: codex exec -    ← 절대 금지
+❌ Skill 도구로 codex 호출:
+└─ Skill 도구: skill="codex:rescue"    ← 사용 금지 (Bash timeout 미적용으로 hang 위험)
 ```
 
 #### 4-3. 피드백 반영

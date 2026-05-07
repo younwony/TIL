@@ -30,10 +30,9 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 1. `where gemini` 명령으로 Gemini CLI 설치 여부 확인
    - 설치됨: Gemini 크로스 리뷰 활성화
    - 미설치: "Gemini CLI가 설치되지 않아 Gemini 크로스 리뷰를 건너뜁니다" 안내
-2. Codex 설치 여부 확인 (Plugin 우선, CLI fallback):
-   1. `test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs"` → Plugin 설치됨: `/codex:review` 사용
-   2. Plugin 미설치 시 `where codex` → CLI 설치됨: `codex review --base` fallback 사용
-   3. 둘 다 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
+2. `where codex` 명령으로 Codex CLI 설치 여부 확인 (**Bash CLI 단독, Plugin Skill 사용 금지** — CLAUDE.md "Codex 협업" 섹션 참조)
+   - 설치됨: Codex 크로스 리뷰 활성화 (`codex review --base`)
+   - 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
 
 > Gemini와 Codex 모두 비활성화된 경우: "외부 크로스 리뷰 없이 에이전트 팀 리뷰로 진행합니다" 안내
 
@@ -138,32 +137,15 @@ gh pr diff $PR_NUMBER -- {주요파일1} {주요파일2} ... | gemini -p "다음
 
 #### Codex 리뷰 실행
 
-Codex Plugin의 리뷰를 사용한다. 대용량 diff도 Plugin이 자체적으로 처리하므로 별도 분기가 불필요하다.
+**Bash CLI 단독 사용** (Plugin Skill `/codex:review`, `/codex:rescue` 등은 사용 금지 — CLAUDE.md "Codex 협업" 정책 참조).
 
-**실행 모드 선택** (2단계에서 수집한 additions + deletions 기준):
-- 변경 1,000줄 이하: foreground 실행
-  ```
-  /codex:review --base {baseRefName} --wait
-  ```
-- 변경 1,000줄 초과: background 실행 (타임아웃 방지)
-  ```
-  /codex:review --base {baseRefName} --background
-  ```
-  → 결과 통합 시점에 `/codex:result`로 수집
+```bash
+codex review --base {baseRefName} 2>&1 || echo "CODEX_FAIL"
+```
 
-**실패 시 재시도:**
-1. 1차 실패 → `--resume`으로 재시도 (이전 컨텍스트 유지)
-   ```
-   /codex:rescue --resume 이전 리뷰를 이어서 완료해줘 --wait
-   ```
-2. 2차 실패 → CLI fallback (Bash, timeout: 240000ms):
-   ```bash
-   codex review --base {baseRefName} 2>&1 || echo "CODEX_FAIL"
-   ```
-3. 3차 실패 → "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
-
-- **Plugin 미설치 시**: CLI fallback (`codex review --base`) 직행
-- **⚠️ 절대 `codex exec -`를 사용하지 않는다. 반드시 Plugin(Skill 도구) 우선.**
+- **Bash 도구 호출 시 `timeout: 240000ms` (4분) 필수 명시**
+- 4분 초과 시 자동 종료, `CODEX_FAIL` 검출 시 "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
+- 1,000줄+ 대용량 diff도 동일 방식. CLI가 처리 못 하면 SKIP하고 진행
 
 ## 4단계: 결과 통합 → 리뷰 결과 출력
 

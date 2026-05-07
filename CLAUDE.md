@@ -338,10 +338,11 @@ work-plan, self-review, review-pr, team-review, 3ai-plan 등 Gemini/Codex를 호
 | 호출 유형 | Timeout | 초과 시 동작 |
 |---------|---------|------------|
 | **Bash (gemini -p, codex exec, codex review)** | `timeout: 240000ms` (4분) | Bash가 자동 종료. `\|\| echo "AI_FAIL"` 패턴으로 부드럽게 진행 |
-| **Codex Plugin Skill (`codex:rescue`, `codex:review`)** | 5분 watchdog (Bash timeout 미적용) | 5분 후 응답 없으면 `/codex:cancel` 호출 → `/codex:result`로 부분 결과 수집 → 없으면 Claude 단독 진행 |
-| **3ai-plan (3개 AI 동시)** | 위 두 정책 모두 적용 | 어느 한 AI라도 timeout 시 즉시 중단, 나머지 결과로 종합 |
+| **3ai-plan (Claude + Gemini + Codex Bash CLI)** | 위 정책 적용 | 어느 한 AI라도 timeout 시 즉시 중단, 나머지 결과로 종합 |
 
-**원칙**: hung은 무한히 기다리지 않는다. 4분(Bash) / 5분(Plugin) 한도 후 강제 진행.
+> **Codex Plugin Skill 사용 금지**: `/codex:rescue`, `/codex:review` 등은 Bash timeout 미적용으로 hang 위험. 반드시 Bash CLI(`codex exec -`, `codex review`)만 사용. "Codex 협업" 섹션 참조.
+
+**원칙**: hung은 무한히 기다리지 않는다. Bash 4분 한도 후 강제 진행.
 사용자가 명시적으로 더 긴 timeout을 요청한 경우만 예외.
 
 
@@ -354,36 +355,51 @@ work-plan, self-review, review-pr, team-review, 3ai-plan 등 Gemini/Codex를 호
 
 ## Codex Plugin 협업
 
-Codex CLI를 Claude Code 내에서 네이티브 슬래시 커맨드로 사용할 수 있는 플러그인이다.
-기존 Bash CLI 방식보다 우선 사용하며, Plugin 미설치 시 Bash CLI로 fallback한다.
+> ⚠️ **Codex Plugin Skill 사용 금지** (영구 정책, 2026-05-07~)
+>
+> Codex Plugin Skill(`/codex:rescue`, `/codex:review`, `/codex:status`, `/codex:result`, `/codex:cancel` 등)은
+> **Bash timeout이 적용되지 않아 무기한 hang 위험**이 있다. 메인이 watchdog을 능동 모니터링해야
+> 하는데 다른 작업 처리 중에는 시간 측정이 멈춘다. 따라서 **반드시 Bash CLI만 사용**한다.
+>
+> ### 호출 규칙 (필수 준수)
+>
+> | 항목 | 규칙 |
+> |------|------|
+> | 사용 가능 | `codex exec -`, `codex review --base ...`, `codex "..." --model ...` (모두 Bash 도구) |
+> | 사용 금지 | `/codex:rescue`, `/codex:review`, `/codex:status`, `/codex:result`, `/codex:cancel` (Skill 도구) |
+> | Bash timeout | **`timeout: 240000ms` (4분) 필수 명시** |
+> | 실패 처리 | `2>&1 \|\| echo "CODEX_FAIL"` 패턴 → CODEX_FAIL 검출 시 즉시 다음 단계로 진행 |
+> | 예외 | 사용자가 명시적으로 "Plugin 강제로 써줘"라고 요청한 경우에만 |
+>
+> ### 스킬 파일에 Plugin 분기가 남아 있어도
+>
+> `self-review.md`, `review-pr.md`, `team-review.md`, `work-plan.md`, `work-plan/SKILL.md`,
+> `3ai-plan/SKILL.md`에 "Plugin 우선, CLI fallback" 패턴이 남아 있더라도, 위 정책에 따라
+> **Plugin 분기는 무시하고 CLI fallback 단계로 직행**한다.
 
-### 설치
+Codex 호출은 반드시 Bash CLI를 사용한다 (정책: 위 "Plugin Skill 사용 금지" 박스 참조).
 
+### Codex CLI 사용법
+
+```bash
+# Bash 도구 호출 시 timeout: 240000ms (4분) 필수 명시
+
+# 파이프 입력 (실패 처리 포함)
+cat file.yaml | codex exec - 2>&1 || echo "CODEX_FAIL"
+
+# 코드 리뷰 (적대적 리뷰)
+codex review --base main 2>&1 || echo "CODEX_FAIL"
+
+# 모델 지정
+codex "분석할 내용" --model o3
 ```
-/plugin marketplace add openai/codex-plugin-cc
-/plugin install codex@openai-codex
-/reload-plugins
-/codex:setup
-```
-
-### 커맨드 매핑 (Plugin 우선, CLI fallback)
-
-| 용도 | Plugin (우선) | CLI fallback |
-|------|--------------|-------------|
-| 코드 리뷰 | `/codex:review --base main` | `codex review --base main` |
-| 적대적 리뷰 | `/codex:review --base main` | 없음 |
-| 작업 위임 | `/codex:rescue 자연어 설명` | `codex exec -` |
-| 작업 상태 | `/codex:status` | 없음 |
-| 작업 결과 | `/codex:result` | 없음 |
-| Review Gate | `/codex:setup --enable-review-gate` | 없음 |
 
 ### 적용 원칙
 
-- **Plugin 우선**: Plugin이 설치되어 있으면 항상 Plugin 방식을 사용
-- **Bash fallback**: Plugin 미설치 또는 실행 실패 시 기존 Bash CLI로 폴백
-- **리뷰 시 adversarial-review 권장**: 일반 review보다 설계 결정, 가정, 실패 모드까지 검증
-- **Review Gate 주의**: 토큰 소비가 크므로 핵심 로직 구현 시에만 선택적 활성화
-- **상세 가이드**: [Codex Plugin 문서](./cs/tool/codex-plugin-claude-code.md)
+- **Bash 도구 timeout: 240000ms (4분) 필수**
+- 4분 초과 시 강제 종료, `|| echo "CODEX_FAIL"` 패턴으로 부드럽게 진행
+- 리뷰 시 적대적 리뷰 권장: 일반 review보다 설계 결정, 가정, 실패 모드까지 검증
+- 상세 가이드: [Codex Plugin 문서](./cs/tool/codex-plugin-claude-code.md)
 
 ## PR 설정
 
