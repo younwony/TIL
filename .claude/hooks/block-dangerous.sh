@@ -7,9 +7,9 @@
 # stdin에서 JSON 읽기
 INPUT=$(cat)
 
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""' 2>/dev/null)
 
-# 빈 명령이면 통과
+# jq 없거나 빈 명령이면 통과
 if [[ -z "$COMMAND" ]]; then
     exit 0
 fi

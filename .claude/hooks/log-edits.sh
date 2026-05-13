@@ -10,8 +10,8 @@ LOG_FILE="$HOME/.claude/edit-log.txt"
 INPUT=$(cat)
 
 # file_path 추출 (jq 사용)
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
-TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""')
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""' 2>/dev/null)
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""' 2>/dev/null)
 
 # 마크다운 파일이 아니면 종료
 if [[ ! "$FILE_PATH" =~ \.(md|mdx)$ ]]; then

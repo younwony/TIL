@@ -1,8 +1,317 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-05-06
-> 정리 범위: v2.1.43 ~ v2.1.128
-> 참고: v2.1.124, v2.1.125, v2.1.127, v2.1.129는 공식 CHANGELOG에 등록되지 않은 스킵 버전
+> 정리 일시: 2026-05-13
+> 정리 범위: v2.1.43 ~ v2.1.140
+> 참고: v2.1.124, v2.1.125, v2.1.127, v2.1.130, v2.1.134, v2.1.135는 공식 CHANGELOG에 등록되지 않은 스킵 버전
+
+---
+
+## Version 2.1.140
+
+### 주요 하이라이트
+- **에이전트 도구 매칭 개선**: `subagent_type` 매칭이 대소문자와 구분 기호를 무시하도록 변경
+- **`/loop` 안정성 강화**: 불필요한 웨이크업 스케줄링 제거
+- **Windows 안정성**: 이벤트 루프 정체 현상 해결
+
+### 새 기능
+- 원격 관리 설정의 401 에러 재시도 메커니즘 추가
+
+### 개선
+- 에이전트 색상 팔레트 업데이트
+- 엔터프라이즈 보안 소프트웨어 환경에서 백그라운드 서비스 시작 시간 단축
+- Read 도구 `offset` 매개변수 유효성 검사 강화
+- 터미널 포커스 손실 시 커서 위치 유지
+- 플러그인 기본 폴더 무시 경고 추가
+- 에이전트 도구 `subagent_type` 매칭이 대소문자 및 구분 기호 무시
+
+### 버그 수정
+- `/goal` 명령이 특정 설정에서 무한 대기하던 문제
+- 심볼릭 링크된 설정 파일의 변경 감지 오류
+- `claude --bg` 백그라운드 서비스 종료 시 연결 오류
+- `/loop` 불필요한 웨이크업 스케줄링 문제
+- Windows의 이벤트 루프 정체 현상
+
+---
+
+## Version 2.1.139
+
+### 주요 하이라이트
+- **에이전트 뷰 (Research Preview)**: 모든 Claude Code 세션을 단일 목록으로 표시
+- **`/goal` 명령 신규 추가**: 완료 조건 설정으로 여러 턴에 걸쳐 작업 계속
+- **Hook 시스템 강화**: `args` 필드 (exec 형식)로 셸 래퍼 없이 직접 명령 실행, `continueOnBlock` 설정 옵션 추가
+- **`/scroll-speed` 명령**: 마우스 휠 스크롤 속도 조정 기능
+
+### 새 기능
+- 에이전트 뷰(Research Preview) — 세션 통합 목록
+- `/goal` 명령 — 다단계 작업 자동 진행
+- `/scroll-speed` 명령 — 마우스 휠 스크롤 속도 조정
+- `claude plugin details <name>` 명령
+- Hook `args` 필드 (exec 형식) — 셸 래퍼 없이 명령 실행
+- Hook `continueOnBlock` 설정 옵션
+- MCP stdio 서버에 `CLAUDE_PROJECT_DIR` 환경 변수 전달
+- 트랜스크립트 뷰 네비게이션 단축키 (?, {, }, v)
+
+### 개선
+- 컴팩션 프롬프트에서 민감한 사용자 지침 보존 요청 추가
+- `/mcp` Reconnect 명령이 `.mcp.json` 편집 감지 기능 추가
+- `/context all` 토큰 예측 정확도 개선
+- `claude plugin install` 명령 자동 재시도 메커니즘 추가
+- `/plugin` 설치된 플러그인 세부정보 표시 개선
+- 원격 MCP 서버 재연결 재시도 기능 모든 사용자에게 활성화
+- 서브에이전트 API 요청에 헤더 및 OTEL 속성 추가
+- `autoAllowBashIfSandboxed` 셸 확장 지원 개선
+- HTTP/SSE MCP 서버 응답 크기 제한 추가 (SSE 프레임당 16MB)
+- 하이퍼링크 다크 테마 색상 개선
+- 마우스 휠 스크롤 속도 (Cursor, VS Code) 개선
+- Windows Terminal 및 VS Code 스크롤 동작 개선
+
+### 변경
+- Remote Control 및 특정 기능들이 API 키 설정 시 비활성화
+- Hook 터미널 접근 제한 (인터랙티브 프롬프트 손상 방지)
+
+### 버그 수정
+- 만료된 자격 증명 관련 교착 상태
+- `Skill(name *)` 권한 규칙 와일드카드
+- 심볼릭 링크된 설정 파일 감지
+- 플러그인 상세 정보 로딩 오류
+- `/model` 피커 기본 행 오버라이드 반영
+- 불필요한 "stream idle timeout" 오류
+- MCP 서버 10개 이상 구성 시 캐시 디렉터리 오류 메시지
+- 대화 상자에서 타이핑 커서 표시 문제
+- 트랜스크립트 뷰 문자 단축키 마우스 클릭 후 동작
+- Bash 모드 위쪽 화살표 히스토리 반복 문제
+- 여러 이미지 붙여넣기/드래그 시 마지막 이미지만 삽입되는 문제
+- 모델 피커 중복 "Current model" 행 제거
+- 레거시 Opus 피커 항목
+- MCP 리소스 자동완성에서 연결 해제된 서버 리소스 제거
+- 2파일 diff 스니펫 라인 수 계산
+- Grep 결과 Windows 드라이브 경로 정규화
+- CJK/이모지 경계 텍스트 오버플로우
+- 퍼지 매칭 이모지 분할 문제
+- 정규 표현식 메타문자를 포함한 스킬 인수 이름
+- ProgressBar 거의 찬 분수 셀 렌더링
+- 작업 폴링 및 파일 감시 리소스 해제
+- 플러그인 의존성 해결 스테일 카운트
+- Insights 시간대 차트 왜곡
+- `cmd`/`super`/`win` 수정자만 사용하는 키바인딩 파싱
+- OpenTelemetry `claude_code.active_time.total` 메트릭 emit (--print 모드)
+- 플러그인 업데이트 중 교차 플러그인 심볼릭 링크 보존
+
+### IDE
+- [VSCode] Cmd/Ctrl+Shift+T로 최근 닫은 세션 탭 복구
+
+---
+
+## Version 2.1.138
+
+### 변경
+- 내부 수정
+
+---
+
+## Version 2.1.137
+
+### IDE
+- [VSCode] Windows에서 확장 활성화 실패 수정
+
+---
+
+## Version 2.1.136
+
+### 주요 하이라이트
+- **`settings.autoMode.hard_deny`**: 자동 모드에서 조건부 거부 규칙 설정 가능
+- **`/release-notes` 캐시 문제 수정**: 이전 버전이 고정되던 문제 해결
+- **WSL2 이미지 붙여넣기**: PowerShell 대체 경로 추가
+
+### 새 기능
+- `CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL` 환경 변수로 세션 품질 설문 재활성화
+- `settings.autoMode.hard_deny` — 자동 모드 조건부 거부 규칙
+- WSL2 이미지 붙여넣기 PowerShell 대체
+
+### 개선
+- 슬래시 명령 대화 상자 시각적 일관성 개선
+- `@` 파일 피커 매칭 개선
+- 파일 선택기 디렉터리 크기 제한 개선
+- `/usage` 주간 재설정 표시 개선
+- `AskUserQuestion` 다중 선택 배열 답변 처리
+- `/clear <name>` 세션 레이블 지정
+- 플러그인 마켓플레이스 제거 키를 'd'로 변경 (r에서)
+- Ctrl+Backspace 키 바인딩 순서 정상화
+- Bash 권한 프롬프트 사용자 친화적 설명 표시
+
+### 버그 수정
+- `/clear` 후 MCP 서버가 사라지는 문제
+- 드물게 발생하는 로그인 루프 (자격 증명 동시 쓰기)
+- MCP OAuth 새로 고침 토큰 손실 문제 (여러 서버 동시 새로 고침)
+- 확장 사고 후 편집된 사고 블록 API 오류
+- `--resume` / `--continue` 언더스코어 포함 프로젝트 경로 검색
+- 플랜 모드 파일 쓰기 거부 문제
+- 플러그인 Stop/UserPromptSubmit 훅 캐시 삭제 문제
+- Bash 명령 출력 및 마크다운 코드 블록 색상 위치
+- ReasonML diff 렌더링 문제
+- 워크트리 종료 대화 상자 미제출 파일 경고
+- 전체 화면 모드 실패한 도구 호출 확장
+- 환영 배너 타원 열 오버플로우
+- `/insights` 도구 호출 입력 필드 형식 오류
+- 도구 축소 가능 여부 분류 변경 렌더러 충돌
+- 플러그인 `skills` 항목 기본 디렉터리 숨김
+- IDE 셸 통합 잠금 파일 `CLAUDE_CONFIG_DIR` 존중
+- 터미널 출력 복사 후행 공백 제거
+- 플러그인 제거/활성화/비활성화 대소문자 무시 매칭
+- 도구 오류 잘림 마커 서로게이트 쌍 문자열 계산
+- 세션 시작 훅 환경 변수 `--resume` 후 오래된 문제
+- `/branch` 다중 라인 세션 제목 저장
+- 줄바꿈 텍스트 선행 공백
+- 여러 대화 상자에서 Esc 키 비활성화
+- `/doctor` MCP 스키마 오류 메시지 개선
+- 플러그인 슬래시 명령 이름 공간
+- CronList 출력 한정자 및 예약된 프롬프트
+- 전체 화면 모드 "아래로 이동" 오버레이 색상 손상
+- 마크다운 테이블 스크롤백 렌더링
+- 긴 프롬프트 자동 잘림 시 붙여넣은 텍스트 드롭
+- `/release-notes` 이전 버전 캐시 고정 문제
+- `/mcp` 서버 목록 스크롤 제한
+- 중간 입력 슬래시 명령 자동완성
+- 하단으로 스크롤 자동 따라가기 다시 시작
+- 프롬프트 제안 자동 제출 (Tab 또는 화살표 필요)
+- 키보드 단축키 힌트 다시 바인딩된 키 반영
+- `/settings` 언어 변경 Escape 취소 문제
+- `/terminal-setup` 자동완성 부분 일치
+- "이것에 대해 채팅" 질문 텍스트 지우기
+- 연결 해제된 MCP 서버 도구 결과 표시
+
+---
+
+## Version 2.1.133
+
+### 주요 하이라이트
+- **`worktree.baseRef` 설정 신규**: `fresh` 또는 `head`로 워크트리 기본 브랜치 선택
+- **샌드박스 관리 설정**: Linux/WSL용 `sandbox.bwrapPath` 및 `sandbox.socatPath` 추가
+- **Hook 활동 수준 노출**: `effort.level` JSON 필드 및 `$CLAUDE_EFFORT` 환경 변수
+
+### 새 기능
+- `worktree.baseRef` 설정 (`fresh` | `head`)
+- `sandbox.bwrapPath` 및 `sandbox.socatPath` 관리 설정 (Linux/WSL)
+- `parentSettingsBehavior` 관리자 키 — SDK `managedSettings` 병합 옵션
+- 훅이 활동 수준을 `effort.level` JSON 필드 및 `$CLAUDE_EFFORT` 환경 변수로 수신
+- 서브에이전트 프로젝트/사용자/플러그인 스킬 발견
+- `claude --help`에 `/remote-control` 옵션 나열
+
+### 개선
+- 포커스 모드 동작 개선
+- 메모리 부하 시 따뜻한 예비 백그라운드 워커 해제
+- 파일 잠금 손상 예외 처리 개선
+- HTTP(S)_PROXY 및 mTLS MCP OAuth 흐름 전체에서 존중
+
+### 버그 수정
+- 병렬 세션 401 오류 (새로 고침 토큰 레이스)
+- Edit/Write 권한 규칙 드라이브 루트 매칭
+- 대화 컴팩션 중 Esc 키 허위 오류 알림
+- 매핑된 네트워크 드라이브 Read/Write/Edit 거부
+- Remote Control 중지/중단 API 취소 문제
+- `/effort` 세션 간 영향
+
+### IDE
+- [VSCode] `claudeCode.claudeProcessWrapper` 플랫폼 지원 오류 수정
+
+---
+
+## Version 2.1.132
+
+### 주요 하이라이트
+- **`CLAUDE_CODE_SESSION_ID` 환경 변수**: Bash 도구에서 세션 ID 접근 가능
+- **전체 화면 렌더러 비활성화 옵션**: `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1`
+- **Stdio MCP 메모리 누수 수정**: 프로토콜 외 데이터 무제한 메모리 증가 해결
+
+### 새 기능
+- `CLAUDE_CODE_SESSION_ID` 환경 변수 (Bash 도구)
+- `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` — 전체 화면 렌더러 비활성화
+- Ctrl+V 이미지 붙여넣기 중 "Pasting…" 바닥글 힌트
+
+### 개선
+- MCP 서버 `tools/list` 실패 재시도 및 표시
+- 슬래시 명령 대화 상자 시각적 일관성
+
+### 버그 수정
+- 외부 SIGINT 우아한 종료 (IDE 중지 버튼)
+- 터미널 종료 시 포착되지 않은 예외 (네이티브 빌드)
+- `--resume` 이모지 반으로 나뉨
+- `--permission-mode` 플랜 모드 세션 재개 시 무시
+- 전체 화면 모드 노트북 수면/웨이크 후 빈 화면
+- Ctrl+E/A/K/U/화살표 키 그래핌 중간 커서 위치
+- vim 연산자 분해된 악센트 문자 손상
+- `/` 시작 텍스트 붙여넣기 무시 또는 공격 응답
+- 포커스 이벤트/마우스 추적 보고서 대괄호 붙여넣기 간섭
+- Cursor/VS Code 마우스 휠 스크롤 속도 과빠름
+- JetBrains IDE 2025.2 터미널 스크롤 휠 처리
+- `/usage` Ctrl+S 클립보드 복사 hang (Linux/X11)
+- `/terminal-setup` Windows Terminal 오류 메시지
+- `/effort` 피커 `CLAUDE_CODE_EFFORT_LEVEL` 환경 변수 미반영
+- `/status` 기본 모델 표시 오류
+- 슬래시 명령 자동완성 팝업 높이 제한
+- 상태 행 `context_window` 누적 대 현재 토큰 계산
+- Alt+T (생각 토글) macOS 터미널 단축키
+- Windows 백그라운드 세션 재개 후 데드 키보드 입력
+- Stdio MCP 서버 프로토콜 외 데이터 무제한 메모리 증가
+- 미인가 claude.ai MCP 커넥터 상태 표시
+- `/tui fullscreen` 시작 배너 렌더러 이점 설명 업데이트
+- Bedrock/Vertex 400 오류 `ENABLE_PROMPT_CACHING_1H` 설정
+
+---
+
+## Version 2.1.131
+
+### 버그 수정
+- Mantle 엔드포인트 인증 헤더 수정
+
+### IDE
+- [VSCode] Windows에서 확장 활성화 실패 수정 (번들 SDK 경로 문제)
+
+---
+
+## Version 2.1.129
+
+### 주요 하이라이트
+- **`--plugin-url <url>` 플래그**: 플러그인 ZIP 아카이브 URL에서 직접 가져오기
+- **패키지 매니저 자동 업그레이드**: `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` (Homebrew/WinGet)
+- **`skillOverrides` 설정 작동**: off / user-invocable-only / name-only 모드
+
+### 새 기능
+- `--plugin-url <url>` 플래그 — 플러그인 ZIP 아카이브 URL 가져오기
+- `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` — 동기화된 출력 강제 활성화
+- `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` — Homebrew/WinGet 자동 업그레이드
+- Gateway `/v1/models` 검색 — `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` 옵션
+- `claude_code.pull_request.count` OpenTelemetry 메트릭에 MCP 도구 포함
+
+### 변경
+- 플러그인 매니페스트 `themes`/`monitors`를 `experimental` 키로 이동
+- Ctrl+R 히스토리 피커 기본값 모든 프롬프트 검색
+- 써드파티 배포 스피너 팁 제거
+
+### 개선
+- `skillOverrides` 설정 작동 (off/user-invocable-only/name-only)
+- 정책 거부 오류 메시지에 API 요청 ID 포함
+- API 400 오류 JSON 표시 개선
+- `/agents` 라이브러리 목록 화살표 키 네비게이션 개선
+- `/branch` 성공 메시지 새 분기 세션 ID 포함
+
+### 버그 수정
+- `/clear` 터미널 탭 제목 재설정
+- 세션 제목 칩 권한 대화 상자 활성화 중 사라짐
+- 에이전트 패널 서브에이전트 실행 중 숨김
+- 외부 편집기 전환 대화 기록 삭제
+- `/context` ASCII 격자 대화에 포함
+- 전체 화면 모드 굵은 헤더 문자 손실
+- 서버 관리 설정 정책 OAuth 범위 문제
+- OAuth 새로 고침 레이스 (수면 후)
+- 1시간 프롬프트 캐시 TTL 5분 다운그레이드
+- 캐시 미스 경고 거짓 양성
+- `Bash(mkdir *)` 스타일 권한 규칙 적용
+- `deniedMcpServers` 와일드카드 호스트명 매칭
+- WebSocket 경고 `--debug` 에러 로깅
+
+### IDE
+- [VSCode] `/clear` 대화 맥락 및 트랜스크립트 지우기 수정
 
 ---
 
