@@ -96,6 +96,12 @@ skills/는 Matt Pocock 패턴의 6-bucket 구조:
 | `product-review` | `/product-review` | 기능 구현 전 제품 검증 (6질문 + 4확장모드) |
 | `track-status` | `/track-status [track_id]` | Track 작업 추적 현황 조회 |
 | `sync-global` | `/sync-global push\|pull\|status` | 글로벌 Claude 설정을 프로젝트와 동기화 |
+| `grill-with-docs` | `/grill-with-docs` | 도메인 모델 대조 grilling + CONTEXT.md/ADR 인라인 갱신 |
+| `triage` | `/triage [#이슈]` | 이슈 5-state machine 분류 + AGENT-BRIEF 작성 |
+| `improve-codebase-architecture` | `/improve-codebase-architecture [경로]` | shallow→deep module 리팩터링 기회 탐색 |
+| `to-prd` | `/to-prd` | 현재 대화 → PRD/WORK-SPEC 양식 합성 |
+| `to-issues` | `/to-issues [#이슈\|path]` | 계획/PRD → vertical slice (tracer bullet) 이슈 분해 |
+| `prototype` | `/prototype logic\|ui "주제"` | 설계 검증용 throwaway 프로토타입 |
 
 ## Agents (Sub-agents)
 
