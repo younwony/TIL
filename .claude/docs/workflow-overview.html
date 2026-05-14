@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Workflow Overview — Matt Pocock + Track 통합 가이드</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose' });
+</script>
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg-card: #1e293b;
+    --bg-elevated: #283649;
+    --fg: #e2e8f0;
+    --fg-muted: #94a3b8;
+    --fg-dim: #64748b;
+    --accent: #60a5fa;
+    --accent-2: #34d399;
+    --accent-3: #fbbf24;
+    --accent-4: #fb7185;
+    --border: #334155;
+    --code-bg: #0f172a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Segoe UI', sans-serif; line-height: 1.65; }
+  .page { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  nav.toc {
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    background: #050b16; border-right: 1px solid var(--border);
+    padding: 28px 20px;
+  }
+  nav.toc h2 { font-size: 13px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 16px; }
+  nav.toc ol { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+  nav.toc ol li { margin: 6px 0; }
+  nav.toc a { color: var(--fg-muted); text-decoration: none; display: block; padding: 4px 8px; border-radius: 6px; }
+  nav.toc a:hover { background: var(--bg-card); color: var(--fg); }
+  main { padding: 40px 60px; max-width: 1100px; }
+  h1 { font-size: 32px; font-weight: 700; margin: 0 0 8px; color: var(--fg); }
+  .subtitle { color: var(--fg-muted); font-size: 14px; margin-bottom: 32px; }
+  h2 { font-size: 22px; font-weight: 700; margin: 48px 0 16px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--fg); }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  h3 { font-size: 16px; font-weight: 600; margin: 24px 0 12px; color: var(--accent); }
+  h4 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: var(--accent-3); }
+  p, ul, ol { font-size: 14px; color: var(--fg); }
+  ul, ol { padding-left: 24px; }
+  li { margin: 4px 0; }
+  code {
+    font-family: 'JetBrains Mono', 'D2Coding', monospace;
+    font-size: 13px; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; color: #fbbf24;
+  }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 12.5px;
+    line-height: 1.55;
+  }
+  pre code { background: none; padding: 0; color: var(--fg); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 16px 0; }
+  th, td { padding: 10px 14px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+  th { background: var(--bg-card); color: var(--fg-muted); font-weight: 600; }
+  tr:nth-child(even) td { background: rgba(30, 41, 59, 0.4); }
+  blockquote {
+    margin: 16px 0; padding: 12px 18px; border-left: 3px solid var(--accent);
+    background: rgba(96, 165, 250, 0.08); border-radius: 0 6px 6px 0;
+    color: var(--fg-muted); font-size: 13px;
+  }
+  .hero-svg { background: var(--bg-card); border-radius: 12px; padding: 12px; margin: 24px 0; }
+  .hero-svg svg { width: 100%; height: auto; }
+  .skill-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0; }
+  .skill-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px;
+  }
+  .skill-card h4 { margin: 0 0 8px; color: var(--accent-2); font-size: 15px; }
+  .skill-card p { margin: 6px 0; font-size: 13px; color: var(--fg-muted); }
+  .skill-card .when { color: var(--accent-3); font-weight: 600; font-size: 12px; }
+  .scenario {
+    background: var(--bg-card); border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0; padding: 14px 20px; margin: 16px 0;
+  }
+  .scenario h3 { margin-top: 0; color: var(--accent); }
+  .scenario .situation { color: var(--fg-muted); font-style: italic; font-size: 13px; margin-bottom: 12px; }
+  .mode-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  .mode-card { background: var(--bg-card); border-radius: 10px; padding: 20px; border-top: 4px solid var(--accent); }
+  .mode-card:last-child { border-top-color: var(--accent-2); }
+  .mode-card h3 { margin-top: 0; }
+  .mermaid { background: var(--bg-card); border-radius: 12px; padding: 16px; margin: 16px 0; }
+  .faq dt { font-weight: 600; color: var(--accent-3); margin-top: 14px; font-size: 14px; }
+  .faq dd { margin: 4px 0 0 0; padding-left: 16px; color: var(--fg); font-size: 13px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge.atomic { background: rgba(52, 211, 153, 0.18); color: var(--accent-2); }
+  .badge.wrapper { background: rgba(96, 165, 250, 0.18); color: var(--accent); }
+  .badge.legacy { background: rgba(100, 116, 139, 0.2); color: var(--fg-dim); }
+  @media (max-width: 900px) {
+    .page { grid-template-columns: 1fr; }
+    nav.toc { position: static; height: auto; }
+    main { padding: 24px; }
+    .mode-compare { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav class="toc">
+  <h2>목차</h2>
+  <ol>
+    <li><a href="#summary">0. 30초 요약</a></li>
+    <li><a href="#big-picture">1. 큰 그림</a></li>
+    <li><a href="#two-modes">2. 두 가지 모드</a></li>
+    <li><a href="#atomic">3. Atomic Skill 가이드</a></li>
+    <li><a href="#decision">4. 결정 트리</a></li>
+    <li><a href="#scenarios">5. 실전 시나리오</a></li>
+    <li><a href="#artifacts">6. 산출물 구조</a></li>
+    <li><a href="#faq">7. FAQ</a></li>
+    <li><a href="#refs">8. 관련 문서</a></li>
+  </ol>
+</nav>
+
+<main>
+  <h1>Workflow Overview</h1>
+  <div class="subtitle">Matt Pocock + Track 통합 가이드 · TIL 저장소 워크플로우 한 페이지 시각화</div>
+
+  <blockquote>
+    이 페이지는 "Matt Pocock 패턴 전면 재구성" 이후의 전체 워크플로우를 한 페이지에 담는다.
+    누군가 처음 이 저장소를 열어도 어떤 skill을 언제 부르면 되는지 알 수 있게 만든다.
+  </blockquote>
+
+  <h2 id="summary">0. 30초 요약</h2>
+  <table>
+    <thead><tr><th style="width:50%">상황</th><th>부를 것</th></tr></thead>
+    <tbody>
+      <tr><td>큰 Jira 작업 시작 (req.md 있음)</td><td><code>/work-plan</code> → <code>/work-plan-start</code> → <code>/self-review</code> → <code>/pr</code></td></tr>
+      <tr><td>큰 작업이지만 req.md 없음 (구두)</td><td><code>/work-plan</code> (구두 입력) → 이후 동일</td></tr>
+      <tr><td>요구사항 흐릿함, 정렬 먼저 필요</td><td><code>/product-review</code> 또는 <code>/grill-with-docs</code></td></tr>
+      <tr><td>도메인 용어만 정밀화</td><td><code>/grill-with-docs</code> <span class="badge atomic">atomic</span></td></tr>
+      <tr><td>대화를 PRD 양식으로 합성</td><td><code>/to-prd</code> <span class="badge atomic">atomic</span></td></tr>
+      <tr><td>계획을 작은 이슈로 분해</td><td><code>/to-issues</code> <span class="badge atomic">atomic</span></td></tr>
+      <tr><td>한 모듈만 deep화</td><td><code>/improve-codebase-architecture</code> <span class="badge atomic">atomic</span></td></tr>
+      <tr><td>설계 검증용 throwaway</td><td><code>/prototype</code> <span class="badge atomic">atomic</span></td></tr>
+      <tr><td>Jira 이슈 분류 / AGENT-BRIEF</td><td><code>/triage</code> <span class="badge atomic">atomic</span></td></tr>
+      <tr><td>코드 한 부분 모르겠음</td><td><code>/zoom-out</code></td></tr>
+      <tr><td>응답 너무 김</td><td><code>/caveman</code></td></tr>
+      <tr><td>에러 / 버그 추적</td><td><code>debugger</code> agent (5-phase)</td></tr>
+      <tr><td>코드 스멜 정리</td><td><code>code-refactor</code> agent</td></tr>
+      <tr><td>브라우저 QA</td><td><code>/browser-debug</code></td></tr>
+      <tr><td>보안 점검</td><td><code>/security-audit</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="big-picture">1. 큰 그림 — 4가지 실패 모드 매핑</h2>
+  <p>AI 코딩 에이전트의 4가지 흔한 실패 모드에 각각 atomic skill을 매핑했다. 큰 워크플로우 skill (<code>/work-plan</code> 등)은 이 atomic skill의 조합 wrapper다 (ADR 0002).</p>
+
+  <div class="hero-svg">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="-apple-system, 'Pretendard', sans-serif">
+      <defs>
+        <linearGradient id="card1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fb7185"/><stop offset="1" stop-color="#e11d48"/>
+        </linearGradient>
+        <linearGradient id="card2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/>
+        </linearGradient>
+        <linearGradient id="card3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#059669"/>
+        </linearGradient>
+        <linearGradient id="card4" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563eb"/>
+        </linearGradient>
+        <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.35"/></filter>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+        </marker>
+      </defs>
+      <rect width="960" height="540" fill="#0f172a"/>
+      <text x="480" y="50" text-anchor="middle" font-size="26" font-weight="700" fill="#f1f5f9">Matt Pocock 4가지 실패 모드 매핑</text>
+      <text x="480" y="76" text-anchor="middle" font-size="13" fill="#94a3b8">AI 코딩 에이전트의 4가지 흔한 실패 → 우리 자산의 대응</text>
+
+      <g filter="url(#shadow)">
+        <rect x="60" y="110" width="400" height="170" rx="14" fill="url(#card1)"/>
+        <text x="80" y="145" font-size="14" font-weight="600" fill="#fff" opacity="0.85">#1 — ALIGNMENT</text>
+        <text x="80" y="180" font-size="20" font-weight="700" fill="#fff">에이전트가 원하는 걸 잘못 이해</text>
+        <text x="80" y="208" font-size="13" fill="#fff" opacity="0.9">"무엇을 만들어야 하지?" 단계 misalignment.</text>
+        <text x="80" y="226" font-size="13" fill="#fff" opacity="0.9">사람·에이전트 사이 communication gap.</text>
+        <text x="80" y="258" font-size="13" font-style="italic" fill="#fff" opacity="0.95">Pragmatic Programmer (Hunt &amp; Thomas)</text>
+      </g>
+      <g filter="url(#shadow)">
+        <rect x="500" y="110" width="400" height="170" rx="14" fill="#1e293b" stroke="#fb7185" stroke-width="2"/>
+        <text x="520" y="145" font-size="14" font-weight="600" fill="#fb7185">대응 자산</text>
+        <text x="520" y="178" font-size="16" font-weight="600" fill="#f1f5f9">/product-review</text>
+        <text x="700" y="178" font-size="12" fill="#94a3b8">— 6Q 검증 + grilling</text>
+        <text x="520" y="208" font-size="16" font-weight="600" fill="#f1f5f9">/grill-with-docs</text>
+        <text x="700" y="208" font-size="12" fill="#94a3b8">— 도메인 대조 인터뷰</text>
+        <text x="520" y="238" font-size="16" font-weight="600" fill="#f1f5f9">/to-prd</text>
+        <text x="700" y="238" font-size="12" fill="#94a3b8">— PRD/WORK-SPEC 합성</text>
+        <text x="520" y="266" font-size="11" fill="#64748b">CONTEXT.md/ADR 인라인 갱신</text>
+      </g>
+
+      <g filter="url(#shadow)">
+        <rect x="60" y="290" width="400" height="100" rx="14" fill="url(#card2)"/>
+        <text x="80" y="320" font-size="14" font-weight="600" fill="#fff" opacity="0.85">#2 — VERBOSITY</text>
+        <text x="80" y="350" font-size="20" font-weight="700" fill="#fff">도메인 용어 모르고 장황</text>
+        <text x="80" y="376" font-size="12" font-style="italic" fill="#fff" opacity="0.9">Domain-Driven Design (Eric Evans)</text>
+      </g>
+      <g filter="url(#shadow)">
+        <rect x="500" y="290" width="400" height="100" rx="14" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+        <text x="520" y="320" font-size="14" font-weight="600" fill="#fbbf24">대응 자산</text>
+        <text x="520" y="348" font-size="15" font-weight="600" fill="#f1f5f9">.claude/CONTEXT.md</text>
+        <text x="720" y="348" font-size="12" fill="#94a3b8">— ubiquitous language</text>
+        <text x="520" y="372" font-size="15" font-weight="600" fill="#f1f5f9">/zoom-out</text>
+        <text x="640" y="372" font-size="12" fill="#94a3b8">/caveman</text>
+        <text x="730" y="372" font-size="12" fill="#94a3b8">— 압축 모드</text>
+      </g>
+
+      <g filter="url(#shadow)">
+        <rect x="60" y="400" width="400" height="60" rx="14" fill="url(#card3)"/>
+        <text x="80" y="425" font-size="13" font-weight="600" fill="#fff" opacity="0.85">#3 — DOESN'T WORK</text>
+        <text x="80" y="450" font-size="18" font-weight="700" fill="#fff">코드가 실제로 동작 안 함 (피드백 루프 부족)</text>
+      </g>
+      <g filter="url(#shadow)">
+        <rect x="500" y="400" width="400" height="60" rx="14" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+        <text x="520" y="425" font-size="13" font-weight="600" fill="#34d399">대응 자산</text>
+        <text x="520" y="447" font-size="13" fill="#f1f5f9">test-coverage-check · debugger (5-phase) · feature-check · ai-slop-detect</text>
+      </g>
+
+      <g filter="url(#shadow)">
+        <rect x="60" y="470" width="400" height="60" rx="14" fill="url(#card4)"/>
+        <text x="80" y="495" font-size="13" font-weight="600" fill="#fff" opacity="0.85">#4 — BALL OF MUD</text>
+        <text x="80" y="520" font-size="18" font-weight="700" fill="#fff">코드베이스가 진흙 공 (설계 부재)</text>
+      </g>
+      <g filter="url(#shadow)">
+        <rect x="500" y="470" width="400" height="60" rx="14" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+        <text x="520" y="495" font-size="13" font-weight="600" fill="#60a5fa">대응 자산</text>
+        <text x="520" y="517" font-size="13" fill="#f1f5f9">/improve-codebase-architecture · /zoom-out · code-refactor agent</text>
+      </g>
+
+      <g stroke="#475569" stroke-width="1.5" fill="none" opacity="0.7">
+        <path d="M 460 195 L 500 195" marker-end="url(#arrowhead)"/>
+        <path d="M 460 340 L 500 340" marker-end="url(#arrowhead)"/>
+        <path d="M 460 430 L 500 430" marker-end="url(#arrowhead)"/>
+        <path d="M 460 500 L 500 500" marker-end="url(#arrowhead)"/>
+      </g>
+    </svg>
+  </div>
+
+  <h2 id="two-modes">2. 두 가지 모드 — Track 안 vs Track 밖</h2>
+
+  <div class="mode-compare">
+    <div class="mode-card">
+      <h3>🚂 Track 안 — 큰 작업 흐름</h3>
+      <p style="font-size:13px; color:var(--fg-muted)">큰 Jira 작업, 여러 파일 변경, 산출물 보존이 필요할 때.</p>
+<pre><code>req.md / 구두 요구사항
+    │
+    ▼
+/work-plan         <span class="badge wrapper">wrapper</span>
+  ├─ grill-with-docs (요구사항 모호 시)
+  ├─ to-prd → WORK-SPEC
+  ├─ to-issues → FEATURE-CHECKLIST
+  └─ Gemini/Codex 크로스체크
+    │
+    ▼
+/work-plan-start   <span class="badge wrapper">wrapper</span>
+  ├─ Solo/Standard/Coordinator 모드
+  ├─ tdd 패턴 (각 Phase)
+  └─ debugger agent (에러 시 5-phase)
+    │
+    ▼
+/self-review + /qa-scenario + /feature-check
+    │
+    ▼
+/pr + /work-log</code></pre>
+      <p style="font-size:12px;color:var(--fg-muted)">산출: <code>.claude/tracks/{id}/0_INDEX.md ~ 8_QA-SCENARIOS.md</code></p>
+    </div>
+
+    <div class="mode-card">
+      <h3>🌱 Track 밖 — 즉흥 작업</h3>
+      <p style="font-size:13px; color:var(--fg-muted)">단일 의도, 1~2파일 수정, atomic skill 단발 호출.</p>
+<pre><code>즉흥 의도
+    │
+    ├─ "이거 필요해?"     → /product-review
+    ├─ "용어 정밀화"      → /grill-with-docs
+    ├─ "대화 → PRD"       → /to-prd
+    ├─ "모듈 deep화"      → /improve-codebase-architecture
+    ├─ "throwaway 검증"   → /prototype
+    ├─ "이슈 분류"        → /triage
+    ├─ "버그 추적"        → debugger agent
+    └─ "한 영역 모름"     → /zoom-out</code></pre>
+      <p style="font-size:12px;color:var(--fg-muted)">CONTEXT.md/ADR은 자동 갱신됨 (영구 자산). Track 디렉토리 X.</p>
+    </div>
+  </div>
+
+  <h2 id="atomic">3. Atomic Skill 사용 가이드</h2>
+  <p><span class="badge atomic">atomic</span> = 작고 조합 가능한 단일 책임 skill. <span class="badge wrapper">wrapper</span> = 여러 atomic을 조합한 큰 워크플로우 skill.</p>
+
+  <div class="skill-cards">
+    <div class="skill-card">
+      <h4>/grill-with-docs <span class="badge atomic">atomic</span></h4>
+      <p class="when">언제: 요구사항 모호, 도메인 용어 충돌, 결정 트리 미해결</p>
+      <p>한 번에 한 질문씩 grilling. 결정이 풀리는 즉시 CONTEXT.md/ADR 인라인 갱신.</p>
+      <p>원칙: 코드로 답할 수 있으면 묻지 말고 탐색. ADR은 인색하게 (hard-to-reverse + surprising + real trade-off 3조건).</p>
+    </div>
+    <div class="skill-card">
+      <h4>/triage <span class="badge atomic">atomic</span></h4>
+      <p class="when">언제: 새 Jira 이슈, 백로그 정리, AFK 에이전트가 픽업할 이슈 준비</p>
+      <p>5-state machine: needs-triage → needs-info | ready-for-agent | ready-for-human | wontfix.</p>
+      <p>산출: AGENT-BRIEF (interface-level 명세) 또는 .out-of-scope/ 기록.</p>
+    </div>
+    <div class="skill-card">
+      <h4>/improve-codebase-architecture <span class="badge atomic">atomic</span></h4>
+      <p class="when">언제: shallow module 의심, leaky abstraction, untestable 코드</p>
+      <p>도구: deletion test, Module/Seam/Depth/Leverage/Locality 어휘.</p>
+      <p>Matt Pocock 권장: 며칠에 한 번씩 코드베이스에 적용.</p>
+    </div>
+    <div class="skill-card">
+      <h4>/to-prd <span class="badge atomic">atomic</span></h4>
+      <p class="when">언제: 토론이 충분히 진행, 결정을 명세로 굳히고 싶음</p>
+      <p>사용자에게 다시 묻지 않음 — 합성만.</p>
+      <p>산출: WORK-SPEC.md 양식 (Problem / Solution / User Stories / Implementation / Testing / Out of Scope).</p>
+    </div>
+    <div class="skill-card">
+      <h4>/to-issues <span class="badge atomic">atomic</span></h4>
+      <p class="when">언제: PRD/WORK-SPEC을 작은 단위로 분해</p>
+      <p>tracer bullet 패턴 — 한 slice = 모든 레이어를 가로지르는 좁은 경로.</p>
+      <p>HITL/AFK 라벨, 의존성 그래프 포함.</p>
+    </div>
+    <div class="skill-card">
+      <h4>/prototype <span class="badge atomic">atomic</span></h4>
+      <p class="when">언제: state machine/reducer 모호, UI 변형 비교, "이거 동작할까?"</p>
+      <p>throwaway. 결정만 추출해서 SPEC.md/ADR에 inline 후 prototype 코드 삭제.</p>
+    </div>
+  </div>
+
+  <h2 id="decision">4. 결정 트리 — 무엇을 부를 것인가</h2>
+  <div class="mermaid">
+flowchart TD
+    Start([새 작업 또는 의도]) --> Q1{큰 작업인가?<br/>여러 파일 변경 예상}
+    Q1 -->|YES| Q2{req.md 있나?}
+    Q1 -->|NO| Atomic[atomic skill 단발 호출]
+    Q2 -->|YES| WP[/work-plan/]
+    Q2 -->|NO/구두| Q3{요구사항 명확한가?}
+    Q3 -->|YES| WP
+    Q3 -->|NO| PR[/product-review/]
+    PR --> Decision{Go?}
+    Decision -->|Go| WP
+    Decision -->|No-Go| End1([종료])
+    Decision -->|Hold| Info([정보 수집])
+    WP --> WPS[/work-plan-start/]
+    WPS --> SR[/self-review/]
+    SR --> QA[/qa-scenario/]
+    QA --> PRC[/pr/]
+    PRC --> End2([PR 머지])
+    Atomic --> A1{어떤 의도?}
+    A1 -->|용어 정밀화| GWD[/grill-with-docs/]
+    A1 -->|대화→PRD| TPRD[/to-prd/]
+    A1 -->|이슈 분해| TIS[/to-issues/]
+    A1 -->|모듈 deep화| ICA[/improve-codebase-architecture/]
+    A1 -->|throwaway| PROTO[/prototype/]
+    A1 -->|이슈 분류| TRG[/triage/]
+    A1 -->|영역 모름| ZO[/zoom-out/]
+    A1 -->|에러| DBG[debugger agent]
+  </div>
+
+  <h2 id="scenarios">5. 실전 시나리오</h2>
+
+  <div class="scenario">
+    <h3>시나리오 1 — 새 Jira 이슈로 큰 기능 개발</h3>
+    <div class="situation">TECH-22386에 "배송 상태 동기화 기능 만들어주세요"라는 한 줄짜리 요구.</div>
+<pre><code>1. /product-review               # "왜 만드는가" grilling. Go 판정.
+2. /work-plan                    # WORK-SPEC + FEATURE-CHECKLIST 생성
+   ├─ (내부) /grill-with-docs   # 용어 정밀화: "배송 상태" = Shipment.status enum 4종
+   ├─ (내부) /to-prd            # PRD 합성
+   └─ (내부) Gemini/Codex 크로스체크
+3. /work-plan-start              # Phase별 구현 (Standard 모드)
+4. /self-review                  # 4명 리뷰어 + Gemini/Codex
+5. /qa-scenario                  # BDD QA 시나리오
+6. /pr                           # GitHub PR
+7. /work-log                     # Confluence 작업 로그</code></pre>
+  </div>
+
+  <div class="scenario">
+    <h3>시나리오 2 — 짧은 버그 수정</h3>
+    <div class="situation">"배송 취소 시 상태가 'cancelled'로 안 바뀜" 버그 리포트.</div>
+<pre><code>1. debugger agent (Phase 1 — 재현 loop 만들기 우선)
+2. fix + 회귀 테스트
+3. /self-review
+4. /pr</code></pre>
+    <p style="font-size:12px;color:var(--fg-muted)">Track 만들지 않음 (1~2파일 수정).</p>
+  </div>
+
+  <div class="scenario">
+    <h3>시나리오 3 — "이 모듈 모양이 잘못된 거 같다"</h3>
+    <div class="situation">ShipmentService가 너무 비대하고 테스트가 어려움.</div>
+<pre><code>1. /improve-codebase-architecture
+   └─ (내부) Explore agent로 코드 탐색
+   └─ deletion test 후보 제시
+   └─ grilling → "Shipment의 Lifecycle 모듈 추출" 결정
+   └─ CONTEXT.md에 "Lifecycle" 용어 추가
+   └─ ADR 0004 작성 (옵션)
+2. (결정 후) /work-plan 으로 본격 리팩터링 작업 시작</code></pre>
+  </div>
+
+  <div class="scenario">
+    <h3>시나리오 4 — 새 화면 UI 변형 비교</h3>
+    <div class="situation">배송 상태 페이지의 표시 방식 3가지 후보를 비교하고 싶음.</div>
+<pre><code>1. /prototype
+   └─ 한 라우트에 3 변형 토글
+   └─ 사용자 walkthrough → variant B 선택
+   └─ SPEC.md에 결정 inline
+   └─ prototype 코드 삭제
+2. /work-plan (variant B의 production 구현)</code></pre>
+  </div>
+
+  <div class="scenario">
+    <h3>시나리오 5 — Slack 회의 → Jira 이슈</h3>
+    <div class="situation">Slack 스레드에 정리된 회의 내용을 Jira 이슈로 분해.</div>
+<pre><code>1. /slack-to-jira &lt;Slack URL&gt;    # 1차 변환 (모호한 상태)
+2. /triage                        # 5-state machine 분류
+   └─ ready-for-agent 후보면 /grill-with-docs로 grilling
+   └─ AGENT-BRIEF 코멘트 작성
+3. /to-issues                     # vertical slice 분해 (필요 시)</code></pre>
+  </div>
+
+  <div class="scenario">
+    <h3>시나리오 6 — 응답이 너무 길어졌을 때</h3>
+<pre><code>/caveman                    # 토큰 75% 절약 모드 ON
+... 작업 ...
+"stop caveman"              # 해제 (보안/비가역 명령 시 자동 해제)</code></pre>
+  </div>
+
+  <div class="scenario">
+    <h3>시나리오 7 — 처음 보는 코드 영역에서 길 잃음</h3>
+<pre><code>/zoom-out
+   └─ 현재 영역 → 모듈 + 호출자 맵 → CONTEXT.md 어휘로 설명</code></pre>
+  </div>
+
+  <h2 id="artifacts">6. 산출물 구조 (Track 안 작업 시)</h2>
+<pre><code>.claude/tracks/{JIRA번호}-{설명}/
+├── 0_INDEX.md                       문서 인덱스 (자동 생성)
+├── 1_REQ-SNAPSHOT.md                req.md 원본 보존
+├── 2_WORK-SPEC.md                   /work-plan 산출 (to-prd 결과 + AGENT-BRIEF)
+├── 3_FEATURE-CHECKLIST.md           /work-plan 산출 (to-issues 결과)
+├── 4_PLAN.md                        /work-plan-start Phase 진행률
+├── 5_ARCHITECTURE.md                구현 완료 (svg-diagram)
+├── 6_SPEC.md                        구현 완료
+├── 7_SELF-REVIEW.md                 /self-review
+├── 8_QA-SCENARIOS.md                /qa-scenario
+└── metadata.json                    Track 메타데이터</code></pre>
+
+  <p style="margin-top:16px">CONTEXT.md / ADR은 Track 안이 아닌 글로벌 위치:</p>
+<pre><code>.claude/
+├── CONTEXT.md                       ubiquitous language
+└── docs/
+    ├── adr/                          영구 결정 기록
+    │   ├── 0001-skill-dependency-classification.md
+    │   ├── 0002-track-as-skill-container.md
+    │   └── 0003-bucket-structure.md
+    └── agents/                       atomic skill 입력 설정
+        ├── issue-tracker.md
+        ├── triage-labels.md
+        └── domain.md</code></pre>
+
+  <h2 id="faq">7. FAQ</h2>
+  <dl class="faq">
+    <dt>Q. /work-plan과 atomic skill 중 무엇을 써야 하나?</dt>
+    <dd>변경 파일 3개+ 예상 → /work-plan (Track 만들고 워크플로우 전체). 3개 미만 또는 즉흥 의도 → atomic skill 직접 호출.</dd>
+
+    <dt>Q. /work-plan이 내부에서 atomic skill을 호출한다는데, 어떻게 디버깅하나?</dt>
+    <dd>4_PLAN.md에 어떤 atomic skill이 어떤 Step에서 호출되는지 기록됨. 문제 발생 시 해당 atomic skill을 단발 호출하여 재현.</dd>
+
+    <dt>Q. CONTEXT.md / ADR을 언제 갱신하나?</dt>
+    <dd>/grill-with-docs, /improve-codebase-architecture 호출 중 자동으로 인라인 갱신된다. 수동 갱신도 가능.</dd>
+
+    <dt>Q. personal/, in-progress/, deprecated/ 버킷의 skill도 호출되나?</dt>
+    <dd>호출 가능 (Claude Code의 skill 디스커버리는 깊이 무관). 단 카탈로그/README에 노출 안 되어 외부 사용자에게 보이지 않음.</dd>
+
+    <dt>Q. work-plan-legacy를 다시 쓰고 싶다면?</dt>
+    <dd>deprecated/work-plan-legacy/SKILL.md 보존되어 있음. 참조하거나 일시 복귀 가능. 단 새 atomic 패러다임과의 일관성 깨질 수 있음.</dd>
+
+    <dt>Q. Hook이 git add를 차단할 때 어떻게 우회하나?</dt>
+    <dd>TIL 저장소 안이면 자동 통과. 그 외 응급 우회: <code>SKIP_CLAUDE_DIR_BLOCK=1 git add ...</code></dd>
+
+    <dt>Q. 글로벌(~/.claude/)과 TIL의 skill이 다를 수 있나?</dt>
+    <dd>기본적으로 /sync-global push|pull로 동기화. TIL 고유 skill (cs-*, pencil-*, weekly-retro 등)은 TIL에만.</dd>
+  </dl>
+
+  <h2 id="refs">8. 관련 문서</h2>
+  <ul>
+    <li><a href="./WORKFLOW-GUIDELINE.md">WORKFLOW-GUIDELINE.md</a> — 상세 SSOT (각 Step 깊이)</li>
+    <li><a href="./skills-commands-agents-catalog.md">skills-commands-agents-catalog.md</a> — Skills/Commands/Agents 카탈로그</li>
+    <li><a href="./mattpocock-skills-application.md">mattpocock-skills-application.md</a> — 초기 적용 분석</li>
+    <li><a href="../CONTEXT.md">.claude/CONTEXT.md</a> — 도메인 용어집</li>
+    <li><a href="./adr/">adr/</a> — ADR 0001 / 0002 / 0003</li>
+    <li><a href="./agents/">agents/</a> — atomic skill 입력 설정</li>
+  </ul>
+
+  <div style="margin-top:60px; padding-top:20px; border-top:1px solid var(--border); font-size:12px; color:var(--fg-muted)">
+    마지막 갱신: 2026-05-14 · 새 skill / ADR 추가 시 본 문서도 갱신하세요.
+  </div>
+</main>
+
+</div>
+</body>
+</html>

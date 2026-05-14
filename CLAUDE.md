@@ -272,6 +272,25 @@ codex "분석할 내용" --model o3
 
 상세 가이드: [Codex Plugin 문서](./cs/tool/codex-plugin-claude-code.md)
 
+# Matt Pocock 4가지 실패 모드 매핑
+
+[mattpocock/skills](https://github.com/mattpocock/skills) 패턴을 흡수하여 atomic skill 패러다임을 도입했다 (ADR 0002, 0003).
+
+| # | 실패 모드 | 대응 자산 |
+|---|----------|----------|
+| 1 | **Alignment** — 에이전트가 원하는 걸 잘못 이해 | `product-review`, `grill-with-docs`, `to-prd` |
+| 2 | **Verbosity** — 도메인 용어 모르고 장황 | `.claude/CONTEXT.md`, `zoom-out`, `caveman` |
+| 3 | **Doesn't Work** — 피드백 루프 부족 | `test-coverage-check`, `debugger` (5-phase), `feature-check`, `ai-slop-detect` |
+| 4 | **Ball of Mud** — 진흙 공 | `improve-codebase-architecture`, `zoom-out`, `code-refactor` agent |
+
+## Track 시스템과의 관계 (ADR 0002)
+
+**Track = atomic skill 컨테이너**.
+- `/work-plan`과 `/work-plan-start`는 atomic skill (`grill-with-docs`, `to-prd`, `to-issues`, `tdd`, `diagnose`)의 wrapper다.
+- 외부 호출 인터페이스는 그대로. `1_REQ-SNAPSHOT.md ~ 8_QA-SCENARIOS.md` 산출물 구조도 그대로.
+- Track에 들어가지 않는 즉흥 작업이면 atomic skill을 직접 호출 가능.
+- 구버전 워크플로우는 `deprecated/work-plan-legacy/`, `deprecated/work-plan-start-legacy/`에 보존.
+
 # Claude Code Skills / Commands / Agents 카탈로그
 
 전체 목록(Skills ~21개, Commands ~32개, Agents ~10개)은 분리되어 있다:
@@ -279,6 +298,10 @@ codex "분석할 내용" --model o3
 
 > 호출 자체는 시스템 프롬프트의 available skills 목록과 Agent 도구 description으로 이미 노출되므로,
 > 매 세션에 카탈로그를 컨텍스트에 올릴 필요가 없다. 어떤 게 있는지 한눈에 보고 싶을 때만 Read.
+
+skills/는 Matt Pocock 패턴의 6-bucket 구조 (ADR 0003):
+- `engineering/`, `productivity/`, `misc/` — 공개 카탈로그 노출
+- `personal/`, `in-progress/`, `deprecated/` — 노출 안 됨
 >
 > 에이전트 사용 가이드: [AGENT-GUIDE.md](./AGENT-GUIDE.md)
 > 디스패치 규칙(언제 어떤 에이전트를 부를지)은 아래 섹션에 잔류한다.

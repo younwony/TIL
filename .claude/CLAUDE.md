@@ -281,6 +281,23 @@ codex review --base main 2>&1 || echo "CODEX_FAIL"
 - Codex 연결 실패 시 Claude 단독으로 진행
 - 결과는 Claude가 검토 후 최종 정리
 
+# Matt Pocock 4가지 실패 모드 매핑
+
+[mattpocock/skills](https://github.com/mattpocock/skills) 패턴을 흡수하여 atomic skill 패러다임을 도입했다 (ADR 0002, 0003).
+
+| # | 실패 모드 | 대응 자산 |
+|---|----------|----------|
+| 1 | **Alignment** — 에이전트가 원하는 걸 잘못 이해 | `product-review`, `grill-with-docs`, `to-prd` |
+| 2 | **Verbosity** — 도메인 용어 모르고 장황 | `.claude/CONTEXT.md`, `zoom-out`, `caveman` |
+| 3 | **Doesn't Work** — 피드백 루프 부족 | `test-coverage-check`, `debugger` (5-phase), `feature-check`, `ai-slop-detect` |
+| 4 | **Ball of Mud** — 진흙 공 | `improve-codebase-architecture`, `zoom-out`, `code-refactor` agent |
+
+`/work-plan`과 `/work-plan-start`는 atomic skill의 wrapper다 (ADR 0002 Track-as-Skill-Container). Track에 들어가지 않는 즉흥 작업이면 atomic skill (`/grill-with-docs`, `/to-prd`, `/triage` 등)을 직접 호출해도 된다.
+
+skills/는 Matt Pocock 패턴의 6-bucket 구조 (ADR 0003):
+- `engineering/`, `productivity/`, `misc/` — 공개 카탈로그 노출
+- `personal/`, `in-progress/`, `deprecated/` — 노출 안 됨
+
 # 글로벌 Skills
 
 모든 프로젝트에서 사용 가능한 스킬 목록입니다.

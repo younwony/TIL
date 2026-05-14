@@ -7,9 +7,9 @@
 # stdin에서 JSON 읽기
 INPUT=$(cat)
 
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""' 2>/dev/null)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
 
-# jq 없거나 빈 명령이면 통과
+# 빈 명령이면 통과
 if [[ -z "$COMMAND" ]]; then
     exit 0
 fi
@@ -41,14 +41,32 @@ RULES=(
     "git\s+add\s+-A|--all 추가는 .claude/ 포함 위험. 개별 파일 명시 권장"
 )
 
+# TIL 저장소 예외 사전 판정 (.claude/ git add 관련 룰만 우회)
+# TIL은 글로벌 설정 공유 채널로 사용되어 .claude/ git add 허용 (TIL/CLAUDE.md 정책).
+TIL_PATTERN='workspace[/\\]intellij[/\\]TIL'
+CWD=$(echo "$INPUT" | jq -r '.cwd // ""')
+IN_TIL=0
+if [[ "$SKIP_CLAUDE_DIR_BLOCK" == "1" ]]; then IN_TIL=1; fi
+if echo "$COMMAND" | grep -qiE "$TIL_PATTERN"; then IN_TIL=1; fi
+if [[ -n "$CWD" ]] && echo "$CWD" | grep -qiE "$TIL_PATTERN"; then IN_TIL=1; fi
+if pwd 2>/dev/null | grep -qiE "$TIL_PATTERN"; then IN_TIL=1; fi
+
 for rule in "${RULES[@]}"; do
     pattern="${rule%%|*}"
     description="${rule##*|}"
 
     if echo "$COMMAND" | grep -iqE "$pattern"; then
+        # TIL 안에서는 .claude/ git add 관련 룰만 통과. rm -rf, force push 등은 그대로 차단.
+        if [[ "$IN_TIL" == "1" ]] && { [[ "$pattern" == *'\.claude'* ]] || [[ "$pattern" == *'add\s+-A'* ]]; }; then
+            continue
+        fi
         echo "⛔ BLOCKED: ${description}"
         echo "  명령어: ${COMMAND}"
         echo "  패턴: ${pattern}"
+        if [[ "$pattern" == *'\.claude'* ]] || [[ "$pattern" == *'add\s+-A'* ]]; then
+            echo "  TIL 저장소(workspace/intellij/TIL/)에서는 자동 허용됨" >&2
+            echo "  그 외 응급 우회: SKIP_CLAUDE_DIR_BLOCK=1 git add ..." >&2
+        fi
         exit 2
     fi
 done

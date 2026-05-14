@@ -1,0 +1,44 @@
+{
+  "skill_name": "work-plan",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/work-plan",
+      "expected_output": "프로젝트 루트의 req.md를 읽고 WORK-SPEC.md 작업 명세서를 생성",
+      "files": [],
+      "expectations": [
+        "프로젝트 루트의 req.md 파일을 읽음",
+        "프로젝트 유형을 자동 판별함 (Spring Boot, TIL 등)",
+        "기술 스택을 build.gradle/pom.xml/package.json에서 분석함",
+        "WORK-SPEC.md가 프로젝트 루트에 생성됨",
+        "해당 없는 섹션은 템플릿에서 제거됨",
+        "작업 단계(Phase)가 포함됨",
+        "Gemini/Codex CLI 설치 여부를 확인함"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "/work-plan path/to/custom-req.md",
+      "expected_output": "지정된 경로의 요구사항 파일을 기반으로 WORK-SPEC.md 생성",
+      "files": [],
+      "expectations": [
+        "$ARGUMENTS에서 파일 경로를 파싱함",
+        "지정된 경로의 req.md를 읽음",
+        "WORK-SPEC.md가 req.md와 같은 디렉토리에 생성됨"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "req.md 기반으로 작업 명세서 만들어줘. Spring Boot API 프로젝트야",
+      "expected_output": "Spring Boot API용 WORK-SPEC.md 생성 (API 설계, 데이터 모델, 예외 처리 섹션 포함)",
+      "files": [],
+      "expectations": [
+        "Spring Boot API로 프로젝트 유형이 판별됨",
+        "API 설계 섹션이 포함됨",
+        "데이터 모델 섹션이 포함됨",
+        "예외 처리 전략 섹션이 포함됨",
+        "엔지니어링 체크리스트에 CLAUDE.md 규칙이 포함됨"
+      ]
+    }
+  ]
+}

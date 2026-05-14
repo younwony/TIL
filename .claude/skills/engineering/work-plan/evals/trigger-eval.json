@@ -1,0 +1,74 @@
+[
+  {
+    "query": "/work-plan",
+    "should_trigger": true
+  },
+  {
+    "query": "req.md 보고 작업 명세서 만들어줘. 이번에 주문 API 개발해야 하는데 계획부터 세우고 싶어",
+    "should_trigger": true
+  },
+  {
+    "query": "/work-plan src/main/resources/req.md",
+    "should_trigger": true
+  },
+  {
+    "query": "요구사항 문서 기반으로 WORK-SPEC 생성해줘. 프로젝트는 Spring Boot API야",
+    "should_trigger": true
+  },
+  {
+    "query": "이번 작업 계획서 만들어줘. req.md에 요구사항 정리해뒀어",
+    "should_trigger": true
+  },
+  {
+    "query": "작업 명세서 생성해줘. Gemini랑 Codex로 크로스 체크도 해줘",
+    "should_trigger": true
+  },
+  {
+    "query": "WORK-SPEC.md 만들어줘. 배치 처리 시스템 개발 계획이야",
+    "should_trigger": true
+  },
+  {
+    "query": "새 기능 구현 계획을 WORK-SPEC으로 정리해줘. req.md는 프로젝트 루트에 있어",
+    "should_trigger": true
+  },
+  {
+    "query": "/work-plan-start",
+    "should_trigger": false
+  },
+  {
+    "query": "WORK-SPEC.md 읽고 작업 시작해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "현재 브랜치 작업 내용을 Confluence에 문서화해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "PR 만들어줘",
+    "should_trigger": false
+  },
+  {
+    "query": "이 코드 리팩토링해줘. Service 레이어 정리 필요해",
+    "should_trigger": false
+  },
+  {
+    "query": "req.md 파일 읽어서 내용 요약해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "3AI 플랜으로 아키텍처 검토해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "cs/network/tcp-ip.md 문서 작성해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "Jira 이슈 TECH-21436 상태 업데이트해줘",
+    "should_trigger": false
+  },
+  {
+    "query": "오늘 작성한 문서 목록 보여줘",
+    "should_trigger": false
+  }
+]
