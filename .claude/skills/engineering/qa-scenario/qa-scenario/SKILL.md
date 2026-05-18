@@ -1,11 +1,11 @@
 ---
 name: qa-scenario
 description: |
-  현재 브랜치의 변경사항을 분석하여 체계적인 QA 시나리오 문서(QA-SCENARIOS.md)를 자동 생성합니다.
+  현재 브랜치의 변경사항을 분석하여 체계적인 QA 시나리오 문서(QA-SCENARIOS.html)를 자동 생성합니다.
   변경 파일을 카테고리별로 분류하고, 영향 범위를 파악한 뒤, BDD(Given-When-Then) 형식과
   Mermaid 다이어그램을 포함한 QA 시나리오를 제안합니다.
 
-  Plan 모드에서 분석 결과를 보여주고, 사용자 승인 후 최종 QA-SCENARIOS.md를 생성합니다.
+  Plan 모드에서 분석 결과를 보여주고, 사용자 승인 후 최종 QA-SCENARIOS.html를 생성합니다.
   browser-debug 스킬의 Chrome 자동화 전 단계로 사용하거나, 독립적으로 QA 문서를 만들 때 사용합니다.
 
   다음 키워드/문맥에서 트리거됩니다:
@@ -137,7 +137,7 @@ git diff main...HEAD --stat
    - 유저 플로우 → `qa-images/user-flow.svg`
    - API 시퀀스 → `qa-images/api-sequence.svg` (해당 시)
    - 상태 다이어그램 → `qa-images/state-diagram.svg` (해당 시)
-3. QA-SCENARIOS.md에서는 이미지 참조로 포함한다:
+3. QA-SCENARIOS.html에서는 이미지 참조로 포함한다:
    ```markdown
    ![유저 플로우](qa-images/user-flow.svg)
    ```
@@ -231,9 +231,9 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 
 ---
 
-## Phase 5: 6_QA-SCENARIOS.md 생성
+## Phase 5: 6_QA-SCENARIOS.html 생성
 
-`{DOC_DIR}/6_QA-SCENARIOS.md` 파일을 생성한다. (`{DOC_DIR}`은 글로벌 CLAUDE.md의 워크플로우 문서 저장 경로 규칙을 따른다.)
+`{DOC_DIR}/6_QA-SCENARIOS.html` 파일을 생성한다. (`{DOC_DIR}`은 글로벌 CLAUDE.md의 워크플로우 문서 저장 경로 규칙을 따른다.)
 (`references/qa-document-template.md` 참조)
 
 ### 문서 구조
@@ -312,7 +312,7 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 
 ### 완료 보고
 
-1. `6_QA-SCENARIOS.md` 생성 완료 알림
+1. `6_QA-SCENARIOS.html` 생성 완료 알림
 2. 시나리오 수/우선순위별 분포 요약
 3. `browser-debug` 스킬로 자동 실행 가능함을 안내
 4. `{DOC_DIR}` 하위이므로 `git add` 하지 않음

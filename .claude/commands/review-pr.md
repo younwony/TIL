@@ -1,11 +1,18 @@
 ---
-description: 특정 PR에 대해 4명의 전문 리뷰어 에이전트 팀 + Gemini/Codex 크로스 리뷰를 병렬 수행합니다.
+description: 특정 PR에 대해 4명의 전문 리뷰어 에이전트 팀 + Gemini/Codex 크로스 리뷰를 병렬 수행하고 PR-REVIEW.html을 생성합니다.
 allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Bash(test:*), Bash(node:*), Read, Write, Glob, Grep, Task, Skill(codex:*)
 ---
 
 # PR 팀 코드 리뷰
 
 지정된 PR에 대해 4명의 전문 리뷰어 에이전트 + Gemini/Codex 크로스 리뷰를 **병렬로** 실행하여 다관점 코드 리뷰를 수행한다.
+
+> **AI 크로스 체크(Gemini/Codex)는 `gemini-check` / `codex-check` 하네스로 위임한다.**
+> 본 커맨드는 더 이상 `gemini -p`, `codex review --base`, `codex exec -`를 직접 호출하지 않는다.
+> 두 에이전트(`gemini-reviewer`, `codex-reviewer`)를 병렬 Agent 호출하여 표준 정책(timeout 240s, CODEX_FAIL 처리, 1회 재시도, 로그 보존)을 적용한다.
+> PR diff를 `codex-check` 위임 시: `mode=exec`, `prompt_text=gh pr diff $PR_NUMBER` 결과를 본문으로 전달. 또는 `mode=review`, `base_branch={baseRefName}`로 호출.
+> Codex Plugin Skill(`/codex:review`, `/codex:rescue` 등)은 사용하지 않는다 — codex-check 하네스가 CLAUDE.md 정책을 강제한다.
+> 아래 직접 호출 섹션은 호환성을 위해 남겨두지만 신규 실행은 위임 패턴을 사용한다.
 
 ## 리뷰 팀 구성
 
@@ -30,9 +37,10 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 1. `where gemini` 명령으로 Gemini CLI 설치 여부 확인
    - 설치됨: Gemini 크로스 리뷰 활성화
    - 미설치: "Gemini CLI가 설치되지 않아 Gemini 크로스 리뷰를 건너뜁니다" 안내
-2. `where codex` 명령으로 Codex CLI 설치 여부 확인 (**Bash CLI 단독, Plugin Skill 사용 금지** — CLAUDE.md "Codex 협업" 섹션 참조)
-   - 설치됨: Codex 크로스 리뷰 활성화 (`codex review --base`)
-   - 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
+2. Codex 설치 여부 확인 (Plugin 우선, CLI fallback):
+   1. `test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs"` → Plugin 설치됨: `/codex:review` 사용
+   2. Plugin 미설치 시 `where codex` → CLI 설치됨: `codex review --base` fallback 사용
+   3. 둘 다 미설치: "Codex가 설치되지 않아 Codex 크로스 리뷰를 건너뜁니다" 안내
 
 > Gemini와 Codex 모두 비활성화된 경우: "외부 크로스 리뷰 없이 에이전트 팀 리뷰로 진행합니다" 안내
 
@@ -137,109 +145,49 @@ gh pr diff $PR_NUMBER -- {주요파일1} {주요파일2} ... | gemini -p "다음
 
 #### Codex 리뷰 실행
 
-**Bash CLI 단독 사용** (Plugin Skill `/codex:review`, `/codex:rescue` 등은 사용 금지 — CLAUDE.md "Codex 협업" 정책 참조).
+Codex Plugin의 리뷰를 사용한다. 대용량 diff도 Plugin이 자체적으로 처리하므로 별도 분기가 불필요하다.
 
-```bash
-codex review --base {baseRefName} 2>&1 || echo "CODEX_FAIL"
-```
+**실행 모드 선택** (2단계에서 수집한 additions + deletions 기준):
+- 변경 1,000줄 이하: foreground 실행
+  ```
+  /codex:review --base {baseRefName} --wait
+  ```
+- 변경 1,000줄 초과: background 실행 (타임아웃 방지)
+  ```
+  /codex:review --base {baseRefName} --background
+  ```
+  → 결과 통합 시점에 `/codex:result`로 수집
 
-- **Bash 도구 호출 시 `timeout: 240000ms` (4분) 필수 명시**
-- 4분 초과 시 자동 종료, `CODEX_FAIL` 검출 시 "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
-- 1,000줄+ 대용량 diff도 동일 방식. CLI가 처리 못 하면 SKIP하고 진행
+**실패 시 재시도:**
+1. 1차 실패 → `--resume`으로 재시도 (이전 컨텍스트 유지)
+   ```
+   /codex:rescue --resume 이전 리뷰를 이어서 완료해줘 --wait
+   ```
+2. 2차 실패 → CLI fallback (Bash, timeout: 240000ms):
+   ```bash
+   codex review --base {baseRefName} 2>&1 || echo "CODEX_FAIL"
+   ```
+3. 3차 실패 → "Codex 리뷰 실행에 실패했습니다." 안내 후 계속 진행
 
-## 4단계: 결과 통합 → 리뷰 결과 출력
+- **Plugin 미설치 시**: CLI fallback (`codex review --base`) 직행
+- **⚠️ 절대 `codex exec -`를 사용하지 않는다. 반드시 Plugin(Skill 도구) 우선.**
 
-6명의 리뷰 결과를 통합하여 다음 형식으로 출력:
+## 4단계: 결과 통합 → PR-REVIEW.html 생성
 
-```markdown
-# PR Review - #$PR_NUMBER
+6명의 리뷰 결과를 통합하여 `PR-REVIEW.html` 파일을 생성한다.
 
-> PR: `{PR 제목}` | 리뷰 일시: YYYY-MM-DD HH:MM
-> 리뷰 방식: Agent Team (4명 병렬) + Cross Review (Gemini/Codex)
+산출 문서는 html-doc 스킬 규칙을 따라 자체 완결 HTML로 작성한다. template.html을 skeleton으로 쓰고, 리뷰어별 지적사항은 `<details>` collapsible과 상태 배지로, **심각도 분포는 components.html의 막대 차트 SVG로** 시각화한다.
 
-## 변경 개요
+HTML 구조는 다음 섹션 구성으로 작성한다:
 
-- **작성자**: {author}
-- **브랜치**: {headRefName} → {baseRefName}
-- **커밋 수**: N개
-- **변경 파일 수**: N개
-- **추가/삭제**: +N / -N
-
-### 커밋 히스토리
-
-| 커밋 | 메시지 |
-|------|--------|
-
-### 변경 파일
-
-| 파일 | 추가 | 삭제 | 설명 |
-|------|------|------|------|
-
-## 종합 리뷰 요약
-
-| 관점 | 리뷰어 | 상태 | 요약 |
-|------|--------|------|------|
-| 성능 | review-performance | ✅/⚠️/❌ | 한 줄 요약 |
-| 보안 | review-security | ✅/⚠️/❌ | 한 줄 요약 |
-| 테스트 | review-test-coverage | ✅/⚠️/❌ | 한 줄 요약 |
-| 컨벤션 | review-convention | ✅/⚠️/❌ | 한 줄 요약 |
-
-### 심각도 집계
-
-| 심각도 | 성능 | 보안 | 테스트 | 컨벤션 | 합계 |
-|--------|------|------|--------|--------|------|
-| 🔴 높음/치명 | N | N | N | N | **N** |
-| ⚠️ 중간 | N | N | N | N | **N** |
-| 💡 참고 | N | N | N | N | **N** |
-
-## 성능 리뷰
-
-{review-performance 에이전트의 전체 결과}
-
-## 보안 리뷰
-
-{review-security 에이전트의 전체 결과}
-
-## 테스트 커버리지 리뷰
-
-{review-test-coverage 에이전트의 전체 결과}
-
-## 컨벤션/가독성/유지보수성 리뷰
-
-{review-convention 에이전트의 전체 결과}
-
-## Gemini 크로스 리뷰
-
-> Reviewed by: Gemini (via Gemini CLI)
-> 미설치/실패 시 이 섹션 생략
-
-{Gemini 리뷰 결과}
-
-## Codex 크로스 리뷰
-
-> Reviewed by: Codex (via Codex CLI)
-> 미설치/실패 시 이 섹션 생략
-
-{Codex 리뷰 결과}
-
-## 개선 제안 (통합)
-
-6명의 리뷰어 결과를 종합하여 우선순위별로 정리:
-
-### 필수 수정 (❌)
-{모든 리뷰어의 🔴 높음/치명 이슈를 파일별로 통합}
-
-### 권장 수정 (⚠️)
-{모든 리뷰어의 ⚠️ 중간 이슈를 파일별로 통합}
-
-### 참고 (💡)
-{모든 리뷰어의 💡 참고 이슈를 파일별로 통합}
-
-## 결론
-
-{모든 리뷰 결과를 종합한 최종 의견}
-{🔴 이슈가 1건이라도 있으면 "수정 후 Approve 권장", 없으면 "Approve 가능"}
-```
+- **`<header>`**: PR 번호·제목, 리뷰 일시, 리뷰 방식 (Agent Team 4명 + Cross Review Gemini/Codex)
+- **변경 개요 `<section>`**: 작성자·브랜치·커밋 수·변경 파일 수·추가/삭제 라인, 커밋 히스토리 `<table>`, 변경 파일 `<table>`
+- **종합 리뷰 요약 `<section>`**: 관점별 상태 배지(badge-ok/badge-warn/badge-err)를 포함한 `<table>`, 심각도 집계 비교 `<table>`, **심각도 분포 막대 차트 SVG (components.html 컴포넌트 8번)**
+- **리뷰어별 `<section>`** (성능 / 보안 / 테스트 / 컨벤션 / Gemini 크로스 / Codex 크로스):
+  - 미설치/실패한 외부 리뷰어는 섹션 생략
+  - 각 지적사항은 `<details><summary>심각도 배지 + 이슈 제목</summary>...</details>` collapsible로 표현
+- **개선 제안 통합 `<section>`**: 필수 수정(badge-err) / 권장 수정(badge-warn) / 참고(badge-ok) 3개 subsection, 파일별로 이슈 통합
+- **결론 `<section>`**: 최종 의견 (🔴 이슈가 1건이라도 있으면 "수정 후 Approve 권장", 없으면 "Approve 가능")
 
 ## 5단계: 다음 액션 선택
 

@@ -90,9 +90,11 @@ Slice는 'HITL' 또는 'AFK':
 
 `/work-plan` 내부에서 호출되면:
 
-- 산출물은 `3_FEATURE-CHECKLIST.md`로 매핑 (사용자/QA 관점 체크리스트로 압축)
+- 산출물은 `3_FEATURE-CHECKLIST.html`로 매핑 (사용자/QA 관점 체크리스트로 압축)
 - 각 slice → FEATURE-CHECKLIST 항목 1개
 - HITL slice는 별도 표시 (`[HITL]` prefix)
+
+산출 HTML 문서는 `html-doc` 스킬의 규칙을 따라 자체 완결 HTML로 작성한다. 체크리스트 항목은 `html-doc/references/components.html`의 배지 컴포넌트(badge-ok/warn/err)로, HITL/AFK 구분은 상태 배지로 표현한다. 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 작업 흐름·구조를 인라인 SVG 다이어그램으로 1개 이상 포함한다.
 
 대형 Track의 경우 sub-track으로 slice 그룹화 가능:
 - Track `TECH-22386-shipment/`

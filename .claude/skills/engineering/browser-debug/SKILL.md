@@ -32,7 +32,7 @@ paths:
 QA 시나리오를 기반으로 **2-Layer** 구조로 웹 프로젝트를 점검한다.
 
 ```
-Layer 1 (Playwright): QA-SCENARIOS.md → 테스트 코드 생성 → headless 실행
+Layer 1 (Playwright): QA-SCENARIOS.html → 테스트 코드 생성 → headless 실행
                       → 모든 PASS → 완료 (Chrome 호출 없음)
                       → FAIL 존재 → Layer 2로 에스컬레이션
 
@@ -47,15 +47,15 @@ Layer 2 (Chrome MCP): FAIL건만 Chrome으로 재실행
 
 ## Phase 0: QA 시나리오 확인
 
-**다음 순서로 `QA-SCENARIOS.md` 파일을 탐색한다:**
+**다음 순서로 `QA-SCENARIOS.html` 파일을 탐색한다:**
 
-1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track의 `.claude/tracks/{track_id}/QA-SCENARIOS.md`
-2. `.claude/docs/QA-SCENARIOS.md`
-3. 프로젝트 루트 `QA-SCENARIOS.md` (하위 호환)
+1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track의 `.claude/tracks/{track_id}/QA-SCENARIOS.html`
+2. `.claude/docs/QA-SCENARIOS.html`
+3. 프로젝트 루트 `QA-SCENARIOS.html` (하위 호환)
 
 ### 기존 시나리오가 있는 경우
 
-1. `QA-SCENARIOS.md`를 읽어 내용을 확인한다
+1. `QA-SCENARIOS.html`를 읽어 내용을 확인한다
 2. 시나리오 유효성 검증:
    - 테스트 URL이 현재 프로젝트와 일치하는가
    - 변경 파일과 현재 git 변경사항이 대체로 일치하는가
@@ -95,11 +95,11 @@ Layer 2 (Chrome MCP): FAIL건만 Chrome으로 재실행
 
 ## Phase 2: Playwright 테스트 자동 생성
 
-`QA-SCENARIOS.md`를 파싱하여 Playwright 테스트 코드를 생성한다. (`references/playwright-template.md` 참조)
+`QA-SCENARIOS.html`를 파싱하여 Playwright 테스트 코드를 생성한다. (`references/playwright-template.md` 참조)
 
 ### 생성 절차
 
-1. QA-SCENARIOS.md에서 시나리오 목록 추출 (ID, URL, Given/When/Then, 검증 방법, 검증 코드)
+1. QA-SCENARIOS.html에서 시나리오 목록 추출 (ID, URL, Given/When/Then, 검증 방법, 검증 코드)
 2. 각 시나리오를 Playwright 테스트 코드로 변환:
    - `network` 검증 → `page.waitForResponse()` + status 체크
    - `javascript` 검증 → `page.locator()` + `expect` 또는 `page.evaluate()`
@@ -141,8 +141,8 @@ cd .claude/playwright-tests && npx playwright test --reporter=json,list 2>&1
 
 1. `.claude/playwright-results/results.json` 파싱
 2. 각 시나리오별 pass/fail 분류
-3. screenshot FAIL 시: diff 이미지 경로(`*-diff.png`)를 QA-SCENARIOS.md에 기록
-4. QA-SCENARIOS.md 업데이트:
+3. screenshot FAIL 시: diff 이미지 경로(`*-diff.png`)를 QA-SCENARIOS.html에 기록
+4. QA-SCENARIOS.html 업데이트:
    - PASS → ✅ PASS
    - FAIL → ❌ (Layer 2 대기)
    - SKIP → ⏭️ SKIP
@@ -227,7 +227,7 @@ FAIL한 시나리오만 Chrome MCP로 정밀 디버깅한다. (`references/layer
 
 ### 결과 보고
 
-1. QA-SCENARIOS.md 최종 업데이트 확인
+1. QA-SCENARIOS.html 최종 업데이트 확인
 2. QA 과정에서 수정한 파일을 `git add` (commit은 하지 않음)
 3. 사용자에게 최종 요약:
    - Layer 1 (Playwright) 결과: PASS/FAIL 카운트, 소요 시간
@@ -248,7 +248,7 @@ FAIL한 시나리오만 Chrome MCP로 정밀 디버깅한다. (`references/layer
 - **Console/Network은 Chrome 전용**: Playwright에서 커버 불가한 영역은 Layer 2에서 처리
 - **Playwright 재검증 필수**: Layer 2 수정 후 반드시 Playwright로 재검증
 - **서버 재기동 자체 처리**: 사용자에게 묻지 않고 Bash로 직접 처리
-- **QA-SCENARIOS.md 실시간 업데이트**: 각 시나리오 결과 즉시 반영
+- **QA-SCENARIOS.html 실시간 업데이트**: 각 시나리오 결과 즉시 반영
 - JavaScript `alert()`, `confirm()`, `prompt()` 등 모달 다이얼로그 트리거 금지
 - 실제 데이터에 영향 주는 동작은 사용자 확인 후 진행
 

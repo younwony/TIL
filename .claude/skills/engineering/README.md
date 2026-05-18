@@ -4,12 +4,12 @@
 
 ## Skills
 
-- **[work-plan](./work-plan/SKILL.md)** — req.md 분석 → WORK-SPEC.md + FEATURE-CHECKLIST.md 생성. Gemini/Codex 크로스체크.
-- **[work-plan-start](./work-plan-start/SKILL.md)** — WORK-SPEC.md 기반 실제 구현 (Solo/Standard/Coordinator 모드).
-- **[qa-scenario](./qa-scenario/SKILL.md)** — 브랜치 변경사항 분석 → BDD QA-SCENARIOS.md 생성.
+- **[work-plan](./work-plan/SKILL.md)** — req.md 분석 → WORK-SPEC.html + FEATURE-CHECKLIST.html 생성. Gemini/Codex 크로스체크.
+- **[work-plan-start](./work-plan-start/SKILL.md)** — WORK-SPEC.html 기반 실제 구현 (Solo/Standard/Coordinator 모드).
+- **[qa-scenario](./qa-scenario/SKILL.md)** — 브랜치 변경사항 분석 → BDD QA-SCENARIOS.html 생성.
 - **[browser-debug](./browser-debug/SKILL.md)** — Playwright 1차 + Chrome 2차 정밀 디버깅의 2-Layer QA.
 - **[browser-debug-chrome](./browser-debug-chrome/SKILL.md)** — Chrome MCP만 사용하는 레거시 QA.
-- **[feature-check](./feature-check/SKILL.md)** — FEATURE-CHECKLIST.md 기반 코드 레벨 기능 구현 자동 검증.
+- **[feature-check](./feature-check/SKILL.md)** — FEATURE-CHECKLIST.html 기반 코드 레벨 기능 구현 자동 검증.
 - **[test-coverage-check](./test-coverage-check/SKILL.md)** — 변경 파일 커버리지 분석 + 누락 테스트 자동 생성.
 - **[product-review](./product-review/SKILL.md)** — "왜 만드는가" grilling + 6Q 검증 + 4 확장 모드.
 - **[zoom-out](./zoom-out/SKILL.md)** — 코드 영역 한 단계 추상화하여 모듈 + 호출자 맵을 도메인 용어로 설명.

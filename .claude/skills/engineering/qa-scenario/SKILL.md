@@ -1,11 +1,11 @@
 ---
 name: qa-scenario
 description: |
-  현재 브랜치의 변경사항을 분석하여 체계적인 QA 시나리오 문서(QA-SCENARIOS.md)를 자동 생성합니다.
+  현재 브랜치의 변경사항을 분석하여 체계적인 QA 시나리오 문서(QA-SCENARIOS.html)를 자동 생성합니다.
   변경 파일을 카테고리별로 분류하고, 영향 범위를 파악한 뒤, BDD(Given-When-Then) 형식과
-  Mermaid 다이어그램을 포함한 QA 시나리오를 제안합니다.
+  인라인 SVG 다이어그램을 포함한 QA 시나리오를 제안합니다.
 
-  Plan 모드에서 분석 결과를 보여주고, 사용자 승인 후 최종 QA-SCENARIOS.md를 생성합니다.
+  Plan 모드에서 분석 결과를 보여주고, 사용자 승인 후 최종 QA-SCENARIOS.html를 생성합니다.
   browser-debug 스킬의 Chrome 자동화 전 단계로 사용하거나, 독립적으로 QA 문서를 만들 때 사용합니다.
 
   다음 키워드/문맥에서 트리거됩니다:
@@ -135,20 +135,16 @@ Agent 도구 파라미터:
 
 **SVG 생성 절차:**
 
-다이어그램은 Mermaid 코드 블록이 아닌 **SVG 이미지 파일**로 생성한다.
+다이어그램은 외부 파일이 아닌 **본문에 인라인 `<svg>`로 임베드**한다 (자체 완결 HTML 원칙).
 
-1. 프로젝트 루트에 `qa-images/` 디렉토리를 생성한다
-2. `cs-diagram-generator` 에이전트를 사용하여 각 다이어그램을 SVG로 생성한다:
-   - 유저 플로우 → `qa-images/user-flow.svg`
-   - API 시퀀스 → `qa-images/api-sequence.svg` (해당 시)
-   - 상태 다이어그램 → `qa-images/state-diagram.svg` (해당 시)
-3. QA-SCENARIOS.md에서는 이미지 참조로 포함한다:
-   ```markdown
-   ![유저 플로우](qa-images/user-flow.svg)
-   ```
+1. `html-doc/references/components.html`의 플로우 다이어그램 스니펫을 참조한다
+2. 변경 유형에 맞게 SVG를 커스터마이즈하여 `<figure><svg>...</svg><figcaption>...</figcaption></figure>` 형태로 본문에 직접 삽입한다:
+   - 유저 플로우 → 플로우 다이어그램 SVG
+   - API 시퀀스 → 시퀀스 표현 SVG (해당 시)
+   - 영향도 분포 → 막대 차트 SVG (선택)
+3. SVG fill/stroke에 CSS 변수(`var(--accent)`, `var(--muted)` 등)를 사용하여 다크모드 자동 대응한다
 
-> `cs-diagram-generator` 에이전트가 실패하면, `mermaid-diagram` 스킬로 폴백한다.
-> `mermaid-diagram`도 실패하면, Mermaid 코드 블록을 문서에 직접 포함한다.
+> 인라인 SVG로 표현이 너무 복잡한 경우에만 Mermaid 코드 블록을 `<pre>` 안에 포함한다.
 
 ### 3-2. 시나리오 작성 형식
 
@@ -236,57 +232,28 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 
 ---
 
-## Phase 5: 6_QA-SCENARIOS.md 생성
+## Phase 5: 8_QA-SCENARIOS.html 생성
 
-`{DOC_DIR}/6_QA-SCENARIOS.md` 파일을 생성한다. (`{DOC_DIR}`은 글로벌 CLAUDE.md의 워크플로우 문서 저장 경로 규칙을 따른다.)
-(`references/qa-document-template.md` 참조)
+QA 시나리오 문서는 `html-doc` 스킬 규칙을 따라 자체 완결 HTML로 작성한다.
+`references/qa-document-template.html`을 사용한다. BDD 시나리오는 `<details>`로,
+영향도 매트릭스는 비교표로, 우선순위는 상태 배지로 표현한다.
+산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 핵심 흐름·영향도를 인라인 SVG 다이어그램으로 1개 이상 포함한다.
+
+`{DOC_DIR}/8_QA-SCENARIOS.html` 파일을 생성한다. (`{DOC_DIR}`은 글로벌 CLAUDE.md의 워크플로우 문서 저장 경로 규칙을 따른다.)
+(`references/qa-document-template.html` 참조)
 
 ### 문서 구조
 
-```markdown
-# QA Scenarios - {브랜치명}
+`qa-document-template.html`을 skeleton으로 복사하고 아래 섹션을 채운다:
 
-## 환경
-- 브랜치: {branch_name}
-- 비교 기준: {compare_branch}
-- 테스트 URL: http://localhost:{port}
-- 생성 일시: {YYYY-MM-DD HH:mm}
-- 변경 파일: {N}개
-
-## 변경 요약
-{변경된 기능 1~2줄 요약}
-
-## 영향도 매트릭스
-{변경 파일별 직접/간접 영향, 위험도 테이블}
-
-## 유저 플로우 다이어그램
-![유저 플로우](qa-images/user-flow.svg)
-
-## API 시퀀스 다이어그램
-{Controller/API 변경 시에만 포함}
-![API 시퀀스](qa-images/api-sequence.svg)
-
-## 시나리오 목록
-
-### P0 - 핵심 기능 (반드시 테스트)
-{S01~S04}
-
-### P1 - 주요 기능
-{S05~S09}
-
-### P2 - 부가 기능
-{S10~}
-
-## 결과 요약
-{QA 실행 후 업데이트 예정}
-
-## 발견된 버그
-| # | 시나리오 | 심각도 | 문제 | 원인 | 수정 파일 | 수정 내용 |
-|---|---------|--------|------|------|---------|---------|
-
-## 미검증 항목
-- {테스트 데이터 부족, UI 미구현 등으로 확인 불가한 항목}
-```
+- **환경**: 브랜치명, 비교 기준, 테스트 URL, 생성 일시, 변경 파일 수
+- **변경 요약**: 변경된 기능 1~2줄 요약
+- **영향도 매트릭스**: `<table>`로 변경 파일별 직접/간접 영향, 위험도 표시
+- **핵심 흐름 다이어그램**: 인라인 `<svg>`로 유저 플로우 또는 API 시퀀스 표현 (1개 이상 필수)
+- **시나리오 목록**: P0/P1/P2 각 `<details>` + 배지
+- **결과 요약**: QA 실행 후 업데이트 예정 표
+- **발견된 버그**: `<table>`
+- **미검증 항목**: `<ul>`
 
 ### 결과 상태 아이콘
 
@@ -317,7 +284,7 @@ Plan 모드 내에서 사용자에게 다음을 보여준다:
 
 ### 완료 보고
 
-1. `6_QA-SCENARIOS.md` 생성 완료 알림
+1. `8_QA-SCENARIOS.html` 생성 완료 알림
 2. 시나리오 수/우선순위별 분포 요약
 3. `browser-debug` 스킬로 자동 실행 가능함을 안내
 4. `{DOC_DIR}` 하위이므로 `git add` 하지 않음

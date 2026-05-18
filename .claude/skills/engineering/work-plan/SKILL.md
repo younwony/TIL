@@ -1,17 +1,17 @@
 ---
 name: work-plan
-description: req.md 또는 구두 요구사항을 분석하여 Track에 WORK-SPEC.md + FEATURE-CHECKLIST.md + REQ-SNAPSHOT.md를 생성한다. 내부에서 grill-with-docs → to-prd → to-issues atomic skill을 조합하여 호출하는 wrapper. "/work-plan", "작업 계획", "구현 계획 세우기", "WORK-SPEC 생성", "req.md 분석", "스펙 정리", "설계해줘" 요청에 트리거.
+description: req.md 또는 구두 요구사항을 분석하여 Track에 WORK-SPEC.html + FEATURE-CHECKLIST.html + REQ-SNAPSHOT.html를 생성한다. 내부에서 grill-with-docs → to-prd → to-issues atomic skill을 조합하여 호출하는 wrapper. "/work-plan", "작업 계획", "구현 계획 세우기", "WORK-SPEC 생성", "req.md 분석", "스펙 정리", "설계해줘" 요청에 트리거.
 ---
 
 # Work Plan (Atomic Wrapper)
 
-req.md를 입력으로 받아 Track에 표준 문서 묶음(`1_REQ-SNAPSHOT.md`, `2_WORK-SPEC.md`, `3_FEATURE-CHECKLIST.md`)을 생성한다.
+req.md를 입력으로 받아 Track에 표준 문서 묶음(`1_REQ-SNAPSHOT.html`, `2_WORK-SPEC.html`, `3_FEATURE-CHECKLIST.html`)을 생성한다.
 
 본 skill은 **wrapper**다. 실제 작업은 atomic skill들이 수행한다 — ADR 0002 (Track as Skill Container) 참조:
 
 - `/grill-with-docs` — 요구사항 모호 시 grilling + CONTEXT.md/ADR 갱신
-- `/to-prd` — 합성된 PRD를 WORK-SPEC.md 양식으로 출력
-- `/to-issues` — vertical slice 분해를 FEATURE-CHECKLIST.md로 매핑
+- `/to-prd` — 합성된 PRD를 WORK-SPEC.html 양식으로 출력
+- `/to-issues` — vertical slice 분해를 FEATURE-CHECKLIST.html로 매핑
 
 기존 호출 인터페이스(`/work-plan`, 플래그)는 그대로 유지된다.
 
@@ -45,7 +45,7 @@ req.md를 입력으로 받아 Track에 표준 문서 묶음(`1_REQ-SNAPSHOT.md`,
 
 ### Step 3 — REQ-SNAPSHOT 보존
 
-원본 req.md를 `1_REQ-SNAPSHOT.md`로 Track에 복사. 메타데이터 헤더 (Track ID, 원본 경로, 스냅샷 일시) 추가.
+원본 req.md를 `1_REQ-SNAPSHOT.html`로 Track에 복사. `html-doc` 스킬 규칙을 따라 자체 완결 HTML로 작성한다. 요구사항 원본 텍스트는 `<pre>` 블록으로 보존하고, 메타데이터 헤더 (Track ID, 원본 경로, 스냅샷 일시)를 문서 상단에 포함한다. 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 작업 흐름·구조를 인라인 SVG 다이어그램으로 1개 이상 포함한다.
 
 ### Step 4 — 요구사항 grilling (`/grill-with-docs`)
 
@@ -60,9 +60,9 @@ req.md를 입력으로 받아 Track에 표준 문서 묶음(`1_REQ-SNAPSHOT.md`,
 
 grilling 종료 후 결정 사항을 Step 5의 입력으로 전달.
 
-### Step 5 — WORK-SPEC.md 생성 (`/to-prd`)
+### Step 5 — WORK-SPEC.html 생성 (`/to-prd`)
 
-`/to-prd` skill을 호출하여 PRD를 `2_WORK-SPEC.md` 양식으로 생성:
+`/to-prd` skill을 호출하여 PRD를 `2_WORK-SPEC.html` 양식으로 생성:
 
 ```markdown
 ## 문제 정의 (Problem Statement)
@@ -76,11 +76,11 @@ grilling 종료 후 결정 사항을 Step 5의 입력으로 전달.
 ## 추가 노트 (Further Notes)
 ```
 
-Track의 `2_WORK-SPEC.md`로 저장. 헤더에 Track ID + 작성일 추가.
+Track의 `2_WORK-SPEC.html`로 저장. 헤더에 Track ID + 작성일 추가.
 
-### Step 6 — FEATURE-CHECKLIST.md 생성 (`/to-issues`)
+### Step 6 — FEATURE-CHECKLIST.html 생성 (`/to-issues`)
 
-`/to-issues` skill을 호출하여 vertical slice 분해 → `3_FEATURE-CHECKLIST.md`로 매핑.
+`/to-issues` skill을 호출하여 vertical slice 분해 → `3_FEATURE-CHECKLIST.html`로 매핑.
 
 각 slice → 체크리스트 항목 1개:
 - HITL slice는 `[HITL]` prefix
@@ -97,17 +97,17 @@ Track의 `2_WORK-SPEC.md`로 저장. 헤더에 Track ID + 작성일 추가.
 
 Gemini/Codex 호출은 `gemini-check` / `codex-check` 하네스에 위임 (정책: CLAUDE.md "AI 호출" 섹션). 두 호출은 병렬.
 
-크로스 체크 결과는 WORK-SPEC.md 끝에 `## 크로스 체크 (Gemini/Codex)` 섹션으로 첨부. 중대한 누락/위험 발견 시 사용자에게 surface.
+크로스 체크 결과는 WORK-SPEC.html의 크로스 체크 섹션에 첨부. 중대한 누락/위험 발견 시 사용자에게 surface.
 
 ### Step 8 — design-reviewer (선택)
 
-`--design-review` 플래그가 있을 때만 `design-reviewer` 에이전트 디스패치. SQL 쿼리 성능, 디자인 패턴, 로깅/롤백 Ops 관점 분석. 결과는 WORK-SPEC.md에 첨부.
+`--design-review` 플래그가 있을 때만 `design-reviewer` 에이전트 디스패치. SQL 쿼리 성능, 디자인 패턴, 로깅/롤백 Ops 관점 분석. 결과는 WORK-SPEC.html에 첨부.
 
 ### Step 9 — 산출물 검증
 
-- [ ] `1_REQ-SNAPSHOT.md` 존재
-- [ ] `2_WORK-SPEC.md` 존재 + AGENT-BRIEF 양식 (interface-level)
-- [ ] `3_FEATURE-CHECKLIST.md` 존재 + 사용자/QA 관점 항목
+- [ ] `1_REQ-SNAPSHOT.html` 존재
+- [ ] `2_WORK-SPEC.html` 존재 + AGENT-BRIEF 양식 (interface-level)
+- [ ] `3_FEATURE-CHECKLIST.html` 존재 + 사용자/QA 관점 항목
 - [ ] CONTEXT.md 갱신 (grilling 발생 시)
 - [ ] 새 ADR 작성 (필요 시)
 

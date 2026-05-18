@@ -1,8 +1,8 @@
 # Playwright 테스트 코드 생성 템플릿
 
-Phase 2에서 QA-SCENARIOS.md를 파싱하여 Playwright 테스트 코드를 생성할 때 참조하는 템플릿.
+Phase 2에서 QA-SCENARIOS.html를 파싱하여 Playwright 테스트 코드를 생성할 때 참조하는 템플릿.
 
-## QA-SCENARIOS.md 파싱 규칙
+## QA-SCENARIOS.html 파싱 규칙
 
 각 시나리오에서 다음 정보를 추출한다:
 

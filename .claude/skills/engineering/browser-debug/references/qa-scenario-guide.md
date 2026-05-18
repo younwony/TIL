@@ -1,6 +1,6 @@
 # QA 시나리오 문서 작성 가이드
 
-`browser-debug` 스킬의 Phase 2에서 `QA-SCENARIOS.md`를 생성할 때 참조하는 가이드.
+`browser-debug` 스킬의 Phase 2에서 `QA-SCENARIOS.html`를 생성할 때 참조하는 가이드.
 변경사항 분석 결과를 시각적이고 재사용 가능한 QA 문서로 변환하는 방법을 정의한다.
 
 ## 문서 설계 원칙
@@ -10,7 +10,7 @@
 3. **재사용성**: 회귀 테스트, 코드 리뷰, 인수 테스트에서 그대로 활용할 수 있는 구조로 작성한다
 4. **실시간 업데이트**: QA 진행 중 결과를 즉시 반영할 수 있는 구조로 설계한다
 
-## QA-SCENARIOS.md 전체 구조
+## QA-SCENARIOS.html 전체 구조
 
 ```markdown
 # QA Scenarios - {브랜치명}

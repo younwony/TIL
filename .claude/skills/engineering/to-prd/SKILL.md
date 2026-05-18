@@ -1,13 +1,13 @@
 ---
 name: to-prd
-description: 현재 대화 컨텍스트를 PRD로 합성한다. 사용자 인터뷰 X — 이미 논의된 것만 동기화. WORK-SPEC.md 양식과 호환. "PRD 만들어", "지금까지 정리해줘", "스펙 합성" 트리거.
+description: 현재 대화 컨텍스트를 PRD로 합성한다. 사용자 인터뷰 X — 이미 논의된 것만 동기화. WORK-SPEC.html 양식과 호환. "PRD 만들어", "지금까지 정리해줘", "스펙 합성" 트리거.
 ---
 
 # To PRD
 
 현재 대화의 컨텍스트와 코드베이스 이해를 입력으로 PRD를 만든다. **사용자 인터뷰 X** — 이미 알고 있는 것만 종합한다.
 
-> 영감 출처: [mattpocock/skills/engineering/to-prd](https://github.com/mattpocock/skills/blob/main/skills/engineering/to-prd/SKILL.md). WORK-SPEC.md와 호환되도록 변형.
+> 영감 출처: [mattpocock/skills/engineering/to-prd](https://github.com/mattpocock/skills/blob/main/skills/engineering/to-prd/SKILL.md). WORK-SPEC.html 양식과 호환되도록 변형.
 
 issue tracker와 triage 라벨이 설정되어 있어야 한다. 아니면 `/setup-til-skills` 먼저.
 
@@ -31,7 +31,9 @@ issue tracker와 triage 라벨이 설정되어 있어야 한다. 아니면 `/set
 
 아래 템플릿 사용. issue tracker에 `ready-for-agent` 라벨로 발행. (추가 triage 불필요)
 
-Track 시스템 사용 시: `.claude/tracks/{이슈키}-{설명}/2_WORK-SPEC.md`로 저장.
+Track 시스템 사용 시: `.claude/tracks/{이슈키}-{설명}/2_WORK-SPEC.html`로 저장.
+
+산출 HTML 문서는 `html-doc` 스킬의 규칙을 따라 자체 완결 HTML로 작성한다. `work-plan/references/workspec-template.html`을 skeleton으로 사용하고, PRD 섹션은 `<section>` 구조로, 사용자 스토리 목록은 `<ol>`로, 구현 결정 표는 `<table>`로 표현한다. 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 작업 흐름·구조를 인라인 SVG 다이어그램으로 1개 이상 포함한다.
 
 ## PRD 템플릿
 
@@ -89,9 +91,9 @@ PRD에 포함되지 않는 것들.
 
 `/work-plan` skill이 내부에서 본 skill을 호출하면:
 
-- 산출물 PRD는 `2_WORK-SPEC.md`로 저장됨
+- 산출물 PRD는 `2_WORK-SPEC.html`로 저장됨
 - 추가 분기: req.md → grill-with-docs → to-prd 순서로 wrap
-- `3_FEATURE-CHECKLIST.md`는 PRD의 "User Stories"에서 자동 파생
+- `3_FEATURE-CHECKLIST.html`는 PRD의 "User Stories"에서 자동 파생
 
 ## 안티 패턴
 

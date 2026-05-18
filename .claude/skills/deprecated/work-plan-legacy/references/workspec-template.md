@@ -1,6 +1,6 @@
-# WORK-SPEC.md 템플릿
+# WORK-SPEC.html 템플릿
 
-이 파일은 `/work-plan` 스킬이 생성하는 WORK-SPEC.md의 전체 템플릿이다.
+이 파일은 `/work-plan` 스킬이 생성하는 WORK-SPEC.html의 전체 템플릿이다.
 **해당 없는 섹션은 반드시 제거한다. 빈 템플릿을 남기지 않는다.**
 
 ---
@@ -138,7 +138,7 @@
 - [ ] {통합 테스트}
 
 ### Phase 3: 문서화
-- [ ] ARCHITECTURE.md 작성
+- [ ] ARCHITECTURE.html 작성
 - [ ] SPEC.md 작성
 
 ### Phase 4: 마무리

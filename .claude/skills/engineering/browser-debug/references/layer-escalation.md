@@ -141,7 +141,7 @@ Chrome으로 수정 확인 후에도 **반드시 Playwright로 재검증**한다
 - P0 수정 후 Playwright 전체 재실행 → 나머지 FAIL 재확인
 - 연쇄 실패가 P0 문제에서 기인하는 경우가 많으므로 이 전략이 효율적
 
-## QA-SCENARIOS.md 결과 표기
+## QA-SCENARIOS.html 결과 표기
 
 | Layer | 결과 | 표기 |
 |-------|------|------|

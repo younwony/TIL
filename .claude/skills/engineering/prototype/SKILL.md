@@ -52,7 +52,7 @@ UI X. DB X. 외부 의존 X. 단일 파일이 이상적.
 
 ### 4. 결정 추출
 
-prototype에서 얻은 결정 (state machine 도식, reducer 코드, 타입 시그니처)을 [WORK-SPEC.md]/[PRD]/[ADR]에 inline. trim해서 결정-rich 부분만.
+prototype에서 얻은 결정 (state machine 도식, reducer 코드, 타입 시그니처)을 [WORK-SPEC.html]/[PRD]/[ADR]에 inline. trim해서 결정-rich 부분만.
 
 ### 5. Prototype 삭제
 
@@ -118,4 +118,4 @@ prototype 파일은 명확히 표시:
 
 ## Track 시스템 통합
 
-prototype 작업 자체는 별도 Track 안 만든다. 본격 작업 (`/work-plan`) 전 검증 단계로 사용. 결정은 `2_WORK-SPEC.md`의 "Implementation Decisions" 섹션에 inline.
+prototype 작업 자체는 별도 Track 안 만든다. 본격 작업 (`/work-plan`) 전 검증 단계로 사용. 결정은 `2_WORK-SPEC.html`의 "Implementation Decisions" 섹션에 inline.

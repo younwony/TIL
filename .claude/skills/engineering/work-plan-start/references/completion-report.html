@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>작업 완료 보고 — {프로젝트명}</title>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1a1a1a; --muted: #666; --border: #e2e2e2;
+    --accent: #2563eb; --code-bg: #f4f4f5; --callout-bg: #f0f7ff;
+    --ok: #16a34a; --warn: #d97706; --err: #dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a; --fg: #e8e8e8; --muted: #999; --border: #3a3a3a;
+      --accent: #60a5fa; --code-bg: #2a2a2a; --callout-bg: #1e2a3a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto; padding: 2rem 1rem; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+    line-height: 1.7; max-width: 960px;
+  }
+  h1, h2, h3 { line-height: 1.3; }
+  h1 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: .4rem; }
+  h2 { font-size: 1.35rem; margin-top: 2.5rem; }
+  .doc-meta { color: var(--muted); font-size: .9rem; }
+  .doc-summary {
+    background: var(--callout-bg); border-left: 4px solid var(--accent);
+    padding: .8rem 1rem; border-radius: 4px; margin: 1rem 0;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid var(--border); padding: .5rem .7rem; text-align: left; }
+  th { background: var(--code-bg); }
+  code { background: var(--code-bg); padding: .1rem .3rem; border-radius: 3px; }
+  pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; }
+  details {
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: .5rem .8rem; margin: .8rem 0;
+  }
+  summary { cursor: pointer; font-weight: 600; }
+  .badge {
+    display: inline-block; padding: .1rem .5rem; border-radius: 10px;
+    font-size: .8rem; font-weight: 600; color: #fff;
+  }
+  .badge-ok { background: var(--ok); }
+  .badge-warn { background: var(--warn); }
+  .badge-err { background: var(--err); }
+  .callout {
+    background: var(--callout-bg); border-left: 4px solid var(--accent);
+    padding: .8rem 1rem; border-radius: 4px; margin: 1rem 0;
+  }
+  svg { max-width: 100%; height: auto; }
+  figure { margin: 1.5rem 0; text-align: center; }
+  figcaption { color: var(--muted); font-size: .85rem; margin-top: .4rem; }
+  @media print {
+    body { max-width: none; }
+    details { display: block; }
+    details > :not(summary) { display: block !important; }
+    @page { margin: 1.5cm; }
+  }
+</style>
+</head>
+<body>
+
+<h1>작업 완료 보고 — {프로젝트명}</h1>
+<p class="doc-meta">생성일: {날짜} · Track: {track_id} · 단계: work-plan-start 완료</p>
+<div class="doc-summary">이 문서는 <code>/work-plan-start</code> 실행 완료 후 생성되는 작업 결과 요약이다. 구현된 파일, 테스트 결과, 산출 문서 목록, 체크리스트 통과 여부를 한눈에 확인할 수 있다.</div>
+
+<!-- Phase 진행 흐름 다이어그램 -->
+<section>
+<h2>Phase 실행 흐름</h2>
+<figure>
+  <svg viewBox="0 0 640 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phase 실행 흐름">
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/>
+      </marker>
+    </defs>
+    <!-- WORK-SPEC -->
+    <rect x="10" y="25" width="110" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="65" y="42" text-anchor="middle" fill="var(--fg)" font-size="11" font-weight="600">WORK-SPEC</text>
+    <text x="65" y="56" text-anchor="middle" fill="var(--muted)" font-size="10">(입력)</text>
+    <line x1="120" y1="45" x2="148" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
+    <!-- Phase N -->
+    <rect x="153" y="25" width="100" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="203" y="42" text-anchor="middle" fill="var(--fg)" font-size="11" font-weight="600">Phase 1~N</text>
+    <text x="203" y="56" text-anchor="middle" fill="var(--muted)" font-size="10">(구현·검증)</text>
+    <line x1="253" y1="45" x2="281" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
+    <!-- 산출물 -->
+    <rect x="286" y="25" width="120" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="346" y="42" text-anchor="middle" fill="var(--fg)" font-size="11" font-weight="600">ARCHITECTURE</text>
+    <text x="346" y="56" text-anchor="middle" fill="var(--muted)" font-size="10">+ SPEC + PLAN</text>
+    <line x1="406" y1="45" x2="434" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
+    <!-- 완료 -->
+    <rect x="439" y="25" width="100" height="40" rx="6" fill="var(--ok)"/>
+    <text x="489" y="42" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">완료 보고</text>
+    <text x="489" y="56" text-anchor="middle" fill="#fff" font-size="10">(이 문서)</text>
+  </svg>
+  <figcaption>그림 1. work-plan-start 실행 흐름: WORK-SPEC 입력 → Phase별 구현·검증 → 산출물 생성 → 완료 보고</figcaption>
+</figure>
+</section>
+
+<!-- 요약 -->
+<section>
+<h2>요약</h2>
+<table>
+  <thead><tr><th>항목</th><th>값</th></tr></thead>
+  <tbody>
+    <tr><td>기반 문서</td><td><a href="../2_WORK-SPEC.html">2_WORK-SPEC.html</a></td></tr>
+    <tr><td>프로젝트 유형</td><td>{유형}</td></tr>
+    <tr><td>소요 Phase</td><td>{N}단계</td></tr>
+    <tr><td>팀 워크플로우</td><td>{적용됨 / Main 단독}</td></tr>
+    <tr><td>실행 모드</td><td>{Solo / Standard / Coordinator}</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- 구현 결과 -->
+<section>
+<h2>구현 결과</h2>
+
+<h3>생성/수정 파일</h3>
+<table>
+  <thead><tr><th>파일</th><th>작업</th><th>상태</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code>{파일 경로}</code></td>
+      <td>{신규 / 수정}</td>
+      <td><span class="badge badge-ok">완료</span></td>
+    </tr>
+    <tr>
+      <td><code>{파일 경로}</code></td>
+      <td>{신규 / 수정}</td>
+      <td><span class="badge badge-warn">부분</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>테스트 결과</h3>
+<table>
+  <thead><tr><th>종류</th><th>통과</th><th>전체</th><th>상태</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>단위 테스트</td>
+      <td>{통과 수}</td>
+      <td>{전체 수}</td>
+      <td><span class="badge badge-ok">통과</span></td>
+    </tr>
+    <tr>
+      <td>통합 테스트</td>
+      <td>{통과 수}</td>
+      <td>{전체 수}</td>
+      <td><span class="badge badge-ok">통과</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>문서화</h3>
+<ul>
+  <li><span class="badge badge-ok">✓</span> <a href="../5_ARCHITECTURE.html">5_ARCHITECTURE.html</a> — 생성됨</li>
+  <li><span class="badge badge-ok">✓</span> <a href="../6_SPEC.html">6_SPEC.html</a> — 생성됨</li>
+  <li><span class="badge badge-ok">✓</span> <a href="../4_PLAN.html">4_PLAN.html</a> — 완료 상태 갱신됨</li>
+</ul>
+</section>
+
+<!-- Git 상태 -->
+<section>
+<h2>Git 상태</h2>
+<div class="callout"><strong>참고:</strong> git add까지 완료. commit은 사용자가 명시적으로 요청할 때 실행한다.</div>
+<table>
+  <thead><tr><th>항목</th><th>값</th></tr></thead>
+  <tbody>
+    <tr><td>staged 파일</td><td>{N}개</td></tr>
+    <tr><td>commit 상태</td><td>대기 중 (사용자 요청 시 커밋)</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- 체크리스트 -->
+<section>
+<h2>체크리스트 결과</h2>
+
+<details>
+  <summary>오버엔지니어링 체크</summary>
+  <ul>
+    <li><span class="badge badge-ok">✓</span> 요청 외 기능 없음</li>
+    <li><span class="badge badge-ok">✓</span> 불필요한 추상화 없음</li>
+    <li><span class="badge badge-ok">✓</span> 추측성 코드 없음</li>
+  </ul>
+</details>
+
+<details>
+  <summary>언더엔지니어링 체크</summary>
+  <ul>
+    <li><span class="badge badge-ok">✓</span> 요구 기능 모두 구현</li>
+    <li><span class="badge badge-ok">✓</span> 에러 핸들링 적절</li>
+  </ul>
+</details>
+
+<details>
+  <summary>CLAUDE.md 규칙 준수</summary>
+  <ul>
+    <li><span class="badge badge-ok">✓</span> 외과적 변경 — 요청된 파일만 수정</li>
+    <li><span class="badge badge-ok">✓</span> 테스트 코드 작성</li>
+    <li><span class="badge badge-ok">✓</span> 산출 문서 HTML 형식 준수 (인라인 SVG 포함)</li>
+  </ul>
+</details>
+</section>
+
+<!-- 알려진 제한사항 -->
+<section>
+<h2>알려진 제한사항</h2>
+<div class="callout"><strong>참고:</strong> 해당 사항 없으면 이 섹션을 삭제한다.</div>
+<ul>
+  <li>{제한사항 또는 후속 작업 필요 사항}</li>
+</ul>
+</section>
+
+<!-- 다음 단계 -->
+<section>
+<h2>다음 단계</h2>
+<ol>
+  <li><strong><code>/self-review</code></strong> — 자체 코드 리뷰 진행 후 <a href="../7_SELF-REVIEW.html">7_SELF-REVIEW.html</a> 생성</li>
+  <li><strong><code>/qa-scenario</code></strong> — QA 시나리오 생성 후 <a href="../8_QA-SCENARIOS.html">8_QA-SCENARIOS.html</a> 생성</li>
+  <li><strong><code>/pr</code></strong> — PR 생성</li>
+</ol>
+</section>
+
+</body>
+</html>

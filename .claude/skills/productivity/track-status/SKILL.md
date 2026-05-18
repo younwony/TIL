@@ -103,20 +103,22 @@ description: |
 
 #### 5-3. 문서 현황 + 품질 체크
 
-`{DOC_DIR}` 내 번호별 파일 + WORK-SPEC.md 의 3-1 섹션 검증:
+`{DOC_DIR}` 내 번호별 파일 + WORK-SPEC.html 의 3-1 섹션 검증:
 
 ```markdown
 ### 문서 현황
-- [x] 1_REQ-SNAPSHOT.md
-- [x] 2_WORK-SPEC.md
+- [x] 1_REQ-SNAPSHOT.html
+- [x] 2_WORK-SPEC.html
   └ 3-1. 변경 인터페이스 (Agent Brief): ✅ (또는 ⚠️ 누락 → 보강 권장)
-- [x] 3_FEATURE-CHECKLIST.md
-- [▶] 4_PLAN.md (Phase 2/5)
-- [ ] 5_ARCHITECTURE.md
+- [x] 3_FEATURE-CHECKLIST.html
+- [▶] 4_PLAN.html (Phase 2/5)
+- [ ] 5_ARCHITECTURE.html
 - ...
 ```
 
-**WORK-SPEC.md 3-1 섹션 검증 방법**: Read 도구로 WORK-SPEC.md 읽고 `^## 3-1\.` 패턴 또는 "변경 인터페이스" / "Agent Brief" 키워드 검색. 누락 시 `[⚠️]` 표시.
+**WORK-SPEC.html 3-1 섹션 검증 방법**: Read 도구로 WORK-SPEC.html 읽고 `^## 3-1\.` 패턴 또는 "변경 인터페이스" / "Agent Brief" 키워드 검색. 누락 시 `[⚠️]` 표시.
+
+**0_INDEX.html 생성 시**: 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 문서 관계도를 인라인 SVG 다이어그램으로 포함한다.
 
 #### 5-4. 다음 추천 명령
 
@@ -155,7 +157,7 @@ description: |
 새 필드 (`product_review_decision`, `grilling_completed`, `agent_brief_complete`, `hard_dependencies`, `tools_used`)는 모두 **optional**.
 누락 시 graceful 처리:
 - `product_review_decision` 없음 → "(미실행)"
-- `agent_brief_complete` 없음 → WORK-SPEC.md를 직접 grep으로 검사
+- `agent_brief_complete` 없음 → WORK-SPEC.html을 직접 grep으로 검사
 - `hard_dependencies` 없음 → 환경 점검 결과로부터 추론
 - `tools_used` 없음 → footer에 표시 안 함
 

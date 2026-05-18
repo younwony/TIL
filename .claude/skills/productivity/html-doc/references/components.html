@@ -1,0 +1,94 @@
+<!-- ===== 재사용 컴포넌트 스니펫 (template.html의 <style>에 의존) ===== -->
+
+<!-- 1. Collapsible 섹션 -->
+<details>
+  <summary>{접는 제목}</summary>
+  <p>{접힌 내용}</p>
+</details>
+
+<!-- 2. 상태 배지 -->
+<span class="badge badge-ok">통과</span>
+<span class="badge badge-warn">주의</span>
+<span class="badge badge-err">실패</span>
+
+<!-- 3. 비교표 -->
+<table>
+  <thead><tr><th>항목</th><th>A안</th><th>B안</th></tr></thead>
+  <tbody>
+    <tr><td>{기준}</td><td>{값}</td><td>{값}</td></tr>
+  </tbody>
+</table>
+
+<!-- 4. 콜아웃 박스 -->
+<div class="callout"><strong>참고:</strong> {강조 내용}</div>
+
+<!-- 5. 체크리스트 -->
+<ul>
+  <li><span class="badge badge-ok">✓</span> {완료 항목}</li>
+  <li><span class="badge badge-err">✗</span> {미완 항목}</li>
+</ul>
+
+<!-- 6. 단계 타임라인 -->
+<ol>
+  <li><strong>{단계명}</strong> — {설명}</li>
+</ol>
+
+<!-- ===== SVG 다이어그램 (인라인 임베드. fill/stroke에 CSS 변수를 쓰면 다크모드 자동 대응) ===== -->
+
+<!-- 7. 플로우 다이어그램 — 처리 흐름 (SPEC, WORK-SPEC 등) -->
+<figure>
+  <svg viewBox="0 0 480 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="처리 흐름">
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/>
+      </marker>
+    </defs>
+    <rect x="10" y="25" width="120" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="70" y="50" text-anchor="middle" fill="var(--fg)" font-size="13">{1단계}</text>
+    <line x1="130" y1="45" x2="175" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
+    <rect x="180" y="25" width="120" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="240" y="50" text-anchor="middle" fill="var(--fg)" font-size="13">{2단계}</text>
+    <line x1="300" y1="45" x2="345" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
+    <rect x="350" y="25" width="120" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="410" y="50" text-anchor="middle" fill="var(--fg)" font-size="13">{3단계}</text>
+  </svg>
+  <figcaption>그림. 처리 흐름 (좌→우 진행)</figcaption>
+</figure>
+
+<!-- 8. 막대 차트 — 분포·심각도 (SELF-REVIEW, 리뷰 보고서 등) -->
+<figure>
+  <svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="심각도 분포">
+    <line x1="50" y1="10" x2="50" y2="100" stroke="var(--border)"/>
+    <line x1="50" y1="100" x2="300" y2="100" stroke="var(--border)"/>
+    <rect x="70" y="40" width="40" height="60" fill="var(--err)"/>
+    <text x="90" y="33" text-anchor="middle" fill="var(--fg)" font-size="11">{n}</text>
+    <text x="90" y="115" text-anchor="middle" fill="var(--muted)" font-size="11">Critical</text>
+    <rect x="150" y="25" width="40" height="75" fill="var(--warn)"/>
+    <text x="170" y="18" text-anchor="middle" fill="var(--fg)" font-size="11">{n}</text>
+    <text x="170" y="115" text-anchor="middle" fill="var(--muted)" font-size="11">Important</text>
+    <rect x="230" y="70" width="40" height="30" fill="var(--ok)"/>
+    <text x="250" y="63" text-anchor="middle" fill="var(--fg)" font-size="11">{n}</text>
+    <text x="250" y="115" text-anchor="middle" fill="var(--muted)" font-size="11">Minor</text>
+  </svg>
+  <figcaption>그림. 심각도별 이슈 분포</figcaption>
+</figure>
+
+<!-- 9. 구조도 — 계층/모듈 구조 (ARCHITECTURE, 0_INDEX 등) -->
+<figure>
+  <svg viewBox="0 0 420 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="모듈 구조">
+    <rect x="150" y="10" width="120" height="36" rx="6" fill="var(--accent)"/>
+    <text x="210" y="33" text-anchor="middle" fill="#fff" font-size="13">{상위 모듈}</text>
+    <line x1="210" y1="46" x2="210" y2="62" stroke="var(--muted)"/>
+    <line x1="90" y1="62" x2="330" y2="62" stroke="var(--muted)"/>
+    <line x1="90" y1="62" x2="90" y2="78" stroke="var(--muted)"/>
+    <line x1="210" y1="62" x2="210" y2="78" stroke="var(--muted)"/>
+    <line x1="330" y1="62" x2="330" y2="78" stroke="var(--muted)"/>
+    <rect x="30" y="78" width="120" height="36" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="90" y="101" text-anchor="middle" fill="var(--fg)" font-size="12">{하위 A}</text>
+    <rect x="150" y="78" width="120" height="36" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="210" y="101" text-anchor="middle" fill="var(--fg)" font-size="12">{하위 B}</text>
+    <rect x="270" y="78" width="120" height="36" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <text x="330" y="101" text-anchor="middle" fill="var(--fg)" font-size="12">{하위 C}</text>
+  </svg>
+  <figcaption>그림. 모듈 구조 (상위→하위)</figcaption>
+</figure>

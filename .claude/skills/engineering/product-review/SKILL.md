@@ -39,7 +39,7 @@ AI 도구가 강력해질수록 구현 비용이 낮아지면서, "일단 만들
 현재 작업 맥락을 파악한다. 아래 소스를 순서대로 탐색한다:
 
 1. **사용자가 직접 설명한 기능** (대화 컨텍스트)
-2. **WORK-SPEC.md** (`.claude/tracks/*/2_WORK-SPEC.md` 또는 `.claude/docs/2_WORK-SPEC.md`)
+2. **WORK-SPEC.html** (`.claude/tracks/*/2_WORK-SPEC.html` 또는 `.claude/docs/2_WORK-SPEC.html`)
 3. **req.md** (요구사항 파일)
 4. **현재 브랜치 변경사항** (`git log`, `git diff`)
 5. **관련 Jira 이슈** (브랜치명에서 이슈 키 추출)
@@ -58,7 +58,7 @@ AI 도구가 강력해질수록 구현 비용이 낮아지면서, "일단 만들
 
 - 요구사항이 "~하면 좋겠다", "~기능 추가해줘" 처럼 구체성 부족
 - 사용자가 직접 "이거 진짜 필요한지 모르겠어" 같은 자기 의심 표현
-- WORK-SPEC.md/req.md에 사용자(persona) 또는 사용 시나리오가 비어 있음
+- WORK-SPEC.html/req.md에 사용자(persona) 또는 사용 시나리오가 비어 있음
 - 견적이 큰데 (5개 파일+ 변경 예상) 동기가 1줄짜리
 
 #### Grilling 규칙 (반드시 준수)
@@ -213,37 +213,62 @@ AI 도구가 강력해질수록 구현 비용이 낮아지면서, "일단 만들
 | **Hold** | 추가 정보가 필요하거나, 우선순위 재검토 필요 |
 | **No-Go** | 문제가 불명확하거나, 더 간단한 대안이 존재 |
 
-```markdown
-## 제품 검증 결과
+리뷰 보고서는 `html-doc` 스킬 규칙을 따라 자체 완결 HTML로 작성한다.
+`html-doc/references/template.html`을 skeleton으로 사용하고, 검증 질문 요약은 `<table>`로,
+Go/No-Go 판단 배지는 `badge-ok`(Go) / `badge-warn`(Go축소·Hold) / `badge-err`(No-Go)로,
+Grilling 결과·확장 분석은 `<details>` collapsible로 표현한다.
+html-doc 시각화 가이드에 따라 인라인 SVG 다이어그램 1개 이상 포함 (예: 확신도 막대 차트, 대안 비교 다이어그램).
 
-### 요약
-- 검토 대상: {기능명}
-- 판단: **{Go / Go(축소) / Hold / No-Go}**
-- 근거: {1~2문장}
+산출 파일: `{DOC_DIR}/*_PRODUCT-REVIEW.html` (Track 없으면 `.claude/docs/PRODUCT-REVIEW.html`)
 
-### Grilling 결과 (Step 1.5에서 진행한 경우)
-- 페르소나: ...
-- 빈도/임팩트: ...
-- 성공 기준: ...
+HTML 구조 참고:
+```html
+<h1>제품 검증 결과: {기능명}</h1>
+<p class="doc-meta">검토일: {날짜}</p>
+<div class="doc-summary">{이 문서는 무엇인가 — 1~2문장}</div>
 
-### 검증 질문 요약
-| # | 질문 | 답변 요약 | 확신도 |
-|---|------|----------|--------|
-| 1 | 핵심 문제 | ... | 높음/중간/낮음 |
-| 2 | 대상 사용자 | ... | ... |
-| 3 | 현재 해결책 | ... | ... |
-| 4 | 최소 해결책 | ... | ... |
-| 5 | 성공 측정 | ... | ... |
-| 6 | 유지보수 비용 | ... | ... |
+<section>
+  <h2>요약</h2>
+  <p>검토 대상: {기능명}</p>
+  <p>판단: <span class="badge badge-ok">Go</span> <!-- 또는 badge-warn / badge-err --></p>
+  <p>근거: {1~2문장}</p>
+</section>
 
-### 확장 분석
-- 문제 재정의: {핵심}
-- MVP 제안: {핵심}
-- 대안: {핵심}
-- 위험: {핵심}
+<details>
+  <summary>Grilling 결과 (Step 1.5에서 진행한 경우)</summary>
+  <ul>
+    <li>페르소나: ...</li>
+    <li>빈도/임팩트: ...</li>
+    <li>성공 기준: ...</li>
+  </ul>
+</details>
 
-### 권고
-{구체적 다음 단계}
+<section>
+  <h2>검증 질문 요약</h2>
+  <table>
+    <thead><tr><th>#</th><th>질문</th><th>답변 요약</th><th>확신도</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>핵심 문제</td><td>...</td><td><span class="badge badge-ok">높음</span></td></tr>
+      <!-- badge-ok 높음 / badge-warn 중간 / badge-err 낮음 -->
+    </tbody>
+  </table>
+  <!-- 인라인 SVG: 확신도 막대 차트 또는 대안 비교 다이어그램 1개 이상 -->
+</section>
+
+<details>
+  <summary>확장 분석</summary>
+  <ul>
+    <li>문제 재정의: {핵심}</li>
+    <li>MVP 제안: {핵심}</li>
+    <li>대안: {핵심}</li>
+    <li>위험: {핵심}</li>
+  </ul>
+</details>
+
+<section>
+  <h2>권고</h2>
+  <p>{구체적 다음 단계}</p>
+</section>
 ```
 
 ### Step 5: 후속 연결

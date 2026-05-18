@@ -1,11 +1,16 @@
 ---
-description: 4명의 전문 리뷰어 에이전트 팀으로 현재 브랜치를 병렬 코드 리뷰합니다.
+description: 4명의 전문 리뷰어 에이전트 팀으로 현재 브랜치를 병렬 코드 리뷰하고 TEAM-REVIEW.html을 생성합니다.
 allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(where:*), Bash(test:*), Bash(node:*), Read, Write, Glob, Grep, Task, Skill(codex:*)
 ---
 
 # 팀 코드 리뷰
 
-4명의 전문 리뷰어 에이전트를 **병렬로** 실행하여 현재 브랜치의 변경사항을 다관점 코드 리뷰하고, 결과를 TEAM-REVIEW.md로 통합한다.
+4명의 전문 리뷰어 에이전트를 **병렬로** 실행하여 현재 브랜치의 변경사항을 다관점 코드 리뷰하고, 결과를 `TEAM-REVIEW.html`로 통합한다.
+
+> **Gemini/Codex 보조 크로스 체크는 `gemini-check` / `codex-check` 하네스로 위임한다.**
+> 본 커맨드는 4명의 리뷰 에이전트(performance/security/test-coverage/convention) 호출이 주력이다. Gemini/Codex 추가 검증을 사용할 때는 두 하네스를 통한 Agent 위임 호출을 사용한다.
+> Codex Plugin Skill(`/codex:review`, `/codex:rescue` 등)은 사용하지 않는다 — codex-check 하네스가 CLAUDE.md 정책을 강제한다.
+> 아래 본문의 Gemini/Codex 직접 호출 섹션은 호환성을 위해 남겨두지만 신규 실행은 위임 패턴을 사용한다.
 
 ## 리뷰 팀 구성
 
@@ -54,108 +59,34 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(gemini:*), Bash(codex:*), Bash(wher
 에이전트 4명이 작업하는 동안:
 
 1. `where gemini`으로 Gemini CLI 설치 확인
-2. `where codex`으로 Codex CLI 설치 확인 (**Bash CLI 단독, Plugin Skill 사용 금지** — CLAUDE.md "Codex 협업" 섹션 참조)
-3. 설치된 외부 도구로 크로스 리뷰 병렬 실행 (**Bash 도구 timeout: 240000ms 필수**):
-   - Gemini: `git diff {COMPARE_BRANCH}...HEAD | gemini -p "..." 2>&1 || echo "GEMINI_FAIL"`
-   - Codex: `codex review --base {COMPARE_BRANCH} 2>&1 || echo "CODEX_FAIL"`
-4. 미설치 시 해당 크로스 리뷰 건너뜀. `*_FAIL` 검출 시 즉시 다음 단계 진행.
+2. Codex 설치 여부 확인: `test -f "$HOME/.claude/plugins/cache/openai-codex/codex/1.0.0/scripts/codex-companion.mjs"` (Plugin 우선, CLI fallback)
+3. 설치된 외부 도구로 크로스 리뷰 병렬 실행:
+   - Gemini: `git diff {COMPARE_BRANCH}...HEAD | gemini -p "..."` (기존 방식)
+   - Codex (Plugin): `/codex:review --base {COMPARE_BRANCH} --background` → 결과 통합 시 `/codex:result`로 수집. 실패 시 `/codex:rescue --resume` 재시도 1회 → CLI fallback
+   - Codex (fallback): `codex review --base {COMPARE_BRANCH}` (Bash, timeout: 240000ms). **절대 `codex exec -` 사용 금지.**
+4. 미설치 시 해당 크로스 리뷰 건너뜀
 
-### 3단계: 결과 통합 → TEAM-REVIEW.md 생성
+### 3단계: 결과 통합 → TEAM-REVIEW.html 생성
 
-4명의 리뷰 결과 + 크로스 리뷰 결과를 통합하여 프로젝트 루트에 `TEAM-REVIEW.md`를 생성한다:
+4명의 리뷰 결과 + 크로스 리뷰 결과를 통합하여 `TEAM-REVIEW.html`을 생성한다.
 
-```markdown
-# Team Code Review
+산출 문서는 html-doc 스킬 규칙을 따라 자체 완결 HTML로 작성한다. template.html을 skeleton으로 쓰고, 리뷰어별 지적사항은 `<details>` collapsible과 상태 배지로, **심각도 분포는 components.html의 막대 차트 SVG로** 시각화한다.
 
-> 브랜치: `{브랜치명}` | 리뷰 일시: YYYY-MM-DD HH:MM
-> 리뷰 방식: Agent Team (4명 병렬) + Cross Review
+HTML 구조는 다음 섹션 구성으로 작성한다:
 
-## 변경 개요
-
-- **커밋 수**: N개
-- **변경 파일 수**: N개
-- **추가/삭제**: +N / -N
-
-### 커밋 히스토리
-
-| 커밋 | 메시지 |
-|------|--------|
-
-### 변경 파일
-
-| 파일 | 추가 | 삭제 | 설명 |
-|------|------|------|------|
-
-## 종합 리뷰 요약
-
-| 관점 | 리뷰어 | 상태 | 요약 |
-|------|--------|------|------|
-| 성능 | review-performance | ✅/⚠️/❌ | 한 줄 요약 |
-| 보안 | review-security | ✅/⚠️/❌ | 한 줄 요약 |
-| 테스트 | review-test-coverage | ✅/⚠️/❌ | 한 줄 요약 |
-| 컨벤션 | review-convention | ✅/⚠️/❌ | 한 줄 요약 |
-
-### 심각도 집계
-
-| 심각도 | 성능 | 보안 | 테스트 | 컨벤션 | 합계 |
-|--------|------|------|--------|--------|------|
-| 🔴 높음/치명 | N | N | N | N | **N** |
-| ⚠️ 중간 | N | N | N | N | **N** |
-| 💡 참고 | N | N | N | N | **N** |
-
-## 성능 리뷰
-
-{review-performance 에이전트의 전체 결과}
-
-## 보안 리뷰
-
-{review-security 에이전트의 전체 결과}
-
-## 테스트 커버리지 리뷰
-
-{review-test-coverage 에이전트의 전체 결과}
-
-## 컨벤션/가독성/유지보수성 리뷰
-
-{review-convention 에이전트의 전체 결과}
-
-## Gemini 크로스 리뷰
-
-> Reviewed by: Gemini (via Gemini CLI)
-> 미설치/실패 시 이 섹션 생략
-
-{Gemini 리뷰 결과}
-
-## Codex 크로스 리뷰
-
-> Reviewed by: Codex (via Codex CLI)
-> 미설치/실패 시 이 섹션 생략
-
-{Codex 리뷰 결과}
-
-## 개선 제안 (통합)
-
-4명의 리뷰어 + 크로스 리뷰 결과를 종합하여 우선순위별로 정리:
-
-### 필수 수정 (❌)
-{모든 리뷰어의 🔴 높음/치명 이슈를 파일별로 통합}
-
-### 권장 수정 (⚠️)
-{모든 리뷰어의 ⚠️ 중간 이슈를 파일별로 통합}
-
-### 참고 (💡)
-{모든 리뷰어의 💡 참고 이슈를 파일별로 통합}
-
-## 결론
-
-{모든 리뷰 결과를 종합한 최종 의견. PR 생성 가능 여부 판단}
-{🔴 이슈가 1건이라도 있으면 "PR 생성 전 수정 필요", 없으면 "PR 생성 가능"}
-```
+- **`<header>`**: 브랜치명, 리뷰 일시, 리뷰 방식 (Agent Team 4명 병렬 + Cross Review)
+- **변경 개요 `<section>`**: 커밋 수·변경 파일 수·추가/삭제 라인, 커밋 히스토리 `<table>`, 변경 파일 `<table>`
+- **종합 리뷰 요약 `<section>`**: 관점별 상태 배지(badge-ok/badge-warn/badge-err)를 포함한 `<table>`, 심각도 집계 비교 `<table>`, **심각도 분포 막대 차트 SVG (components.html 컴포넌트 8번)**
+- **리뷰어별 `<section>`** (성능 / 보안 / 테스트 / 컨벤션 / Gemini 크로스 / Codex 크로스):
+  - 미설치/실패한 외부 리뷰어는 섹션 생략
+  - 각 지적사항은 `<details><summary>심각도 배지 + 이슈 제목</summary>...</details>` collapsible로 표현
+- **개선 제안 통합 `<section>`**: 필수 수정(badge-err) / 권장 수정(badge-warn) / 참고(badge-ok) 3개 subsection, 파일별로 이슈 통합
+- **결론 `<section>`**: 최종 의견, PR 생성 가능 여부 (🔴 이슈 1건이라도 있으면 "PR 생성 전 수정 필요", 없으면 "PR 생성 가능")
 
 ### 4단계: git add + 다음 액션 선택
 
 ```bash
-git add TEAM-REVIEW.md
+git add TEAM-REVIEW.html
 ```
 
 AskUserQuestion으로 다음 액션을 선택:

@@ -83,8 +83,8 @@ ADR은 다음 **세 조건이 모두** 참일 때만 제안한다:
 ## Track 시스템과의 통합
 
 - 현재 Active Track이 있으면 `{TRACK_DIR}/CONTEXT-LOCAL.md`에 Track 전용 용어를 추가할 수 있다. 단 우선 글로벌 `.claude/CONTEXT.md`에 추가를 시도하라.
-- `/work-plan`이 내부에서 본 skill을 호출하면 grilling 결과가 그대로 WORK-SPEC.md 초안의 입력이 된다.
-- `1_REQ-SNAPSHOT.md`에 원본 요구사항을 보존하므로 grilling 후 변경된 점만 WORK-SPEC.md에 반영하면 된다.
+- `/work-plan`이 내부에서 본 skill을 호출하면 grilling 결과가 그대로 WORK-SPEC.html 초안의 입력이 된다.
+- `1_REQ-SNAPSHOT.html`에 원본 요구사항을 보존하므로 grilling 후 변경된 점만 WORK-SPEC.html에 반영하면 된다.
 
 ## 종료 조건
 

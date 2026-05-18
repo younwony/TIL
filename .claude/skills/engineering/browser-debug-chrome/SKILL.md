@@ -28,15 +28,15 @@ FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
 
 ## Phase 0: QA 시나리오 확인 (기존 시나리오 체크)
 
-**다음 순서로 `QA-SCENARIOS.md` 파일을 탐색한다:**
+**다음 순서로 `QA-SCENARIOS.html` 파일을 탐색한다:**
 
-1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track의 `.claude/tracks/{track_id}/QA-SCENARIOS.md`
-2. `.claude/docs/QA-SCENARIOS.md`
-3. 프로젝트 루트 `QA-SCENARIOS.md` (하위 호환)
+1. `.claude/tracks/`에서 status가 `in_progress`인 활성 Track의 `.claude/tracks/{track_id}/QA-SCENARIOS.html`
+2. `.claude/docs/QA-SCENARIOS.html`
+3. 프로젝트 루트 `QA-SCENARIOS.html` (하위 호환)
 
-### 기존 시나리오가 있는 경우 (QA-SCENARIOS.md 존재)
+### 기존 시나리오가 있는 경우 (QA-SCENARIOS.html 존재)
 
-1. `QA-SCENARIOS.md`를 읽어 내용을 확인한다
+1. `QA-SCENARIOS.html`를 읽어 내용을 확인한다
 2. 시나리오가 유효한지 검증:
    - 시나리오에 명시된 **테스트 URL**이 현재 프로젝트와 일치하는가
    - **변경 파일**과 현재 git 변경사항이 대체로 일치하는가 (완전 일치 불필요)
@@ -48,7 +48,7 @@ FAIL 발견 시 즉시 코드를 수정하고 재검증한다.
 
 1. `qa-scenario` 스킬을 **Skill 도구로 호출**하여 QA 시나리오를 생성한다
    → `Skill("qa-scenario")`
-2. `qa-scenario` 스킬이 Plan 모드에서 분석 → 사용자 승인 → `QA-SCENARIOS.md` 생성을 완료한다
+2. `qa-scenario` 스킬이 Plan 모드에서 분석 → 사용자 승인 → `QA-SCENARIOS.html` 생성을 완료한다
 3. 생성 완료 후 Phase 1로 진행한다
 
 **핵심 원칙:** QA 시나리오 생성은 `qa-scenario` 스킬의 책임이다. `browser-debug-chrome`은 시나리오 **실행**에 집중한다.
@@ -122,11 +122,11 @@ netstat -ano | findstr :{port} | findstr LISTENING
 
 ## Phase 2: QA 시나리오 순차 실행
 
-`QA-SCENARIOS.md`의 시나리오를 **P0 → P1 → P2 순서대로** 실행한다.
+`QA-SCENARIOS.html`의 시나리오를 **P0 → P1 → P2 순서대로** 실행한다.
 
 ### 각 시나리오 실행 절차
 
-1. **QA-SCENARIOS.md 업데이트**: 해당 시나리오 결과를 ⬜ → 🔄 실행중으로 변경
+1. **QA-SCENARIOS.html 업데이트**: 해당 시나리오 결과를 ⬜ → 🔄 실행중으로 변경
 2. **사전 준비**: 필요한 페이지 이동, 데이터 준비
 3. **액션 수행**: 사용자 액션을 Chrome 자동화로 실행
 4. **검증 수행**:
@@ -138,7 +138,7 @@ netstat -ano | findstr :{port} | findstr LISTENING
    - PASS → ✅ PASS
    - FAIL → ❌ FAIL (원인 기록)
    - BLOCKED → ⚠️ BLOCKED (사유 기록)
-6. `QA-SCENARIOS.md`의 해당 시나리오 결과를 즉시 업데이트
+6. `QA-SCENARIOS.html`의 해당 시나리오 결과를 즉시 업데이트
 
 ### FAIL 시 즉시 수정
 
@@ -146,7 +146,7 @@ netstat -ano | findstr :{port} | findstr LISTENING
 - 수정 후 해당 시나리오를 재실행하여 PASS 확인
 - JS/CSS 수정은 브라우저 하드 리프레시(Ctrl+Shift+R)로 즉시 반영
 - Java/설정 수정은 서버 재기동 후 재검증
-- 수정 내용을 `QA-SCENARIOS.md`의 "발견된 버그" 테이블에 기록
+- 수정 내용을 `QA-SCENARIOS.html`의 "발견된 버그" 테이블에 기록
 - 결과를 🔧 FIX→PASS로 업데이트
 
 ### P0 FAIL 시 중단 정책
@@ -169,7 +169,7 @@ netstat -ano | findstr :{port} | findstr LISTENING
    ```
    [x] **Checkpoint**: QA 검증 완료
      - 전체: {N}건, PASS: {N}, FIX→PASS: {N}, FAIL: {N}, BLOCKED: {N}
-     - QA 문서: QA-SCENARIOS.md
+     - QA 문서: QA-SCENARIOS.html
    ```
 4. 모든 QA Task가 완료되면 `metadata.json`의 `status`를 `completed`로 변경한다
 5. `.claude/tracks/index.md`에서 `[~]` → `[x]`로 변경, Active → Completed로 이동한다
@@ -180,7 +180,7 @@ netstat -ano | findstr :{port} | findstr LISTENING
 
 모든 시나리오 실행 후:
 
-1. `QA-SCENARIOS.md`의 모든 시나리오 결과가 업데이트되었는지 확인
+1. `QA-SCENARIOS.html`의 모든 시나리오 결과가 업데이트되었는지 확인
 2. 미검증 항목이 있으면 사유와 함께 기록
 3. QA 과정에서 수정한 파일을 `git add` (commit은 하지 않음)
 4. 사용자에게 최종 결과 요약:
@@ -196,8 +196,8 @@ netstat -ano | findstr :{port} | findstr LISTENING
 - **모든 ToolSearch는 사전 실행**: Chrome 도구 사용 전 반드시 `ToolSearch`로 로드
 - **Console/Network 트래킹 선 활성화**: 페이지 로드 전에 한 번 호출하여 트래킹 시작
 - **서버 재기동 자체 처리**: 사용자에게 재기동 요청하지 않고 Bash로 직접 처리
-- **QA-SCENARIOS.md 실시간 업데이트**: 각 시나리오 실행 즉시 결과 반영
-- **QA-SCENARIOS.md는 git add 대상 제외**: QA 문서는 로컬 참조용
+- **QA-SCENARIOS.html 실시간 업데이트**: 각 시나리오 실행 즉시 결과 반영
+- **QA-SCENARIOS.html는 git add 대상 제외**: QA 문서는 로컬 참조용
 - JavaScript `alert()`, `confirm()`, `prompt()` 등 모달 다이얼로그를 트리거하지 않는다
 - 페이지 내 삭제/수정 등 실제 데이터에 영향을 주는 동작은 사용자 확인 후 진행
 - 브라우저 확장 프로그램이 응답하지 않으면 2~3회 재시도 후 사용자에게 안내

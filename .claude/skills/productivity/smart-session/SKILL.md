@@ -106,7 +106,7 @@ description: |
 
 ### 2-6. work-plan-start 연동
 
-- WORK-SPEC.md가 존재하면 `/work-plan-start` 팀 에이전트 워크플로우와 자동 연동
+- WORK-SPEC.html가 존재하면 `/work-plan-start` 팀 에이전트 워크플로우와 자동 연동
 - Phase 2의 WAT 규칙이 work-plan-start 실행 중에도 적용됨
 
 ## Phase 3: 세션 종료 (상태 보존)

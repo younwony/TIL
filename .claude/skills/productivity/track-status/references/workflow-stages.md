@@ -55,7 +55,7 @@
 - 사용자 명시 요청
 
 ### Grilling 자동 진입 (Step 1.5 내부)
-- WORK-SPEC.md/req.md에 페르소나 비어 있음
+- WORK-SPEC.html/req.md에 페르소나 비어 있음
 - 사용자가 "그릴미" / "인터뷰해줘" 요청
 
 ### 산출물
@@ -86,38 +86,38 @@
 
 ### 진입 조건
 - Step 0/0.5 통과
-- `2_WORK-SPEC.md` 파일 부재 또는 갱신 필요
+- `2_WORK-SPEC.html` 파일 부재 또는 갱신 필요
 
 ### 산출물
-- `1_REQ-SNAPSHOT.md` (work-plan)
-- `2_WORK-SPEC.md` (work-plan)
-- `3_FEATURE-CHECKLIST.md` (work-plan)
+- `1_REQ-SNAPSHOT.html` (work-plan)
+- `2_WORK-SPEC.html` (work-plan)
+- `3_FEATURE-CHECKLIST.html` (work-plan)
 
 ### 품질 체크 (반드시)
 
-WORK-SPEC.md를 읽어 다음 섹션 존재 여부 확인:
+WORK-SPEC.html을 읽어 다음 섹션 존재 여부 확인:
 
 - [ ] **3-1. 변경 인터페이스 (Agent Brief)** 섹션 — Matt Pocock의 AGENT-BRIEF 양식
   - Summary, Current/Desired Behavior, Key Interfaces, Acceptance Criteria, Out of Scope
 
-- [ ] FEATURE-CHECKLIST.md의 사용자/QA 관점 항목 작성됨
+- [ ] FEATURE-CHECKLIST.html의 사용자/QA 관점 항목 작성됨
 
 ### 가이드 메시지
 ```
 ✅ Step 1 완료
-- 1_REQ-SNAPSHOT.md ✓
-- 2_WORK-SPEC.md ✓
+- 1_REQ-SNAPSHOT.html ✓
+- 2_WORK-SPEC.html ✓
   └ 3-1 (Agent Brief) ✅
-- 3_FEATURE-CHECKLIST.md ✓
+- 3_FEATURE-CHECKLIST.html ✓
 
 다음: `/work-plan-start` 또는 직접 구현
 ```
 
 품질 체크 실패 시:
 ```
-⚠️ WORK-SPEC.md 보강 필요
+⚠️ WORK-SPEC.html 보강 필요
 - 3-1 (변경 인터페이스 / Agent Brief) 섹션 누락
-- 권장: WORK-SPEC.md를 직접 수정하거나 `/work-plan` 재실행
+- 권장: WORK-SPEC.html을 직접 수정하거나 `/work-plan` 재실행
 ```
 
 ---
@@ -125,13 +125,13 @@ WORK-SPEC.md를 읽어 다음 섹션 존재 여부 확인:
 ## Step 2 — 구현
 
 ### 진입 조건
-- WORK-SPEC.md 존재
-- `4_PLAN.md` 부재 또는 미완료 Phase 존재
+- WORK-SPEC.html 존재
+- `4_PLAN.html` 부재 또는 미완료 Phase 존재
 
 ### 산출물
-- `4_PLAN.md` (work-plan-start, Phase별 진행률)
-- `5_ARCHITECTURE.md` (구현 완료)
-- `6_SPEC.md` (구현 완료)
+- `4_PLAN.html` (work-plan-start, Phase별 진행률)
+- `5_ARCHITECTURE.html` (구현 완료)
+- `6_SPEC.html` (구현 완료)
 
 ### 모드 자동 선택 (work-plan-start)
 | 변경 파일 수 | 모드 | Main 역할 |
@@ -157,13 +157,13 @@ WORK-SPEC.md를 읽어 다음 섹션 존재 여부 확인:
 - 모든 Phase 완료 OR 사용자가 검증 단계 진입 명시
 
 ### 산출물
-- `7_SELF-REVIEW.md` (self-review, 4명 에이전트 + Gemini/Codex 병렬)
-- `8_QA-SCENARIOS.md` (qa-scenario)
+- `7_SELF-REVIEW.html` (self-review, 4명 에이전트 + Gemini/Codex 병렬)
+- `8_QA-SCENARIOS.html` (qa-scenario)
 
 ### 추천 명령 순서
 1. `/feature-check` — FEATURE-CHECKLIST 코드 레벨 검증
-2. `/self-review` — SELF-REVIEW.md 생성
-3. `/qa-scenario` — QA-SCENARIOS.md 생성
+2. `/self-review` — SELF-REVIEW.html 생성
+3. `/qa-scenario` — QA-SCENARIOS.html 생성
 4. (선택) `/security-audit` — STRIDE+OWASP
 5. (선택) `/ai-slop-detect` — 과잉 추상화 탐지
 6. (해당 시) `/browser-debug` — Playwright + Chrome 2-Layer
