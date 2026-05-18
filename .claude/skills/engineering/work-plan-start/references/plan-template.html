@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>실행 계획 (PLAN)</title>
+<style>
+  /* ===== 디자인 시스템 — workspec-template.html과 동일 (라이트/다크 auto) ===== */
+  :root {
+    --bg: #f1f5f9; --surface: #ffffff; --surface-2: #f8fafc; --border: #e2e8f0;
+    --fg: #1e293b; --muted: #64748b; --accent: #2563eb; --accent-dim: #dbeafe;
+    --ok: #16a34a; --ok-dim: #dcfce7; --warn: #d97706; --warn-dim: #fef3c7;
+    --err: #dc2626; --err-dim: #fee2e2; --code-bg: #f1f5f9;
+    --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a; --surface: #1e293b; --surface-2: #273548; --border: #334155;
+      --fg: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8; --accent-dim: #0c4a6e;
+      --ok: #4ade80; --ok-dim: #064e3b; --warn: #fbbf24; --warn-dim: #78350f;
+      --err: #f87171; --err-dim: #7f1d1d; --code-bg: #0b1120;
+      --shadow: 0 4px 24px rgba(0,0,0,.3);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.7;
+    padding: 2rem 1rem; max-width: 1120px; margin: 0 auto;
+  }
+  .doc-header {
+    text-align: center; padding: 2rem; margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--surface), var(--accent-dim));
+    border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .doc-header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .5rem; }
+  .doc-header .desc { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+  .meta-row { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: .85rem; }
+  .meta-item { color: var(--muted); }
+  .meta-item .label { font-weight: 700; color: var(--accent); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: .75rem; margin-bottom: 1.5rem;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: var(--shadow);
+  }
+  .stat-value { font-size: 1.7rem; font-weight: 700; color: var(--accent); display: block; }
+  .stat-label { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.25rem;
+    box-shadow: var(--shadow);
+  }
+  .card > h2 {
+    font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
+    padding-bottom: .5rem; border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .card > h2 .icon { font-size: 1.1rem; }
+  h3 { font-size: 1rem; color: var(--accent); margin: 1.1rem 0 .5rem; }
+  h3:first-of-type { margin-top: 0; }
+  h4 { font-size: .95rem; margin: 1rem 0 .4rem; }
+  p { margin: .5rem 0; }
+  ul, ol { margin: .5rem 0; padding-left: 1.4rem; }
+  li { margin: .2rem 0; }
+  small { font-size: .8rem; color: var(--muted); font-weight: 400; }
+  table { border-collapse: collapse; width: 100%; margin: .75rem 0; font-size: .9rem; }
+  th, td { border: 1px solid var(--border); padding: .55rem .75rem; text-align: left; vertical-align: top; }
+  th { background: var(--surface-2); font-weight: 700; }
+  tr:nth-child(even) td { background: var(--surface-2); }
+  code {
+    background: var(--code-bg); padding: .1rem .35rem; border-radius: 4px;
+    font-family: "SF Mono", "Cascadia Code", monospace; font-size: .85em;
+  }
+  .badge {
+    display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .03em;
+  }
+  .badge-ok { background: var(--ok-dim); color: var(--ok); }
+  .badge-warn { background: var(--warn-dim); color: var(--warn); }
+  .badge-err { background: var(--err-dim); color: var(--err); }
+  .badge-info { background: var(--accent-dim); color: var(--accent); }
+  .callout {
+    background: var(--accent-dim); border-left: 4px solid var(--accent);
+    padding: .8rem 1rem; border-radius: 8px; margin: .9rem 0; font-size: .9rem;
+  }
+  .callout-warn { background: var(--warn-dim); border-left-color: var(--warn); }
+  .callout-err { background: var(--err-dim); border-left-color: var(--err); }
+  /* 구성 방향 grid */
+  .dir-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: .9rem; }
+  .dir-card {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent); border-radius: 10px; padding: 1rem;
+  }
+  .dir-card .dir-num {
+    font-size: .72rem; font-weight: 700; padding: .15rem .5rem; border-radius: 6px;
+    background: var(--accent-dim); color: var(--accent);
+  }
+  .dir-card h4 { margin: .5rem 0 .4rem; font-size: .98rem; }
+  .dir-card p { font-size: .85rem; margin: .2rem 0; color: var(--muted); }
+  /* checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: .35rem 0; display: flex; align-items: flex-start; gap: .55rem;
+    font-size: .9rem; border-bottom: 1px solid var(--border);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .badge { flex-shrink: 0; margin-top: .12rem; }
+  figure {
+    margin: 1rem 0; text-align: center; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+  }
+  figure svg { max-width: 100%; height: auto; }
+  figcaption { color: var(--muted); font-size: .82rem; margin-top: .5rem; }
+  details {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: .5rem .9rem; margin: .7rem 0;
+  }
+  summary {
+    cursor: pointer; font-weight: 600; user-select: none;
+    display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  }
+  details[open] summary { margin-bottom: .5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+  .footer {
+    text-align: center; color: var(--muted); font-size: .8rem;
+    margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+  }
+  @media (max-width: 640px) {
+    body { padding: 1rem .5rem; }
+    .meta-row { flex-direction: column; gap: .4rem; }
+  }
+  @media print {
+    body { max-width: none; background: #fff; }
+    .card, .stat-card, figure { box-shadow: none; break-inside: avoid; }
+    details > :not(summary) { display: block !important; }
+    @page { margin: 1.5cm; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ===== 실행 계획 (PLAN) 템플릿 =====
+  · workspec-template.html과 동일한 카드 디자인 시스템을 공유한다.
+  · {중괄호}는 placeholder. 해당 없는 섹션·카드는 제거하고 사용한다.
+  · 상태 배지: badge-ok(완료) / badge-info(진행) / badge-warn(대기) / badge-err(차단)
+  · 인라인 SVG 다이어그램 1개 이상 필수 (Phase 타임라인 권장). 색상은 위 CSS 변수 사용 — 라이트/다크 대응.
+  · /work-plan-start는 Phase 진행에 따라 상태 배지를 갱신한다.
+-->
+
+<!-- ===== 헤더 ===== -->
+<div class="doc-header">
+  <h1>실행 계획 (PLAN)</h1>
+  <p class="desc">{track_id} — {WORK-SPEC 기반 단계별 실행 계획 한 줄 설명}</p>
+  <div class="meta-row">
+    <span class="meta-item"><span class="label">Track</span> {track_id}</span>
+    <span class="meta-item"><span class="label">기반</span> 2_WORK-SPEC.html</span>
+    <span class="meta-item"><span class="label">착수</span> {날짜}</span>
+    <span class="meta-item"><span class="label">상태</span> {in_progress · current_phase N}</span>
+  </div>
+</div>
+
+<!-- ===== 통계 요약 (산정 불가 항목은 카드째 제거) ===== -->
+<div class="stats-grid">
+  <div class="stat-card"><span class="stat-value">{N}</span><div class="stat-label">총 Phase</div></div>
+  <div class="stat-card"><span class="stat-value">{N}</span><div class="stat-label">완료 Phase</div></div>
+  <div class="stat-card"><span class="stat-value">{PN}</span><div class="stat-label">현재 Phase</div></div>
+  <div class="stat-card"><span class="stat-value">{N%}</span><div class="stat-label">진행률</div></div>
+</div>
+
+<div class="callout">이 문서는 <strong>{track_id}</strong>의 실행 계획(PLAN)이다. <code>2_WORK-SPEC.html</code>의 Phase를 단계별 실행 단위로 분해하고 진행 상태를 추적한다.</div>
+
+<!-- ===== Phase 타임라인 (필수 — 인라인 SVG 다이어그램) ===== -->
+<div class="card">
+<h2><span class="icon">🗺️</span> Phase 타임라인</h2>
+<figure>
+  <svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phase 진행 타임라인">
+    <defs>
+      <marker id="plArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/>
+      </marker>
+    </defs>
+    <!-- 완료 Phase: fill var(--ok-dim) stroke var(--ok) / 진행: fill var(--accent) text #fff / 대기: fill var(--surface) stroke var(--border) -->
+    <rect x="10" y="34" width="120" height="44" rx="6" fill="var(--ok-dim)" stroke="var(--ok)"/>
+    <text x="70" y="60" text-anchor="middle" fill="var(--fg)" font-size="12">✓ Phase 1</text>
+    <line x1="130" y1="56" x2="160" y2="56" stroke="var(--muted)" marker-end="url(#plArrow)"/>
+    <rect x="165" y="30" width="120" height="52" rx="6" fill="var(--accent)"/>
+    <text x="225" y="60" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">▶ Phase 2</text>
+    <line x1="285" y1="56" x2="315" y2="56" stroke="var(--muted)" marker-end="url(#plArrow)"/>
+    <rect x="320" y="34" width="120" height="44" rx="6" fill="var(--surface)" stroke="var(--border)"/>
+    <text x="380" y="60" text-anchor="middle" fill="var(--fg)" font-size="12">Phase 3</text>
+    <rect x="10" y="100" width="14" height="14" rx="3" fill="var(--ok-dim)" stroke="var(--ok)"/>
+    <text x="30" y="111" fill="var(--muted)" font-size="9">완료</text>
+    <rect x="80" y="100" width="14" height="14" rx="3" fill="var(--accent)"/>
+    <text x="100" y="111" fill="var(--muted)" font-size="9">진행 중</text>
+    <rect x="160" y="100" width="14" height="14" rx="3" fill="var(--surface)" stroke="var(--border)"/>
+    <text x="180" y="111" fill="var(--muted)" font-size="9">대기</text>
+  </svg>
+  <figcaption>그림 1. Phase 진행 타임라인.</figcaption>
+</figure>
+<table>
+  <thead><tr><th>Phase</th><th>제목</th><th>상태</th><th>핵심 산출</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>{제목}</td><td><span class="badge badge-ok">완료</span></td><td>{산출물}</td></tr>
+    <tr><td>2</td><td>{제목}</td><td><span class="badge badge-info">진행 중</span></td><td>{산출물}</td></tr>
+    <tr><td>3</td><td>{제목}</td><td><span class="badge badge-warn">대기</span></td><td>-</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== 구성 방향 (해당 시 — 확정 스펙의 아키텍처 방향 요약) ===== -->
+<div class="card">
+<h2><span class="icon">🧭</span> 구성 방향</h2>
+<div class="dir-grid">
+  <div class="dir-card">
+    <span class="dir-num">방향 1</span>
+    <h4>{방향 제목}</h4>
+    <p>{방향 설명}</p>
+  </div>
+  <div class="dir-card">
+    <span class="dir-num">방향 2</span>
+    <h4>{방향 제목}</h4>
+    <p>{방향 설명}</p>
+  </div>
+</div>
+</div>
+
+<!-- ===== 확정 결정 로그 (해당 시) ===== -->
+<div class="card">
+<h2><span class="icon">✅</span> 확정 결정 로그</h2>
+<table>
+  <thead><tr><th>일자</th><th>결정</th><th>영향</th></tr></thead>
+  <tbody>
+    <tr><td>{날짜}</td><td>{결정 내용}</td><td>{영향 범위}</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== Phase 상세 ===== -->
+<div class="card">
+<h2><span class="icon">📍</span> Phase 상세</h2>
+<p><small>상태 표기 — <span class="badge badge-ok">완료</span> <span class="badge badge-info">진행</span> <span class="badge badge-warn">대기</span>. 진행에 따라 배지를 갱신한다.</small></p>
+
+<details open>
+<summary>Phase 1 — {제목} <span class="badge badge-info">진행 중</span></summary>
+<ul class="checklist">
+  <li><span class="badge badge-ok">완료</span> {완료 작업}</li>
+  <li><span class="badge badge-warn">대기</span> {미착수 작업}</li>
+  <li><span class="badge badge-warn">대기</span> <strong>Checkpoint</strong>: {검증 방법}</li>
+</ul>
+</details>
+
+<details>
+<summary>Phase 2 — {제목} <span class="badge badge-warn">대기</span></summary>
+<ul class="checklist">
+  <li><span class="badge badge-warn">대기</span> {작업}</li>
+  <li><span class="badge badge-warn">대기</span> <strong>Checkpoint</strong>: {검증 방법}</li>
+</ul>
+</details>
+</div>
+
+<!-- ===== Phase별 결과 기록 (Phase 완료 시 누적) ===== -->
+<div class="card">
+<h2><span class="icon">📋</span> Phase별 결과 기록</h2>
+<details>
+<summary>Phase 1 ({날짜} 완료)</summary>
+<p>{Phase 결과·결정사항·미결 기록}</p>
+</details>
+</div>
+
+<div class="footer">실행 계획 (PLAN) · {track_id} · /work-plan-start</div>
+
+</body>
+</html>
