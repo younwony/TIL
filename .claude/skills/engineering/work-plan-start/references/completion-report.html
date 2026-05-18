@@ -5,58 +5,105 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>작업 완료 보고 — {프로젝트명}</title>
 <style>
+  /* ===== 디자인 시스템 — 라이트/다크 auto (워크플로우 HTML 공통) ===== */
   :root {
-    --bg: #ffffff; --fg: #1a1a1a; --muted: #666; --border: #e2e2e2;
-    --accent: #2563eb; --code-bg: #f4f4f5; --callout-bg: #f0f7ff;
-    --ok: #16a34a; --warn: #d97706; --err: #dc2626;
+    --bg: #f1f5f9; --surface: #ffffff; --surface-2: #f8fafc; --border: #e2e8f0;
+    --fg: #1e293b; --muted: #64748b; --accent: #2563eb; --accent-dim: #dbeafe;
+    --ok: #16a34a; --ok-dim: #dcfce7; --warn: #d97706; --warn-dim: #fef3c7;
+    --err: #dc2626; --err-dim: #fee2e2; --code-bg: #f1f5f9;
+    --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a1a; --fg: #e8e8e8; --muted: #999; --border: #3a3a3a;
-      --accent: #60a5fa; --code-bg: #2a2a2a; --callout-bg: #1e2a3a;
+      --bg: #0f172a; --surface: #1e293b; --surface-2: #273548; --border: #334155;
+      --fg: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8; --accent-dim: #0c4a6e;
+      --ok: #4ade80; --ok-dim: #064e3b; --warn: #fbbf24; --warn-dim: #78350f;
+      --err: #f87171; --err-dim: #7f1d1d; --code-bg: #0b1120;
+      --shadow: 0 4px 24px rgba(0,0,0,.3);
     }
   }
-  * { box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0 auto; padding: 2rem 1rem; background: var(--bg); color: var(--fg);
-    font-family: -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
-    line-height: 1.7; max-width: 960px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.7;
+    padding: 2rem 1rem; max-width: 1120px; margin: 0 auto;
   }
-  h1, h2, h3 { line-height: 1.3; }
-  h1 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: .4rem; }
-  h2 { font-size: 1.35rem; margin-top: 2.5rem; }
-  .doc-meta { color: var(--muted); font-size: .9rem; }
-  .doc-summary {
-    background: var(--callout-bg); border-left: 4px solid var(--accent);
-    padding: .8rem 1rem; border-radius: 4px; margin: 1rem 0;
+  .doc-header {
+    text-align: center; padding: 2rem; margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--surface), var(--ok-dim));
+    border: 1px solid var(--border); border-radius: var(--radius);
   }
-  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-  th, td { border: 1px solid var(--border); padding: .5rem .7rem; text-align: left; }
-  th { background: var(--code-bg); }
-  code { background: var(--code-bg); padding: .1rem .3rem; border-radius: 3px; }
-  pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; }
-  details {
-    border: 1px solid var(--border); border-radius: 6px;
-    padding: .5rem .8rem; margin: .8rem 0;
+  .doc-header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .5rem; }
+  .doc-header .desc { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+  .meta-row { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: .85rem; }
+  .meta-item { color: var(--muted); }
+  .meta-item .label { font-weight: 700; color: var(--accent); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: .75rem; margin-bottom: 1.5rem;
   }
-  summary { cursor: pointer; font-weight: 600; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: var(--shadow);
+  }
+  .stat-value { font-size: 1.7rem; font-weight: 700; color: var(--accent); display: block; }
+  .stat-card.ok .stat-value { color: var(--ok); }
+  .stat-label { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow);
+  }
+  .card > h2 {
+    font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
+    padding-bottom: .5rem; border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: .5rem;
+  }
+  h3 { font-size: 1rem; color: var(--accent); margin: 1.1rem 0 .5rem; }
+  h3:first-of-type { margin-top: 0; }
+  p { margin: .5rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: .75rem 0; font-size: .9rem; }
+  th, td { border: 1px solid var(--border); padding: .55rem .75rem; text-align: left; }
+  th { background: var(--surface-2); font-weight: 700; }
+  tr:nth-child(even) td { background: var(--surface-2); }
+  code {
+    background: var(--code-bg); padding: .1rem .35rem; border-radius: 4px;
+    font-family: "SF Mono", "Cascadia Code", monospace; font-size: .85em;
+  }
+  pre { background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: .75rem 0; }
   .badge {
-    display: inline-block; padding: .1rem .5rem; border-radius: 10px;
-    font-size: .8rem; font-weight: 600; color: #fff;
+    display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .03em;
   }
-  .badge-ok { background: var(--ok); }
-  .badge-warn { background: var(--warn); }
-  .badge-err { background: var(--err); }
+  .badge-ok { background: var(--ok-dim); color: var(--ok); }
+  .badge-warn { background: var(--warn-dim); color: var(--warn); }
+  .badge-err { background: var(--err-dim); color: var(--err); }
   .callout {
-    background: var(--callout-bg); border-left: 4px solid var(--accent);
-    padding: .8rem 1rem; border-radius: 4px; margin: 1rem 0;
+    background: var(--accent-dim); border-left: 4px solid var(--accent);
+    padding: .8rem 1rem; border-radius: 8px; margin: .9rem 0; font-size: .9rem;
   }
-  svg { max-width: 100%; height: auto; }
-  figure { margin: 1.5rem 0; text-align: center; }
-  figcaption { color: var(--muted); font-size: .85rem; margin-top: .4rem; }
+  ul, ol { padding-left: 1.3rem; }
+  li { margin: .3rem 0; }
+  figure {
+    margin: 1rem 0; text-align: center; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+  }
+  figure svg { max-width: 100%; height: auto; }
+  figcaption { color: var(--muted); font-size: .82rem; margin-top: .5rem; }
+  details {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: .5rem .9rem; margin: .7rem 0;
+  }
+  summary { cursor: pointer; font-weight: 600; user-select: none; }
+  details[open] summary { margin-bottom: .5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+  a { color: var(--accent); }
+  .footer {
+    text-align: center; color: var(--muted); font-size: .8rem;
+    margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+  }
+  @media (max-width: 640px) { body { padding: 1rem .5rem; } .meta-row { flex-direction: column; gap: .4rem; } }
   @media print {
-    body { max-width: none; }
-    details { display: block; }
+    body { max-width: none; background: #fff; }
+    .card, .stat-card, figure { box-shadow: none; break-inside: avoid; }
     details > :not(summary) { display: block !important; }
     @page { margin: 1.5cm; }
   }
@@ -64,13 +111,29 @@
 </head>
 <body>
 
-<h1>작업 완료 보고 — {프로젝트명}</h1>
-<p class="doc-meta">생성일: {날짜} · Track: {track_id} · 단계: work-plan-start 완료</p>
-<div class="doc-summary">이 문서는 <code>/work-plan-start</code> 실행 완료 후 생성되는 작업 결과 요약이다. 구현된 파일, 테스트 결과, 산출 문서 목록, 체크리스트 통과 여부를 한눈에 확인할 수 있다.</div>
+<div class="doc-header">
+  <h1>작업 완료 보고</h1>
+  <p class="desc">{프로젝트명} — /work-plan-start 실행 결과 요약</p>
+  <div class="meta-row">
+    <span class="meta-item"><span class="label">생성일</span> {날짜}</span>
+    <span class="meta-item"><span class="label">Track</span> {track_id}</span>
+    <span class="meta-item"><span class="label">단계</span> work-plan-start 완료</span>
+  </div>
+</div>
 
-<!-- Phase 진행 흐름 다이어그램 -->
-<section>
-<h2>Phase 실행 흐름</h2>
+<!-- 통계 요약 (해당 없는 카드는 제거) -->
+<div class="stats-grid">
+  <div class="stat-card"><span class="stat-value">{N}</span><div class="stat-label">소요 Phase</div></div>
+  <div class="stat-card"><span class="stat-value">{N}</span><div class="stat-label">생성/수정 파일</div></div>
+  <div class="stat-card ok"><span class="stat-value">{통과}/{전체}</span><div class="stat-label">테스트 통과</div></div>
+  <div class="stat-card"><span class="stat-value">{N}</span><div class="stat-label">staged 파일</div></div>
+</div>
+
+<div class="callout">이 문서는 <code>/work-plan-start</code> 실행 완료 후 생성되는 작업 결과 요약이다. 구현된 파일, 테스트 결과, 산출 문서 목록, 체크리스트 통과 여부를 한눈에 확인할 수 있다.</div>
+
+<!-- Phase 실행 흐름 -->
+<div class="card">
+<h2><span>🔭</span> Phase 실행 흐름</h2>
 <figure>
   <svg viewBox="0 0 640 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phase 실행 흐름">
     <defs>
@@ -78,155 +141,128 @@
         <path d="M0,0 L6,3 L0,6 Z" fill="var(--muted)"/>
       </marker>
     </defs>
-    <!-- WORK-SPEC -->
-    <rect x="10" y="25" width="110" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <rect x="10" y="25" width="110" height="40" rx="8" fill="var(--accent-dim)" stroke="var(--accent)"/>
     <text x="65" y="42" text-anchor="middle" fill="var(--fg)" font-size="11" font-weight="600">WORK-SPEC</text>
     <text x="65" y="56" text-anchor="middle" fill="var(--muted)" font-size="10">(입력)</text>
     <line x1="120" y1="45" x2="148" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
-    <!-- Phase N -->
-    <rect x="153" y="25" width="100" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <rect x="153" y="25" width="100" height="40" rx="8" fill="var(--accent-dim)" stroke="var(--accent)"/>
     <text x="203" y="42" text-anchor="middle" fill="var(--fg)" font-size="11" font-weight="600">Phase 1~N</text>
     <text x="203" y="56" text-anchor="middle" fill="var(--muted)" font-size="10">(구현·검증)</text>
     <line x1="253" y1="45" x2="281" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
-    <!-- 산출물 -->
-    <rect x="286" y="25" width="120" height="40" rx="6" fill="var(--callout-bg)" stroke="var(--accent)"/>
+    <rect x="286" y="25" width="120" height="40" rx="8" fill="var(--accent-dim)" stroke="var(--accent)"/>
     <text x="346" y="42" text-anchor="middle" fill="var(--fg)" font-size="11" font-weight="600">ARCHITECTURE</text>
     <text x="346" y="56" text-anchor="middle" fill="var(--muted)" font-size="10">+ SPEC + PLAN</text>
     <line x1="406" y1="45" x2="434" y2="45" stroke="var(--muted)" marker-end="url(#arrow)"/>
-    <!-- 완료 -->
-    <rect x="439" y="25" width="100" height="40" rx="6" fill="var(--ok)"/>
+    <rect x="439" y="25" width="100" height="40" rx="8" fill="var(--ok)"/>
     <text x="489" y="42" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">완료 보고</text>
     <text x="489" y="56" text-anchor="middle" fill="#fff" font-size="10">(이 문서)</text>
   </svg>
   <figcaption>그림 1. work-plan-start 실행 흐름: WORK-SPEC 입력 → Phase별 구현·검증 → 산출물 생성 → 완료 보고</figcaption>
 </figure>
-</section>
+</div>
 
 <!-- 요약 -->
-<section>
-<h2>요약</h2>
+<div class="card">
+<h2><span>📋</span> 요약</h2>
 <table>
   <thead><tr><th>항목</th><th>값</th></tr></thead>
   <tbody>
     <tr><td>기반 문서</td><td><a href="../2_WORK-SPEC.html">2_WORK-SPEC.html</a></td></tr>
     <tr><td>프로젝트 유형</td><td>{유형}</td></tr>
     <tr><td>소요 Phase</td><td>{N}단계</td></tr>
-    <tr><td>팀 워크플로우</td><td>{적용됨 / Main 단독}</td></tr>
     <tr><td>실행 모드</td><td>{Solo / Standard / Coordinator}</td></tr>
   </tbody>
 </table>
-</section>
+</div>
 
 <!-- 구현 결과 -->
-<section>
-<h2>구현 결과</h2>
-
+<div class="card">
+<h2><span>🛠️</span> 구현 결과</h2>
 <h3>생성/수정 파일</h3>
 <table>
   <thead><tr><th>파일</th><th>작업</th><th>상태</th></tr></thead>
   <tbody>
-    <tr>
-      <td><code>{파일 경로}</code></td>
-      <td>{신규 / 수정}</td>
-      <td><span class="badge badge-ok">완료</span></td>
-    </tr>
-    <tr>
-      <td><code>{파일 경로}</code></td>
-      <td>{신규 / 수정}</td>
-      <td><span class="badge badge-warn">부분</span></td>
-    </tr>
+    <tr><td><code>{파일 경로}</code></td><td>{신규 / 수정}</td><td><span class="badge badge-ok">완료</span></td></tr>
+    <tr><td><code>{파일 경로}</code></td><td>{신규 / 수정}</td><td><span class="badge badge-warn">부분</span></td></tr>
   </tbody>
 </table>
-
 <h3>테스트 결과</h3>
 <table>
   <thead><tr><th>종류</th><th>통과</th><th>전체</th><th>상태</th></tr></thead>
   <tbody>
-    <tr>
-      <td>단위 테스트</td>
-      <td>{통과 수}</td>
-      <td>{전체 수}</td>
-      <td><span class="badge badge-ok">통과</span></td>
-    </tr>
-    <tr>
-      <td>통합 테스트</td>
-      <td>{통과 수}</td>
-      <td>{전체 수}</td>
-      <td><span class="badge badge-ok">통과</span></td>
-    </tr>
+    <tr><td>단위 테스트</td><td>{통과 수}</td><td>{전체 수}</td><td><span class="badge badge-ok">통과</span></td></tr>
+    <tr><td>통합 테스트</td><td>{통과 수}</td><td>{전체 수}</td><td><span class="badge badge-ok">통과</span></td></tr>
   </tbody>
 </table>
-
 <h3>문서화</h3>
 <ul>
-  <li><span class="badge badge-ok">✓</span> <a href="../5_ARCHITECTURE.html">5_ARCHITECTURE.html</a> — 생성됨</li>
-  <li><span class="badge badge-ok">✓</span> <a href="../6_SPEC.html">6_SPEC.html</a> — 생성됨</li>
-  <li><span class="badge badge-ok">✓</span> <a href="../4_PLAN.html">4_PLAN.html</a> — 완료 상태 갱신됨</li>
+  <li><span class="badge badge-ok">생성</span> <a href="../5_ARCHITECTURE.html">5_ARCHITECTURE.html</a></li>
+  <li><span class="badge badge-ok">생성</span> <a href="../6_SPEC.html">6_SPEC.html</a></li>
+  <li><span class="badge badge-ok">갱신</span> <a href="../4_PLAN.html">4_PLAN.html</a> — 완료 상태</li>
 </ul>
-</section>
+</div>
 
 <!-- Git 상태 -->
-<section>
-<h2>Git 상태</h2>
+<div class="card">
+<h2><span>🔀</span> Git 상태</h2>
 <div class="callout"><strong>참고:</strong> git add까지 완료. commit은 사용자가 명시적으로 요청할 때 실행한다.</div>
 <table>
   <thead><tr><th>항목</th><th>값</th></tr></thead>
   <tbody>
     <tr><td>staged 파일</td><td>{N}개</td></tr>
-    <tr><td>commit 상태</td><td>대기 중 (사용자 요청 시 커밋)</td></tr>
+    <tr><td>commit 상태</td><td><span class="badge badge-warn">대기 중</span> 사용자 요청 시 커밋</td></tr>
   </tbody>
 </table>
-</section>
+</div>
 
 <!-- 체크리스트 -->
-<section>
-<h2>체크리스트 결과</h2>
-
+<div class="card">
+<h2><span>✅</span> 체크리스트 결과</h2>
 <details>
   <summary>오버엔지니어링 체크</summary>
   <ul>
-    <li><span class="badge badge-ok">✓</span> 요청 외 기능 없음</li>
-    <li><span class="badge badge-ok">✓</span> 불필요한 추상화 없음</li>
-    <li><span class="badge badge-ok">✓</span> 추측성 코드 없음</li>
+    <li><span class="badge badge-ok">통과</span> 요청 외 기능 없음</li>
+    <li><span class="badge badge-ok">통과</span> 불필요한 추상화 없음</li>
+    <li><span class="badge badge-ok">통과</span> 추측성 코드 없음</li>
   </ul>
 </details>
-
 <details>
   <summary>언더엔지니어링 체크</summary>
   <ul>
-    <li><span class="badge badge-ok">✓</span> 요구 기능 모두 구현</li>
-    <li><span class="badge badge-ok">✓</span> 에러 핸들링 적절</li>
+    <li><span class="badge badge-ok">통과</span> 요구 기능 모두 구현</li>
+    <li><span class="badge badge-ok">통과</span> 에러 핸들링 적절</li>
   </ul>
 </details>
-
 <details>
   <summary>CLAUDE.md 규칙 준수</summary>
   <ul>
-    <li><span class="badge badge-ok">✓</span> 외과적 변경 — 요청된 파일만 수정</li>
-    <li><span class="badge badge-ok">✓</span> 테스트 코드 작성</li>
-    <li><span class="badge badge-ok">✓</span> 산출 문서 HTML 형식 준수 (인라인 SVG 포함)</li>
+    <li><span class="badge badge-ok">통과</span> 외과적 변경 — 요청된 파일만 수정</li>
+    <li><span class="badge badge-ok">통과</span> 테스트 코드 작성</li>
+    <li><span class="badge badge-ok">통과</span> 산출 문서 HTML 형식 준수 (인라인 SVG 포함)</li>
   </ul>
 </details>
-</section>
+</div>
 
 <!-- 알려진 제한사항 -->
-<section>
-<h2>알려진 제한사항</h2>
-<div class="callout"><strong>참고:</strong> 해당 사항 없으면 이 섹션을 삭제한다.</div>
+<div class="card">
+<h2><span>⚠️</span> 알려진 제한사항</h2>
+<div class="callout"><strong>참고:</strong> 해당 사항 없으면 이 카드를 삭제한다.</div>
 <ul>
   <li>{제한사항 또는 후속 작업 필요 사항}</li>
 </ul>
-</section>
+</div>
 
 <!-- 다음 단계 -->
-<section>
-<h2>다음 단계</h2>
+<div class="card">
+<h2><span>🎯</span> 다음 단계</h2>
 <ol>
   <li><strong><code>/self-review</code></strong> — 자체 코드 리뷰 진행 후 <a href="../7_SELF-REVIEW.html">7_SELF-REVIEW.html</a> 생성</li>
   <li><strong><code>/qa-scenario</code></strong> — QA 시나리오 생성 후 <a href="../8_QA-SCENARIOS.html">8_QA-SCENARIOS.html</a> 생성</li>
   <li><strong><code>/pr</code></strong> — PR 생성</li>
 </ol>
-</section>
+</div>
+
+<div class="footer">작업 완료 보고 · {track_id} · /work-plan-start</div>
 
 </body>
 </html>

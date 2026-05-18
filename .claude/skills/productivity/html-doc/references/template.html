@@ -5,69 +5,166 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{문서 제목}</title>
 <style>
+  /* ===== 디자인 시스템 — 라이트/다크 auto · 카드형 대시보드 (워크플로우 HTML 공통) ===== */
   :root {
-    --bg: #ffffff; --fg: #1a1a1a; --muted: #666; --border: #e2e2e2;
-    --accent: #2563eb; --code-bg: #f4f4f5; --callout-bg: #f0f7ff;
-    --ok: #16a34a; --warn: #d97706; --err: #dc2626;
+    --bg: #f1f5f9; --surface: #ffffff; --surface-2: #f8fafc; --border: #e2e8f0;
+    --fg: #1e293b; --muted: #64748b; --accent: #2563eb; --accent-dim: #dbeafe;
+    --ok: #16a34a; --ok-dim: #dcfce7; --warn: #d97706; --warn-dim: #fef3c7;
+    --err: #dc2626; --err-dim: #fee2e2; --code-bg: #f1f5f9;
+    --callout-bg: var(--accent-dim); /* components.html SVG 컴포넌트 호환 alias */
+    --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a1a; --fg: #e8e8e8; --muted: #999; --border: #3a3a3a;
-      --accent: #60a5fa; --code-bg: #2a2a2a; --callout-bg: #1e2a3a;
+      --bg: #0f172a; --surface: #1e293b; --surface-2: #273548; --border: #334155;
+      --fg: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8; --accent-dim: #0c4a6e;
+      --ok: #4ade80; --ok-dim: #064e3b; --warn: #fbbf24; --warn-dim: #78350f;
+      --err: #f87171; --err-dim: #7f1d1d; --code-bg: #0b1120;
+      --shadow: 0 4px 24px rgba(0,0,0,.3);
     }
   }
-  * { box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0 auto; padding: 2rem 1rem; background: var(--bg); color: var(--fg);
-    font-family: -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
-    line-height: 1.7; max-width: 960px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.7;
+    padding: 2rem 1rem; max-width: 1120px; margin: 0 auto;
   }
-  h1, h2, h3 { line-height: 1.3; }
-  h1 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: .4rem; }
-  h2 { font-size: 1.35rem; margin-top: 2.5rem; }
-  .doc-meta { color: var(--muted); font-size: .9rem; }
-  .doc-summary {
-    background: var(--callout-bg); border-left: 4px solid var(--accent);
-    padding: .8rem 1rem; border-radius: 4px; margin: 1rem 0;
+
+  /* 헤더 (그라디언트) */
+  .doc-header {
+    text-align: center; padding: 2rem; margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--surface), var(--accent-dim));
+    border: 1px solid var(--border); border-radius: var(--radius);
   }
-  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-  th, td { border: 1px solid var(--border); padding: .5rem .7rem; text-align: left; }
-  th { background: var(--code-bg); }
-  code { background: var(--code-bg); padding: .1rem .3rem; border-radius: 3px; }
-  pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; }
-  details {
-    border: 1px solid var(--border); border-radius: 6px;
-    padding: .5rem .8rem; margin: .8rem 0;
+  .doc-header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .5rem; }
+  .doc-header .desc { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+  .meta-row { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: .85rem; }
+  .meta-item { color: var(--muted); }
+  .meta-item .label { font-weight: 700; color: var(--accent); }
+
+  /* 통계 카드 */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: .75rem; margin-bottom: 1.5rem;
   }
-  summary { cursor: pointer; font-weight: 600; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: var(--shadow);
+  }
+  .stat-value { font-size: 1.7rem; font-weight: 700; color: var(--accent); display: block; }
+  .stat-card.ok .stat-value { color: var(--ok); }
+  .stat-card.warn .stat-value { color: var(--warn); }
+  .stat-card.err .stat-value { color: var(--err); }
+  .stat-label { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+
+  /* 섹션 카드 */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow);
+  }
+  .card > h2 {
+    font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;
+    padding-bottom: .5rem; border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: .5rem;
+  }
+  h3 { font-size: 1rem; color: var(--accent); margin: 1.1rem 0 .5rem; }
+  h3:first-of-type { margin-top: 0; }
+  p { margin: .5rem 0; }
+  small { font-size: .8rem; color: var(--muted); font-weight: 400; }
+
+  /* 표 */
+  table { border-collapse: collapse; width: 100%; margin: .75rem 0; font-size: .9rem; }
+  th, td { border: 1px solid var(--border); padding: .55rem .75rem; text-align: left; }
+  th { background: var(--surface-2); font-weight: 700; }
+  tr:nth-child(even) td { background: var(--surface-2); }
+  code {
+    background: var(--code-bg); padding: .1rem .35rem; border-radius: 4px;
+    font-family: "SF Mono", "Cascadia Code", monospace; font-size: .85em;
+  }
+  pre { background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: .75rem 0; }
+
+  /* 배지 */
   .badge {
-    display: inline-block; padding: .1rem .5rem; border-radius: 10px;
-    font-size: .8rem; font-weight: 600; color: #fff;
+    display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .03em;
   }
-  .badge-ok { background: var(--ok); }
-  .badge-warn { background: var(--warn); }
-  .badge-err { background: var(--err); }
+  .badge-ok { background: var(--ok-dim); color: var(--ok); }
+  .badge-warn { background: var(--warn-dim); color: var(--warn); }
+  .badge-err { background: var(--err-dim); color: var(--err); }
+  .badge-info { background: var(--accent-dim); color: var(--accent); }
+
+  /* callout */
   .callout {
-    background: var(--callout-bg); border-left: 4px solid var(--accent);
-    padding: .8rem 1rem; border-radius: 4px; margin: 1rem 0;
+    background: var(--accent-dim); border-left: 4px solid var(--accent);
+    padding: .8rem 1rem; border-radius: 8px; margin: .9rem 0; font-size: .9rem;
   }
-  svg { max-width: 100%; height: auto; }
-  figure { margin: 1.5rem 0; text-align: center; }
-  figcaption { color: var(--muted); font-size: .85rem; margin-top: .4rem; }
+  ul, ol { padding-left: 1.3rem; }
+  li { margin: .3rem 0; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: .3rem 0; display: flex; align-items: center; gap: .5rem; }
+
+  /* 다이어그램 */
+  figure {
+    margin: 1rem 0; text-align: center; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+  }
+  figure svg { max-width: 100%; height: auto; }
+  figcaption { color: var(--muted); font-size: .82rem; margin-top: .5rem; }
+
+  /* details */
+  details {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: .5rem .9rem; margin: .7rem 0;
+  }
+  summary { cursor: pointer; font-weight: 600; user-select: none; }
+  details[open] summary { margin-bottom: .5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+  a { color: var(--accent); }
+
+  .footer {
+    text-align: center; color: var(--muted); font-size: .8rem;
+    margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) { body { padding: 1rem .5rem; } .meta-row { flex-direction: column; gap: .4rem; } }
   @media print {
-    body { max-width: none; }
-    details { display: block; }
+    body { max-width: none; background: #fff; }
+    .card, .stat-card, figure { box-shadow: none; break-inside: avoid; }
     details > :not(summary) { display: block !important; }
     @page { margin: 1.5cm; }
   }
 </style>
 </head>
 <body>
-<h1>{문서 제목}</h1>
-<p class="doc-meta">생성일: {날짜} · Track: {track_id} · 단계: {워크플로우 단계}</p>
-<div class="doc-summary">{이 문서는 무엇인가 — 1~2문장}</div>
 
-<!-- 섹션을 여기에 작성. 각 섹션은 <section><h2>...</h2>...</section> -->
+<!-- ===== 헤더 (필수) ===== -->
+<div class="doc-header">
+  <h1>{문서 제목}</h1>
+  <p class="desc">{한 줄 설명}</p>
+  <div class="meta-row">
+    <span class="meta-item"><span class="label">생성일</span> {날짜}</span>
+    <span class="meta-item"><span class="label">Track</span> {track_id}</span>
+    <span class="meta-item"><span class="label">단계</span> {워크플로우 단계}</span>
+  </div>
+</div>
+
+<!-- ===== 통계 카드 (수치가 있는 문서 — 없으면 이 블록 삭제) =====
+     색상 클래스: stat-card / stat-card ok / stat-card warn / stat-card err -->
+<div class="stats-grid">
+  <div class="stat-card"><span class="stat-value">{N}</span><div class="stat-label">{지표}</div></div>
+  <div class="stat-card ok"><span class="stat-value">{N}</span><div class="stat-label">{지표}</div></div>
+</div>
+
+<div class="callout">{이 문서는 무엇인가 — 1~2문장}</div>
+
+<!-- ===== 섹션 카드 — 각 섹션은 .card 로 감싸고 h2 에 아이콘을 붙인다 =====
+     SVG 다이어그램(작업 흐름·아키텍처·상태 전이)을 1개 이상 figure 로 포함한다.
+     SVG 색상은 CSS 변수(var(--accent)/var(--ok)/var(--warn)/var(--err))를 써서 라이트·다크에 모두 대응시킨다. -->
+<div class="card">
+  <h2><span>{🔭/🏗️/⚙️ 등 아이콘}</span> {섹션 제목}</h2>
+  <p>{내용}</p>
+</div>
+
+<div class="footer">{문서명} · {track_id} · /{스킬명}</div>
 
 </body>
 </html>

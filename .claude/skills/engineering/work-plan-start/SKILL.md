@@ -49,17 +49,13 @@ WORK-SPEC.html를 파싱하여 Phase 목록 추출. 보통 4~6개. 각 Phase는:
 - 의존성 (이전 Phase 산출물 사용 여부)
 - 검증 방법 (테스트 명령, 동작 확인)
 
-`4_PLAN.html`에 Phase 진행률 표 작성. `html-doc` 스킬 규칙을 따라 자체 완결 HTML로 작성한다. 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 작업 흐름·Phase 타임라인을 인라인 SVG 다이어그램으로 1개 이상 포함한다:
+`4_PLAN.html`을 작성한다. **`work-plan-start/references/plan-template.html`을 skeleton으로 사용**한다 — `2_WORK-SPEC.html`(workspec-template) / `1_REQ-SNAPSHOT.html` / `3_FEATURE-CHECKLIST.html`와 동일한 카드 디자인 시스템을 공유하여 Track 문서 묶음의 시각 일관성을 유지한다.
 
-```html
-<table>
-  <thead><tr><th>Phase</th><th>제목</th><th>상태</th><th>산출물</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>...</td><td><span class="badge badge-warn">⏳ pending</span></td><td>-</td></tr>
-    <tr><td>2</td><td>...</td><td><span class="badge badge-warn">⏳ pending</span></td><td>-</td></tr>
-  </tbody>
-</table>
-```
+구성: 헤더 + 통계 카드(총/완료 Phase·현재 Phase·진행률) + **Phase 타임라인 SVG** + 구성 방향(해당 시) + Phase 진행률 표 + Phase 상세(`details`).
+
+- **인라인 SVG 다이어그램 1개 이상 필수** — Phase 타임라인(완료/진행/대기 상태별 색상 구분) 권장. 색상은 템플릿 CSS 변수(`--ok`/`--accent`/`--border` 등)로 라이트·다크 대응.
+- Phase·작업 상태는 배지로 표기하고 진행에 따라 갱신: `badge-ok`(완료) / `badge-info`(진행) / `badge-warn`(대기) / `badge-err`(차단).
+- `4_PLAN.html`이 Phase 진행 상태의 SSOT다 — `metadata.json`의 `current_phase`와 동기화한다.
 
 ### Step 3 — Phase별 실행
 
@@ -106,7 +102,7 @@ deepening opportunity가 발견되면 사용자에게 surface:
 
 구현 완료 시:
 
-산출 HTML 문서는 `html-doc` 스킬의 규칙을 따라 자체 완결 HTML로 작성한다. `html-doc/references/template.html`을 skeleton으로 사용한다.
+산출 HTML 문서는 자체 완결 HTML로 작성하며, **Track 문서 묶음과 동일한 카드 디자인 시스템**(`work-plan/references/workspec-template.html` 기준 — `:root` CSS 변수, `.card`/`.badge`/`.callout`/`figure` 컴포넌트)을 공유한다. `1_REQ-SNAPSHOT`~`6_SPEC` 전체가 시각적으로 일관되어야 한다.
 
 - `5_ARCHITECTURE.html` — 시스템 아키텍처, 데이터 흐름. 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 시스템 구조를 인라인 SVG 다이어그램으로 1개 이상 포함한다 (권장: 시스템·모듈 구조도).
 - `6_SPEC.html` — 기능 명세, 사용자 인터페이스, 핵심 로직. 산출 HTML 문서에는 html-doc 스킬의 시각화 가이드에 따라 데이터 흐름을 인라인 SVG 다이어그램으로 1개 이상 포함한다 (권장: 처리 흐름도).
