@@ -1,8 +1,194 @@
 # Claude Code 릴리스 노트 (한글)
 
-> 정리 일시: 2026-05-13
-> 정리 범위: v2.1.43 ~ v2.1.140
+> 정리 일시: 2026-05-20
+> 정리 범위: v2.1.43 ~ v2.1.145
 > 참고: v2.1.124, v2.1.125, v2.1.127, v2.1.130, v2.1.134, v2.1.135는 공식 CHANGELOG에 등록되지 않은 스킵 버전
+
+---
+
+## Version 2.1.145
+
+### 주요 하이라이트
+- **`claude agents --json` 신규 추가**: 활성 Claude 세션 목록을 JSON으로 출력 (tmux-resurrect, 상태바, 세션 선택기 등 스크립팅 용도)
+- **OTEL 트레이싱 강화**: `claude_code.tool` 스팬에 `agent_id`/`parent_agent_id` 속성 추가, 백그라운드 서브에이전트 스팬이 디스패치한 Agent 도구 스팬 아래로 올바르게 중첩
+- **보안 수정**: Bash 명령에서 allowlist에 없는 환경 변수에 대한 bare 변수 할당이 자동 승인되던 권한 우회 수정
+- **`/plugin` UX 개선**: Discover/Browse 화면에서 설치 전 플러그인의 commands, agents, skills, hooks, MCP/LSP 서버를 모두 표시
+
+### 새 기능
+- `claude agents --json` 명령 — 세션 목록 JSON 출력
+- OTEL `agent_id`/`parent_agent_id` 스팬 속성
+- 상태 라인 JSON 입력에 GitHub 저장소 및 PR 정보 포함
+- `/plugin` 설치 전 구성요소 인벤토리 표시
+- `claude agents` 터미널 탭 제목에 입력 대기 카운트 표시
+- 슬래시 명령 및 @-mention 제안 목록에서 마우스 호버/클릭 지원 (풀스크린 모드)
+- Stop/SubagentStop hook 입력에 `background_tasks` 및 `session_crons` 필드 추가
+
+### 개선
+- Read 도구가 토큰 한도 초과 시 하드 에러 대신 "PARTIAL view" 안내와 함께 잘린 첫 페이지 반환
+
+### 버그 수정
+- Bash 명령의 bare 변수 할당 권한 자동 승인 우회 (보안)
+- MCP 프롬프트 슬래시 명령에서 필수 인자 누락 시 raw 검증 에러 노출 → 누락된 인자명과 사용법 표시
+- 터미널 리사이즈/리포커스 후 스피너 및 경과 시간 표시가 키 입력까지 멈추는 문제
+- Windows PowerShell 5.1에서 cross-project resume 힌트 실패 → 세미콜론(`;`)을 명령 구분자로 사용
+- agent view의 reply 창에서 음성 push-to-talk 미작동
+- 여러 작업이 동시 생성될 때 task list가 랜덤 순서로 렌더링되던 문제
+- `gh pr create` 등 PR 상태 변경 명령 실행 후 푸터 PR 배지가 즉시 갱신되지 않던 문제
+- Agent Teams의 비-ASCII 이름 팀원이 잘못된 헤더 인코딩으로 모든 API 호출에 실패하던 문제
+- `/review`가 사용 중단된 `projectCards` GraphQL 쿼리를 사용하여 Classic Projects 사용 저장소에서 에러
+- `claude plugin validate`가 디렉토리가 아닌 파일을 가리키는 `skills:` 항목을 검출하지 못하던 문제
+- `context: fork` 스킬이 자기 자신을 무한 재호출하는 무한 루프 수정
+
+---
+
+## Version 2.1.144
+
+### 주요 하이라이트
+- **`/resume`이 백그라운드 세션 지원**: `claude --bg` 또는 agent view로 시작한 세션이 인터랙티브 세션과 함께 `bg` 표시로 노출
+- **시작 시 hang 해결**: `api.anthropic.com` 접근 불가 시 최대 75초 hang → 사이드채널 API 호출이 15초 후 타임아웃
+- **`/model` 동작 변경**: 현재 세션만 변경하며, 신규 세션 기본값은 모델 선택기에서 `d` 키로 설정
+- **이름 변경**: "extra usage" → "usage credits" (`/extra-usage` → `/usage-credits`, 구 명령도 유지)
+
+### 새 기능
+- 백그라운드 서브에이전트 완료 알림에 경과 시간 표시 (예: "Agent completed · 3h 2m 5s")
+- `/plugin` browse/discover에 플러그인 최종 업데이트 시점 표시
+
+### 개선
+- VS Code에서 스피너 애니메이션 색상 수 감소로 터미널 렌더링 글리치 감소
+- `head`/`tail` 파일 보기가 read-before-edit 체크를 만족시킴
+- `egrep`, `fgrep`, `git grep`, `git diff`의 "no matches" 결과(exit 1)를 명령 실패로 보고하지 않음
+
+### 버그 수정
+- macOS 백그라운드 세션이 Full Disk Access 보호 폴더에서 "exit 1 before init"로 크래시 (v2.1.143 회귀)
+- 이미지 확장자와 실제 내용이 다른 파일(예: .png로 저장된 HTML)이 회복 불가능한 대화를 유발 → 텍스트로 폴백
+- `/branch`가 worktree 진입 후 또는 일부 백그라운드 세션에서 "No conversation to branch" 실패
+- AskUserQuestion 노트 필드에서 Escape 누르면 답변 선택 복귀 대신 턴 중단
+- 모델 선택이 IDE 모델 선택기 또는 시작 후 `applyFlagSettings`로 변경 시 적용 안 됨
+- 재개된 세션이 다른 세션의 `/model` 선택을 적용하던 문제
+- Bedrock/Vertex 사용자가 `/model` 선택기에서 "Opus (1M context)" 선택 불가 (v2.1.129 회귀)
+- `forceLoginMethod`+`forceLoginOrgUUID` 설정 시 원격 세션 로그인 실패
+- MCP 서버의 paginated `tools/list` 응답이 첫 페이지만 반환, 나머지 도구 무음 누락
+- SVG 등 미지원 MIME 타입의 MCP 이미지가 대화를 깨뜨리던 문제 → 디스크 저장 후 참조
+- 스킬 디렉토리 내에서 빌드 시 비-`.md` 파일이 스킬 리로드 트리거하여 파일 디스크립터 고갈
+- Skill 도구가 headless 모드에서 권한 에러로 실패 (v2.1.141 회귀)
+- Windows에서 백그라운드 세션 스크롤 (PgUp/PgDn, 마우스 휠, Ctrl+O) 동작
+- Windows Terminal CJK 콘텐츠에서 Agent View 좌측 끝 ghost 문자
+- 헤드리스 SDK MCP 시작이 첫 턴 전 대기를 시작과 겹쳐 최대 2초 단축
+
+---
+
+## Version 2.1.143
+
+### 주요 하이라이트
+- **플러그인 의존성 강제 추가**: `claude plugin disable`이 다른 활성 플러그인이 의존하면 거부 (해제 체인 힌트 제공), `claude plugin enable`은 의존성 자동 활성화
+- **PowerShell 도구 보안 완화**: `-ExecutionPolicy Bypass` 자동 적용 (`CLAUDE_CODE_POWERSHELL_RESPECT_EXECUTION_POLICY=1`로 비활성화 가능)
+- **`worktree.bgIsolation: "none"` 설정**: worktree가 비실용적인 저장소에서 백그라운드 세션이 작업 사본을 직접 편집 가능
+- **Stop hook 무한 루프 방지**: 8회 연속 차단 후 경고와 함께 턴 종료 (`CLAUDE_CODE_STOP_HOOK_BLOCK_CAP`으로 재정의)
+
+### 새 기능
+- `/plugin` 마켓플레이스 browse에 예상 컨텍스트 비용 (턴당/호출당 토큰 추정치) 표시
+- `claude agents`가 `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions` 인자 지원
+- Windows의 Bedrock/Vertex/Foundry 사용자에게 PowerShell 도구 기본 활성화 (`CLAUDE_CODE_USE_POWERSHELL_TOOL=0`으로 비활성화)
+
+### 개선
+- 백그라운드 세션이 idle 깨어남 후 모델 및 effort level 보존
+- Shift+Tab이 첨부된 agent 세션에서 auto 모드도 순환에 포함
+
+### 버그 수정
+- `.credentials.json`의 비-배열 `scopes` 값이 시작 시 hang 또는 OAuth 토큰 갱신 중단을 유발하던 문제
+- Windows Terminal과 WSL에서 `claude agents` 우클릭 붙여넣기
+- 백그라운드 세션 idle 중 `/loop` 대기 wakeup의 Esc/Ctrl+C 취소
+- `/goal` 평가자가 백그라운드 셸 또는 위임된 서브에이전트 실행 중 작동하던 문제
+- settings.json의 `env`에서 `NO_COLOR`/`FORCE_COLOR`가 Claude Code UI 색상까지 제거하던 문제 → 하위 프로세스에만 적용
+- agent view가 세션 목록 작업 중 Windows에서 PowerShell 프로세스 반복 spawn
+- `/bg`가 프롬프트 없이 forked 세션에 "continue" 전송하던 문제
+- `--agent <name>`이 `plugin:` 접두사 없이 플러그인 contributed agent 찾지 못함
+- 호스트 sleep 또는 macOS App Nap 후 백그라운드 agent의 worker-stall 오탐 폭풍
+- `git worktree remove` 실패 시 `rm -rf` 폴백 제거 → gitignored/진행 중 파일 손실 방지
+- `~/Documents`, `~/Desktop`, `~/Downloads` 하위 macOS 백그라운드 세션 파일 접근 거부 (Full Disk Access 부여에도 불구하고)
+- `/bg`가 `--mcp-config`, `--settings`, `--add-dir`, `--plugin-dir`, `--strict-mcp-config` 보존
+- `/bg`/`←`-detach가 `--fallback-model`, `--allow-dangerously-skip-permissions` 보존
+
+---
+
+## Version 2.1.142
+
+### 주요 하이라이트
+- **Fast 모드 기본 모델 변경**: Opus 4.6 → Opus 4.7 (`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1`로 4.6 고정 가능)
+- **루트 SKILL.md 플러그인 지원**: `skills/` 하위 디렉토리 없이 루트 `SKILL.md`만 있는 플러그인이 스킬로 노출
+- **`claude agents` 옵션 대폭 확장**: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions` 추가
+- **MCP_TOOL_TIMEOUT 수정**: 원격 HTTP/SSE MCP 서버의 per-request fetch 타임아웃 (이전 60초 고정 → 설정값 반영)
+
+### 새 기능
+- `/plugin` 상세창과 `claude plugin details`에 플러그인이 제공하는 LSP 서버 표시
+- `/web-setup`이 기존 GitHub App 연결 교체 전 경고
+
+### 버그 수정
+- 백그라운드 세션이 사전 존재하는 git worktree를 인식 못 해 Edit 차단되던 문제
+- macOS sleep/wake 후 백그라운드 세션 사라짐 및 daemon 재연결 실패 → 시계 점프 감지
+- `brew upgrade` 등 바이너리 업그레이드 후 daemon이 깔끔히 종료되지 않아 디스패치된 agent가 삭제된 경로에서 크래시 루프
+- Claude-in-Chrome 확장이 공유 탭 없이 연결 시 백그라운드 agent 크래시 루프
+- 첨부 `claude agents` 세션의 링크 클릭 동작
+- `claude agents` "v to open in editor"가 daemon의 기본 에디터 대신 셸의 `$EDITOR`/`$VISUAL` 사용
+- 네트워크 드라이브 작업 디렉토리에서 Windows의 `claude agents` deadlock
+- Apple Terminal 등 256색 전용 터미널에서 `claude agents` 첨부 시 배경색 누출
+- 첫 메시지가 링크일 때 세션 제목이 URL에서 추출되던 문제
+- 원격 클라이언트의 중복 `set_model` 요청이 트랜스크립트에 중복 `/model` breadcrumb 주입
+- 플러그인이 `skills: ["./"]` 사용 시 거짓 "path escapes plugin directory" 에러
+- 설치 메타데이터 없을 때 플러그인 캐시 정리가 활성 버전 디렉토리 삭제
+- `/plugin` browse 창에서 신규 발행 플러그인이 "0 installs" 표시
+- 반응형 컴팩션 개선: 첫 요약 시도가 원본 요청의 오버플로우 크기를 기준으로 시드 (near-full-context 재시도 낭비 회피)
+- `SessionStart`/`Setup`/`SubagentStart`에 prompt/agent-type hook 설정 시 "use a command-type hook instead" 안내
+
+---
+
+## Version 2.1.141
+
+### 주요 하이라이트
+- **Hook `terminalSequence` 필드 추가**: 컨트롤링 터미널 없이도 hook이 데스크톱 알림, 윈도우 제목, 벨 emit 가능
+- **`CLAUDE_CODE_PLUGIN_PREFER_HTTPS` 추가**: GitHub SSH 키 없는 환경에서 HTTPS로 plugin source 클론
+- **`ANTHROPIC_WORKSPACE_ID` 환경변수**: workload identity federation에서 minted 토큰을 특정 workspace로 스코프 제한
+- **Rewind 메뉴 "Summarize up to here"**: 최근 턴은 유지하고 이전 컨텍스트를 압축
+
+### 새 기능
+- `claude agents --cwd <path>` — 디렉토리 기준 세션 목록 스코프
+- `/feedback`이 최근 세션(24시간/7일) 포함 가능 — 현재 세션 범위를 넘는 이슈용
+- Auto 모드 권한 다이얼로그가 `permissions.ask` 규칙으로 인한 프롬프트인지 설명
+- IDE 연결 시 파일 편집 권한 프롬프트의 "view diff in your IDE" 옵션 복원
+
+### 개선
+- `/bg`/`←←`로 시작된 백그라운드 agent가 현재 권한 모드 보존 (기본값 복귀 X)
+- `claude agents`: 작업 종료 후 백그라운드 셸 실행 중인 agent는 Working 대신 Completed로 이동
+- 긴 thinking 동안 스피너 시각 피드백 개선 — 10초 후 amber로 변화
+- 플러그인 메뉴 네비게이션 개선: `→`/Tab 탭 전환, `↑` 탭 strip 이동, 풀스크린 모드에서 탭 헤더 및 검색 박스 클릭 가능
+
+### 버그 수정
+- Bedrock/Vertex/Foundry/게이트웨이에서 `ANTHROPIC_SMALL_FAST_MODEL` 미설정 시 백그라운드 사이드 쿼리가 사용 불가 Haiku 모델 ID 전송 → 메인 루프 모델로 폴백
+- Windows에서 `claude daemon status`와 `/doctor`가 daemon pipe key 파일 잠금 시 throw → 실제 에러 표시
+- 백그라운드 jobs의 custom `ANTHROPIC_BASE_URL` 게이트웨이가 자동 명명 안 됨
+- 한 세션의 `/model`이 다른 동시 세션의 autocompact 임계값 무음 변경
+- Tool permission 프롬프트가 열린 상태에서 권한 모드 전환 시 새 설정이 도구 허용해도 자동 닫히지 않음
+- 권한/다이얼로그 프롬프트 열린 상태에서 Enter가 입력 박스에도 텍스트 제출
+- `EnterWorktree`가 작업 디렉토리 전환 후 hook에 존재하지 않는 `transcript_path` 전달
+- 셀 wrapping이 있는 마크다운 테이블이 vertical key-value 레이아웃으로 폴백 (v2.1.136 회귀)
+- 취소된 프롬프트가 Up-arrow 히스토리에서 제거되어 중복 항목 회피
+- vim INSERT/VISUAL 모드에서 Ctrl+C가 실행 중 턴 중단 안 되던 문제
+- `chat:submit` 대체 키바인딩 (`meta+enter`, `ctrl+enter`)이 `enter`가 `chat:newline`으로 rebind된 경우 미작동
+- 출력 스타일 설정 시 프롬프트 제안이 무음 비활성화
+- AskUserQuestion 팝업이 선행 채팅 콘텐츠 마지막 줄 숨김
+- light-ansi 테마가 light 배경에서 diff context 줄에 보이지 않는 흰색 사용 → 검정으로 변경
+- 피드백 설문 평점 입력 후 Enter가 채팅 메시지로 제출되던 문제
+- `/tui`가 실행 중 백그라운드 셸과 서브에이전트를 무음 드롭 → 거부하고 종료 대기 요청
+- Bedrock/Vertex/Foundry 등 third-party provider 환영 배너에서 "API Usage Billing" → provider 이름 표시
+- `claude plugin install`이 마켓플레이스 `ref`가 더 이상 존재하지 않을 때 `sha`와 함께 핀된 플러그인 설치 실패
+- MCP 서버 config의 POSIX 셸 파라미터 확장(`${var%pattern}`)이 환경변수 누락으로 잘못 플래그
+- MCP HTTP/SSE 서버 연결 시 403이 "failed" → "needs auth"로 표시
+- Remote Control MCP connector가 worker 세션 토큰 회전 시 모두 401 실패
+- Windows Alt+V 이미지 붙여넣기가 클립보드 스크린샷에 대해 "no image found" 보고
+- SDK "Claude Code native binary not found" on Linux (glibc와 musl platform packages 동시 설치 시)
+- Bedrock: `awsCredentialExport`가 ambient AWS credentials 있을 때 건너뛰지 않고 항상 실행 (cross-account access 인증)
+- [VSCode] 채팅 내 마이크가 무음 입력 시 피드백 없음 → "No audio detected" 표시
+- [VSCode] Voice mode WSL 에러가 WSLg 사용자에게 `sox libsox-fmt-pulse` 설치 제안
 
 ---
 
